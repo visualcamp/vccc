@@ -125,22 +125,22 @@ template<std::size_t i, std::size_t j, typename C, typename T> auto constexpr at
  * scalar add operation on opencv types
  */
 
-template<typename T, int m, int n, typename N, require(std::is_arithmetic<N>::value)>
+template<typename T, int m, int n, typename N, VCPP_REQUIRE(std::is_arithmetic<N>::value)>
 cv::Matx<T, m, n> add(const cv::Matx<T, m, n>& matx, T _n){
   return matx + cv::Matx<T, m, n>::all(_n);
 }
 
-template<typename T, int cn, typename N, require(std::is_arithmetic<N>::value)>
+template<typename T, int cn, typename N, VCPP_REQUIRE(std::is_arithmetic<N>::value)>
 cv::Vec<T, cn> add(const cv::Vec<T, cn>& vec, N n) {
   return vec + cv::Vec<T, cn>::all(n);
 }
 
-template<typename T, typename N, require(std::is_arithmetic<N>::value)>
+template<typename T, typename N, VCPP_REQUIRE(std::is_arithmetic<N>::value)>
 cv::Point_<T> add(const cv::Point_<T>& point2, N n) {
   return cv::Point_<T>(point2.x + n, point2.y + n);
 }
 
-template<typename T, typename N, require(std::is_arithmetic<N>::value)>
+template<typename T, typename N, VCPP_REQUIRE(std::is_arithmetic<N>::value)>
 cv::Point3_<T> add(const cv::Point3_<T>& point3, N n) {
   return cv::Point3_<T>(point3.x + n, point3.y + n, point3.z + n);
 }
@@ -168,14 +168,15 @@ class bind_obj {
   constexpr bind_obj(Args&&... args) : tup(std::forward<Args>(args)...) {}
 
   template<typename T>
-  constexpr void operator = (T&& type) {
+  constexpr bind_obj& operator = (T&& type) {
     bind_impl(std::forward<T>(type), std::index_sequence_for<Ts...>{});
+    return *this;
   }
 
  private:
   template<typename T, std::size_t ...I>
   constexpr void bind_impl(T&& type, std::index_sequence<I...>) {
-    volatile int dummy[sizeof...(I)] = {
+    [[maybe_unused]] volatile int dummy[sizeof...(I)] = {
         (at<I>(tup) = at<I>(type), 0)...
     };
   }
