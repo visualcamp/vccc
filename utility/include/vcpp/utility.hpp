@@ -7,5 +7,6 @@
 
 #include "vcpp/utility/at.hpp"
 #include "vcpp/utility/sequence.hpp"
+#include "vcpp/utility/time.hpp"
 
 #endif //VCPP_UTILITY_HPP
