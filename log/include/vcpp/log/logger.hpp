@@ -11,6 +11,7 @@
 
 #include "vcpp/type_traits.hpp"
 #include "vcpp/log/detail/platform_log.hpp"
+#include "vcpp/log/detail/custom_ostream.hpp"
 
 
 namespace vc {
