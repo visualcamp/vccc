@@ -23,8 +23,7 @@ using make_zero_sequence = make_same_sequence<int, 0, N>;
 
 
 // creates a sequence that has begin, begin + step, begin + 2*step, ... that satisfies [begin, end)
-
-template <typename T, T begin, T end, T step, T size = (end + (end>0?-1:1) - begin)/step>
+template <typename T, T begin, T end, T step=1, T size = (end + (end>0?-1:1) - begin)/step>
 using make_range_sequence
 = decltype(detail::range_sequence<T, begin, step>(std::make_integer_sequence<T, (size >= 0 ? size+1 : size)>{}));
 
