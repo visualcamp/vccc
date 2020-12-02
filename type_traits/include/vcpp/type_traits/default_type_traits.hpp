@@ -82,6 +82,17 @@ struct is_container<T, void_t<decltype(std::declval<T>().begin()),
 >> : std::true_type {
 };
 
+
+/** is_printable */
+
+template<typename T, typename = void>
+struct is_printable : std::false_type {};
+
+template<typename T>
+struct is_printable<T, void_t<
+                         decltype(std::cout << std::declval<T>())
+                       >> : std::true_type {};
+
 template<typename T>
 constexpr auto is_container_v = is_container<T>::value;
 
