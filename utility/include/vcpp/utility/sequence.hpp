@@ -7,7 +7,6 @@
 
 #include <utility>
 #include "vcpp/utility/detail/custom_sequence.hpp"
-#include "vcpp/type_traits.hpp"
 
 namespace vc {
 
