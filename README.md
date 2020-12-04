@@ -12,7 +12,7 @@
  * `are_`, `are_...`
  * `vtype_t`, `void_t`, `is_iterator`, `iterable`, `is_specialization`, `is_container`, `is_printable`, `is_std_array` 
  * `bigger_type`, `signed_bigger_type`, `unsigned_bigger_type`
- * `VCPP_REQUIRE`, `VCPP_REQUIRE_FWD`, `VCPP_REQUIRE_IMPL`
+ * `VCCC_REQUIRE`, `VCCC_REQUIRE_FWD`, `VCCC_REQUIRE_IMPL`
  * `multiples_of`, `is_odd`
  
  #### `log`
