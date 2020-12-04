@@ -16,15 +16,15 @@ auto getCurrentTime() {
   return std::chrono::duration_cast<T>(duration).count();
 }
 
-decltype(auto) getCurrentMilliseconds() {
+inline decltype(auto) getCurrentMilliseconds() {
   return getCurrentTime<std::chrono::milliseconds>();
 }
 
-decltype(auto) getCurrentMicroseconds() {
+inline decltype(auto) getCurrentMicroseconds() {
   return getCurrentTime<std::chrono::microseconds>();
 }
 
-decltype(auto) getCurrentNanoseconds() {
+inline decltype(auto) getCurrentNanoseconds() {
   return getCurrentTime<std::chrono::nanoseconds>();
 }
 
