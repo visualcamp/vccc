@@ -58,28 +58,6 @@ constexpr auto average(const Args&... args){
 }
 
 /**
- *
- * @tparam InputIterator
- */
-
-template<typename InputIterator>
-constexpr auto weight_average(InputIterator first, InputIterator last, InputIterator weight_first, InputIterator weight_last) {
-  return average(first, last, [&weight_last](const auto& val) {
-    return val * weight_last++;
-  });
-}
-
-/**
- *
- */
-
-template<typename Value, typename Weight, typename ...ValueAndWeights, VCCC_REQUIRE(multisizeof...(ValueAndWeights) % 2 == 0)>
-constexpr auto weight_average(const Value& value, const Weight& weight, const ValueAndWeights&&... rests){
-
-}
-
-
-/**
  * standard deviation
  */
 
