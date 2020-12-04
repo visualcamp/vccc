@@ -6,6 +6,7 @@
 #define VCCC_TYPE_TRAITS_DEFAULT_TYPE_TRAITS_HPP
 
 #include "vccc/type_traits/are.hpp"
+#include <iostream>
 
 namespace vc{
 
