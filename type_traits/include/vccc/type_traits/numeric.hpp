@@ -25,7 +25,9 @@ constexpr bool multiples_of_v = multiples_of<T, A, B>::value;
 /** is_odd */
 
 template<typename T, T A>
-struct is_odd : std::integral_constant<bool, A&1> {};
+struct is_odd : std::integral_constant<bool, A&1> {
+  static_assert(A >= 0, "value must be natural number");
+};
 
 template<typename T, T A>
 using is_odd_t = typename is_odd<T, A>::type;
@@ -33,6 +35,19 @@ using is_odd_t = typename is_odd<T, A>::type;
 template<typename T, T A>
 constexpr bool is_odd_v = is_odd<T, A>::value;
 
+
+/** is_even */
+
+template<typename T, T A>
+struct is_even : std::integral_constant<bool, (A&1) != 1> {
+  static_assert(A>=0, "value must be natural number");
+};
+
+template<typename T, T A>
+using is_even_t = typename is_even<T, A>::type;
+
+template<typename T, T A>
+constexpr bool is_even_v = is_even<T, A>::value;
 
 
 
