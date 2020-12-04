@@ -9,7 +9,8 @@
 #include <tuple>
 #include <iterator>
 
-#include "vccc/type_traits.hpp"
+#include <vccc/type_traits.hpp>
+#include "util/vcassert.h"
 
 namespace vc{
 
