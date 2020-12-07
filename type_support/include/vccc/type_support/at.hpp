@@ -9,8 +9,9 @@
 #include "vccc/type_traits.hpp"
 
 namespace vc{
-/** cv::Point_ */
 
+/** cv::Point_ */
+// index = 0
 template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
 constexpr
 T&
@@ -39,6 +40,7 @@ at(const cv::Point_<T>&& point2) {
   return std::move(point2.x);
 }
 
+// index = 1
 template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
 constexpr
 T&
@@ -69,6 +71,7 @@ at(const cv::Point_<T>&& point2) {
 
 
 /** cv::Point3_ */
+// index = 0
 
 template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
 constexpr
@@ -98,6 +101,7 @@ at(const cv::Point3_<T>&& point3) {
   return std::move(point3.x);
 }
 
+// index = 1
 template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
 constexpr
 T&
@@ -126,6 +130,7 @@ at(const cv::Point3_<T>&& point3) {
   return std::move(point3.y);
 }
 
+// index = 2
 template<std::size_t i, typename T, VCCC_REQUIRE(i == 2)>
 constexpr
 T&
@@ -268,6 +273,7 @@ at(const cv::Matx<T, m, n>&& matx) {
 
 /** cv::Size_ */
 
+// index = 0
 template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
 constexpr
 T&
@@ -296,6 +302,7 @@ at(const cv::Size_<T>&& size) {
   return std::move(size.width);
 }
 
+// index = 1
 template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
 constexpr
 T&
@@ -323,12 +330,12 @@ const T&&
 at(const cv::Size_<T>&& size) {
   return std::move(size.height);
 }
-
 
 
 /**
  * return cv::saturate_cast<C>(at<i,...>(t))
  */
+
 template<std::size_t i, typename C, typename T>
 constexpr
 decltype(auto)
