@@ -27,7 +27,6 @@
  
  #### `utility`
  Requires `type_traits`  
- Requires `OpenCV for` for full use
  * `at`, `bind_at`
  * `make_rindex_sequence`, `make_same_sequence`, `make_zero_sequence`, `make_range_sequence`
  * `getCurrentMilliseconds`, `getCurrentMicroseconds`, `getCurrentNanoseconds`
