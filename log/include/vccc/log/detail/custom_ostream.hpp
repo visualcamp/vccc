@@ -10,12 +10,9 @@
 
 namespace vc{
 
-template<typename ...Args> std::ostream& operator << (std::ostream& os, const std::tuple<Args...>& tup);
-template<typename ...Args> std::ostream& operator << (std::ostream& os, const std::pair<Args...>& tup);
-template<typename T, T... I> std::ostream& operator << (std::ostream& os, const std::integer_sequence<T, I...>& seq);
 
 
-template<typename T, VCCC_REQUIRE(is_container<T>::value && !is_printable<T>::value)>
+template<typename T, VCCC_REQUIRE_IMPL(is_container<T>::value && !is_printable<T>::value)>
 std::ostream& operator << (std::ostream& os, const T& v){
   return detail::print_iterator(os, std::begin(v), std::end(v));
 }

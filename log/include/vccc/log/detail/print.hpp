@@ -7,7 +7,15 @@
 
 #include <iostream>
 
-namespace vc{namespace detail{
+namespace vc{
+
+template<typename ...Args> std::ostream& operator << (std::ostream& os, const std::tuple<Args...>& tup);
+template<typename ...Args> std::ostream& operator << (std::ostream& os, const std::pair<Args...>& tup);
+template<typename T, T... I> std::ostream& operator << (std::ostream& os, const std::integer_sequence<T, I...>& seq);
+template<typename T, VCCC_REQUIRE_FWD(is_container<T>::value && !is_printable<T>::value)>
+std::ostream& operator << (std::ostream& os, const T& v);
+
+namespace detail{
 
 template<typename Iterator>
 std::ostream& print_iterator(std::ostream& os, Iterator first, Iterator last)
