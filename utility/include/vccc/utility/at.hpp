@@ -9,8 +9,7 @@
 #include <tuple>
 #include <iterator>
 
-#include <vccc/type_traits.hpp>
-#include "util/vcassert.h"
+#include "vccc/type_traits.hpp"
 
 namespace vc{
 
@@ -19,28 +18,36 @@ namespace vc{
 
 template<std::size_t i, typename T,
     VCCC_REQUIRE(i < std::tuple_size<T>::value)>
+constexpr
 decltype(auto) at (T& tuple) {
   return std::get<i>(tuple);
 }
 
 template<std::size_t i, typename T,
     VCCC_REQUIRE(i < std::tuple_size<T>::value)>
+constexpr
 decltype(auto) at (const T& tuple) {
   return std::get<i>(tuple);
 }
 
+template<std::size_t i, typename ...Args,
+    VCCC_REQUIRE(i < sizeof...(Args))>
+constexpr
+decltype(auto) at(Args&&... args){
+  return std::get<i>(std::forward_as_tuple(std::forward<Args>(args)...));
+}
 
 /** container */
 
 template<std::size_t i, typename Container,
-    VCCC_REQUIRE(is_container_v<Container>)>
+VCCC_REQUIRE(is_container_v<Container>)>
 decltype(auto) at(Container& container) {
   BOUNDS_ASSERT(i, container.size());
   return *std::next(std::begin(container), i);
 }
 
 template<std::size_t i, typename Container,
-    VCCC_REQUIRE(is_container_v<Container>)>
+VCCC_REQUIRE(is_container_v<Container>)>
 decltype(auto) at(const Container& container) {
   BOUNDS_ASSERT(i, container.size());
   return *std::next(std::begin(container), i);
@@ -51,13 +58,15 @@ decltype(auto) at(const Container& container) {
 
 template<std::size_t i, typename T, int n,
     VCCC_REQUIRE(i < n)>
+constexpr
 decltype(auto) at(std::array<T, n>& arr) {
   return arr[i];
 }
 
 template<std::size_t i, typename T, int n,
     VCCC_REQUIRE(i < n)>
-constexpr decltype(auto) at(const std::array<T, n>& arr) {
+constexpr
+decltype(auto) at(const std::array<T, n>& arr) {
   return arr[i];
 }
 
@@ -67,59 +76,337 @@ constexpr decltype(auto) at(const std::array<T, n>& arr) {
 
 /** cv::Point_ */
 
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>       T& at(      cv::Point_<T>& point2) { return point2.x; }
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)> const T& at(const cv::Point_<T>& point2) { return point2.x; }
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>       T& at(      cv::Point_<T>& point2) { return point2.y; }
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)> const T& at(const cv::Point_<T>& point2) { return point2.y; }
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
+constexpr
+T&
+at(cv::Point_<T>& point2) {
+  return point2.x;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
+constexpr
+const T&
+at(const cv::Point_<T>& point2) {
+  return point2.x;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
+constexpr
+T&&
+at(cv::Point_<T>&& point2) {
+  return std::move(point2.x);
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
+constexpr
+const T&&
+at(const cv::Point_<T>&& point2) {
+  return std::move(point2.x);
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
+constexpr
+T&
+at(cv::Point_<T>& point2) {
+  return point2.y;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
+constexpr
+const T&
+at(const cv::Point_<T>& point2) {
+  return point2.y;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
+constexpr
+T&&
+at(cv::Point_<T>&& point2) {
+  return std::move(point2.y);
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
+constexpr
+const T&&
+at(const cv::Point_<T>&& point2) {
+  return std::move(point2.y);
+}
 
 
 /** cv::Point3_ */
 
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>       T& at(      cv::Point3_<T>& point3) { return point3.x; }
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)> const T& at(const cv::Point3_<T>& point3) { return point3.x; }
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>       T& at(      cv::Point3_<T>& point3) { return point3.y; }
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)> const T& at(const cv::Point3_<T>& point3) { return point3.y; }
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 2)>       T& at(      cv::Point3_<T>& point3) { return point3.z; }
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 2)> const T& at(const cv::Point3_<T>& point3) { return point3.z; }
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
+constexpr
+T&
+at(cv::Point3_<T>& point3) {
+  return point3.x;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
+constexpr
+const T&
+at(const cv::Point3_<T>& point3) {
+  return point3.x;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
+constexpr
+T&&
+at(cv::Point3_<T>&& point3) {
+  return std::move(point3.x);
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
+constexpr
+const T&&
+at(const cv::Point3_<T>&& point3) {
+  return std::move(point3.x);
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
+constexpr
+T&
+at(cv::Point3_<T>& point3) {
+  return point3.y;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
+constexpr
+const T&
+at(const cv::Point3_<T>& point3) {
+  return point3.y;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
+constexpr
+T&&
+at(cv::Point3_<T>&& point3) {
+  return std::move(point3.y);
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
+constexpr
+const T&&
+at(const cv::Point3_<T>&& point3) {
+  return std::move(point3.y);
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 2)>
+constexpr
+T&
+at(cv::Point3_<T>& point3) {
+  return point3.z;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 2)>
+constexpr
+const T&
+at(const cv::Point3_<T>& point3) {
+  return point3.z;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 2)>
+constexpr
+T&&
+at(cv::Point3_<T>&& point3) {
+  return std::move(point3.z);
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 2)>
+constexpr
+const T&&
+at(const cv::Point3_<T>&& point3) {
+  return std::move(point3.z);
+}
 
 
 /** cv::Vec */
 
-template<std::size_t i, typename T, int n, VCCC_REQUIRE(i < n)> decltype(auto) at(      cv::Vec<T, n>& vec) { return vec[i]; }
-template<std::size_t i, typename T, int n, VCCC_REQUIRE(i < n)> decltype(auto) at(const cv::Vec<T, n>& vec) { return vec[i]; }
+template<std::size_t i, typename T, int n>
+constexpr
+T&
+at(cv::Vec<T, n>& vec) {
+  static_assert(i < n, "Index out of bounds in vc::at<> (cv::Vec)");
+  return vec[i];
+}
+
+template<std::size_t i, typename T, int n>
+constexpr
+const T&
+at(const cv::Vec<T, n>& vec) {
+  static_assert(i < n, "Index out of bounds in vc::at<> (const cv::Vec)");
+  return vec[i];
+}
+
+template<std::size_t i, typename T, int n>
+constexpr
+T&&
+at(cv::Vec<T, n>&& vec) {
+  static_assert(i < n, "Index out of bounds in vc::at<> (cv::Vec&&)");
+  return std::move(vec[i]);
+}
+
+template<std::size_t i, typename T, int n>
+constexpr
+const T&&
+at(const cv::Vec<T, n>&& vec) {
+  static_assert(i < n, "Index out of bounds in vc::at<> (const cv::Vec&&)");
+  return std::move(vec[i]);
+}
 
 
 /** cv::Matx */
 
-template<std::size_t row, std::size_t col, typename T, int m, int n,
-         VCCC_REQUIRE((row < m && col < n) && (m > 1 && n > 1))>
-decltype(auto) at(      cv::Matx<T, m, n>& matx) { return matx(row, col); }
+template<std::size_t row, std::size_t col, typename T, int m, int n>
+constexpr
+T&
+at(cv::Matx<T, m, n>& matx) {
+  static_assert(row < m && col < n, "Index out of bounds in vc::at<> (cv::Matx)");
+  static_assert(m > 1 && n > 1, "Invalid size (cv::Matx)");
+  return matx(row, col);
+}
 
-template<std::size_t row, std::size_t col, typename T, int m, int n,
-         VCCC_REQUIRE((row < m && col < n) && (m > 1 && n > 1))>
-decltype(auto) at(const cv::Matx<T, m, n>& matx) { return matx(row, col); }
+template<std::size_t row, std::size_t col, typename T, int m, int n>
+constexpr
+const T&
+at(const cv::Matx<T, m, n>& matx) {
+  static_assert(row < m && col < n, "Index out of bounds in vc::at<> (const cv::Matx)");
+  static_assert(m > 1 && n > 1, "Invalid size (const cv::Matx)");
+  return matx(row, col);
+}
 
-template<std::size_t i, typename T, int m, int n,
-    VCCC_REQUIRE((i < m * n) && (m == 1 || n == 1))>
-decltype(auto) at(      cv::Matx<T, m, n>& matx) { return matx(i); }
+template<std::size_t row, std::size_t col, typename T, int m, int n>
+constexpr
+T&&
+at(cv::Matx<T, m, n>&& matx) {
+  static_assert(row < m && col < n, "Index out of bounds in vc::at<> (cv::Matx&&)");
+  static_assert(m > 1 && n > 1, "Invalid size (cv::Matx&&)");
+  return std::move(matx(row, col));
+}
 
-template<std::size_t i, typename T, int m, int n,
-    VCCC_REQUIRE((i < m * n) && (m == 1 || n == 1))>
-decltype(auto) at(const cv::Matx<T, m, n>& matx) { return matx(i); }
+template<std::size_t row, std::size_t col, typename T, int m, int n>
+constexpr
+const T&&
+at(cv::Matx<T, m, n>& matx) {
+  static_assert(row < m && col < n, "Index out of bounds in vc::at<> (const cv::Matx&&)");
+  static_assert(m > 1 && n > 1, "Invalid size (const cv::Matx&&)");
+  return std::move(matx(row, col));
+}
+
+
+template<std::size_t i, typename T, int m, int n>
+constexpr
+T&
+at(cv::Matx<T, m, n>& matx) {
+  static_assert((i < m * n), "Index out of bounds in vc::at<> (cv::Matx)");
+  static_assert((m == 1 || n == 1), "Invalid size (cv::Matx)");
+  return matx(i);
+}
+
+template<std::size_t i, typename T, int m, int n>
+constexpr
+const T&
+at(const cv::Matx<T, m, n>& matx) {
+  static_assert((i < m * n), "Index out of bounds in vc::at<> (const cv::Matx)");
+  static_assert((m == 1 || n == 1), "Invalid size (const cv::Matx)");
+  return matx(i);
+}
+
+template<std::size_t i, typename T, int m, int n>
+constexpr
+T&&
+at(cv::Matx<T, m, n>&& matx) {
+  static_assert((i < m * n), "Index out of bounds in vc::at<> (cv::Matx&&)");
+  static_assert((m == 1 || n == 1), "Invalid size (cv::Matx&&)");
+  return std::move(matx(i));
+}
+
+template<std::size_t i, typename T, int m, int n>
+constexpr
+const T&&
+at(const cv::Matx<T, m, n>&& matx) {
+  static_assert((i < m * n), "Index out of bounds in vc::at<> (const cv::Matx&&)");
+  static_assert((m == 1 || n == 1), "Invalid size (const cv::Matx&&)");
+  return std::move(matx(i));
+}
 
 
 /** cv::Size_ */
 
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>       T& at(      cv::Size_<T>& size) { return size.width; }
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)> const T& at(const cv::Size_<T>& size) { return size.width; }
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>       T& at(      cv::Size_<T>& size) { return size.height; }
-template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)> const T& at(const cv::Size_<T>& size) { return size.height; }
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
+constexpr
+T&
+at(cv::Size_<T>& size) {
+  return size.width;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
+constexpr
+const T&
+at(const cv::Size_<T>& size) {
+  return size.width;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
+constexpr
+T&&
+at(cv::Size_<T>&& size) {
+  return std::move(size.width);
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 0)>
+constexpr
+const T&&
+at(const cv::Size_<T>&& size) {
+  return std::move(size.width);
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
+constexpr
+T&
+at(cv::Size_<T>& size) {
+  return size.height;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
+constexpr
+const T&
+at(const cv::Size_<T>& size) {
+  return size.height;
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
+constexpr
+T&&
+at(cv::Size_<T>&& size) {
+  return std::move(size.height);
+}
+
+template<std::size_t i, typename T, VCCC_REQUIRE(i == 1)>
+constexpr
+const T&&
+at(const cv::Size_<T>&& size) {
+  return std::move(size.height);
+}
+
+
 
 /**
  * return cv::saturate_cast<C>(at<i,...>(t))
  */
-template<std::size_t i,                typename C, typename T> auto constexpr at(const T& t){return cv::saturate_cast<C>(at<i   >(t));}
-template<std::size_t i, std::size_t j, typename C, typename T> auto constexpr at(const T& t){return cv::saturate_cast<C>(at<i, j>(t));}
+template<std::size_t i, typename C, typename T>
+constexpr
+decltype(auto)
+at(const T& t) {
+  return cv::saturate_cast<C>(at<i>(t));
+}
+
+template<std::size_t i, std::size_t j, typename C, typename T>
+constexpr
+decltype(auto)
+at(const T& t) {
+  return cv::saturate_cast<C>(at<i, j>(t));
+}
 
 
 /**
@@ -127,8 +414,8 @@ template<std::size_t i, std::size_t j, typename C, typename T> auto constexpr at
  */
 
 template<typename T, int m, int n, typename N, VCCC_REQUIRE(std::is_arithmetic<N>::value)>
-cv::Matx<T, m, n> add(const cv::Matx<T, m, n>& matx, T _n){
-  return matx + cv::Matx<T, m, n>::all(_n);
+cv::Matx<T, m, n> add(const cv::Matx<T, m, n>& matx, N n_){
+  return matx + cv::Matx<T, m, n>::all(n_);
 }
 
 template<typename T, int cn, typename N, VCCC_REQUIRE(std::is_arithmetic<N>::value)>
