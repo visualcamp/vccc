@@ -10,6 +10,7 @@
 #include <iterator>
 
 #include "vccc/type_traits.hpp"
+#include "vccc/utility/assert.h"
 
 namespace vc{
 
@@ -34,14 +35,14 @@ decltype(auto) at (const T& tuple) {
 /** container */
 
 template<std::size_t i, typename Container,
-VCCC_REQUIRE(is_container_v<Container>)>
+  VCCC_REQUIRE(is_container_v<Container>)>
 decltype(auto) at(Container& container) {
   BOUNDS_ASSERT(i, container.size());
   return *std::next(std::begin(container), i);
 }
 
 template<std::size_t i, typename Container,
-VCCC_REQUIRE(is_container_v<Container>)>
+  VCCC_REQUIRE(is_container_v<Container>)>
 decltype(auto) at(const Container& container) {
   BOUNDS_ASSERT(i, container.size());
   return *std::next(std::begin(container), i);
