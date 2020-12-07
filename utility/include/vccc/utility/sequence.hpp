@@ -27,6 +27,10 @@ template <typename T, T begin, T end, T step=1, T size = (end + (end>0?-1:1) - b
 using make_range_sequence
 = decltype(detail::range_sequence<T, begin, step>(std::make_integer_sequence<T, (size >= 0 ? size+1 : size)>{}));
 
+template <std::size_t begin, std::size_t end, std::size_t step=1, std::size_t size = (end + (end>0?-1:1) - begin)/step>
+using make_index_range_sequence
+= decltype(detail::range_sequence<std::size_t, begin, step>(std::make_integer_sequence<std::size_t, (size >= 0 ? size+1 : size)>{}));
+
 }
 
 #endif //VCCC_UTILITY_SEQUENCE_HPP
