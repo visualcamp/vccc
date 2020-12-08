@@ -5,7 +5,7 @@
 #ifndef VCCC_LOG_HPP
 #define VCCC_LOG_HPP
 
-#include "vccc/log/macro.hpp"
-#include "vccc/log/logger.hpp"
+#include "vccc/log/pwd.hpp"
+#include "vccc/log/log.hpp"
 
 #endif //VCCC_LOG_HPP

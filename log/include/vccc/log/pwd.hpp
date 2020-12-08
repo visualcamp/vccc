@@ -2,8 +2,8 @@
 // Created by YongGyu Lee on 2020/12/01.
 //
 
-#ifndef VCCC_LOG_MACRO_HPP
-#define VCCC_LOG_MACRO_HPP
+#ifndef VCCC_LOG_PWD_HPP
+#define VCCC_LOG_PWD_HPP
 
 
 #define PWD                                     \
@@ -15,4 +15,4 @@
 
 
 
-#endif //VCCC_LOG_MACRO_HPP
+#endif //VCCC_LOG_PWD_HPP
