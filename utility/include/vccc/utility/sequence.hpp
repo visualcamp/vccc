@@ -5,7 +5,6 @@
 #ifndef VCCC_UTILITY_SEQUENCE_HPP
 #define VCCC_UTILITY_SEQUENCE_HPP
 
-#include <utility>
 #include "vccc/utility/detail/custom_sequence.hpp"
 
 namespace vc {
