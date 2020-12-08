@@ -95,7 +95,7 @@ constexpr auto square_sum(const Arg& arg){
   return square(arg);
 }
 
-template<typename Arg1, typename Arg2, VCCC_REQUIRE(!vc::iterable<Arg1> && !vc::iterable<Arg2>)>
+template<typename Arg1, typename Arg2, VCCC_REQUIRE((!vc::iterable<Arg1, Arg2>))>
 constexpr auto square_sum(const Arg1& arg1, const Arg2& arg2){
   return square(arg1) + square(arg2);
 }
