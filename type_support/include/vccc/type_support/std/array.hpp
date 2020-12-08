@@ -1,9 +1,11 @@
-//
-// Created by YongGyu Lee on 2020/12/08.
-//
-
-#ifndef VCCC_TYPE_SUPPORT_DETAIL_ARRAY_AT_HPP
-#define VCCC_TYPE_SUPPORT_DETAIL_ARRAY_AT_HPP
+# /*
+#   Created by YongGyu Lee on 2020/12/08.
+# */
+#
+# ifndef VCCC_TYPE_SUPPORT_STD_ARRAY_HPP
+# define VCCC_TYPE_SUPPORT_STD_ARRAY_HPP
+#
+# include <array>
 
 namespace vc{
 
@@ -41,4 +43,4 @@ at(const std::array<T, n>&& arr) {
 
 }
 
-#endif //VCCC_TYPE_SUPPORT_DETAIL_ARRAY_AT_HPP
+#endif //VCCC_TYPE_SUPPORT_STD_ARRAY_HPP

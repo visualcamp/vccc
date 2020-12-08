@@ -9,7 +9,7 @@
 #define VCCC_REQUIRE(Cond) std::enable_if_t<Cond, int> = 0
 
 
-#define VCCC_REQUIRE_FWD(Cond) VCCC_REQUIRE(Cond)
+#define VCCC_REQUIRE_FORWARD(Cond) VCCC_REQUIRE(Cond)
 #define VCCC_REQUIRE_IMPL(Cond) std::enable_if_t<Cond, int>
 
 

@@ -53,7 +53,7 @@ namespace vc {
  *      // v2 = convert_to<cv::Vec4d>(vec); undefined behaviour! vec.size() < cv_size_v<Vec4d>
  *
  */
-template<typename To, typename From, VCCC_REQUIRE((!std::is_same<To, From>::value))>
+template<typename To, typename From, std::enable_if_t<!std::is_same<To, From>::value, int> = 0>
 To convert_to(const From& from){
   static_assert(detail::is_cv_type_v<To> || detail::is_cv_type_v<From>, "You cannot convert non-cv type to non-cv type! use vtype_convert instead");
   using Indices = typename std::make_index_sequence<
@@ -74,7 +74,7 @@ To convert_to(const From& from){
  * @return          converted data
  */
 
-template<typename To, std::size_t n, typename From, VCCC_REQUIRE((!std::is_same<To, From>::value))>
+template<typename To, std::size_t n, typename From, std::enable_if_t<!std::is_same<To, From>::value, int> = 0>
 To convert_to(const From& from){
   static_assert(detail::is_cv_type_v<To> || detail::is_cv_type_v<From>, "You cannot convert non-cv type to non-cv type! use vtype_convert instead");
   static_assert(detail::is_cv_type_v<To>   ? n <= detail::cv_size_v<To>   : true, "Converting size must be smaller than converting type's cv_size");

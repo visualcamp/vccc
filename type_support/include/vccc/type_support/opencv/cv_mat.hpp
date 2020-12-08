@@ -10,6 +10,11 @@
 
 namespace vc{
 
+//template<typename T, int m, int n> struct detail::cv_size<cv::Matx<T, m, n>>;
+//template<std::size_t i, std::size_t j, typename T, int m, int n> constexpr T& at(cv::Matx<T, m, n>& matx);
+//template<std::size_t i, std::size_t j, typename T, int m, int n> constexpr const T& at(const cv::Matx<T, m, n>& matx);
+//template<std::size_t i, std::size_t j, typename T, int m, int n> constexpr T&& at(cv::Matx<T, m, n>&& matx);
+//template<std::size_t i, std::size_t j, typename T, int m, int n> constexpr const T&& at(const cv::Matx<T, m, n>&& matx);
 
 /** cv_size */
 

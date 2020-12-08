@@ -46,7 +46,7 @@ std::cout << are_integral_t<int, int, int>{} << std::endl;
 
 
 <br></br>
-#### `VCCC_REQUIRE`, `VCCC_REQUIRE_FWD`, `VCCC_REQUIRE_IMPL`
+#### `VCCC_REQUIRE`, `VCCC_REQUIRE_FORWARD`, `VCCC_REQUIRE_IMPL`
 
 
 <br></br>

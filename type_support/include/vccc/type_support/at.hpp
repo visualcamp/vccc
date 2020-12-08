@@ -1,13 +1,18 @@
-//
-// Created by YongGyu Lee on 2020/12/07.
-//
-
-#ifndef VCCC_TYPE_SUPPORT_AT_HPP
-#define VCCC_TYPE_SUPPORT_AT_HPP
-
-#include "vccc/type_support/opencv/core.hpp"
-#include "vccc/type_support/detail/core.hpp"
-#include "vccc/type_traits.hpp"
+# /*
+#   Created by YongGyu Lee on 2020/12/08.
+# */
+#
+# ifndef VCCC_TYPE_SUPPORT_AT_HPP
+# define VCCC_TYPE_SUPPORT_AT_HPP
+#
+# include "vccc/type_support/core.hpp"
+# include "vccc/type_support/detail/container_at.hpp"
+# include "vccc/type_traits.hpp"
+#
+# /*
+#   Note
+#   vc::at is implemented in each class' headers
+# */
 
 namespace vc{
 

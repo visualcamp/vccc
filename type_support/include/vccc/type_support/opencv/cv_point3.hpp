@@ -1,12 +1,12 @@
-//
-// Created by YongGyu Lee on 2020/12/08.
-//
-
-#ifndef VCCC_TYPE_SUPPORT_OPENCV_CV_POINT3_HPP
-#define VCCC_TYPE_SUPPORT_OPENCV_CV_POINT3_HPP
-
-#include "opencv2/core/types.hpp"
-#include "vccc/type_traits.hpp"
+# /*
+#   Created by YongGyu Lee on 2020/12/08.
+# */
+#
+# ifndef VCCC_TYPE_SUPPORT_OPENCV_CV_POINT3_HPP
+# define VCCC_TYPE_SUPPORT_OPENCV_CV_POINT3_HPP
+#
+# include "opencv2/core/types.hpp"
+# include "vccc/type_traits.hpp"
 
 namespace vc{
 
@@ -19,32 +19,28 @@ struct detail::cv_size<cv::Point3_<T>> : cv_size_n<3> {};
 /** at */
 
 // index = 0
-template<std::size_t i, typename T,
-    VCCC_REQUIRE(i==0)>
+template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
 constexpr
 T&
 at(cv::Point3_<T>& point3) {
   return point3.x;
 }
 
-template<std::size_t i, typename T,
-    VCCC_REQUIRE(i==0)>
+template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
 constexpr
 const T&
 at(const cv::Point3_<T>& point3) {
   return point3.x;
 }
 
-template<std::size_t i, typename T,
-    VCCC_REQUIRE(i==0)>
+template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
 constexpr
 T&&
 at(cv::Point3_<T>&& point3) {
   return std::move(point3.x);
 }
 
-template<std::size_t i, typename T,
-    VCCC_REQUIRE(i == 0)>
+template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
 constexpr
 const T&&
 at(const cv::Point3_<T>&& point3) {
@@ -52,32 +48,28 @@ at(const cv::Point3_<T>&& point3) {
 }
 
 // index = 1
-template<std::size_t i, typename T,
-    VCCC_REQUIRE(i == 1)>
+template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
 constexpr
 T&
 at(cv::Point3_<T>& point3) {
   return point3.y;
 }
 
-template<std::size_t i, typename T,
-    VCCC_REQUIRE(i == 1)>
+template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
 constexpr
 const T&
 at(const cv::Point3_<T>& point3) {
   return point3.y;
 }
 
-template<std::size_t i, typename T,
-    VCCC_REQUIRE(i == 1)>
+template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
 constexpr
 T&&
 at(cv::Point3_<T>&& point3) {
   return std::move(point3.y);
 }
 
-template<std::size_t i, typename T,
-    VCCC_REQUIRE(i == 1)>
+template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
 constexpr
 const T&&
 at(const cv::Point3_<T>&& point3) {
@@ -85,32 +77,28 @@ at(const cv::Point3_<T>&& point3) {
 }
 
 // index = 2
-template<std::size_t i, typename T,
-    VCCC_REQUIRE(i == 2)>
+template<std::size_t i, typename T, std::enable_if_t<i==2, int> = 0>
 constexpr
 T&
 at(cv::Point3_<T>& point3) {
   return point3.z;
 }
 
-template<std::size_t i, typename T,
-    VCCC_REQUIRE(i == 2)>
+template<std::size_t i, typename T, std::enable_if_t<i==2, int> = 0>
 constexpr
 const T&
 at(const cv::Point3_<T>& point3) {
   return point3.z;
 }
 
-template<std::size_t i, typename T,
-    VCCC_REQUIRE(i == 2)>
+template<std::size_t i, typename T, std::enable_if_t<i==2, int> = 0>
 constexpr
 T&&
 at(cv::Point3_<T>&& point3) {
   return std::move(point3.z);
 }
 
-template<std::size_t i, typename T,
-    VCCC_REQUIRE(i == 2)>
+template<std::size_t i, typename T, std::enable_if_t<i==2, int> = 0>
 constexpr
 const T&&
 at(const cv::Point3_<T>&& point3) {

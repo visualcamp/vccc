@@ -12,7 +12,7 @@
  * `are_`, `are_...`
  * `vtype_t`, `void_t`, `is_iterator`, `iterable`, `is_specialization`, `is_container`, `is_printable`, `is_std_array` 
  * `bigger_type`, `signed_bigger_type`, `unsigned_bigger_type`
- * `VCCC_REQUIRE`, `VCCC_REQUIRE_FWD`, `VCCC_REQUIRE_IMPL`
+ * `VCCC_REQUIRE`, `VCCC_REQUIRE_FORWARD`, `VCCC_REQUIRE_IMPL`
  * `multiples_of`, `is_odd`
  
  #### `log`
@@ -26,13 +26,14 @@
  * `average`, `stddev`, `avg_stddev`
  
  #### `utility`
- Requires `type_traits`  
- * `at`, `bind_at`
+Standalone  
  * `make_rindex_sequence`, `make_same_sequence`, `make_zero_sequence`, `make_range_sequence`
  * `getCurrentMilliseconds`, `getCurrentMicroseconds`, `getCurrentNanoseconds`
+ * `EXPECTS`, `ENSURES`, `BOUNDS_ASSERT`, `ALWAYS_ASSERT`
  
  #### `type_support`
  Requires `OpenCV`, `type_traits`, `utility`
+ * `at`, `bind_at`
  * `convert_to`
  * `vtype_convert`
  * `resize`
