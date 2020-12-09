@@ -24,6 +24,14 @@
  Requires `type_traits`  
  * `sum`, `square`, `square_sum`
  * `average`, `stddev`, `avg_stddev`
+
+ #### `random`
+ Standalone
+ * `random_sample`, `pick_k`
+
+ #### `range`
+ Standalone
+ * `range`
  
  #### `utility`
 Standalone  
