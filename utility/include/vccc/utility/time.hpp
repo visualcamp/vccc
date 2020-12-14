@@ -1,13 +1,13 @@
-//
-// Created by YongGyu Lee on 2020/12/02.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_UTILITY_TIME_HPP
+# define VCCC_UTILITY_TIME_HPP
+#
+# include <chrono>
 
-#ifndef VCCC_UTILITY_TIME_HPP
-#define VCCC_UTILITY_TIME_HPP
-
-#include <chrono>
-
-namespace vc{
+namespace vccc{
 
 template<typename T>
 auto getCurrentTime() {
@@ -30,4 +30,4 @@ inline decltype(auto) getCurrentNanoseconds() {
 
 }
 
-#endif //VCCC_UTILITY_TIME_HPP
+# endif //VCCC_UTILITY_TIME_HPP

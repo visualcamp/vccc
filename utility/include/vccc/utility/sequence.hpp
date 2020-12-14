@@ -1,13 +1,13 @@
-//
-// Created by YongGyu Lee on 2020/12/02.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_UTILITY_SEQUENCE_HPP
+# define VCCC_UTILITY_SEQUENCE_HPP
+#
+# include "vccc/utility/detail/custom_sequence.hpp"
 
-#ifndef VCCC_UTILITY_SEQUENCE_HPP
-#define VCCC_UTILITY_SEQUENCE_HPP
-
-#include "vccc/utility/detail/custom_sequence.hpp"
-
-namespace vc {
+namespace vccc {
 
 template <std::size_t N>
 using make_rindex_sequence
@@ -32,4 +32,4 @@ using make_index_range_sequence
 
 }
 
-#endif //VCCC_UTILITY_SEQUENCE_HPP
+# endif //VCCC_UTILITY_SEQUENCE_HPP

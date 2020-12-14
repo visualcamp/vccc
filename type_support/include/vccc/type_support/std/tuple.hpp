@@ -1,13 +1,13 @@
 # /*
-#   Created by YongGyu Lee on 2020/12/08.
-# */
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
 #
 # ifndef VCCC_TYPE_SUPPORT_STD_TUPLE_HPP
 # define VCCC_TYPE_SUPPORT_STD_TUPLE_HPP
+#
+# include <tuple>
 
-#include <tuple>
-
-namespace vc{
+namespace vccc{
 
 template</* manual */ std::size_t i,
          /* deduce */ typename T,

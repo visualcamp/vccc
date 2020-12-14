@@ -1,14 +1,14 @@
-//
-// Created by YongGyu Lee on 2020/12/01.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_NUMERIC_SUM_HPP
+# define VCCC_NUMERIC_SUM_HPP
+#
+# include "vccc/type_traits.hpp"
+# include <numeric>
 
-#ifndef VCCC_NUMERIC_SUM_HPP
-#define VCCC_NUMERIC_SUM_HPP
-
-#include "vccc/type_traits.hpp"
-#include <numeric>
-namespace vc {
-
+namespace vccc {
 
 namespace impl{
 template<typename Arg>
@@ -40,7 +40,7 @@ constexpr auto sum(InputIterator first, InputIterator last){
   return s;
 }
 
-template<typename InputIterator, typename UnaryOperation, VCCC_REQUIRE(vc::iterable<InputIterator>)>
+template<typename InputIterator, typename UnaryOperation, VCCC_REQUIRE(iterable<InputIterator>)>
 constexpr auto sum(InputIterator first, InputIterator last, UnaryOperation unary_op){
   auto s = unary_op(*first);
   if (first == last) return s-s;
@@ -53,7 +53,7 @@ constexpr auto sum(InputIterator first, InputIterator last, UnaryOperation unary
 /**
  * sum of args
  */
-template<typename ...Args, VCCC_REQUIRE(!vc::iterable<Args...>)>
+template<typename ...Args, VCCC_REQUIRE(!iterable<Args...>)>
 constexpr auto sum(const Args&... args){
   return impl::sumImpl(args...);
 }
@@ -85,7 +85,7 @@ constexpr auto square(const T& val){
  * sum of squares
  */
 
-template<typename InputIterator, VCCC_REQUIRE(vc::iterable<InputIterator>)>
+template<typename InputIterator, VCCC_REQUIRE(iterable<InputIterator>)>
 constexpr auto square_sum(InputIterator first, InputIterator last){
   return sum(first, last, [](const auto& val){ return square(val); });
 }
@@ -95,16 +95,16 @@ constexpr auto square_sum(const Arg& arg){
   return square(arg);
 }
 
-template<typename Arg1, typename Arg2, VCCC_REQUIRE((!vc::iterable<Arg1, Arg2>))>
+template<typename Arg1, typename Arg2, VCCC_REQUIRE((!iterable<Arg1, Arg2>))>
 constexpr auto square_sum(const Arg1& arg1, const Arg2& arg2){
   return square(arg1) + square(arg2);
 }
 
-template<typename Arg, typename ...Args, VCCC_REQUIRE(!vc::iterable<Arg>)>
+template<typename Arg, typename ...Args, VCCC_REQUIRE(!iterable<Arg>)>
 constexpr auto square_sum(const Arg& arg, const Args&... args){
   return square(arg) + square_sum(args...);
 }
 
 }
 
-#endif //VCCC_NUMERIC_SUM_HPP
+# endif //VCCC_NUMERIC_SUM_HPP

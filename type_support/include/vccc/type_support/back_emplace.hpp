@@ -7,7 +7,7 @@
 #
 # include <iterator>
 
-namespace vc{
+namespace vccc{
 
 template <class Container>
 class back_emplace_iterator
@@ -40,4 +40,4 @@ back_emplacer(Container& container){
 
 }
 
-#endif //VCCC_TYPE_SUPPORT_BACK_EMPLACE_HPP
+# endif //VCCC_TYPE_SUPPORT_BACK_EMPLACE_HPP

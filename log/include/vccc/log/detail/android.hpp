@@ -9,7 +9,7 @@
 
 #ifndef LOG_TAG
   #define LOG_TAG "LOG_TAG_ANDROID"
-#endif
+# endif
 
 #ifdef NDEBUG
   #define VCCC_LOG_DEBUG
@@ -29,6 +29,6 @@
   #define LOGE_IMPL(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
   #define LOGF_IMPL(...) __android_log_print(ANDROID_FATAL_ERROR, LOG_TAG, __VA_ARGS__)
   #define LOGS_IMPL(...) __android_log_print(ANDROID_SILENT_ERROR, LOG_TAG, __VA_ARGS__)
-#endif
+# endif
 
-#endif //VCCC_LOG_ANDROID_HPP
+# endif //VCCC_LOG_ANDROID_HPP

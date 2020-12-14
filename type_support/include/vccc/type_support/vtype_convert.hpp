@@ -1,16 +1,16 @@
-//
-// Created by YongGyu Lee on 2020/12/02.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_TYPE_SUPPORT_VTYPE_CONVERT_HPP
+# define VCCC_TYPE_SUPPORT_VTYPE_CONVERT_HPP
+#
+# include <algorithm>
+# include "vccc/type_support/convert_to.hpp"
+# include "vccc/type_traits.hpp"
 
-#ifndef VCCC_TYPE_SUPPORT_VTYPE_CONVERT_HPP
-#define VCCC_TYPE_SUPPORT_VTYPE_CONVERT_HPP
 
-#include <algorithm>
-#include "vccc/type_support/convert_to.hpp"
-#include "vccc/type_traits.hpp"
-
-
-namespace vc{
+namespace vccc{
 
 /**
  *  changes the value_type
@@ -138,4 +138,4 @@ vtype_convert(std::array<NewType, n>&& container, UnaryOperation func) {
 
 }
 
-#endif //VCCC_TYPE_SUPPORT_VTYPE_CONVERT_HPP
+# endif //VCCC_TYPE_SUPPORT_VTYPE_CONVERT_HPP

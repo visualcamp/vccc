@@ -1,19 +1,19 @@
-//
-// Created by YongGyu Lee on 2020/12/08.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_RANDOM_PICK_HPP
+# define VCCC_RANDOM_PICK_HPP
+#
+# include <unordered_set>
+# include <random>
+# include <type_traits>
 
-#ifndef VCCC_RANDOM_PICK_HPP
-#define VCCC_RANDOM_PICK_HPP
-
-#include <unordered_set>
-#include <random>
-#include <type_traits>
-
-namespace vc {
+namespace vccc {
 
 template<typename T, typename Container = std::unordered_set<T>, typename RandomGenerator>
 Container pick_k(T a, T b, T k, RandomGenerator&& gen) {
-  static_assert(std::is_integral<T>::value, "type must be integer (vc::pick_k)");
+  static_assert(std::is_integral<T>::value, "type must be integer (vccc::pick_k)");
   std::unordered_set<int> elems;
   elems.reserve(k);
 
@@ -29,4 +29,4 @@ Container pick_k(T a, T b, T k, RandomGenerator&& gen) {
 
 }
 
-#endif //VCCC_RANDOM_INCLUDE_VCCC_RANDOM_DETAIL_PICK_HPP
+# endif //VCCC_RANDOM_INCLUDE_VCCC_RANDOM_DETAIL_PICK_HPP

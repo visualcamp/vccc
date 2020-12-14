@@ -1,13 +1,13 @@
 # /*
-#   Created by YongGyu Lee on 2020/12/08.
-# */
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
 #
 # ifndef VCCC_TYPE_SUPPORT_STD_VECTOR_HPP
 # define VCCC_TYPE_SUPPORT_STD_VECTOR_HPP
 #
 # include <vector>
 
-namespace vc{
+namespace vccc{
 
 template<typename ...T>
 std::vector<T...> reserved_vector(typename std::vector<T...>::size_type size){
@@ -18,4 +18,4 @@ std::vector<T...> reserved_vector(typename std::vector<T...>::size_type size){
 
 }
 
-#endif //VCCC_TYPE_SUPPORT_STD_VECTOR_HPP
+# endif //VCCC_TYPE_SUPPORT_STD_VECTOR_HPP

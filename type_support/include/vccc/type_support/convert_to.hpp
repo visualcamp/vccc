@@ -1,13 +1,13 @@
 # /*
-#   Created by YongGyu Lee on 2020/12/08.
-# */
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
 #
-#ifndef VCCC_TYPE_SUPPORT_CONVERT_HPP
-#define VCCC_TYPE_SUPPORT_CONVERT_HPP
+# ifndef VCCC_TYPE_SUPPORT_CONVERT_HPP
+# define VCCC_TYPE_SUPPORT_CONVERT_HPP
+#
+# include "vccc/type_support/detail/convert_to.hpp"
 
-#include "vccc/type_support/detail/convert_to.hpp"
-
-namespace vc {
+namespace vccc {
 
 /**
  * converts From to To (usually for opencv types, but also supports container types)
@@ -91,4 +91,4 @@ template<typename To>             To convert_to(const To&  from) { return from; 
 
 }
 
-#endif //VCCC_TYPE_SUPPORT_CONVERT_HPP
+# endif //VCCC_TYPE_SUPPORT_CONVERT_HPP

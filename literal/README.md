@@ -8,7 +8,7 @@
 
 ex)
 ```
-using namespace vc;
+using namespace vccc;
 
 std::cout << "hello, %s"_format("world!") << std::endl; // hello, world!
 

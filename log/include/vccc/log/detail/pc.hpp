@@ -29,6 +29,6 @@
   #define LOGE_IMPL(...)
   #define LOGF_IMPL(...)
   #define LOGS_IMPL(...)
-#endif
+# endif
 
-#endif //VCCC_LOG_PC_HPP
+# endif //VCCC_LOG_PC_HPP

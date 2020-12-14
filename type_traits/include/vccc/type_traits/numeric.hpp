@@ -1,13 +1,13 @@
-//
-// Created by YongGyu Lee on 2020/12/01.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_TYPE_TRAITS_NUMERIC_HPP
+# define VCCC_TYPE_TRAITS_NUMERIC_HPP
+#
+# include <type_traits>
 
-#ifndef VCCC_TYPE_TRAITS_NUMERIC_HPP
-#define VCCC_TYPE_TRAITS_NUMERIC_HPP
-
-#include <type_traits>
-
-namespace vc{
+namespace vccc{
 
 
 /** multiples_of */
@@ -53,4 +53,4 @@ constexpr bool is_even_v = is_even<T, A>::value;
 
 }
 
-#endif //VCCC_TYPE_TRAITS_NUMERIC_HPP
+# endif //VCCC_TYPE_TRAITS_NUMERIC_HPP

@@ -1,13 +1,13 @@
 # /*
-#   Created by YongGyu Lee on 2020/12/08.
-# */
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
 #
 # ifndef VCCC_TYPE_SUPPORT_STD_VARIADIC_HPP
 # define VCCC_TYPE_SUPPORT_STD_VARIADIC_HPP
 #
 # include <cstdlib>
 
-namespace vc{
+namespace vccc{
 
 template</* manual */ std::size_t i,
          /* deduce */ typename ...Args,
@@ -20,4 +20,4 @@ variadic_at(Args&&... args){
 
 }
 
-#endif //VCCC_TYPE_SUPPORT_STD_VARIADIC_HPP
+# endif //VCCC_TYPE_SUPPORT_STD_VARIADIC_HPP

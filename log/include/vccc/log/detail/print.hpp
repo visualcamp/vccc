@@ -8,7 +8,7 @@
 #include <iostream>
 #include "vccc/type_traits.hpp"
 
-namespace vc{
+namespace vccc{
 
 template<typename ...Args> std::ostream& operator << (std::ostream& os, const std::tuple<Args...>& tup);
 template<typename ...Args> std::ostream& operator << (std::ostream& os, const std::pair<Args...>& tup);
@@ -74,4 +74,4 @@ void print_multiples(std::ostream& os, const Args&... args){
 
 }}
 
-#endif //VCCC_LOG_DETAIL_PRINT_HPP
+# endif //VCCC_LOG_DETAIL_PRINT_HPP

@@ -1,14 +1,14 @@
-//
-// Created by YongGyu Lee on 2020/12/01.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_LOG_LOG_HPP
+# define VCCC_LOG_LOG_HPP
+#
+# include "vccc/log/detail/platform_log.hpp"
+# include "vccc/log/logger.hpp"
 
-#ifndef VCCC_LOG_LOG_HPP
-#define VCCC_LOG_LOG_HPP
-
-#include "vccc/log/detail/platform_log.hpp"
-#include "vccc/log/logger.hpp"
-
-namespace vc {
+namespace vccc {
 
 
 class Log{
@@ -79,22 +79,22 @@ template<typename ...Args> void Log::e(Args&&... args) const { LOGE_IMPL("%s", L
 
 }
 
-#ifdef VCCC_LOG_DEBUG
-#define LOGV(...) vc::Log::getInstance().v(__VA_ARGS__)
-#define LOGD(...) vc::Log::getInstance().d(__VA_ARGS__)
-#define LOGI(...) vc::Log::getInstance().i(__VA_ARGS__)
-#define LOGW(...) vc::Log::getInstance().w(__VA_ARGS__)
-#define LOGE(...) vc::Log::getInstance().e(__VA_ARGS__)
-#define LOGF(...) LOGF_IMPL(__VA_ARGS__)
-#define LOGS(...) LOGS_IMPL(__VA_ARGS__)
-#else
-#define LOGV(...) LOGV_IMPL(__VA_ARGS__)
-  #define LOGD(...) LOGD_IMPL(__VA_ARGS__)
-  #define LOGI(...) LOGI_IMPL(__VA_ARGS__)
-  #define LOGW(...) LOGW_IMPL(__VA_ARGS__)
-  #define LOGE(...) LOGE_IMPL(__VA_ARGS__)
-  #define LOGF(...) LOGF_IMPL(__VA_ARGS__)
-  #define LOGS(...) LOGS_IMPL(__VA_ARGS__)
-#endif
+# ifdef VCCC_LOG_DEBUG
+# define LOGV(...) vccc::Log::getInstance().v(__VA_ARGS__)
+# define LOGD(...) vccc::Log::getInstance().d(__VA_ARGS__)
+# define LOGI(...) vccc::Log::getInstance().i(__VA_ARGS__)
+# define LOGW(...) vccc::Log::getInstance().w(__VA_ARGS__)
+# define LOGE(...) vccc::Log::getInstance().e(__VA_ARGS__)
+# define LOGF(...) LOGF_IMPL(__VA_ARGS__)
+# define LOGS(...) LOGS_IMPL(__VA_ARGS__)
+# else
+# define LOGV(...) LOGV_IMPL(__VA_ARGS__)
+  # define LOGD(...) LOGD_IMPL(__VA_ARGS__)
+  # define LOGI(...) LOGI_IMPL(__VA_ARGS__)
+  # define LOGW(...) LOGW_IMPL(__VA_ARGS__)
+  # define LOGE(...) LOGE_IMPL(__VA_ARGS__)
+  # define LOGF(...) LOGF_IMPL(__VA_ARGS__)
+  # define LOGS(...) LOGS_IMPL(__VA_ARGS__)
+# endif
 
-#endif //VCCC_LOG_LOG_HPP
+# endif //VCCC_LOG_LOG_HPP

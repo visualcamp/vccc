@@ -1,14 +1,14 @@
-//
-// Created by YongGyu Lee on 2020/12/07.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_TYPE_TRAITS_DETAIL_LOSSLESS_TYPE_INT_DIVISION_HPP
+# define VCCC_TYPE_TRAITS_DETAIL_LOSSLESS_TYPE_INT_DIVISION_HPP
+#
+# include <type_traits>
+# include <algorithm>
 
-#ifndef VCCC_TYPE_TRAITS_DETAIL_LOSSLESS_TYPE_INT_DIVISION_HPP
-#define VCCC_TYPE_TRAITS_DETAIL_LOSSLESS_TYPE_INT_DIVISION_HPP
-
-#include <type_traits>
-#include <algorithm>
-
-namespace vc{
+namespace vccc{
 
 namespace detail{
 
@@ -27,4 +27,4 @@ using lossless_type_int_division_t = typename lossless_type_int_division<T1, T2>
 
 }
 
-#endif //VCCC_TYPE_TRAITS_DETAIL_LOSSLESS_TYPE_INT_DIVISION_HPP
+# endif //VCCC_TYPE_TRAITS_DETAIL_LOSSLESS_TYPE_INT_DIVISION_HPP

@@ -1,13 +1,13 @@
-//
-// Created by YongGyu Lee on 2020/12/02.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_UTILITY_DETAIL_CUSTOM_SEQUENCE_HPP
+# define VCCC_UTILITY_DETAIL_CUSTOM_SEQUENCE_HPP
+#
+# include <utility>
 
-#ifndef VCCC_UTILITY_DETAIL_CUSTOM_SEQUENCE_HPP
-#define VCCC_UTILITY_DETAIL_CUSTOM_SEQUENCE_HPP
-
-#include <utility>
-
-namespace vc{ namespace detail{
+namespace vccc{ namespace detail{
 
 template <typename T, T v, T... Is>
 constexpr auto same_sequence (std::integer_sequence<T, Is...> const &)
@@ -23,4 +23,4 @@ constexpr auto range_sequence(std::integer_sequence<T,I...> const &)
 
 }}
 
-#endif //VCCC_UTILITY_DETAIL_CUSTOM_SEQUENCE_HPP
+# endif //VCCC_UTILITY_DETAIL_CUSTOM_SEQUENCE_HPP

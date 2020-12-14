@@ -1,6 +1,6 @@
 # /*
-#   Created by YongGyu Lee on 2020/12/08.
-# */
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
 #
 # ifndef VCCC_TYPE_SUPPORT_OPENCV_CV_SIZE_HPP
 # define VCCC_TYPE_SUPPORT_OPENCV_CV_SIZE_HPP
@@ -9,7 +9,7 @@
 # include "vccc/type_support/opencv/detail/cv_size.hpp"
 # include "vccc/type_traits.hpp"
 
-namespace vc{
+namespace vccc{
 
 
 /** cv_size */
@@ -79,4 +79,4 @@ at(const cv::Size_<T>&& size) {
 
 }
 
-#endif //VCCC_TYPE_SUPPORT_OPENCV_CV_SIZE_HPP
+# endif //VCCC_TYPE_SUPPORT_OPENCV_CV_SIZE_HPP

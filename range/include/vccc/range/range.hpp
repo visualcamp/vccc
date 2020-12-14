@@ -1,6 +1,6 @@
 # /*
-#   Created by YongGyu Lee on 2020/12/08.
-# */
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
 #
 # ifndef VCCC_RANGE_RANGE_HPP
 # define VCCC_RANGE_RANGE_HPP
@@ -10,7 +10,7 @@
 # include <numeric>
 # include <vector>
 
-namespace vc{
+namespace vccc{
 
 template<typename T, typename Container = std::vector<T>>
 class range {
@@ -68,4 +68,4 @@ class range {
 
 }
 
-#endif //VCCC_RANGE_RANGE_HPP
+# endif //VCCC_RANGE_RANGE_HPP

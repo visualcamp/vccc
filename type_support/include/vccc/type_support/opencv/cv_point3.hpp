@@ -1,6 +1,6 @@
 # /*
-#   Created by YongGyu Lee on 2020/12/08.
-# */
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
 #
 # ifndef VCCC_TYPE_SUPPORT_OPENCV_CV_POINT3_HPP
 # define VCCC_TYPE_SUPPORT_OPENCV_CV_POINT3_HPP
@@ -8,7 +8,7 @@
 # include "opencv2/core/types.hpp"
 # include "vccc/type_traits.hpp"
 
-namespace vc{
+namespace vccc{
 
 /** cv_size */
 
@@ -113,6 +113,19 @@ cv::Point3_<T> add(const cv::Point3_<T>& point3, N n) {
   return cv::Point3_<T>(point3.x + n, point3.y + n, point3.z + n);
 }
 
+
+/** resize */
+
+template<int new_size, typename T, VCCC_REQUIRE(new_size==2)>
+auto resize(const cv::Point3_<T>& from){
+  return cv::Point_<T>(from.x, from.y);
 }
 
-#endif //VCCC_TYPE_SUPPORT_OPENCV_CV_POINT3_HPP
+template<int new_size, typename T, VCCC_REQUIRE(new_size==3)>
+auto resize(const cv::Point3_<T>& from){
+  return from;
+}
+
+}
+
+# endif //VCCC_TYPE_SUPPORT_OPENCV_CV_POINT3_HPP

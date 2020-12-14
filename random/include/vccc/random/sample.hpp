@@ -1,15 +1,15 @@
-//
-// Created by YongGyu Lee on 2020/12/08.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_RANDOM_SAMPLE_HPP
+# define VCCC_RANDOM_SAMPLE_HPP
+#
+# include <vector>
+# include <iterator>
+# include "vccc/random/pick.hpp"
 
-#ifndef VCCC_RANDOM_SAMPLE_HPP
-#define VCCC_RANDOM_SAMPLE_HPP
-
-#include <vector>
-#include <iterator>
-#include "vccc/random/pick.hpp"
-
-namespace vc{
+namespace vccc{
 
 template<typename T, typename Container = std::vector<T>>
 Container random_sample(T a, T b, T k, std::mt19937&& gen = std::mt19937(std::random_device{}())){
@@ -29,4 +29,4 @@ Container random_sample(T a, T b, T k, Generator&& gen){
 
 }
 
-#endif //VCCC_RANDOM_SAMPLE_HPP
+# endif //VCCC_RANDOM_SAMPLE_HPP

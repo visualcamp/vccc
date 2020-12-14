@@ -11,7 +11,7 @@
 # include <string>
 # include <regex>
 
-namespace vc{
+namespace vccc{
 
 using c_printable = std::true_type;
 using not_c_printable = std::false_type;
@@ -97,4 +97,4 @@ void Logger::addFormatted(const char* fmt, const Args&... val) {
 
 }
 
-#endif //VCCC_LOG_LOGGER_HPP
+# endif //VCCC_LOG_LOGGER_HPP

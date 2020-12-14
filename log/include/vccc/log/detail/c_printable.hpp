@@ -7,7 +7,7 @@
 
 #include "vccc/type_traits.hpp"
 
-namespace vc{ namespace detail{
+namespace vccc{ namespace detail{
 
 template<typename ...>
 struct are_types_c_printable : std::false_type {};
@@ -23,4 +23,4 @@ struct are_types_c_printable<T, Ts...>
 
 }}
 
-#endif //VCCC_LOG_DETAIL_C_PRINTABLE_HPP
+# endif //VCCC_LOG_DETAIL_C_PRINTABLE_HPP

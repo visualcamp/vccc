@@ -1,15 +1,15 @@
-//
-// Created by YongGyu Lee on 2020/12/07.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_TYPE_TRAITS_LOSSLESS_TYPE_HPP
+# define VCCC_TYPE_TRAITS_LOSSLESS_TYPE_HPP
+#
+# include "vccc/type_traits/are.hpp"
+# include "vccc/type_traits/bigger_type.hpp"
+# include "vccc/type_traits/detail/lossless_type_int_division.hpp"
 
-#ifndef VCCC_TYPE_TRAITS_LOSSLESS_TYPE_HPP
-#define VCCC_TYPE_TRAITS_LOSSLESS_TYPE_HPP
-
-#include "vccc/type_traits/are.hpp"
-#include "vccc/type_traits/bigger_type.hpp"
-#include "vccc/type_traits/detail/lossless_type_int_division.hpp"
-
-namespace vc{
+namespace vccc{
 
 // TODO: change double to biggest among input floating_point type
 template<typename ...Types>
@@ -109,4 +109,4 @@ struct lossless_type_div<T1, T2, Ts...> {
 };
 
 }
-#endif //VCCC_TYPE_TRAITS_LOSSLESS_TYPE_HPP
+# endif //VCCC_TYPE_TRAITS_LOSSLESS_TYPE_HPP

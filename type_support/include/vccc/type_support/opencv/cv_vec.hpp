@@ -1,6 +1,6 @@
 # /*
-# Created by YongGyu Lee on 2020/12/08.
-# */
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
 #
 # ifndef VCCC_TYPE_SUPPORT_OPENCV_CV_VEC_HPP
 # define VCCC_TYPE_SUPPORT_OPENCV_CV_VEC_HPP
@@ -8,7 +8,7 @@
 # include "opencv2/core/types.hpp"
 # include "vccc/type_support/opencv/detail/cv_size.hpp"
 
-namespace vc{
+namespace vccc{
 
 /** cv_size */
 
@@ -22,7 +22,7 @@ template<std::size_t i, typename T, int n>
 constexpr
 T&
 at(cv::Vec<T, n>& vec) {
-  static_assert(i < n, "Index out of bounds in vc::at<> (cv::Vec)");
+  static_assert(i < n, "Index out of bounds in vccc::at<> (cv::Vec)");
   return vec[i];
 }
 
@@ -30,7 +30,7 @@ template<std::size_t i, typename T, int n>
 constexpr
 const T&
 at(const cv::Vec<T, n>& vec) {
-  static_assert(i < n, "Index out of bounds in vc::at<> (const cv::Vec)");
+  static_assert(i < n, "Index out of bounds in vccc::at<> (const cv::Vec)");
   return vec[i];
 }
 
@@ -38,7 +38,7 @@ template<std::size_t i, typename T, int n>
 constexpr
 T&&
 at(cv::Vec<T, n>&& vec) {
-  static_assert(i < n, "Index out of bounds in vc::at<> (cv::Vec&&)");
+  static_assert(i < n, "Index out of bounds in vccc::at<> (cv::Vec&&)");
   return std::move(vec[i]);
 }
 
@@ -46,7 +46,7 @@ template<std::size_t i, typename T, int n>
 constexpr
 const T&&
 at(const cv::Vec<T, n>&& vec) {
-  static_assert(i < n, "Index out of bounds in vc::at<> (const cv::Vec&&)");
+  static_assert(i < n, "Index out of bounds in vccc::at<> (const cv::Vec&&)");
   return std::move(vec[i]);
 }
 
@@ -60,4 +60,4 @@ cv::Vec<T, cn> add(const cv::Vec<T, cn>& vec, N n) {
 
 }
 
-#endif //VCCC_TYPE_SUPPORT_OPENCV_CV_VEC_HPP
+# endif //VCCC_TYPE_SUPPORT_OPENCV_CV_VEC_HPP

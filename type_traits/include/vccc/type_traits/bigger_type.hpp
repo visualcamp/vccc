@@ -1,13 +1,13 @@
-//
-// Created by YongGyu Lee on 2020/12/07.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_TYPE_TRAITS_BIGGER_TYPE_HPP
+# define VCCC_TYPE_TRAITS_BIGGER_TYPE_HPP
+#
+# include <type_traits>
 
-#ifndef VCCC_TYPE_TRAITS_BIGGER_TYPE_HPP
-#define VCCC_TYPE_TRAITS_BIGGER_TYPE_HPP
-
-#include <type_traits>
-
-namespace vc{
+namespace vccc{
 
 /**
  *  returns bigger type
@@ -129,4 +129,4 @@ using unsigned_bigger_type_t = typename unsigned_bigger_type<Ts...>::type;
 
 }
 
-#endif //VCCC_TYPE_TRAITS_BIGGER_TYPE_HPP
+# endif //VCCC_TYPE_TRAITS_BIGGER_TYPE_HPP

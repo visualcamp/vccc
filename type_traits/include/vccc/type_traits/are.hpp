@@ -1,13 +1,13 @@
-//
-// Created by YongGyu Lee on 2020/12/01.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_TYPE_TRAITS_ARE_HPP
+# define VCCC_TYPE_TRAITS_ARE_HPP
+#
+# include <type_traits>
 
-#ifndef VCCC_TYPE_TRAITS_ARE_HPP
-#define VCCC_TYPE_TRAITS_ARE_HPP
-
-#include <type_traits>
-
-namespace vc{
+namespace vccc{
 
 
 /** are */
@@ -79,4 +79,4 @@ constexpr auto are_scalar_v = are_scalar<Ts...>::value;
 
 }
 
-#endif //VCCC_TYPE_ARE_HPP_
+# endif //VCCC_TYPE_ARE_HPP_

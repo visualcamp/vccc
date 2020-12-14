@@ -1,15 +1,15 @@
-//
-// Created by YongGyu Lee on 2020/11/30.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_LITERAL_FORMATTER_HPP
+# define VCCC_LITERAL_FORMATTER_HPP
+#
+# include <string>
+# include <vector>
+# include <cstdio>
 
-#ifndef VCCC_LITERAL_FORMATTER_HPP
-#define VCCC_LITERAL_FORMATTER_HPP
-
-#include <string>
-#include <vector>
-#include <cstdio>
-
-namespace vc {
+namespace vccc {
 
 /**
  *  Formatting helper class & custom literals
@@ -42,4 +42,4 @@ inline Formatter operator "" _format(const char *format, std::size_t) {
 
 }
 
-#endif //VCCC_LITERAL_FORMATTER_HPP
+# endif //VCCC_LITERAL_FORMATTER_HPP

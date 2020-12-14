@@ -1,13 +1,13 @@
 # /*
-#   Created by YongGyu Lee on 2020/12/08.
-# */
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
 #
 # ifndef VCCC_TYPE_SUPPORT_STD_ARRAY_HPP
 # define VCCC_TYPE_SUPPORT_STD_ARRAY_HPP
 #
 # include <array>
 
-namespace vc{
+namespace vccc{
 
 template<std::size_t i, typename T, int n>
 constexpr
@@ -43,4 +43,4 @@ at(const std::array<T, n>&& arr) {
 
 }
 
-#endif //VCCC_TYPE_SUPPORT_STD_ARRAY_HPP
+# endif //VCCC_TYPE_SUPPORT_STD_ARRAY_HPP

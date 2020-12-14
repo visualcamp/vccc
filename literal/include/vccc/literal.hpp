@@ -7,4 +7,4 @@
 
 #include "literal/formatter.hpp"
 
-#endif //VCCC_LITERAL_HPP
+# endif //VCCC_LITERAL_HPP

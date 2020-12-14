@@ -1,39 +1,16 @@
-//
-// Created by YongGyu Lee on 2020/12/02.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_TYPE_RESIZE_HPP
+# define VCCC_TYPE_RESIZE_HPP
+#
+# include "opencv2/core/types.hpp"
+# include "vccc/type_traits.hpp"
+# include "vccc/type_support/convert_to.hpp"
 
-#ifndef VCCC_TYPE_RESIZE_HPP
-#define VCCC_TYPE_RESIZE_HPP
+namespace vccc{
 
-#include "opencv2/core/types.hpp"
-#include "vccc/type_traits.hpp"
-#include "vccc/type_support/convert_to.hpp"
-
-namespace vc{
-
-/**
- * resize opencv types
- */
-
-template<int new_size, typename T, VCCC_REQUIRE(new_size==2)>
-auto resize(const cv::Point_<T>& from){
-  return from;
-}
-
-template<int new_size, typename T, VCCC_REQUIRE(new_size==3)>
-auto resize(const cv::Point_<T>& from){
-  return convert_to<cv::Point3_<T>>(from);
-}
-
-template<int new_size, typename T, VCCC_REQUIRE(new_size==2)>
-auto resize(const cv::Point3_<T>& from){
-  return convert_to<cv::Point_<T>>(from);
-}
-
-template<int new_size, typename T, VCCC_REQUIRE(new_size==3)>
-auto resize(const cv::Point3_<T>& from){
-  return from;
-}
 
 template<int new_size, typename T, int old_size>
 auto resize(const cv::Vec<T, old_size>& from){
@@ -52,4 +29,4 @@ decltype(auto) resize(T&& t){
 
 }
 
-#endif //VCCC_TYPE_RESIZE_HPP
+# endif //VCCC_TYPE_RESIZE_HPP

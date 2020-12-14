@@ -1,13 +1,13 @@
-//
-// Created by YongGyu Lee on 2020/12/07.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_NUMERIC_LOSSLESS_DIV_HPP
+# define VCCC_NUMERIC_LOSSLESS_DIV_HPP
+#
+# include "vccc/type_traits.hpp"
 
-#ifndef VCCC_NUMERIC_LOSSLESS_DIV_HPP
-#define VCCC_NUMERIC_LOSSLESS_DIV_HPP
-
-#include "vccc/type_traits.hpp"
-
-namespace vc{
+namespace vccc{
 
 template<typename T1, typename T2>
 decltype(auto) lossless_div(const T1 a, const T2 b){
@@ -17,4 +17,4 @@ decltype(auto) lossless_div(const T1 a, const T2 b){
 
 }
 
-#endif //VCCC_NUMERIC_LOSSLESS_DIV_HPP
+# endif //VCCC_NUMERIC_LOSSLESS_DIV_HPP

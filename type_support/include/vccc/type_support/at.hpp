@@ -1,27 +1,28 @@
 # /*
-#   Created by YongGyu Lee on 2020/12/08.
-# */
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
 #
 # ifndef VCCC_TYPE_SUPPORT_AT_HPP
 # define VCCC_TYPE_SUPPORT_AT_HPP
 #
-# include "vccc/type_support/core.hpp"
 # include "vccc/type_support/detail/container_at.hpp"
 # include "vccc/type_traits.hpp"
+# include "opencv2/core/saturate.hpp"
+# include "vccc/type_support/core.hpp"
 #
 # /*
-#   Note
-#   vc::at is implemented in each class' headers
-# */
+#  * Note
+#  * vccc::at is implemented in each class' headers
+#  */
 
-namespace vc{
+namespace vccc{
 
 /**
  * returns cv::saturate_cast<C>(at<i>(t))
  */
 
 template</* manual */ std::size_t i, typename C,
-         /* deduce */ typename T>
+    /* deduce */ typename T>
 constexpr
 decltype(auto)
 at(const T& t) {
@@ -34,7 +35,7 @@ at(const T& t) {
  */
 
 template</* manual */ std::size_t i, std::size_t j, typename C,
-         /* deduce */typename T>
+    /* deduce */typename T>
 constexpr
 decltype(auto)
 at(const T& t) {
@@ -78,14 +79,6 @@ constexpr detail::bind_obj<Args...> bind_at(Args&&... args) {
   return detail::bind_obj<Args...>(std::forward<Args>(args)...);
 }
 
-/**
- * scalar add operation on opencv types
- */
-
-
-
-
-
 }
 
-#endif //VCCC_TYPE_SUPPORT_AT_HPP
+# endif //VCCC_TYPE_SUPPORT_AT_HPP

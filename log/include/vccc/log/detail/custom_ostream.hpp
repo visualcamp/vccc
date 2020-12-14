@@ -8,7 +8,7 @@
 #include "vccc/log/detail/print.hpp"
 #include "vccc/type_traits.hpp"
 
-namespace vc{
+namespace vccc{
 
 
 
@@ -36,4 +36,4 @@ std::ostream& operator << (std::ostream& os, const std::integer_sequence<T, I...
 
 }
 
-#endif //VCCC_LOG_CUSTOM_OSTREAM_HPP
+# endif //VCCC_LOG_CUSTOM_OSTREAM_HPP

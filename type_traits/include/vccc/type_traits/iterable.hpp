@@ -1,13 +1,13 @@
-//
-// Created by YongGyu Lee on 2020/12/07.
-//
+# /*
+#  * Created by YongGyu Lee on 2020/12/08.
+#  */
+#
+# ifndef VCCC_TYPE_TRAITS_ITERABLE_HPP
+# define VCCC_TYPE_TRAITS_ITERABLE_HPP
+#
+# include "vccc/type_traits/are.hpp"
 
-#ifndef VCCC_TYPE_TRAITS_ITERABLE_HPP
-#define VCCC_TYPE_TRAITS_ITERABLE_HPP
-
-#include "vccc/type_traits/are.hpp"
-
-namespace vc{
+namespace vccc{
 
 template<typename T, typename = void>
 struct is_iterator : std::false_type {};
@@ -37,4 +37,4 @@ constexpr auto iterable = are_v<is_iterator<Ts>...> || are_v<std::is_pointer<Ts>
 
 }
 
-#endif //VCCC_TYPE_TRAITS_ITERABLE_HPP
+# endif //VCCC_TYPE_TRAITS_ITERABLE_HPP
