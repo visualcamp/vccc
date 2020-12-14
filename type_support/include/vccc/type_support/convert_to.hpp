@@ -86,7 +86,7 @@ To convert_to(const From& from){
 /**
  * converting to same type
  */
-template<typename To> decltype(auto) convert_to(      To&& from) { return from; }
+template<typename To> decltype(auto) convert_to(      To&& from) { return std::forward<To>(from); }
 template<typename To>             To convert_to(const To&  from) { return from; }
 
 }

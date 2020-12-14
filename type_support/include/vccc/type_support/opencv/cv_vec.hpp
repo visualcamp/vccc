@@ -52,7 +52,7 @@ at(const cv::Vec<T, n>&& vec) {
 
 
 /** add */
-
+// TODO: remove temporary instance
 template<typename T, int cn, typename N>
 cv::Vec<T, cn> add(const cv::Vec<T, cn>& vec, N n) {
   return vec + cv::Vec<T, cn>::all(n);
