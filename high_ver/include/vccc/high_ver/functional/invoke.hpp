@@ -14,7 +14,7 @@ namespace vccc{
 
 template<class F, class... Args>
 constexpr
-auto
+decltype(auto)
 invoke(F&& f, Args&&... args) {
   return detail::INVOKE(std::forward<F>(f), std::forward<Args>(args)...);
 }
