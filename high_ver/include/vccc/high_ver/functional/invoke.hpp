@@ -28,9 +28,9 @@ invoke(F&& f, Args&&... args) {
 namespace vccc{
 
 template<class F, class... Args>
+[[deprecated("use std::invoke instead")]]
 constexpr
 auto
-[[deprecated("use std::invoke instead")]]
 invoke(F&& f, Args&&... args) {
   return std::invoke(std::forward<F>(f), std::forward<Args>(args)...);
 }

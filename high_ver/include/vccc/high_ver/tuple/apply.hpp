@@ -27,12 +27,16 @@ apply(F&& f, Tuple&& t) {
 #
 # include <tuple>
 
+namespace vccc{
+
 template<class F, class Tuple>
+[[deprecated("use std::apply instead")]]
 constexpr
 decltype(auto)
-[[deprecated("use std::apply instead")]]
 apply(F&& f, Tuple&& t) {
   return std::apply(std::forward<F>(f), std::forward<Tuple>(t));
+}
+
 }
 
 # endif
