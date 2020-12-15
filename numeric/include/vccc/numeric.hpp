@@ -9,5 +9,6 @@
 # include "numeric/lossless_div.hpp"
 # include "numeric/sum.hpp"
 # include "numeric/stddev.hpp"
+# include "numeric/norm.hpp"
 #
 # endif //VCCC_VCCC_NUMERIC_HPP
