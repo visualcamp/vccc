@@ -5,11 +5,12 @@
 # ifndef VCCC_LOG_LOGGER_HPP
 # define VCCC_LOG_LOGGER_HPP
 #
-# include "vccc/log/detail/c_printable.hpp"
 # include <vector>
 # include <sstream>
 # include <string>
 # include <regex>
+# include "vccc/log/detail/c_printable.hpp"
+# include "vccc/log/detail/custom_ostream.hpp"
 
 namespace vccc{
 

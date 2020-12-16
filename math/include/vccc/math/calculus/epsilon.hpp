@@ -11,7 +11,7 @@
 namespace vccc{
 
 template<typename T>
-constexpr epsilon = std::numeric_limits<T>::epsilon();
+constexpr auto epsilon = std::numeric_limits<T>::epsilon();
 
 }
 
