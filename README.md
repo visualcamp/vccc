@@ -2,7 +2,7 @@
  ## VisualCamp Common C++ library
  * Requires C++14 or above
  
- #### `high_ver`
+ #### `high`
  Standalone
  * `functional`
    * `invoke`
