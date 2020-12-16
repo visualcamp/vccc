@@ -18,6 +18,71 @@ struct are_ : std::true_type {};
 template<typename Cond, typename... Conds>
 struct are_<Cond, Conds...> : std::conditional<Cond::value, are_<Conds...>, std::false_type>::type {};
 
+/*
+
+template<typename ...>
+struct are_ : public std::true_type{};
+
+template<typename C0>
+struct are_<C0>
+    : public std::integral_constant<bool, C0::value> {};
+
+template<typename C0, typename C1>
+struct are_<C0, C1>
+    : public std::integral_constant<bool, C0::value && C1::value> {};
+
+template<typename C0, typename C1, typename C2>
+struct are_<C0, C1, C2>
+    : public std::integral_constant<bool, C0::value && C1::value &&
+                                          C2::value> {};
+
+template<typename C0, typename C1, typename C2, typename C3>
+struct are_<C0, C1, C2, C3>
+    : public std::integral_constant<bool, C0::value && C1::value &&
+                                          C2::value && C3::value> {};
+
+template<typename C0, typename C1, typename C2, typename C3,
+         typename C4>
+struct are_<C0, C1, C2, C3, C4>
+    : public std::integral_constant<bool, C0::value && C1::value &&
+                                          C2::value && C3::value &&
+                                          C4::value> {};
+
+template<typename C0, typename C1, typename C2, typename C3,
+         typename C4, typename C5>
+struct are_<C0, C1, C2, C3, C4, C5>
+    : public std::integral_constant<bool, C0::value && C1::value &&
+                                          C2::value && C3::value &&
+                                          C4::value && C5::value> {};
+
+template<typename C0, typename C1, typename C2, typename C3,
+         typename C4, typename C5, typename C6>
+struct are_<C0, C1, C2, C3, C4, C5, C6>
+    : public std::integral_constant<bool, C0::value && C1::value &&
+                                          C2::value && C3::value &&
+                                          C4::value && C5::value &&
+                                          C6::value> {};
+
+template<typename C0, typename C1, typename C2, typename C3,
+         typename C4, typename C5, typename C6, typename C7>
+struct are_<C0, C1, C2, C3, C4, C5, C6, C7>
+    : public std::integral_constant<bool, C0::value && C1::value &&
+                                          C2::value && C3::value &&
+                                          C4::value && C5::value &&
+                                          C6::value && C7::value> {};
+
+template<typename C0, typename C1, typename C2, typename C3,
+         typename C4, typename C5, typename C6, typename C7,
+         typename ...Cs>
+struct are_<C0, C1, C2, C3, C4, C5, C6, C7, Cs...>
+    : public std::integral_constant<bool, C0::value && C1::value &&
+                                          C2::value && C3::value &&
+                                          C4::value && C5::value &&
+                                          C6::value && C7::value &&
+                                          are_<Cs...>::value> {};
+ */
+
+
 template<typename ...Conds>
 using are_t = typename are_<Conds...>::type;
 
