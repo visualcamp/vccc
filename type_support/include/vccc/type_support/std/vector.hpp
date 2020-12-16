@@ -6,19 +6,26 @@
 # define VCCC_TYPE_SUPPORT_STD_VECTOR_HPP
 #
 # include <vector>
+# include <algorithm>
 
 namespace vccc{
 
-template<typename ...T>
-std::vector<T...> reserved_vector(typename std::vector<T...>::size_type size){
-  std::vector<T...> vec;
+template<typename T>
+std::vector<T> reserved_vector(typename std::vector<T>::size_type size){
+  std::vector<T> vec;
+  vec.reserve(size);
+  return vec;
+}
+
+template<typename T, typename Allocator>
+std::vector<T, Allocator> reserved_vector(typename std::vector<T, Allocator>::size_type size){
+  std::vector<T, Allocator> vec;
   vec.reserve(size);
   return vec;
 }
 
 template<typename T, typename Allocator>
 std::vector<T, Allocator>& concat(std::vector<T, Allocator>& to, const std::vector<T, Allocator>& from) {
-  static_assert(std::is_copy_constructible<T>::value, "");
   to.reserve(to.size() + from.size());
   for(int i=0; i<from.size(); ++i)
     to.emplace_back(from[i]);
@@ -27,12 +34,35 @@ std::vector<T, Allocator>& concat(std::vector<T, Allocator>& to, const std::vect
 
 template<typename T, typename Allocator>
 std::vector<T, Allocator>& concat(std::vector<T, Allocator>& to, std::vector<T, Allocator>&& from) {
-  static_assert(std::is_move_constructible<T>::value, "");
   to.reserve(to.size() + from.size());
   for(int i=0; i<from.size(); ++i)
     to.emplace_back(std::move(from[i]));
   return to;
 }
+//
+//template<typename T, typename Allocator>
+//std::vector<T, Allocator> slice(const std::vector<T, Allocator>& vec, std::size_t first){
+//  return std::vector<T, Allocator>(std::min(vec.end(), vec.begin() + first),
+//                                   vec.end());
+//}
+//
+//template<typename T, typename Allocator>
+//std::vector<T, Allocator> slice(std::vector<T, Allocator>&& vec, std::size_t first){
+//  return std::vector<T, Allocator>(std::make_move_iterator(std::min(vec.end(), vec.begin() + first)),
+//                                   std::make_move_iterator(vec.end()));
+//}
+//
+//template<typename T, typename Allocator>
+//std::vector<T, Allocator> slice(const std::vector<T, Allocator>& vec, std::size_t first, std::size_t last){
+//  return std::vector<T, Allocator>(std::min(vec.end(), vec.begin() + first),
+//                                   std::min(vec.end(), vec.begin() + last));
+//}
+//
+//template<typename T, typename Allocator>
+//std::vector<T, Allocator> slice(std::vector<T, Allocator>&& vec, std::size_t first, std::size_t last){
+//  return std::vector<T, Allocator>(std::make_move_iterator(std::min(vec.end(), vec.begin() + first)),
+//                                   std::make_move_iterator(std::min(vec.end(), vec.begin() + last)));
+//}
 
 }
 
