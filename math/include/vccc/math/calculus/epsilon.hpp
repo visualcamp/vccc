@@ -6,12 +6,15 @@
 # define VCCC_MATH_CALCULUS_EPSILON_HPP
 #
 # include <limits>
-#
+# include <cmath>
 
 namespace vccc{
 
 template<typename T>
-constexpr auto epsilon = std::numeric_limits<T>::epsilon();
+auto epsilon(){
+  static const auto e = std::sqrt(std::numeric_limits<T>::epsilon());
+  return e;
+}
 
 }
 
