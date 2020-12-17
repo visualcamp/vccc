@@ -6,6 +6,7 @@
 # define VCCC_TYPE_TRAITS_HPP
 #
 # include "type_traits/are.hpp"
+# include "type_traits/arity.hpp"
 # include "type_traits/lossless_type.hpp"
 # include "type_traits/bigger_type.hpp"
 # include "type_traits/is_container.hpp"
