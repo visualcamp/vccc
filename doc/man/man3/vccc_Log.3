@@ -1,0 +1,71 @@
+.TH "vccc::Log" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+vccc::Log
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <log\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename \&.\&.\&. Args> void \fBv\fP (Args &&\&.\&.\&. args) const"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args> void \fBd\fP (Args &&\&.\&.\&. args) const"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args> void \fBi\fP (Args &&\&.\&.\&. args) const"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args> void \fBw\fP (Args &&\&.\&.\&. args) const"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args> void \fBe\fP (Args &&\&.\&.\&. args) const"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBLog\fP & \fBgetInstance\fP ()"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "static \fBLog\fP& vccc::Log::getInstance ()\fC [inline]\fP, \fC [static]\fP"
+forward arguments to predefined macros v for LOGV, d for LOGD, i for LOGI, w for LOGW, e for LOGE
+.PP
+supports both printf-like format and ostringstream& operator << ex) \fBLog\&.d\fP('Hello, world') -> Hello, world \fBLog\&.d\fP('First:', 3, 'Second:', 3\&.14) -> First: 3 Second: 3\&.14
+.PP
+\fBLog\&.d\fP('Hello, %s', 'world') -> Hello, world \fBLog\&.d\fP('First: %d Second: %f', 3, 3\&.14) -> First: 3 Second: 3\&.14
+.PP
+Mixing both won't work ex) \fBLog\&.d\fP('First: %d', 3, 'Second:', 3\&.14) -> First: 3 (wrong output; works exactly the same as printf) \fBLog\&.d\fP('First:', 3, 'Second: %f', 3\&.14) -> First: 3 Second: f 3\&.14 (wrong output; works exactly the same as std::cout)
+.PP
+printf-like format only works when
+.IP "1." 4
+first argument is (const) char* type
+.IP "2." 4
+following arguments are scalar (pointer, integer, floating-points, enum) and of course the output will be wrong if the wrong format is provided ex) \fBLog\&.d\fP('Hello, %s', std::string('world')) -> Hello, s world \fBLog\&.d\fP(std::string('Hello, %s'), 'world') -> Hello, s world \fBLog\&.d\fP('Int: %d', 3\&.14) -> Int: -492425104 (wrong output example)
+.PP
+.PP
+if ostringstream& operator << is overloaded for user-defined types, it can be printed ex) \fBLog\&.d\fP('string:', std::string('wow!')) -> string: wow! \fBLog\&.d\fP('Point:', cv::Point2i(3,4)) -> Point: [3, 4]
+.PP
+if using << format, blank will be inserted between all elements ex) \fBLog\&.d\fP('ABCDEF') -> ABCDEF \fBLog\&.d\fP('ABC', 'DEF') -> ABC DEF \fBLog\&.d\fP('AB', 'CD', 12) -> AB CD 12 
+.SS "template<typename \&.\&.\&. Args> void vccc::Log::v (Args &&\&.\&.\&. args) const"
+
+.SS "template<typename \&.\&.\&. Args> void vccc::Log::d (Args &&\&.\&.\&. args) const"
+
+.SS "template<typename \&.\&.\&. Args> void vccc::Log::i (Args &&\&.\&.\&. args) const"
+
+.SS "template<typename \&.\&.\&. Args> void vccc::Log::w (Args &&\&.\&.\&. args) const"
+
+.SS "template<typename \&.\&.\&. Args> void vccc::Log::e (Args &&\&.\&.\&. args) const"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

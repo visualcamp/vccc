@@ -1,0 +1,16 @@
+.TH "vccc::detail::are_types_c_printable< T, Ts... >" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+vccc::detail::are_types_c_printable< T, Ts... >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <c_printable\&.hpp>\fP
+.PP
+Inherits integral_constant< bool,(std::is_same< char *, std::decay_t< T > >::value||std::is_same< const char *, std::decay_t< T > >::value) &&are_scalar_v< Ts\&.\&.\&. > >\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

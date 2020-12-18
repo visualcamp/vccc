@@ -1,0 +1,132 @@
+.TH "cmake-build-debug/CMakeFiles/3.17.3/CompilerIdCXX/CMakeCXXCompilerId.cpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+cmake-build-debug/CMakeFiles/3.17.3/CompilerIdCXX/CMakeCXXCompilerId.cpp
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCOMPILER_ID\fP   ''"
+.br
+.ti -1c
+.RI "#define \fBSTRINGIFY_HELPER\fP(\fBX\fP)   #\fBX\fP"
+.br
+.ti -1c
+.RI "#define \fBSTRINGIFY\fP(\fBX\fP)   \fBSTRINGIFY_HELPER\fP(\fBX\fP)"
+.br
+.ti -1c
+.RI "#define \fBPLATFORM_ID\fP"
+.br
+.ti -1c
+.RI "#define \fBARCHITECTURE_ID\fP"
+.br
+.ti -1c
+.RI "#define \fBDEC\fP(n)"
+.br
+.ti -1c
+.RI "#define \fBHEX\fP(n)"
+.br
+.ti -1c
+.RI "#define \fBCXX_STD\fP   \fB__cplusplus\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBint\fP \fBmain\fP (\fBint\fP argc, \fBchar\fP *argv[])"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBchar\fP const  * \fBinfo_compiler\fP = 'INFO' ':' 'compiler[' COMPILER_ID ']'"
+.br
+.ti -1c
+.RI "\fBchar\fP const  * \fBinfo_platform\fP = 'INFO' ':' 'platform[' PLATFORM_ID ']'"
+.br
+.ti -1c
+.RI "\fBchar\fP const  * \fBinfo_arch\fP = 'INFO' ':' 'arch[' ARCHITECTURE_ID ']'"
+.br
+.ti -1c
+.RI "const \fBchar\fP * \fBinfo_language_dialect_default\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define COMPILER_ID   ''"
+
+.SS "#define STRINGIFY_HELPER(\fBX\fP)   #\fBX\fP"
+
+.SS "#define STRINGIFY(\fBX\fP)   \fBSTRINGIFY_HELPER\fP(\fBX\fP)"
+
+.SS "#define PLATFORM_ID"
+
+.SS "#define ARCHITECTURE_ID"
+
+.SS "#define DEC(n)"
+\fBValue:\fP
+.PP
+.nf
+  ('0' + (((n) / 10000000)%10)), \
+  ('0' + (((n) / 1000000)%10)),  \
+  ('0' + (((n) / 100000)%10)),   \
+  ('0' + (((n) / 10000)%10)),    \
+  ('0' + (((n) / 1000)%10)),     \
+  ('0' + (((n) / 100)%10)),      \
+  ('0' + (((n) / 10)%10)),       \
+  ('0' +  ((n) % 10))
+.fi
+.SS "#define HEX(n)"
+\fBValue:\fP
+.PP
+.nf
+  ('0' + ((n)>>28 & 0xF)), \
+  ('0' + ((n)>>24 & 0xF)), \
+  ('0' + ((n)>>20 & 0xF)), \
+  ('0' + ((n)>>16 & 0xF)), \
+  ('0' + ((n)>>12 & 0xF)), \
+  ('0' + ((n)>>8  & 0xF)), \
+  ('0' + ((n)>>4  & 0xF)), \
+  ('0' + ((n)     & 0xF))
+.fi
+.SS "#define CXX_STD   \fB__cplusplus\fP"
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBint\fP main (\fBint\fP argc, \fBchar\fP * argv[])"
+
+.SH "Variable Documentation"
+.PP 
+.SS "\fBchar\fP const* info_compiler = 'INFO' ':' 'compiler[' COMPILER_ID ']'"
+
+.SS "\fBchar\fP const* info_platform = 'INFO' ':' 'platform[' PLATFORM_ID ']'"
+
+.SS "\fBchar\fP const* info_arch = 'INFO' ':' 'arch[' ARCHITECTURE_ID ']'"
+
+.SS "const \fBchar\fP* info_language_dialect_default"
+\fBInitial value:\fP
+.PP
+.nf
+= "INFO" ":" "dialect_default["
+
+
+
+
+
+
+
+
+
+  "98"
+
+"]"
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

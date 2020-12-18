@@ -1,0 +1,25 @@
+\hypertarget{is__specialization_8hpp}{}\doxysection{type\+\_\+traits/include/vccc/type\+\_\+traits/is\+\_\+specialization.hpp File Reference}
+\label{is__specialization_8hpp}\index{type\_traits/include/vccc/type\_traits/is\_specialization.hpp@{type\_traits/include/vccc/type\_traits/is\_specialization.hpp}}
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1is__specialization}{vccc\+::is\+\_\+specialization$<$ Test, Ref $>$}}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1is__specialization_3_01_ref_3_01_args_8_8_8_01_4_00_01_ref_01_4}{vccc\+::is\+\_\+specialization$<$ Ref$<$ Args... $>$, Ref $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacevccc}{vccc}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$template$<$ typename... $>$ class Ref, typename ... Args$>$ }\\using \mbox{\hyperlink{namespacevccc_aa488382be383cf482a758fbc2c9ef890}{vccc\+::is\+\_\+specialization\+\_\+t}} = typename is\+\_\+specialization$<$ Ref$<$ Args... $>$, Ref $>$\+::type
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$template$<$ typename... $>$ class Ref, typename ... Args$>$ }\\constexpr auto \mbox{\hyperlink{namespacevccc_a1dfe1efdfb3a4875e9e95eee417608a9}{vccc\+::is\+\_\+specialization\+\_\+v}} = is\+\_\+specialization$<$Ref$<$Args...$>$, Ref$>$\+::value
+\end{DoxyCompactItemize}

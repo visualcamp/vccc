@@ -1,0 +1,23 @@
+\hypertarget{average_8hpp}{}\doxysection{numeric/include/vccc/numeric/average.hpp File Reference}
+\label{average_8hpp}\index{numeric/include/vccc/numeric/average.hpp@{numeric/include/vccc/numeric/average.hpp}}
+{\ttfamily \#include $<$iterator$>$}\newline
+{\ttfamily \#include \char`\"{}vccc/type\+\_\+traits.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}vccc/numeric/sum.\+hpp\char`\"{}}\newline
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacevccc}{vccc}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Input\+Iterator , V\+C\+C\+C\+\_\+\+R\+E\+Q\+U\+I\+R\+E(iterable$<$ Input\+Iterator $>$) $>$ }\\constexpr auto \mbox{\hyperlink{namespacevccc_a4462f1176d8e155f2e1d7b5b96ccd27d}{vccc\+::average}} (Input\+Iterator first, Input\+Iterator last)
+\item 
+{\footnotesize template$<$typename Input\+Iterator , typename Unary\+Operation , V\+C\+C\+C\+\_\+\+R\+E\+Q\+U\+I\+R\+E(iterable$<$ Input\+Iterator $>$) $>$ }\\constexpr auto \mbox{\hyperlink{namespacevccc_a404ae7df6bb362a11d89cd6113b09db4}{vccc\+::average}} (Input\+Iterator first, Input\+Iterator last, Unary\+Operation unary\+\_\+op)
+\item 
+{\footnotesize template$<$typename ... Numbers, V\+C\+C\+C\+\_\+\+R\+E\+Q\+U\+I\+R\+E(are\+\_\+arithmetic\+\_\+v$<$ Numbers... $>$) $>$ }\\constexpr auto \mbox{\hyperlink{namespacevccc_a84508e1f9e2d06fc15712779a6d4ea8b}{vccc\+::average}} (Numbers... numbers)
+\item 
+{\footnotesize template$<$typename ... Ints, V\+C\+C\+C\+\_\+\+R\+E\+Q\+U\+I\+R\+E(are\+\_\+integral\+\_\+v$<$ Ints... $>$) $>$ }\\constexpr auto \mbox{\hyperlink{namespacevccc_a6c7d7b2543e94b24e4891cb0f7c651c6}{vccc\+::int\+\_\+average}} (Ints... ints)
+\item 
+{\footnotesize template$<$typename ... Args, V\+C\+C\+C\+\_\+\+R\+E\+Q\+U\+I\+R\+E(!iterable$<$ Args... $>$ \&\&!are\+\_\+arithmetic\+\_\+v$<$ Args... $>$) $>$ }\\constexpr auto \mbox{\hyperlink{namespacevccc_aca1ff9006393ec8bf9eadcdb26ccec1b}{vccc\+::average}} (const Args \&... args)
+\end{DoxyCompactItemize}

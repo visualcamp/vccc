@@ -1,0 +1,35 @@
+.TH "random/include/vccc/random/sample.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+random/include/vccc/random/sample.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <vector>\fP
+.br
+\fC#include <iterator>\fP
+.br
+\fC#include 'vccc/random/pick\&.hpp'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename T , typename Container  = std::vector<T>> Container \fBvccc::random_sample\fP (T a, T b, T k, std::mt19937 &&gen=std::mt19937(std::random_device{}()))"
+.br
+.ti -1c
+.RI "template<typename T , typename Container  = std::vector<T>, typename Generator > Container \fBvccc::random_sample\fP (T a, T b, T k, Generator &&gen)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

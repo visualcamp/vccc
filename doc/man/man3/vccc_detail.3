@@ -1,0 +1,240 @@
+.TH "vccc::detail" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+vccc::detail
+.SH SYNOPSIS
+.br
+.PP
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBimpl\fP"
+.br
+.ti -1c
+.RI " \fBmath\fP"
+.br
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBare_types_c_printable\fP"
+.br
+.ti -1c
+.RI "struct \fBare_types_c_printable< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBare_types_c_printable< T, Ts\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "class \fBbind_obj\fP"
+.br
+.ti -1c
+.RI "struct \fBcv_size\fP"
+.br
+.ti -1c
+.RI "struct \fBcv_size< cv::Matx< T, m, n > >\fP"
+.br
+.ti -1c
+.RI "struct \fBcv_size< cv::Point3_< T > >\fP"
+.br
+.ti -1c
+.RI "struct \fBcv_size< cv::Point_< T > >\fP"
+.br
+.ti -1c
+.RI "struct \fBcv_size< cv::Size_< T > >\fP"
+.br
+.ti -1c
+.RI "struct \fBcv_size< cv::Vec< T, cn > >\fP"
+.br
+.ti -1c
+.RI "struct \fBcv_size_n\fP"
+.br
+.ti -1c
+.RI "struct \fBget_invoke_category\fP"
+.br
+.ti -1c
+.RI "struct \fBinvoke_category_base_of\fP"
+.br
+.ti -1c
+.RI "struct \fBinvoke_category_normal\fP"
+.br
+.ti -1c
+.RI "struct \fBinvoke_category_reference_wrapper\fP"
+.br
+.ti -1c
+.RI "struct \fBis_cv_type\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_int_division\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_int_division< T1, T2 >\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "template<class T , class T1 > using \fBget_invoke_category_t\fP = typename \fBget_invoke_category\fP< T, T1 >::type"
+.br
+.ti -1c
+.RI "template<typename T1 , typename T2 > using \fBlossless_type_int_division_t\fP = typename \fBlossless_type_int_division\fP< T1, T2 >::type"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) \fBINVOKEP_MF\fP (\fBinvoke_category_base_of\fP, Type T::*f, T1 &&t1, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) \fBINVOKEP_MF\fP (\fBinvoke_category_reference_wrapper\fP, Type T::*f, T1 &&t1, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) \fBINVOKEP_MF\fP (\fBinvoke_category_normal\fP, Type T::*f, T1 &&t1, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) \fBINVOKEP\fP (\fBinvoke_category_base_of\fP, Type T::*f, T1 &&t1, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) \fBINVOKEP\fP (\fBinvoke_category_reference_wrapper\fP, Type T::*f, T1 &&t1, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) \fBINVOKEP\fP (\fBinvoke_category_normal\fP, Type T::*f, T1 &&t1, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) \fBINVOKE_TAG1\fP (std::true_type, Type T::*f, T1 &&t1, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) \fBINVOKE_TAG1\fP (std::false_type, Type T::*f, T1 &&t1, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) \fBINVOKE\fP (Type T::*f, T1 &&t1, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<class F , class\&.\&.\&. Args> constexpr decltype(auto) \fBINVOKE\fP (F &&f, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<class F , class Tuple , std::size_t\&.\&.\&. I> constexpr decltype(auto) \fBapply_impl\fP (F &&f, Tuple &&t, std::index_sequence< I\&.\&.\&. >)"
+.br
+.ti -1c
+.RI "template<typename Iterator > std::ostream & \fBprint_iterator\fP (std::ostream &os, Iterator first, Iterator last)"
+.br
+.ti -1c
+.RI "template<typename Tuple , std::size_t \&.\&.\&. I> std::ostream & \fBprint_tuple\fP (std::ostream &os, const Tuple &tup, std::index_sequence< 0, I\&.\&.\&. >)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args> void \fBprint_multiples\fP (std::ostream &os, const Args &\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename R , typename T , std::size_t\&.\&.\&. I, typename IT , IT\&.\&.\&. I2> R \fBfill_rest\fP (const T &from, std::index_sequence< I\&.\&.\&. > index_seq, std::integer_sequence< IT, I2\&.\&.\&. > rest_seq)"
+.br
+.ti -1c
+.RI "template<typename R , typename T , std::size_t\&.\&.\&. I> R \fBconvert_to_impl\fP (std::true_type, const T &from, std::index_sequence< I\&.\&.\&. > index_seq)"
+.br
+.ti -1c
+.RI "template<typename R , typename T , std::size_t\&.\&.\&. I> R \fBconvert_to_impl\fP (std::false_type, const T &from, std::index_sequence< I\&.\&.\&. >)"
+.br
+.ti -1c
+.RI "template<typename T , T v, T\&.\&.\&. Is> constexpr auto \fBsame_sequence\fP (std::integer_sequence< T, Is\&.\&.\&. > const &) \-> decltype(std::integer_sequence< T, v+0 *Is\&.\&.\&. >"
+.br
+.ti -1c
+.RI "template<std::size_t \&.\&.\&. Is> constexpr auto \fBrindex_sequence\fP (std::index_sequence< Is\&.\&.\&. > const &) \-> decltype(std::index_sequence< sizeof\&.\&.\&.(Is) \-1\fBU\fP\-Is\&.\&.\&. >"
+.br
+.ti -1c
+.RI "template<typename T , T start, T incr, T\&.\&.\&. I> constexpr auto \fBrange_sequence\fP (std::integer_sequence< T, I\&.\&.\&. > const &) \-> decltype(std::integer_sequence< T, start+incr *I\&.\&.\&. >"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "template<class > constexpr bool \fBis_reference_wrapper_v\fP = false"
+.br
+.ti -1c
+.RI "template<typename T > constexpr std::size_t \fBcv_size_v\fP = \fBcv_size\fP<T>::value"
+.br
+.ti -1c
+.RI "template<typename T > constexpr auto \fBis_cv_type_v\fP = \fBis_cv_type\fP<T>::value"
+.br
+.ti -1c
+.RI "template<typename T1 , typename T2 > constexpr std::size_t \fBmax_cv_size_v\fP = \fBcv_size_v\fP<T1> > \fBcv_size_v\fP<T2> ? \fBcv_size_v\fP<T1> : \fBcv_size_v\fP<T2>"
+.br
+.ti -1c
+.RI "template<typename T1 , typename T2 > constexpr std::size_t \fBmin_cv_size_v\fP = \fBcv_size_v\fP<T1> > \fBcv_size_v\fP<T2> ? \fBcv_size_v\fP<T2> : \fBcv_size_v\fP<T1>"
+.br
+.ti -1c
+.RI "template<typename T1 , typename T2 > constexpr std::size_t \fBdiff_cv_size_v\fP = \fBmax_cv_size_v\fP<T1, T2> \- \fBmin_cv_size_v\fP<T1, T2>"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+call at<\&.\&.\&.>(\&.\&.\&.) to args\&.\&.\&. 
+.SH "Typedef Documentation"
+.PP 
+.SS "template<class T , class T1 > using \fBvccc::detail::get_invoke_category_t\fP = typedef typename \fBget_invoke_category\fP<T, T1>::type"
+
+.SS "template<typename T1 , typename T2 > using \fBvccc::detail::lossless_type_int_division_t\fP = typedef typename \fBlossless_type_int_division\fP<T1, T2>::type"
+
+.SH "Function Documentation"
+.PP 
+.SS "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) vccc::detail::INVOKEP_MF (\fBinvoke_category_base_of\fP, Type T::* f, T1 && t1, Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) vccc::detail::INVOKEP_MF (\fBinvoke_category_reference_wrapper\fP, Type T::* f, T1 && t1, Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) vccc::detail::INVOKEP_MF (\fBinvoke_category_normal\fP, Type T::* f, T1 && t1, Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) vccc::detail::INVOKEP (\fBinvoke_category_base_of\fP, Type T::* f, T1 && t1, Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) vccc::detail::INVOKEP (\fBinvoke_category_reference_wrapper\fP, Type T::* f, T1 && t1, Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) vccc::detail::INVOKEP (\fBinvoke_category_normal\fP, Type T::* f, T1 && t1, Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) vccc::detail::INVOKE_TAG1 (std::true_type, Type T::* f, T1 && t1, Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) vccc::detail::INVOKE_TAG1 (std::false_type, Type T::* f, T1 && t1, Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<class T , class Type , class T1 , class\&.\&.\&. Args> constexpr decltype(auto) vccc::detail::INVOKE (Type T::* f, T1 && t1, Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<class F , class\&.\&.\&. Args> constexpr decltype(auto) vccc::detail::INVOKE (F && f, Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<class F , class Tuple , std::size_t\&.\&.\&. I> constexpr decltype(auto) vccc::detail::apply_impl (F && f, Tuple && t, std::index_sequence< I\&.\&.\&. >)\fC [constexpr]\fP"
+
+.SS "template<typename Iterator > std::ostream& vccc::detail::print_iterator (std::ostream & os, Iterator first, Iterator last)"
+
+.SS "template<typename Tuple , std::size_t \&.\&.\&. I> std::ostream& vccc::detail::print_tuple (std::ostream & os, const Tuple & tup, std::index_sequence< 0, I\&.\&.\&. >)"
+
+.SS "template<typename \&.\&.\&. Args> void vccc::detail::print_multiples (std::ostream & os, const Args &\&.\&.\&. args)"
+
+.SS "template<typename R , typename T , std::size_t\&.\&.\&. I, typename IT , IT\&.\&.\&. I2> R vccc::detail::fill_rest (const T & from, std::index_sequence< I\&.\&.\&. > index_seq, std::integer_sequence< IT, I2\&.\&.\&. > rest_seq)"
+
+.SS "template<typename R , typename T , std::size_t\&.\&.\&. I> R vccc::detail::convert_to_impl (std::true_type, const T & from, std::index_sequence< I\&.\&.\&. > index_seq)"
+
+.SS "template<typename R , typename T , std::size_t\&.\&.\&. I> R vccc::detail::convert_to_impl (std::false_type, const T & from, std::index_sequence< I\&.\&.\&. >)"
+
+.SS "template<typename T , T v, T\&.\&.\&. Is> constexpr auto vccc::detail::same_sequence (std::integer_sequence< T, Is\&.\&.\&. > const &) \-> decltype( std::integer_sequence<T, v + 0*Is\&.\&.\&.>\fC [constexpr]\fP"
+
+.SS "template<std::size_t \&.\&.\&. Is> constexpr auto vccc::detail::rindex_sequence (std::index_sequence< Is\&.\&.\&. > const &) \-> decltype( std::index_sequence<sizeof\&.\&.\&.(Is)\-1\fBU\fP\-Is\&.\&.\&.>\fC [constexpr]\fP"
+
+.SS "template<typename T , T start, T incr, T\&.\&.\&. I> constexpr auto vccc::detail::range_sequence (std::integer_sequence< T, I\&.\&.\&. > const &) \-> decltype(std::integer_sequence<T, start + incr*I\&.\&.\&.>\fC [constexpr]\fP"
+
+.SH "Variable Documentation"
+.PP 
+.SS "template<class > constexpr bool vccc::detail::is_reference_wrapper_v< std::reference_wrapper< \fBU\fP > > = false\fC [constexpr]\fP"
+
+.SS "template<typename T > constexpr std::size_t vccc::detail::cv_size_v = \fBcv_size\fP<T>::value\fC [constexpr]\fP"
+
+.SS "template<typename T > constexpr auto vccc::detail::is_cv_type_v = \fBis_cv_type\fP<T>::value\fC [constexpr]\fP"
+
+.SS "template<typename T1 , typename T2 > constexpr std::size_t vccc::detail::max_cv_size_v = \fBcv_size_v\fP<T1> > \fBcv_size_v\fP<T2> ? \fBcv_size_v\fP<T1> : \fBcv_size_v\fP<T2>\fC [constexpr]\fP"
+
+.SS "template<typename T1 , typename T2 > constexpr std::size_t vccc::detail::min_cv_size_v = \fBcv_size_v\fP<T1> > \fBcv_size_v\fP<T2> ? \fBcv_size_v\fP<T2> : \fBcv_size_v\fP<T1>\fC [constexpr]\fP"
+
+.SS "template<typename T1 , typename T2 > constexpr std::size_t vccc::detail::diff_cv_size_v = \fBmax_cv_size_v\fP<T1, T2> \- \fBmin_cv_size_v\fP<T1, T2>\fC [constexpr]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

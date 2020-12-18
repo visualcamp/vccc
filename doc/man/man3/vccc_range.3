@@ -1,0 +1,168 @@
+.TH "vccc::range< T, Container >" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+vccc::range< T, Container >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <range\&.hpp>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "using \fBvalue_type\fP = T"
+.br
+.ti -1c
+.RI "using \fBcontainer_type\fP = Container"
+.br
+.ti -1c
+.RI "using \fBiterator\fP = typename Container::iterator"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBrange\fP (\fBvalue_type\fP b)"
+.br
+.ti -1c
+.RI "\fBrange\fP (\fBvalue_type\fP a, \fBvalue_type\fP b)"
+.br
+.ti -1c
+.RI "\fBrange\fP (\fBvalue_type\fP a, \fBvalue_type\fP b, \fBvalue_type\fP incr)"
+.br
+.ti -1c
+.RI "decltype(auto) \fBbegin\fP ()"
+.br
+.ti -1c
+.RI "decltype(auto) \fBbegin\fP () const"
+.br
+.ti -1c
+.RI "decltype(auto) \fBcbegin\fP ()"
+.br
+.ti -1c
+.RI "decltype(auto) \fBcbegin\fP () const"
+.br
+.ti -1c
+.RI "decltype(auto) \fBrbegin\fP ()"
+.br
+.ti -1c
+.RI "decltype(auto) \fBrbegin\fP () const"
+.br
+.ti -1c
+.RI "decltype(auto) \fBcrbegin\fP ()"
+.br
+.ti -1c
+.RI "decltype(auto) \fBcrbegin\fP () const"
+.br
+.ti -1c
+.RI "decltype(auto) \fBend\fP ()"
+.br
+.ti -1c
+.RI "decltype(auto) \fBend\fP () const"
+.br
+.ti -1c
+.RI "decltype(auto) \fBcend\fP ()"
+.br
+.ti -1c
+.RI "decltype(auto) \fBcend\fP () const"
+.br
+.ti -1c
+.RI "decltype(auto) \fBrend\fP ()"
+.br
+.ti -1c
+.RI "decltype(auto) \fBrend\fP () const"
+.br
+.ti -1c
+.RI "decltype(auto) \fBcrend\fP ()"
+.br
+.ti -1c
+.RI "decltype(auto) \fBcrend\fP () const"
+.br
+.ti -1c
+.RI "\fBoperator Container\fP () &"
+.br
+.ti -1c
+.RI "\fBoperator Container\fP () &&"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBfill\fP (\fBiterator\fP first, \fBiterator\fP last, \fBvalue_type\fP a, \fBvalue_type\fP incr)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "Container \fBcontainer\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<typename T , typename Container  = std::vector<T>> using \fBvccc::range\fP< T, Container >::\fBvalue_type\fP =  T"
+
+.SS "template<typename T , typename Container  = std::vector<T>> using \fBvccc::range\fP< T, Container >::\fBcontainer_type\fP =  Container"
+
+.SS "template<typename T , typename Container  = std::vector<T>> using \fBvccc::range\fP< T, Container >::\fBiterator\fP =  typename Container::iterator"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename T , typename Container  = std::vector<T>> \fBvccc::range\fP< T, Container >::\fBrange\fP (\fBvalue_type\fP b)\fC [inline]\fP, \fC [explicit]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> \fBvccc::range\fP< T, Container >::\fBrange\fP (\fBvalue_type\fP a, \fBvalue_type\fP b)\fC [inline]\fP, \fC [explicit]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> \fBvccc::range\fP< T, Container >::\fBrange\fP (\fBvalue_type\fP a, \fBvalue_type\fP b, \fBvalue_type\fP incr)\fC [inline]\fP, \fC [explicit]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::begin ()\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::begin () const\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::cbegin ()\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::cbegin () const\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::rbegin ()\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::rbegin () const\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::crbegin ()\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::crbegin () const\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::end ()\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::end () const\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::cend ()\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::cend () const\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::rend ()\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::rend () const\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::crend ()\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> decltype(auto) \fBvccc::range\fP< T, Container >::crend () const\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> \fBvccc::range\fP< T, Container >::operator Container () &\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> \fBvccc::range\fP< T, Container >::operator Container () &&\fC [inline]\fP"
+
+.SS "template<typename T , typename Container  = std::vector<T>> void \fBvccc::range\fP< T, Container >::fill (\fBiterator\fP first, \fBiterator\fP last, \fBvalue_type\fP a, \fBvalue_type\fP incr)\fC [inline]\fP, \fC [protected]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<typename T , typename Container  = std::vector<T>> Container \fBvccc::range\fP< T, Container >::container\fC [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

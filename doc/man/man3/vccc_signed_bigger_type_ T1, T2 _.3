@@ -1,0 +1,25 @@
+.TH "vccc::signed_bigger_type< T1, T2 >" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+vccc::signed_bigger_type< T1, T2 >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <bigger_type\&.hpp>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "using \fBtype\fP = std::conditional_t< sizeof(T1) >=sizeof(T2) &&std::is_signed< T1 >::value, typename \fBsigned_bigger_type\fP< T1 >::\fBtype\fP, typename \fBsigned_bigger_type\fP< T2 >::\fBtype\fP >"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<typename T1 , typename T2 > using \fBvccc::signed_bigger_type\fP< T1, T2 >::\fBtype\fP =  std::conditional_t<sizeof(T1) >= sizeof(T2) && std::is_signed<T1>::value, typename \fBsigned_bigger_type\fP<T1>::\fBtype\fP, typename \fBsigned_bigger_type\fP<T2>::\fBtype\fP>"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

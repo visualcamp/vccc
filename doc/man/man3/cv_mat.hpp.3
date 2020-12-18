@@ -1,0 +1,61 @@
+.TH "type_support/include/vccc/type_support/opencv/cv_mat.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+type_support/include/vccc/type_support/opencv/cv_mat.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'opencv2/core/types\&.hpp'\fP
+.br
+\fC#include 'vccc/type_support/opencv/detail/cv_size\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBvccc::detail::cv_size< cv::Matx< T, m, n > >\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<std::size_t i, std::size_t j, typename T , int m, int n> constexpr T & \fBvccc::at\fP (cv::Matx< T, m, n > &matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, std::size_t j, typename T , int m, int n> constexpr const T & \fBvccc::at\fP (const cv::Matx< T, m, n > &matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, std::size_t j, typename T , int m, int n> constexpr T && \fBvccc::at\fP (cv::Matx< T, m, n > &&matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, std::size_t j, typename T , int m, int n> constexpr const T && \fBvccc::at\fP (const cv::Matx< T, m, n > &&matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int m, int n> constexpr T & \fBvccc::at\fP (cv::Matx< T, m, n > &matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int m, int n> constexpr const T & \fBvccc::at\fP (const cv::Matx< T, m, n > &matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int m, int n> constexpr T && \fBvccc::at\fP (cv::Matx< T, m, n > &&matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int m, int n> constexpr const T && \fBvccc::at\fP (const cv::Matx< T, m, n > &&matx)"
+.br
+.ti -1c
+.RI "template<typename T , int m, int n, typename N > cv::Matx< T, m, n > \fBvccc::add\fP (const cv::Matx< T, m, n > &matx, N n_)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

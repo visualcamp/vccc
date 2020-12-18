@@ -1,0 +1,25 @@
+.TH "vccc::detail::get_invoke_category< T, T1 >" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+vccc::detail::get_invoke_category< T, T1 >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <invoke\&.hpp>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "using \fBtype\fP = std::conditional_t< std::is_base_of< T, std::decay_t< T1 > >::value, \fBinvoke_category_base_of\fP, std::conditional_t< \fBis_reference_wrapper_v\fP< std::decay_t< T1 > >, \fBinvoke_category_reference_wrapper\fP, \fBinvoke_category_normal\fP > >"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<class T , class T1 > using \fBvccc::detail::get_invoke_category\fP< T, T1 >::\fBtype\fP =  std::conditional_t< std::is_base_of<T, std::decay_t<T1> >::value, \fBinvoke_category_base_of\fP, std::conditional_t< \fBis_reference_wrapper_v\fP<std::decay_t<T1> >, \fBinvoke_category_reference_wrapper\fP, \fBinvoke_category_normal\fP> >"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

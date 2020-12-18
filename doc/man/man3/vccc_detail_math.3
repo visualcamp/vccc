@@ -1,0 +1,32 @@
+.TH "vccc::detail::math" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+vccc::detail::math
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename Func , typename Tuple , std::size_t \&.\&.\&. I, typename \&.\&.\&. Args> decltype(auto) \fBapplyTupleAndVariadicsImpl\fP (Func &&f, Tuple &&tuple, std::index_sequence< I\&.\&.\&. >, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename Func , typename Tuple , typename \&.\&.\&. Args> decltype(auto) \fBapplyTupleAndVariadics\fP (Func &&f, Tuple &&tup, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename T , typename DifferentialCategory , typename Func , typename VarTuple , std::size_t \&.\&.\&. I, typename \&.\&.\&. Args> auto \fBgradientImpl\fP (Func f, VarTuple vars, std::index_sequence< I\&.\&.\&. >, Args &&\&.\&.\&. args)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "template<typename Func , typename Tuple , std::size_t \&.\&.\&. I, typename \&.\&.\&. Args> decltype(auto) vccc::detail::math::applyTupleAndVariadicsImpl (Func && f, Tuple && tuple, std::index_sequence< I\&.\&.\&. >, Args &&\&.\&.\&. args)"
+
+.SS "template<typename Func , typename Tuple , typename \&.\&.\&. Args> decltype(auto) vccc::detail::math::applyTupleAndVariadics (Func && f, Tuple && tup, Args &&\&.\&.\&. args)"
+
+.SS "template<typename T , typename DifferentialCategory , typename Func , typename VarTuple , std::size_t \&.\&.\&. I, typename \&.\&.\&. Args> auto vccc::detail::math::gradientImpl (Func f, VarTuple vars, std::index_sequence< I\&.\&.\&. >, Args &&\&.\&.\&. args)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

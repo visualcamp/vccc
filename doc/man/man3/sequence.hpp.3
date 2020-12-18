@@ -1,0 +1,40 @@
+.TH "utility/include/vccc/utility/sequence.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+utility/include/vccc/utility/sequence.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'vccc/utility/detail/custom_sequence\&.hpp'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "template<std::size_t N> using \fBvccc::make_rindex_sequence\fP = decltype(detail::rindex_sequence(std::make_index_sequence< N >{}))"
+.br
+.ti -1c
+.RI "template<typename T , T v, std::size_t N> using \fBvccc::make_same_sequence\fP = decltype(detail::same_sequence< T, v >(std::make_integer_sequence< T, N >{}))"
+.br
+.ti -1c
+.RI "template<std::size_t N> using \fBvccc::make_zero_sequence\fP = make_same_sequence< \fBint\fP, 0, N >"
+.br
+.ti -1c
+.RI "template<typename T , T begin, T end, T step = 1, T size = (end + (end>0?\-1:1) \- begin)/step> using \fBvccc::make_range_sequence\fP = decltype(detail::range_sequence< T, begin, step >(std::make_integer_sequence< T,(size >=0 ? size+1 :size)>{}))"
+.br
+.ti -1c
+.RI "template<std::size_t begin, std::size_t end, std::size_t step = 1, std::size_t size = (end + (end>0?\-1:1) \- begin)/step> using \fBvccc::make_index_range_sequence\fP = decltype(detail::range_sequence< std::size_t, begin, step >(std::make_integer_sequence< std::size_t,(size >=0 ? size+1 :size)>{}))"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

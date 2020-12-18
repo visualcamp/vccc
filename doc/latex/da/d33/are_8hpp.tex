@@ -1,0 +1,49 @@
+\hypertarget{are_8hpp}{}\doxysection{type\+\_\+traits/include/vccc/type\+\_\+traits/are.hpp File Reference}
+\label{are_8hpp}\index{type\_traits/include/vccc/type\_traits/are.hpp@{type\_traits/include/vccc/type\_traits/are.hpp}}
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1are__}{vccc\+::are\+\_\+$<$ Conds $>$}}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1are___3_01_cond_00_01_conds_8_8_8_01_4}{vccc\+::are\+\_\+$<$ Cond, Conds... $>$}}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1are__arithmetic}{vccc\+::are\+\_\+arithmetic$<$ Ts $>$}}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1are__integral}{vccc\+::are\+\_\+integral$<$ Ts $>$}}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1are__floating__point}{vccc\+::are\+\_\+floating\+\_\+point$<$ Ts $>$}}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1are__scalar}{vccc\+::are\+\_\+scalar$<$ Ts $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacevccc}{vccc}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename ... Conds$>$ }\\using \mbox{\hyperlink{namespacevccc_a19655c32691f14c1ee82b798e5a095f4}{vccc\+::are\+\_\+t}} = typename are\+\_\+$<$ Conds... $>$\+::type
+\item 
+{\footnotesize template$<$typename ... Ts$>$ }\\using \mbox{\hyperlink{namespacevccc_a5cc07f1cb051e5305b5ebd7770662d74}{vccc\+::are\+\_\+arithmetic\+\_\+t}} = typename are\+\_\+arithmetic$<$ Ts... $>$\+::type
+\item 
+{\footnotesize template$<$typename ... Ts$>$ }\\using \mbox{\hyperlink{namespacevccc_aa48aab1aff93a4832816d7a2ca27df91}{vccc\+::are\+\_\+integral\+\_\+t}} = typename are\+\_\+integral$<$ Ts... $>$\+::type
+\item 
+{\footnotesize template$<$typename ... Ts$>$ }\\using \mbox{\hyperlink{namespacevccc_af1985e867b714e12baedf14044f99663}{vccc\+::are\+\_\+floating\+\_\+point\+\_\+t}} = typename are\+\_\+floating\+\_\+point$<$ Ts... $>$\+::type
+\item 
+{\footnotesize template$<$typename ... Ts$>$ }\\using \mbox{\hyperlink{namespacevccc_a992b44edf5aa107bebc4c94c286d071d}{vccc\+::are\+\_\+scalar\+\_\+t}} = typename are\+\_\+scalar$<$ Ts... $>$\+::type
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename ... Conds$>$ }\\constexpr auto \mbox{\hyperlink{namespacevccc_a029e2df6f2a892e53495f57b2cdc8d2d}{vccc\+::are\+\_\+v}} = are\+\_\+$<$Conds...$>$\+::value
+\item 
+{\footnotesize template$<$typename ... Ts$>$ }\\constexpr auto \mbox{\hyperlink{namespacevccc_aff0d1900ffc071e123a26deced6da4b1}{vccc\+::are\+\_\+arithmetic\+\_\+v}} = are\+\_\+arithmetic$<$Ts...$>$\+::value
+\item 
+{\footnotesize template$<$typename ... Ts$>$ }\\constexpr auto \mbox{\hyperlink{namespacevccc_a16b5bb47903b41ee362cd8e90800d891}{vccc\+::are\+\_\+integral\+\_\+v}} = are\+\_\+integral$<$Ts...$>$\+::value
+\item 
+{\footnotesize template$<$typename ... Ts$>$ }\\constexpr auto \mbox{\hyperlink{namespacevccc_a65367a121a82268079548f2d7ce451f4}{vccc\+::are\+\_\+floating\+\_\+point\+\_\+v}} = are\+\_\+$<$std\+::is\+\_\+floating\+\_\+point$<$Ts$>$...$>$\+::value
+\item 
+{\footnotesize template$<$typename ... Ts$>$ }\\constexpr auto \mbox{\hyperlink{namespacevccc_a61a3ffe4e55c9746785be963ba3bade6}{vccc\+::are\+\_\+scalar\+\_\+v}} = are\+\_\+scalar$<$Ts...$>$\+::value
+\end{DoxyCompactItemize}

@@ -1,0 +1,70 @@
+.TH "log/include/vccc/log/detail/pc.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+log/include/vccc/log/detail/pc.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <cstdio>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBVCCC_LOG_DEBUG\fP"
+.br
+.ti -1c
+.RI "#define \fBPRINT_WITH_NEWLINE\fP(fmt, \&.\&.\&.)   std::printf(fmt '\\n', __VA_ARGS__)"
+.br
+.ti -1c
+.RI "#define \fBFPRINT_WITH_NEWLINE\fP(out,  fmt, \&.\&.\&.)   std::fprintf(out, fmt '\\n', __VA_ARGS__)"
+.br
+.ti -1c
+.RI "#define \fBLOGV_IMPL\fP(\&.\&.\&.)   \fBPRINT_WITH_NEWLINE\fP(__VA_ARGS__)"
+.br
+.ti -1c
+.RI "#define \fBLOGD_IMPL\fP(\&.\&.\&.)   \fBPRINT_WITH_NEWLINE\fP(__VA_ARGS__)"
+.br
+.ti -1c
+.RI "#define \fBLOGI_IMPL\fP(\&.\&.\&.)   \fBPRINT_WITH_NEWLINE\fP(__VA_ARGS__)"
+.br
+.ti -1c
+.RI "#define \fBLOGW_IMPL\fP(\&.\&.\&.)   \fBPRINT_WITH_NEWLINE\fP(__VA_ARGS__)"
+.br
+.ti -1c
+.RI "#define \fBLOGE_IMPL\fP(\&.\&.\&.)   \fBFPRINT_WITH_NEWLINE\fP(stderr, __VA_ARGS__)"
+.br
+.ti -1c
+.RI "#define \fBLOGF_IMPL\fP(\&.\&.\&.)   \fBPRINT_WITH_NEWLINE\fP(__VA_ARGS__)"
+.br
+.ti -1c
+.RI "#define \fBLOGS_IMPL\fP(\&.\&.\&.)   \fBPRINT_WITH_NEWLINE\fP(__VA_ARGS__)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define VCCC_LOG_DEBUG"
+
+.SS "#define PRINT_WITH_NEWLINE(fmt,  \&.\&.\&.)   std::printf(fmt '\\n', __VA_ARGS__)"
+
+.SS "#define FPRINT_WITH_NEWLINE(out, fmt,  \&.\&.\&.)   std::fprintf(out, fmt '\\n', __VA_ARGS__)"
+
+.SS "#define LOGV_IMPL( \&.\&.\&.)   \fBPRINT_WITH_NEWLINE\fP(__VA_ARGS__)"
+
+.SS "#define LOGD_IMPL( \&.\&.\&.)   \fBPRINT_WITH_NEWLINE\fP(__VA_ARGS__)"
+
+.SS "#define LOGI_IMPL( \&.\&.\&.)   \fBPRINT_WITH_NEWLINE\fP(__VA_ARGS__)"
+
+.SS "#define LOGW_IMPL( \&.\&.\&.)   \fBPRINT_WITH_NEWLINE\fP(__VA_ARGS__)"
+
+.SS "#define LOGE_IMPL( \&.\&.\&.)   \fBFPRINT_WITH_NEWLINE\fP(stderr, __VA_ARGS__)"
+
+.SS "#define LOGF_IMPL( \&.\&.\&.)   \fBPRINT_WITH_NEWLINE\fP(__VA_ARGS__)"
+
+.SS "#define LOGS_IMPL( \&.\&.\&.)   \fBPRINT_WITH_NEWLINE\fP(__VA_ARGS__)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

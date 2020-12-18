@@ -1,0 +1,35 @@
+.TH "type_support/include/vccc/type_support/resize.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+type_support/include/vccc/type_support/resize.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'opencv2/core/types\&.hpp'\fP
+.br
+\fC#include 'vccc/type_traits\&.hpp'\fP
+.br
+\fC#include 'vccc/type_support/convert_to\&.hpp'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<int new_size, typename T , int old_size> auto \fBvccc::resize\fP (const cv::Vec< T, old_size > &from)"
+.br
+.ti -1c
+.RI "template<int new_size, typename T , typename  = void_t<decltype(std::declval<T>()\&.resize(new_size))>> decltype(auto) \fBvccc::resize\fP (T &&t)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

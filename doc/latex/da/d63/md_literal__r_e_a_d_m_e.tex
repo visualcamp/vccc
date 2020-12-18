@@ -1,0 +1,19 @@
+\hypertarget{md_literal__r_e_a_d_m_e_autotoc_md1}{}\doxysubsubsection{$<$tt$>$\+Formatter$<$/tt$>$}\label{md_literal__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyItemize}
+\item helper literals {\ttfamily operator \char`\"{}\char`\"{} \+\_\+format}
+\end{DoxyItemize}
+
+{\ttfamily constructor (const char $\ast$format)} ~\newline
+ {\ttfamily std\+::string operator()(const Args\& ...\+args)}
+
+ex) 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{using namespace vccc;}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::cout << "{}hello, \%s"{}\_format("{}world!"{}) << std::endl; // hello, world!}
+\DoxyCodeLine{}
+\DoxyCodeLine{Formatter fmt("{}hello, \%s"{});}
+\DoxyCodeLine{std::cout << fmt("{}world!"{}) << std::endl; // hello, world!}
+\end{DoxyCode}
+ 

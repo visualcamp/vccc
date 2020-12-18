@@ -1,0 +1,32 @@
+.TH "type_traits/include/vccc/type_traits/require.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+type_traits/include/vccc/type_traits/require.hpp
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBVCCC_REQUIRE\fP(Cond)   std::enable_if_t<Cond, \fBint\fP> = 0"
+.br
+.ti -1c
+.RI "#define \fBVCCC_REQUIRE_FORWARD\fP(Cond)   \fBVCCC_REQUIRE\fP(Cond)"
+.br
+.ti -1c
+.RI "#define \fBVCCC_REQUIRE_IMPL\fP(Cond)   std::enable_if_t<Cond, \fBint\fP>"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define VCCC_REQUIRE(Cond)   std::enable_if_t<Cond, \fBint\fP> = 0"
+
+.SS "#define VCCC_REQUIRE_FORWARD(Cond)   \fBVCCC_REQUIRE\fP(Cond)"
+
+.SS "#define VCCC_REQUIRE_IMPL(Cond)   std::enable_if_t<Cond, \fBint\fP>"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

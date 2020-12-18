@@ -1,0 +1,36 @@
+.TH "numeric/include/vccc/numeric/norm.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+numeric/include/vccc/numeric/norm.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'vccc/type_traits\&.hpp'\fP
+.br
+\fC#include 'vccc/numeric/sum\&.hpp'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > auto \fBvccc::norm\fP (InputIterator first, InputIterator last)"
+.br
+.ti -1c
+.RI "template<typename Arg , VCCC_REQUIRE(!iterable< Arg >) > auto \fBvccc::norm\fP (Arg arg)"
+.br
+.ti -1c
+.RI "template<typename Arg , typename \&.\&.\&. Args, VCCC_REQUIRE((!iterable< Arg, Args\&.\&.\&. >)) > auto \fBvccc::norm\fP (Arg arg, Args\&.\&.\&. args)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

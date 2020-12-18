@@ -1,0 +1,49 @@
+.TH "type_support/include/vccc/type_support/opencv/cv_vec.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+type_support/include/vccc/type_support/opencv/cv_vec.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'opencv2/core/types\&.hpp'\fP
+.br
+\fC#include 'vccc/type_support/opencv/detail/cv_size\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBvccc::detail::cv_size< cv::Vec< T, cn > >\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr T & \fBvccc::at\fP (cv::Vec< T, n > &vec)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr const T & \fBvccc::at\fP (const cv::Vec< T, n > &vec)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr T && \fBvccc::at\fP (cv::Vec< T, n > &&vec)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr const T && \fBvccc::at\fP (const cv::Vec< T, n > &&vec)"
+.br
+.ti -1c
+.RI "template<typename T , int cn, typename N > cv::Vec< T, cn > \fBvccc::add\fP (const cv::Vec< T, cn > &vec, N n)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

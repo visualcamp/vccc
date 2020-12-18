@@ -1,0 +1,45 @@
+.TH "type_traits/include/vccc/type_traits/is_specialization.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+type_traits/include/vccc/type_traits/is_specialization.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <type_traits>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBvccc::is_specialization< Test, Ref >\fP"
+.br
+.ti -1c
+.RI "struct \fBvccc::is_specialization< Ref< Args\&.\&.\&. >, Ref >\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "template<template< typename\&.\&.\&. > class Ref, typename \&.\&.\&. Args> using \fBvccc::is_specialization_t\fP = typename is_specialization< Ref< Args\&.\&.\&. >, Ref >::type"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "template<template< typename\&.\&.\&. > class Ref, typename \&.\&.\&. Args> constexpr auto \fBvccc::is_specialization_v\fP = is_specialization<Ref<Args\&.\&.\&.>, Ref>::value"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

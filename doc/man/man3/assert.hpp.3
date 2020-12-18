@@ -1,0 +1,42 @@
+.TH "utility/include/vccc/utility/assert.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+utility/include/vccc/utility/assert.hpp
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBASSERT_IMPL\fP(expr,  msg)   assert(((void)(msg), (expr)))"
+.br
+.ti -1c
+.RI "#define \fBEXPECTS\fP(expr,  msg)   \fBASSERT_IMPL\fP(expr, msg)"
+.br
+.ti -1c
+.RI "#define \fBENSURES\fP(expr,  msg)   \fBASSERT_IMPL\fP(expr, msg)"
+.br
+.ti -1c
+.RI "#define \fBBOUNDS_ASSERT\fP(index,  size)   \fBEXPECTS\fP((index) < (size), 'index out of bounds')"
+.br
+.ti -1c
+.RI "#define \fBALWAYS_ASSERT\fP(msg)   \fBASSERT_IMPL\fP(false, msg)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define ASSERT_IMPL(expr, msg)   assert(((void)(msg), (expr)))"
+나중에 gsl로 대체하는게 좋을 듯\&.\&. 
+.SS "#define EXPECTS(expr, msg)   \fBASSERT_IMPL\fP(expr, msg)"
+
+.SS "#define ENSURES(expr, msg)   \fBASSERT_IMPL\fP(expr, msg)"
+
+.SS "#define BOUNDS_ASSERT(index, size)   \fBEXPECTS\fP((index) < (size), 'index out of bounds')"
+
+.SS "#define ALWAYS_ASSERT(msg)   \fBASSERT_IMPL\fP(false, msg)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

@@ -1,0 +1,37 @@
+.TH "type_support/include/vccc/type_support/std/array.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+type_support/include/vccc/type_support/std/array.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <array>\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr decltype(auto) \fBvccc::at\fP (std::array< T, n > &arr)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr decltype(auto) \fBvccc::at\fP (const std::array< T, n > &arr)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr T && \fBvccc::at\fP (std::array< T, n > &&arr)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr const T && \fBvccc::at\fP (const std::array< T, n > &&arr)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

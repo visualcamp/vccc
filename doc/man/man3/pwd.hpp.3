@@ -1,0 +1,30 @@
+.TH "log/include/vccc/log/pwd.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+log/include/vccc/log/pwd.hpp
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBPWD\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define PWD"
+\fBValue:\fP
+.PP
+.nf
+[](){                                           \
+  std::string $13vlaae_dummy_str = __FILE__;    \
+  return $13vlaae_dummy_str\&.substr(             \
+    0, $13vlaae_dummy_str\&.find_last_of('/'));   \
+}()
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

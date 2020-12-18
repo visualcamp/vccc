@@ -1,0 +1,28 @@
+.TH "md_literal__r_e_a_d_m_e" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+md_literal__r_e_a_d_m_e \- vccc/literal 
+
+.SS "<tt>Formatter</tt>"
+.IP "\(bu" 2
+helper literals \fCoperator '' _format\fP
+.PP
+.PP
+\fCconstructor (const char *format)\fP 
+.br
+ \fCstd::string operator()(const Args& \&.\&.\&.args)\fP
+.PP
+ex) 
+.PP
+.nf
+using namespace vccc;
+
+std::cout << "hello, %s"_format("world!") << std::endl; // hello, world!
+
+Formatter fmt("hello, %s");
+std::cout << fmt("world!") << std::endl; // hello, world!
+
+.fi
+.PP
+ 

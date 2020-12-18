@@ -1,0 +1,41 @@
+.TH "math/include/vccc/math/calculus/detail/apply.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+math/include/vccc/math/calculus/detail/apply.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <cstdlib>\fP
+.br
+\fC#include <utility>\fP
+.br
+\fC#include <tuple>\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.ti -1c
+.RI " \fBvccc::detail\fP"
+.br
+.ti -1c
+.RI " \fBvccc::detail::math\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename Func , typename Tuple , std::size_t \&.\&.\&. I, typename \&.\&.\&. Args> decltype(auto) \fBvccc::detail::math::applyTupleAndVariadicsImpl\fP (Func &&f, Tuple &&tuple, std::index_sequence< I\&.\&.\&. >, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename Func , typename Tuple , typename \&.\&.\&. Args> decltype(auto) \fBvccc::detail::math::applyTupleAndVariadics\fP (Func &&f, Tuple &&tup, Args &&\&.\&.\&. args)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

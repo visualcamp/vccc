@@ -1,0 +1,76 @@
+.TH "vccc::back_emplace_iterator< Container >" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+vccc::back_emplace_iterator< Container >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <back_emplace\&.hpp>\fP
+.PP
+Inherits iterator< std::output_iterator_tag, void, void, void, void >\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "using \fBcontainer_type\fP = Container"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBback_emplace_iterator\fP (Container &\fBx\fP)"
+.br
+.ti -1c
+.RI "\fBback_emplace_iterator\fP & \fBoperator=\fP (const typename Container::value_type &value)"
+.br
+.ti -1c
+.RI "\fBback_emplace_iterator\fP & \fBoperator=\fP (typename Container::value_type &&value)"
+.br
+.ti -1c
+.RI "\fBback_emplace_iterator\fP & \fBoperator*\fP ()"
+.br
+.ti -1c
+.RI "\fBback_emplace_iterator\fP & \fBoperator++\fP ()"
+.br
+.ti -1c
+.RI "\fBback_emplace_iterator\fP \fBoperator++\fP (\fBint\fP)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "Container * \fBcontainer\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<class Container > using \fBvccc::back_emplace_iterator\fP< Container >::\fBcontainer_type\fP =  Container"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class Container > \fBvccc::back_emplace_iterator\fP< Container >::\fBback_emplace_iterator\fP (Container & x)\fC [inline]\fP, \fC [explicit]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class Container > \fBback_emplace_iterator\fP& \fBvccc::back_emplace_iterator\fP< Container >::operator= (const typename Container::value_type & value)\fC [inline]\fP"
+
+.SS "template<class Container > \fBback_emplace_iterator\fP& \fBvccc::back_emplace_iterator\fP< Container >::operator= (typename Container::value_type && value)\fC [inline]\fP"
+
+.SS "template<class Container > \fBback_emplace_iterator\fP& \fBvccc::back_emplace_iterator\fP< Container >::operator* ()\fC [inline]\fP"
+
+.SS "template<class Container > \fBback_emplace_iterator\fP& \fBvccc::back_emplace_iterator\fP< Container >::operator++ ()\fC [inline]\fP"
+
+.SS "template<class Container > \fBback_emplace_iterator\fP \fBvccc::back_emplace_iterator\fP< Container >::operator++ (\fBint\fP)\fC [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<class Container > Container* \fBvccc::back_emplace_iterator\fP< Container >::container\fC [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

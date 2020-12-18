@@ -1,0 +1,34 @@
+\hypertarget{print_8hpp}{}\doxysection{log/include/vccc/log/detail/print.hpp File Reference}
+\label{print_8hpp}\index{log/include/vccc/log/detail/print.hpp@{log/include/vccc/log/detail/print.hpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}vccc/type\+\_\+traits.\+hpp\char`\"{}}\newline
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacevccc}{vccc}}
+\item 
+ \mbox{\hyperlink{namespacevccc_1_1detail}{vccc\+::detail}}
+\item 
+ \mbox{\hyperlink{namespacevccc_1_1detail_1_1impl}{vccc\+::detail\+::impl}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename ... Args$>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacevccc_a41b9fc7b6715fe2294e0720c6a08ecfd}{vccc\+::operator$<$$<$}} (std\+::ostream \&os, const std\+::tuple$<$ Args... $>$ \&tup)
+\item 
+{\footnotesize template$<$typename ... Args$>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacevccc_aa0a6594e7a467b22e71575039da2e8c4}{vccc\+::operator$<$$<$}} (std\+::ostream \&os, const std\+::pair$<$ Args... $>$ \&tup)
+\item 
+{\footnotesize template$<$typename T , T... I$>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacevccc_a3fc7cc71d129d0d04c6b550c9605141c}{vccc\+::operator$<$$<$}} (std\+::ostream \&os, const std\+::integer\+\_\+sequence$<$ T, I... $>$ \&seq)
+\item 
+{\footnotesize template$<$typename T , V\+C\+C\+C\+\_\+\+R\+E\+Q\+U\+I\+R\+E\+\_\+\+I\+M\+P\+L(is\+\_\+container$<$ T $>$\+::value \&\&!is\+\_\+printable$<$ T $>$\+::value) $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacevccc_af14f879272f5100434405df9a1979738}{vccc\+::operator$<$$<$}} (std\+::ostream \&os, const T \&v)
+\item 
+{\footnotesize template$<$typename Iterator $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacevccc_1_1detail_a5c8814395c6d55ce4c52cfd9beb98e21}{vccc\+::detail\+::print\+\_\+iterator}} (std\+::ostream \&os, Iterator first, Iterator last)
+\item 
+{\footnotesize template$<$typename Tuple , std\+::size\+\_\+t ... I$>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacevccc_1_1detail_a3bbc0bd59417ef4890eab7db1ccef48a}{vccc\+::detail\+::print\+\_\+tuple}} (std\+::ostream \&os, const Tuple \&tup, std\+::index\+\_\+sequence$<$ 0, I... $>$)
+\item 
+{\footnotesize template$<$typename Arg $>$ }\\void \mbox{\hyperlink{namespacevccc_1_1detail_1_1impl_a904d284bf590d59f5e8bc78afa9796ab}{vccc\+::detail\+::impl\+::print\+\_\+multiples\+\_\+impl}} (std\+::ostream \&os, const Arg \&arg)
+\item 
+{\footnotesize template$<$typename Arg , typename ... Args$>$ }\\void \mbox{\hyperlink{namespacevccc_1_1detail_1_1impl_a94641dfe5df1610f0e73b800384134cf}{vccc\+::detail\+::impl\+::print\+\_\+multiples\+\_\+impl}} (std\+::ostream \&os, const Arg \&arg, const Args \&... args)
+\item 
+{\footnotesize template$<$typename ... Args$>$ }\\void \mbox{\hyperlink{namespacevccc_1_1detail_a588f4d44b61c7e2d1a7327aa0566f395}{vccc\+::detail\+::print\+\_\+multiples}} (std\+::ostream \&os, const Args \&... args)
+\end{DoxyCompactItemize}

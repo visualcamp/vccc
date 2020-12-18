@@ -1,0 +1,20 @@
+\hypertarget{custom__ostream_8hpp}{}\doxysection{log/include/vccc/log/detail/custom\+\_\+ostream.hpp File Reference}
+\label{custom__ostream_8hpp}\index{log/include/vccc/log/detail/custom\_ostream.hpp@{log/include/vccc/log/detail/custom\_ostream.hpp}}
+{\ttfamily \#include \char`\"{}vccc/log/detail/print.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}vccc/type\+\_\+traits.\+hpp\char`\"{}}\newline
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacevccc}{vccc}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , V\+C\+C\+C\+\_\+\+R\+E\+Q\+U\+I\+R\+E\+\_\+\+I\+M\+P\+L(is\+\_\+container$<$ T $>$\+::value \&\&!is\+\_\+printable$<$ T $>$\+::value) $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacevccc_af14f879272f5100434405df9a1979738}{vccc\+::operator$<$$<$}} (std\+::ostream \&os, const T \&v)
+\item 
+{\footnotesize template$<$typename ... Args$>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacevccc_a41b9fc7b6715fe2294e0720c6a08ecfd}{vccc\+::operator$<$$<$}} (std\+::ostream \&os, const std\+::tuple$<$ Args... $>$ \&tup)
+\item 
+{\footnotesize template$<$typename ... Args$>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacevccc_aa0a6594e7a467b22e71575039da2e8c4}{vccc\+::operator$<$$<$}} (std\+::ostream \&os, const std\+::pair$<$ Args... $>$ \&tup)
+\item 
+{\footnotesize template$<$typename T , T... I$>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacevccc_a3fc7cc71d129d0d04c6b550c9605141c}{vccc\+::operator$<$$<$}} (std\+::ostream \&os, const std\+::integer\+\_\+sequence$<$ T, I... $>$ \&seq)
+\end{DoxyCompactItemize}

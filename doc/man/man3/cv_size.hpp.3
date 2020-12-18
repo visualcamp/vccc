@@ -1,0 +1,56 @@
+.TH "type_support/include/vccc/type_support/opencv/detail/cv_size.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+type_support/include/vccc/type_support/opencv/detail/cv_size.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <cstdlib>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBvccc::detail::cv_size_n< n >\fP"
+.br
+.ti -1c
+.RI "struct \fBvccc::detail::cv_size<\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBvccc::detail::is_cv_type< T >\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.ti -1c
+.RI " \fBvccc::detail\fP"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "template<typename T > constexpr std::size_t \fBvccc::detail::cv_size_v\fP = cv_size<T>::value"
+.br
+.ti -1c
+.RI "template<typename T > constexpr auto \fBvccc::detail::is_cv_type_v\fP = is_cv_type<T>::value"
+.br
+.ti -1c
+.RI "template<typename T1 , typename T2 > constexpr std::size_t \fBvccc::detail::max_cv_size_v\fP = cv_size_v<T1> > cv_size_v<T2> ? cv_size_v<T1> : cv_size_v<T2>"
+.br
+.ti -1c
+.RI "template<typename T1 , typename T2 > constexpr std::size_t \fBvccc::detail::min_cv_size_v\fP = cv_size_v<T1> > cv_size_v<T2> ? cv_size_v<T2> : cv_size_v<T1>"
+.br
+.ti -1c
+.RI "template<typename T1 , typename T2 > constexpr std::size_t \fBvccc::detail::diff_cv_size_v\fP = max_cv_size_v<T1, T2> \- min_cv_size_v<T1, T2>"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

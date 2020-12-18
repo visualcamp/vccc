@@ -1,0 +1,54 @@
+.TH "math/include/vccc/math/calculus/partial_diff.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+math/include/vccc/math/calculus/partial_diff.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <limits>\fP
+.br
+\fC#include 'vccc/math/calculus/detail/apply\&.hpp'\fP
+.br
+\fC#include 'vccc/math/calculus/epsilon\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBvccc::differential_newtonian_t\fP"
+.br
+.ti -1c
+.RI "struct \fBvccc::differential_symmetric_t\fP"
+.br
+.ti -1c
+.RI "struct \fBvccc::differential_five_point_stencil_t\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<std::size_t i, typename Tuple , typename T > auto \fBvccc::addEpsilon\fP (Tuple vars, volatile T epsilon)"
+.br
+.ti -1c
+.RI "template<typename T , std::size_t I, typename Func , typename VarTuple , typename \&.\&.\&. Args> auto \fBvccc::partialDiff\fP (differential_symmetric_t, Func f, VarTuple vars, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename T , std::size_t I, typename Func , typename VarTuple , typename \&.\&.\&. Args> auto \fBvccc::partialDiff\fP (differential_newtonian_t, Func f, VarTuple vars, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename T , std::size_t I, typename Func , typename VarTuple , typename \&.\&.\&. Args> auto \fBvccc::partialDiff\fP (differential_five_point_stencil_t, Func f, VarTuple vars, Args &&\&.\&.\&. args)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

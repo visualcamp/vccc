@@ -1,0 +1,69 @@
+.TH "numeric/include/vccc/numeric/sum.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+numeric/include/vccc/numeric/sum.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'vccc/type_traits\&.hpp'\fP
+.br
+\fC#include <numeric>\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.ti -1c
+.RI " \fBvccc::impl\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename Arg > constexpr auto \fBvccc::impl::sumImpl\fP (const Arg &arg)"
+.br
+.ti -1c
+.RI "template<typename Arg1 , typename Arg2 > constexpr auto \fBvccc::impl::sumImpl\fP (const Arg1 &arg1, const Arg2 &arg2)"
+.br
+.ti -1c
+.RI "template<typename Arg , typename \&.\&.\&. Args> constexpr auto \fBvccc::impl::sumImpl\fP (const Arg &arg, const Args &\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto \fBvccc::sum\fP (InputIterator first, InputIterator last)"
+.br
+.ti -1c
+.RI "template<typename InputIterator , typename UnaryOperation , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto \fBvccc::sum\fP (InputIterator first, InputIterator last, UnaryOperation unary_op)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args, VCCC_REQUIRE(!iterable< Args\&.\&.\&. >) > constexpr auto \fBvccc::sum\fP (const Args &\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename UnaryOperation , typename Arg > constexpr auto \fBvccc::sum_custom\fP (const UnaryOperation &unary_op, const Arg &arg)"
+.br
+.ti -1c
+.RI "template<typename UnaryOperation , typename Arg , typename \&.\&.\&. Args> constexpr auto \fBvccc::sum_custom\fP (const UnaryOperation &unary_op, const Arg &arg, const Args &\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename T > constexpr auto \fBvccc::square\fP (const T &val)"
+.br
+.ti -1c
+.RI "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto \fBvccc::square_sum\fP (InputIterator first, InputIterator last)"
+.br
+.ti -1c
+.RI "template<typename Arg > constexpr auto \fBvccc::square_sum\fP (const Arg &arg)"
+.br
+.ti -1c
+.RI "template<typename Arg1 , typename Arg2 , VCCC_REQUIRE((!iterable< Arg1, Arg2 >)) > constexpr auto \fBvccc::square_sum\fP (const Arg1 &arg1, const Arg2 &arg2)"
+.br
+.ti -1c
+.RI "template<typename Arg , typename \&.\&.\&. Args, VCCC_REQUIRE(!iterable< Arg >) > constexpr auto \fBvccc::square_sum\fP (const Arg &arg, const Args &\&.\&.\&. args)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

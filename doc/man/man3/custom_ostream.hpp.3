@@ -1,0 +1,39 @@
+.TH "log/include/vccc/log/detail/custom_ostream.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+log/include/vccc/log/detail/custom_ostream.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'vccc/log/detail/print\&.hpp'\fP
+.br
+\fC#include 'vccc/type_traits\&.hpp'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename T , VCCC_REQUIRE_IMPL(is_container< T >::value &&!is_printable< T >::value) > std::ostream & \fBvccc::operator<<\fP (std::ostream &os, const T &v)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args> std::ostream & \fBvccc::operator<<\fP (std::ostream &os, const std::tuple< Args\&.\&.\&. > &tup)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args> std::ostream & \fBvccc::operator<<\fP (std::ostream &os, const std::pair< Args\&.\&.\&. > &tup)"
+.br
+.ti -1c
+.RI "template<typename T , T\&.\&.\&. I> std::ostream & \fBvccc::operator<<\fP (std::ostream &os, const std::integer_sequence< T, I\&.\&.\&. > &seq)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

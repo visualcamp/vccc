@@ -1,0 +1,1044 @@
+.TH "vccc" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+vccc
+.SH SYNOPSIS
+.br
+.PP
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBdetail\fP"
+.br
+.ti -1c
+.RI " \fBimpl\fP"
+.br
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBare_\fP"
+.br
+.ti -1c
+.RI "struct \fBare_< Cond, Conds\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBare_arithmetic\fP"
+.br
+.ti -1c
+.RI "struct \fBare_floating_point\fP"
+.br
+.ti -1c
+.RI "struct \fBare_integral\fP"
+.br
+.ti -1c
+.RI "struct \fBare_scalar\fP"
+.br
+.ti -1c
+.RI "struct \fBarity\fP"
+.br
+.ti -1c
+.RI "struct \fBarity< R(*)(Args\&.\&.\&.)>\fP"
+.br
+.ti -1c
+.RI "struct \fBarity< R(C::*)(Args\&.\&.\&.) const >\fP"
+.br
+.ti -1c
+.RI "struct \fBarity< R(C::*)(Args\&.\&.\&.)>\fP"
+.br
+.ti -1c
+.RI "class \fBback_emplace_iterator\fP"
+.br
+.ti -1c
+.RI "struct \fBbigger_type\fP"
+.br
+.ti -1c
+.RI "struct \fBbigger_type< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBbigger_type< T1, T2 >\fP"
+.br
+.ti -1c
+.RI "struct \fBbigger_type< T1, T2, Ts\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBdifferential_five_point_stencil_t\fP"
+.br
+.ti -1c
+.RI "struct \fBdifferential_newtonian_t\fP"
+.br
+.ti -1c
+.RI "struct \fBdifferential_symmetric_t\fP"
+.br
+.ti -1c
+.RI "class \fBFormatter\fP"
+.br
+.ti -1c
+.RI "struct \fBis_container\fP"
+.br
+.ti -1c
+.RI "struct \fBis_container< T, void_t< decltype(std::declval< T >()\&.begin()), decltype(std::declval< T >()\&.end()), decltype(std::declval< T >()\&.size())> >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_even\fP"
+.br
+.ti -1c
+.RI "struct \fBis_iterator\fP"
+.br
+.ti -1c
+.RI "struct \fBis_odd\fP"
+.br
+.ti -1c
+.RI "struct \fBis_printable\fP"
+.br
+.ti -1c
+.RI "struct \fBis_printable< T, void_t< decltype(std::cout<< std::declval< T >())> >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_specialization\fP"
+.br
+.ti -1c
+.RI "struct \fBis_specialization< Ref< Args\&.\&.\&. >, Ref >\fP"
+.br
+.ti -1c
+.RI "struct \fBis_std_array\fP"
+.br
+.ti -1c
+.RI "struct \fBis_std_array< std::array< T, n > >\fP"
+.br
+.ti -1c
+.RI "class \fBLog\fP"
+.br
+.ti -1c
+.RI "class \fBLogger\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_add\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_add< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_add< T1, T2 >\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_add< T1, T2, Ts\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_div\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_div< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_div< T1, T2 >\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_div< T1, T2, Ts\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_mul\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_mul< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_mul< T1, T2 >\fP"
+.br
+.ti -1c
+.RI "struct \fBlossless_type_mul< T1, T2, Ts\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBmultiples_of\fP"
+.br
+.ti -1c
+.RI "class \fBrange\fP"
+.br
+.ti -1c
+.RI "struct \fBsigned_bigger_type\fP"
+.br
+.ti -1c
+.RI "struct \fBsigned_bigger_type< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBsigned_bigger_type< T1, T2 >\fP"
+.br
+.ti -1c
+.RI "struct \fBsigned_bigger_type< T1, T2, Ts\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBunsigned_bigger_type\fP"
+.br
+.ti -1c
+.RI "struct \fBunsigned_bigger_type< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBunsigned_bigger_type< T1, T2 >\fP"
+.br
+.ti -1c
+.RI "struct \fBunsigned_bigger_type< T1, T2, Ts\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBvalue >>\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "using \fBc_printable\fP = std::true_type"
+.br
+.ti -1c
+.RI "using \fBnot_c_printable\fP = std::false_type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Conds> using \fBare_t\fP = typename \fBare_\fP< Conds\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBare_arithmetic_t\fP = typename \fBare_arithmetic\fP< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBare_integral_t\fP = typename \fBare_integral\fP< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBare_floating_point_t\fP = typename \fBare_floating_point\fP< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBare_scalar_t\fP = typename \fBare_scalar\fP< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename T > using \fBarity_t\fP = typename \fBarity\fP< T >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBbigger_type_t\fP = typename \fBbigger_type\fP< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBsigned_bigger_type_t\fP = typename \fBsigned_bigger_type\fP< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBunsigned_bigger_type_t\fP = typename \fBunsigned_bigger_type\fP< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename T > using \fBis_container_t\fP = typename \fBis_container\fP< T >::type"
+.br
+.ti -1c
+.RI "template<template< typename\&.\&.\&. > class Ref, typename \&.\&.\&. Args> using \fBis_specialization_t\fP = typename \fBis_specialization\fP< Ref< Args\&.\&.\&. >, Ref >::type"
+.br
+.ti -1c
+.RI "template<typename T > using \fBis_iterator_t\fP = typename \fBis_iterator\fP< T >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Types> using \fBdecay_if_float_t\fP = typename std::conditional_t< \fBare_\fP< std::is_same< Types, float >\&.\&.\&. >::value, float, double >"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBlossless_type_add_t\fP = typename \fBlossless_type_add\fP< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBlossless_type_mul_t\fP = typename \fBlossless_type_mul\fP< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBlossless_type_div_t\fP = typename \fBlossless_type_div\fP< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename T , T A, T B> using \fBmultiples_of_t\fP = typename \fBmultiples_of\fP< T, A, B >::type"
+.br
+.ti -1c
+.RI "template<typename T , T A> using \fBis_odd_t\fP = typename \fBis_odd\fP< T, A >::type"
+.br
+.ti -1c
+.RI "template<typename T , T A> using \fBis_even_t\fP = typename \fBis_even\fP< T, A >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. > using \fBvoid_t\fP = void"
+.br
+.ti -1c
+.RI "template<typename T > using \fBvtype_t\fP = typename T::value_type"
+.br
+.ti -1c
+.RI "template<std::size_t N> using \fBmake_rindex_sequence\fP = decltype(\fBdetail::rindex_sequence\fP(std::make_index_sequence< N >{}))"
+.br
+.ti -1c
+.RI "template<typename T , T v, std::size_t N> using \fBmake_same_sequence\fP = decltype(\fBdetail::same_sequence\fP< T, v >(std::make_integer_sequence< T, N >{}))"
+.br
+.ti -1c
+.RI "template<std::size_t N> using \fBmake_zero_sequence\fP = \fBmake_same_sequence\fP< \fBint\fP, 0, N >"
+.br
+.ti -1c
+.RI "template<typename T , T begin, T end, T step = 1, T size = (end + (end>0?\-1:1) \- begin)/step> using \fBmake_range_sequence\fP = decltype(\fBdetail::range_sequence\fP< T, begin, step >(std::make_integer_sequence< T,(size >=0 ? size+1 :size)>{}))"
+.br
+.ti -1c
+.RI "template<std::size_t begin, std::size_t end, std::size_t step = 1, std::size_t size = (end + (end>0?\-1:1) \- begin)/step> using \fBmake_index_range_sequence\fP = decltype(\fBdetail::range_sequence\fP< std::size_t, begin, step >(std::make_integer_sequence< std::size_t,(size >=0 ? size+1 :size)>{}))"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<class F , class\&.\&.\&. Args> constexpr decltype(auto) \fBinvoke\fP (F &&f, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<class F , class Tuple > constexpr decltype(auto) \fBapply\fP (F &&f, Tuple &&t)"
+.br
+.ti -1c
+.RI "\fBFormatter\fP \fBoperator''_format\fP (const \fBchar\fP *format, std::size_t)"
+.br
+.ti -1c
+.RI "template<typename T , VCCC_REQUIRE_IMPL(is_container< T >::value &&!is_printable< T >::value) > std::ostream & \fBoperator<<\fP (std::ostream &os, const T &v)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args> std::ostream & \fBoperator<<\fP (std::ostream &os, const std::tuple< Args\&.\&.\&. > &tup)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args> std::ostream & \fBoperator<<\fP (std::ostream &os, const std::pair< Args\&.\&.\&. > &tup)"
+.br
+.ti -1c
+.RI "template<typename T , T\&.\&.\&. I> std::ostream & \fBoperator<<\fP (std::ostream &os, const std::integer_sequence< T, I\&.\&.\&. > &seq)"
+.br
+.ti -1c
+.RI "template<typename T > auto \fBepsilon\fP ()"
+.br
+.ti -1c
+.RI "template<typename T , typename DifferentialCategory  = differential_symmetric_t, typename Func , typename \&.\&.\&. Vars, typename \&.\&.\&. Args> auto \fBgradient\fP (Func f, std::tuple< Vars\&.\&.\&. > vars, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename Tuple , typename T > auto \fBaddEpsilon\fP (Tuple vars, volatile T \fBepsilon\fP)"
+.br
+.ti -1c
+.RI "template<typename T , std::size_t I, typename Func , typename VarTuple , typename \&.\&.\&. Args> auto \fBpartialDiff\fP (\fBdifferential_symmetric_t\fP, Func f, VarTuple vars, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename T , std::size_t I, typename Func , typename VarTuple , typename \&.\&.\&. Args> auto \fBpartialDiff\fP (\fBdifferential_newtonian_t\fP, Func f, VarTuple vars, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename T , std::size_t I, typename Func , typename VarTuple , typename \&.\&.\&. Args> auto \fBpartialDiff\fP (\fBdifferential_five_point_stencil_t\fP, Func f, VarTuple vars, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto \fBaverage\fP (InputIterator first, InputIterator last)"
+.br
+.ti -1c
+.RI "template<typename InputIterator , typename UnaryOperation , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto \fBaverage\fP (InputIterator first, InputIterator last, UnaryOperation unary_op)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Numbers, VCCC_REQUIRE(are_arithmetic_v< Numbers\&.\&.\&. >) > constexpr auto \fBaverage\fP (Numbers\&.\&.\&. numbers)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ints, VCCC_REQUIRE(are_integral_v< Ints\&.\&.\&. >) > constexpr auto \fBint_average\fP (Ints\&.\&.\&. ints)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args, VCCC_REQUIRE(!iterable< Args\&.\&.\&. > &&!are_arithmetic_v< Args\&.\&.\&. >) > constexpr auto \fBaverage\fP (const Args &\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename T1 , typename T2 > decltype(auto) \fBlossless_div\fP (const T1 a, const T2 b)"
+.br
+.ti -1c
+.RI "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > auto \fBnorm\fP (InputIterator first, InputIterator last)"
+.br
+.ti -1c
+.RI "template<typename Arg , VCCC_REQUIRE(!iterable< Arg >) > auto \fBnorm\fP (Arg arg)"
+.br
+.ti -1c
+.RI "template<typename Arg , typename \&.\&.\&. Args, VCCC_REQUIRE((!iterable< Arg, Args\&.\&.\&. >)) > auto \fBnorm\fP (Arg arg, Args\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename InputIterator , typename T , VCCC_REQUIRE(iterable< InputIterator >) > auto \fBstddev\fP (InputIterator first, InputIterator last, T avg)"
+.br
+.ti -1c
+.RI "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > auto \fBstddev\fP (InputIterator first, InputIterator last)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Numbers, VCCC_REQUIRE(!iterable< Numbers\&.\&.\&. >) > auto \fBstddev\fP (Numbers\&.\&.\&. numbers)"
+.br
+.ti -1c
+.RI "template<typename InputIterator > constexpr auto \fBavg_stddev\fP (InputIterator first, InputIterator last)"
+.br
+.ti -1c
+.RI "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto \fBsum\fP (InputIterator first, InputIterator last)"
+.br
+.ti -1c
+.RI "template<typename InputIterator , typename UnaryOperation , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto \fBsum\fP (InputIterator first, InputIterator last, UnaryOperation unary_op)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args, VCCC_REQUIRE(!iterable< Args\&.\&.\&. >) > constexpr auto \fBsum\fP (const Args &\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename UnaryOperation , typename Arg > constexpr auto \fBsum_custom\fP (const UnaryOperation &unary_op, const Arg &arg)"
+.br
+.ti -1c
+.RI "template<typename UnaryOperation , typename Arg , typename \&.\&.\&. Args> constexpr auto \fBsum_custom\fP (const UnaryOperation &unary_op, const Arg &arg, const Args &\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename T > constexpr auto \fBsquare\fP (const T &val)"
+.br
+.ti -1c
+.RI "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto \fBsquare_sum\fP (InputIterator first, InputIterator last)"
+.br
+.ti -1c
+.RI "template<typename Arg > constexpr auto \fBsquare_sum\fP (const Arg &arg)"
+.br
+.ti -1c
+.RI "template<typename Arg1 , typename Arg2 , VCCC_REQUIRE((!iterable< Arg1, Arg2 >)) > constexpr auto \fBsquare_sum\fP (const Arg1 &arg1, const Arg2 &arg2)"
+.br
+.ti -1c
+.RI "template<typename Arg , typename \&.\&.\&. Args, VCCC_REQUIRE(!iterable< Arg >) > constexpr auto \fBsquare_sum\fP (const Arg &arg, const Args &\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename T , typename Container  = std::unordered_set<T>, typename RandomGenerator > Container \fBpick_k\fP (T a, T b, T k, RandomGenerator &&gen)"
+.br
+.ti -1c
+.RI "template<typename T , typename Container  = std::vector<T>> Container \fBrandom_sample\fP (T a, T b, T k, std::mt19937 &&gen=std::mt19937(std::random_device{}()))"
+.br
+.ti -1c
+.RI "template<typename T , typename Container  = std::vector<T>, typename Generator > Container \fBrandom_sample\fP (T a, T b, T k, Generator &&gen)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename C , typename T > constexpr decltype(auto) \fBat\fP (const T &t)"
+.br
+.ti -1c
+.RI "template<std::size_t i, std::size_t j, typename C , typename T > constexpr decltype(auto) \fBat\fP (const T &t)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args> constexpr \fBdetail::bind_obj\fP< Args\&.\&.\&. > \fBbind_at\fP (Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename Container > \fBback_emplace_iterator\fP< Container > \fBback_emplacer\fP (Container &container)"
+.br
+.ti -1c
+.RI "template<typename To , typename From , std::enable_if_t<!std::is_same< To, From >::value, int >  = 0> To \fBconvert_to\fP (const From &from)"
+.br
+.ti -1c
+.RI "template<typename To , std::size_t n, typename From , std::enable_if_t<!std::is_same< To, From >::value, int >  = 0> To \fBconvert_to\fP (const From &from)"
+.br
+.ti -1c
+.RI "template<typename To > decltype(auto) \fBconvert_to\fP (To &&from)"
+.br
+.ti -1c
+.RI "template<typename To > To \fBconvert_to\fP (const To &from)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename Container , VCCC_REQUIRE(is_container_v< Container >) > decltype(auto) \fBat\fP (Container &container)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename Container , VCCC_REQUIRE(is_container_v< Container >) > decltype(auto) \fBat\fP (const Container &container)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename Container , VCCC_REQUIRE(is_container_v< Container >) > decltype(auto) \fBat\fP (Container &&container)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename Container , VCCC_REQUIRE(is_container_v< Container >) > decltype(auto) \fBat\fP (const Container &&container)"
+.br
+.ti -1c
+.RI "template<std::size_t i, std::size_t j, typename T , int m, int n> constexpr T & \fBat\fP (cv::Matx< T, m, n > &matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, std::size_t j, typename T , int m, int n> constexpr const T & \fBat\fP (const cv::Matx< T, m, n > &matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, std::size_t j, typename T , int m, int n> constexpr T && \fBat\fP (cv::Matx< T, m, n > &&matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, std::size_t j, typename T , int m, int n> constexpr const T && \fBat\fP (const cv::Matx< T, m, n > &&matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int m, int n> constexpr T & \fBat\fP (cv::Matx< T, m, n > &matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int m, int n> constexpr const T & \fBat\fP (const cv::Matx< T, m, n > &matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int m, int n> constexpr T && \fBat\fP (cv::Matx< T, m, n > &&matx)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int m, int n> constexpr const T && \fBat\fP (const cv::Matx< T, m, n > &&matx)"
+.br
+.ti -1c
+.RI "template<typename T , int m, int n, typename N > cv::Matx< T, m, n > \fBadd\fP (const cv::Matx< T, m, n > &matx, N n_)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr T & \fBat\fP (cv::Point_< T > &point2)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr const T & \fBat\fP (const cv::Point_< T > &point2)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr T && \fBat\fP (cv::Point_< T > &&point2)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr const T && \fBat\fP (const cv::Point_< T > &&point2)"
+.br
+.ti -1c
+.RI "template<typename T , typename N > cv::Point_< T > \fBadd\fP (const cv::Point_< T > &point2, N n)"
+.br
+.ti -1c
+.RI "template<int new_size, typename T , std::enable_if_t< new_size==2, int >  = 0> auto \fBresize\fP (const cv::Point_< T > &from)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr T & \fBat\fP (cv::Point3_< T > &point3)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr const T & \fBat\fP (const cv::Point3_< T > &point3)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr T && \fBat\fP (cv::Point3_< T > &&point3)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr const T && \fBat\fP (const cv::Point3_< T > &&point3)"
+.br
+.ti -1c
+.RI "template<typename T , typename N > cv::Point3_< T > \fBadd\fP (const cv::Point3_< T > &point3, N n)"
+.br
+.ti -1c
+.RI "template<int new_size, typename T , VCCC_REQUIRE(new_size==2) > auto \fBresize\fP (const cv::Point3_< T > &from)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr T & \fBat\fP (cv::Size_< T > &size)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr const T & \fBat\fP (const cv::Size_< T > &size)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr T && \fBat\fP (cv::Size_< T > &&size)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr const T && \fBat\fP (const cv::Size_< T > &&size)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr T & \fBat\fP (cv::Vec< T, n > &vec)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr const T & \fBat\fP (const cv::Vec< T, n > &vec)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr T && \fBat\fP (cv::Vec< T, n > &&vec)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr const T && \fBat\fP (const cv::Vec< T, n > &&vec)"
+.br
+.ti -1c
+.RI "template<typename T , int cn, typename N > cv::Vec< T, cn > \fBadd\fP (const cv::Vec< T, cn > &vec, N n)"
+.br
+.ti -1c
+.RI "template<int new_size, typename T , int old_size> auto \fBresize\fP (const cv::Vec< T, old_size > &from)"
+.br
+.ti -1c
+.RI "template<int new_size, typename T , typename  = void_t<decltype(std::declval<T>()\&.resize(new_size))>> decltype(auto) \fBresize\fP (T &&t)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr decltype(auto) \fBat\fP (std::array< T, n > &arr)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr decltype(auto) \fBat\fP (const std::array< T, n > &arr)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr T && \fBat\fP (std::array< T, n > &&arr)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , int n> constexpr const T && \fBat\fP (const std::array< T, n > &&arr)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t<(i< std::tuple_size< T >::value), int >  = 0> constexpr decltype(auto) \fBat\fP (T &tup)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t<(i< std::tuple_size< T >::value), int >  = 0> constexpr decltype(auto) \fBat\fP (T &&tup)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename T , std::enable_if_t<(i< std::tuple_size< T >::value), int >  = 0> constexpr decltype(auto) \fBat\fP (const T &&tup)"
+.br
+.ti -1c
+.RI "template<std::size_t i, typename \&.\&.\&. Args, std::enable_if_t<(i< sizeof\&.\&.\&.(Args)), int >  = 0> constexpr decltype(auto) \fBvariadic_at\fP (Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename T > std::vector< T > \fBreserved_vector\fP (typename std::vector< T >::size_type size)"
+.br
+.ti -1c
+.RI "template<typename T , typename Allocator > std::vector< T, Allocator > \fBreserved_vector\fP (typename std::vector< T, Allocator >::size_type size)"
+.br
+.ti -1c
+.RI "template<typename T , typename Allocator > std::vector< T, Allocator > & \fBconcat\fP (std::vector< T, Allocator > &to, const std::vector< T, Allocator > &from)"
+.br
+.ti -1c
+.RI "template<typename T , typename Allocator > std::vector< T, Allocator > & \fBconcat\fP (std::vector< T, Allocator > &to, std::vector< T, Allocator > &&from)"
+.br
+.ti -1c
+.RI "template<typename NewType , template< typename, int\&.\&.\&. > class CVType, typename OldType , int \&.\&.\&. CVParams, VCCC_REQUIRE((!std::is_same< NewType, OldType >::value)) > decltype(auto) \fBvtype_convert\fP (const CVType< OldType, CVParams\&.\&.\&. > &cv_type)"
+.br
+.ti -1c
+.RI "template<typename NewType , template< typename, int\&.\&.\&. > class CVType, int \&.\&.\&. CVParams> decltype(auto) \fBvtype_convert\fP (const CVType< NewType, CVParams\&.\&.\&. > &cv_type)"
+.br
+.ti -1c
+.RI "template<typename NewType , template< typename, int\&.\&.\&. > class CVType, int \&.\&.\&. CVParams> decltype(auto) \fBvtype_convert\fP (CVType< NewType, CVParams\&.\&.\&. > &&cv_type)"
+.br
+.ti -1c
+.RI "template<typename NewType , template< typename\&.\&.\&. > class Container, typename OldType , typename \&.\&.\&. Params, VCCC_REQUIRE((is_container_v< Container< OldType, Params\&.\&.\&. >>, !std::is_same< NewType, OldType >::value)) > decltype(auto) \fBvtype_convert\fP (const Container< OldType, Params\&.\&.\&. > &container)"
+.br
+.ti -1c
+.RI "template<typename NewType , template< typename\&.\&.\&. > class Container, typename \&.\&.\&. Params, VCCC_REQUIRE((is_container_v< Container< NewType, Params\&.\&.\&. >>)) > decltype(auto) \fBvtype_convert\fP (const Container< NewType, Params\&.\&.\&. > &container)"
+.br
+.ti -1c
+.RI "template<typename NewType , template< typename\&.\&.\&. > class Container, typename \&.\&.\&. Params, VCCC_REQUIRE((is_container_v< Container< NewType, Params\&.\&.\&. >>)) > decltype(auto) \fBvtype_convert\fP (Container< NewType, Params\&.\&.\&. > &&container)"
+.br
+.ti -1c
+.RI "template<typename NewType , typename Func , template< typename\&.\&.\&. > class Container, typename OldType , typename \&.\&.\&. Params, VCCC_REQUIRE((is_container_v< Container< OldType, Params\&.\&.\&. >>, !std::is_same< NewType, OldType >::value)) > decltype(auto) \fBvtype_convert\fP (const Container< OldType, Params\&.\&.\&. > &container, Func func)"
+.br
+.ti -1c
+.RI "template<typename NewType , template< typename\&.\&.\&. > class Container, typename \&.\&.\&. Params, typename UnaryOperation , VCCC_REQUIRE((is_container_v< Container< NewType, Params\&.\&.\&. >>)) > decltype(auto) \fBvtype_convert\fP (const Container< NewType, Params\&.\&.\&. > &container, UnaryOperation func)"
+.br
+.ti -1c
+.RI "template<typename NewType , typename OldType , std::size_t n, VCCC_REQUIRE((!std::is_same< NewType, OldType >::value)) > constexpr decltype(auto) \fBvtype_convert\fP (const std::array< OldType, n > &container)"
+.br
+.ti -1c
+.RI "template<typename NewType , std::size_t n> constexpr decltype(auto) \fBvtype_convert\fP (const std::array< NewType, n > &container)"
+.br
+.ti -1c
+.RI "template<typename NewType , std::size_t n> constexpr decltype(auto) \fBvtype_convert\fP (std::array< NewType, n > &&container)"
+.br
+.ti -1c
+.RI "template<typename NewType , typename OldType , std::size_t n, typename UnaryOperation , VCCC_REQUIRE((!std::is_same< NewType, OldType >::value)) > constexpr decltype(auto) \fBvtype_convert\fP (const std::array< OldType, n > &container, UnaryOperation func)"
+.br
+.ti -1c
+.RI "template<typename NewType , std::size_t n, typename UnaryOperation > constexpr decltype(auto) \fBvtype_convert\fP (const std::array< NewType, n > &container, UnaryOperation func)"
+.br
+.ti -1c
+.RI "template<typename NewType , std::size_t n, typename UnaryOperation > constexpr decltype(auto) \fBvtype_convert\fP (std::array< NewType, n > &&container, UnaryOperation func)"
+.br
+.ti -1c
+.RI "template<typename T > auto \fBgetCurrentTime\fP ()"
+.br
+.ti -1c
+.RI "decltype(auto) \fBgetCurrentMilliseconds\fP ()"
+.br
+.ti -1c
+.RI "decltype(auto) \fBgetCurrentMicroseconds\fP ()"
+.br
+.ti -1c
+.RI "decltype(auto) \fBgetCurrentNanoseconds\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "template<typename \&.\&.\&. Conds> constexpr auto \fBare_v\fP = \fBare_\fP<Conds\&.\&.\&.>::value"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> constexpr auto \fBare_arithmetic_v\fP = \fBare_arithmetic\fP<Ts\&.\&.\&.>::value"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> constexpr auto \fBare_integral_v\fP = \fBare_integral\fP<Ts\&.\&.\&.>::value"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> constexpr auto \fBare_floating_point_v\fP = \fBare_\fP<std::is_floating_point<Ts>\&.\&.\&.>::value"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> constexpr auto \fBare_scalar_v\fP = \fBare_scalar\fP<Ts\&.\&.\&.>::value"
+.br
+.ti -1c
+.RI "template<typename T > constexpr unsigned \fBarity_v\fP = \fBarity\fP<T>::value"
+.br
+.ti -1c
+.RI "template<typename T > constexpr auto \fBis_container_v\fP = \fBis_container\fP<T>::value"
+.br
+.ti -1c
+.RI "template<template< typename\&.\&.\&. > class Ref, typename \&.\&.\&. Args> constexpr auto \fBis_specialization_v\fP = \fBis_specialization\fP<Ref<Args\&.\&.\&.>, Ref>::value"
+.br
+.ti -1c
+.RI "template<typename T > constexpr auto \fBis_iterator_v\fP = \fBis_iterator\fP<T>::value"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> constexpr auto \fBiterable\fP = \fBare_v\fP<\fBis_iterator\fP<Ts>\&.\&.\&.> || \fBare_v\fP<std::is_pointer<Ts>\&.\&.\&.>"
+.br
+.ti -1c
+.RI "template<typename T , T A, T B> constexpr bool \fBmultiples_of_v\fP = \fBmultiples_of\fP<T, A, B>::value"
+.br
+.ti -1c
+.RI "template<typename T , T A> constexpr bool \fBis_odd_v\fP = \fBis_odd\fP<T, A>::value"
+.br
+.ti -1c
+.RI "template<typename T , T A> constexpr bool \fBis_even_v\fP = \fBis_even\fP<T, A>::value"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "using \fBvccc::c_printable\fP = typedef std::true_type"
+
+.SS "using \fBvccc::not_c_printable\fP = typedef std::false_type"
+
+.SS "template<typename \&.\&.\&. Conds> using \fBvccc::are_t\fP = typedef typename \fBare_\fP<Conds\&.\&.\&.>::type"
+
+.SS "template<typename \&.\&.\&. Ts> using \fBvccc::are_arithmetic_t\fP = typedef typename \fBare_arithmetic\fP<Ts\&.\&.\&.>::type"
+
+.SS "template<typename \&.\&.\&. Ts> using \fBvccc::are_integral_t\fP = typedef typename \fBare_integral\fP<Ts\&.\&.\&.>::type"
+
+.SS "template<typename \&.\&.\&. Ts> using \fBvccc::are_floating_point_t\fP = typedef typename \fBare_floating_point\fP<Ts\&.\&.\&.>::type"
+
+.SS "template<typename \&.\&.\&. Ts> using \fBvccc::are_scalar_t\fP = typedef typename \fBare_scalar\fP<Ts\&.\&.\&.>::type"
+
+.SS "template<typename T > using \fBvccc::arity_t\fP = typedef typename \fBarity\fP<T>::type"
+
+.SS "template<typename \&.\&.\&. Ts> using \fBvccc::bigger_type_t\fP = typedef typename \fBbigger_type\fP<Ts\&.\&.\&.>::type"
+
+.SS "template<typename \&.\&.\&. Ts> using \fBvccc::signed_bigger_type_t\fP = typedef typename \fBsigned_bigger_type\fP<Ts\&.\&.\&.>::type"
+
+.SS "template<typename \&.\&.\&. Ts> using \fBvccc::unsigned_bigger_type_t\fP = typedef typename \fBunsigned_bigger_type\fP<Ts\&.\&.\&.>::type"
+
+.SS "template<typename T > using \fBvccc::is_container_t\fP = typedef typename \fBis_container\fP<T>::type"
+
+.SS "template<template< typename\&.\&.\&. > class Ref, typename \&.\&.\&. Args> using \fBvccc::is_specialization_t\fP = typedef typename \fBis_specialization\fP<Ref<Args\&.\&.\&.>, Ref>::type"
+
+.SS "template<typename T > using \fBvccc::is_iterator_t\fP = typedef typename \fBis_iterator\fP<T>::type"
+
+.SS "template<typename \&.\&.\&. Types> using \fBvccc::decay_if_float_t\fP = typedef typename std::conditional_t<\fBare_\fP<std::is_same<Types, float>\&.\&.\&.>::value, float, double>"
+
+.SS "template<typename \&.\&.\&. Ts> using \fBvccc::lossless_type_add_t\fP = typedef typename \fBlossless_type_add\fP<Ts\&.\&.\&.>::type"
+
+.SS "template<typename \&.\&.\&. Ts> using \fBvccc::lossless_type_mul_t\fP = typedef typename \fBlossless_type_mul\fP<Ts\&.\&.\&.>::type"
+
+.SS "template<typename \&.\&.\&. Ts> using \fBvccc::lossless_type_div_t\fP = typedef typename \fBlossless_type_div\fP<Ts\&.\&.\&.>::type"
+
+.SS "template<typename T , T A, T B> using \fBvccc::multiples_of_t\fP = typedef typename \fBmultiples_of\fP<T, A, B>::type"
+
+.SS "template<typename T , T A> using \fBvccc::is_odd_t\fP = typedef typename \fBis_odd\fP<T, A>::type"
+
+.SS "template<typename T , T A> using \fBvccc::is_even_t\fP = typedef typename \fBis_even\fP<T, A>::type"
+
+.SS "template<typename \&.\&.\&. > using \fBvccc::void_t\fP = typedef void"
+
+.SS "template<typename T > using \fBvccc::vtype_t\fP = typedef typename T::value_type"
+
+.SS "template<std::size_t N> using \fBvccc::make_rindex_sequence\fP = typedef decltype(\fBdetail::rindex_sequence\fP(std::make_index_sequence<N>{}))"
+
+.SS "template<typename T , T v, std::size_t N> using \fBvccc::make_same_sequence\fP = typedef decltype(\fBdetail::same_sequence\fP<T, v>(std::make_integer_sequence<T, N>{}))"
+
+.SS "template<std::size_t N> using \fBvccc::make_zero_sequence\fP = typedef \fBmake_same_sequence\fP<\fBint\fP, 0, N>"
+
+.SS "template<typename T , T begin, T end, T step = 1, T size = (end + (end>0?\-1:1) \- begin)/step> using \fBvccc::make_range_sequence\fP = typedef decltype(\fBdetail::range_sequence\fP<T, begin, step>(std::make_integer_sequence<T, (size >= 0 ? size+1 : size)>{}))"
+
+.SS "template<std::size_t begin, std::size_t end, std::size_t step = 1, std::size_t size = (end + (end>0?\-1:1) \- begin)/step> using \fBvccc::make_index_range_sequence\fP = typedef decltype(\fBdetail::range_sequence\fP<std::size_t, begin, step>(std::make_integer_sequence<std::size_t, (size >= 0 ? size+1 : size)>{}))"
+
+.SH "Function Documentation"
+.PP 
+.SS "template<class F , class\&.\&.\&. Args> constexpr decltype(auto) vccc::invoke (F && f, Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<class F , class Tuple > constexpr decltype(auto) vccc::apply (F && f, Tuple && t)\fC [constexpr]\fP"
+
+.SS "\fBFormatter\fP vccc::operator''_format (const \fBchar\fP * format, std::size_t)\fC [inline]\fP"
+
+.SS "template<typename T , VCCC_REQUIRE_IMPL(is_container< T >::value &&!is_printable< T >::value) > std::ostream & vccc::operator<< (std::ostream & os, const T & v)"
+
+.SS "template<typename \&.\&.\&. Args> std::ostream & vccc::operator<< (std::ostream & os, const std::tuple< Args\&.\&.\&. > & tup)"
+
+.SS "template<typename \&.\&.\&. Args> std::ostream & vccc::operator<< (std::ostream & os, const std::pair< Args\&.\&.\&. > & tup)"
+
+.SS "template<typename T , T\&.\&.\&. I> std::ostream & vccc::operator<< (std::ostream & os, const std::integer_sequence< T, I\&.\&.\&. > & seq)"
+
+.SS "template<typename T > auto vccc::epsilon ()"
+
+.SS "template<typename T , typename DifferentialCategory  = differential_symmetric_t, typename Func , typename \&.\&.\&. Vars, typename \&.\&.\&. Args> auto vccc::gradient (Func f, std::tuple< Vars\&.\&.\&. > vars, Args &&\&.\&.\&. args)"
+
+.SS "template<std::size_t i, typename Tuple , typename T > auto vccc::addEpsilon (Tuple vars, volatile T epsilon)"
+
+.SS "template<typename T , std::size_t I, typename Func , typename VarTuple , typename \&.\&.\&. Args> auto vccc::partialDiff (\fBdifferential_symmetric_t\fP, Func f, VarTuple vars, Args &&\&.\&.\&. args)"
+
+.SS "template<typename T , std::size_t I, typename Func , typename VarTuple , typename \&.\&.\&. Args> auto vccc::partialDiff (\fBdifferential_newtonian_t\fP, Func f, VarTuple vars, Args &&\&.\&.\&. args)"
+
+.SS "template<typename T , std::size_t I, typename Func , typename VarTuple , typename \&.\&.\&. Args> auto vccc::partialDiff (\fBdifferential_five_point_stencil_t\fP, Func f, VarTuple vars, Args &&\&.\&.\&. args)"
+
+.SS "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto vccc::average (InputIterator first, InputIterator last)\fC [constexpr]\fP"
+average of [first, last) 
+.SS "template<typename InputIterator , typename UnaryOperation , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto vccc::average (InputIterator first, InputIterator last, UnaryOperation unary_op)\fC [constexpr]\fP"
+
+.SS "template<typename \&.\&.\&. Numbers, VCCC_REQUIRE(are_arithmetic_v< Numbers\&.\&.\&. >) > constexpr auto vccc::average (Numbers\&.\&.\&. numbers)\fC [constexpr]\fP"
+average of arithmetic numbers
+.PP
+average of ints -> return double average of floats -> return float average of doubles -> return double average of long doubles -> return long double 
+.SS "template<typename \&.\&.\&. Ints, VCCC_REQUIRE(are_integral_v< Ints\&.\&.\&. >) > constexpr auto vccc::int_average (Ints\&.\&.\&. ints)\fC [constexpr]\fP"
+
+.SS "template<typename \&.\&.\&. Args, VCCC_REQUIRE(!iterable< Args\&.\&.\&. > &&!are_arithmetic_v< Args\&.\&.\&. >) > constexpr auto vccc::average (const Args &\&.\&.\&. args)\fC [constexpr]\fP"
+average of custom types 
+.SS "template<typename T1 , typename T2 > decltype(auto) vccc::lossless_div (const T1 a, const T2 b)"
+
+.SS "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > auto vccc::norm (InputIterator first, InputIterator last)"
+
+.SS "template<typename Arg , VCCC_REQUIRE(!iterable< Arg >) > auto vccc::norm (Arg arg)"
+
+.SS "template<typename Arg , typename \&.\&.\&. Args, VCCC_REQUIRE((!iterable< Arg, Args\&.\&.\&. >)) > auto vccc::norm (Arg arg, Args\&.\&.\&. args)"
+
+.SS "template<typename InputIterator , typename T , VCCC_REQUIRE(iterable< InputIterator >) > auto vccc::stddev (InputIterator first, InputIterator last, T avg)"
+standard deviation 
+.SS "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > auto vccc::stddev (InputIterator first, InputIterator last)"
+
+.SS "template<typename \&.\&.\&. Numbers, VCCC_REQUIRE(!iterable< Numbers\&.\&.\&. >) > auto vccc::stddev (Numbers\&.\&.\&. numbers)"
+
+.SS "template<typename InputIterator > constexpr auto vccc::avg_stddev (InputIterator first, InputIterator last)\fC [constexpr]\fP"
+
+.SS "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto vccc::sum (InputIterator first, InputIterator last)\fC [constexpr]\fP"
+sum of [first, last) 
+.SS "template<typename InputIterator , typename UnaryOperation , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto vccc::sum (InputIterator first, InputIterator last, UnaryOperation unary_op)\fC [constexpr]\fP"
+
+.SS "template<typename \&.\&.\&. Args, VCCC_REQUIRE(!iterable< Args\&.\&.\&. >) > constexpr auto vccc::sum (const Args &\&.\&.\&. args)\fC [constexpr]\fP"
+sum of args 
+.SS "template<typename UnaryOperation , typename Arg > constexpr auto vccc::sum_custom (const UnaryOperation & unary_op, const Arg & arg)\fC [constexpr]\fP"
+custom unary_operation of parameter packs 
+.SS "template<typename UnaryOperation , typename Arg , typename \&.\&.\&. Args> constexpr auto vccc::sum_custom (const UnaryOperation & unary_op, const Arg & arg, const Args &\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<typename T > constexpr auto vccc::square (const T & val)\fC [constexpr]\fP"
+square 
+.SS "template<typename InputIterator , VCCC_REQUIRE(iterable< InputIterator >) > constexpr auto vccc::square_sum (InputIterator first, InputIterator last)\fC [constexpr]\fP"
+sum of squares 
+.SS "template<typename Arg > constexpr auto vccc::square_sum (const Arg & arg)\fC [constexpr]\fP"
+
+.SS "template<typename Arg1 , typename Arg2 , VCCC_REQUIRE((!iterable< Arg1, Arg2 >)) > constexpr auto vccc::square_sum (const Arg1 & arg1, const Arg2 & arg2)\fC [constexpr]\fP"
+
+.SS "template<typename Arg , typename \&.\&.\&. Args, VCCC_REQUIRE(!iterable< Arg >) > constexpr auto vccc::square_sum (const Arg & arg, const Args &\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<typename T , typename Container  = std::unordered_set<T>, typename RandomGenerator > Container vccc::pick_k (T a, T b, T k, RandomGenerator && gen)"
+
+.SS "template<typename T , typename Container  = std::vector<T>> Container vccc::random_sample (T a, T b, T k, std::mt19937 && gen = \fCstd::mt19937(std::random_device{}())\fP)"
+
+.SS "template<typename T , typename Container  = std::vector<T>, typename Generator > Container vccc::random_sample (T a, T b, T k, Generator && gen)"
+
+.SS "template<std::size_t i, typename C , typename T > constexpr decltype(auto) vccc::at (const T & t)\fC [constexpr]\fP"
+returns cv::saturate_cast<C>(at<i>(t)) 
+.SS "template<std::size_t i, std::size_t j, typename C , typename T > constexpr decltype(auto) vccc::at (const T & t)\fC [constexpr]\fP"
+returns cv::saturate_cast<C>(at<i, j>(t)) 
+.SS "template<typename \&.\&.\&. Args> constexpr \fBdetail::bind_obj\fP<Args\&.\&.\&.> vccc::bind_at (Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<typename Container > \fBback_emplace_iterator\fP<Container> vccc::back_emplacer (Container & container)"
+
+.SS "template<typename To , typename From , std::enable_if_t<!std::is_same< To, From >::value, int >  = 0> To vccc::convert_to (const From & from)"
+converts From to To (usually for opencv types, but also supports container types) !Warning! if input container size is smaller then R's size, it's ub\&.
+.PP
+conversion rule:
+.IP "\(bu" 2
+cv::saturate_cast is used in every element-wise conversion
+.IP "  1." 6
+converting opencv-types to opencv-types a\&. cv_size_v<To> == cv_size_v<From> convert all elements\&. b\&. cv_size_v<To> < cv_size_v<From> convert only cv_size_v<To> amount of From's element\&. Remainders won't convert c\&. cv_size_v<To> > cv_size_v<From> convert all From's element, and fill rest with zeros
+.IP "  2." 6
+converting opencv-types to container-types(constructable with std::initializer_list) creates a container that contains all From's elements
+.IP "  3." 6
+converting container-types to opencv-types a\&. cv_size_v<To> == container\&.size() converts every element b\&. cv_size_v<To> < container\&.size() convert only cv_size_v<To> amount of container's element\&. Remainders won't convert c\&. cv_size_v<To> > container\&.size() !!- undefined behaviour -!!
+.IP "  4." 6
+converting container-types to container-types
+.IP "    \(bu" 6
+not supported
+.PP
+
+.PP
+
+.PP
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fITo\fP to type 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIFrom\fP from type 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+converted class
+.RE
+.PP
+ex) cv::Vec3d v = {1\&.1, 2\&.4, 3\&.6}; auto vec = convert_to<std::vector<int>>(v); // vec = {1, 2\&. 4} auto point = convert_to<cv::Point2f>(v); // point = {1\&.1, 2\&.4} auto v2 = convert_to<cv::Vec4d>(point); // v2 = {1\&.1, 2\&.4, 0, 0}
+.PP
+point = convert_to<cv::Point2f>(vec); // point = {1, 2} // v2 = convert_to<cv::Vec4d>(vec); undefined behaviour! vec\&.size() < cv_size_v<Vec4d> 
+.SS "template<typename To , std::size_t n, typename From , std::enable_if_t<!std::is_same< To, From >::value, int >  = 0> To vccc::convert_to (const From & from)"
+specify the converting size
+.IP "\(bu" 2
+convert to container types: same size as n
+.IP "\(bu" 2
+convert to opencv types: fill rest with 0
+.PP
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fITo\fP result type 
+.br
+\fIn\fP converting size 
+.br
+\fIFrom\fP deduced 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP original data 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+converted data 
+.RE
+.PP
+
+.SS "template<typename To > decltype(auto) vccc::convert_to (To && from)"
+converting to same type 
+.SS "template<typename To > To vccc::convert_to (const To & from)"
+
+.SS "template<std::size_t i, typename Container , VCCC_REQUIRE(is_container_v< Container >) > decltype(auto) vccc::at (Container & container)"
+
+.SS "template<std::size_t i, typename Container , VCCC_REQUIRE(is_container_v< Container >) > decltype(auto) vccc::at (const Container & container)"
+
+.SS "template<std::size_t i, typename Container , VCCC_REQUIRE(is_container_v< Container >) > decltype(auto) vccc::at (Container && container)"
+
+.SS "template<std::size_t i, typename Container , VCCC_REQUIRE(is_container_v< Container >) > decltype(auto) vccc::at (const Container && container)"
+
+.SS "template<std::size_t i, std::size_t j, typename T , int m, int n> constexpr T& vccc::at (cv::Matx< T, m, n > & matx)\fC [constexpr]\fP"
+at 
+.SS "template<std::size_t i, std::size_t j, typename T , int m, int n> constexpr const T& vccc::at (const cv::Matx< T, m, n > & matx)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, std::size_t j, typename T , int m, int n> constexpr T&& vccc::at (cv::Matx< T, m, n > && matx)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, std::size_t j, typename T , int m, int n> constexpr const T&& vccc::at (const cv::Matx< T, m, n > && matx)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , int m, int n> constexpr T& vccc::at (cv::Matx< T, m, n > & matx)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , int m, int n> constexpr const T& vccc::at (const cv::Matx< T, m, n > & matx)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , int m, int n> constexpr T&& vccc::at (cv::Matx< T, m, n > && matx)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , int m, int n> constexpr const T&& vccc::at (const cv::Matx< T, m, n > && matx)\fC [constexpr]\fP"
+
+.SS "template<typename T , int m, int n, typename N > cv::Matx<T, m, n> vccc::add (const cv::Matx< T, m, n > & matx, N n_)"
+add 
+.SS "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr T & vccc::at (cv::Point_< T > & point2)\fC [constexpr]\fP"
+at 
+.SS "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr const T & vccc::at (const cv::Point_< T > & point2)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr T && vccc::at (cv::Point_< T > && point2)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr const T && vccc::at (const cv::Point_< T > && point2)\fC [constexpr]\fP"
+
+.SS "template<typename T , typename N > cv::Point_<T> vccc::add (const cv::Point_< T > & point2, N n)"
+add 
+.SS "template<int new_size, typename T , std::enable_if_t< new_size==2, int >  = 0> auto vccc::resize (const cv::Point_< T > & from)"
+resize 
+.SS "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr T & vccc::at (cv::Point3_< T > & point3)\fC [constexpr]\fP"
+at 
+.SS "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr const T & vccc::at (const cv::Point3_< T > & point3)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr T && vccc::at (cv::Point3_< T > && point3)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr const T && vccc::at (const cv::Point3_< T > && point3)\fC [constexpr]\fP"
+
+.SS "template<typename T , typename N > cv::Point3_<T> vccc::add (const cv::Point3_< T > & point3, N n)"
+add 
+.SS "template<int new_size, typename T , VCCC_REQUIRE(new_size==2) > auto vccc::resize (const cv::Point3_< T > & from)"
+resize 
+.SS "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr T & vccc::at (cv::Size_< T > & size)\fC [constexpr]\fP"
+at 
+.SS "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr const T & vccc::at (const cv::Size_< T > & size)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr T && vccc::at (cv::Size_< T > && size)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , std::enable_if_t< i==0, int >  = 0> constexpr const T && vccc::at (const cv::Size_< T > && size)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , int n> constexpr T& vccc::at (cv::Vec< T, n > & vec)\fC [constexpr]\fP"
+at 
+.SS "template<std::size_t i, typename T , int n> constexpr const T& vccc::at (const cv::Vec< T, n > & vec)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , int n> constexpr T&& vccc::at (cv::Vec< T, n > && vec)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , int n> constexpr const T&& vccc::at (const cv::Vec< T, n > && vec)\fC [constexpr]\fP"
+
+.SS "template<typename T , int cn, typename N > cv::Vec<T, cn> vccc::add (const cv::Vec< T, cn > & vec, N n)"
+add 
+.SS "template<int new_size, typename T , int old_size> auto vccc::resize (const cv::Vec< T, old_size > & from)"
+
+.SS "template<int new_size, typename T , typename  = void_t<decltype(std::declval<T>()\&.resize(new_size))>> decltype(auto) vccc::resize (T && t)"
+any resizable type 
+.SS "template<std::size_t i, typename T , int n> constexpr decltype(auto) vccc::at (std::array< T, n > & arr)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , int n> constexpr decltype(auto) vccc::at (const std::array< T, n > & arr)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , int n> constexpr T&& vccc::at (std::array< T, n > && arr)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , int n> constexpr const T&& vccc::at (const std::array< T, n > && arr)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , std::enable_if_t<(i< std::tuple_size< T >::value), int >  = 0> constexpr decltype(auto) vccc::at (T & tup)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , std::enable_if_t<(i< std::tuple_size< T >::value), int >  = 0> constexpr decltype(auto) vccc::at (T && tup)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename T , std::enable_if_t<(i< std::tuple_size< T >::value), int >  = 0> constexpr decltype(auto) vccc::at (const T && tup)\fC [constexpr]\fP"
+
+.SS "template<std::size_t i, typename \&.\&.\&. Args, std::enable_if_t<(i< sizeof\&.\&.\&.(Args)), int >  = 0> constexpr decltype(auto) vccc::variadic_at (Args &&\&.\&.\&. args)\fC [constexpr]\fP"
+
+.SS "template<typename T > std::vector<T> vccc::reserved_vector (typename std::vector< T >::size_type size)"
+
+.SS "template<typename T , typename Allocator > std::vector<T, Allocator> vccc::reserved_vector (typename std::vector< T, Allocator >::size_type size)"
+
+.SS "template<typename T , typename Allocator > std::vector<T, Allocator>& vccc::concat (std::vector< T, Allocator > & to, const std::vector< T, Allocator > & from)"
+
+.SS "template<typename T , typename Allocator > std::vector<T, Allocator>& vccc::concat (std::vector< T, Allocator > & to, std::vector< T, Allocator > && from)"
+
+.SS "template<typename NewType , template< typename, int\&.\&.\&. > class CVType, typename OldType , int \&.\&.\&. CVParams, VCCC_REQUIRE((!std::is_same< NewType, OldType >::value)) > decltype(auto) vccc::vtype_convert (const CVType< OldType, CVParams\&.\&.\&. > & cv_type)"
+changes the value_type opencv types 
+.SS "template<typename NewType , template< typename, int\&.\&.\&. > class CVType, int \&.\&.\&. CVParams> decltype(auto) vccc::vtype_convert (const CVType< NewType, CVParams\&.\&.\&. > & cv_type)"
+
+.SS "template<typename NewType , template< typename, int\&.\&.\&. > class CVType, int \&.\&.\&. CVParams> decltype(auto) vccc::vtype_convert (CVType< NewType, CVParams\&.\&.\&. > && cv_type)"
+
+.SS "template<typename NewType , template< typename\&.\&.\&. > class Container, typename OldType , typename \&.\&.\&. Params, VCCC_REQUIRE((is_container_v< Container< OldType, Params\&.\&.\&. >>, !std::is_same< NewType, OldType >::value)) > decltype(auto) vccc::vtype_convert (const Container< OldType, Params\&.\&.\&. > & container)"
+container types 
+.SS "template<typename NewType , template< typename\&.\&.\&. > class Container, typename \&.\&.\&. Params, VCCC_REQUIRE((is_container_v< Container< NewType, Params\&.\&.\&. >>)) > decltype(auto) vccc::vtype_convert (const Container< NewType, Params\&.\&.\&. > & container)"
+
+.SS "template<typename NewType , template< typename\&.\&.\&. > class Container, typename \&.\&.\&. Params, VCCC_REQUIRE((is_container_v< Container< NewType, Params\&.\&.\&. >>)) > decltype(auto) vccc::vtype_convert (Container< NewType, Params\&.\&.\&. > && container)"
+
+.SS "template<typename NewType , typename Func , template< typename\&.\&.\&. > class Container, typename OldType , typename \&.\&.\&. Params, VCCC_REQUIRE((is_container_v< Container< OldType, Params\&.\&.\&. >>, !std::is_same< NewType, OldType >::value)) > decltype(auto) vccc::vtype_convert (const Container< OldType, Params\&.\&.\&. > & container, Func func)"
+container types with custom unary operation 
+.SS "template<typename NewType , template< typename\&.\&.\&. > class Container, typename \&.\&.\&. Params, typename UnaryOperation , VCCC_REQUIRE((is_container_v< Container< NewType, Params\&.\&.\&. >>)) > decltype(auto) vccc::vtype_convert (const Container< NewType, Params\&.\&.\&. > & container, UnaryOperation func)"
+
+.SS "template<typename NewType , typename OldType , std::size_t n, VCCC_REQUIRE((!std::is_same< NewType, OldType >::value)) > constexpr decltype(auto) vccc::vtype_convert (const std::array< OldType, n > & container)\fC [constexpr]\fP"
+std::array specialization 
+.SS "template<typename NewType , std::size_t n> constexpr decltype(auto) vccc::vtype_convert (const std::array< NewType, n > & container)\fC [constexpr]\fP"
+
+.SS "template<typename NewType , std::size_t n> constexpr decltype(auto) vccc::vtype_convert (std::array< NewType, n > && container)\fC [constexpr]\fP"
+
+.SS "template<typename NewType , typename OldType , std::size_t n, typename UnaryOperation , VCCC_REQUIRE((!std::is_same< NewType, OldType >::value)) > constexpr decltype(auto) vccc::vtype_convert (const std::array< OldType, n > & container, UnaryOperation func)\fC [constexpr]\fP"
+std::array with custom unary operation specialization 
+.SS "template<typename NewType , std::size_t n, typename UnaryOperation > constexpr decltype(auto) vccc::vtype_convert (const std::array< NewType, n > & container, UnaryOperation func)\fC [constexpr]\fP"
+
+.SS "template<typename NewType , std::size_t n, typename UnaryOperation > constexpr decltype(auto) vccc::vtype_convert (std::array< NewType, n > && container, UnaryOperation func)\fC [constexpr]\fP"
+
+.SS "template<typename T > auto vccc::getCurrentTime ()"
+
+.SS "decltype(auto) vccc::getCurrentMilliseconds ()\fC [inline]\fP"
+
+.SS "decltype(auto) vccc::getCurrentMicroseconds ()\fC [inline]\fP"
+
+.SS "decltype(auto) vccc::getCurrentNanoseconds ()\fC [inline]\fP"
+
+.SH "Variable Documentation"
+.PP 
+.SS "template<typename \&.\&.\&. Conds> constexpr auto vccc::are_v = \fBare_\fP<Conds\&.\&.\&.>::value\fC [constexpr]\fP"
+
+.SS "template<typename \&.\&.\&. Ts> constexpr auto vccc::are_arithmetic_v = \fBare_arithmetic\fP<Ts\&.\&.\&.>::value\fC [constexpr]\fP"
+
+.SS "template<typename \&.\&.\&. Ts> constexpr auto vccc::are_integral_v = \fBare_integral\fP<Ts\&.\&.\&.>::value\fC [constexpr]\fP"
+
+.SS "template<typename \&.\&.\&. Ts> constexpr auto vccc::are_floating_point_v = \fBare_\fP<std::is_floating_point<Ts>\&.\&.\&.>::value\fC [constexpr]\fP"
+
+.SS "template<typename \&.\&.\&. Ts> constexpr auto vccc::are_scalar_v = \fBare_scalar\fP<Ts\&.\&.\&.>::value\fC [constexpr]\fP"
+
+.SS "template<typename T > constexpr unsigned vccc::arity_v = \fBarity\fP<T>::value\fC [constexpr]\fP"
+
+.SS "template<typename T > constexpr auto vccc::is_container_v = \fBis_container\fP<T>::value\fC [constexpr]\fP"
+
+.SS "template<template< typename\&.\&.\&. > class Ref, typename \&.\&.\&. Args> constexpr auto vccc::is_specialization_v = \fBis_specialization\fP<Ref<Args\&.\&.\&.>, Ref>::value\fC [constexpr]\fP"
+
+.SS "template<typename T > constexpr auto vccc::is_iterator_v = \fBis_iterator\fP<T>::value\fC [constexpr]\fP"
+
+.SS "template<typename \&.\&.\&. Ts> constexpr auto vccc::iterable = \fBare_v\fP<\fBis_iterator\fP<Ts>\&.\&.\&.> || \fBare_v\fP<std::is_pointer<Ts>\&.\&.\&.>\fC [constexpr]\fP"
+iterable 
+.SS "template<typename T , T A, T B> constexpr bool vccc::multiples_of_v = \fBmultiples_of\fP<T, A, B>::value\fC [constexpr]\fP"
+
+.SS "template<typename T , T A> constexpr bool vccc::is_odd_v = \fBis_odd\fP<T, A>::value\fC [constexpr]\fP"
+
+.SS "template<typename T , T A> constexpr bool vccc::is_even_v = \fBis_even\fP<T, A>::value\fC [constexpr]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

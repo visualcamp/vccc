@@ -1,0 +1,35 @@
+\hypertarget{namespacevccc_1_1detail_1_1math}{}\doxysection{vccc\+::detail\+::math Namespace Reference}
+\label{namespacevccc_1_1detail_1_1math}\index{vccc::detail::math@{vccc::detail::math}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Func , typename Tuple , std\+::size\+\_\+t ... I, typename ... Args$>$ }\\decltype(auto) \mbox{\hyperlink{namespacevccc_1_1detail_1_1math_ab1c3ca20c01a92abcdeecb6e0ef4a382}{apply\+Tuple\+And\+Variadics\+Impl}} (Func \&\&f, Tuple \&\&tuple, std\+::index\+\_\+sequence$<$ I... $>$, Args \&\&... args)
+\item 
+{\footnotesize template$<$typename Func , typename Tuple , typename ... Args$>$ }\\decltype(auto) \mbox{\hyperlink{namespacevccc_1_1detail_1_1math_aa76fa8ee6951001793bf72b2a072391d}{apply\+Tuple\+And\+Variadics}} (Func \&\&f, Tuple \&\&tup, Args \&\&... args)
+\item 
+{\footnotesize template$<$typename T , typename Differential\+Category , typename Func , typename Var\+Tuple , std\+::size\+\_\+t ... I, typename ... Args$>$ }\\auto \mbox{\hyperlink{namespacevccc_1_1detail_1_1math_ac672273f1b78dd23648f1a7c902e5395}{gradient\+Impl}} (Func f, Var\+Tuple vars, std\+::index\+\_\+sequence$<$ I... $>$, Args \&\&... args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacevccc_1_1detail_1_1math_ab1c3ca20c01a92abcdeecb6e0ef4a382}\label{namespacevccc_1_1detail_1_1math_ab1c3ca20c01a92abcdeecb6e0ef4a382}} 
+\index{vccc::detail::math@{vccc::detail::math}!applyTupleAndVariadicsImpl@{applyTupleAndVariadicsImpl}}
+\index{applyTupleAndVariadicsImpl@{applyTupleAndVariadicsImpl}!vccc::detail::math@{vccc::detail::math}}
+\doxysubsubsection{\texorpdfstring{applyTupleAndVariadicsImpl()}{applyTupleAndVariadicsImpl()}}
+{\footnotesize\ttfamily template$<$typename Func , typename Tuple , std\+::size\+\_\+t ... I, typename ... Args$>$ \\
+decltype(auto) vccc\+::detail\+::math\+::apply\+Tuple\+And\+Variadics\+Impl (\begin{DoxyParamCaption}\item[{Func \&\&}]{f,  }\item[{Tuple \&\&}]{tuple,  }\item[{std\+::index\+\_\+sequence$<$ I... $>$}]{,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacevccc_1_1detail_1_1math_aa76fa8ee6951001793bf72b2a072391d}\label{namespacevccc_1_1detail_1_1math_aa76fa8ee6951001793bf72b2a072391d}} 
+\index{vccc::detail::math@{vccc::detail::math}!applyTupleAndVariadics@{applyTupleAndVariadics}}
+\index{applyTupleAndVariadics@{applyTupleAndVariadics}!vccc::detail::math@{vccc::detail::math}}
+\doxysubsubsection{\texorpdfstring{applyTupleAndVariadics()}{applyTupleAndVariadics()}}
+{\footnotesize\ttfamily template$<$typename Func , typename Tuple , typename ... Args$>$ \\
+decltype(auto) vccc\+::detail\+::math\+::apply\+Tuple\+And\+Variadics (\begin{DoxyParamCaption}\item[{Func \&\&}]{f,  }\item[{Tuple \&\&}]{tup,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacevccc_1_1detail_1_1math_ac672273f1b78dd23648f1a7c902e5395}\label{namespacevccc_1_1detail_1_1math_ac672273f1b78dd23648f1a7c902e5395}} 
+\index{vccc::detail::math@{vccc::detail::math}!gradientImpl@{gradientImpl}}
+\index{gradientImpl@{gradientImpl}!vccc::detail::math@{vccc::detail::math}}
+\doxysubsubsection{\texorpdfstring{gradientImpl()}{gradientImpl()}}
+{\footnotesize\ttfamily template$<$typename T , typename Differential\+Category , typename Func , typename Var\+Tuple , std\+::size\+\_\+t ... I, typename ... Args$>$ \\
+auto vccc\+::detail\+::math\+::gradient\+Impl (\begin{DoxyParamCaption}\item[{Func}]{f,  }\item[{Var\+Tuple}]{vars,  }\item[{std\+::index\+\_\+sequence$<$ I... $>$}]{,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})}
+

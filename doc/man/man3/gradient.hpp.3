@@ -1,0 +1,37 @@
+.TH "math/include/vccc/math/calculus/gradient.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+math/include/vccc/math/calculus/gradient.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'vccc/math/calculus/partial_diff\&.hpp'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.ti -1c
+.RI " \fBvccc::detail\fP"
+.br
+.ti -1c
+.RI " \fBvccc::detail::math\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename T , typename DifferentialCategory , typename Func , typename VarTuple , std::size_t \&.\&.\&. I, typename \&.\&.\&. Args> auto \fBvccc::detail::math::gradientImpl\fP (Func f, VarTuple vars, std::index_sequence< I\&.\&.\&. >, Args &&\&.\&.\&. args)"
+.br
+.ti -1c
+.RI "template<typename T , typename DifferentialCategory  = differential_symmetric_t, typename Func , typename \&.\&.\&. Vars, typename \&.\&.\&. Args> auto \fBvccc::gradient\fP (Func f, std::tuple< Vars\&.\&.\&. > vars, Args &&\&.\&.\&. args)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

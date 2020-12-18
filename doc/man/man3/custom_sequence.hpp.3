@@ -1,0 +1,37 @@
+.TH "utility/include/vccc/utility/detail/custom_sequence.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+utility/include/vccc/utility/detail/custom_sequence.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <utility>\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.ti -1c
+.RI " \fBvccc::detail\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename T , T v, T\&.\&.\&. Is> constexpr auto \fBvccc::detail::same_sequence\fP (std::integer_sequence< T, Is\&.\&.\&. > const &) \-> decltype(std::integer_sequence< T, v+0 *Is\&.\&.\&. >"
+.br
+.ti -1c
+.RI "template<std::size_t \&.\&.\&. Is> constexpr auto \fBvccc::detail::rindex_sequence\fP (std::index_sequence< Is\&.\&.\&. > const &) \-> decltype(std::index_sequence< sizeof\&.\&.\&.(Is) \-1\fBU\fP\-Is\&.\&.\&. >"
+.br
+.ti -1c
+.RI "template<typename T , T start, T incr, T\&.\&.\&. I> constexpr auto \fBvccc::detail::range_sequence\fP (std::integer_sequence< T, I\&.\&.\&. > const &) \-> decltype(std::integer_sequence< T, start+incr *I\&.\&.\&. >"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

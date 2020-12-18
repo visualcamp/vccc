@@ -1,0 +1,32 @@
+\hypertarget{detail_2cv__size_8hpp}{}\doxysection{type\+\_\+support/include/vccc/type\+\_\+support/opencv/detail/cv\+\_\+size.hpp File Reference}
+\label{detail_2cv__size_8hpp}\index{type\_support/include/vccc/type\_support/opencv/detail/cv\_size.hpp@{type\_support/include/vccc/type\_support/opencv/detail/cv\_size.hpp}}
+{\ttfamily \#include $<$cstdlib$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1detail_1_1cv__size__n}{vccc\+::detail\+::cv\+\_\+size\+\_\+n$<$ n $>$}}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1detail_1_1cv__size}{vccc\+::detail\+::cv\+\_\+size$<$... $>$}}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1detail_1_1is__cv__type}{vccc\+::detail\+::is\+\_\+cv\+\_\+type$<$ T $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacevccc}{vccc}}
+\item 
+ \mbox{\hyperlink{namespacevccc_1_1detail}{vccc\+::detail}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr std\+::size\+\_\+t \mbox{\hyperlink{namespacevccc_1_1detail_ae85419b67ea6e5744e58760a36654a4f}{vccc\+::detail\+::cv\+\_\+size\+\_\+v}} = cv\+\_\+size$<$T$>$\+::value
+\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr auto \mbox{\hyperlink{namespacevccc_1_1detail_af326a85943593da584aa876f8b42e383}{vccc\+::detail\+::is\+\_\+cv\+\_\+type\+\_\+v}} = is\+\_\+cv\+\_\+type$<$T$>$\+::value
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\constexpr std\+::size\+\_\+t \mbox{\hyperlink{namespacevccc_1_1detail_aef7459cc3cddb8d549211877031defdb}{vccc\+::detail\+::max\+\_\+cv\+\_\+size\+\_\+v}} = cv\+\_\+size\+\_\+v$<$T1$>$ $>$ cv\+\_\+size\+\_\+v$<$T2$>$ ? cv\+\_\+size\+\_\+v$<$T1$>$ \+: cv\+\_\+size\+\_\+v$<$T2$>$
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\constexpr std\+::size\+\_\+t \mbox{\hyperlink{namespacevccc_1_1detail_aafaba26e50662ad9f5aa151d4f36ee23}{vccc\+::detail\+::min\+\_\+cv\+\_\+size\+\_\+v}} = cv\+\_\+size\+\_\+v$<$T1$>$ $>$ cv\+\_\+size\+\_\+v$<$T2$>$ ? cv\+\_\+size\+\_\+v$<$T2$>$ \+: cv\+\_\+size\+\_\+v$<$T1$>$
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\constexpr std\+::size\+\_\+t \mbox{\hyperlink{namespacevccc_1_1detail_a3ccfc17abca0979e185e3f7539f32817}{vccc\+::detail\+::diff\+\_\+cv\+\_\+size\+\_\+v}} = max\+\_\+cv\+\_\+size\+\_\+v$<$T1, T2$>$ -\/ min\+\_\+cv\+\_\+size\+\_\+v$<$T1, T2$>$
+\end{DoxyCompactItemize}

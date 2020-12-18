@@ -1,0 +1,55 @@
+\hypertarget{detail_2invoke_8hpp}{}\doxysection{high/include/vccc/high/functional/detail/invoke.hpp File Reference}
+\label{detail_2invoke_8hpp}\index{high/include/vccc/high/functional/detail/invoke.hpp@{high/include/vccc/high/functional/detail/invoke.hpp}}
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1detail_1_1invoke__category__base__of}{vccc\+::detail\+::invoke\+\_\+category\+\_\+base\+\_\+of}}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1detail_1_1invoke__category__reference__wrapper}{vccc\+::detail\+::invoke\+\_\+category\+\_\+reference\+\_\+wrapper}}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1detail_1_1invoke__category__normal}{vccc\+::detail\+::invoke\+\_\+category\+\_\+normal}}
+\item 
+struct \mbox{\hyperlink{structvccc_1_1detail_1_1get__invoke__category}{vccc\+::detail\+::get\+\_\+invoke\+\_\+category$<$ T, T1 $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacevccc}{vccc}}
+\item 
+ \mbox{\hyperlink{namespacevccc_1_1detail}{vccc\+::detail}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T , class T1 $>$ }\\using \mbox{\hyperlink{namespacevccc_1_1detail_ad7a2d833924cd17c7a84edac817b0ab1}{vccc\+::detail\+::get\+\_\+invoke\+\_\+category\+\_\+t}} = typename get\+\_\+invoke\+\_\+category$<$ T, T1 $>$\+::type
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T , class Type , class T1 , class... Args$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacevccc_1_1detail_a57b2568a4d02d9d54d19b1038e8fb2bc}{vccc\+::detail\+::\+I\+N\+V\+O\+K\+E\+P\+\_\+\+MF}} (invoke\+\_\+category\+\_\+base\+\_\+of, Type T\+::$\ast$f, T1 \&\&t1, Args \&\&... args)
+\item 
+{\footnotesize template$<$class T , class Type , class T1 , class... Args$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacevccc_1_1detail_ac4385f6b31aaa26a27de6033143e7dc1}{vccc\+::detail\+::\+I\+N\+V\+O\+K\+E\+P\+\_\+\+MF}} (invoke\+\_\+category\+\_\+reference\+\_\+wrapper, Type T\+::$\ast$f, T1 \&\&t1, Args \&\&... args)
+\item 
+{\footnotesize template$<$class T , class Type , class T1 , class... Args$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacevccc_1_1detail_a0caee5ec404514b8e2794f3c55202d14}{vccc\+::detail\+::\+I\+N\+V\+O\+K\+E\+P\+\_\+\+MF}} (invoke\+\_\+category\+\_\+normal, Type T\+::$\ast$f, T1 \&\&t1, Args \&\&... args)
+\item 
+{\footnotesize template$<$class T , class Type , class T1 , class... Args$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacevccc_1_1detail_ab1f6e87ba37513b0579dc4ff2c94353d}{vccc\+::detail\+::\+I\+N\+V\+O\+K\+EP}} (invoke\+\_\+category\+\_\+base\+\_\+of, Type T\+::$\ast$f, T1 \&\&t1, Args \&\&... args)
+\item 
+{\footnotesize template$<$class T , class Type , class T1 , class... Args$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacevccc_1_1detail_a724f9453d73e81100fbe7bad165ce927}{vccc\+::detail\+::\+I\+N\+V\+O\+K\+EP}} (invoke\+\_\+category\+\_\+reference\+\_\+wrapper, Type T\+::$\ast$f, T1 \&\&t1, Args \&\&... args)
+\item 
+{\footnotesize template$<$class T , class Type , class T1 , class... Args$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacevccc_1_1detail_ad3e959cb32c7c83a74e779d954466007}{vccc\+::detail\+::\+I\+N\+V\+O\+K\+EP}} (invoke\+\_\+category\+\_\+normal, Type T\+::$\ast$f, T1 \&\&t1, Args \&\&... args)
+\item 
+{\footnotesize template$<$class T , class Type , class T1 , class... Args$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacevccc_1_1detail_a46f509dac865f1f959834fc6a892e318}{vccc\+::detail\+::\+I\+N\+V\+O\+K\+E\+\_\+\+T\+A\+G1}} (std\+::true\+\_\+type, Type T\+::$\ast$f, T1 \&\&t1, Args \&\&... args)
+\item 
+{\footnotesize template$<$class T , class Type , class T1 , class... Args$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacevccc_1_1detail_a6e6400bd81f86162d0975a8f511ebc17}{vccc\+::detail\+::\+I\+N\+V\+O\+K\+E\+\_\+\+T\+A\+G1}} (std\+::false\+\_\+type, Type T\+::$\ast$f, T1 \&\&t1, Args \&\&... args)
+\item 
+{\footnotesize template$<$class T , class Type , class T1 , class... Args$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacevccc_1_1detail_aa3e3ea5794709a21fa5e2f2686e2d5fd}{vccc\+::detail\+::\+I\+N\+V\+O\+KE}} (Type T\+::$\ast$f, T1 \&\&t1, Args \&\&... args)
+\item 
+{\footnotesize template$<$class F , class... Args$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacevccc_1_1detail_ae93702f629a4525e7c39d45d7b6055f6}{vccc\+::detail\+::\+I\+N\+V\+O\+KE}} (F \&\&f, Args \&\&... args)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class $>$ }\\constexpr bool \mbox{\hyperlink{namespacevccc_1_1detail_aa253351968cdcc87aa3598c6db80b3da}{vccc\+::detail\+::is\+\_\+reference\+\_\+wrapper\+\_\+v}} = false
+\end{DoxyCompactItemize}

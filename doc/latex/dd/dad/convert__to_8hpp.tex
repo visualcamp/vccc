@@ -1,0 +1,19 @@
+\hypertarget{convert__to_8hpp}{}\doxysection{type\+\_\+support/include/vccc/type\+\_\+support/convert\+\_\+to.hpp File Reference}
+\label{convert__to_8hpp}\index{type\_support/include/vccc/type\_support/convert\_to.hpp@{type\_support/include/vccc/type\_support/convert\_to.hpp}}
+{\ttfamily \#include \char`\"{}vccc/type\+\_\+support/detail/convert\+\_\+to.\+hpp\char`\"{}}\newline
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacevccc}{vccc}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename To , typename From , std\+::enable\+\_\+if\+\_\+t$<$!std\+::is\+\_\+same$<$ To, From $>$\+::value, int $>$  = 0$>$ }\\To \mbox{\hyperlink{namespacevccc_a89af0caee7c5bb57ee6090c64cbb9c35}{vccc\+::convert\+\_\+to}} (const From \&from)
+\item 
+{\footnotesize template$<$typename To , std\+::size\+\_\+t n, typename From , std\+::enable\+\_\+if\+\_\+t$<$!std\+::is\+\_\+same$<$ To, From $>$\+::value, int $>$  = 0$>$ }\\To \mbox{\hyperlink{namespacevccc_a5dcafad0f6a59dd5fbff65987f2322c3}{vccc\+::convert\+\_\+to}} (const From \&from)
+\item 
+{\footnotesize template$<$typename To $>$ }\\decltype(auto) \mbox{\hyperlink{namespacevccc_a91d1280e35da06257cd6d50cbd8e8a5b}{vccc\+::convert\+\_\+to}} (To \&\&from)
+\item 
+{\footnotesize template$<$typename To $>$ }\\To \mbox{\hyperlink{namespacevccc_a38a58188fabfe1effdcf18c127b29b44}{vccc\+::convert\+\_\+to}} (const To \&from)
+\end{DoxyCompactItemize}

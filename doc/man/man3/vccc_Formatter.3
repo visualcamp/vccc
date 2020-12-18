@@ -1,0 +1,37 @@
+.TH "vccc::Formatter" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+vccc::Formatter
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <formatter\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFormatter\fP (const \fBchar\fP *format)"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Args> std::string \fBoperator()\fP (const Args &\&.\&.\&.args)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Formatting helper class & custom literals
+.PP
+ex) auto str = 'x:%d, hello %s'_format(13, 'world!'); LOGD('%\&.2f'_format(value), cv::Point2f(), std::vector<int>()) 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "vccc::Formatter::Formatter (const \fBchar\fP * format)\fC [inline]\fP, \fC [explicit]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename \&.\&.\&. Args> std::string vccc::Formatter::operator() (const Args &\&.\&.\&. args)\fC [inline]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.

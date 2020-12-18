@@ -1,0 +1,72 @@
+.TH "md_type_traits__r_e_a_d_m_e" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+md_type_traits__r_e_a_d_m_e \- vccc/type_traits 
+
+.SS "<tt>are_<\&.\&.\&.></tt>"
+.IP "\(bu" 2
+helper templates
+.IP "\(bu" 2
+\fCare_arithmetic<\&.\&.\&.>\fP, \fCare_integral<\&.\&.\&.>\fP, \fCare_floating_point<\&.\&.\&.>\fP, \fCare_scalar<\&.\&.\&.>\fP 
+.br
+
+.PP
+.PP
+conditions can be unpacked inside \fCare<\&.\&.\&.>\fP\&. 
+.br
+ ex) 
+.PP
+.nf
+template<typename \&.\&.\&.Ts>
+using are_integral_t = are_<std::is_integral<Ts>\&.\&.\&.>::type;
+
+std::cout << are_integral_t<int, int, int>{} << std::endl;
+
+.fi
+.PP
+.PP
+
+.br
+.SS "<tt>bigger_type</tt>, <tt>signed_bigger_type</tt>, <tt>unsigned_bigger_type</tt>"
+
+.br
+ 
+.SS "<tt>is_container</tt>"
+
+.br
+ 
+.SS "<tt>is_printable</tt>"
+
+.br
+ 
+.SS "<tt>is_specialization</tt>"
+
+.br
+ 
+.SS "<tt>is_std_array</tt>"
+
+.br
+ 
+.SS "<tt>is_iterator</tt>, <tt>iterable</tt>"
+
+.br
+ 
+.SS "<tt>lossless_type_add</tt>,<tt>lossless_type_mul</tt>,<tt>lossless_type_div</tt>"
+
+.br
+ 
+.SS "<tt>multiples_of</tt>, <tt>is_odd</tt>, <tt>is_even</tt>"
+
+.br
+ 
+.SS "<tt>VCCC_REQUIRE</tt>, <tt>VCCC_REQUIRE_FORWARD</tt>, <tt>VCCC_REQUIRE_IMPL</tt>"
+
+.br
+ 
+.SS "<tt>void_t</tt>"
+
+.br
+ 
+.SS "<tt>vtype_t</tt>"
+

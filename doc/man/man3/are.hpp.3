@@ -1,0 +1,81 @@
+.TH "type_traits/include/vccc/type_traits/are.hpp" 3 "Fri Dec 18 2020" "VCCC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+type_traits/include/vccc/type_traits/are.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <type_traits>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBvccc::are_< Conds >\fP"
+.br
+.ti -1c
+.RI "struct \fBvccc::are_< Cond, Conds\&.\&.\&. >\fP"
+.br
+.ti -1c
+.RI "struct \fBvccc::are_arithmetic< Ts >\fP"
+.br
+.ti -1c
+.RI "struct \fBvccc::are_integral< Ts >\fP"
+.br
+.ti -1c
+.RI "struct \fBvccc::are_floating_point< Ts >\fP"
+.br
+.ti -1c
+.RI "struct \fBvccc::are_scalar< Ts >\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBvccc\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "template<typename \&.\&.\&. Conds> using \fBvccc::are_t\fP = typename are_< Conds\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBvccc::are_arithmetic_t\fP = typename are_arithmetic< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBvccc::are_integral_t\fP = typename are_integral< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBvccc::are_floating_point_t\fP = typename are_floating_point< Ts\&.\&.\&. >::type"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> using \fBvccc::are_scalar_t\fP = typename are_scalar< Ts\&.\&.\&. >::type"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "template<typename \&.\&.\&. Conds> constexpr auto \fBvccc::are_v\fP = are_<Conds\&.\&.\&.>::value"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> constexpr auto \fBvccc::are_arithmetic_v\fP = are_arithmetic<Ts\&.\&.\&.>::value"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> constexpr auto \fBvccc::are_integral_v\fP = are_integral<Ts\&.\&.\&.>::value"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> constexpr auto \fBvccc::are_floating_point_v\fP = are_<std::is_floating_point<Ts>\&.\&.\&.>::value"
+.br
+.ti -1c
+.RI "template<typename \&.\&.\&. Ts> constexpr auto \fBvccc::are_scalar_v\fP = are_scalar<Ts\&.\&.\&.>::value"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VCCC from the source code\&.
