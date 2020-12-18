@@ -2,6 +2,8 @@
 ## VisualCamp Common C++ library
 * Requires C++14 or above
 
+## [Document](doc/html/index.html)
+
 #### `high`
 Standalone
 * `functional`
