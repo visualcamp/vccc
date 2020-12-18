@@ -2,7 +2,7 @@
 ## VisualCamp Common C++ library
 * Requires C++14 or above
 
-## [Document](doc/html/index.html)
+## [Document](https://visualcamp.github.io/vccc/)
 
 #### `high`
 Standalone
