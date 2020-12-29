@@ -65,11 +65,11 @@ class Log_{
  public:
   Log_() = default;
 
-  template<typename ...Args> void Log_::v(Args&&... args) const { LOGV_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
-  template<typename ...Args> void Log_::d(Args&&... args) const { LOGD_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
-  template<typename ...Args> void Log_::i(Args&&... args) const { LOGI_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
-  template<typename ...Args> void Log_::w(Args&&... args) const { LOGW_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
-  template<typename ...Args> void Log_::e(Args&&... args) const { LOGE_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
+  template<typename ...Args> void v(Args&&... args) const { LOGV_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
+  template<typename ...Args> void d(Args&&... args) const { LOGD_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
+  template<typename ...Args> void i(Args&&... args) const { LOGI_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
+  template<typename ...Args> void w(Args&&... args) const { LOGW_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
+  template<typename ...Args> void e(Args&&... args) const { LOGE_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
 };
 
 static Log_ Log;
