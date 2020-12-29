@@ -1,6 +1,5 @@
-cmake_minimum_required(VERSION 3.5...3.16)
-
-project(vccc_log VERSION "${BOOST_SUPERPROJECT_VERSION}" LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.5)
+project(vccc_log)
 
 add_library(vccc_log INTERFACE)
 add_library(VCCC::log ALIAS vccc_log)

@@ -10,8 +10,7 @@ MACRO(SUBDIRLIST result curdir)
 ENDMACRO()
 
 cmake_minimum_required(VERSION 3.5)
-
-project(vccc VERSION "${BOOST_SUPERPROJECT_VERSION}" LANGUAGES CXX)
+project(vccc)
 
 add_library(vccc INTERFACE)
 add_library(VCCC ALIAS vccc)

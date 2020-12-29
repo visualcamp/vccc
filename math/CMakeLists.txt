@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-
-project(vccc_math LANGUAGES CXX)
+project(vccc_math)
 
 add_library(vccc_math INTERFACE)
 add_library(VCCC::math ALIAS vccc_math)

@@ -1,6 +1,5 @@
-cmake_minimum_required(VERSION 3.5...3.16)
-
-project(vccc_random LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.5)
+project(vccc_random)
 
 add_library(vccc_random INTERFACE)
 add_library(VCCC::random ALIAS vccc_random)
