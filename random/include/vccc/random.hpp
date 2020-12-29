@@ -7,5 +7,9 @@
 #
 # include "vccc/random/pick.hpp"
 # include "vccc/random/sample.hpp"
-#
+
+/**
+@defgroup random random
+*/
+
 # endif //VCCC_RANDOM_HPP

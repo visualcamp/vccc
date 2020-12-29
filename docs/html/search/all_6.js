@@ -1,10 +1,12 @@
 var searchData=
 [
-  ['fill_488',['fill',['../d0/d0e/classvccc_1_1range.html#a67f645c4dcc920b300792102f3d4da11',1,'vccc::range']]],
-  ['fill_5frest_489',['fill_rest',['../d7/dc3/namespacevccc_1_1detail.html#a7cada5caaa79b45219ad0b4a6957f605',1,'vccc::detail']]],
-  ['formatter_490',['Formatter',['../d6/d0f/classvccc_1_1_formatter.html',1,'vccc::Formatter'],['../d6/d0f/classvccc_1_1_formatter.html#a3c7558b8b584437cac032bd64a02afb3',1,'vccc::Formatter::Formatter()']]],
-  ['formatter_2ehpp_491',['formatter.hpp',['../d3/d31/formatter_8hpp.html',1,'']]],
-  ['fprint_5fwith_5fnewline_492',['FPRINT_WITH_NEWLINE',['../d7/d98/pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7',1,'pc.hpp']]],
-  ['frameworks_493',['Frameworks',['../dd/d89/_c_make_cache_8txt.html#aad3b83729f9a552e5a070a5cc4d7577a',1,'CMakeCache.txt']]],
-  ['functional_2ehpp_494',['functional.hpp',['../d2/db4/functional_8hpp.html',1,'']]]
+  ['get_117',['get',['../classvccc_1_1_logger.html#a0455f54ea1bc97837f18ad396bde19d3',1,'vccc::Logger']]],
+  ['get_5finvoke_5fcategory_118',['get_invoke_category',['../structvccc_1_1detail_1_1get__invoke__category.html',1,'vccc::detail']]],
+  ['get_5finvoke_5fcategory_5ft_119',['get_invoke_category_t',['../namespacevccc_1_1detail.html#ad7a2d833924cd17c7a84edac817b0ab1',1,'vccc::detail']]],
+  ['getcurrentmicroseconds_120',['getCurrentMicroseconds',['../group__utility__time.html#gaa5c0f0bd03c089a808e0c556c685e1f7',1,'vccc']]],
+  ['getcurrentmilliseconds_121',['getCurrentMilliseconds',['../group__utility__time.html#ga3cf94bf21e4362995a8e8bad137d88a1',1,'vccc']]],
+  ['getcurrentnanoseconds_122',['getCurrentNanoseconds',['../group__utility__time.html#gad46ef97b5599f245c74b2a36b20d4233',1,'vccc']]],
+  ['getcurrenttime_123',['getCurrentTime',['../group__utility__time.html#ga62aeafe3e287cefd462a38641d17b10e',1,'vccc']]],
+  ['gradient_124',['gradient',['../group__calculus.html#ga7c58303e6b080dfaf968140ecf0bdf57',1,'vccc']]],
+  ['gradient_2ehpp_125',['gradient.hpp',['../gradient_8hpp.html',1,'']]]
 ];

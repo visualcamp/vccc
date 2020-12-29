@@ -19,7 +19,8 @@ std::ostream& operator << (std::ostream& os, const T& v);
 namespace detail{
 
 template<typename Iterator>
-std::ostream& print_iterator(std::ostream& os, Iterator first, Iterator last)
+std::ostream&
+print_iterator(std::ostream& os, Iterator first, Iterator last)
 {
   os << '{';
   if (first != last) {
@@ -35,10 +36,13 @@ std::ostream& print_iterator(std::ostream& os, Iterator first, Iterator last)
 }
 
 template<typename Tuple, std::size_t ...I>
-std::ostream& print_tuple(std::ostream& os, const Tuple& tup, std::index_sequence<0, I...>) {
+std::ostream&
+print_tuple(std::ostream& os, const Tuple& tup, std::index_sequence<0, I...>)
+{
   os << "{ ";
   os << std::get<0>(tup);
-  [[maybe_unused]] volatile int dummy[sizeof...(I)] = {
+  [[maybe_unused]]
+  int dummy[sizeof...(I)] = {
       (os << ", " << std::get<I>(tup), 0)...
   };
   os << " }";
@@ -47,12 +51,16 @@ std::ostream& print_tuple(std::ostream& os, const Tuple& tup, std::index_sequenc
 
 namespace impl{
   template<typename Arg>
-  void print_multiples_impl(std::ostream& os, const Arg& arg) {
+  void
+  print_multiples_impl(std::ostream& os, const Arg& arg)
+  {
     os << arg;
   }
 
   template<typename Arg, typename ...Args>
-  void print_multiples_impl(std::ostream& os, const Arg& arg, const Args&... args) {
+  void
+  print_multiples_impl(std::ostream& os, const Arg& arg, const Args&... args)
+  {
     print_multiples_impl(os, arg);
     print_multiples_impl(os, ", ");
     print_multiples_impl(os, args...);
@@ -61,7 +69,9 @@ namespace impl{
 }
 
 template<typename ...Args>
-void print_multiples(std::ostream& os, const Args&... args){
+void
+print_multiples(std::ostream& os, const Args&... args)
+{
   os << '{';
   if(sizeof...(Args) > 0) {
     os << ' ';

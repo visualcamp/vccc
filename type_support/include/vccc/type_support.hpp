@@ -10,5 +10,9 @@
 # include "vccc/type_support/convert_to.hpp"
 # include "vccc/type_support/resize.hpp"
 # include "vccc/type_support/vtype_convert.hpp"
-#
+
+/**
+@defgroup type_support type support
+*/
+
 # endif //VCCC_TYPE_SUPPORT_HPP

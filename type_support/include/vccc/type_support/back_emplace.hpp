@@ -9,6 +9,9 @@
 
 namespace vccc{
 
+//! @addtogroup type_support
+//! @{
+
 template <class Container>
 class back_emplace_iterator
     : public std::iterator<std::output_iterator_tag,
@@ -32,11 +35,19 @@ class back_emplace_iterator
   back_emplace_iterator  operator++(int) {return *this;}
 };
 
+/**
+@brief make back_emplace_iterator
+@param container    container
+@return back_emplace_iterator
+ */
 template<typename Container>
 back_emplace_iterator<Container>
-back_emplacer(Container& container){
+back_emplacer(Container& container)
+{
   return back_emplace_iterator<Container>(container);
 }
+
+//! @}
 
 }
 

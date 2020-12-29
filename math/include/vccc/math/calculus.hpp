@@ -6,5 +6,13 @@
 # define VCCC_MATH_CALCULUS_HPP
 #
 # include "vccc/math/calculus/gradient.hpp"
-#
+
+/**
+@addtogroup math
+@{
+    @defgroup calculus calculus
+    math for calculus
+@}
+*/
+
 # endif //VCCC_MATH_CALCULUS_HPP

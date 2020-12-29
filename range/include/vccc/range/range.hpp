@@ -12,6 +12,9 @@
 
 namespace vccc{
 
+//! @addtogroup range
+//! @{
+
 template<typename T, typename Container = std::vector<T>>
 class range {
  public:
@@ -65,6 +68,7 @@ class range {
   Container container;
 };
 
+//! @}
 
 }
 

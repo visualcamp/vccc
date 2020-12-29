@@ -9,18 +9,28 @@
 
 namespace vccc{
 
-template</* manual */ std::size_t i,
-         /* deduce */ typename T,
-         /*  cond  */ std::enable_if_t<(i < std::tuple_size<T>::value), int> = 0>
+/**
+@addtogroup type_support_at
+@{
+
+@defgroup type_support_at_tuple vccc::at (std::tuple, std::pair)
+Index-based value accessor
+@addtogroup type_support_at_tuple
+@{
+*/
+
+template<std::size_t i,
+         typename T,
+         std::enable_if_t<(i < std::tuple_size<T>::value), int> = 0>
 constexpr
 decltype(auto)
 at (T& tup) {
   return std::get<i>(tup);
 }
 
-template</* manual */ std::size_t i,
-         /* deduce */ typename T,
-         /*  cond  */ std::enable_if_t<(i < std::tuple_size<T>::value), int> = 0>
+template<std::size_t i,
+         typename T,
+         std::enable_if_t<(i < std::tuple_size<T>::value), int> = 0>
 constexpr
 decltype(auto)
 at (const T& tup) {
@@ -44,6 +54,9 @@ decltype(auto)
 at (const T&& tup) {
   return std::get<i>(std::forward<T>(tup));
 }
+
+//! @} type_support_at_tuple
+//! @} type_support_at
 
 }
 

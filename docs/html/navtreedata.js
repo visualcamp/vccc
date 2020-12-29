@@ -25,8 +25,8 @@
 var NAVTREE =
 [
   [ "VCCC", "index.html", [
-    [ "vccc/literal", "da/d63/md_literal__r_e_a_d_m_e.html", null ],
-    [ "vccc/type_traits", "d4/d8c/md_type_traits__r_e_a_d_m_e.html", null ],
+    [ "VCCC Modules", "index.html", null ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -50,9 +50,7 @@ var NAVTREE =
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
-        [ "All", "globals.html", "globals_dup" ],
-        [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", "globals_vars" ],
+        [ "All", "globals.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -61,9 +59,10 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html",
-"d6/db5/is__specialization_8hpp_source.html",
-"de/d8c/high_2include_2vccc_2high_2tuple_2detail_2apply_8hpp.html#a032946f5843f311e6b06739cfecad873"
+"android_8hpp.html",
+"dir_eb9511f9ba85dc28b14af4344bbfda5d.html",
+"index.html",
+"type__traits_2include_2vccc_2type__traits_2numeric_8hpp.html#gaad7a8ca885c3cf50a872e5f923a67e79"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

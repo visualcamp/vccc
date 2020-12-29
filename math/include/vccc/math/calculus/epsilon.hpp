@@ -10,11 +10,24 @@
 
 namespace vccc{
 
+//! @addtogroup calculus
+//! @{
+
+
+/** @brief get machine epsilon for the given type
+ * @tparam T type
+ * @return machine epsilon of T
+ */
+
 template<typename T>
-auto epsilon(){
-  static const auto e = std::sqrt(std::numeric_limits<T>::epsilon());
+auto
+epsilon()
+{
+  static const auto e = std::cbrt(std::numeric_limits<T>::epsilon());
   return e;
 }
+
+//! @}
 
 }
 

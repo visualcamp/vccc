@@ -7,7 +7,15 @@
 
 /** 나중에 gsl로 대체하는게 좋을 듯.. */
 
+//! @cond ignored
+
 # define ASSERT_IMPL(expr, msg) assert(((void)(msg), (expr)))
+
+//! @endcond
+
+//! @addtogroup utility_assert
+//! @{
+
 
 # define EXPECTS(expr, msg) ASSERT_IMPL(expr, msg)
 # define ENSURES(expr, msg) ASSERT_IMPL(expr, msg)
@@ -15,5 +23,7 @@
 # define BOUNDS_ASSERT(index, size) EXPECTS((index) < (size), "index out of bounds")
 
 # define ALWAYS_ASSERT(msg) ASSERT_IMPL(false, msg)
+
+//! @} utility_assert
 
 # endif //VCCC_UTILITY_ASSERT_HPP

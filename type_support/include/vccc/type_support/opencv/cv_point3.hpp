@@ -10,40 +10,62 @@
 
 namespace vccc{
 
-/** cv_size */
 
+/**
+@addtogroup type_support_cv_size
+@{
+
+@defgroup type_support_cv_size_cv_point3 cv_size (cv::Point3_)
+@addtogroup type_support_cv_size_cv_point3
+@{
+*/
 template<typename T>
 struct detail::cv_size<cv::Point3_<T>> : cv_size_n<3> {};
+//! @} type_support_cv_size_cv_point3
+//! @} type_support_cv_size
 
 
-/** at */
+/**
+@addtogroup type_support_at
+@{
+    @defgroup type_support_at_cv_point3 vccc::at (cv::Point3_)
+    Index-based value accessor
+@}
+
+@addtogroup type_support_at_cv_point3
+@{
+*/
 
 // index = 0
 template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
 constexpr
 T&
-at(cv::Point3_<T>& point3) {
+at(cv::Point3_<T>& point3)
+{
   return point3.x;
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
 constexpr
 const T&
-at(const cv::Point3_<T>& point3) {
+at(const cv::Point3_<T>& point3)
+{
   return point3.x;
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
 constexpr
 T&&
-at(cv::Point3_<T>&& point3) {
+at(cv::Point3_<T>&& point3)
+{
   return std::move(point3.x);
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
 constexpr
 const T&&
-at(const cv::Point3_<T>&& point3) {
+at(const cv::Point3_<T>&& point3)
+{
   return std::move(point3.x);
 }
 
@@ -51,28 +73,32 @@ at(const cv::Point3_<T>&& point3) {
 template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
 constexpr
 T&
-at(cv::Point3_<T>& point3) {
+at(cv::Point3_<T>& point3)
+{
   return point3.y;
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
 constexpr
 const T&
-at(const cv::Point3_<T>& point3) {
+at(const cv::Point3_<T>& point3)
+{
   return point3.y;
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
 constexpr
 T&&
-at(cv::Point3_<T>&& point3) {
+at(cv::Point3_<T>&& point3)
+{
   return std::move(point3.y);
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
 constexpr
 const T&&
-at(const cv::Point3_<T>&& point3) {
+at(const cv::Point3_<T>&& point3)
+{
   return std::move(point3.y);
 }
 
@@ -80,36 +106,42 @@ at(const cv::Point3_<T>&& point3) {
 template<std::size_t i, typename T, std::enable_if_t<i==2, int> = 0>
 constexpr
 T&
-at(cv::Point3_<T>& point3) {
+at(cv::Point3_<T>& point3)
+{
   return point3.z;
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==2, int> = 0>
 constexpr
 const T&
-at(const cv::Point3_<T>& point3) {
+at(const cv::Point3_<T>& point3)
+{
   return point3.z;
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==2, int> = 0>
 constexpr
 T&&
-at(cv::Point3_<T>&& point3) {
+at(cv::Point3_<T>&& point3)
+{
   return std::move(point3.z);
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==2, int> = 0>
 constexpr
 const T&&
-at(const cv::Point3_<T>&& point3) {
+at(const cv::Point3_<T>&& point3)
+{
   return std::move(point3.z);
 }
 
+//! @} type_support_at_cv_point3
 
 /** add */
 
 template<typename T, typename N>
-cv::Point3_<T> add(const cv::Point3_<T>& point3, N n) {
+cv::Point3_<T> add(const cv::Point3_<T>& point3, N n)
+{
   return cv::Point3_<T>(point3.x + n, point3.y + n, point3.z + n);
 }
 

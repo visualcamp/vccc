@@ -10,10 +10,21 @@
 
 namespace vccc{
 
+/**
+@addtogroup type_support_at
+@{
+
+@defgroup type_support_at_container vccc::at (container)
+Index-based value accessor
+
+@addtogroup type_support_at_container
+@{
+*/
 template<std::size_t i, typename Container,
          VCCC_REQUIRE(is_container_v<Container>)>
 decltype(auto)
-at(Container& container) {
+at(Container& container)
+{
   BOUNDS_ASSERT(i, container.size());
   return *std::next(std::begin(container), i);
 }
@@ -21,7 +32,8 @@ at(Container& container) {
 template<std::size_t i, typename Container,
          VCCC_REQUIRE(is_container_v<Container>)>
 decltype(auto)
-at(const Container& container) {
+at(const Container& container)
+{
   BOUNDS_ASSERT(i, container.size());
   return *std::next(std::begin(container), i);
 }
@@ -29,7 +41,8 @@ at(const Container& container) {
 template<std::size_t i, typename Container,
          VCCC_REQUIRE(is_container_v<Container>)>
 decltype(auto)
-at(Container&& container) {
+at(Container&& container)
+{
   BOUNDS_ASSERT(i, container.size());
   return std::move(*std::next(std::begin(container), i));
 }
@@ -37,11 +50,14 @@ at(Container&& container) {
 template<std::size_t i, typename Container,
          VCCC_REQUIRE(is_container_v<Container>)>
 decltype(auto)
-at(const Container&& container) {
+at(const Container&& container)
+{
   BOUNDS_ASSERT(i, container.size());
   return std::move(*std::next(std::begin(container), i));
 }
 
+//! @} type_support_at_container
+//! @} type_support_at
 
 }
 

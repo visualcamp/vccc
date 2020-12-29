@@ -11,51 +11,101 @@
 
 namespace vccc{
 
+//! @addtogroup numeric
+//! @{
+
+/** @defgroup numeric_average average
+@brief get average value of the given iterator or variadic
+@addtogroup numeric_average
+@{
+*/
+
 /**
- * average of [first, last)
+@brief get average of iterator values [first, last)
+@param first     begin of input iterator
+@param last      end of input iterator
+@return average
  */
 template<typename InputIterator,
-    VCCC_REQUIRE(iterable<InputIterator>)>
-constexpr auto average(InputIterator first, InputIterator last){
+         VCCC_REQUIRE(iterable<InputIterator>)>
+constexpr
+auto
+average(InputIterator first, InputIterator last)
+{
   using ret_t = typename InputIterator::value_type;
   return sum(first, last) / static_cast<decay_if_float_t<typename InputIterator::value_type>>(std::distance(first, last));
 }
 
+/**
+@brief get average of iterator values [first, last)
+@param first        begin of input iterator
+@param last         end of input iterator
+@param unary_op     custom unary operator( sum+=op(x) ... )
+@return average
+ */
 template<typename InputIterator, typename UnaryOperation,
-    VCCC_REQUIRE(iterable<InputIterator>)>
-constexpr auto average(InputIterator first, InputIterator last, UnaryOperation unary_op){
+         VCCC_REQUIRE(iterable<InputIterator>)>
+constexpr
+auto
+average(InputIterator first, InputIterator last, UnaryOperation unary_op)
+{
   using ret_t = typename InputIterator::value_type;
   return sum(first, last, unary_op) / static_cast<decay_if_float_t<typename InputIterator::value_type>>(std::distance(first, last));
 }
 
 /**
- * average of arithmetic numbers
- *
- * average of ints    -> return double
- * average of floats  -> return float
- * average of doubles -> return double
- * average of long doubles -> return long double
- */
+@brief get average value of arithmetic types
+
+Note:
+- average of ints    -> return double
+- average of floats  -> return float
+- average of doubles -> return double
+- average of long doubles -> return long double
+@param ...numbers numbers
+@return average
+*/
 template<typename ...Numbers,
-    VCCC_REQUIRE(are_arithmetic_v<Numbers...>)>
-constexpr auto average(Numbers... numbers){
+         VCCC_REQUIRE(are_arithmetic_v<Numbers...>)>
+constexpr
+auto
+average(Numbers... numbers)
+{
   return sum(numbers...) / static_cast<decay_if_float_t<Numbers...>>(sizeof...(numbers));
 }
 
+
+/**
+@brief get average value of integers(result is floored)
+
+@param ...ints numbers
+@return average
+*/
 template<typename ...Ints,
-    VCCC_REQUIRE(are_integral_v<Ints...>)>
-constexpr auto int_average(Ints... ints){
+         VCCC_REQUIRE(are_integral_v<Ints...>)>
+constexpr
+auto
+int_average(Ints... ints)
+{
   return sum(ints...) / static_cast<signed_bigger_type_t<Ints...>>(sizeof...(Ints));
 }
 
 /**
- * average of custom types
- */
+@brief get average value of custom types
+
+@param ...args arguments
+@return average
+*/
 template<typename ...Args,
-    VCCC_REQUIRE(!iterable<Args...> && !are_arithmetic_v<Args...>)>
-constexpr auto average(const Args&... args){
+         VCCC_REQUIRE(!iterable<Args...> && !are_arithmetic_v<Args...>)>
+constexpr
+auto
+average(const Args&... args)
+{
   return sum(args...) / static_cast<double>(sizeof...(args));
 }
+
+//! @} numeric_average
+//! @} numeric
 
 }
 

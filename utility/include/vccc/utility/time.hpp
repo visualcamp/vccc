@@ -9,24 +9,40 @@
 
 namespace vccc{
 
+//! @addtogroup utility_time
+//! @{
+
 template<typename T>
-auto getCurrentTime() {
+auto
+getCurrentTime()
+{
   auto now = std::chrono::system_clock::now();
   auto duration = now.time_since_epoch();
   return std::chrono::duration_cast<T>(duration).count();
 }
 
-inline decltype(auto) getCurrentMilliseconds() {
+inline
+decltype(auto)
+getCurrentMilliseconds()
+{
   return getCurrentTime<std::chrono::milliseconds>();
 }
 
-inline decltype(auto) getCurrentMicroseconds() {
+inline
+decltype(auto)
+getCurrentMicroseconds()
+{
   return getCurrentTime<std::chrono::microseconds>();
 }
 
-inline decltype(auto) getCurrentNanoseconds() {
+inline
+decltype(auto)
+getCurrentNanoseconds()
+{
   return getCurrentTime<std::chrono::nanoseconds>();
 }
+
+//! @} utility_time
 
 }
 

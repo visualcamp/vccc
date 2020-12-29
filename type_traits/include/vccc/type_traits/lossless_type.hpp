@@ -11,6 +11,10 @@
 
 namespace vccc{
 
+
+//! @addtogroup type_traits
+//! @{
+
 // TODO: change double to biggest among input floating_point type
 template<typename ...Types>
 using decay_if_float_t = typename std::conditional_t<are_<std::is_same<Types, float>...>::value, float, double>;
@@ -24,6 +28,8 @@ template<typename...>struct lossless_type_add;
 
 template<typename ...Ts>
 using lossless_type_add_t = typename lossless_type_add<Ts...>::type;
+
+//! @cond ignored
 
 template<typename T>
 struct lossless_type_add<T> {
@@ -43,6 +49,8 @@ struct lossless_type_add<T1, T2, Ts...> {
                         static_cast<lossless_type_add_t<Ts...>>(0));
 };
 
+//! @endcond
+
 
 /**
  * lossless_type_mul
@@ -53,6 +61,7 @@ template<typename...>struct lossless_type_mul;
 template<typename ...Ts>
 using lossless_type_mul_t = typename lossless_type_mul<Ts...>::type;
 
+//! @cond ignored
 template<typename T>
 struct lossless_type_mul<T> {
   static_assert(std::is_arithmetic<T>::value, "Invalid type in lossless_type_mul<>");
@@ -73,6 +82,7 @@ struct lossless_type_mul<T1, T2, Ts...> {
                static_cast<lossless_type_mul_t<Ts...>>(0));
 };
 
+//! @endcond
 
 
 /**
@@ -86,6 +96,7 @@ template<typename ...Ts>
 using lossless_type_div_t = typename lossless_type_div<Ts...>::type;
 
 
+//! @cond ignored
 template<typename T>
 struct lossless_type_div<T> {
   static_assert(std::is_arithmetic<T>::value, "Invalid type in lossless_type_div<>");
@@ -107,6 +118,10 @@ struct lossless_type_div<T1, T2, Ts...> {
       decltype(static_cast<lossless_type_div_t<T1, T2>>(0) /
                static_cast<lossless_type_div_t<Ts...>>(0));
 };
+
+//! @endcond
+
+//! @} type_traits
 
 }
 # endif //VCCC_TYPE_TRAITS_LOSSLESS_TYPE_HPP

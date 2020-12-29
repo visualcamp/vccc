@@ -9,6 +9,16 @@
 
 namespace vccc {
 
+/** @addtogroup type_traits
+@{
+    @defgroup is_container
+@}
+@addtogroup is_container
+@{ */
+
+/**
+@brief check if a type met container requirements
+ */
 template<typename T, typename = void>
 struct is_container : std::false_type {};
 
@@ -24,6 +34,8 @@ using is_container_t = typename is_container<T>::type;
 
 template<typename T>
 constexpr auto is_container_v = is_container<T>::value;
+
+//! @} is_container
 
 }
 

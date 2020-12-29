@@ -1,16 +1,20 @@
 var searchData=
 [
-  ['random_2ehpp_662',['random.hpp',['../d1/df2/random_8hpp.html',1,'']]],
-  ['random_5fsample_663',['random_sample',['../dd/d6d/namespacevccc.html#a8c91c5ce6b246c8b470b5b66e1d96507',1,'vccc::random_sample(T a, T b, T k, std::mt19937 &amp;&amp;gen=std::mt19937(std::random_device{}()))'],['../dd/d6d/namespacevccc.html#aebcbed57be08eebe15ab72aea0ab3e69',1,'vccc::random_sample(T a, T b, T k, Generator &amp;&amp;gen)']]],
-  ['range_664',['range',['../d0/d0e/classvccc_1_1range.html',1,'vccc::range&lt; T, Container &gt;'],['../d0/d0e/classvccc_1_1range.html#a6a9e8c448a064428cbf43e765a23acac',1,'vccc::range::range(value_type b)'],['../d0/d0e/classvccc_1_1range.html#a50116ac81554340492fa40be9a2c6222',1,'vccc::range::range(value_type a, value_type b)'],['../d0/d0e/classvccc_1_1range.html#a1e2bb192522b017fd626973fa2ce7540',1,'vccc::range::range(value_type a, value_type b, value_type incr)']]],
-  ['range_2ehpp_665',['range.hpp',['../d5/db2/range_2range_8hpp.html',1,'(Global Namespace)'],['../d2/d53/range_8hpp.html',1,'(Global Namespace)']]],
-  ['range_5fsequence_666',['range_sequence',['../d7/dc3/namespacevccc_1_1detail.html#a6a7f533aaf998c1998abc894bf4e0545',1,'vccc::detail']]],
-  ['rbegin_667',['rbegin',['../d0/d0e/classvccc_1_1range.html#a224d83d5a29edbad1733488002b8329e',1,'vccc::range::rbegin()'],['../d0/d0e/classvccc_1_1range.html#aebb2126c1fa184d2f5cb9f6583e68aa6',1,'vccc::range::rbegin() const']]],
-  ['readme_2emd_668',['README.md',['../dd/d84/literal_2_r_e_a_d_m_e_8md.html',1,'(Global Namespace)'],['../d8/dd6/type__traits_2_r_e_a_d_m_e_8md.html',1,'(Global Namespace)']]],
-  ['rend_669',['rend',['../d0/d0e/classvccc_1_1range.html#aff085e1e66088932384f568a987dc0d9',1,'vccc::range::rend()'],['../d0/d0e/classvccc_1_1range.html#a1ac8c14cfe996a4b70474041392a6b34',1,'vccc::range::rend() const']]],
-  ['require_2ehpp_670',['require.hpp',['../d6/d53/require_8hpp.html',1,'']]],
-  ['reserved_5fvector_671',['reserved_vector',['../dd/d6d/namespacevccc.html#a48f3b88760b1fa2e3786085bb2287988',1,'vccc::reserved_vector(typename std::vector&lt; T &gt;::size_type size)'],['../dd/d6d/namespacevccc.html#a14533210aa97f22c968cc45defb9c6cb',1,'vccc::reserved_vector(typename std::vector&lt; T, Allocator &gt;::size_type size)']]],
-  ['resize_672',['resize',['../dd/d6d/namespacevccc.html#ade0fce0dc4d50fbcbe70d57e1b4ee233',1,'vccc::resize(const cv::Point_&lt; T &gt; &amp;from)'],['../dd/d6d/namespacevccc.html#acac68cd5f0a1b63d90a253c1017c44d1',1,'vccc::resize(const cv::Point3_&lt; T &gt; &amp;from)'],['../dd/d6d/namespacevccc.html#a1c7ebf3657deb84738c66f77871e39b1',1,'vccc::resize(const cv::Vec&lt; T, old_size &gt; &amp;from)'],['../dd/d6d/namespacevccc.html#abe989a4fc98bbc2a63e8f91a6aa5f4be',1,'vccc::resize(T &amp;&amp;t)']]],
-  ['resize_2ehpp_673',['resize.hpp',['../dc/d12/resize_8hpp.html',1,'']]],
-  ['rindex_5fsequence_674',['rindex_sequence',['../d7/dc3/namespacevccc_1_1detail.html#a10ba0c1cdb887a33b9d23c15b02e056a',1,'vccc::detail']]]
+  ['standard_20deviation_263',['standard deviation',['../group__numeric__stddev.html',1,'']]],
+  ['sum_264',['sum',['../group__numeric__sum.html',1,'']]],
+  ['sample_2ehpp_265',['sample.hpp',['../sample_8hpp.html',1,'']]],
+  ['sequence_2ehpp_266',['sequence.hpp',['../sequence_8hpp.html',1,'']]],
+  ['signed_5fbigger_5ftype_267',['signed_bigger_type',['../structvccc_1_1signed__bigger__type.html',1,'vccc']]],
+  ['signed_5fbigger_5ftype_3c_20t_20_3e_268',['signed_bigger_type&lt; T &gt;',['../structvccc_1_1signed__bigger__type_3_01_t_01_4.html',1,'vccc']]],
+  ['signed_5fbigger_5ftype_3c_20t1_2c_20t2_20_3e_269',['signed_bigger_type&lt; T1, T2 &gt;',['../structvccc_1_1signed__bigger__type_3_01_t1_00_01_t2_01_4.html',1,'vccc']]],
+  ['signed_5fbigger_5ftype_3c_20t1_2c_20t2_2c_20ts_2e_2e_2e_20_3e_270',['signed_bigger_type&lt; T1, T2, Ts... &gt;',['../structvccc_1_1signed__bigger__type_3_01_t1_00_01_t2_00_01_ts_8_8_8_01_4.html',1,'vccc']]],
+  ['signed_5fbigger_5ftype_5ft_271',['signed_bigger_type_t',['../group__bigger__type.html#gafb75be018b35007145e900cc33490ca2',1,'vccc']]],
+  ['square_272',['square',['../group__numeric__sum.html#gadf7807ad19880c8a75302a19ee71869b',1,'vccc']]],
+  ['square_5fsum_273',['square_sum',['../group__numeric__sum.html#ga50ba92b2f87b9d6b28404e5358f6a5fc',1,'vccc::square_sum(InputIterator first, InputIterator last)'],['../group__numeric__sum.html#ga295616ea9b06421a01d1eac1afb7ec1e',1,'vccc::square_sum(const Arg &amp;arg)'],['../group__numeric__sum.html#gabd63f9a3062a3e4a82011be9f84f049d',1,'vccc::square_sum(const Arg1 &amp;arg1, const Arg2 &amp;arg2)'],['../group__numeric__sum.html#ga31cb325d35f7eabc229f9e978fc9d6bc',1,'vccc::square_sum(const Arg &amp;arg, const Args &amp;... args)']]],
+  ['stddev_274',['stddev',['../group__numeric__stddev.html#gac6d80edb5908bbbe6d5bfb96fad74c0b',1,'vccc::stddev(InputIterator first, InputIterator last, T avg)'],['../group__numeric__stddev.html#ga4da2653bc83a3caade76162ccfae63f5',1,'vccc::stddev(InputIterator first, InputIterator last)'],['../group__numeric__stddev.html#gacc67b6ca043b47d865b016e58e93fdc0',1,'vccc::stddev(Numbers... numbers)']]],
+  ['stddev_2ehpp_275',['stddev.hpp',['../stddev_8hpp.html',1,'']]],
+  ['sum_276',['sum',['../group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a',1,'vccc::sum(InputIterator first, InputIterator last)'],['../group__numeric__sum.html#gac11003a3d14f66c24174b0c0b6735304',1,'vccc::sum(InputIterator first, InputIterator last, UnaryOperation unary_op)'],['../group__numeric__sum.html#gae209caf01719607ea444436ea4123b1d',1,'vccc::sum(const Args &amp;... args)']]],
+  ['sum_2ehpp_277',['sum.hpp',['../sum_8hpp.html',1,'']]],
+  ['sum_5fcustom_278',['sum_custom',['../group__numeric__sum.html#gab741977af01853bffd7b4368c391e007',1,'vccc::sum_custom(const UnaryOperation &amp;unary_op, const Arg &amp;arg)'],['../group__numeric__sum.html#gaf656a8eefcbc64d01545c486481aafa2',1,'vccc::sum_custom(const UnaryOperation &amp;unary_op, const Arg &amp;arg, const Args &amp;... args)']]],
+  ['sumimpl_279',['sumImpl',['../namespacevccc_1_1impl.html#afb7679d3d447a3151d159b4b2af33f60',1,'vccc::impl::sumImpl(const Arg &amp;arg)'],['../namespacevccc_1_1impl.html#ad50e588a56804e902bbeb4f7e19aab6a',1,'vccc::impl::sumImpl(const Arg1 &amp;arg1, const Arg2 &amp;arg2)'],['../namespacevccc_1_1impl.html#ac5ae7352b3773ee197051a529b6b239f',1,'vccc::impl::sumImpl(const Arg &amp;arg, const Args &amp;... args)']]]
 ];

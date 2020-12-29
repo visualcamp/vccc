@@ -6,5 +6,13 @@
 # define VCCC_HIGH_FUNCTIONAL_HPP
 #
 # include "vccc/high/functional/invoke.hpp"
-#
+
+/**
+@addtogroup high
+@{
+@defgroup high_functional functional
+@}
+*/
+
+
 # endif //VCCC_HIGH_FUNCTIONAL_HPP

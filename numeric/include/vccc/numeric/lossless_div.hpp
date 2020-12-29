@@ -9,11 +9,18 @@
 
 namespace vccc{
 
+//! @addtogroup numeric
+//! @{
+
 template<typename T1, typename T2>
-decltype(auto) lossless_div(const T1 a, const T2 b){
+decltype(auto)
+lossless_div(const T1 a, const T2 b)
+{
   using t = lossless_type_div<T1, T2>;
   return static_cast<t>(a) / static_cast<t>(b);
 }
+
+//! @} numeric
 
 }
 

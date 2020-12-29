@@ -1,0 +1,20 @@
+/**
+\mainpage VCCC Modules
+
+Modules:
+- \subpage high C++14 implementation of STL that is in C++17 or higher version.
+- \subpage literal literal python-like _format support.
+- \subpage log log logging support for multiplatform.
+- \subpage math mathematics.
+- \subpage numeric numerics.
+- \subpage random random algorithms.
+- \subpage range python-like range class.
+- \subpage type_support syntax sugar for C++.
+- \subpage type_traits type_traits.
+- \subpage utility utilities.
+
+
+
+© 2021 VisualCamp All Rights Reserved
+
+*/

@@ -7,5 +7,9 @@
 #
 # include "vccc/log/pwd.hpp"
 # include "vccc/log/log.hpp"
-#
+
+/**
+@defgroup log log
+*/
+
 # endif //VCCC_LOG_HPP

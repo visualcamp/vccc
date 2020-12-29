@@ -9,6 +9,8 @@
 
 namespace vccc{ namespace detail{
 
+//! @cond IGNORED
+
 template <typename T, T v, T... Is>
 constexpr auto same_sequence (std::integer_sequence<T, Is...> const &)
 -> decltype( std::integer_sequence<T, v + 0*Is...>{} );
@@ -20,6 +22,8 @@ constexpr auto rindex_sequence (std::index_sequence<Is...> const &)
 template<typename T, T start, T incr, T... I>
 constexpr auto range_sequence(std::integer_sequence<T,I...> const &)
 -> decltype(std::integer_sequence<T, start + incr*I...>{});
+
+//! @endcond
 
 }}
 

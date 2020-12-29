@@ -6,5 +6,12 @@
 # define VCCC_HIGH_TUPLE_HPP
 #
 # include "vccc/high/tuple/apply.hpp"
-#
+
+/**
+@addtogroup high
+@{
+@defgroup high_tuple tuple
+@}
+*/
+
 # endif //VCCC_HIGH_TUPLE_HPP

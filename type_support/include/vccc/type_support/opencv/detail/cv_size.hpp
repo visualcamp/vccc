@@ -9,6 +9,18 @@
 
 namespace vccc{namespace detail{
 
+
+/**
+@addtogroup type_support
+@{
+
+@defgroup type_support_cv_size vccc::cv_size
+opencv class size(member variable count)
+
+@addtogroup type_support_cv_size
+@{
+*/
+
 template<int n>
 struct cv_size_n {
   static constexpr std::size_t value = n;
@@ -27,6 +39,7 @@ struct is_cv_type : std::integral_constant<bool, (cv_size<T>::value > 0) > {};
 template<typename T>
 constexpr auto is_cv_type_v = is_cv_type<T>::value;
 
+
 #if __cplusplus >= 201402L
 template<typename T1, typename T2>
 constexpr std::size_t max_cv_size_v = std::max(cv_size_v<T1>, cv_size_v<T2>);
@@ -43,6 +56,9 @@ constexpr std::size_t min_cv_size_v = cv_size_v<T1> > cv_size_v<T2> ? cv_size_v<
 
 template<typename T1, typename T2>
 constexpr std::size_t diff_cv_size_v = max_cv_size_v<T1, T2> - min_cv_size_v<T1, T2>;
+
+//! @} type_support_cv_size
+//! @} type_support
 
 }}
 

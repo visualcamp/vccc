@@ -12,12 +12,24 @@
 
 namespace vccc{
 
+//! @addtogroup high_functional
+//! @{
+
+/**
+@brief invokes the callable object f with the parameter args
+ * @param f         callable object
+ * @param args      parameters
+ * @return          result
+ */
+
 template<class F, class... Args>
 constexpr
 decltype(auto)
 invoke(F&& f, Args&&... args) {
   return detail::INVOKE(std::forward<F>(f), std::forward<Args>(args)...);
 }
+
+//! @}
 
 }
 

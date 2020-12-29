@@ -18,5 +18,9 @@
 # include "type_traits/numeric.hpp"
 # include "type_traits/void_t.hpp"
 # include "type_traits/vtype_t.hpp"
-#
+
+/**
+@defgroup type_traits type_traits
+*/
+
 # endif //VCCC_TYPE_TRAITS_HPP

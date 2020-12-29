@@ -10,12 +10,26 @@
 
 namespace vccc{
 
+//! @addtogroup type_support_at
+//! @{
+
+//! @cond ignored
 template<typename T>
 std::vector<T> reserved_vector(typename std::vector<T>::size_type size){
   std::vector<T> vec;
   vec.reserve(size);
   return vec;
 }
+//! @endcond
+
+/**
+@brief returns reserved vector
+
+@tparam T           vector element type
+@tparam Allocator   vector element allocator(non is specialized)
+@param size         reserving size
+@return             reserved vector
+ */
 
 template<typename T, typename Allocator>
 std::vector<T, Allocator> reserved_vector(typename std::vector<T, Allocator>::size_type size){
@@ -23,6 +37,14 @@ std::vector<T, Allocator> reserved_vector(typename std::vector<T, Allocator>::si
   vec.reserve(size);
   return vec;
 }
+
+/**
+@brief concat two vectors
+
+@param to       target vector
+@param from     source vector
+@return
+ */
 
 template<typename T, typename Allocator>
 std::vector<T, Allocator>& concat(std::vector<T, Allocator>& to, const std::vector<T, Allocator>& from) {
@@ -32,6 +54,13 @@ std::vector<T, Allocator>& concat(std::vector<T, Allocator>& to, const std::vect
   return to;
 }
 
+/**
+@brief concat two vectors
+
+@param to       target vector
+@param from     source vector
+@return
+ */
 template<typename T, typename Allocator>
 std::vector<T, Allocator>& concat(std::vector<T, Allocator>& to, std::vector<T, Allocator>&& from) {
   to.reserve(to.size() + from.size());
@@ -39,6 +68,9 @@ std::vector<T, Allocator>& concat(std::vector<T, Allocator>& to, std::vector<T, 
     to.emplace_back(std::move(from[i]));
   return to;
 }
+
+//! @} type_support_at
+
 //
 //template<typename T, typename Allocator>
 //std::vector<T, Allocator> slice(const std::vector<T, Allocator>& vec, std::size_t first){

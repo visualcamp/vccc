@@ -11,12 +11,17 @@
 
 namespace vccc {
 
+//! @addtogroup literal
+//! @{
+
 /**
- *  Formatting helper class & custom literals
- *
- *  ex)
- *      auto str = "x:%d, hello %s"_format(13, "world!");
- *      LOGD("%.2f"_format(value), cv::Point2f(), std::vector<int>())
+@brief converts c-style format and inputs to std::string
+
+Formatting helper class & custom literals
+
+@code{.cpp}
+    auto str = vccc::Formatter("x:%d, hello %s")(13, "world!");
+@endcode
  */
 class Formatter {
  public:
@@ -36,9 +41,27 @@ class Formatter {
   std::vector<char> buffer;
 };
 
+
+/** @brief Formatter helper on string literal
+
+@param format    c-style string literal format
+@return          Formatter
+
+@code{.cpp}
+    std::string str = "x:%d, hello %s"_format(13, "world!");
+
+    vccc::Formatter fmt = "%s"_format;
+    std::string str2 = fmt("Hello, world!");
+@endcode
+
+ */
+
 inline Formatter operator "" _format(const char *format, std::size_t) {
   return Formatter(format);
 }
+
+//! @} literal
+
 
 }
 

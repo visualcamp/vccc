@@ -11,7 +11,15 @@ namespace vccc{
 
 #if __cplusplus <= 201402L
 template<typename ...>
+
+/**
+@addtogroup type_traits
+@{
+*/
+
 using void_t = void;
+
+//! @}
 #else
 template<typename ...Args> using void_t = ::std::void_t<Args...>;
 # endif

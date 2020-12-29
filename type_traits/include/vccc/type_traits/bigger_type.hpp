@@ -10,8 +10,20 @@
 namespace vccc{
 
 /**
- *  returns bigger type
- */
+@addtogroup type_traits
+@{
+    @defgroup bigger_type bigger_type
+    @brief get biggest type among template parameters
+
+    @code{.cpp}
+        bigger_type_t<int, long, long long> x = 3;
+    @endcode
+@}
+
+@addtogroup bigger_type
+@{
+*/
+
 
 template<typename ...>
 struct bigger_type;
@@ -53,6 +65,7 @@ using bigger_type_t = typename bigger_type<Ts...>::type;
 template<typename ...>
 struct signed_bigger_type;
 
+
 template<typename T>
 struct signed_bigger_type<T>;
 
@@ -82,7 +95,6 @@ struct signed_bigger_type<T1, T2, Ts...> {
   using type = typename signed_bigger_type<bt, Ts...>::type;
 };
 
-
 template<typename ...Ts>
 using signed_bigger_type_t = typename signed_bigger_type<Ts...>::type;
 
@@ -94,6 +106,7 @@ using signed_bigger_type_t = typename signed_bigger_type<Ts...>::type;
 
 template<typename ...>
 struct unsigned_bigger_type;
+
 
 template<typename T>
 struct unsigned_bigger_type<T>;
@@ -126,6 +139,8 @@ struct unsigned_bigger_type<T1, T2, Ts...> {
 
 template<typename ...Ts>
 using unsigned_bigger_type_t = typename unsigned_bigger_type<Ts...>::type;
+
+//! @} bigger_type
 
 }
 

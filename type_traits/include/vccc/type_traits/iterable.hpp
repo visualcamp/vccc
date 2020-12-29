@@ -9,6 +9,19 @@
 
 namespace vccc{
 
+
+/**
+@addtogroup type_traits
+@{
+    @defgroup is_iterator
+    @brief check if a type is a iterator
+
+    std::iterator or pointer type
+@}
+
+@addtogroup is_iterator
+@{
+*/
 template<typename T, typename = void>
 struct is_iterator : std::false_type {};
 
@@ -34,6 +47,8 @@ constexpr auto is_iterator_v = is_iterator<T>::value;
 
 template<typename ...Ts>
 constexpr auto iterable = are_v<is_iterator<Ts>...> || are_v<std::is_pointer<Ts>...>;
+
+//! @} is_iterator
 
 }
 

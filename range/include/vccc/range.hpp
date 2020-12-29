@@ -6,5 +6,8 @@
 # define VCCC_RANGE_HPP
 #
 # include "vccc/range/range.hpp"
-#
+
+/**
+@defgroup range range
+*/
 # endif //VCCC_RANGE_HPP

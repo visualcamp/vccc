@@ -12,6 +12,15 @@
 
 namespace vccc{
 
+//! @addtogroup high_tuple
+//! @{
+
+/** @brief invokes the callable object f with a tuple of arguments
+ * @param f callable objects to be invoked
+ * @param t tuple whose elements to be used as arguments to f
+ * @return the value returned by f
+ */
+
 template<class F, class Tuple>
 constexpr
 decltype(auto)
@@ -20,6 +29,8 @@ apply(F&& f, Tuple&& t) {
       std::forward<F>(f), std::forward<Tuple>(t),
       std::make_index_sequence<std::tuple_size<std::remove_reference_t<Tuple>>::value>{});
 }
+
+//! @}
 
 }
 

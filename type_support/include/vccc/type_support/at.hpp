@@ -18,36 +18,58 @@
 namespace vccc{
 
 /**
- * returns cv::saturate_cast<C>(at<i>(t))
- */
+@addtogroup type_support
+@{
+    @defgroup type_support_at vccc::at
+    @brief Index-based value accessor
+@}
+*/
 
-template</* manual */ std::size_t i, typename C,
-    /* deduce */ typename T>
+//! @addtogroup type_support_at
+//! @{
+
+/**
+@brief returns cv::saturate_cast<C>(vccc::at<i>(t))
+
+@tparam i   index
+@tparam C   new type
+@param t    param
+@return     cv::saturate_cast<C>(at<i>(t))
+ */
+template<std::size_t i, typename C,
+         typename T>
 constexpr
 decltype(auto)
-at(const T& t) {
+at(const T& t)
+{
   return cv::saturate_cast<C>(at<i>(t));
 }
 
 
 /**
- * returns cv::saturate_cast<C>(at<i, j>(t))
- */
+@brief returns cv::saturate_cast<C>(vccc::at<i, j>(t))
 
-template</* manual */ std::size_t i, std::size_t j, typename C,
-    /* deduce */typename T>
+@tparam i   1D index
+@tparam j   2D index
+@tparam C   new type
+@param t    param
+@return     cv::saturate_cast<C>(at<i, j>(t))
+ */
+template<std::size_t i, std::size_t j, typename C,
+         typename T>
 constexpr
 decltype(auto)
-at(const T& t) {
+at(const T& t)
+{
   return cv::saturate_cast<C>(at<i, j>(t));
 }
 
-/**
- *  call at<...>(...) to args...
- */
+
 
 namespace detail{
 
+
+//TODO: change tuple element to use reference_wrapper
 template<typename ...Ts>
 class bind_obj {
  public:
@@ -55,15 +77,18 @@ class bind_obj {
   constexpr bind_obj(Args&&... args) : tup(std::forward<Args>(args)...) {}
 
   template<typename T>
-  constexpr bind_obj& operator = (T&& type) {
+  constexpr bind_obj& operator = (T&& type)
+  {
     bind_impl(std::forward<T>(type), std::index_sequence_for<Ts...>{});
     return *this;
   }
 
  private:
   template<typename T, std::size_t ...I>
-  constexpr void bind_impl(T&& type, std::index_sequence<I...>) {
-    [[maybe_unused]] volatile int dummy[sizeof...(I)] = {
+  constexpr void bind_impl(T&& type, std::index_sequence<I...>)
+  {
+    [[maybe_unused]]
+    int dummy[sizeof...(I)] = {
         (at<I>(tup) = at<I>(type), 0)...
     };
   }
@@ -74,10 +99,26 @@ class bind_obj {
 
 }
 
+/**
+@brief call at<...>(...) to args...
+
+@code
+float x, y;
+cv::Point2f p(1.1f, 2.2f);
+
+vccc::bind_at(x, y) = p;
+@endcode
+
+@param ...args args
+@return helper class bind_obj
+ */
+
 template<typename ...Args>
 constexpr detail::bind_obj<Args...> bind_at(Args&&... args) {
   return detail::bind_obj<Args...>(std::forward<Args>(args)...);
 }
+
+//! @} type_support_at
 
 }
 

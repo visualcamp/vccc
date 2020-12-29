@@ -10,5 +10,9 @@
 # include "numeric/sum.hpp"
 # include "numeric/stddev.hpp"
 # include "numeric/norm.hpp"
-#
+
+/**
+@defgroup numeric numeric
+*/
+
 # endif //VCCC_VCCC_NUMERIC_HPP

@@ -1,12 +1,18 @@
 var searchData=
 [
-  ['o_638',['o',['../dd/d89/_c_make_cache_8txt.html#ae47ca7a09cf6781e29634502345930a7',1,'CMakeCache.txt']]],
-  ['objc_5fnew_5fproperties_639',['OBJC_NEW_PROPERTIES',['../dd/d89/_c_make_cache_8txt.html#a3382b80c03615faad235069048ee2073',1,'CMakeCache.txt']]],
-  ['operator_20container_640',['operator Container',['../d0/d0e/classvccc_1_1range.html#a23975865b1493e6dca0ff82ac503a35c',1,'vccc::range::operator Container() &amp;'],['../d0/d0e/classvccc_1_1range.html#ab956dc01fa8ed20bec26bba5b4b20b29',1,'vccc::range::operator Container() &amp;&amp;']]],
-  ['operator_22_22_5fformat_641',['operator&quot;&quot;_format',['../dd/d6d/namespacevccc.html#a23d1870f872a4dde5eb1d200fcbd2a7c',1,'vccc']]],
-  ['operator_28_29_642',['operator()',['../d6/d0f/classvccc_1_1_formatter.html#a9dc5072f75f3100d86d3641bd37b08d6',1,'vccc::Formatter']]],
-  ['operator_2a_643',['operator*',['../d0/d4e/classvccc_1_1back__emplace__iterator.html#a4b6cfe776733ad6f4d4ba596bd5500c0',1,'vccc::back_emplace_iterator']]],
-  ['operator_2b_2b_644',['operator++',['../d0/d4e/classvccc_1_1back__emplace__iterator.html#a8a0d1c88e3151d8f3765a9eb47af7f72',1,'vccc::back_emplace_iterator::operator++()'],['../d0/d4e/classvccc_1_1back__emplace__iterator.html#aaa674426fcf65fe2609ba4823bd734d3',1,'vccc::back_emplace_iterator::operator++(int)']]],
-  ['operator_3c_3c_645',['operator&lt;&lt;',['../dd/d6d/namespacevccc.html#af14f879272f5100434405df9a1979738',1,'vccc::operator&lt;&lt;(std::ostream &amp;os, const T &amp;v)'],['../dd/d6d/namespacevccc.html#a41b9fc7b6715fe2294e0720c6a08ecfd',1,'vccc::operator&lt;&lt;(std::ostream &amp;os, const std::tuple&lt; Args... &gt; &amp;tup)'],['../dd/d6d/namespacevccc.html#aa0a6594e7a467b22e71575039da2e8c4',1,'vccc::operator&lt;&lt;(std::ostream &amp;os, const std::pair&lt; Args... &gt; &amp;tup)'],['../dd/d6d/namespacevccc.html#a3fc7cc71d129d0d04c6b550c9605141c',1,'vccc::operator&lt;&lt;(std::ostream &amp;os, const std::integer_sequence&lt; T, I... &gt; &amp;seq)']]],
-  ['operator_3d_646',['operator=',['../d1/d8d/classvccc_1_1detail_1_1bind__obj.html#a66f8dc79839da1c6dce7c6cc1a8b00af',1,'vccc::detail::bind_obj::operator=()'],['../d0/d4e/classvccc_1_1back__emplace__iterator.html#a73324c95531dbdd87c8b638fa0bc9332',1,'vccc::back_emplace_iterator::operator=(const typename Container::value_type &amp;value)'],['../d0/d4e/classvccc_1_1back__emplace__iterator.html#a7568ff9290f37d88377b8c1ffc70a627',1,'vccc::back_emplace_iterator::operator=(typename Container::value_type &amp;&amp;value)']]]
+  ['partial_5fdiff_2ehpp_236',['partial_diff.hpp',['../partial__diff_8hpp.html',1,'']]],
+  ['partial_20differential_237',['partial differential',['../group__partial__differential.html',1,'']]],
+  ['partialdiff_238',['partialDiff',['../group__partial__differential.html#gab8c74edb0573e22fa780d99c78b90456',1,'vccc::partialDiff(differential_symmetric_t, Func f, VarTuple vars, Args &amp;&amp;... args)'],['../group__partial__differential.html#ga08f92aef5195b551bc1a4254a8fe7082',1,'vccc::partialDiff(differential_newtonian_t, Func f, VarTuple vars, Args &amp;&amp;... args)'],['../group__partial__differential.html#ga68ac4ba222623a70c30bd2bec261a685',1,'vccc::partialDiff(differential_five_point_stencil_t, Func f, VarTuple vars, Args &amp;&amp;... args)']]],
+  ['pc_2ehpp_239',['pc.hpp',['../pc_8hpp.html',1,'']]],
+  ['pick_2ehpp_240',['pick.hpp',['../pick_8hpp.html',1,'']]],
+  ['pick_5fk_241',['pick_k',['../group__random.html#gae99973b9ad518a1a02897d58289ccb9e',1,'vccc']]],
+  ['platform_5flog_2ehpp_242',['platform_log.hpp',['../platform__log_8hpp.html',1,'']]],
+  ['print_2ehpp_243',['print.hpp',['../print_8hpp.html',1,'']]],
+  ['print_5fiterator_244',['print_iterator',['../namespacevccc_1_1detail.html#a5c8814395c6d55ce4c52cfd9beb98e21',1,'vccc::detail']]],
+  ['print_5fmultiples_245',['print_multiples',['../namespacevccc_1_1detail.html#a588f4d44b61c7e2d1a7327aa0566f395',1,'vccc::detail']]],
+  ['print_5fmultiples_5fimpl_246',['print_multiples_impl',['../namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab',1,'vccc::detail::impl::print_multiples_impl(std::ostream &amp;os, const Arg &amp;arg)'],['../namespacevccc_1_1detail_1_1impl.html#a94641dfe5df1610f0e73b800384134cf',1,'vccc::detail::impl::print_multiples_impl(std::ostream &amp;os, const Arg &amp;arg, const Args &amp;... args)']]],
+  ['print_5ftuple_247',['print_tuple',['../namespacevccc_1_1detail.html#a3bbc0bd59417ef4890eab7db1ccef48a',1,'vccc::detail']]],
+  ['print_5fwith_5fnewline_248',['PRINT_WITH_NEWLINE',['../pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33',1,'pc.hpp']]],
+  ['pwd_249',['PWD',['../group__log.html#ga0699c38e3c7f214f5c13ffe750e1f0ab',1,'pwd.hpp']]],
+  ['pwd_2ehpp_250',['pwd.hpp',['../pwd_8hpp.html',1,'']]]
 ];
