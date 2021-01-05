@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['int_5faverage_503',['int_average',['../group__numeric__average.html#ga6c7d7b2543e94b24e4891cb0f7c651c6',1,'vccc']]],
-  ['invoke_504',['invoke',['../group__high__functional.html#ga016f25723101075df1be615a2acba11b',1,'vccc::invoke()'],['../namespacevccc_1_1detail.html#aa3e3ea5794709a21fa5e2f2686e2d5fd',1,'vccc::detail::INVOKE(Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)'],['../namespacevccc_1_1detail.html#ae93702f629a4525e7c39d45d7b6055f6',1,'vccc::detail::INVOKE(F &amp;&amp;f, Args &amp;&amp;... args)']]],
-  ['invoke_5ftag1_505',['INVOKE_TAG1',['../namespacevccc_1_1detail.html#a46f509dac865f1f959834fc6a892e318',1,'vccc::detail::INVOKE_TAG1(std::true_type, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)'],['../namespacevccc_1_1detail.html#a6e6400bd81f86162d0975a8f511ebc17',1,'vccc::detail::INVOKE_TAG1(std::false_type, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)']]],
-  ['invokep_506',['INVOKEP',['../namespacevccc_1_1detail.html#ab1f6e87ba37513b0579dc4ff2c94353d',1,'vccc::detail::INVOKEP(invoke_category_base_of, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)'],['../namespacevccc_1_1detail.html#a724f9453d73e81100fbe7bad165ce927',1,'vccc::detail::INVOKEP(invoke_category_reference_wrapper, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)'],['../namespacevccc_1_1detail.html#ad3e959cb32c7c83a74e779d954466007',1,'vccc::detail::INVOKEP(invoke_category_normal, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)']]],
-  ['invokep_5fmf_507',['INVOKEP_MF',['../namespacevccc_1_1detail.html#a57b2568a4d02d9d54d19b1038e8fb2bc',1,'vccc::detail::INVOKEP_MF(invoke_category_base_of, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)'],['../namespacevccc_1_1detail.html#ac4385f6b31aaa26a27de6033143e7dc1',1,'vccc::detail::INVOKEP_MF(invoke_category_reference_wrapper, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)'],['../namespacevccc_1_1detail.html#a0caee5ec404514b8e2794f3c55202d14',1,'vccc::detail::INVOKEP_MF(invoke_category_normal, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)']]]
+  ['get_507',['get',['../classvccc_1_1_logger.html#a0455f54ea1bc97837f18ad396bde19d3',1,'vccc::Logger']]],
+  ['getcurrentmicroseconds_508',['getCurrentMicroseconds',['../group__utility__time.html#gaa5c0f0bd03c089a808e0c556c685e1f7',1,'vccc']]],
+  ['getcurrentmilliseconds_509',['getCurrentMilliseconds',['../group__utility__time.html#ga3cf94bf21e4362995a8e8bad137d88a1',1,'vccc']]],
+  ['getcurrentnanoseconds_510',['getCurrentNanoseconds',['../group__utility__time.html#gad46ef97b5599f245c74b2a36b20d4233',1,'vccc']]],
+  ['getcurrenttime_511',['getCurrentTime',['../group__utility__time.html#ga62aeafe3e287cefd462a38641d17b10e',1,'vccc']]],
+  ['gradient_512',['gradient',['../group__calculus.html#ga7c58303e6b080dfaf968140ecf0bdf57',1,'vccc']]]
 ];

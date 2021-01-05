@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['d_508',['d',['../classvccc_1_1_log__.html#a3a780ca8decce489d5571ff8eb777eb2',1,'vccc::Log_']]],
-  ['e_509',['e',['../classvccc_1_1_log__.html#ae3a97536877de54fe8ca501e2663473d',1,'vccc::Log_']]],
-  ['i_510',['i',['../classvccc_1_1_log__.html#a38a70fe1a03a1f777cd3b56a19eaf516',1,'vccc::Log_']]],
-  ['log_5f_511',['Log_',['../classvccc_1_1_log__.html#a0e9c81fb7e6fe2f6227a35f154e90d54',1,'vccc::Log_']]],
-  ['logger_512',['Logger',['../classvccc_1_1_logger.html#a2988aa3fd0f61a4e179e6127c6c37222',1,'vccc::Logger']]],
-  ['lossless_5fdiv_513',['lossless_div',['../group__numeric.html#gace493296d96d55ec35c7c76360ae22c4',1,'vccc']]],
-  ['v_514',['v',['../classvccc_1_1_log__.html#a802b0b010ff63f6d83e7c60f9b16cdbd',1,'vccc::Log_']]],
-  ['w_515',['w',['../classvccc_1_1_log__.html#ab7e7a20abac816fe991186a329d1e8be',1,'vccc::Log_']]]
+  ['i_513',['i',['../classvccc_1_1_log__.html#a2889f550376137befbfc675c30d2499c',1,'vccc::Log_']]],
+  ['int_5faverage_514',['int_average',['../group__numeric__average.html#ga6c7d7b2543e94b24e4891cb0f7c651c6',1,'vccc']]],
+  ['invoke_515',['invoke',['../group__high__functional.html#ga016f25723101075df1be615a2acba11b',1,'vccc::invoke()'],['../namespacevccc_1_1detail.html#aa3e3ea5794709a21fa5e2f2686e2d5fd',1,'vccc::detail::INVOKE(Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)'],['../namespacevccc_1_1detail.html#ae93702f629a4525e7c39d45d7b6055f6',1,'vccc::detail::INVOKE(F &amp;&amp;f, Args &amp;&amp;... args)']]],
+  ['invoke_5ftag1_516',['INVOKE_TAG1',['../namespacevccc_1_1detail.html#a46f509dac865f1f959834fc6a892e318',1,'vccc::detail::INVOKE_TAG1(std::true_type, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)'],['../namespacevccc_1_1detail.html#a6e6400bd81f86162d0975a8f511ebc17',1,'vccc::detail::INVOKE_TAG1(std::false_type, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)']]],
+  ['invokep_517',['INVOKEP',['../namespacevccc_1_1detail.html#ab1f6e87ba37513b0579dc4ff2c94353d',1,'vccc::detail::INVOKEP(invoke_category_base_of, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)'],['../namespacevccc_1_1detail.html#a724f9453d73e81100fbe7bad165ce927',1,'vccc::detail::INVOKEP(invoke_category_reference_wrapper, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)'],['../namespacevccc_1_1detail.html#ad3e959cb32c7c83a74e779d954466007',1,'vccc::detail::INVOKEP(invoke_category_normal, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)']]],
+  ['invokep_5fmf_518',['INVOKEP_MF',['../namespacevccc_1_1detail.html#a57b2568a4d02d9d54d19b1038e8fb2bc',1,'vccc::detail::INVOKEP_MF(invoke_category_base_of, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)'],['../namespacevccc_1_1detail.html#ac4385f6b31aaa26a27de6033143e7dc1',1,'vccc::detail::INVOKEP_MF(invoke_category_reference_wrapper, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)'],['../namespacevccc_1_1detail.html#a0caee5ec404514b8e2794f3c55202d14',1,'vccc::detail::INVOKEP_MF(invoke_category_normal, Type T::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)']]]
 ];

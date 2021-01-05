@@ -11,11 +11,13 @@
 
 namespace vccc{
 
-//! @addtogroup numeric
-//! @{
+/**
+@addtogroup numeric
+@{
+    @defgroup numeric_average average
+    @brief calculate average
+@}
 
-/** @defgroup numeric_average average
-@brief get average value of the given iterator or variadic
 @addtogroup numeric_average
 @{
 */

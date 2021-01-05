@@ -6,6 +6,7 @@
 # define VCCC_MATH_HPP
 #
 # include "vccc/math/calculus.hpp"
+# include "vccc/math/constants.hpp"
 
 /**
 @defgroup math math

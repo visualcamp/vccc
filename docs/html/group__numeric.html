@@ -99,26 +99,28 @@ $(document).ready(function(){initNavTree('group__numeric.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
 Modules</h2></td></tr>
+<tr class="memitem:group__numeric__average"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__numeric__average.html">average</a></td></tr>
+<tr class="memdesc:group__numeric__average"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculate average <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__numeric__norm"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__numeric__norm.html">norm</a></td></tr>
+<tr class="memdesc:group__numeric__norm"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculate norm <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__numeric__stddev"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__numeric__stddev.html">standard deviation</a></td></tr>
-<tr class="memdesc:group__numeric__stddev"><td class="mdescLeft">&#160;</td><td class="mdescRight">get standard deviation <br /></td></tr>
+<tr class="memdesc:group__numeric__stddev"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculate standard deviation <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__numeric__sum"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__numeric__sum.html">sum</a></td></tr>
 <tr class="memdesc:group__numeric__sum"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculate sum <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:group__numeric__average"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__numeric__average.html">average</a></td></tr>
-<tr class="memdesc:group__numeric__average"><td class="mdescLeft">&#160;</td><td class="mdescRight">get average value of the given iterator or variadic <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:group__numeric__norm"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__numeric__norm.html">norm</a></td></tr>
-<tr class="memdesc:group__numeric__norm"><td class="mdescLeft">&#160;</td><td class="mdescRight">get norm <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gace493296d96d55ec35c7c76360ae22c4"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
 <tr class="memitem:gace493296d96d55ec35c7c76360ae22c4"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric.html#gace493296d96d55ec35c7c76360ae22c4">vccc::lossless_div</a> (const T1 a, const T2 b)</td></tr>
+<tr class="memdesc:gace493296d96d55ec35c7c76360ae22c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">divide without narrowing  <a href="group__numeric.html#gace493296d96d55ec35c7c76360ae22c4">More...</a><br /></td></tr>
 <tr class="separator:gace493296d96d55ec35c7c76360ae22c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>most functions support both iterator and variadics </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gace493296d96d55ec35c7c76360ae22c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gace493296d96d55ec35c7c76360ae22c4">&#9670;&nbsp;</a></span>lossless_div()</h2>
@@ -147,6 +149,16 @@ template&lt;typename T1 , typename T2 &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>divide without narrowing </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>numerator </td></tr>
+    <tr><td class="paramname">b</td><td>denominator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a / b </dd></dl>
 
 </div>
 </div>

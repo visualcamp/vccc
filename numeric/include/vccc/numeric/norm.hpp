@@ -10,14 +10,14 @@
 
 namespace vccc{
 
-//! @addtogroup numeric
-//! @{
-
 /**
+@addtogroup numeric
+@{
 @defgroup numeric_norm norm
-@brief get norm
+@brief calculate norm
 
 \f$ {\large \hat{x} = \sqrt{\sum{x_i ^2}} }\f$
+@}
 
 @addtogroup numeric_norm
 @{

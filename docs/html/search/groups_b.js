@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['standard_20deviation_644',['standard deviation',['../group__numeric__stddev.html',1,'']]],
-  ['sum_645',['sum',['../group__numeric__sum.html',1,'']]]
+  ['standard_20deviation_655',['standard deviation',['../group__numeric__stddev.html',1,'']]],
+  ['sum_656',['sum',['../group__numeric__sum.html',1,'']]]
 ];

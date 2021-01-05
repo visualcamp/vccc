@@ -1,9 +1,9 @@
 var classvccc_1_1_log__ =
 [
     [ "Log_", "classvccc_1_1_log__.html#a0e9c81fb7e6fe2f6227a35f154e90d54", null ],
-    [ "Log_::v", "classvccc_1_1_log__.html#a802b0b010ff63f6d83e7c60f9b16cdbd", null ],
-    [ "Log_::d", "classvccc_1_1_log__.html#a3a780ca8decce489d5571ff8eb777eb2", null ],
-    [ "Log_::i", "classvccc_1_1_log__.html#a38a70fe1a03a1f777cd3b56a19eaf516", null ],
-    [ "Log_::w", "classvccc_1_1_log__.html#ab7e7a20abac816fe991186a329d1e8be", null ],
-    [ "Log_::e", "classvccc_1_1_log__.html#ae3a97536877de54fe8ca501e2663473d", null ]
+    [ "v", "classvccc_1_1_log__.html#a32bc5428f71713129a5052d164593497", null ],
+    [ "d", "classvccc_1_1_log__.html#a4292cf674d0134efacf19c7a5986f87c", null ],
+    [ "i", "classvccc_1_1_log__.html#a2889f550376137befbfc675c30d2499c", null ],
+    [ "w", "classvccc_1_1_log__.html#a930e6aac0244fe47ca11748ebbb0763f", null ],
+    [ "e", "classvccc_1_1_log__.html#ae36523983df552603a045f4d0292d5b6", null ]
 ];

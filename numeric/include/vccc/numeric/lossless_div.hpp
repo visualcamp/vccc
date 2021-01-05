@@ -12,6 +12,13 @@ namespace vccc{
 //! @addtogroup numeric
 //! @{
 
+/**
+@brief divide without narrowing
+
+@param a        numerator
+@param b        denominator
+@return a / b
+ */
 template<typename T1, typename T2>
 decltype(auto)
 lossless_div(const T1 a, const T2 b)

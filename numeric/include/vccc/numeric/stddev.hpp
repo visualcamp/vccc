@@ -13,7 +13,7 @@ namespace vccc {
 @addtogroup numeric
 @{
     @defgroup numeric_stddev standard deviation
-    @brief get standard deviation
+    @brief calculate standard deviation
 
     \f$ {\large \sigma=\sqrt{\frac{\sum{(x_i - \mu)}}{N}}} \f$
 @}

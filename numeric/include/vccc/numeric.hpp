@@ -13,6 +13,8 @@
 
 /**
 @defgroup numeric numeric
+
+most functions support both iterator and variadics
 */
 
 # endif //VCCC_VCCC_NUMERIC_HPP

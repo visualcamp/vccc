@@ -3,8 +3,8 @@
 
 Modules:
 - \subpage high C++14 implementation of STL that is in C++17 or higher version.
-- \subpage literal literal python-like _format support.
-- \subpage log log logging support for multiplatform.
+- \subpage literal python-like _format support.
+- \subpage log logging support for multiplatform.
 - \subpage math mathematics.
 - \subpage numeric numerics.
 - \subpage random random algorithms.
