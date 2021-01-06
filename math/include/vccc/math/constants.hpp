@@ -5,6 +5,8 @@
 #ifndef VCCC_MATH_CONSTANTS_HPP
 #define VCCC_MATH_CONSTANTS_HPP
 
+namespace vccc{
+
 /**
 @addtogroup math
 @{
@@ -30,8 +32,7 @@
 //#define M_SQRT1_2   0.707106781186547524400844362104849039  /* 1/sqrt(2)      */
 //
 //#define MAXFLOAT    0x1.fffffep+127f
-namespace constant {
-namespace math {
+namespace math_constant {
 
 /** @brief natural constant
  * @tparam T
