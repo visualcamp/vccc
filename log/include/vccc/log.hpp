@@ -7,6 +7,7 @@
 #
 # include "vccc/log/pwd.hpp"
 # include "vccc/log/log.hpp"
+# include "vccc/log/function_macro.hpp"
 
 /**
 @defgroup log log
