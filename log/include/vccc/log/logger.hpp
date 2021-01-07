@@ -103,7 +103,7 @@ template<typename ...Args>
 void
 Logger::addFormatted(const char* fmt, const Args&... val)
 {
-  ssize_t size = snprintf(NULL, 0, fmt, val...);
+  int size = snprintf(NULL, 0, fmt, val...);
   if(buffer.size() < size + 1)    buffer.resize(size + 1);
   else if (buffer.size() > 100)   buffer.resize(100); // prevents too frequent resizing
   snprintf(buffer.data(), size + 1, fmt, val...);

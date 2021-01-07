@@ -11,18 +11,18 @@
 #define VCCC_LOG_DEBUG
 
 #ifdef VCCC_LOG_DEBUG
-  #define PRINT_WITH_NEWLINE(fmt, ...) std::printf(fmt "\n", __VA_ARGS__)
-  #define FPRINT_WITH_NEWLINE(out, fmt, ...) std::fprintf(out, fmt "\n", __VA_ARGS__)
+#define EXPAND(x) x
 
-  #define EXPAND(x) x
+  #define PRINT_WITH_NEWLINE(fmt, ...) EXPAND(std::printf(fmt "\n", __VA_ARGS__))
+  #define FPRINT_WITH_NEWLINE(out, fmt, ...) EXPAND(std::fprintf(out, fmt "\n", __VA_ARGS__))
 
-  #define LOGV_IMPL(...) PRINT_WITH_NEWLINE(EXPAND(__VA_ARGS__))
-  #define LOGD_IMPL(...) PRINT_WITH_NEWLINE(EXPAND(__VA_ARGS__))
-  #define LOGI_IMPL(...) PRINT_WITH_NEWLINE(EXPAND(__VA_ARGS__))
-  #define LOGW_IMPL(...) PRINT_WITH_NEWLINE(EXPAND(__VA_ARGS__))
-  #define LOGE_IMPL(...) FPRINT_WITH_NEWLINE(stderr, EXPAND(__VA_ARGS__))
-  #define LOGF_IMPL(...) PRINT_WITH_NEWLINE(EXPAND(__VA_ARGS__))
-  #define LOGS_IMPL(...) PRINT_WITH_NEWLINE(EXPAND(__VA_ARGS__))
+  #define LOGV_IMPL(...) EXPAND(PRINT_WITH_NEWLINE(__VA_ARGS__))
+  #define LOGD_IMPL(...) EXPAND(PRINT_WITH_NEWLINE(__VA_ARGS__))
+  #define LOGI_IMPL(...) EXPAND(PRINT_WITH_NEWLINE(__VA_ARGS__))
+  #define LOGW_IMPL(...) EXPAND(PRINT_WITH_NEWLINE(__VA_ARGS__))
+  #define LOGE_IMPL(...) EXPAND(FPRINT_WITH_NEWLINE(stderr, __VA_ARGS__))
+  #define LOGF_IMPL(...) EXPAND(PRINT_WITH_NEWLINE(__VA_ARGS__))
+  #define LOGS_IMPL(...) EXPAND(PRINT_WITH_NEWLINE(__VA_ARGS__))
 #else
   #define LOGV_IMPL(...)
   #define LOGD_IMPL(...)
