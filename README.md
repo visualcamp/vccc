@@ -2,4 +2,4 @@
 ## VisualCamp Common C++ library
 * Requires C++14 or above
 
-## [Document](https://visualcamp.github.io/vccc/)
+## [Go to document](https://visualcamp.github.io/vccc/)
