@@ -18,18 +18,19 @@ namespace vccc{
 
 @addtogroup is_specialization
 @{
+
+@code{.cpp}
+std::vector<int> v;
+std::cout << std::boolalpha;
+std::cout << vccc::is_specialization<decltype(v), std::vector>::value << std::endl;
+@endcode
+
 */
 template<typename Test, template<typename...> class Ref>
 struct is_specialization : std::false_type {};
 
 template<template<typename...> class Ref, typename... Args>
 struct is_specialization<Ref<Args...>, Ref> : std::true_type {};
-
-template<template<typename...> class Ref, typename ...Args>
-using is_specialization_t = typename is_specialization<Ref<Args...>, Ref>::type;
-
-template<template<typename...> class Ref, typename ...Args>
-constexpr auto is_specialization_v = is_specialization<Ref<Args...>, Ref>::value;
 
 //! @} is_specialization
 
