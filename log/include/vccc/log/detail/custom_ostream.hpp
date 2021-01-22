@@ -6,11 +6,10 @@
 #define VCCC_LOG_CUSTOM_OSTREAM_HPP
 
 #include "vccc/log/detail/print.hpp"
-#include "vccc/type_traits.hpp"
 
 namespace vccc{
 
-template<typename T, VCCC_REQUIRE_IMPL(is_container<T>::value && !is_printable<T>::value)>
+template<typename T, VCCC_REQUIRE_IMPL(is_container<T>::value && !is_string_like<T>::value)>
 std::ostream&
 operator <<
 (std::ostream& os, const T& v)
