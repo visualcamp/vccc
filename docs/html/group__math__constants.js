@@ -1,7 +1,6 @@
 var group__math__constants =
 [
-    [ "constant", "namespaceconstant.html", null ],
-    [ "math", "namespaceconstant_1_1math.html", null ],
-    [ "e", "group__math__constants.html#ga9ecbafbe95debff2a7f43a354060a510", null ],
-    [ "pi", "group__math__constants.html#gaff98d92d56d70124fc74a633117a1ed2", null ]
+    [ "math_constant", "namespacevccc_1_1math__constant.html", null ],
+    [ "e", "group__math__constants.html#ga737cf6aaf99f290a0cfe00aaf5cca90a", null ],
+    [ "pi", "group__math__constants.html#ga1bf9fa2e6839299a6b86d152bd5d2236", null ]
 ];

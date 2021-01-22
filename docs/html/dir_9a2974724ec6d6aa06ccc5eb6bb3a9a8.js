@@ -7,6 +7,7 @@ var dir_9a2974724ec6d6aa06ccc5eb6bb3a9a8 =
     [ "back_emplace.hpp", "back__emplace_8hpp.html", "back__emplace_8hpp" ],
     [ "convert_to.hpp", "convert__to_8hpp.html", "convert__to_8hpp" ],
     [ "core.hpp", "core_8hpp.html", null ],
+    [ "reserved.hpp", "reserved_8hpp.html", "reserved_8hpp" ],
     [ "resize.hpp", "resize_8hpp.html", "resize_8hpp" ],
     [ "vtype_convert.hpp", "vtype__convert_8hpp.html", "vtype__convert_8hpp" ]
 ];

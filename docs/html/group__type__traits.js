@@ -7,6 +7,7 @@ var group__type__traits =
     [ "Is_printable", "group__is__printable.html", "group__is__printable" ],
     [ "Is_specialization", "group__is__specialization.html", "group__is__specialization" ],
     [ "Is_std_array", "group__is__std__array.html", "group__is__std__array" ],
+    [ "Is_string_like", "group__is__string__like.html", "group__is__string__like" ],
     [ "Is_iterator", "group__is__iterator.html", "group__is__iterator" ],
     [ "multiples_of", "group__multiples__of.html", "group__multiples__of" ],
     [ "is_odd", "group__is__odd.html", "group__is__odd" ],

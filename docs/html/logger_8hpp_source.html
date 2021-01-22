@@ -198,7 +198,7 @@ $(document).ready(function(){initNavTree('logger_8hpp_source.html',''); initResi
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keywordtype">void</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;Logger::addFormatted(<span class="keyword">const</span> <span class="keywordtype">char</span>* fmt, <span class="keyword">const</span> Args&amp;... val)</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;{</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  ssize_t size = snprintf(NULL, 0, fmt, val...);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <span class="keywordtype">int</span> size = snprintf(NULL, 0, fmt, val...);</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <span class="keywordflow">if</span>(buffer.size() &lt; size + 1)    buffer.resize(size + 1);</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (buffer.size() &gt; 100)   buffer.resize(100); <span class="comment">// prevents too frequent resizing</span></div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  snprintf(buffer.data(), size + 1, fmt, val...);</div>

@@ -100,50 +100,51 @@ $(document).ready(function(){initNavTree('constants_8hpp_source.html',''); initR
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef VCCC_MATH_CONSTANTS_HPP</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define VCCC_MATH_CONSTANTS_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">//#define M_E         2.71828182845904523536028747135266250   /* e              */</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//#define M_LOG2E     1.44269504088896340735992468100189214   /* log2(e)        */</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">//#define M_LOG10E    0.434294481903251827651128918916605082  /* log10(e)       */</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">//#define M_LN2       0.693147180559945309417232121458176568  /* loge(2)        */</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">//#define M_LN10      2.30258509299404568401799145468436421   /* loge(10)       */</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">//#define M_PI        3.14159265358979323846264338327950288   /* pi             */</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">//#define M_PI_2      1.57079632679489661923132169163975144   /* pi/2           */</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//#define M_PI_4      0.785398163397448309615660845819875721  /* pi/4           */</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//#define M_1_PI      0.318309886183790671537767526745028724  /* 1/pi           */</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">//#define M_2_PI      0.636619772367581343075535053490057448  /* 2/pi           */</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//#define M_2_SQRTPI  1.12837916709551257389615890312154517   /* 2/sqrt(pi)     */</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">//#define M_SQRT2     1.41421356237309504880168872420969808   /* sqrt(2)        */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">//#define M_SQRT1_2   0.707106781186547524400844362104849039  /* 1/sqrt(2)      */</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//#define MAXFLOAT    0x1.fffffep+127f</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="namespaceconstant.html">   33</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceconstant.html">constant</a> {</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="namespaceconstant_1_1math.html">   34</a></span>&#160;<span class="keyword">namespace </span>math {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="group__math__constants.html#ga9ecbafbe95debff2a7f43a354060a510">   40</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="group__math__constants.html#ga9ecbafbe95debff2a7f43a354060a510">e</a> = 2.71828182845904523536028747135266250;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">//template&lt;typename T&gt;</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">//constexpr auto log2e = 1.44269504088896340735992468100189214;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">//template&lt;typename T&gt;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//constexpr auto log10e =</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">//#define M_E         2.71828182845904523536028747135266250   /* e              */</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">//#define M_LOG2E     1.44269504088896340735992468100189214   /* log2(e)        */</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">//#define M_LOG10E    0.434294481903251827651128918916605082  /* log10(e)       */</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">//#define M_LN2       0.693147180559945309417232121458176568  /* loge(2)        */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">//#define M_LN10      2.30258509299404568401799145468436421   /* loge(10)       */</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//#define M_PI        3.14159265358979323846264338327950288   /* pi             */</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//#define M_PI_2      1.57079632679489661923132169163975144   /* pi/2           */</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">//#define M_PI_4      0.785398163397448309615660845819875721  /* pi/4           */</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//#define M_1_PI      0.318309886183790671537767526745028724  /* 1/pi           */</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">//#define M_2_PI      0.636619772367581343075535053490057448  /* 2/pi           */</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">//#define M_2_SQRTPI  1.12837916709551257389615890312154517   /* 2/sqrt(pi)     */</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">//#define M_SQRT2     1.41421356237309504880168872420969808   /* sqrt(2)        */</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//#define M_SQRT1_2   0.707106781186547524400844362104849039  /* 1/sqrt(2)      */</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">//#define MAXFLOAT    0x1.fffffep+127f</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="namespacevccc_1_1math__constant.html">   35</a></span>&#160;<span class="keyword">namespace </span>math_constant {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="group__math__constants.html#ga737cf6aaf99f290a0cfe00aaf5cca90a">   41</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="group__math__constants.html#ga737cf6aaf99f290a0cfe00aaf5cca90a">e</a> = 2.71828182845904523536028747135266250;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">//template&lt;typename T&gt;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">//constexpr auto log2e = 1.44269504088896340735992468100189214;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//template&lt;typename T&gt;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">//constexpr auto log10e =</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="group__math__constants.html#gaff98d92d56d70124fc74a633117a1ed2">   53</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="group__math__constants.html#gaff98d92d56d70124fc74a633117a1ed2">pi</a> = 3.14159265358979323846264338327950288;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="group__math__constants.html#ga1bf9fa2e6839299a6b86d152bd5d2236">   54</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="group__math__constants.html#ga1bf9fa2e6839299a6b86d152bd5d2236">pi</a> = 3.14159265358979323846264338327950288;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif //VCCC_MATH_CONSTANTS_HPP</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif //VCCC_MATH_CONSTANTS_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespaceconstant_html"><div class="ttname"><a href="namespaceconstant.html">constant</a></div><div class="ttdef"><b>Definition:</b> constants.hpp:33</div></div>
-<div class="ttc" id="agroup__math__constants_html_ga9ecbafbe95debff2a7f43a354060a510"><div class="ttname"><a href="group__math__constants.html#ga9ecbafbe95debff2a7f43a354060a510">constant::math::e</a></div><div class="ttdeci">constexpr auto e</div><div class="ttdoc">natural constant</div><div class="ttdef"><b>Definition:</b> constants.hpp:40</div></div>
-<div class="ttc" id="agroup__math__constants_html_gaff98d92d56d70124fc74a633117a1ed2"><div class="ttname"><a href="group__math__constants.html#gaff98d92d56d70124fc74a633117a1ed2">constant::math::pi</a></div><div class="ttdeci">constexpr auto pi</div><div class="ttdoc">pi</div><div class="ttdef"><b>Definition:</b> constants.hpp:53</div></div>
+<div class="ttc" id="agroup__math__constants_html_ga1bf9fa2e6839299a6b86d152bd5d2236"><div class="ttname"><a href="group__math__constants.html#ga1bf9fa2e6839299a6b86d152bd5d2236">vccc::math_constant::pi</a></div><div class="ttdeci">constexpr auto pi</div><div class="ttdoc">pi</div><div class="ttdef"><b>Definition:</b> constants.hpp:54</div></div>
+<div class="ttc" id="agroup__math__constants_html_ga737cf6aaf99f290a0cfe00aaf5cca90a"><div class="ttname"><a href="group__math__constants.html#ga737cf6aaf99f290a0cfe00aaf5cca90a">vccc::math_constant::e</a></div><div class="ttdeci">constexpr auto e</div><div class="ttdoc">natural constant</div><div class="ttdef"><b>Definition:</b> constants.hpp:41</div></div>
+<div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

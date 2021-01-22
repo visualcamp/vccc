@@ -27,6 +27,8 @@ var namespacevccc =
     [ "is_specialization< Ref< Args... >, Ref >", "structvccc_1_1is__specialization_3_01_ref_3_01_args_8_8_8_01_4_00_01_ref_01_4.html", null ],
     [ "is_std_array", "structvccc_1_1is__std__array.html", null ],
     [ "is_std_array< std::array< T, n > >", "structvccc_1_1is__std__array_3_01std_1_1array_3_01_t_00_01n_01_4_01_4.html", null ],
+    [ "is_string_like", "structvccc_1_1is__string__like.html", null ],
+    [ "is_string_like< const char * >", "structvccc_1_1is__string__like_3_01const_01char_01_5_01_4.html", null ],
     [ "Log_", "classvccc_1_1_log__.html", "classvccc_1_1_log__" ],
     [ "Logger", "classvccc_1_1_logger.html", "classvccc_1_1_logger" ],
     [ "lossless_type_add", "structvccc_1_1lossless__type__add.html", null ],

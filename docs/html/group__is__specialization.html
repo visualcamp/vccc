@@ -90,9 +90,7 @@ $(document).ready(function(){initNavTree('group__is__specialization.html',''); i
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
 <div class="title">Is_specialization<div class="ingroups"><a class="el" href="group__type__traits.html">type_traits</a></div></div>  </div>
 </div><!--header-->
@@ -107,65 +105,15 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1is__specialization_3_01_ref_3_01_args_8_8_8_01_4_00_01_ref_01_4.html">vccc::is_specialization&lt; Ref&lt; Args... &gt;, Ref &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:gaa488382be383cf482a758fbc2c9ef890"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename... &gt; class Ref, typename ... Args&gt; </td></tr>
-<tr class="memitem:gaa488382be383cf482a758fbc2c9ef890"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__is__specialization.html#gaa488382be383cf482a758fbc2c9ef890">vccc::is_specialization_t</a> = typename <a class="el" href="structvccc_1_1is__specialization.html">is_specialization</a>&lt; Ref&lt; Args... &gt;, Ref &gt;::type</td></tr>
-<tr class="separator:gaa488382be383cf482a758fbc2c9ef890"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ga1dfe1efdfb3a4875e9e95eee417608a9"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename... &gt; class Ref, typename ... Args&gt; </td></tr>
-<tr class="memitem:ga1dfe1efdfb3a4875e9e95eee417608a9"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__is__specialization.html#ga1dfe1efdfb3a4875e9e95eee417608a9">vccc::is_specialization_v</a> = <a class="el" href="structvccc_1_1is__specialization.html">is_specialization</a>&lt;Ref&lt;Args...&gt;, Ref&gt;::value</td></tr>
-<tr class="separator:ga1dfe1efdfb3a4875e9e95eee417608a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>check if a type is specialization of another type </p>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="gaa488382be383cf482a758fbc2c9ef890"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa488382be383cf482a758fbc2c9ef890">&#9670;&nbsp;</a></span>is_specialization_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;template&lt; typename... &gt; class Ref, typename ... Args&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="group__is__specialization.html#gaa488382be383cf482a758fbc2c9ef890">vccc::is_specialization_t</a> = typedef typename <a class="el" href="structvccc_1_1is__specialization.html">is_specialization</a>&lt;Ref&lt;Args...&gt;, Ref&gt;::type</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="ga1dfe1efdfb3a4875e9e95eee417608a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1dfe1efdfb3a4875e9e95eee417608a9">&#9670;&nbsp;</a></span>is_specialization_v</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;template&lt; typename... &gt; class Ref, typename ... Args&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto vccc::is_specialization_v = <a class="el" href="structvccc_1_1is__specialization.html">is_specialization</a>&lt;Ref&lt;Args...&gt;, Ref&gt;::value</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-</div><!-- contents -->
+<div class="fragment"><div class="line">std::vector&lt;int&gt; v;</div>
+<div class="line">std::cout &lt;&lt; std::boolalpha;</div>
+<div class="line">std::cout &lt;&lt; <a class="code" href="structvccc_1_1is__specialization.html">vccc::is_specialization</a>&lt;decltype(v), std::vector&gt;::value &lt;&lt; std::endl;</div>
+</div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="astructvccc_1_1is__specialization_html"><div class="ttname"><a href="structvccc_1_1is__specialization.html">vccc::is_specialization</a></div><div class="ttdef"><b>Definition:</b> is_specialization.hpp:30</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

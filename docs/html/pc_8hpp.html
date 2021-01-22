@@ -103,23 +103,25 @@ $(document).ready(function(){initNavTree('pc_8hpp.html',''); initResizable(); })
 Macros</h2></td></tr>
 <tr class="memitem:a2d3e259ccf6dedd5c5dd8ba55a88555c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#a2d3e259ccf6dedd5c5dd8ba55a88555c">VCCC_LOG_DEBUG</a></td></tr>
 <tr class="separator:a2d3e259ccf6dedd5c5dd8ba55a88555c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe9bb06d2584fe8417e3f4476cb5ad33"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(fmt, ...)&#160;&#160;&#160;std::printf(fmt &quot;\n&quot;, __VA_ARGS__)</td></tr>
+<tr class="memitem:ae4b532a93c757194ec73b6790a3e6b1f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(x)&#160;&#160;&#160;x</td></tr>
+<tr class="separator:ae4b532a93c757194ec73b6790a3e6b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe9bb06d2584fe8417e3f4476cb5ad33"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(fmt, ...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(std::printf(fmt &quot;\n&quot;, __VA_ARGS__))</td></tr>
 <tr class="separator:afe9bb06d2584fe8417e3f4476cb5ad33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a611f18d05ae0c9d3f49e58693e4f16d7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(out,  fmt, ...)&#160;&#160;&#160;std::fprintf(out, fmt &quot;\n&quot;, __VA_ARGS__)</td></tr>
+<tr class="memitem:a611f18d05ae0c9d3f49e58693e4f16d7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(out,  fmt, ...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(std::fprintf(out, fmt &quot;\n&quot;, __VA_ARGS__))</td></tr>
 <tr class="separator:a611f18d05ae0c9d3f49e58693e4f16d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d8deb7dd86a3cd730303fee394a7ef6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#a4d8deb7dd86a3cd730303fee394a7ef6">LOGV_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(__VA_ARGS__)</td></tr>
+<tr class="memitem:a4d8deb7dd86a3cd730303fee394a7ef6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#a4d8deb7dd86a3cd730303fee394a7ef6">LOGV_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stdout, __VA_ARGS__))</td></tr>
 <tr class="separator:a4d8deb7dd86a3cd730303fee394a7ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a751c87e3346555ee0eae70969812c4d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#a751c87e3346555ee0eae70969812c4d0">LOGD_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(__VA_ARGS__)</td></tr>
+<tr class="memitem:a751c87e3346555ee0eae70969812c4d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#a751c87e3346555ee0eae70969812c4d0">LOGD_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stdout, __VA_ARGS__))</td></tr>
 <tr class="separator:a751c87e3346555ee0eae70969812c4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00785862b6896afcc50bbd2c92b45309"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#a00785862b6896afcc50bbd2c92b45309">LOGI_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(__VA_ARGS__)</td></tr>
+<tr class="memitem:a00785862b6896afcc50bbd2c92b45309"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#a00785862b6896afcc50bbd2c92b45309">LOGI_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stdout, __VA_ARGS__))</td></tr>
 <tr class="separator:a00785862b6896afcc50bbd2c92b45309"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad372c186f5eb362e1ae047c5b62c7fb9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#ad372c186f5eb362e1ae047c5b62c7fb9">LOGW_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(__VA_ARGS__)</td></tr>
+<tr class="memitem:ad372c186f5eb362e1ae047c5b62c7fb9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#ad372c186f5eb362e1ae047c5b62c7fb9">LOGW_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stdout, __VA_ARGS__))</td></tr>
 <tr class="separator:ad372c186f5eb362e1ae047c5b62c7fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accf2fc3ff8b7f5f8357a20f5209cc2da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#accf2fc3ff8b7f5f8357a20f5209cc2da">LOGE_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stderr, __VA_ARGS__)</td></tr>
+<tr class="memitem:accf2fc3ff8b7f5f8357a20f5209cc2da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#accf2fc3ff8b7f5f8357a20f5209cc2da">LOGE_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stderr, __VA_ARGS__))</td></tr>
 <tr class="separator:accf2fc3ff8b7f5f8357a20f5209cc2da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaafe64ec6cf6cf2a29a1688ec83f61d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#aaafe64ec6cf6cf2a29a1688ec83f61d8">LOGF_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(__VA_ARGS__)</td></tr>
+<tr class="memitem:aaafe64ec6cf6cf2a29a1688ec83f61d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#aaafe64ec6cf6cf2a29a1688ec83f61d8">LOGF_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stdout, __VA_ARGS__))</td></tr>
 <tr class="separator:aaafe64ec6cf6cf2a29a1688ec83f61d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdd1d6151838874dcfc65c9b80cb9836"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#abdd1d6151838874dcfc65c9b80cb9836">LOGS_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(__VA_ARGS__)</td></tr>
+<tr class="memitem:abdd1d6151838874dcfc65c9b80cb9836"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pc_8hpp.html#abdd1d6151838874dcfc65c9b80cb9836">LOGS_IMPL</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stdout, __VA_ARGS__))</td></tr>
 <tr class="separator:abdd1d6151838874dcfc65c9b80cb9836"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -131,6 +133,24 @@ Macros</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define VCCC_LOG_DEBUG</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4b532a93c757194ec73b6790a3e6b1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4b532a93c757194ec73b6790a3e6b1f">&#9670;&nbsp;</a></span>EXPAND</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EXPAND</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;x</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -158,7 +178,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;std::printf(fmt &quot;\n&quot;, __VA_ARGS__)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(std::printf(fmt &quot;\n&quot;, __VA_ARGS__))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -192,7 +212,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;std::fprintf(out, fmt &quot;\n&quot;, __VA_ARGS__)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(std::fprintf(out, fmt &quot;\n&quot;, __VA_ARGS__))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -210,7 +230,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(__VA_ARGS__)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stdout, __VA_ARGS__))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -228,7 +248,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(__VA_ARGS__)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stdout, __VA_ARGS__))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -246,7 +266,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(__VA_ARGS__)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stdout, __VA_ARGS__))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -264,7 +284,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(__VA_ARGS__)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stdout, __VA_ARGS__))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -282,7 +302,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stderr, __VA_ARGS__)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stderr, __VA_ARGS__))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -300,7 +320,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(__VA_ARGS__)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stdout, __VA_ARGS__))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -318,7 +338,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33">PRINT_WITH_NEWLINE</a>(__VA_ARGS__)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f">EXPAND</a>(<a class="el" href="pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7">FPRINT_WITH_NEWLINE</a>(stdout, __VA_ARGS__))</td>
         </tr>
       </table>
 </div><div class="memdoc">

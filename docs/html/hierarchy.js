@@ -42,6 +42,7 @@ var hierarchy =
       [ "vccc::detail::is_cv_type< T >", "structvccc_1_1detail_1_1is__cv__type.html", null ],
       [ "vccc::is_even< T, A >", "structvccc_1_1is__even.html", null ],
       [ "vccc::is_odd< T, A >", "structvccc_1_1is__odd.html", null ],
+      [ "vccc::is_string_like< T >", "structvccc_1_1is__string__like.html", null ],
       [ "vccc::multiples_of< T, A, B >", "structvccc_1_1multiples__of.html", null ]
     ] ],
     [ "vccc::detail::invoke_category_base_of", "structvccc_1_1detail_1_1invoke__category__base__of.html", null ],
@@ -80,7 +81,8 @@ var hierarchy =
       [ "vccc::value >>< T >", "structvccc_1_1is__iterator_3_01_t_00_01typename_01std_1_1enable__if__t_3_01_9std_1_1is__same_3_031cee29632939dce45d2f2301d4d91a3.html", null ],
       [ "vccc::is_printable< T, void_t< decltype(std::cout<< std::declval< T >())> >", "structvccc_1_1is__printable_3_01_t_00_01void__t_3_01decltype_07std_1_1cout_3_3_01std_1_1declval_3_01_t_01_4_07_08_08_4_01_4.html", null ],
       [ "vccc::is_specialization< Ref< Args... >, Ref >", "structvccc_1_1is__specialization_3_01_ref_3_01_args_8_8_8_01_4_00_01_ref_01_4.html", null ],
-      [ "vccc::is_std_array< std::array< T, n > >", "structvccc_1_1is__std__array_3_01std_1_1array_3_01_t_00_01n_01_4_01_4.html", null ]
+      [ "vccc::is_std_array< std::array< T, n > >", "structvccc_1_1is__std__array_3_01std_1_1array_3_01_t_00_01n_01_4_01_4.html", null ],
+      [ "vccc::is_string_like< const char * >", "structvccc_1_1is__string__like_3_01const_01char_01_5_01_4.html", null ]
     ] ],
     [ "vccc::unsigned_bigger_type<... >", "structvccc_1_1unsigned__bigger__type.html", null ],
     [ "vccc::unsigned_bigger_type< T >", "structvccc_1_1unsigned__bigger__type_3_01_t_01_4.html", null ],

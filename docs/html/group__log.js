@@ -1,6 +1,7 @@
 var group__log =
 [
     [ "vccc", "namespacevccc.html", null ],
+    [ "VCCC_FUNCTION", "group__log.html#ga6751c19bf1da9a5a4b3828f2c6c826bd", null ],
     [ "LOGV", "group__log.html#gab78bd305488c62caf8515ee765b1ed49", null ],
     [ "LOGD", "group__log.html#gaa839997a58e14061861cd634fdb7664d", null ],
     [ "LOGI", "group__log.html#ga5512e59d578a380a441a70256af997d0", null ],

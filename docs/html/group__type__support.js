@@ -2,6 +2,7 @@ var group__type__support =
 [
     [ "vccc::at", "group__type__support__at.html", "group__type__support__at" ],
     [ "vccc::convert_to", "group__type__support__cvtto.html", "group__type__support__cvtto" ],
+    [ "reserved", "group__type__support__reserved.html", "group__type__support__reserved" ],
     [ "vccc::vtype_convert", "group__type__support__vtype__convert.html", "group__type__support__vtype__convert" ],
     [ "vccc::cv_size", "group__type__support__cv__size.html", "group__type__support__cv__size" ],
     [ "back_emplace_iterator", "classvccc_1_1back__emplace__iterator.html", [
