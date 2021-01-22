@@ -13,7 +13,7 @@ namespace vccc{
 /**
 @addtogroup type_traits
 @{
-    @defgroup is_std_array
+    @defgroup is_std_array is_std_array
     @brief check if a type is std::array
 @}
 

@@ -13,8 +13,8 @@ namespace vccc{
 /**
 @addtogroup type_traits
 @{
-    @defgroup is_iterator
-    @brief check if a type is a iterator
+    @defgroup is_iterator is_iterator
+    @brief check if a type is a iterable type
 
     std::iterator or pointer type
 @}

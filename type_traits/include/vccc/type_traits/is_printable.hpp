@@ -13,7 +13,7 @@ namespace vccc{
 /**
 @addtogroup type_traits
 @{
-    @defgroup is_printable
+    @defgroup is_printable is_printable
     @brief check if a type is default printable
 @}
 

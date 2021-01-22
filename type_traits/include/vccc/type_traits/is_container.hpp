@@ -11,7 +11,8 @@ namespace vccc {
 
 /** @addtogroup type_traits
 @{
-    @defgroup is_container
+    @defgroup is_container is_container
+    @brief check if a type is container
 @}
 @addtogroup is_container
 @{ */

@@ -12,7 +12,7 @@ namespace vccc{
 /**
 @addtogroup type_traits
 @{
-    @defgroup is_specialization
+    @defgroup is_specialization is_specialization
     @brief check if a type is specialization of another type
 @}
 

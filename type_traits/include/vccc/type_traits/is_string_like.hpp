@@ -18,7 +18,7 @@ namespace vccc{
 /**
 @addtogroup type_traits
 @{
-    @defgroup is_string_like
+    @defgroup is_string_like is_string_like
     @brief check if a type is string-like type
 @}
 
