@@ -13,6 +13,7 @@
 # include "type_traits/is_printable.hpp"
 # include "type_traits/is_specialization.hpp"
 # include "type_traits/is_std_array.hpp"
+# include "type_traits/is_string_like.hpp"
 # include "type_traits/iterable.hpp"
 # include "type_traits/require.hpp"
 # include "type_traits/numeric.hpp"
