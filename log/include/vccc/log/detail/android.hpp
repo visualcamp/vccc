@@ -12,8 +12,6 @@
 # endif
 
 #ifdef NDEBUG
-  #define VCCC_LOG_DEBUG
-
   #define LOGV_IMPL(...)
   #define LOGD_IMPL(...)
   #define LOGI_IMPL(...)
@@ -22,6 +20,8 @@
   #define LOGF_IMPL(...)
   #define LOGS_IMPL(...)
 #else
+  #define VCCC_LOG_DEBUG
+
   #define LOGV_IMPL(...) __android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, __VA_ARGS__)
   #define LOGD_IMPL(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
   #define LOGI_IMPL(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
