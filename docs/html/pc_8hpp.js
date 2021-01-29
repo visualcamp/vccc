@@ -1,7 +1,6 @@
 var pc_8hpp =
 [
-    [ "VCCC_LOG_DEBUG", "pc_8hpp.html#a2d3e259ccf6dedd5c5dd8ba55a88555c", null ],
-    [ "EXPAND", "pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f", null ],
+    [ "VCCC_DETAIL_EXPAND", "pc_8hpp.html#a97785fa5b24649863b8724b6355f2085", null ],
     [ "PRINT_WITH_NEWLINE", "pc_8hpp.html#afe9bb06d2584fe8417e3f4476cb5ad33", null ],
     [ "FPRINT_WITH_NEWLINE", "pc_8hpp.html#a611f18d05ae0c9d3f49e58693e4f16d7", null ],
     [ "LOGV_IMPL", "pc_8hpp.html#a4d8deb7dd86a3cd730303fee394a7ef6", null ],

@@ -1,12 +1,12 @@
-//
-// Created by YongGyu Lee on 2020/12/02.
-//
-
-#ifndef VCCC_LOG_DETAIL_PRINT_HPP
-#define VCCC_LOG_DETAIL_PRINT_HPP
-
-#include <iostream>
-#include "vccc/type_traits.hpp"
+# /*
+#  * Created by YongGyu Lee on 2020/12/02.
+#  */
+#
+# ifndef VCCC_LOG_DETAIL_PRINT_HPP
+# define VCCC_LOG_DETAIL_PRINT_HPP
+#
+# include <iostream>
+# include "vccc/type_traits.hpp"
 
 namespace vccc{
 

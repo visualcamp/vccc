@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "VCCC", "index.html", [
-    [ "VCCC Modules", "index.html", null ],
+    [ "VCCC Document", "index.html", "index" ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -62,7 +62,7 @@ var NAVTREEINDEX =
 "android_8hpp.html",
 "dir_bdd3d0acd5cd5c7cc4d13a4f5d100839.html",
 "group__utility__time.html#ga62aeafe3e287cefd462a38641d17b10e",
-"sum_8hpp.html#gab741977af01853bffd7b4368c391e007"
+"sum_8hpp.html#gabd63f9a3062a3e4a82011be9f84f049d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

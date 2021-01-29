@@ -78,7 +78,7 @@ static Log_ Log;
 
 /** @brief macro wrappers for security */
 
-# ifdef VCCC_LOG_DEBUG
+# ifdef NDEBUG
   # define LOGV(...) ::vccc::Log.v(__VA_ARGS__)
   # define LOGD(...) ::vccc::Log.d(__VA_ARGS__)
   # define LOGI(...) ::vccc::Log.i(__VA_ARGS__)
@@ -86,12 +86,12 @@ static Log_ Log;
   # define LOGE(...) ::vccc::Log.e(__VA_ARGS__)
   # define LOGF(...) LOGF_IMPL(__VA_ARGS__)
   # define LOGS(...) LOGS_IMPL(__VA_ARGS__)
-# else
-  # define LOGV(...) LOGV_IMPL(__VA_ARGS__)
-  # define LOGD(...) LOGD_IMPL(__VA_ARGS__)
-  # define LOGI(...) LOGI_IMPL(__VA_ARGS__)
-  # define LOGW(...) LOGW_IMPL(__VA_ARGS__)
-  # define LOGE(...) LOGE_IMPL(__VA_ARGS__)
+#else
+  # define LOGV(...) ::vccc::Log.v(__VA_ARGS__)
+  # define LOGD(...) ::vccc::Log.d(__VA_ARGS__)
+  # define LOGI(...) ::vccc::Log.i(__VA_ARGS__)
+  # define LOGW(...) ::vccc::Log.w(__VA_ARGS__)
+  # define LOGE(...) ::vccc::Log.e(__VA_ARGS__)
   # define LOGF(...) LOGF_IMPL(__VA_ARGS__)
   # define LOGS(...) LOGS_IMPL(__VA_ARGS__)
 # endif

@@ -4,8 +4,8 @@
 #
 # ifndef VCCC_LOG_DETAIL_C_PRINTABLE_HPP
 # define VCCC_LOG_DETAIL_C_PRINTABLE_HPP
-
-#include "vccc/type_traits.hpp"
+#
+# include "vccc/type_traits.hpp"
 
 namespace vccc{ namespace detail{
 

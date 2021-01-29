@@ -1,11 +1,10 @@
-//
-// Created by YongGyu Lee on 2020/12/02.
-//
-
-#ifndef VCCC_LOG_CUSTOM_OSTREAM_HPP
-#define VCCC_LOG_CUSTOM_OSTREAM_HPP
-
-#include "vccc/log/detail/print.hpp"
+# /*
+#   Created by YongGyu Lee on 2020/12/02.
+# */
+# ifndef VCCC_LOG_CUSTOM_OSTREAM_HPP
+# define VCCC_LOG_CUSTOM_OSTREAM_HPP
+#
+# include "vccc/log/detail/print.hpp"
 
 namespace vccc{
 

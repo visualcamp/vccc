@@ -5,6 +5,5 @@ var searchData=
   ['ensures_110',['ENSURES',['../group__utility__assert.html#ga9538dc0b7142aca0a0c31f4cc414159f',1,'assert.hpp']]],
   ['epsilon_111',['epsilon',['../group__calculus.html#gaf239e9fe6dd0539b8e683783ea9a38f1',1,'vccc']]],
   ['epsilon_2ehpp_112',['epsilon.hpp',['../epsilon_8hpp.html',1,'']]],
-  ['expand_113',['EXPAND',['../pc_8hpp.html#ae4b532a93c757194ec73b6790a3e6b1f',1,'pc.hpp']]],
-  ['expects_114',['EXPECTS',['../group__utility__assert.html#gaa51e225a887b75ae6e944d9b942743f6',1,'assert.hpp']]]
+  ['expects_113',['EXPECTS',['../group__utility__assert.html#gaa51e225a887b75ae6e944d9b942743f6',1,'assert.hpp']]]
 ];
