@@ -11,6 +11,8 @@
 
 /**
 @defgroup log log
+
+Depends On: \ref type_traits, boost::predef
 */
 
 # endif //VCCC_LOG_HPP
