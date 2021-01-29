@@ -1,5 +1,8 @@
 /**
-\mainpage VCCC Modules
+\mainpage VCCC Document
+
+\subpage version_history "Version History"
+- \subpage v_alpha "alpha version"
 
 Modules:
 - \subpage high C++14 implementation of STL that is in C++17 or higher version.
@@ -13,7 +16,8 @@ Modules:
 - \subpage type_traits type_traits.
 - \subpage utility utilities.
 
-
+Third Parties
+- <a href="https://www.boost.org/doc/libs/1_75_0/libs/predef/doc/index.html">boost::predef</a>
 
 © 2021 VisualCamp All Rights Reserved
 
