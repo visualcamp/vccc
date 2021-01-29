@@ -14,6 +14,7 @@ project(vccc)
 
 add_library(vccc INTERFACE)
 add_library(VCCC ALIAS vccc)
+add_subdirectory(boost/predef)
 
 SUBDIRLIST(SUBDIRS ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -24,6 +25,6 @@ FOREACH(subdir ${SUBDIRS})
     LIST(APPEND libraries_list "VCCC::${subdir}")
 ENDFOREACH()
 
-target_link_libraries(vccc INTERFACE ${libraries_list})
+target_link_libraries(vccc INTERFACE ${libraries_list} Boost::predef)
 
 #target_include_directories(vccc_utility INTERFACE include)
