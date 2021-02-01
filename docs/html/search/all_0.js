@@ -44,5 +44,6 @@ var searchData=
   ['average_41',['average',['../group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d',1,'vccc::average(InputIterator first, InputIterator last)'],['../group__numeric__average.html#ga404ae7df6bb362a11d89cd6113b09db4',1,'vccc::average(InputIterator first, InputIterator last, UnaryOperation unary_op)'],['../group__numeric__average.html#ga84508e1f9e2d06fc15712779a6d4ea8b',1,'vccc::average(Numbers... numbers)'],['../group__numeric__average.html#gaca1ff9006393ec8bf9eadcdb26ccec1b',1,'vccc::average(const Args &amp;... args)']]],
   ['average_2ehpp_42',['average.hpp',['../average_8hpp.html',1,'']]],
   ['avg_5fstddev_43',['avg_stddev',['../group__numeric__stddev.html#ga9746b3bf2c74baf6c24b29f3432afc0f',1,'vccc']]],
-  ['average_44',['average',['../group__numeric__average.html',1,'']]]
+  ['average_44',['average',['../group__numeric__average.html',1,'']]],
+  ['alpha_20version_45',['Alpha Version',['../v_alpha.html',1,'version_history']]]
 ];
