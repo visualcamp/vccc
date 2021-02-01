@@ -1,10 +1,11 @@
 /**
 \mainpage VCCC Document
 
-\subpage version_history "Version History"
-- \subpage v_alpha "alpha version"
+\tableofcontents
 
-Modules:
+\subpage introduction
+
+<a href="modules.html">Modules</a>:
 - \subpage high C++14 implementation of STL that is in C++17 or higher version.
 - \subpage literal python-like _format support.
 - \subpage log logging support for multiplatform.
@@ -16,8 +17,11 @@ Modules:
 - \subpage type_traits type_traits.
 - \subpage utility utilities.
 
-Third Parties
-- <a href="https://www.boost.org/doc/libs/1_75_0/libs/predef/doc/index.html">boost::predef</a>
+\subpage version_history "Version History"
+- \subpage v_alpha "alpha version"
+
+
+\subpage third_parties "Third parties"
 
 © 2021 VisualCamp All Rights Reserved
 
