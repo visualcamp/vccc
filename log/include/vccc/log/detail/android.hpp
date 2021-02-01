@@ -15,7 +15,6 @@
 #     define LOGD_IMPL(...)
 #     define LOGI_IMPL(...)
 #     define LOGW_IMPL(...)
-#     define LOGE_IMPL(...)
 #     define LOGF_IMPL(...)
 #     define LOGS_IMPL(...)
 # else
@@ -23,9 +22,10 @@
 #     define LOGD_IMPL(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 #     define LOGI_IMPL(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 #     define LOGW_IMPL(...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)
-#     define LOGE_IMPL(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 #     define LOGF_IMPL(...) __android_log_print(ANDROID_FATAL_ERROR, LOG_TAG, __VA_ARGS__)
 #     define LOGS_IMPL(...) __android_log_print(ANDROID_SILENT_ERROR, LOG_TAG, __VA_ARGS__)
 # endif
+#
+# define LOGE_IMPL(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 #
 # endif //VCCC_LOG_ANDROID_HPP

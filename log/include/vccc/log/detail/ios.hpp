@@ -12,7 +12,6 @@
 #     define LOGD_IMPL(...)
 #     define LOGI_IMPL(...)
 #     define LOGW_IMPL(...)
-#     define LOGE_IMPL(...)
 #     define LOGF_IMPL(...)
 #     define LOGS_IMPL(...)
 # else
@@ -20,9 +19,10 @@
 #     define LOGD_IMPL(...) syslog(LOG_DEBUG, __VA_ARGS__);
 #     define LOGI_IMPL(...) syslog(LOG_INFO, __VA_ARGS__);
 #     define LOGW_IMPL(...) syslog(LOG_WARNING, __VA_ARGS__);
-#     define LOGE_IMPL(...) syslog(LOG_ERR, __VA_ARGS__);
 #     define LOGF_IMPL(...) syslog(LOG_ERR, __VA_ARGS__);
 #     define LOGS_IMPL(...) syslog(LOG_ERR, __VA_ARGS__);
 # endif
+#
+# define LOGE_IMPL(...) syslog(LOG_ERR, __VA_ARGS__);
 #
 # endif //VCCC_LOG_IOS_HPP

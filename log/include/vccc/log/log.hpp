@@ -83,7 +83,6 @@ static Log_ Log;
   # define LOGD(...)
   # define LOGI(...)
   # define LOGW(...)
-  # define LOGE(...)
   # define LOGF(...)
   # define LOGS(...)
 #else
@@ -91,10 +90,10 @@ static Log_ Log;
   # define LOGD(...) ::vccc::Log.d(__VA_ARGS__)
   # define LOGI(...) ::vccc::Log.i(__VA_ARGS__)
   # define LOGW(...) ::vccc::Log.w(__VA_ARGS__)
-  # define LOGE(...) ::vccc::Log.e(__VA_ARGS__)
   # define LOGF(...) LOGF_IMPL(__VA_ARGS__)
   # define LOGS(...) LOGS_IMPL(__VA_ARGS__)
 # endif
+# define LOGE(...) ::vccc::Log.e(__VA_ARGS__)
 
 //! @} log
 
