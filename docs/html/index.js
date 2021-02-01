@@ -1,5 +1,7 @@
 var index =
 [
-    [ "version_history", "version_history.html", "version_history" ],
-    [ "v_alpha", "v_alpha.html", null ]
+    [ "Introduction", "introduction.html", null ],
+    [ "Version History", "version_history.html", "version_history" ],
+    [ "Alpha Version", "v_alpha.html", null ],
+    [ "Third parties", "third_parties.html", null ]
 ];
