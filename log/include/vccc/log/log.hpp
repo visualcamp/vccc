@@ -69,7 +69,15 @@ class Log_{
   template<typename ...Args> void d(Args&&... args) const { LOGD_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
   template<typename ...Args> void i(Args&&... args) const { LOGI_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
   template<typename ...Args> void w(Args&&... args) const { LOGW_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
-  template<typename ...Args> void e(Args&&... args) const { LOGE_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
+  template<typename ...Args> void e(Args&&... args) const {
+# ifdef NDEBUG
+#     if BOOST_COMP_MSVC == BOOST_VERSION_NUMBER_NOT_AVAILABLE
+#         warning "This will be printed even if the project is not debug build"
+#     else
+#         pragma message ("This will be printed even if the project is not debug build")
+# endif
+    LOGE_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str());
+  }
 };
 
 static Log_ Log;
