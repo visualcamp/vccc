@@ -15,6 +15,10 @@
 #     define LOGF_IMPL(...) syslog(LOG_ERR, __VA_ARGS__);
 #     define LOGS_IMPL(...) syslog(LOG_ERR, __VA_ARGS__);
 # else
+#     ifndef NDEBUG
+#         define NDEBUG
+#     endif
+#
 #     define LOGV_IMPL(...)
 #     define LOGD_IMPL(...)
 #     define LOGI_IMPL(...)
