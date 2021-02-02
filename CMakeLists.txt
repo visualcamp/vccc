@@ -2,7 +2,7 @@ MACRO(SUBDIRLIST result curdir)
     FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
     SET(dirlist "")
     FOREACH(child ${children})
-        IF(IS_DIRECTORY ${curdir}/${child} AND EXISTS ${curdir}/${child}/CMakeLists.txt)
+        IF(IS_DIRECTORY ${curdir}/${child} AND NOT ${child} MATCHES "test" AND EXISTS ${curdir}/${child}/CMakeLists.txt)
             LIST(APPEND dirlist "${child}")
         ENDIF()
     ENDFOREACH()
@@ -26,5 +26,8 @@ FOREACH(subdir ${SUBDIRS})
 ENDFOREACH()
 
 target_link_libraries(vccc INTERFACE ${libraries_list} Boost::predef)
+
+#enable_testing()
+#add_subdirectory(test)
 
 #target_include_directories(vccc_utility INTERFACE include)
