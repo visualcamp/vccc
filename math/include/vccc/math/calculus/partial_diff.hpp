@@ -73,7 +73,7 @@ partialDiff(differential_symmetric_t, Func f, VarTuple vars, Args&&... args)
 {
   auto x1 = addEpsilon<I>(vars, epsilon<T>());
   auto x2 = addEpsilon<I>(vars, -epsilon<T>());
-  auto dx = (std::get<I>(x2) - std::get<I>(x1));
+  auto dx = (std::get<I>(x1) - std::get<I>(x2));
 
   auto fx1 = detail::math::applyTupleAndVariadics(f, x1, args...);
   auto fx2 = detail::math::applyTupleAndVariadics(f, x2, args...);
@@ -102,7 +102,7 @@ partialDiff(differential_newtonian_t, Func f, VarTuple vars, Args&&... args)
 {
   auto x1 = addEpsilon<I>(vars, epsilon<T>());
   auto x2 = vars;
-  auto dx = (std::get<I>(x2) - std::get<I>(x1));
+  auto dx = (std::get<I>(x1) - std::get<I>(x2));
 
   auto fx1 = detail::math::applyTupleAndVariadics(f, x1, args...);
   auto fx2 = detail::math::applyTupleAndVariadics(f, x2, args...);

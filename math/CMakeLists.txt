@@ -5,3 +5,6 @@ add_library(vccc_math INTERFACE)
 add_library(VCCC::math ALIAS vccc_math)
 
 target_include_directories(vccc_math INTERFACE include)
+
+enable_testing()
+add_subdirectory(test)
