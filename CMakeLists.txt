@@ -27,4 +27,5 @@ ENDFOREACH()
 
 target_link_libraries(vccc INTERFACE ${libraries_list} Boost::predef)
 
+enable_testing()
 #target_include_directories(vccc_utility INTERFACE include)
