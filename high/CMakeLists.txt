@@ -5,3 +5,6 @@ add_library(vccc_high INTERFACE)
 add_library(VCCC::high ALIAS vccc_high)
 
 target_include_directories(vccc_high INTERFACE include)
+
+enable_testing()
+add_subdirectory(test)
