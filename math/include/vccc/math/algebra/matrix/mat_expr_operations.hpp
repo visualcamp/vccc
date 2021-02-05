@@ -12,7 +12,6 @@ namespace vccc{
 template<typename E1, typename E2, int m, int n>
 constexpr bool
 operator == (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& rhs) {
-  if(lhs.rows != rhs.rows || lhs.cols != rhs.cols) return false;
   for(int i=0; i<lhs.size; ++i)
     if(lhs[i] != rhs[i]) return false;
   return true;
@@ -21,11 +20,15 @@ operator == (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& 
 template<typename E1, typename E2, int m1, int n1, int m2, int n2>
 constexpr bool
 operator == (const MatExpression<E1, m1, n1>& lhs, const MatExpression<E2, m2, n2>& rhs) {
-  if(lhs.rows != rhs.rows || lhs.cols != rhs.cols) return false;
-  for(int i=0; i<lhs.size; ++i)
-    if(lhs[i] != rhs[i]) return false;
-  return true;
+  return false;
 }
+
+template<typename E1, typename E2, int m1, int n1, int m2, int n2>
+constexpr bool
+operator != (const MatExpression<E1, m1, n1>& lhs, const MatExpression<E1, m2, n2>& rhs) {
+  return !(lhs == rhs);
+}
+
 
 //template<typename E1, typename E2>
 //constexpr bool
