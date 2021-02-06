@@ -10,13 +10,13 @@
 namespace vccc{
 
 #if __cplusplus <= 201402L
-template<typename ...>
 
 /**
 @addtogroup type_traits
 @{
 */
 
+template<typename ...>
 using void_t = void;
 
 //! @}
