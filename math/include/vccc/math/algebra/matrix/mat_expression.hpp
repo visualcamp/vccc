@@ -16,7 +16,8 @@ class MatExpression {
   enum {
     rows = m,
     cols = n,
-    size = m * n
+    size = m * n,
+    shortdim = m < n ? m : n
   };
 
   static_assert((m > 0 && n > 0) || size > 0, "matrix size must be greater than 0");
