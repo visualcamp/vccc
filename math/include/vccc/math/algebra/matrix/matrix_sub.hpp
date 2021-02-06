@@ -57,10 +57,10 @@ constexpr MatrixSub<E1, E2, Category, m, n>::MatrixSub(const E1& e1, const E2& e
   static_assert(E1::cols == E2::cols && E1::rows == E2::rows, "Substituting matrix's size must be same");
 }
 
-template<typename E1, typename E2, typename Category, int m, int n>
+template<typename E1, typename E2, int m, int n>
 constexpr
 inline
-MatrixSub<E1, E2, Category, m, n>
+MatrixSub<E1, E2, matrix_sub_normal, m, n>
 operator - (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& rhs) {
   return MatrixSub<E1, E2, matrix_sub_normal, m, n>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(rhs));
 }
