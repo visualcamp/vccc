@@ -58,6 +58,9 @@ class Matrix : public MatExpression<Matrix<T, m, n>, m, n> {
   template<typename E>
   constexpr Matrix(const MatExpression<E, m, n>& expr);
 
+  template<typename E>
+  constexpr Matrix& operator = (const MatExpression<E, m, n>& expr);
+
 //  constexpr inline const T* begin()   const { return data; }
 //  constexpr inline       T* begin()         { return data; }
 //  constexpr inline const T* cbegin()  const { return data; }
@@ -228,6 +231,17 @@ Matrix<T, m, n>::Matrix(const MatExpression<E, m, n>& expr) {
 }
 
 template<typename T, int m, int n>
+template<typename E>
+constexpr
+Matrix<T, m, n>&
+Matrix<T, m, n>::operator=(const MatExpression<E, m, n>& expr) {
+  for (int i = 0; i < this->size; ++i)
+    data[i] = expr[i];
+  return *this;
+}
+
+
+template<typename T, int m, int n>
 constexpr Matrix<T, m, n>::Matrix(matrix_ctor_all_t, value_type value) {
   for (int i = 0; i < this->size; ++i)
     data[i] = value;
@@ -283,7 +297,6 @@ constexpr Matrix<T, m, n>
 Matrix<T, m, n>::diag(const Matrix::diag_type& value) {
   return Matrix<T, m, n>(matrix_ctor_diag, value);
 }
-
 }
 
 # endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_HPP
