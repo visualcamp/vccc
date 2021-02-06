@@ -17,18 +17,9 @@ class MatrixSum : public MatExpression<MatrixSum<E1, E2, m, n>, m, n> {
  public:
   constexpr inline MatrixSum(const E1& e1, const E2& e2);
 
-  // operator() (std::size_t)
-  constexpr inline decltype(auto) operator() (std::size_t i) const { return e1(i) + e2(i); }
-  constexpr inline decltype(auto) operator() (std::size_t i) { return e1(i) + e2(i); }
-
-  // operator() (std::size_t, std::size_t)
+  constexpr inline decltype(auto) operator() (std::size_t i) const                { return e1(i)    + e2(i);    }
   constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const { return e1(i, j) + e2(i, j); }
-  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) { return e1(i, j) + e2(i, j); }
-
-  // operator[] (std::size_t)
-  constexpr inline decltype(auto) operator[] (std::size_t i) const { return e1[i] + e2[i]; }
-  constexpr inline decltype(auto) operator[] (std::size_t i) { return e1[i] + e2[i]; }
-
+  constexpr inline decltype(auto) operator[] (std::size_t i) const                { return e1[i]    + e2[i];    }
 };
 
 template<typename E1, typename E2, int m, int n>

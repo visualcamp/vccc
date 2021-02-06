@@ -6,8 +6,6 @@
 # define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_SUB_HPP
 #
 # include "vccc/math/algebra/matrix/mat_expression.hpp"
-# include "vccc/type_traits.hpp"
-# include <type_traits>
 
 namespace vccc {
 
@@ -25,17 +23,9 @@ class MatrixSub : public MatExpression<MatrixSub<E1, E2, Category, m, n>, m, n> 
  public:
   constexpr inline MatrixSub(const E1& e1, const E2& e2);
 
-  // operator() (std::size_t)
   constexpr inline decltype(auto) operator() (std::size_t i) const;
-  constexpr inline decltype(auto) operator() (std::size_t i);
-
-  // operator() (std::size_t, std::size_t)
   constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const;
-  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j);
-
-  // operator[] (std::size_t)
   constexpr inline decltype(auto) operator[] (std::size_t i) const;
-  constexpr inline decltype(auto) operator[] (std::size_t i);
 };
 
 template<typename E1, typename E2, typename Category, int m, int n>
@@ -77,32 +67,14 @@ operator - (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& r
 
 template<typename E1, typename E2, typename Category, int m, int n>
 constexpr inline decltype(auto)
-MatrixSub<E1, E2, Category, m, n>::operator() (std::size_t i) {
-  return get_inner(i, Category{});
-}
-
-template<typename E1, typename E2, typename Category, int m, int n>
-constexpr inline decltype(auto)
 MatrixSub<E1, E2, Category, m, n>::operator() (std::size_t i) const {
   return get_inner(i, Category{});
 }
 
 template<typename E1, typename E2, typename Category, int m, int n>
 constexpr inline decltype(auto)
-MatrixSub<E1, E2, Category, m, n>::operator() (std::size_t i, std::size_t j) {
-  return get_inner(i, j, Category{});
-}
-
-template<typename E1, typename E2, typename Category, int m, int n>
-constexpr inline decltype(auto)
 MatrixSub<E1, E2, Category, m, n>::operator() (std::size_t i, std::size_t j) const {
   return get_inner(i, j, Category{});
-}
-
-template<typename E1, typename E2, typename Category, int m, int n>
-constexpr inline decltype(auto)
-MatrixSub<E1, E2, Category, m, n>::operator[] (std::size_t i) {
-  return get_inner(i, Category{});
 }
 
 template<typename E1, typename E2, typename Category, int m, int n>
