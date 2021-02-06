@@ -28,7 +28,7 @@ class MatExpression {
   constexpr inline decltype(auto) operator[] (std::size_t i) const;
 
   // unary minus operator
-  constexpr inline MatrixSub<Crt, Crt, matrix_sub_unary, m, n> operator - () const;
+  constexpr inline MatrixSub<Crt, Crt, matrix_sub_unary_t, m, n> operator - () const;
 };
 
 template<typename Crt, int m, int n>
@@ -52,9 +52,9 @@ MatExpression<Crt, m, n>::operator[] (std::size_t i) const {
 // unary minus operator
 template<typename Crt, int m, int n>
 constexpr inline
-MatrixSub<Crt, Crt, matrix_sub_unary, m, n>
+MatrixSub<Crt, Crt, matrix_sub_unary_t, m, n>
 MatExpression<Crt, m, n>::operator - () const {
-  return MatrixSub<Crt, Crt, matrix_sub_unary, m, n>(*static_cast<const Crt*>(this), *static_cast<const Crt*>(this));
+  return MatrixSub<Crt, Crt, matrix_sub_unary_t, m, n>(*static_cast<const Crt*>(this), *static_cast<const Crt*>(this));
 }
 
 namespace detail {

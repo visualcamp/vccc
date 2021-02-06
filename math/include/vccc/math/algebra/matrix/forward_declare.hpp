@@ -14,8 +14,8 @@ template<typename T, int m, int n> class MatExpression;
 template <typename T, int m, int n> class Matrix;
 
 // Matrix substitution helper class
-struct matrix_sub_normal {};
-struct matrix_sub_unary {};
+struct matrix_sub_normal_t {};
+struct matrix_sub_unary_t {};
 template<typename E1, typename E2, typename Category, int m, int n> class MatrixSub;
 
 // Matrix addition helper class

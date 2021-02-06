@@ -14,11 +14,11 @@ class MatrixSub : public MatExpression<MatrixSub<E1, E2, Category, m, n>, m, n> 
   const E1& e1;
   const E2& e2;
 
-  constexpr inline auto get_inner(std::size_t i, matrix_sub_normal) const;
-  constexpr inline auto get_inner(std::size_t i, matrix_sub_unary) const;
+  constexpr inline auto get_inner(std::size_t i, matrix_sub_normal_t) const;
+  constexpr inline auto get_inner(std::size_t i, matrix_sub_unary_t) const;
 
-  constexpr inline auto get_inner(std::size_t i, std::size_t j, matrix_sub_normal) const;
-  constexpr inline auto get_inner(std::size_t i, std::size_t j, matrix_sub_unary) const;
+  constexpr inline auto get_inner(std::size_t i, std::size_t j, matrix_sub_normal_t) const;
+  constexpr inline auto get_inner(std::size_t i, std::size_t j, matrix_sub_unary_t) const;
 
  public:
   constexpr inline MatrixSub(const E1& e1, const E2& e2);
@@ -30,25 +30,25 @@ class MatrixSub : public MatExpression<MatrixSub<E1, E2, Category, m, n>, m, n> 
 
 template<typename E1, typename E2, typename Category, int m, int n>
 constexpr inline auto
-MatrixSub<E1, E2, Category, m, n>::get_inner(std::size_t i, matrix_sub_normal) const {
+MatrixSub<E1, E2, Category, m, n>::get_inner(std::size_t i, matrix_sub_normal_t) const {
   return e1[i] - e2[i];
 }
 
 template<typename E1, typename E2, typename Category, int m, int n>
 constexpr inline auto
-MatrixSub<E1, E2, Category, m, n>::get_inner(std::size_t i, matrix_sub_unary) const {
+MatrixSub<E1, E2, Category, m, n>::get_inner(std::size_t i, matrix_sub_unary_t) const {
   return -e1[i];
 }
 
 template<typename E1, typename E2, typename Category, int m, int n>
 constexpr inline auto
-MatrixSub<E1, E2, Category, m, n>::get_inner(std::size_t i, std::size_t j, matrix_sub_normal) const {
+MatrixSub<E1, E2, Category, m, n>::get_inner(std::size_t i, std::size_t j, matrix_sub_normal_t) const {
   return e1(i, j) - e2(i, j);
 }
 
 template<typename E1, typename E2, typename Category, int m, int n>
 constexpr inline auto
-MatrixSub<E1, E2, Category, m, n>::get_inner(std::size_t i, std::size_t j, matrix_sub_unary) const {
+MatrixSub<E1, E2, Category, m, n>::get_inner(std::size_t i, std::size_t j, matrix_sub_unary_t) const {
   return -e1(i, j);
 }
 
@@ -60,9 +60,9 @@ constexpr MatrixSub<E1, E2, Category, m, n>::MatrixSub(const E1& e1, const E2& e
 template<typename E1, typename E2, int m, int n>
 constexpr
 inline
-MatrixSub<E1, E2, matrix_sub_normal, m, n>
+MatrixSub<E1, E2, matrix_sub_normal_t, m, n>
 operator - (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& rhs) {
-  return MatrixSub<E1, E2, matrix_sub_normal, m, n>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(rhs));
+  return MatrixSub<E1, E2, matrix_sub_normal_t, m, n>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(rhs));
 }
 
 template<typename E1, typename E2, typename Category, int m, int n>
