@@ -25,7 +25,9 @@ class MatrixMulScalar : public MatExpression<MatrixMulScalar<E, T, m, n>, m, n> 
 };
 
 template<typename E, typename T, int m, int n>
-constexpr MatrixMulScalar<E, T, m, n>::MatrixMulScalar(const E& e, const T& value) : e(e), value(value) {}
+constexpr MatrixMulScalar<E, T, m, n>::MatrixMulScalar(const E& e, const T& value) : e(e), value(value) {
+  static_assert(!is_matrix<T>::value, "");
+}
 
 template<typename E, typename T, int m, int n, std::enable_if_t<!is_matrix<T>::value, int> = 0>
 constexpr
