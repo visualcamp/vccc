@@ -25,7 +25,7 @@ class Matrix : public MatExpression<Matrix<T, m, n>, m, n> {
   // default ctor with all value 0
   constexpr Matrix();
 
-  constexpr Matrix(T v0);
+  constexpr explicit Matrix(T v0);
   constexpr Matrix(T v0, T v1);
   constexpr Matrix(T v0, T v1, T v2);
   constexpr Matrix(T v0, T v1, T v2, T v3);
@@ -42,12 +42,30 @@ class Matrix : public MatExpression<Matrix<T, m, n>, m, n> {
   constexpr Matrix(T v0, T v1, T v2, T v3, T v4, T v5, T v6, T v7, T v8, T v9, T v10, T v11, T v12, T v13, T v14);
   constexpr Matrix(T v0, T v1, T v2, T v3, T v4, T v5, T v6, T v7, T v8, T v9, T v10, T v11, T v12, T v13, T v14, T v15);
 
+  template<std::size_t N>
+  constexpr explicit Matrix(const T(& arr)[N]);
+
+  template<typename U, std::enable_if_t<!is_matrix<std::decay_t<U>>::value, int> = 0> constexpr explicit Matrix(U&& v0);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9, U&& v10);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9, U&& v10, U&& v11);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9, U&& v10, U&& v11, U&& v12);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9, U&& v10, U&& v11, U&& v12, U&& v13);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9, U&& v10, U&& v11, U&& v12, U&& v13, U&& v14);
+  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9, U&& v10, U&& v11, U&& v12, U&& v13, U&& v14, U&& v15);
+
   constexpr Matrix(matrix_ctor_all_t, T value);
   constexpr Matrix(matrix_ctor_diag_t, const diag_type& value);
   constexpr Matrix(matrix_ctor_all_t, matrix_ctor_diag_t, T value);
 
-  template<std::size_t N>
-  constexpr Matrix(const T(& arr)[N]);
 
   constexpr static Matrix all(T value);
   constexpr static Matrix zeros();
@@ -56,7 +74,7 @@ class Matrix : public MatExpression<Matrix<T, m, n>, m, n> {
   constexpr static Matrix diag(const diag_type& value);
 
   template<typename E>
-  constexpr Matrix(const MatExpression<E, m, n>& expr);
+  constexpr explicit Matrix(const MatExpression<E, m, n>& expr);
 
   template<typename E>
   constexpr Matrix& operator = (const MatExpression<E, m, n>& expr);
@@ -207,6 +225,150 @@ constexpr Matrix<T, m, n>::Matrix(
            std::move(v8),  std::move(v9),  std::move(v10), std::move(v11),
            std::move(v12), std::move(v13), std::move(v14), std::move(v15)} {}
 
+template<typename T, int m, int n>
+template<typename U, std::enable_if_t<!is_matrix<std::decay_t<U>>::value, int>>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0)
+    : data{std::forward<U>(v0)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1)
+    : data{std::forward<U>(v0), std::forward<U>(v1)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3,
+    U&& v4)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
+           std::forward<U>(v4)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3,
+    U&& v4, U&& v5)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
+           std::forward<U>(v4), std::forward<U>(v5)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3,
+    U&& v4, U&& v5, U&& v6)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
+           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3,
+    U&& v4, U&& v5, U&& v6, U&& v7)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
+           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3,
+    U&& v4, U&& v5, U&& v6, U&& v7,
+    U&& v8)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
+           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
+           std::forward<U>(v8)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3,
+    U&& v4, U&& v5, U&& v6, U&& v7,
+    U&& v8, U&& v9)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
+           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
+           std::forward<U>(v8), std::forward<U>(v9)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3,
+    U&& v4, U&& v5, U&& v6, U&& v7,
+    U&& v8, U&& v9, U&& v10)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
+           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
+           std::forward<U>(v8), std::forward<U>(v9), std::forward<U>(v10)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3,
+    U&& v4, U&& v5, U&& v6, U&& v7,
+    U&& v8, U&& v9, U&& v10, U&& v11)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
+           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
+           std::forward<U>(v8), std::forward<U>(v9), std::forward<U>(v10), std::forward<U>(v11)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3,
+    U&& v4, U&& v5, U&& v6, U&& v7,
+    U&& v8, U&& v9, U&& v10, U&& v11,
+    U&& v12)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
+           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
+           std::forward<U>(v8), std::forward<U>(v9), std::forward<U>(v10), std::forward<U>(v11),
+           std::forward<U>(v12)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3,
+    U&& v4, U&& v5, U&& v6, U&& v7,
+    U&& v8, U&& v9, U&& v10, U&& v11,
+    U&& v12, U&& v13)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
+           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
+           std::forward<U>(v8), std::forward<U>(v9), std::forward<U>(v10), std::forward<U>(v11),
+           std::forward<U>(v12), std::forward<U>(v13)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3,
+    U&& v4, U&& v5, U&& v6, U&& v7,
+    U&& v8, U&& v9, U&& v10, U&& v11,
+    U&& v12, U&& v13, U&& v14)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
+           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
+           std::forward<U>(v8), std::forward<U>(v9), std::forward<U>(v10), std::forward<U>(v11),
+           std::forward<U>(v12), std::forward<U>(v13), std::forward<U>(v14)} {}
+
+template<typename T, int m, int n>
+template<typename U>
+constexpr Matrix<T, m, n>::Matrix(
+    U&& v0, U&& v1, U&& v2, U&& v3,
+    U&& v4, U&& v5, U&& v6, U&& v7,
+    U&& v8, U&& v9, U&& v10, U&& v11,
+    U&& v12, U&& v13, U&& v14, U&& v15)
+    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
+           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
+           std::forward<U>(v8), std::forward<U>(v9), std::forward<U>(v10), std::forward<U>(v11),
+           std::forward<U>(v12), std::forward<U>(v13), std::forward<U>(v14), std::forward<U>(v15)} {}
+
 
 template<typename T, int m, int n>
 template<std::size_t N>
@@ -297,6 +459,8 @@ constexpr Matrix<T, m, n>
 Matrix<T, m, n>::diag(const Matrix::diag_type& value) {
   return Matrix<T, m, n>(matrix_ctor_diag, value);
 }
+
+
 }
 
 # endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_HPP
