@@ -9,12 +9,18 @@
 
 namespace vccc {
 
-struct MatrixCtor_All {};
+struct matrix_ctor_all_t {};
+struct matrix_ctor_diag_t {};
+
+constexpr matrix_ctor_all_t matrix_ctor_all;
+constexpr matrix_ctor_diag_t matrix_ctor_diag;
 
 template<typename T, int m, int n>
 class Matrix : public MatExpression<Matrix<T, m, n>, m, n> {
  public:
   using value_type = T;
+  using matrix_type = Matrix<T, m, n>;
+  using diag_type = Matrix<T, Matrix::shortdim, 1>;
 
   // default ctor with all value 0
   constexpr Matrix();
@@ -36,7 +42,9 @@ class Matrix : public MatExpression<Matrix<T, m, n>, m, n> {
   constexpr Matrix(T v0, T v1, T v2, T v3, T v4, T v5, T v6, T v7, T v8, T v9, T v10, T v11, T v12, T v13, T v14);
   constexpr Matrix(T v0, T v1, T v2, T v3, T v4, T v5, T v6, T v7, T v8, T v9, T v10, T v11, T v12, T v13, T v14, T v15);
 
-  constexpr Matrix(MatrixCtor_All, value_type value);
+  constexpr Matrix(matrix_ctor_all_t, T value);
+  constexpr Matrix(matrix_ctor_diag_t, const diag_type& value);
+  constexpr Matrix(matrix_ctor_all_t, matrix_ctor_diag_t, T value);
 
   template<std::size_t N>
   constexpr Matrix(const T(& arr)[N]);
@@ -45,6 +53,7 @@ class Matrix : public MatExpression<Matrix<T, m, n>, m, n> {
   constexpr static Matrix zeros();
   constexpr static Matrix ones();
   constexpr static Matrix eye();
+  constexpr static Matrix diag(const diag_type& value);
 
   template<typename E>
   constexpr Matrix(const MatExpression<E, m, n>& expr);
@@ -214,27 +223,65 @@ template<typename T, int m, int n>
 template<typename E>
 constexpr
 Matrix<T, m, n>::Matrix(const MatExpression<E, m, n>& expr) {
-  for (int i = 0; i < expr.size; ++i)
+  for (int i = 0; i < this->size; ++i)
     data[i] = expr[i];
 }
 
 template<typename T, int m, int n>
-constexpr
-Matrix<T, m, n>
-Matrix<T, m, n>::all(T value) {
-  return Matrix<T, m, n>(MatrixCtor_All{}, value);
+constexpr Matrix<T, m, n>::Matrix(matrix_ctor_all_t, value_type value) {
+  for (int i = 0; i < this->size; ++i)
+    data[i] = value;
 }
 
 template<typename T, int m, int n>
-constexpr Matrix<T, m, n>::Matrix(MatrixCtor_All, value_type value) {
-  for (int i = 0; i < this->size; ++i)
-    data[i] = value;
+constexpr Matrix<T, m, n>::Matrix(matrix_ctor_all_t, matrix_ctor_diag_t, value_type value) {
+  for(int i=0; i<this->size; ++i)
+    data[i] = T(0);
+
+  for (int i = 0; i < this->shortdim; ++i)
+    data[i * this->rows + i] = value;
+}
+
+template<typename T, int m, int n>
+constexpr Matrix<T, m, n>::Matrix(matrix_ctor_diag_t, const Matrix::diag_type& value) {
+  for(int i=0; i<this->size; ++i)
+    data[i] = T(0);
+
+  for (int i = 0; i < this->shortdim; ++i)
+    data[i * this->rows + i] = value[i];
+}
+
+//! static Matrix make functions
+template<typename T, int m, int n>
+constexpr
+Matrix<T, m, n>
+Matrix<T, m, n>::all(T value) {
+  return Matrix<T, m, n>(matrix_ctor_all, value);
 }
 
 template<typename T, int m, int n>
 constexpr Matrix<T, m, n>
 Matrix<T, m, n>::zeros() {
   return all(T(0));
+}
+
+template<typename T, int m, int n>
+constexpr Matrix<T, m, n>
+Matrix<T, m, n>::ones() {
+  return all(T(1));
+}
+
+template<typename T, int m, int n>
+constexpr Matrix<T, m, n>
+Matrix<T, m, n>::eye() {
+  static_assert(m == n, "Eye matrix must be square");
+  return Matrix<T, m, n>(matrix_ctor_all, matrix_ctor_diag, 1);
+}
+
+template<typename T, int m, int n>
+constexpr Matrix<T, m, n>
+Matrix<T, m, n>::diag(const Matrix::diag_type& value) {
+  return Matrix<T, m, n>(matrix_ctor_diag, value);
 }
 
 }
