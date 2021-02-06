@@ -9,6 +9,8 @@
 # include "vccc/math/algebra/matrix/mat_expr_operations.hpp"
 # include "vccc/math/algebra/matrix/mat_expression.hpp"
 # include "vccc/math/algebra/matrix/matrix.hpp"
+//# include "vccc/math/algebra/matrix/matrix_mul_matrix.hpp"
+# include "vccc/math/algebra/matrix/matrix_mul_scalar.hpp"
 # include "vccc/math/algebra/matrix/matrix_ostream.hpp"
 # include "vccc/math/algebra/matrix/matrix_sub.hpp"
 # include "vccc/math/algebra/matrix/matrix_sum.hpp"
