@@ -29,57 +29,6 @@ operator != (const MatExpression<E1, m1, n1>& lhs, const MatExpression<E1, m2, n
   return !(lhs == rhs);
 }
 
-
-//template<typename E1, typename E2>
-//constexpr bool
-//operator != (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
-//  return !(lhs == rhs);
-//}
-//
-//template<typename E1, typename E2>
-//constexpr
-//inline
-//decltype(auto)
-//operator += (MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
-//  static_assert(lhs.cols() == rhs.cols() && lhs.rows() == rhs.rows(),
-//                "Matrix size must be same. vccc::operator += (MatExpression<E1>&, const MatExpression<E2>&)");
-//  for(int i=0; i<lhs.size(); ++i)
-//    lhs[i] += rhs[i];
-//  return lhs;
-//}
-//
-//template<typename E1, typename E2>
-//constexpr
-//inline
-//decltype(auto)
-//operator -= (MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
-//  static_assert(lhs.cols() == rhs.cols() && lhs.rows() == rhs.rows(),
-//                "Matrix size must be same. vccc::operator += (MatExpression<E1>&, const MatExpression<E2>&)");
-//  for(int i=0; i<lhs.size(); ++i)
-//    lhs[i] -= rhs[i];
-//  return lhs;
-//}
-//
-//template<typename E, typename T>
-//constexpr
-//inline
-//decltype(auto)
-//operator *= (MatExpression<E>& lhs, const T& value) {
-//  for(int i=0; i<lhs.size(); ++i)
-//    lhs[i] *= value;
-//  return lhs;
-//}
-//
-//template<typename E, typename T>
-//constexpr
-//inline
-//decltype(auto)
-//operator /= (MatExpression<E>& lhs, const T& value) {
-//  for(int i=0; i<lhs.size(); ++i)
-//    lhs[i] /= value;
-//  return lhs;
-//}
-
 }
 
 #endif //VCCC_MATH_ALGEBRA_MATRIX_MAT_EXPR_OPERATIONS_HPP
