@@ -11,9 +11,11 @@ namespace vccc {
 
 struct matrix_ctor_all_t {};
 struct matrix_ctor_diag_t {};
+struct matrix_ctor_matmul_t {};
 
 constexpr matrix_ctor_all_t matrix_ctor_all;
 constexpr matrix_ctor_diag_t matrix_ctor_diag;
+constexpr matrix_ctor_matmul_t matrix_ctor_matmul;
 
 template<typename T, int m, int n>
 class Matrix : public MatExpression<Matrix<T, m, n>, m, n> {
@@ -65,6 +67,9 @@ class Matrix : public MatExpression<Matrix<T, m, n>, m, n> {
   constexpr Matrix(matrix_ctor_all_t, T value);
   constexpr Matrix(matrix_ctor_diag_t, const diag_type& value);
   constexpr Matrix(matrix_ctor_all_t, matrix_ctor_diag_t, T value);
+
+  template<typename E1, typename E2, int l>
+  constexpr Matrix(matrix_ctor_matmul_t, const MatrixMulMatrix<E1, E2, m, l, n>& );
 
   template<typename E>
   constexpr Matrix(const MatExpression<E, m, n>& expr);
@@ -408,6 +413,12 @@ constexpr Matrix<T, m, n>::Matrix(matrix_ctor_diag_t, const Matrix::diag_type& v
 
   for (int i = 0; i < this->shortdim; ++i)
     data[i * this->rows + i] = value[i];
+}
+
+template<typename T, int m, int n>
+template<typename E1, typename E2, int l>
+constexpr Matrix<T, m, n>::Matrix(matrix_ctor_matmul_t, const MatrixMulMatrix<E1, E2, m, l, n>& op) {
+  op.template mul<m, l, n>(*this);
 }
 
 //! static Matrix make functions

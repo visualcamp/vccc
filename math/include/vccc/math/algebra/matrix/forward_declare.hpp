@@ -23,6 +23,7 @@ template<typename E1, typename E2, int m, int n> class MatrixSum;
 
 // Matrix multiplication helper class
 template<typename E, typename T, int m, int n> class MatrixMulScalar;
+template<typename E1, typename E2, int m, int l, int n> class MatrixMulMatrix;
 
 // out of class Matrix operators
 template<typename E1, typename E2, int m, int n>
