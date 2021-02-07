@@ -14,8 +14,9 @@ template<typename E, typename T, int m, int n>
 class MatrixMulScalar : public MatExpression<MatrixMulScalar<E, T, m, n>, m, n> {
   const E& e;
   const T& value;
-
  public:
+  using value_type = typename E::value_type;
+
   constexpr MatrixMulScalar(const E& e, const T& value);
 
   constexpr inline decltype(auto) operator() (std::size_t i) const { return e(i) * value; }
@@ -30,16 +31,14 @@ constexpr MatrixMulScalar<E, T, m, n>::MatrixMulScalar(const E& e, const T& valu
 }
 
 template<typename E, typename T, int m, int n, std::enable_if_t<!is_matrix<T>::value, int> = 0>
-constexpr
-inline
+constexpr static inline
 MatrixMulScalar<E, T, m, n>
 operator * (const MatExpression<E, m, n>& lhs, const T& value) {
   return MatrixMulScalar<E, T, m, n>(*static_cast<const E*>(&lhs), value);
 }
 
 template<typename E, typename T, int m, int n>
-constexpr
-inline
+constexpr static inline
 MatrixMulScalar<E, T, m, n>
 operator / (const MatExpression<E, m, n>& lhs, const T& value) {
   static_assert(!is_matrix<T>::value, "Matrix cannot divide other matrix.");
