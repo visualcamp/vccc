@@ -15,6 +15,8 @@ class MatrixSum : public MatExpression<MatrixSum<E1, E2, m, n>, m, n> {
   const E2& e2;
 
  public:
+  using value_type = typename E1::value_type;
+
   constexpr inline MatrixSum(const E1& e1, const E2& e2);
 
   constexpr inline decltype(auto) operator() (std::size_t i) const                { return e1(i)    + e2(i);    }
@@ -29,8 +31,7 @@ MatrixSum<E1, E2, m, n>::MatrixSum(const E1& e1, const E2& e2) : e1(e1), e2(e2) 
 }
 
 template<typename E1, typename E2, int m, int n>
-constexpr
-inline
+constexpr static inline
 MatrixSum<E1, E2, m, n>
 operator + (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& rhs) {
   return MatrixSum<E1, E2, m, n>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(&rhs));
