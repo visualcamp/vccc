@@ -67,7 +67,7 @@ class Matrix : public MatExpression<Matrix<T, m, n>, m, n> {
   constexpr Matrix(matrix_ctor_all_t, matrix_ctor_diag_t, T value);
 
   template<typename E>
-  constexpr explicit Matrix(const MatExpression<E, m, n>& expr);
+  constexpr Matrix(const MatExpression<E, m, n>& expr);
 
   template<typename E>
   constexpr Matrix& operator = (const MatExpression<E, m, n>& expr);
@@ -468,6 +468,7 @@ constexpr static inline
 Matrix<T, m, n>&
 operator += (Matrix<T, m, n>& mat, const MatExpression<E, m, n>& expr) {
   for(int i=0; i<mat.size; ++i)
+
     mat.data[i] += expr[i];
   return mat;
 }
