@@ -10,7 +10,7 @@
 namespace vccc{
 
 template<typename E1, typename E2, int m, int n>
-constexpr bool
+constexpr static bool
 operator == (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& rhs) {
   for(int i=0; i<lhs.size; ++i)
     if(lhs[i] != rhs[i]) return false;
@@ -18,13 +18,13 @@ operator == (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& 
 }
 
 template<typename E1, typename E2, int m1, int n1, int m2, int n2>
-constexpr bool
+constexpr static bool
 operator == (const MatExpression<E1, m1, n1>& lhs, const MatExpression<E2, m2, n2>& rhs) {
   return false;
 }
 
 template<typename E1, typename E2, int m1, int n1, int m2, int n2>
-constexpr bool
+constexpr static bool
 operator != (const MatExpression<E1, m1, n1>& lhs, const MatExpression<E1, m2, n2>& rhs) {
   return !(lhs == rhs);
 }

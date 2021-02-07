@@ -26,15 +26,15 @@ template<typename E, typename T, int m, int n> class MatrixMulScalar;
 
 // out of class Matrix operators
 template<typename E1, typename E2, int m, int n>
-constexpr bool
+constexpr static bool
 operator == (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& rhs);
 
 template<typename E1, typename E2, int m1, int n1, int m2, int n2>
-constexpr bool
+constexpr static bool
 operator == (const MatExpression<E1, m1, n1>& lhs, const MatExpression<E2, m2, n2>& rhs);
 
 template<typename E1, typename E2, int m1, int n1, int m2, int n2>
-constexpr bool
+constexpr static bool
 operator != (const MatExpression<E1, m1, n1>& lhs, const MatExpression<E1, m2, n2>& rhs);
 
 }
