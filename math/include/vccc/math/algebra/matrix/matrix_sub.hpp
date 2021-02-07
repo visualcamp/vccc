@@ -21,6 +21,8 @@ class MatrixSub : public MatExpression<MatrixSub<E1, E2, Category, m, n>, m, n> 
   constexpr inline auto get_inner(std::size_t i, std::size_t j, matrix_sub_unary_t) const;
 
  public:
+  using value_type = typename E1::value_type;
+
   constexpr inline MatrixSub(const E1& e1, const E2& e2);
 
   constexpr inline decltype(auto) operator() (std::size_t i) const;
@@ -58,8 +60,7 @@ constexpr MatrixSub<E1, E2, Category, m, n>::MatrixSub(const E1& e1, const E2& e
 }
 
 template<typename E1, typename E2, int m, int n>
-constexpr
-inline
+constexpr static inline
 MatrixSub<E1, E2, matrix_sub_normal_t, m, n>
 operator - (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& rhs) {
   return MatrixSub<E1, E2, matrix_sub_normal_t, m, n>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(rhs));
