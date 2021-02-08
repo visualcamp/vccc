@@ -479,7 +479,6 @@ constexpr static inline
 Matrix<T, m, n>&
 operator += (Matrix<T, m, n>& mat, const MatExpression<E, m, n>& expr) {
   for(int i=0; i<mat.size; ++i)
-
     mat.data[i] += expr[i];
   return mat;
 }
