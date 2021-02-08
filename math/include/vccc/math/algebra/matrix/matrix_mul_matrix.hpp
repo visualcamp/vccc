@@ -11,7 +11,8 @@
 namespace vccc{
 
 template<typename E1, typename E2, int m, int l, int n>
-constexpr static inline auto
+constexpr static inline
+Matrix<typename E1::value_type, m, n>
 operator * (const MatExpression<E1, m, l>& lhs, const MatExpression<E2, l, n>& rhs);
 
 template<typename E1, typename E2, int m, int l, int n>
@@ -34,7 +35,7 @@ class MatrixMulMatrix {
   const E2& rhs;
 
   constexpr MatrixMulMatrix(const E1& lhs, const E2& rhs);
-  friend constexpr inline auto operator *<E1, E2, m, l, n>(const MatExpression<E1, m, l>& lhs, const MatExpression<E2, l, n>& rhs);
+  friend constexpr inline return_type operator *<E1, E2, m, l, n>(const MatExpression<E1, m, l>& lhs, const MatExpression<E2, l, n>& rhs);
 
   template<int p, int q, int r>
   constexpr inline
@@ -54,7 +55,8 @@ class MatrixMulMatrix {
 };
 
 template<typename E1, typename E2, int m, int l, int n>
-constexpr static inline auto
+constexpr static inline
+Matrix<typename E1::value_type, m, n>
 operator * (const MatExpression<E1, m, l>& lhs, const MatExpression<E2, l, n>& rhs) {
   using value_type = typename MatrixMulMatrix<E1, E2, m, l, n>::value_type;
   return Matrix<value_type, m, n>(
