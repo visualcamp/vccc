@@ -91,6 +91,11 @@ std::ostream& operator << (std::ostream& os, const OpChecker<T>& oc) {
 template<typename T>
 T operator + (const OpChecker<T>& x, const OpChecker<T>& y) { OpChecker<T>::addEvent(OP_ADD); return x.x + y.x; }
 template<typename T>
+OpChecker<T>& operator += (OpChecker<T>& x, const OpChecker<T>& y) { OpChecker<T>::addEvent(OP_ADD); x.x += y.x; return x; }
+template<typename T>
+OpChecker<T>& operator += (OpChecker<T>& x, const T& y) { OpChecker<T>::addEvent(OP_ADD); x.x += y; return x; }
+
+template<typename T>
 T operator - (const OpChecker<T>& x, const OpChecker<T>& y) { OpChecker<T>::addEvent(OP_SUB); return x.x - y.x; }
 template<typename T>
 T operator * (const OpChecker<T>& x, const OpChecker<T>& y) { OpChecker<T>::addEvent(OP_MUL); return x.x * y.x; }
@@ -143,70 +148,90 @@ struct bar {
   static foo rows, cols;
 };
 
-template<typename E, int m, int n>
-volatile void ee(const vccc::MatExpression<E, m, n>& base) {
-
-}
+//template<typename E, int m, int n>
+//volatile void ee(const vccc::MatExpression<E, m, n>& base) {
+//
+//}
 
 int main() {
   INIT_TEST("vccc::math")
 
   auto y = [](double x) { return x; };
-
   TEST_ENSURES((vccc::partialDiff<double, 0>(vccc::differential_symmetric_t{}, y, std::make_tuple(2.)) == Floating(1.)));
-  TEST_ENSURES((vccc::is_matrix<vccc::MatExpression<int, 1, 2>>::value == true));
 
-  vccc::Matrix<int, 3, 3> m1({1,2,3,4,5,6,7,8,9});
+  vccc::Matrix<int, 3, 4> m;
+  std::cout << m.rows << "x" << m.cols << std::endl;
+  vccc::Matrix<int, 3, 3> m2(1,2,3,4,5,6,7,8,9);
+  std::cout << m2 << std::endl;
 
-  TEST_ENSURES(m1.cols == 3 && m1.rows == 3);
-  TEST_ENSURES(vccc::is_matrix<decltype(m1)>::value == true);
-  TEST_ENSURES(vccc::is_matrix<decltype(m1 + m1)>::value == true);
-  TEST_ENSURES(vccc::is_matrix<decltype(m1 - m1)>::value == true);
-  TEST_ENSURES(vccc::is_matrix<decltype(m1 + m1)>::value == true);
-  TEST_ENSURES(vccc::is_matrix<int>::value == false);
-  TEST_ENSURES(vccc::is_matrix<foo>::value == false);
-  TEST_ENSURES(vccc::is_matrix<bar>::value == false);
+  const auto m3 = m2 + m2 + m2 + m2 + m2 + m2;
+  vccc::Matrix<int, 3, 3> m4 = m3;
 
-  TEST_ENSURES((m1 + m1 == vccc::Matrix<int, 3, 3>({2,4,6,8,10,12,14,16,18})));
-  TEST_ENSURES((m1 * 3 == vccc::Matrix<int, 3, 3>(3,6,9,12,15,18,21,24,27)));
+  vccc::Matrix<int, 3, 3> m5 = -m4;
 
-  // constexpr compilation check
-  constexpr vccc::Matrix<int, 3, 3> m2(1,2,3,4,5,6,7,8,9);
-  constexpr vccc::Matrix<int, 3, 3> m3({1,2,3,4,5,6,7,8,9});
-  constexpr vccc::Matrix<double, 8, 8> m4;
-  constexpr auto m5 = vccc::Matrix<int, 3, 3>::zeros();
-  constexpr auto m6 = vccc::Matrix<int, 3, 3>::ones();
-  constexpr auto m7 = vccc::Matrix<int, 3, 3>::eye();
-  constexpr auto m8 = vccc::Matrix<int, 3, 1>::all(99);
-  constexpr auto m9 = vccc::Matrix<int, 3, 3>::diag(m8);
+  std::cout << (m2-m2) << std::endl;
+  std::cout << (m2 * 10) << std::endl;
+  std::cout << (m2 / 10.) << std::endl;
+  vccc::Matrix<float, 3, 3> m6 = m2 / 10.;
+  std::cout << m6 << std::endl;
 
-
-  vccc::Matrix<OpChecker<int>, 4, 4> M(1,0,0,0,
-                                  0,1,0,0,
-                                  0,0,1,0,
-                                  0,0,0,1);
-  TEST_ENSURES(OpChecker<int>::getEvent(INITIALIZED_CONSTRUCTED) == M.size);
-
-  volatile auto expr = M * 3;
-  TEST_ENSURES(OpChecker<int>::getEvent(INITIALIZED_CONSTRUCTED) == M.size &&
-               OpChecker<int>::getEvent(MOVE_ASSIGNED) == 0 &&
-               OpChecker<int>::getEvent(COPY_ASSIGNED) == 0 &&
-               OpChecker<int>::getEvent(COPY_CONSTRUCTED) == 0 &&
-               OpChecker<int>::getEvent(OP_MUL_SCALAR) == 0);
-
-  M = M * 3;
-  TEST_ENSURES(OpChecker<int>::getEvent(INITIALIZED_CONSTRUCTED) == M.size &&
-      OpChecker<int>::getEvent(MOVE_ASSIGNED) == 16 &&
-      OpChecker<int>::getEvent(COPY_ASSIGNED) == 0 &&
-      OpChecker<int>::getEvent(COPY_CONSTRUCTED) == 0 &&
-      OpChecker<int>::getEvent(OP_MUL_SCALAR) == 16);
-
-  vccc::Matrix<int, 3, 3> A = m1 * m1;
-  std::cout << A << std::endl;
-
-  vccc::Matrix<int, 2, 2> B, C;
-
-  B * C;
+//  TEST_ENSURES((vccc::is_matrix<vccc::MatExpression<int, 1, 2>>::value == true));
+//
+//  vccc::Matrix<int, 3, 3> m1({1,2,3,4,5,6,7,8,9});
+//
+//  TEST_ENSURES(m1.cols == 3 && m1.rows == 3);
+//  TEST_ENSURES(vccc::is_matrix<decltype(m1)>::value == true);
+//  TEST_ENSURES(vccc::is_matrix<decltype(m1 + m1)>::value == true);
+//  TEST_ENSURES(vccc::is_matrix<decltype(m1 - m1)>::value == true);
+//  TEST_ENSURES(vccc::is_matrix<decltype(m1 + m1)>::value == true);
+//  TEST_ENSURES(vccc::is_matrix<int>::value == false);
+//  TEST_ENSURES(vccc::is_matrix<foo>::value == false);
+//  TEST_ENSURES(vccc::is_matrix<bar>::value == false);
+//
+//  TEST_ENSURES((m1 + m1 == vccc::Matrix<int, 3, 3>({2,4,6,8,10,12,14,16,18})));
+//  TEST_ENSURES((m1 * 3 == vccc::Matrix<int, 3, 3>(3,6,9,12,15,18,21,24,27)));
+//
+//  // constexpr compilation check
+//  constexpr vccc::Matrix<int, 3, 3> m2(1,2,3,4,5,6,7,8,9);
+//  constexpr vccc::Matrix<int, 3, 3> m3({1,2,3,4,5,6,7,8,9});
+//  constexpr vccc::Matrix<double, 8, 8> m4;
+//  constexpr auto m5 = vccc::Matrix<int, 3, 3>::zeros();
+//  constexpr auto m6 = vccc::Matrix<int, 3, 3>::ones();
+//  constexpr auto m7 = vccc::Matrix<int, 3, 3>::eye();
+//  constexpr auto m8 = vccc::Matrix<int, 3, 1>::all(99);
+//  constexpr auto m9 = vccc::Matrix<int, 3, 3>::diag(m8);
+//
+//
+//  vccc::Matrix<OpChecker<int>, 4, 4> M(1,0,0,0,
+//                                  0,1,0,0,
+//                                  0,0,1,0,
+//                                  0,0,0,1);
+//  TEST_ENSURES(OpChecker<int>::getEvent(INITIALIZED_CONSTRUCTED) == M.size);
+//
+//  volatile auto expr = M * 3;
+//  TEST_ENSURES(OpChecker<int>::getEvent(INITIALIZED_CONSTRUCTED) == M.size &&
+//               OpChecker<int>::getEvent(MOVE_ASSIGNED) == 0 &&
+//               OpChecker<int>::getEvent(COPY_ASSIGNED) == 0 &&
+//               OpChecker<int>::getEvent(COPY_CONSTRUCTED) == 0 &&
+//               OpChecker<int>::getEvent(OP_MUL_SCALAR) == 0);
+//
+//  M = M * 3;
+//  TEST_ENSURES(OpChecker<int>::getEvent(INITIALIZED_CONSTRUCTED) == M.size &&
+//      OpChecker<int>::getEvent(MOVE_ASSIGNED) == 16 &&
+//      OpChecker<int>::getEvent(COPY_ASSIGNED) == 0 &&
+//      OpChecker<int>::getEvent(COPY_CONSTRUCTED) == 0 &&
+//      OpChecker<int>::getEvent(OP_MUL_SCALAR) == 16);
+//
+//  vccc::Matrix<int, 3, 3> A = m1 * m1;
+//  std::cout << A << std::endl;
+//
+//  vccc::Matrix<int, 2, 2> B, C;
+//  B = vccc::Matrix<int, 2, 2>::ones();
+//  C = vccc::Matrix<int, 2, 2>::ones();
+//
+//  OpChecker<int>::reset_params();
+//  OpChecker<int>::print_status();
+//  B = B * C;
 
 //  cout << M << endl;
 //  OpChecker<int>::print_status();

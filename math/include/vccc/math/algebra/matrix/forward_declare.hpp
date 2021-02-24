@@ -7,36 +7,27 @@
 
 namespace vccc{
 
+namespace internal{
+namespace math{
+
+template<typename T> struct traits;
+template<typename T> struct traits<const T> : traits<T> {};
+} // namespace math
+} // namespace internal
+
 // Base expression class
-template<typename T, int m, int n> class MatExpression;
+template<typename Derived> class MatExpression;
 
 // Actual Matrix class
 template <typename T, int m, int n> class Matrix;
 
-// Matrix substitution helper class
-struct matrix_sub_normal_t {};
-struct matrix_sub_unary_t {};
-template<typename E1, typename E2, typename Category, int m, int n> class MatrixSub;
+template<typename E1, typename E2> class MatrixSum;
 
-// Matrix addition helper class
-template<typename E1, typename E2, int m, int n> class MatrixSum;
+template<typename E> class MatrixMinus;
 
-// Matrix multiplication helper class
-template<typename E, typename T, int m, int n> class MatrixMulScalar;
-template<typename E1, typename E2, int m, int l, int n> class MatrixMulMatrix;
+template<typename Lhs, typename Rhs> class MatrixSub;
 
-// out of class Matrix operators
-template<typename E1, typename E2, int m, int n>
-constexpr static bool
-operator == (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& rhs);
-
-template<typename E1, typename E2, int m1, int n1, int m2, int n2>
-constexpr static bool
-operator == (const MatExpression<E1, m1, n1>& lhs, const MatExpression<E2, m2, n2>& rhs);
-
-template<typename E1, typename E2, int m1, int n1, int m2, int n2>
-constexpr static bool
-operator != (const MatExpression<E1, m1, n1>& lhs, const MatExpression<E1, m2, n2>& rhs);
+template<typename LhsType, typename RhsType> class MatrixMulScalar;
 
 }
 

@@ -9,6 +9,19 @@
 
 namespace vccc {
 
+namespace internal { namespace math {
+
+template<typename T, int m, int n>
+struct traits<Matrix<T, m, n>> {
+  enum {
+    rows = m,
+    cols = n
+  };
+  static constexpr bool temporary = false;
+};
+
+}} // namespace internal::math
+
 struct matrix_ctor_all_t {};
 struct matrix_ctor_diag_t {};
 struct matrix_ctor_matmul_t {};
@@ -18,7 +31,7 @@ constexpr matrix_ctor_diag_t matrix_ctor_diag;
 constexpr matrix_ctor_matmul_t matrix_ctor_matmul;
 
 template<typename T, int m, int n>
-class Matrix : public MatExpression<Matrix<T, m, n>, m, n> {
+class Matrix : public MatExpression<Matrix<T, m, n>> {
  public:
   using value_type = T;
   using matrix_type = Matrix<T, m, n>;
@@ -68,14 +81,14 @@ class Matrix : public MatExpression<Matrix<T, m, n>, m, n> {
   constexpr Matrix(matrix_ctor_diag_t, const diag_type& value);
   constexpr Matrix(matrix_ctor_all_t, matrix_ctor_diag_t, T value);
 
-  template<typename E1, typename E2, int l>
-  constexpr Matrix(matrix_ctor_matmul_t, const MatrixMulMatrix<E1, E2, m, l, n>& );
+//  template<typename LhsType, typename RhsType, int l>
+//  constexpr Matrix(matrix_ctor_matmul_t, const MatrixMulMatrix<LhsType, RhsType, m, l, n>& );
 
   template<typename E>
-  constexpr Matrix(const MatExpression<E, m, n>& expr);
+  constexpr Matrix(const MatExpression<E>& expr);
 
   template<typename E>
-  constexpr Matrix& operator = (const MatExpression<E, m, n>& expr);
+  constexpr Matrix& operator = (const MatExpression<E>& expr);
 
   constexpr static Matrix all(T value);
   constexpr static Matrix zeros();
@@ -375,7 +388,7 @@ Matrix<T, m, n>::Matrix(const T (& arr)[N]) {
 template<typename T, int m, int n>
 template<typename E>
 constexpr
-Matrix<T, m, n>::Matrix(const MatExpression<E, m, n>& expr) {
+Matrix<T, m, n>::Matrix(const MatExpression<E>& expr) {
   for (int i = 0; i < this->size; ++i)
     data[i] = expr[i];
 }
@@ -384,7 +397,7 @@ template<typename T, int m, int n>
 template<typename E>
 constexpr
 Matrix<T, m, n>&
-Matrix<T, m, n>::operator=(const MatExpression<E, m, n>& expr) {
+Matrix<T, m, n>::operator=(const MatExpression<E>& expr) {
   for (int i = 0; i < this->size; ++i)
     data[i] = expr[i];
   return *this;
@@ -413,12 +426,6 @@ constexpr Matrix<T, m, n>::Matrix(matrix_ctor_diag_t, const Matrix::diag_type& v
 
   for (int i = 0; i < this->shortdim; ++i)
     data[i * this->rows + i] = value[i];
-}
-
-template<typename T, int m, int n>
-template<typename E1, typename E2, int l>
-constexpr Matrix<T, m, n>::Matrix(matrix_ctor_matmul_t, const MatrixMulMatrix<E1, E2, m, l, n>& op) {
-  op.template mul<m, l, n>(*this);
 }
 
 //! static Matrix make functions
@@ -477,7 +484,7 @@ operator /= (Matrix<T, m, n>& mat, T val) {
 template<typename E, typename T, int m, int n>
 constexpr static inline
 Matrix<T, m, n>&
-operator += (Matrix<T, m, n>& mat, const MatExpression<E, m, n>& expr) {
+operator += (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
   for(int i=0; i<mat.size; ++i)
     mat.data[i] += expr[i];
   return mat;
@@ -486,7 +493,7 @@ operator += (Matrix<T, m, n>& mat, const MatExpression<E, m, n>& expr) {
 template<typename E, typename T, int m, int n>
 constexpr static inline
 Matrix<T, m, n>&
-operator -= (Matrix<T, m, n>& mat, const MatExpression<E, m, n>& expr) {
+operator -= (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
   for(int i=0; i<mat.size; ++i)
     mat.data[i] -= expr[i];
   return mat;

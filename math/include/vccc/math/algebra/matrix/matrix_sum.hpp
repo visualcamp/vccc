@@ -6,35 +6,51 @@
 # define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_SUM_HPP
 #
 # include "vccc/math/algebra/matrix/mat_expression.hpp"
+# include "vccc/math/algebra/matrix/type_helper.hpp"
+# include "vccc/math/algebra/matrix/static_assert.hpp"
 
 namespace vccc {
 
-template<typename E1, typename E2, int m, int n>
-class MatrixSum : public MatExpression<MatrixSum<E1, E2, m, n>, m, n> {
-  const E1& e1;
-  const E2& e2;
+namespace internal { namespace math {
 
- public:
-  using value_type = typename E1::value_type;
-
-  constexpr inline MatrixSum(const E1& e1, const E2& e2);
-
-  constexpr inline decltype(auto) operator() (std::size_t i) const                { return e1(i)    + e2(i);    }
-  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const { return e1(i, j) + e2(i, j); }
-  constexpr inline decltype(auto) operator[] (std::size_t i) const                { return e1[i]    + e2[i];    }
+template<typename E1, typename E2>
+struct traits<MatrixSum<E1, E2>> {
+  enum {
+    rows = traits<E1>::rows,
+    cols = traits<E1>::cols
+  };
+  static constexpr bool temporary = true;
 };
 
-template<typename E1, typename E2, int m, int n>
-constexpr
-MatrixSum<E1, E2, m, n>::MatrixSum(const E1& e1, const E2& e2) : e1(e1), e2(e2) {
-  static_assert(E1::cols == E2::cols && E1::rows == E2::rows, "each matrix's size must be same");
-}
+}} // namespace internal::math
 
-template<typename E1, typename E2, int m, int n>
+template<typename LhsType, typename RhsType>
+class MatrixSum : public MatExpression<MatrixSum<LhsType, RhsType>> {
+ public:
+
+  using lhs_type = internal::math::hold_type_selector_t<LhsType>;
+  using rhs_type = internal::math::hold_type_selector_t<RhsType>;
+
+  using value_type = typename LhsType::value_type;
+
+  constexpr inline MatrixSum(const LhsType& lhs, const RhsType& rhs) : lhs(lhs), rhs(rhs) {
+    VCCC_MATH_STATIC_ASSERT_MATRIX_SAME_SIZE(LhsType, RhsType);
+  };
+
+  constexpr inline decltype(auto) operator() (std::size_t i) const                { return lhs(i)    + rhs(i);    }
+  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const { return lhs(i, j) + rhs(i, j); }
+  constexpr inline decltype(auto) operator[] (std::size_t i) const                { return lhs[i]    + rhs[i];    }
+
+ private:
+  lhs_type lhs;
+  rhs_type rhs;
+};
+
+template<typename E1, typename E2>
 constexpr static inline
-MatrixSum<E1, E2, m, n>
-operator + (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& rhs) {
-  return MatrixSum<E1, E2, m, n>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(&rhs));
+MatrixSum<E1, E2>
+operator + (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
+  return MatrixSum<E1, E2>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(&rhs));
 }
 
 }

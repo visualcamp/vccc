@@ -8,7 +8,7 @@
 
 namespace vccc{
 
-template<typename T, VCCC_REQUIRE_IMPL(is_container<T>::value && !is_string_like<T>::value)>
+template<typename T, VCCC_ENABLE_IF_IMPL(is_container<T>::value && !is_string_like<T>::value)>
 std::ostream&
 operator <<
 (std::ostream& os, const T& v)

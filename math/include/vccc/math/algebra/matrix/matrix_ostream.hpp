@@ -10,19 +10,19 @@
 
 namespace vccc {
 
-template<typename E, int m, int n>
-std::ostream& operator << (std::ostream& os, const MatExpression<E, m, n>& mat_expr) {
+template<typename E>
+std::ostream& operator << (std::ostream& os, const MatExpression<E>& mat_expr) {
   os << '[';
 
   os << mat_expr(0, 0);
-  for(int j=1; j<n; ++j) {
+  for(int j=1; j<mat_expr.cols; ++j) {
     os << ", " << mat_expr(0, j);
   }
   os << ";";
 
-  for(int i=1; i<m; ++i){
+  for(int i=1; i<mat_expr.rows; ++i){
     os << "\n " << mat_expr(i, 0);
-    for(int j=1; j<n; ++j) {
+    for(int j=1; j<mat_expr.cols; ++j) {
       os << ", " << mat_expr(i, j);
     }
     os << ";";

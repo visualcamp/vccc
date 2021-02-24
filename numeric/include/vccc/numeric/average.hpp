@@ -29,7 +29,7 @@ namespace vccc{
 @return average
  */
 template<typename InputIterator,
-         VCCC_REQUIRE(iterable<InputIterator>)>
+         VCCC_ENABLE_IF(iterable<InputIterator>)>
 constexpr
 auto
 average(InputIterator first, InputIterator last)
@@ -46,7 +46,7 @@ average(InputIterator first, InputIterator last)
 @return average
  */
 template<typename InputIterator, typename UnaryOperation,
-         VCCC_REQUIRE(iterable<InputIterator>)>
+         VCCC_ENABLE_IF(iterable<InputIterator>)>
 constexpr
 auto
 average(InputIterator first, InputIterator last, UnaryOperation unary_op)
@@ -67,7 +67,7 @@ Note:
 @return average
 */
 template<typename ...Numbers,
-         VCCC_REQUIRE(are_arithmetic_v<Numbers...>)>
+         VCCC_ENABLE_IF(are_arithmetic_v<Numbers...>)>
 constexpr
 auto
 average(Numbers... numbers)
@@ -83,7 +83,7 @@ average(Numbers... numbers)
 @return average
 */
 template<typename ...Ints,
-         VCCC_REQUIRE(are_integral_v<Ints...>)>
+         VCCC_ENABLE_IF(are_integral_v<Ints...>)>
 constexpr
 auto
 int_average(Ints... ints)
@@ -98,7 +98,7 @@ int_average(Ints... ints)
 @return average
 */
 template<typename ...Args,
-         VCCC_REQUIRE(!iterable<Args...> && !are_arithmetic_v<Args...>)>
+         VCCC_ENABLE_IF(!iterable<Args...> && !are_arithmetic_v<Args...>)>
 constexpr
 auto
 average(const Args&... args)

@@ -10,61 +10,44 @@
 
 namespace vccc{
 
-template<typename Crt, int m, int n>
+template<typename Derived>
 class MatExpression {
  public:
+  using derived_traits = internal::math::traits<Derived>;
+
   enum {
-    rows = m,
-    cols = n,
-    size = m * n,
-    shortdim = m < n ? m : n
+    rows = derived_traits::rows,
+    cols = derived_traits::cols,
+    size = rows * cols,
+    shortdim = rows < cols ? rows : cols
   };
 
-  static_assert((m > 0 && n > 0) || size > 0, "matrix size must be greater than 0");
+  static_assert((rows > 0 && cols > 0), "matrix size must be greater than 0");
 
   //! static polymorphic virtual-like member functions
-  constexpr inline decltype(auto) operator() (std::size_t i) const;
-  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const;
-  constexpr inline decltype(auto) operator[] (std::size_t i) const;
+  constexpr inline decltype(auto) operator() (std::size_t i) const {
+    return static_cast<const Derived&>(*this)(i);
+  }
+  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const {
+    return static_cast<const Derived&>(*this)(i, j);
+  }
+  constexpr inline decltype(auto) operator[] (std::size_t i) const {
+    return static_cast<const Derived&>(*this)[i];
+  }
 
-  // unary minus operator
-  constexpr inline MatrixSub<Crt, Crt, matrix_sub_unary_t, m, n> operator - () const;
 };
 
-template<typename Crt, int m, int n>
-constexpr inline decltype(auto)
-MatExpression<Crt, m, n>::operator() (std::size_t i) const {
-  return static_cast<const Crt&>(*this)(i);
-}
 
-template<typename Crt, int m, int n>
-constexpr inline decltype(auto)
-MatExpression<Crt, m, n>::operator() (std::size_t i, std::size_t j) const {
-  return static_cast<const Crt&>(*this)(i, j);
-}
+namespace internal { namespace math {
 
-template<typename Crt, int m, int n>
-constexpr inline decltype(auto)
-MatExpression<Crt, m, n>::operator[] (std::size_t i) const {
-  return static_cast<const Crt&>(*this)[i];
-}
-
-// unary minus operator
-template<typename Crt, int m, int n>
-constexpr inline
-MatrixSub<Crt, Crt, matrix_sub_unary_t, m, n>
-MatExpression<Crt, m, n>::operator - () const {
-  return MatrixSub<Crt, Crt, matrix_sub_unary_t, m, n>(*static_cast<const Crt*>(this), *static_cast<const Crt*>(this));
-}
-
-namespace detail {
-template<typename T, int m, int n>
-std::true_type is_matrix_impl(const vccc::MatExpression<T, m, n>&);
+template<typename Derived>
+std::true_type is_matrix_impl(const vccc::MatExpression<Derived>&);
 std::false_type is_matrix_impl(...);
-}
+
+}} // namespace internal::math
 
 template<typename T>
-struct is_matrix : decltype(::vccc::detail::is_matrix_impl(std::declval<T>())) {};
+struct is_matrix : decltype(::vccc::internal::math::is_matrix_impl(std::declval<T>())) {};
 
 }
 

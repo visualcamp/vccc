@@ -81,7 +81,7 @@ class Log_{
   }
 };
 
-static Log_ Log;
+constexpr Log_ Log;
 
 }
 

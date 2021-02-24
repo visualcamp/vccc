@@ -31,7 +31,7 @@ namespace vccc {
 @return standard deviation
  */
 template<typename InputIterator, typename T,
-         VCCC_REQUIRE(iterable < InputIterator >)>
+         VCCC_ENABLE_IF(iterable < InputIterator >)>
 auto
 stddev(InputIterator first, InputIterator last, T avg)
 {
@@ -48,7 +48,7 @@ stddev(InputIterator first, InputIterator last, T avg)
 @param last     ending iterator
 @return standard deviation
  */
-template<typename InputIterator, VCCC_REQUIRE(iterable<InputIterator>)>
+template<typename InputIterator, VCCC_ENABLE_IF(iterable<InputIterator>)>
 auto
 stddev(InputIterator first, InputIterator last)
 {
@@ -61,7 +61,7 @@ stddev(InputIterator first, InputIterator last)
 @param ...numbers   numbers
 @return standard deviation
  */
-template<typename ...Numbers, VCCC_REQUIRE(!iterable<Numbers...>)>
+template<typename ...Numbers, VCCC_ENABLE_IF(!iterable<Numbers...>)>
 auto
 stddev(Numbers... numbers)
 {

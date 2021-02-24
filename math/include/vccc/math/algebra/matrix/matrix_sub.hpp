@@ -6,82 +6,49 @@
 # define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_SUB_HPP
 #
 # include "vccc/math/algebra/matrix/mat_expression.hpp"
+# include "vccc/math/algebra/matrix/type_helper.hpp"
+# include "vccc/math/algebra/matrix/static_assert.hpp"
 
 namespace vccc {
 
-template<typename E1, typename E2, typename Category, int m, int n>
-class MatrixSub : public MatExpression<MatrixSub<E1, E2, Category, m, n>, m, n> {
-  const E1& e1;
-  const E2& e2;
+namespace internal{ namespace math {
 
-  constexpr inline auto get_inner(std::size_t i, matrix_sub_normal_t) const;
-  constexpr inline auto get_inner(std::size_t i, matrix_sub_unary_t) const;
-
-  constexpr inline auto get_inner(std::size_t i, std::size_t j, matrix_sub_normal_t) const;
-  constexpr inline auto get_inner(std::size_t i, std::size_t j, matrix_sub_unary_t) const;
-
- public:
-  using value_type = typename E1::value_type;
-
-  constexpr inline MatrixSub(const E1& e1, const E2& e2);
-
-  constexpr inline decltype(auto) operator() (std::size_t i) const;
-  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const;
-  constexpr inline decltype(auto) operator[] (std::size_t i) const;
+template<typename LhsType, typename RhsType>
+struct traits<MatrixSub<LhsType, RhsType>> {
+  enum {
+    rows = LhsType::rows,
+    cols = RhsType::cols
+  };
+  static constexpr bool temporary = true;
 };
 
-template<typename E1, typename E2, typename Category, int m, int n>
-constexpr inline auto
-MatrixSub<E1, E2, Category, m, n>::get_inner(std::size_t i, matrix_sub_normal_t) const {
-  return e1[i] - e2[i];
-}
+}} // namespace internal::math
 
-template<typename E1, typename E2, typename Category, int m, int n>
-constexpr inline auto
-MatrixSub<E1, E2, Category, m, n>::get_inner(std::size_t i, matrix_sub_unary_t) const {
-  return -e1[i];
-}
+template<typename LhsType, typename RhsType>
+class MatrixSub : public MatExpression<MatrixSub<LhsType, RhsType>> {
+ public:
+  using lhs_type = internal::math::hold_type_selector_t<LhsType>;
+  using rhs_type = internal::math::hold_type_selector_t<RhsType>;
 
-template<typename E1, typename E2, typename Category, int m, int n>
-constexpr inline auto
-MatrixSub<E1, E2, Category, m, n>::get_inner(std::size_t i, std::size_t j, matrix_sub_normal_t) const {
-  return e1(i, j) - e2(i, j);
-}
+  using value_type = typename LhsType::value_type;
 
-template<typename E1, typename E2, typename Category, int m, int n>
-constexpr inline auto
-MatrixSub<E1, E2, Category, m, n>::get_inner(std::size_t i, std::size_t j, matrix_sub_unary_t) const {
-  return -e1(i, j);
-}
+  constexpr inline MatrixSub(const LhsType& lhs, const RhsType& rhs) : lhs(lhs), rhs(rhs) {
+    VCCC_MATH_STATIC_ASSERT_MATRIX_SAME_SIZE(LhsType, RhsType);
+  }
 
-template<typename E1, typename E2, typename Category, int m, int n>
-constexpr MatrixSub<E1, E2, Category, m, n>::MatrixSub(const E1& e1, const E2& e2) : e1(e1), e2(e2) {
-  static_assert(E1::cols == E2::cols && E1::rows == E2::rows, "Substituting matrix's size must be same");
-}
+  constexpr inline decltype(auto) operator() (std::size_t i) const { return lhs(i) - rhs(i); }
+  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const { return lhs(i, j) - rhs(i, j); }
+  constexpr inline decltype(auto) operator[] (std::size_t i) const { return lhs[i] - rhs[i]; }
 
-template<typename E1, typename E2, int m, int n>
-constexpr static inline
-MatrixSub<E1, E2, matrix_sub_normal_t, m, n>
-operator - (const MatExpression<E1, m, n>& lhs, const MatExpression<E2, m, n>& rhs) {
-  return MatrixSub<E1, E2, matrix_sub_normal_t, m, n>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(rhs));
-}
+ private:
+  lhs_type lhs;
+  rhs_type rhs;
+};
 
-template<typename E1, typename E2, typename Category, int m, int n>
-constexpr inline decltype(auto)
-MatrixSub<E1, E2, Category, m, n>::operator() (std::size_t i) const {
-  return get_inner(i, Category{});
-}
-
-template<typename E1, typename E2, typename Category, int m, int n>
-constexpr inline decltype(auto)
-MatrixSub<E1, E2, Category, m, n>::operator() (std::size_t i, std::size_t j) const {
-  return get_inner(i, j, Category{});
-}
-
-template<typename E1, typename E2, typename Category, int m, int n>
-constexpr inline decltype(auto)
-MatrixSub<E1, E2, Category, m, n>::operator[] (std::size_t i) const {
-  return get_inner(i, Category{});
+template<typename E1, typename E2>
+MatrixSub<E1, E2>
+operator - (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
+  return MatrixSub<E1, E2>{*static_cast<const E1*>(&lhs), *static_cast<const E2*>(&rhs)};
 }
 
 }

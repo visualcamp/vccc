@@ -6,43 +6,58 @@
 # define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MUL_SCALAR_HPP
 #
 # include "vccc/math/algebra/matrix/mat_expression.hpp"
+# include "vccc/math/algebra/matrix/type_helper.hpp"
 # include <type_traits>
+# include <cassert>
 
 namespace vccc{
 
-template<typename E, typename T, int m, int n>
-class MatrixMulScalar : public MatExpression<MatrixMulScalar<E, T, m, n>, m, n> {
-  const E& e;
-  const T& value;
- public:
-  using value_type = typename E::value_type;
+namespace internal{ namespace math {
 
-  constexpr MatrixMulScalar(const E& e, const T& value);
-
-  constexpr inline decltype(auto) operator() (std::size_t i) const { return e(i) * value; }
-  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const { return e(i, j) * value; }
-  constexpr inline decltype(auto) operator[] (std::size_t i) const { return e[i] * value; }
-
+template<typename LhsType, typename RhsType>
+struct traits<MatrixMulScalar<LhsType, RhsType>> {
+  enum {
+    rows = traits<LhsType>::rows,
+    cols = traits<LhsType>::cols
+  };
+  static constexpr bool temporary = true;
 };
 
-template<typename E, typename T, int m, int n>
-constexpr MatrixMulScalar<E, T, m, n>::MatrixMulScalar(const E& e, const T& value) : e(e), value(value) {
-  static_assert(!is_matrix<T>::value, "");
+}}
+
+template<typename LhsType, typename RhsType>
+class MatrixMulScalar : public MatExpression<MatrixMulScalar<LhsType, RhsType>> {
+ public:
+  using value_type = typename LhsType::value_type;
+  using lhs_type = internal::math::hold_type_selector_t<LhsType>;
+  using rhs_type = const std::remove_reference_t<RhsType>;
+
+  constexpr MatrixMulScalar(const LhsType& lhs, const RhsType& value) : lhs(lhs), value(value) {
+    static_assert(!is_matrix<RhsType>::value, "");
+  }
+
+  constexpr inline decltype(auto) operator() (std::size_t i) const { return lhs(i) * value; }
+  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const { return lhs(i, j) * value; }
+  constexpr inline decltype(auto) operator[] (std::size_t i) const { return lhs[i] * value; }
+
+ private:
+  lhs_type lhs;
+  rhs_type value;
+};
+
+template<typename LhsType, typename RhsType, std::enable_if_t<!is_matrix<RhsType>::value, int> = 0>
+constexpr static inline
+MatrixMulScalar<LhsType, RhsType>
+operator * (const MatExpression<LhsType>& lhs, const RhsType& value) {
+  return MatrixMulScalar<LhsType, RhsType>(*static_cast<const LhsType*>(&lhs), value);
 }
 
-template<typename E, typename T, int m, int n, std::enable_if_t<!is_matrix<T>::value, int> = 0>
+template<typename LhsType, typename RhsType>
 constexpr static inline
-MatrixMulScalar<E, T, m, n>
-operator * (const MatExpression<E, m, n>& lhs, const T& value) {
-  return MatrixMulScalar<E, T, m, n>(*static_cast<const E*>(&lhs), value);
-}
-
-template<typename E, typename T, int m, int n>
-constexpr static inline
-MatrixMulScalar<E, T, m, n>
-operator / (const MatExpression<E, m, n>& lhs, const T& value) {
-  static_assert(!is_matrix<T>::value, "Matrix cannot divide other matrix.");
-  return MatrixMulScalar<E, T, m, n>(*static_cast<const E*>(&lhs), T(1) / value);
+MatrixMulScalar<LhsType, RhsType>
+operator / (const MatExpression<LhsType>& lhs, const RhsType& value) {
+  static_assert(!is_matrix<RhsType>::value, "Matrix cannot divide other matrix.");
+  return MatrixMulScalar<LhsType, RhsType>(*static_cast<const LhsType*>(&lhs), RhsType(1) / value);
 }
 
 
