@@ -20,7 +20,8 @@ struct traits<MatrixMulScalar<LhsType, RhsType>> {
     rows = traits<LhsType>::rows,
     cols = traits<LhsType>::cols
   };
-  static constexpr bool temporary = true;
+  static constexpr bool is_helper = true;
+  using value_type = typename LhsType::value_type;
 };
 
 }}

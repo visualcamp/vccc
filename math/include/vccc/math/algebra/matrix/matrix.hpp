@@ -17,7 +17,8 @@ struct traits<Matrix<T, m, n>> {
     rows = m,
     cols = n
   };
-  static constexpr bool temporary = false;
+  static constexpr bool is_helper = false;
+  using value_type = T;
 };
 
 }} // namespace internal::math

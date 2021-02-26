@@ -16,11 +16,11 @@ namespace internal{ namespace math{
 template<typename T>
 struct hold_type_selector {
   using type =
-      std::conditional_t<traits<T>::temporary,
+      std::conditional_t<traits<T>::is_helper,
                          const std::remove_reference_t<T>,
                          const T&>;
   using non_const_type =
-      std::conditional_t<traits<T>::temporary,
+      std::conditional_t<traits<T>::is_helper,
                          std::remove_reference_t<T>,
                          T&>;
 };

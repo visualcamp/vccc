@@ -18,7 +18,8 @@ struct traits<MatrixMinus<E>> {
     rows = traits<E>::rows,
     cols = traits<E>::cols
   };
-  static constexpr bool temporary = true;
+  static constexpr bool is_helper = true;
+  using value_type = typename E::value_type;
 };
 
 }}

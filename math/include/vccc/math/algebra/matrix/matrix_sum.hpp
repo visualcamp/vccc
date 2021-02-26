@@ -19,7 +19,8 @@ struct traits<MatrixSum<E1, E2>> {
     rows = traits<E1>::rows,
     cols = traits<E1>::cols
   };
-  static constexpr bool temporary = true;
+  static constexpr bool is_helper = true;
+  using value_type = typename E1::value_type;
 };
 
 }} // namespace internal::math

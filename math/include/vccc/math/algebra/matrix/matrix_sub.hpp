@@ -19,7 +19,8 @@ struct traits<MatrixSub<LhsType, RhsType>> {
     rows = LhsType::rows,
     cols = RhsType::cols
   };
-  static constexpr bool temporary = true;
+  static constexpr bool is_helper = true;
+  using value_type = typename LhsType::value_type;
 };
 
 }} // namespace internal::math
