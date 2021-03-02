@@ -169,11 +169,18 @@ int main() {
 
   vccc::Matrix<int, 3, 3> m5 = -m4;
 
-  std::cout << (m2-m2) << std::endl;
+  std::cout << (m2 - m2) << std::endl;
   std::cout << (m2 * 10) << std::endl;
   std::cout << (m2 / 10.) << std::endl;
-  vccc::Matrix<float, 3, 3> m6 = m2 / 10.;
+  vccc::Matrix<float, 3, 3> m6 = m2 / 10;
   std::cout << m6 << std::endl;
+
+  auto M = vccc::Matrix<int, 3, 3>({1,2,3,4,5,6,7,8,9});
+
+  std::cout << M << std::endl;
+  std::cout << M*M << std::endl;
+  for(int i=0; i<9; ++i)
+    std::cout << (M*M)(i) << ", "; std::cout << std::endl;
 
 //  TEST_ENSURES((vccc::is_matrix<vccc::MatExpression<int, 1, 2>>::value == true));
 //

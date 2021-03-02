@@ -28,6 +28,7 @@ template<typename E> class MatrixMinus;
 template<typename Lhs, typename Rhs> class MatrixSub;
 
 template<typename LhsType, typename RhsType> class MatrixMulScalar;
+template<typename LhsType, typename RhsType> class MatrixMulMatrix;
 
 }
 

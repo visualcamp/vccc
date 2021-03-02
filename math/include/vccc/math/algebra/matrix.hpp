@@ -11,7 +11,7 @@
 # include "vccc/math/algebra/matrix/matrix.hpp"
 # include "vccc/math/algebra/matrix/matrix_minus.hpp"
 //# include "vccc/math/algebra/matrix/matrix_inv.hpp"
-//# include "vccc/math/algebra/matrix/matrix_mul_matrix.hpp"
+# include "vccc/math/algebra/matrix/matrix_mul_matrix.hpp"
 # include "vccc/math/algebra/matrix/matrix_mul_scalar.hpp"
 # include "vccc/math/algebra/matrix/matrix_ostream.hpp"
 # include "vccc/math/algebra/matrix/matrix_sub.hpp"
