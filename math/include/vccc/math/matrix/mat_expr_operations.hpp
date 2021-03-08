@@ -5,7 +5,7 @@
 # ifndef VCCC_MATH_MATRIX_MAT_EXPR_OPERATIONS_HPP
 # define VCCC_MATH_MATRIX_MAT_EXPR_OPERATIONS_HPP
 #
-# include "vccc/math/algebra/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/mat_expression.hpp"
 
 namespace vccc{
 

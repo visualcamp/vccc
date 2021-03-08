@@ -5,8 +5,8 @@
 # ifndef VCCC_MATH_MATRIX_MATRIX_MUL_MATRIX_HPP
 # define VCCC_MATH_MATRIX_MATRIX_MUL_MATRIX_HPP
 #
-# include "vccc/math/algebra/matrix/forward_declare.hpp"
-# include "vccc/math/algebra/matrix/internal/tag.hpp"
+# include "vccc/math/matrix/forward_declare.hpp"
+# include "vccc/math/matrix/internal/tag.hpp"
 
 namespace vccc{
 

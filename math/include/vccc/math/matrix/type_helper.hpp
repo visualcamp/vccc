@@ -7,7 +7,7 @@
 #
 # include <type_traits>
 #
-# include "vccc/math/algebra/matrix/forward_declare.hpp"
+# include "vccc/math/matrix/forward_declare.hpp"
 
 namespace vccc {
 
