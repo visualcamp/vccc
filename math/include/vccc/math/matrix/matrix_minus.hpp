@@ -18,6 +18,10 @@ struct traits<MatrixMinus<E>> {
     rows = traits<E>::rows,
     cols = traits<E>::cols
   };
+
+  enum {
+    option = traits<E>::option | Flag::kAliasUnsafe
+  };
   using value_type = typename E::value_type;
 };
 

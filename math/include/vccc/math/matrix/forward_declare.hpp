@@ -13,17 +13,10 @@ namespace math{
 template<typename T> struct traits;
 template<typename T> struct traits<const T> : traits<T> {};
 
-enum flag {
-
+enum Flag {
+  kDefault = 0x0,
+  kAliasUnsafe = 0x1
 };
-
-static constexpr int flag_default = 0x0;
-
-static constexpr int flag_helper = 0x1;
-static constexpr int floag_non_helper = flag_default;
-
-
-static constexpr int flag_non_alias_safe = 0x2;
 
 } // namespace math
 } // namespace internal

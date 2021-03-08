@@ -15,8 +15,11 @@ template<typename T, int m, int n>
 struct traits<Matrix<T, m, n>> {
   enum {
     rows = m,
-    cols = n,
-    flags = flag_default
+    cols = n
+  };
+
+  enum {
+    option = Flag::kDefault
   };
   using value_type = T;
 };

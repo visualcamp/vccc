@@ -17,8 +17,11 @@ template<typename LhsType, typename RhsType>
 struct traits<MatrixSub<LhsType, RhsType>> {
   enum {
     rows = LhsType::rows,
-    cols = RhsType::cols,
-    flags = flag_default | flag_helper
+    cols = RhsType::cols
+  };
+
+  enum {
+    option = traits<LhsType>::option | traits<RhsType>::option | Flag::kAliasUnsafe
   };
   using value_type = typename LhsType::value_type;
 };

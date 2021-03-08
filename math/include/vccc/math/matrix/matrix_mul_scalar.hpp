@@ -19,7 +19,10 @@ struct traits<MatrixMulScalar<LhsType, RhsType>> {
   enum {
     rows = traits<LhsType>::rows,
     cols = traits<LhsType>::cols,
-    flags = flag_default | flag_helper
+  };
+
+  enum {
+    option = traits<LhsType>::option | Flag::kAliasUnsafe
   };
   using value_type = typename LhsType::value_type;
 };

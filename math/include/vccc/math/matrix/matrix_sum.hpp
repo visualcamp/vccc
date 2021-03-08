@@ -13,14 +13,17 @@ namespace vccc {
 
 namespace internal { namespace math {
 
-template<typename E1, typename E2>
-struct traits<MatrixSum<E1, E2>> {
+template<typename LhsType, typename RhsType>
+struct traits<MatrixSum<LhsType, RhsType>> {
   enum {
-    rows = traits<E1>::rows,
-    cols = traits<E1>::cols,
-    flags = flag_default | flag_helper
+    rows = traits<LhsType>::rows,
+    cols = traits<LhsType>::cols
   };
-  using value_type = typename E1::value_type;
+
+  enum {
+    option = traits<LhsType>::option | traits<RhsType>::option | Flag::kAliasUnsafe
+  };
+  using value_type = typename LhsType::value_type;
 };
 
 }} // namespace internal::math

@@ -16,11 +16,11 @@ namespace internal{ namespace math{
 template<typename T>
 struct hold_type_selector {
   using type =
-      std::conditional_t<traits<T>::option & flag_helper,
+      std::conditional_t<traits<T>::option & Flag::kAliasUnsafe,
                          const std::remove_reference_t<T>,
                          const T&>;
   using non_const_type =
-      std::conditional_t<traits<T>::option & flag_helper,
+      std::conditional_t<traits<T>::option & Flag::kAliasUnsafe,
                          std::remove_reference_t<T>,
                          T&>;
 };
@@ -29,9 +29,10 @@ template<typename T>
 using hold_type_selector_t = typename hold_type_selector<T>::type;
 
 template<typename T>
-struct is_alias_safe {
+struct is_alias_safe : std::integral_constant<bool, !(traits<T>::option & Flag::kAliasUnsafe)> {};
 
-};
+template<typename T> using is_alias_safe_t = typename is_alias_safe<T>::type;
+template<typename T> constexpr bool is_alias_safe_v = is_alias_safe<T>::value;
 
 }} // namespace internal::math
 } // namespace vccc
