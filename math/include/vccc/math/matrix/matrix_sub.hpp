@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2020/02/04.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MATRIX_SUB_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_SUB_HPP
+# ifndef VCCC_MATH_MATRIX_MATRIX_SUB_HPP
+# define VCCC_MATH_MATRIX_MATRIX_SUB_HPP
 #
 # include "vccc/math/algebra/matrix/mat_expression.hpp"
 # include "vccc/math/algebra/matrix/type_helper.hpp"
@@ -17,9 +17,9 @@ template<typename LhsType, typename RhsType>
 struct traits<MatrixSub<LhsType, RhsType>> {
   enum {
     rows = LhsType::rows,
-    cols = RhsType::cols
+    cols = RhsType::cols,
+    flags = flag_default | flag_helper
   };
-  static constexpr bool is_helper = true;
   using value_type = typename LhsType::value_type;
 };
 
@@ -56,4 +56,4 @@ operator - (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
 
 
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_SUB_HPP
+# endif //VCCC_MATH_MATRIX_MATRIX_SUB_HPP

@@ -5,7 +5,7 @@
 # ifndef VCCC_MATH_HPP
 # define VCCC_MATH_HPP
 #
-# include "vccc/math/algebra.hpp"
+# include "vccc/math/matrix.hpp"
 # include "vccc/math/calculus.hpp"
 # include "vccc/math/constants.hpp"
 

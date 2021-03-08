@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2020/02/06.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MATRIX_INV_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_INV_HPP
+# ifndef VCCC_MATH_MATRIX_MATRIX_INV_HPP
+# define VCCC_MATH_MATRIX_MATRIX_INV_HPP
 #
 # include "vccc/math/algebra/matrix/mat_expression.hpp"
 
@@ -21,4 +21,4 @@ class MatrixInverter {
 
 }
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_INV_HPP
+# endif //VCCC_MATH_MATRIX_MATRIX_INV_HPP

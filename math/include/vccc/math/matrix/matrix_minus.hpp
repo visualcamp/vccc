@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2020/02/04.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MINUS_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MINUS_HPP
+# ifndef VCCC_MATH_MATRIX_MATRIX_MINUS_HPP
+# define VCCC_MATH_MATRIX_MATRIX_MINUS_HPP
 #
 # include "vccc/math/algebra/matrix/mat_expression.hpp"
 # include "vccc/math/algebra/matrix/type_helper.hpp"
@@ -18,7 +18,6 @@ struct traits<MatrixMinus<E>> {
     rows = traits<E>::rows,
     cols = traits<E>::cols
   };
-  static constexpr bool is_helper = true;
   using value_type = typename E::value_type;
 };
 
@@ -51,4 +50,4 @@ operator - (const MatExpression<E>& lhs) {
 
 
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MINUS_HPP
+# endif //VCCC_MATH_MATRIX_MATRIX_MINUS_HPP

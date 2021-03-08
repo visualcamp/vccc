@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2020/02/04.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MAT_EXPRESSION_HPP
-# define VCCC_MATH_ALGEBRA_MAT_EXPRESSION_HPP
+# ifndef VCCC_MATH_MAT_EXPRESSION_HPP
+# define VCCC_MATH_MAT_EXPRESSION_HPP
 #
 # include <cstddef>
 # include <type_traits>
@@ -52,4 +52,4 @@ struct is_matrix : decltype(::vccc::internal::math::is_matrix_impl(std::declval<
 }
 
 
-#endif //VCCC_MATH_ALGEBRA_MAT_EXPRESSION_HPP
+#endif //VCCC_MATH_MAT_EXPRESSION_HPP

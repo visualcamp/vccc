@@ -2,11 +2,11 @@
 #  * Created by YongGyu Lee on 2020/02/06.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MUL_MATRIX_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MUL_MATRIX_HPP
+# ifndef VCCC_MATH_MATRIX_MATRIX_MUL_MATRIX_HPP
+# define VCCC_MATH_MATRIX_MATRIX_MUL_MATRIX_HPP
 #
 # include "vccc/math/algebra/matrix/forward_declare.hpp"
-# include <type_traits>
+# include "vccc/math/algebra/matrix/internal/tag.hpp"
 
 namespace vccc{
 
@@ -14,19 +14,15 @@ namespace internal{ namespace math {
 
 template<typename LhsType, typename RhsType>
 struct traits<MatrixMulMatrix<LhsType, RhsType>> {
-enum {
-  rows = traits<LhsType>::rows,
-  cols = traits<RhsType>::cols
-};
-static constexpr bool is_helper = true;
-using value_type = typename LhsType::value_type;
-};
+  enum {
+    rows = traits<LhsType>::rows,
+    cols = traits<RhsType>::cols,
+  };
 
-template<int p, int q, int r>
-struct matmul_tag {
-  static constexpr int first = p;
-  static constexpr int second = q;
-  static constexpr int third = r;
+  enum {
+    flags = flag_default | flag_helper | flag_non_alias_safe
+  };
+  using value_type = typename LhsType::value_type;
 };
 }}
 
@@ -43,15 +39,7 @@ class MatrixMulMatrix : public MatExpression<MatrixMulMatrix<LhsType, RhsType>>{
   using lhs_type = internal::math::hold_type_selector_t<LhsType>;
   using rhs_type = internal::math::hold_type_selector_t<RhsType>;
 
-  enum {
-    rows = base::rows,
-    cols = base::cols,
-    shortdim = base::shortdim,
-    size = base::size
-  };
-
-
-  using tag = internal::math::matmul_tag<LhsType::rows, LhsType::cols, RhsType::cols>;
+  using tag = internal::math::tag<int, LhsType::rows, LhsType::cols, RhsType::cols>;
 
   constexpr MatrixMulMatrix(const LhsType& lhs, const RhsType& rhs) : lhs(lhs), rhs(rhs) {};
 
@@ -149,4 +137,4 @@ constexpr auto MatrixMulMatrix<LhsType, RhsType>::operator[](std::size_t i) cons
 
 }
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MUL_MATRIX_HPP
+# endif //VCCC_MATH_MATRIX_MATRIX_MUL_MATRIX_HPP

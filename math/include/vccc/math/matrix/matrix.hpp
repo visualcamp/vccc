@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2020/02/04.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MATRIX_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_HPP
+# ifndef VCCC_MATH_MATRIX_MATRIX_HPP
+# define VCCC_MATH_MATRIX_MATRIX_HPP
 #
 # include "vccc/math/algebra/matrix/mat_expression.hpp"
 
@@ -15,9 +15,9 @@ template<typename T, int m, int n>
 struct traits<Matrix<T, m, n>> {
   enum {
     rows = m,
-    cols = n
+    cols = n,
+    flags = flag_default
   };
-  static constexpr bool is_helper = false;
   using value_type = T;
 };
 
@@ -504,4 +504,4 @@ operator -= (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
 
 }
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_HPP
+# endif //VCCC_MATH_MATRIX_MATRIX_HPP

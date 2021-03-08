@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2020/02/04.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MATRIX_SUM_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_SUM_HPP
+# ifndef VCCC_MATH_MATRIX_MATRIX_SUM_HPP
+# define VCCC_MATH_MATRIX_MATRIX_SUM_HPP
 #
 # include "vccc/math/algebra/matrix/mat_expression.hpp"
 # include "vccc/math/algebra/matrix/type_helper.hpp"
@@ -17,9 +17,9 @@ template<typename E1, typename E2>
 struct traits<MatrixSum<E1, E2>> {
   enum {
     rows = traits<E1>::rows,
-    cols = traits<E1>::cols
+    cols = traits<E1>::cols,
+    flags = flag_default | flag_helper
   };
-  static constexpr bool is_helper = true;
   using value_type = typename E1::value_type;
 };
 
@@ -56,4 +56,4 @@ operator + (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
 
 }
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_SUM_HPP
+# endif //VCCC_MATH_MATRIX_MATRIX_SUM_HPP

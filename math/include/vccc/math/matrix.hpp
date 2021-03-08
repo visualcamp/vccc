@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2020/02/04.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_HPP
+# ifndef VCCC_MATH_MATRIX_HPP
+# define VCCC_MATH_MATRIX_HPP
 #
 # include "vccc/math/algebra/matrix/forward_declare.hpp"
 //# include "vccc/math/algebra/matrix/mat_expr_operations.hpp"
@@ -18,4 +18,4 @@
 # include "vccc/math/algebra/matrix/matrix_sum.hpp"
 # include "vccc/math/algebra/matrix/type_helper.hpp"
 #
-# endif //VCCC_MATH_ALGEBRA_MATRIX_HPP
+# endif //VCCC_MATH_MATRIX_HPP

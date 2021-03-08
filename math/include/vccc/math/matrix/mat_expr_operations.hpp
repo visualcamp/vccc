@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2020/02/04.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MAT_EXPR_OPERATIONS_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MAT_EXPR_OPERATIONS_HPP
+# ifndef VCCC_MATH_MATRIX_MAT_EXPR_OPERATIONS_HPP
+# define VCCC_MATH_MATRIX_MAT_EXPR_OPERATIONS_HPP
 #
 # include "vccc/math/algebra/matrix/mat_expression.hpp"
 
@@ -31,4 +31,4 @@ operator != (const MatExpression<E1, m1, n1>& lhs, const MatExpression<E1, m2, n
 
 }
 
-#endif //VCCC_MATH_ALGEBRA_MATRIX_MAT_EXPR_OPERATIONS_HPP
+#endif //VCCC_MATH_MATRIX_MAT_EXPR_OPERATIONS_HPP

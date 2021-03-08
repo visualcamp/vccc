@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2020/02/05.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MUL_SCALAR_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MUL_SCALAR_HPP
+# ifndef VCCC_MATH_MATRIX_MATRIX_MUL_SCALAR_HPP
+# define VCCC_MATH_MATRIX_MATRIX_MUL_SCALAR_HPP
 #
 # include "vccc/math/algebra/matrix/mat_expression.hpp"
 # include "vccc/math/algebra/matrix/type_helper.hpp"
@@ -18,9 +18,9 @@ template<typename LhsType, typename RhsType>
 struct traits<MatrixMulScalar<LhsType, RhsType>> {
   enum {
     rows = traits<LhsType>::rows,
-    cols = traits<LhsType>::cols
+    cols = traits<LhsType>::cols,
+    flags = flag_default | flag_helper
   };
-  static constexpr bool is_helper = true;
   using value_type = typename LhsType::value_type;
 };
 
@@ -64,4 +64,4 @@ operator / (const MatExpression<LhsType>& lhs, const RhsType& value) {
 
 }
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MUL_SCALAR_HPP
+# endif //VCCC_MATH_MATRIX_MATRIX_MUL_SCALAR_HPP
