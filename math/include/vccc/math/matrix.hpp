@@ -6,6 +6,7 @@
 # define VCCC_MATH_MATRIX_HPP
 #
 # include "vccc/math/matrix/forward_declare.hpp"
+# include "vccc/math/matrix/at.hpp"
 # include "vccc/math/matrix/mat_expr_operations.hpp"
 # include "vccc/math/matrix/mat_expression.hpp"
 # include "vccc/math/matrix/matrix.hpp"
