@@ -468,7 +468,7 @@ Matrix<T, m, n>::diag(const Matrix::diag_type& value) {
 //! matrix out-of-class operations
 
 template<typename T, int m, int n>
-constexpr static inline
+constexpr inline
 Matrix<T, m, n>&
 operator *= (Matrix<T, m, n>& mat, T val) {
   for(int i=0; i<mat.size; ++i)
@@ -477,7 +477,7 @@ operator *= (Matrix<T, m, n>& mat, T val) {
 }
 
 template<typename T, int m, int n>
-constexpr static inline
+constexpr inline
 Matrix<T, m, n>&
 operator /= (Matrix<T, m, n>& mat, T val) {
   for(int i=0; i<mat.size; ++i)
@@ -486,7 +486,7 @@ operator /= (Matrix<T, m, n>& mat, T val) {
 }
 
 template<typename E, typename T, int m, int n>
-constexpr static inline
+constexpr inline
 Matrix<T, m, n>&
 operator += (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
   for(int i=0; i<mat.size; ++i)
@@ -495,7 +495,7 @@ operator += (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
 }
 
 template<typename E, typename T, int m, int n>
-constexpr static inline
+constexpr inline
 Matrix<T, m, n>&
 operator -= (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
   for(int i=0; i<mat.size; ++i)

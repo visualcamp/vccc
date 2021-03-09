@@ -50,14 +50,16 @@ class MatrixMulScalar : public MatExpression<MatrixMulScalar<LhsType, RhsType>> 
 };
 
 template<typename LhsType, typename RhsType, std::enable_if_t<!is_matrix<RhsType>::value, int> = 0>
-constexpr static inline
+constexpr inline
 MatrixMulScalar<LhsType, RhsType>
 operator * (const MatExpression<LhsType>& lhs, const RhsType& value) {
   return MatrixMulScalar<LhsType, RhsType>(*static_cast<const LhsType*>(&lhs), value);
 }
 
+
+
 template<typename LhsType, typename RhsType>
-constexpr static inline
+constexpr inline
 MatrixMulScalar<LhsType, RhsType>
 operator / (const MatExpression<LhsType>& lhs, const RhsType& value) {
   static_assert(!is_matrix<RhsType>::value, "Matrix cannot divide other matrix.");

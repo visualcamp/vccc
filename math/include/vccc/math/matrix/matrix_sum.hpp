@@ -51,7 +51,7 @@ class MatrixSum : public MatExpression<MatrixSum<LhsType, RhsType>> {
 };
 
 template<typename E1, typename E2>
-constexpr static inline
+constexpr inline
 MatrixSum<E1, E2>
 operator + (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
   return MatrixSum<E1, E2>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(&rhs));

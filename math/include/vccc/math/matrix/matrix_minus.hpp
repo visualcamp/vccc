@@ -44,7 +44,7 @@ class MatrixMinus : public MatExpression<MatrixMinus<E>> {
 };
 
 template<typename E>
-constexpr static inline
+constexpr inline
 MatrixMinus<E>
 operator - (const MatExpression<E>& lhs) {
   return MatrixMinus<E>(*static_cast<const E*>(&lhs));
