@@ -22,7 +22,7 @@ struct traits<MatrixMulScalar<LhsType, RhsType>> {
   };
 
   enum {
-    option = traits<LhsType>::option | Flag::kAliasUnsafe
+    option = traits<LhsType>::option | Flag::kReferenceUnsafe
   };
   using value_type = typename LhsType::value_type;
 };

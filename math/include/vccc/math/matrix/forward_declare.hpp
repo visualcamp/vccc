@@ -14,8 +14,9 @@ template<typename T> struct traits;
 template<typename T> struct traits<const T> : traits<T> {};
 
 enum Flag {
-  kDefault = 0x0,
-  kAliasUnsafe = 0x1
+  kDefault = 0b1,
+  kAliasUnsafe = 0b10,
+  kReferenceUnsafe = 0b100
 };
 
 } // namespace math

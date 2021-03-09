@@ -21,7 +21,7 @@ struct traits<MatrixSub<LhsType, RhsType>> {
   };
 
   enum {
-    option = traits<LhsType>::option | traits<RhsType>::option | Flag::kAliasUnsafe
+    option = traits<LhsType>::option | traits<RhsType>::option | Flag::kReferenceUnsafe
   };
   using value_type = typename LhsType::value_type;
 };

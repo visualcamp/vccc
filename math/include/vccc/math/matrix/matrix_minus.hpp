@@ -20,7 +20,7 @@ struct traits<MatrixMinus<E>> {
   };
 
   enum {
-    option = traits<E>::option | Flag::kAliasUnsafe
+    option = traits<E>::option | Flag::kReferenceUnsafe
   };
   using value_type = typename E::value_type;
 };

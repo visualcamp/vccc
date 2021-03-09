@@ -20,7 +20,7 @@ struct traits<MatrixMulMatrix<LhsType, RhsType>> {
   };
 
   enum {
-    option = traits<LhsType>::option | traits<RhsType>::option | Flag::kAliasUnsafe
+    option = traits<LhsType>::option | traits<RhsType>::option | Flag::kAliasUnsafe | Flag::kReferenceUnsafe
   };
   using value_type = typename LhsType::value_type;
 };
