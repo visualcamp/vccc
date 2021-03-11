@@ -34,8 +34,10 @@ constexpr
 auto
 average(InputIterator first, InputIterator last)
 {
-  using ret_t = typename InputIterator::value_type;
-  return sum(first, last) / static_cast<decay_if_float_t<typename InputIterator::value_type>>(std::distance(first, last));
+  assert(((void)"input size muse be larger than 0", first != last));
+  using return_type = decltype(*first);
+  if(first == last) return static_cast<decay_if_float_t<return_type>>(sum(first, last));
+  return sum(first, last) / static_cast<decay_if_float_t<return_type>>(std::distance(first, last));
 }
 
 /**
@@ -51,8 +53,10 @@ constexpr
 auto
 average(InputIterator first, InputIterator last, UnaryOperation unary_op)
 {
-  using ret_t = typename InputIterator::value_type;
-  return sum(first, last, unary_op) / static_cast<decay_if_float_t<typename InputIterator::value_type>>(std::distance(first, last));
+  assert(((void)"input size muse be larger than 0", first != last));
+  using return_type = decltype(*first);
+  if(first == last) return static_cast<decay_if_float_t<return_type>>(sum(first, last, std::move(unary_op)));
+  return sum(first, last, unary_op) / static_cast<decay_if_float_t<return_type>>(std::distance(first, last));
 }
 
 /**

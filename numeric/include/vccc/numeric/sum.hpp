@@ -36,6 +36,17 @@ template<typename Arg, typename ...Args>
 constexpr auto sumImpl(const Arg& arg, const Args&... args){
   return arg + sumImpl(args...);
 }
+
+template<typename T, VCCC_ENABLE_IF(std::is_class<std::decay_t<T>>::value)>
+constexpr auto default_value() {
+  return std::decay_t<T>();
+}
+
+template<typename T, VCCC_ENABLE_IF(!std::is_class<std::decay_t<T>>::value)>
+constexpr auto default_value() {
+  return static_cast<std::decay_t<T>>(0);
+}
+
 }
 
 /**
@@ -49,8 +60,8 @@ constexpr
 auto
 sum(InputIterator first, InputIterator last)
 {
+  if(first == last) return impl::default_value<decltype(*first)>();
   auto s = *first;
-  if (first == last) return s-s;
   ++first;
   for(; first != last; ++first)
     s += *first;
@@ -69,8 +80,8 @@ constexpr
 auto
 sum(InputIterator first, InputIterator last, UnaryOperation unary_op)
 {
+  if(first == last) return impl::default_value<decltype(*first)>();
   auto s = unary_op(*first);
-  if (first == last) return s-s;
   ++first;
   for(; first != last; ++first)
     s += unary_op(*first);
