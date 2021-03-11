@@ -153,6 +153,8 @@ struct bar {
 //
 //}
 
+#define STR_PRINT(x) std::cout << #x << " : " << (x) << std::endl
+
 int main() {
   INIT_TEST("vccc::math")
 
@@ -175,12 +177,23 @@ int main() {
   vccc::Matrix<float, 3, 3> m6 = m2 / 10;
   std::cout << m6 << std::endl;
 
-  auto M = vccc::Matrix<int, 3, 3>({1,2,3,4,5,6,7,8,9});
+  constexpr auto M = vccc::Matrix<int, 3, 3>({1, 2, 3, 4, 5, 6, 7, 8});
+  constexpr vccc::Matrix<int, 3, 3> M2 = vccc::Matrix<int, 3, 3>::zeros();
+
+  std::cout << M << std::endl;
+  auto M3 = M;
+  M3 *= 2;
+
+  STR_PRINT(M==(M + decltype(M)::zeros()));
+  STR_PRINT(M!=M2);
+//  std::cout << (M != M2) << std::endl;
 
   std::cout << M << std::endl;
   std::cout << M*M << std::endl;
   for(int i=0; i<9; ++i)
     std::cout << (M*M)(i) << ", "; std::cout << std::endl;
+
+  std::array<int, (M*M)(1,2)> arr{};
 
 //  TEST_ENSURES((vccc::is_matrix<vccc::MatExpression<int, 1, 2>>::value == true));
 //
