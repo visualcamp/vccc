@@ -2,11 +2,11 @@
 #  * Created by YongGyu Lee on 2020/02/04.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MINUS_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MINUS_HPP
+# ifndef VCCC_MATH_MATRIX_MATRIX_MINUS_HPP
+# define VCCC_MATH_MATRIX_MATRIX_MINUS_HPP
 #
-# include "vccc/math/algebra/matrix/mat_expression.hpp"
-# include "vccc/math/algebra/matrix/type_helper.hpp"
+# include "vccc/math/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/type_helper.hpp"
 
 namespace vccc {
 
@@ -18,7 +18,11 @@ struct traits<MatrixMinus<E>> {
     rows = traits<E>::rows,
     cols = traits<E>::cols
   };
-  static constexpr bool temporary = true;
+
+  enum {
+    option = traits<E>::option | Flag::kReferenceUnsafe
+  };
+  using value_type = typename E::value_type;
 };
 
 }}
@@ -40,7 +44,7 @@ class MatrixMinus : public MatExpression<MatrixMinus<E>> {
 };
 
 template<typename E>
-constexpr static inline
+constexpr inline
 MatrixMinus<E>
 operator - (const MatExpression<E>& lhs) {
   return MatrixMinus<E>(*static_cast<const E*>(&lhs));
@@ -50,4 +54,4 @@ operator - (const MatExpression<E>& lhs) {
 
 
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MINUS_HPP
+# endif //VCCC_MATH_MATRIX_MATRIX_MINUS_HPP

@@ -2,10 +2,10 @@
 #  * Created by YongGyu Lee on 2020/02/04.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MATRIX_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_HPP
+# ifndef VCCC_MATH_MATRIX_MATRIX_HPP
+# define VCCC_MATH_MATRIX_MATRIX_HPP
 #
-# include "vccc/math/algebra/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/mat_expression.hpp"
 
 namespace vccc {
 
@@ -17,7 +17,11 @@ struct traits<Matrix<T, m, n>> {
     rows = m,
     cols = n
   };
-  static constexpr bool temporary = false;
+
+  enum {
+    option = Flag::kDefault
+  };
+  using value_type = T;
 };
 
 }} // namespace internal::math
@@ -464,7 +468,7 @@ Matrix<T, m, n>::diag(const Matrix::diag_type& value) {
 //! matrix out-of-class operations
 
 template<typename T, int m, int n>
-constexpr static inline
+constexpr inline
 Matrix<T, m, n>&
 operator *= (Matrix<T, m, n>& mat, T val) {
   for(int i=0; i<mat.size; ++i)
@@ -473,7 +477,7 @@ operator *= (Matrix<T, m, n>& mat, T val) {
 }
 
 template<typename T, int m, int n>
-constexpr static inline
+constexpr inline
 Matrix<T, m, n>&
 operator /= (Matrix<T, m, n>& mat, T val) {
   for(int i=0; i<mat.size; ++i)
@@ -482,7 +486,7 @@ operator /= (Matrix<T, m, n>& mat, T val) {
 }
 
 template<typename E, typename T, int m, int n>
-constexpr static inline
+constexpr inline
 Matrix<T, m, n>&
 operator += (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
   for(int i=0; i<mat.size; ++i)
@@ -491,7 +495,7 @@ operator += (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
 }
 
 template<typename E, typename T, int m, int n>
-constexpr static inline
+constexpr inline
 Matrix<T, m, n>&
 operator -= (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
   for(int i=0; i<mat.size; ++i)
@@ -503,4 +507,4 @@ operator -= (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
 
 }
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_HPP
+# endif //VCCC_MATH_MATRIX_MATRIX_HPP

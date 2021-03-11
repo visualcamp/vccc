@@ -2,24 +2,28 @@
 #  * Created by YongGyu Lee on 2020/02/04.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MATRIX_SUM_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_SUM_HPP
+# ifndef VCCC_MATH_MATRIX_MATRIX_SUM_HPP
+# define VCCC_MATH_MATRIX_MATRIX_SUM_HPP
 #
-# include "vccc/math/algebra/matrix/mat_expression.hpp"
-# include "vccc/math/algebra/matrix/type_helper.hpp"
-# include "vccc/math/algebra/matrix/static_assert.hpp"
+# include "vccc/math/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/type_helper.hpp"
+# include "vccc/math/matrix/static_assert.hpp"
 
 namespace vccc {
 
 namespace internal { namespace math {
 
-template<typename E1, typename E2>
-struct traits<MatrixSum<E1, E2>> {
+template<typename LhsType, typename RhsType>
+struct traits<MatrixSum<LhsType, RhsType>> {
   enum {
-    rows = traits<E1>::rows,
-    cols = traits<E1>::cols
+    rows = traits<LhsType>::rows,
+    cols = traits<LhsType>::cols
   };
-  static constexpr bool temporary = true;
+
+  enum {
+    option = traits<LhsType>::option | traits<RhsType>::option | Flag::kReferenceUnsafe
+  };
+  using value_type = typename LhsType::value_type;
 };
 
 }} // namespace internal::math
@@ -47,7 +51,7 @@ class MatrixSum : public MatExpression<MatrixSum<LhsType, RhsType>> {
 };
 
 template<typename E1, typename E2>
-constexpr static inline
+constexpr inline
 MatrixSum<E1, E2>
 operator + (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
   return MatrixSum<E1, E2>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(&rhs));
@@ -55,4 +59,4 @@ operator + (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
 
 }
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_SUM_HPP
+# endif //VCCC_MATH_MATRIX_MATRIX_SUM_HPP

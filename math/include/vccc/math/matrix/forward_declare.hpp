@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2020/02/05.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_FORWARD_DECLARE_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_FORWARD_DECLARE_HPP
+# ifndef VCCC_MATH_MATRIX_FORWARD_DECLARE_HPP
+# define VCCC_MATH_MATRIX_FORWARD_DECLARE_HPP
 
 namespace vccc{
 
@@ -12,6 +12,13 @@ namespace math{
 
 template<typename T> struct traits;
 template<typename T> struct traits<const T> : traits<T> {};
+
+enum Flag {
+  kDefault = 0b1,
+  kAliasUnsafe = 0b10,
+  kReferenceUnsafe = 0b100
+};
+
 } // namespace math
 } // namespace internal
 
@@ -28,7 +35,8 @@ template<typename E> class MatrixMinus;
 template<typename Lhs, typename Rhs> class MatrixSub;
 
 template<typename LhsType, typename RhsType> class MatrixMulScalar;
+template<typename LhsType, typename RhsType> class MatrixMulMatrix;
 
 }
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_FORWARD_DECLARE_HPP
+# endif //VCCC_MATH_MATRIX_FORWARD_DECLARE_HPP

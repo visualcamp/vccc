@@ -12,6 +12,8 @@ ENDMACRO()
 cmake_minimum_required(VERSION 3.5)
 project(vccc)
 
+set(RUN_TEST ON)
+
 add_library(vccc INTERFACE)
 add_library(VCCC ALIAS vccc)
 add_subdirectory(boost/predef)
@@ -27,5 +29,9 @@ ENDFOREACH()
 
 target_link_libraries(vccc INTERFACE ${libraries_list} Boost::predef)
 
-enable_testing()
+
+
+if(RUN_TEST)
+    enable_testing()
+endif()
 #target_include_directories(vccc_utility INTERFACE include)

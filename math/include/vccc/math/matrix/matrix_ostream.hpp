@@ -2,10 +2,10 @@
 #  * Created by YongGyu Lee on 2020/02/05.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MATRIX_OSTREAM_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_OSTREAM_HPP
+# ifndef VCCC_MATH_MATRIX_MATRIX_OSTREAM_HPP
+# define VCCC_MATH_MATRIX_MATRIX_OSTREAM_HPP
 #
-# include "vccc/math/algebra/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/mat_expression.hpp"
 # include <ostream>
 
 namespace vccc {
@@ -34,4 +34,4 @@ std::ostream& operator << (std::ostream& os, const MatExpression<E>& mat_expr) {
 
 }
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_OSTREAM_HPP
+# endif //VCCC_MATH_MATRIX_MATRIX_OSTREAM_HPP

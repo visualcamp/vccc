@@ -2,11 +2,11 @@
 #  * Created by YongGyu Lee on 2020/02/05.
 #  */
 #
-# ifndef VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MUL_SCALAR_HPP
-# define VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MUL_SCALAR_HPP
+# ifndef VCCC_MATH_MATRIX_MATRIX_MUL_SCALAR_HPP
+# define VCCC_MATH_MATRIX_MATRIX_MUL_SCALAR_HPP
 #
-# include "vccc/math/algebra/matrix/mat_expression.hpp"
-# include "vccc/math/algebra/matrix/type_helper.hpp"
+# include "vccc/math/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/type_helper.hpp"
 # include <type_traits>
 # include <cassert>
 
@@ -18,9 +18,13 @@ template<typename LhsType, typename RhsType>
 struct traits<MatrixMulScalar<LhsType, RhsType>> {
   enum {
     rows = traits<LhsType>::rows,
-    cols = traits<LhsType>::cols
+    cols = traits<LhsType>::cols,
   };
-  static constexpr bool temporary = true;
+
+  enum {
+    option = traits<LhsType>::option | Flag::kReferenceUnsafe
+  };
+  using value_type = typename LhsType::value_type;
 };
 
 }}
@@ -46,14 +50,16 @@ class MatrixMulScalar : public MatExpression<MatrixMulScalar<LhsType, RhsType>> 
 };
 
 template<typename LhsType, typename RhsType, std::enable_if_t<!is_matrix<RhsType>::value, int> = 0>
-constexpr static inline
+constexpr inline
 MatrixMulScalar<LhsType, RhsType>
 operator * (const MatExpression<LhsType>& lhs, const RhsType& value) {
   return MatrixMulScalar<LhsType, RhsType>(*static_cast<const LhsType*>(&lhs), value);
 }
 
+
+
 template<typename LhsType, typename RhsType>
-constexpr static inline
+constexpr inline
 MatrixMulScalar<LhsType, RhsType>
 operator / (const MatExpression<LhsType>& lhs, const RhsType& value) {
   static_assert(!is_matrix<RhsType>::value, "Matrix cannot divide other matrix.");
@@ -63,4 +69,4 @@ operator / (const MatExpression<LhsType>& lhs, const RhsType& value) {
 
 }
 
-# endif //VCCC_MATH_ALGEBRA_MATRIX_MATRIX_MUL_SCALAR_HPP
+# endif //VCCC_MATH_MATRIX_MATRIX_MUL_SCALAR_HPP
