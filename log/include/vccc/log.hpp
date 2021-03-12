@@ -8,6 +8,7 @@
 # include "vccc/log/pwd.hpp"
 # include "vccc/log/log.hpp"
 # include "vccc/log/function_macro.hpp"
+# include "vccc/log/stringfy/stringfy.h"
 
 /**
 @defgroup log log
