@@ -19,11 +19,12 @@ int main() {
   char str[10] = {'h', 'e', 'l', 'l', 'o'};
 
   LOGD("%s", str);
+  LOGD("%p", str);
 
   std::cout << vccc::detail::are_types_c_printable<const char*, char[]>() << std::endl;
+  std::cout << vccc::detail::are_types_c_printable<const char*, char*>() << std::endl;
+  std::cout << vccc::detail::are_types_c_printable<const char*, class t>() << std::endl;
 
-  std::cout << std::is_scalar<char[]>() << std::endl;
-  std::cout << std::is_scalar<char*>() << std::endl;
 
 
 
