@@ -7,7 +7,7 @@
 #
 # include "vccc/type_support/detail/container_at.hpp"
 # include "vccc/type_traits.hpp"
-# include "opencv2/core/saturate.hpp"
+# include "opencv2/opencv.hpp"
 # include "vccc/type_support/core.hpp"
 #
 # /*
