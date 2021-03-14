@@ -16,11 +16,18 @@
 returns current calling file's working directory. <br>
 This macro must be directly used in code where needed, or it will generate wrong output
  */
-#define PWD                                     \
-[](){                                           \
-  std::string $13vlaae_dummy_str = __FILE__;    \
-  return $13vlaae_dummy_str.substr(             \
-    0, $13vlaae_dummy_str.find_last_of('/'));   \
+
+# if BOOST_COMP_MSVC == BOOST_VERSION_NUMBER_NOT_AVAILABLE
+#   define VCCC_FILE_SEPARATOR '/'
+# else
+#   define VCCC_FILE_SEPARATOR '\\'
+# endif
+
+# define PWD                                                  \
+[](){                                                         \
+  std::string $13vlaae_dummy_str = __FILE__;                  \
+  return $13vlaae_dummy_str.substr(                           \
+    0, $13vlaae_dummy_str.find_last_of(VCCC_FILE_SEPARATOR)); \
 }()
 
 //! @} log
