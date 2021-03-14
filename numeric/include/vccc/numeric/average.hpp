@@ -37,7 +37,7 @@ average(InputIterator first, InputIterator last)
 {
   assert(((void)"input size muse be larger than 0", first != last));
   using return_type = decltype(*first);
-  if(first == last) return impl::default_value<decltype(*first)>();
+  if(first == last) return impl::default_value<decltype(*first)>() / static_cast<decay_if_float_t<return_type>>(1);
   return sum(first, last) / static_cast<decay_if_float_t<return_type>>(std::distance(first, last));
 }
 
