@@ -80,7 +80,7 @@ constexpr
 auto
 sum(InputIterator first, InputIterator last, UnaryOperation unary_op)
 {
-  if(first == last) return impl::default_value<decltype(*first)>();
+  if(first == last) return impl::default_value<decltype(unary_op(*first))>();
   auto s = unary_op(*first);
   ++first;
   for(; first != last; ++first)

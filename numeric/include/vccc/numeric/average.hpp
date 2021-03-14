@@ -6,6 +6,7 @@
 # define VCCC_NUMERIC_AVERAGE_HPP
 #
 # include <iterator>
+# include <cassert>
 # include "vccc/type_traits.hpp"
 # include "vccc/numeric/sum.hpp"
 
@@ -54,7 +55,7 @@ auto
 average(InputIterator first, InputIterator last, UnaryOperation unary_op)
 {
   assert(((void)"input size muse be larger than 0", first != last));
-  using return_type = decltype(*first);
+  using return_type = decltype(unary_op(*first));
   if(first == last) return static_cast<decay_if_float_t<return_type>>(sum(first, last, std::move(unary_op)));
   return sum(first, last, unary_op) / static_cast<decay_if_float_t<return_type>>(std::distance(first, last));
 }
