@@ -6,6 +6,8 @@
 # define VCCC_MATH_MATRIX_MATRIX_HPP
 #
 # include "vccc/math/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/matrix_assigner.hpp"
+# include "vccc/math/matrix/assert.hpp"
 
 namespace vccc {
 
@@ -15,7 +17,8 @@ template<typename T, int m, int n>
 struct traits<Matrix<T, m, n>> {
   enum {
     rows = m,
-    cols = n
+    cols = n,
+    size = rows * cols,
   };
 
   enum {
@@ -39,7 +42,12 @@ class Matrix : public MatExpression<Matrix<T, m, n>> {
  public:
   using value_type = T;
   using matrix_type = Matrix<T, m, n>;
+  using base_type = MatExpression<matrix_type>;
   using diag_type = Matrix<T, Matrix::shortdim, 1>;
+  using base_type::rows;
+  using base_type::cols;
+  using base_type::size;
+  using base_type::shortdim;
 
   // default ctor with all value 0
   constexpr Matrix();
@@ -94,6 +102,10 @@ class Matrix : public MatExpression<Matrix<T, m, n>> {
   template<typename E>
   constexpr Matrix& operator = (const MatExpression<E>& expr);
 
+  inline MatrixProxyNocopy<matrix_type> noAlias() {
+    return MatrixProxyNocopy<matrix_type>(*this);
+  }
+
   constexpr static Matrix all(T value);
   constexpr static Matrix zeros();
   constexpr static Matrix ones();
@@ -101,14 +113,20 @@ class Matrix : public MatExpression<Matrix<T, m, n>> {
   constexpr static Matrix diag(const diag_type& value);
 
 
-  constexpr inline decltype(auto) operator[](std::size_t i) const { return data[i]; }
-  constexpr inline decltype(auto) operator[](std::size_t i) { return data[i]; }
+  constexpr inline decltype(auto) operator[](std::size_t i) const {
+    VCCC_MATH_ASSERT_1D_MATRIX(matrix_type);
+    return data[i];
+  }
+  constexpr inline decltype(auto) operator[](std::size_t i) {
+    VCCC_MATH_ASSERT_1D_MATRIX(matrix_type);
+    return data[i];
+  }
 
   constexpr inline decltype(auto) operator()(std::size_t i) const { return data[i]; }
   constexpr inline decltype(auto) operator()(std::size_t i) { return data[i]; }
 
-  constexpr inline decltype(auto) operator()(std::size_t i, std::size_t j) const { return data[i * this->cols + j]; }
-  constexpr inline decltype(auto) operator()(std::size_t i, std::size_t j) { return data[i * this->cols + j]; }
+  constexpr inline decltype(auto) operator()(std::size_t i, std::size_t j) const { return data[i * matrix_type::cols + j]; }
+  constexpr inline decltype(auto) operator()(std::size_t i, std::size_t j) { return data[i * matrix_type::cols + j]; }
 
 // private:
   T data[m * n];
@@ -378,23 +396,20 @@ constexpr Matrix<T, m, n>::Matrix(
 template<typename T, int m, int n>
 template<std::size_t N>
 constexpr
-Matrix<T, m, n>::Matrix(const T (& arr)[N]) {
+Matrix<T, m, n>::Matrix(const T (& arr)[N]) : data{} {
   static_assert(N <= m * n, "array size must not bigger than size of the matrix");
 
   int i = 0;
   for (; i < N; ++i)
     data[i] = arr[i];
-
-  for (; i < this->size; ++i)
-    data[i] = T(0);
 }
 
 template<typename T, int m, int n>
 template<typename E>
 constexpr
 Matrix<T, m, n>::Matrix(const MatExpression<E>& expr) {
-  for (int i = 0; i < this->size; ++i)
-    data[i] = expr[i];
+  VCCC_MATH_ASSERT_SAME_SIZE(E, matrix_type);
+  MatrixAssigner::assign(expr, *this);
 }
 
 template<typename T, int m, int n>
@@ -402,34 +417,34 @@ template<typename E>
 constexpr
 Matrix<T, m, n>&
 Matrix<T, m, n>::operator=(const MatExpression<E>& expr) {
-  for (int i = 0; i < this->size; ++i)
-    data[i] = expr[i];
+  VCCC_MATH_ASSERT_SAME_SIZE(E, matrix_type);
+  MatrixAssigner::assign(expr, *this);
   return *this;
 }
 
 
 template<typename T, int m, int n>
-constexpr Matrix<T, m, n>::Matrix(matrix_ctor_all_t, value_type value) {
-  for (int i = 0; i < this->size; ++i)
+constexpr Matrix<T, m, n>::Matrix(matrix_ctor_all_t, value_type value)
+  : data{}
+{
+  for (int i = 0; i < size; ++i)
     data[i] = value;
 }
 
 template<typename T, int m, int n>
-constexpr Matrix<T, m, n>::Matrix(matrix_ctor_all_t, matrix_ctor_diag_t, value_type value) {
-  for(int i=0; i<this->size; ++i)
-    data[i] = T(0);
-
-  for (int i = 0; i < this->shortdim; ++i)
-    data[i * this->rows + i] = value;
+constexpr Matrix<T, m, n>::Matrix(matrix_ctor_all_t, matrix_ctor_diag_t, value_type value)
+  : data{}
+{
+  for (int i = 0; i < shortdim; ++i)
+    data[i * rows + i] = value;
 }
 
 template<typename T, int m, int n>
-constexpr Matrix<T, m, n>::Matrix(matrix_ctor_diag_t, const Matrix::diag_type& value) {
-  for(int i=0; i<this->size; ++i)
-    data[i] = T(0);
-
-  for (int i = 0; i < this->shortdim; ++i)
-    data[i * this->rows + i] = value[i];
+constexpr Matrix<T, m, n>::Matrix(matrix_ctor_diag_t, const Matrix::diag_type& value)
+  : data{}
+{
+  for (int i = 0; i < shortdim; ++i)
+    data[i * rows + i] = value[i];
 }
 
 //! static Matrix make functions
@@ -468,16 +483,18 @@ Matrix<T, m, n>::diag(const Matrix::diag_type& value) {
 //! matrix out-of-class operations
 
 template<typename T, int m, int n>
-constexpr inline
+static inline
 Matrix<T, m, n>&
 operator *= (Matrix<T, m, n>& mat, T val) {
+  // TODO: use MatrixAssigner or raw access?
+//  MatrixAssigner::assign(mat*val, mat);
   for(int i=0; i<mat.size; ++i)
     mat.data[i] *= val;
   return mat;
 }
 
 template<typename T, int m, int n>
-constexpr inline
+static inline
 Matrix<T, m, n>&
 operator /= (Matrix<T, m, n>& mat, T val) {
   for(int i=0; i<mat.size; ++i)
@@ -486,7 +503,7 @@ operator /= (Matrix<T, m, n>& mat, T val) {
 }
 
 template<typename E, typename T, int m, int n>
-constexpr inline
+static inline
 Matrix<T, m, n>&
 operator += (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
   for(int i=0; i<mat.size; ++i)
@@ -495,7 +512,7 @@ operator += (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
 }
 
 template<typename E, typename T, int m, int n>
-constexpr inline
+static inline
 Matrix<T, m, n>&
 operator -= (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
   for(int i=0; i<mat.size; ++i)

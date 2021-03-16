@@ -16,7 +16,8 @@ template<typename E>
 struct traits<MatrixMinus<E>> {
   enum {
     rows = traits<E>::rows,
-    cols = traits<E>::cols
+    cols = traits<E>::cols,
+    size = rows * cols,
   };
 
   enum {

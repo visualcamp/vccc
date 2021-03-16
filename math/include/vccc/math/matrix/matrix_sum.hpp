@@ -7,7 +7,7 @@
 #
 # include "vccc/math/matrix/mat_expression.hpp"
 # include "vccc/math/matrix/type_helper.hpp"
-# include "vccc/math/matrix/static_assert.hpp"
+# include "vccc/math/matrix/assert.hpp"
 
 namespace vccc {
 
@@ -17,7 +17,8 @@ template<typename LhsType, typename RhsType>
 struct traits<MatrixSum<LhsType, RhsType>> {
   enum {
     rows = traits<LhsType>::rows,
-    cols = traits<LhsType>::cols
+    cols = traits<LhsType>::cols,
+    size = rows * cols,
   };
 
   enum {
@@ -38,7 +39,7 @@ class MatrixSum : public MatExpression<MatrixSum<LhsType, RhsType>> {
   using value_type = typename LhsType::value_type;
 
   constexpr inline MatrixSum(const LhsType& lhs, const RhsType& rhs) : lhs(lhs), rhs(rhs) {
-    VCCC_MATH_STATIC_ASSERT_MATRIX_SAME_SIZE(LhsType, RhsType);
+    VCCC_MATH_ASSERT_SAME_SIZE(LhsType, RhsType);
   };
 
   constexpr inline decltype(auto) operator() (std::size_t i) const                { return lhs(i)    + rhs(i);    }

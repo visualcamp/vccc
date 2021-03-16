@@ -19,6 +19,7 @@ struct traits<MatrixMulScalar<LhsType, RhsType>> {
   enum {
     rows = traits<LhsType>::rows,
     cols = traits<LhsType>::cols,
+    size = rows * cols,
   };
 
   enum {
