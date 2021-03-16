@@ -5,13 +5,13 @@
 # ifndef VCCC_MATH_MATRIX_MATRIX_OSTREAM_HPP
 # define VCCC_MATH_MATRIX_MATRIX_OSTREAM_HPP
 #
-# include "vccc/math/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/matrix_base.hpp"
 # include <ostream>
 
 namespace vccc {
 
 template<typename E>
-std::ostream& operator << (std::ostream& os, const MatExpression<E>& mat_expr) {
+std::ostream& operator << (std::ostream& os, const MatrixBase<E>& mat_expr) {
   os << '[';
 
   os << mat_expr(0, 0);

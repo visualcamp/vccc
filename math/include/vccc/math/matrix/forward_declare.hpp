@@ -23,7 +23,7 @@ enum Flag {
 } // namespace internal
 
 // Base expression class
-template<typename Derived> class MatExpression;
+template<typename Derived> class MatrixBase;
 
 // Actual Matrix class
 template <typename T, int m, int n> class Matrix;
@@ -37,6 +37,7 @@ template<typename Lhs, typename Rhs> class MatrixSub;
 template<typename LhsType, typename RhsType> class MatrixMulScalar;
 template<typename LhsType, typename RhsType> class MatrixMulMatrix;
 
+template<typename ExprType> class MatrixProxyNocopy;
 }
 
 # endif //VCCC_MATH_MATRIX_FORWARD_DECLARE_HPP

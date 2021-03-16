@@ -5,7 +5,7 @@
 # ifndef VCCC_MATH_MATRIX_MATRIX_MUL_SCALAR_HPP
 # define VCCC_MATH_MATRIX_MATRIX_MUL_SCALAR_HPP
 #
-# include "vccc/math/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/matrix_base.hpp"
 # include "vccc/math/matrix/type_helper.hpp"
 # include <type_traits>
 # include <cassert>
@@ -19,6 +19,7 @@ struct traits<MatrixMulScalar<LhsType, RhsType>> {
   enum {
     rows = traits<LhsType>::rows,
     cols = traits<LhsType>::cols,
+    size = rows * cols,
   };
 
   enum {
@@ -30,7 +31,7 @@ struct traits<MatrixMulScalar<LhsType, RhsType>> {
 }}
 
 template<typename LhsType, typename RhsType>
-class MatrixMulScalar : public MatExpression<MatrixMulScalar<LhsType, RhsType>> {
+class MatrixMulScalar : public MatrixBase<MatrixMulScalar<LhsType, RhsType>> {
  public:
   using value_type = typename LhsType::value_type;
   using lhs_type = internal::math::hold_type_selector_t<LhsType>;
@@ -52,7 +53,7 @@ class MatrixMulScalar : public MatExpression<MatrixMulScalar<LhsType, RhsType>> 
 template<typename LhsType, typename RhsType, std::enable_if_t<!is_matrix<RhsType>::value, int> = 0>
 constexpr inline
 MatrixMulScalar<LhsType, RhsType>
-operator * (const MatExpression<LhsType>& lhs, const RhsType& value) {
+operator * (const MatrixBase<LhsType>& lhs, const RhsType& value) {
   return MatrixMulScalar<LhsType, RhsType>(*static_cast<const LhsType*>(&lhs), value);
 }
 
@@ -61,7 +62,7 @@ operator * (const MatExpression<LhsType>& lhs, const RhsType& value) {
 template<typename LhsType, typename RhsType>
 constexpr inline
 MatrixMulScalar<LhsType, RhsType>
-operator / (const MatExpression<LhsType>& lhs, const RhsType& value) {
+operator / (const MatrixBase<LhsType>& lhs, const RhsType& value) {
   static_assert(!is_matrix<RhsType>::value, "Matrix cannot divide other matrix.");
   return MatrixMulScalar<LhsType, RhsType>(*static_cast<const LhsType*>(&lhs), RhsType(1) / value);
 }

@@ -5,7 +5,7 @@
 # ifndef VCCC_MATH_MATRIX_MATRIX_MINUS_HPP
 # define VCCC_MATH_MATRIX_MATRIX_MINUS_HPP
 #
-# include "vccc/math/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/matrix_base.hpp"
 # include "vccc/math/matrix/type_helper.hpp"
 
 namespace vccc {
@@ -16,7 +16,8 @@ template<typename E>
 struct traits<MatrixMinus<E>> {
   enum {
     rows = traits<E>::rows,
-    cols = traits<E>::cols
+    cols = traits<E>::cols,
+    size = rows * cols,
   };
 
   enum {
@@ -29,7 +30,7 @@ struct traits<MatrixMinus<E>> {
 
 
 template<typename E>
-class MatrixMinus : public MatExpression<MatrixMinus<E>> {
+class MatrixMinus : public MatrixBase<MatrixMinus<E>> {
   const E& e;
 
  public:
@@ -46,7 +47,7 @@ class MatrixMinus : public MatExpression<MatrixMinus<E>> {
 template<typename E>
 constexpr inline
 MatrixMinus<E>
-operator - (const MatExpression<E>& lhs) {
+operator - (const MatrixBase<E>& lhs) {
   return MatrixMinus<E>(*static_cast<const E*>(&lhs));
 }
 

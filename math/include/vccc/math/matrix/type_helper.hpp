@@ -34,6 +34,19 @@ struct is_alias_safe : std::integral_constant<bool, !(traits<T>::option & Flag::
 template<typename T> using is_alias_safe_t = typename is_alias_safe<T>::type;
 template<typename T> constexpr bool is_alias_safe_v = is_alias_safe<T>::value;
 
+
+template<typename T>
+struct is_concrete_matrix : std::false_type {};
+
+template<typename T, int m, int n>
+struct is_concrete_matrix<Matrix<T, m, n>> : std::true_type {};
+
+template<typename T>
+using is_concrete_matrix_t = typename is_concrete_matrix<T>::type;
+
+template<typename T>
+constexpr bool is_concrete_matrix_v = is_concrete_matrix<T>::value;
+
 }} // namespace internal::math
 } // namespace vccc
 

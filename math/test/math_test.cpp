@@ -177,12 +177,16 @@ int main() {
   vccc::Matrix<float, 3, 3> m6 = m2 / 10;
   std::cout << m6 << std::endl;
 
-  constexpr auto M = vccc::Matrix<int, 3, 3>({1, 2, 3, 4, 5, 6, 7, 8});
+  auto M = vccc::Matrix<int, 3, 3>({1, 2, 3, 4, 5, 6, 7, 8, 9});
   constexpr vccc::Matrix<int, 3, 3> M2 = vccc::Matrix<int, 3, 3>::zeros();
 
   std::cout << M << std::endl;
   auto M3 = M;
   M3 *= 2;
+
+  std::cout << "M3: " << M3 << std::endl;
+
+  auto temp = M3 * 2;
 
   STR_PRINT(M==(M + decltype(M)::zeros()));
   STR_PRINT(M!=M2);
@@ -190,10 +194,21 @@ int main() {
 
   std::cout << M << std::endl;
   std::cout << M*M << std::endl;
-  for(int i=0; i<9; ++i)
-    std::cout << (M*M)(i) << ", "; std::cout << std::endl;
+  M = M*M;
+  std::cout << M << std::endl;
 
-  std::array<int, (M*M)(1,2)> arr{};
+  vccc::Matrix<int, 2, 2> A;
+//  M = A*A;
+
+  namespace math = vccc::internal::math;
+
+  auto U = M+(M*M) * 3;
+
+  std::cout << math::is_alias_safe_v<decltype(M)> << std::endl;
+  std::cout << math::is_alias_safe_v<decltype(M*M)> << std::endl;
+  std::cout << math::is_alias_safe_v<decltype(U)> << std::endl;
+  std::cout << math::is_alias_safe_v<decltype(M*3)> << std::endl;
+
 
 //  TEST_ENSURES((vccc::is_matrix<vccc::MatExpression<int, 1, 2>>::value == true));
 //

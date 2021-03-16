@@ -5,7 +5,7 @@
 # ifndef VCCC_MATH_MATRIX_MATRIX_INV_HPP
 # define VCCC_MATH_MATRIX_MATRIX_INV_HPP
 #
-# include "vccc/math/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/matrix_base.hpp"
 
 namespace vccc {
 

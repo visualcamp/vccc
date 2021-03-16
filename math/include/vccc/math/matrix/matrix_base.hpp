@@ -11,9 +11,10 @@
 namespace vccc{
 
 template<typename Derived>
-class MatExpression {
+class MatrixBase {
  public:
-  using derived_traits = internal::math::traits<Derived>;
+  using derived_type = Derived;
+  using derived_traits = internal::math::traits<derived_type>;
 
   enum {
     rows = derived_traits::rows,
@@ -26,22 +27,32 @@ class MatExpression {
 
   //! static polymorphic virtual-like member functions
   constexpr inline decltype(auto) operator() (std::size_t i) const {
-    return static_cast<const Derived&>(*this)(i);
+    return static_cast<const derived_type&>(*this)(i);
   }
   constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const {
-    return static_cast<const Derived&>(*this)(i, j);
+    return static_cast<const derived_type&>(*this)(i, j);
   }
   constexpr inline decltype(auto) operator[] (std::size_t i) const {
-    return static_cast<const Derived&>(*this)[i];
+    return static_cast<const derived_type&>(*this)[i];
   }
 
+  constexpr inline const derived_type& derived() const {
+    return static_cast<const derived_type&>(*this);
+  }
+  constexpr inline derived_type& derived() {
+    return static_cast<derived_type&>(*this);
+  }
+
+//  constexpr inline Matrix createNew() const {
+//    return derived_type(derived());
+//  }
 };
 
 
 namespace internal { namespace math {
 
 template<typename Derived>
-std::true_type is_matrix_impl(const vccc::MatExpression<Derived>&);
+std::true_type is_matrix_impl(const vccc::MatrixBase<Derived>&);
 std::false_type is_matrix_impl(...);
 
 }} // namespace internal::math
