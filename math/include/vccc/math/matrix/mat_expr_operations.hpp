@@ -5,13 +5,13 @@
 # ifndef VCCC_MATH_MATRIX_MAT_EXPR_OPERATIONS_HPP
 # define VCCC_MATH_MATRIX_MAT_EXPR_OPERATIONS_HPP
 #
-# include "vccc/math/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/matrix_base.hpp"
 
 namespace vccc{
 
 template<typename E1, typename E2>
 constexpr bool
-operator == (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
+operator == (const MatrixBase<E1>& lhs, const MatrixBase<E2>& rhs) {
   if(lhs.rows != rhs.rows || lhs.cols != rhs.cols)
     return false;
   for(int i=0; i<lhs.size; ++i)
@@ -21,7 +21,7 @@ operator == (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
 
 template<typename E1, typename E2>
 constexpr bool
-operator != (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
+operator != (const MatrixBase<E1>& lhs, const MatrixBase<E2>& rhs) {
   return !(lhs == rhs);
 }
 

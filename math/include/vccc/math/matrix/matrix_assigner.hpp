@@ -25,26 +25,26 @@ class MatrixAssigner {
   }
 
   template<typename ExprType, typename DstType>
-  static inline void assign(const MatExpression<ExprType>& expr, MatExpression<DstType>& dst) {
+  static inline void assign(const MatrixBase<ExprType>& expr, MatrixBase<DstType>& dst) {
     VCCC_MATH_ASSERT_SAME_SIZE(ExprType, DstType);
     assignImpl(internal::math::is_alias_safe_t<ExprType>{}, expr, dst.derived());
   }
 
   template<typename ExprType, typename DstType>
-  static inline void assignNocopy(const MatExpression<ExprType>& expr, MatExpression<DstType>& dst) {
+  static inline void assignNocopy(const MatrixBase<ExprType>& expr, MatrixBase<DstType>& dst) {
     VCCC_MATH_ASSERT_SAME_SIZE(ExprType, DstType);
     assignImpl(alias_safe_t{}, expr, dst.derived());
   }
 
  private:
   template<typename ExprType, typename DstType>
-  static void assignImpl(alias_safe_t, const MatExpression<ExprType>& expr, DstType& dst) {
+  static void assignImpl(alias_safe_t, const MatrixBase<ExprType>& expr, DstType& dst) {
     for(int i=0; i<internal::math::traits<ExprType>::size; ++i)
       dst(i) = expr(i);
   }
 
   template<typename ExprType, typename DstType>
-  static void assignImpl(alias_unsafe_t, const MatExpression<ExprType>& expr, DstType& dst) {
+  static void assignImpl(alias_unsafe_t, const MatrixBase<ExprType>& expr, DstType& dst) {
     DstType copy;
     for(int i=0; i<internal::math::traits<ExprType>::size; ++i)
       copy(i) = expr(i);

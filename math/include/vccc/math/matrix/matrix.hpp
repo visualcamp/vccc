@@ -5,7 +5,7 @@
 # ifndef VCCC_MATH_MATRIX_MATRIX_HPP
 # define VCCC_MATH_MATRIX_MATRIX_HPP
 #
-# include "vccc/math/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/matrix_base.hpp"
 # include "vccc/math/matrix/matrix_assigner.hpp"
 # include "vccc/math/matrix/assert.hpp"
 
@@ -38,11 +38,11 @@ constexpr matrix_ctor_diag_t matrix_ctor_diag;
 constexpr matrix_ctor_matmul_t matrix_ctor_matmul;
 
 template<typename T, int m, int n>
-class Matrix : public MatExpression<Matrix<T, m, n>> {
+class Matrix : public MatrixBase<Matrix<T, m, n>> {
  public:
   using value_type = T;
   using matrix_type = Matrix<T, m, n>;
-  using base_type = MatExpression<matrix_type>;
+  using base_type = MatrixBase<matrix_type>;
   using diag_type = Matrix<T, Matrix::shortdim, 1>;
   using base_type::rows;
   using base_type::cols;
@@ -97,10 +97,10 @@ class Matrix : public MatExpression<Matrix<T, m, n>> {
 //  constexpr Matrix(matrix_ctor_matmul_t, const MatrixMulMatrix<LhsType, RhsType, m, l, n>& );
 
   template<typename E>
-  constexpr Matrix(const MatExpression<E>& expr);
+  constexpr Matrix(const MatrixBase<E>& expr);
 
   template<typename E>
-  constexpr Matrix& operator = (const MatExpression<E>& expr);
+  constexpr Matrix& operator = (const MatrixBase<E>& expr);
 
   inline MatrixProxyNocopy<matrix_type> noAlias() {
     return MatrixProxyNocopy<matrix_type>(*this);
@@ -407,7 +407,7 @@ Matrix<T, m, n>::Matrix(const T (& arr)[N]) : data{} {
 template<typename T, int m, int n>
 template<typename E>
 constexpr
-Matrix<T, m, n>::Matrix(const MatExpression<E>& expr) {
+Matrix<T, m, n>::Matrix(const MatrixBase<E>& expr) {
   VCCC_MATH_ASSERT_SAME_SIZE(E, matrix_type);
   MatrixAssigner::assign(expr, *this);
 }
@@ -416,7 +416,7 @@ template<typename T, int m, int n>
 template<typename E>
 constexpr
 Matrix<T, m, n>&
-Matrix<T, m, n>::operator=(const MatExpression<E>& expr) {
+Matrix<T, m, n>::operator=(const MatrixBase<E>& expr) {
   VCCC_MATH_ASSERT_SAME_SIZE(E, matrix_type);
   MatrixAssigner::assign(expr, *this);
   return *this;
@@ -505,7 +505,7 @@ operator /= (Matrix<T, m, n>& mat, T val) {
 template<typename E, typename T, int m, int n>
 static inline
 Matrix<T, m, n>&
-operator += (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
+operator += (Matrix<T, m, n>& mat, const MatrixBase<E>& expr) {
   for(int i=0; i<mat.size; ++i)
     mat.data[i] += expr[i];
   return mat;
@@ -514,7 +514,7 @@ operator += (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
 template<typename E, typename T, int m, int n>
 static inline
 Matrix<T, m, n>&
-operator -= (Matrix<T, m, n>& mat, const MatExpression<E>& expr) {
+operator -= (Matrix<T, m, n>& mat, const MatrixBase<E>& expr) {
   for(int i=0; i<mat.size; ++i)
     mat.data[i] -= expr[i];
   return mat;

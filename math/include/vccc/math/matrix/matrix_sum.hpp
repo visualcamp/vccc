@@ -5,7 +5,7 @@
 # ifndef VCCC_MATH_MATRIX_MATRIX_SUM_HPP
 # define VCCC_MATH_MATRIX_MATRIX_SUM_HPP
 #
-# include "vccc/math/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/matrix_base.hpp"
 # include "vccc/math/matrix/type_helper.hpp"
 # include "vccc/math/matrix/assert.hpp"
 
@@ -30,7 +30,7 @@ struct traits<MatrixSum<LhsType, RhsType>> {
 }} // namespace internal::math
 
 template<typename LhsType, typename RhsType>
-class MatrixSum : public MatExpression<MatrixSum<LhsType, RhsType>> {
+class MatrixSum : public MatrixBase<MatrixSum<LhsType, RhsType>> {
  public:
 
   using lhs_type = internal::math::hold_type_selector_t<LhsType>;
@@ -54,7 +54,7 @@ class MatrixSum : public MatExpression<MatrixSum<LhsType, RhsType>> {
 template<typename E1, typename E2>
 constexpr inline
 MatrixSum<E1, E2>
-operator + (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
+operator + (const MatrixBase<E1>& lhs, const MatrixBase<E2>& rhs) {
   return MatrixSum<E1, E2>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(&rhs));
 }
 

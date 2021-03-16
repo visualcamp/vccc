@@ -11,7 +11,7 @@
 namespace vccc{
 
 template<typename Derived>
-class MatExpression {
+class MatrixBase {
  public:
   using derived_type = Derived;
   using derived_traits = internal::math::traits<derived_type>;
@@ -52,7 +52,7 @@ class MatExpression {
 namespace internal { namespace math {
 
 template<typename Derived>
-std::true_type is_matrix_impl(const vccc::MatExpression<Derived>&);
+std::true_type is_matrix_impl(const vccc::MatrixBase<Derived>&);
 std::false_type is_matrix_impl(...);
 
 }} // namespace internal::math

@@ -9,7 +9,7 @@
 # include "vccc/math/matrix/forward_declare.hpp"
 # include "vccc/math/matrix/at.hpp"
 # include "vccc/math/matrix/mat_expr_operations.hpp"
-# include "vccc/math/matrix/mat_expression.hpp"
+# include "vccc/math/matrix/matrix_base.hpp"
 # include "vccc/math/matrix/matrix.hpp"
 # include "vccc/math/matrix/matrix_assigner.hpp"
 # include "vccc/math/matrix/matrix_minus.hpp"

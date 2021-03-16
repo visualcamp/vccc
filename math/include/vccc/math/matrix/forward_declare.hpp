@@ -23,7 +23,7 @@ enum Flag {
 } // namespace internal
 
 // Base expression class
-template<typename Derived> class MatExpression;
+template<typename Derived> class MatrixBase;
 
 // Actual Matrix class
 template <typename T, int m, int n> class Matrix;

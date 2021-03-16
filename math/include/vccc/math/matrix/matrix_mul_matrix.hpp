@@ -30,12 +30,12 @@ struct traits<MatrixMulMatrix<LhsType, RhsType>> {
 template<typename E1, typename E2>
 constexpr inline
 MatrixMulMatrix<E1, E2>
-operator * (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs);
+operator * (const MatrixBase<E1>& lhs, const MatrixBase<E2>& rhs);
 
 template<typename LhsType, typename RhsType>
-class MatrixMulMatrix : public MatExpression<MatrixMulMatrix<LhsType, RhsType>>{
+class MatrixMulMatrix : public MatrixBase<MatrixMulMatrix<LhsType, RhsType>>{
  public:
-  using base = MatExpression<MatrixMulMatrix<LhsType, RhsType>>;
+  using base = MatrixBase<MatrixMulMatrix<LhsType, RhsType>>;
   using value_type  = typename internal::math::traits<MatrixMulMatrix>::value_type;
   using lhs_type = internal::math::hold_type_selector_t<LhsType>;
   using rhs_type = internal::math::hold_type_selector_t<RhsType>;
@@ -72,7 +72,7 @@ class MatrixMulMatrix : public MatExpression<MatrixMulMatrix<LhsType, RhsType>>{
 template<typename E1, typename E2>
 constexpr inline
 MatrixMulMatrix<E1, E2>
-operator * (const MatExpression<E1>& lhs, const MatExpression<E2>& rhs) {
+operator * (const MatrixBase<E1>& lhs, const MatrixBase<E2>& rhs) {
   return MatrixMulMatrix<E1, E2>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(&rhs));
 }
 

@@ -29,14 +29,14 @@ struct traits<MatrixProxyNocopy<ExprType>> {
 }} // namespace internal/math
 
 template<typename ExprType>
-class MatrixProxyNocopy : public MatExpression<MatrixProxyNocopy<ExprType>> {
+class MatrixProxyNocopy : public MatrixBase<MatrixProxyNocopy<ExprType>> {
  public:
   static_assert(internal::math::is_concrete_matrix_v<ExprType>, "Only Concrete Matrix type is allowed");
 
   explicit MatrixProxyNocopy(ExprType& expr) : expr(expr) {}
 
   template<typename E>
-  MatrixProxyNocopy& operator = (const MatExpression<E>& rhs) && {
+  MatrixProxyNocopy& operator = (const MatrixBase<E>& rhs) && {
     MatrixAssigner::assignNocopy(rhs, expr);
     return *this;
   }
