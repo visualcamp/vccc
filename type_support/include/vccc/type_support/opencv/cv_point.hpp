@@ -32,7 +32,7 @@ namespace vccc{
 @{
 */
 template<typename T>
-struct detail::cv_size<cv::Point_<T>> : cv_size_n<2> {};
+struct cv_size<cv::Point_<T>> : cv_size_n<2> {};
 //! @} type_support_cv_size_cv_point
 //! @} type_support_cv_size
 

@@ -8,6 +8,7 @@
 # include <algorithm>
 # include "vccc/type_support/convert_to.hpp"
 # include "vccc/type_traits.hpp"
+# include "vccc/type_support/cast.hpp"
 
 
 namespace vccc{
@@ -61,13 +62,13 @@ decltype(auto) vtype_convert(CVType<NewType, CVParams...>&& cv_type)
 @param cv_type      any template container class
  */
 template<typename NewType, template<typename...> class Container, typename OldType, typename ...Params,
-        VCCC_ENABLE_IF((is_container_v<Container<OldType, Params...>>,
+        VCCC_ENABLE_IF((is_container_v<Container<OldType, Params...>> &&
                       !std::is_same<NewType, OldType>::value))>
 decltype(auto) vtype_convert(const Container<OldType, Params...>& container)
 {
   Container<NewType, std::allocator<NewType>> res(container.size());
   std::transform(std::begin(container), std::end(container), std::begin(res),
-                 [](auto &val) { return static_cast<NewType>(val); });
+                 [](auto &val) { return cast<NewType>(val); });
   return res;
 }
 
@@ -94,7 +95,7 @@ decltype(auto) vtype_convert(Container<NewType, Params...>&& container)
 @param cv_type      any template container class
  */
 template<typename NewType, typename Func, template<typename...> class Container, typename OldType, typename ...Params,
-        VCCC_ENABLE_IF((is_container_v<Container<OldType, Params...>>,
+        VCCC_ENABLE_IF((is_container_v<Container<OldType, Params...>> &&
                       !std::is_same<NewType, OldType>::value))>
 decltype(auto) vtype_convert(const Container<OldType, Params...>& container, Func func)
 {
@@ -120,7 +121,7 @@ vtype_convert(const std::array<OldType, n>& container)
 {
   std::array<NewType, n> res;
   std::transform(std::begin(container), std::end(container), std::begin(res),
-                 [](auto& val) { return static_cast<NewType>(val); });
+                 [](auto& val) { return cast<NewType>(val); });
   return res;
 }
 

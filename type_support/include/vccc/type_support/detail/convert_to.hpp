@@ -16,7 +16,7 @@ template<typename R, typename T, std::size_t... I, typename IT, IT... I2>
 R
 fill_rest(const T& from, std::index_sequence<I...> index_seq, std::integer_sequence<IT, I2...> rest_seq)
 {
-  return R(vccc::at<I, double>(from)..., I2...);
+  return R(vccc::at<I, typename R::value_type>(from)..., I2...);
 }
 
 // convert to cv type

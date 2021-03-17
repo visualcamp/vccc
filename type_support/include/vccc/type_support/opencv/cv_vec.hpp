@@ -6,7 +6,7 @@
 # define VCCC_TYPE_SUPPORT_OPENCV_CV_VEC_HPP
 #
 # include "opencv2/core/types.hpp"
-# include "vccc/type_support/opencv/detail/cv_size.hpp"
+# include "vccc/type_support/opencv/traits.hpp"
 
 namespace vccc{
 
@@ -19,7 +19,7 @@ namespace vccc{
 @{
 */
 template<typename T, int cn>
-struct detail::cv_size<cv::Vec<T, cn>> : cv_size_n<cn> {};
+struct cv_size<cv::Vec<T, cn>> : cv_size_n<cn> {};
 //! @} type_support_cv_size_cv_vec
 //! @} type_support_cv_size
 

@@ -14,6 +14,10 @@ project(vccc)
 
 set(RUN_TEST ON)
 
+if(NOT DEFINED ${VCCC_USE_OPENCV_FEATURES})
+    set(VCCC_USE_OPENCV_FEATURES ON)
+endif()
+
 add_library(vccc INTERFACE)
 add_library(VCCC ALIAS vccc)
 add_subdirectory(boost/predef)

@@ -20,7 +20,7 @@ namespace vccc{
 @{
 */
 template<typename T>
-struct detail::cv_size<cv::Point3_<T>> : cv_size_n<3> {};
+struct cv_size<cv::Point3_<T>> : cv_size_n<3> {};
 //! @} type_support_cv_size_cv_point3
 //! @} type_support_cv_size
 
