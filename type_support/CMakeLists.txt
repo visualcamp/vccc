@@ -5,3 +5,7 @@ add_library(vccc_type_support INTERFACE)
 add_library(VCCC::type_support ALIAS vccc_type_support)
 
 target_include_directories(vccc_type_support INTERFACE include)
+
+if(RUN_TEST)
+    add_subdirectory(test)
+endif()
