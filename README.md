@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="/media/vc_logo.png"></img></br>
+</p>
+
 # VCCC
 ## VisualCamp Common C++ library
 * Requires C++14 or above
