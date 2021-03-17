@@ -7,4 +7,4 @@ macro(MAKE_TEST name target)
     add_test(NAME ${name} COMMAND ${name})
 endmacro()
 
-MAKE_TEST(test_high test_high.cpp VCCC)
+MAKE_TEST(test_high test_high.cpp VCCC::high)
