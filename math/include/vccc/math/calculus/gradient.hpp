@@ -6,6 +6,7 @@
 # define VCCC_MATH_CALCULUS_GRADIENT_HPP
 #
 # include "vccc/math/calculus/partial_diff.hpp"
+# include "vccc/type_traits/are.hpp"
 
 namespace vccc{
 

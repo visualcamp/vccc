@@ -13,7 +13,7 @@ namespace vccc{
 template<typename ...Args> std::ostream& operator << (std::ostream& os, const std::tuple<Args...>& tup);
 template<typename ...Args> std::ostream& operator << (std::ostream& os, const std::pair<Args...>& tup);
 template<typename T, T... I> std::ostream& operator << (std::ostream& os, const std::integer_sequence<T, I...>& seq);
-template<typename T, VCCC_REQUIRE_FORWARD(is_container<T>::value && !is_string_like<T>::value)>
+template<typename T, VCCC_ENABLE_IF_FORWARD(is_container<T>::value && !is_string_like<T>::value)>
 std::ostream& operator << (std::ostream& os, const T& v);
 
 namespace detail{

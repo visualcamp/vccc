@@ -8,6 +8,7 @@
 # include <limits>
 # include "vccc/math/calculus/detail/apply.hpp"
 # include "vccc/math/calculus/epsilon.hpp"
+# include "vccc/math/matrix.hpp"
 
 namespace vccc{
 
@@ -31,10 +32,26 @@ namespace vccc{
 
 template<std::size_t i,
          typename Tuple, typename T>
+inline
+constexpr
 auto
 addEpsilon(Tuple vars, T epsilon)
 {
   std::get<i>(vars) += std::get<i>(vars) == 0 ? epsilon : std::get<i>(vars) * epsilon;
+  return vars;
+}
+
+template<std::size_t i, typename MatExpr, typename Epsilon>
+inline constexpr decltype(auto)
+addEpsilon(MatrixBase<MatExpr> vars, Epsilon epsilon) {
+  at<i>(vars) += at<i>(vars) == 0 ? epsilon : at<i>(vars) * epsilon;
+  return vars;
+}
+
+template<typename MatExpr, typename Epsilon>
+constexpr decltype(auto)
+addEpsilon(std::size_t i, MatrixBase<MatExpr> vars, Epsilon epsilon) {
+  vars(i) += vars(i) == 0 ? epsilon : vars(i) * epsilon;
   return vars;
 }
 
@@ -73,13 +90,11 @@ partialDiff(differential_symmetric_t, Func f, VarTuple vars, Args&&... args)
 {
   auto x1 = addEpsilon<I>(vars, epsilon<T>());
   auto x2 = addEpsilon<I>(vars, -epsilon<T>());
-  auto dx = (std::get<I>(x2) - std::get<I>(x1));
+  auto dx = std::get<I>(x1) - std::get<I>(x2);
 
   auto fx1 = detail::math::applyTupleAndVariadics(f, x1, args...);
   auto fx2 = detail::math::applyTupleAndVariadics(f, x2, args...);
-  if(std::get<I>(vars) == 0)
-    return (fx1 - fx2) / dx;
-  return (fx1 - fx2) / (std::get<I>(vars) * dx);
+  return (fx1 - fx2) / dx;
 }
 
 /**
@@ -102,13 +117,11 @@ partialDiff(differential_newtonian_t, Func f, VarTuple vars, Args&&... args)
 {
   auto x1 = addEpsilon<I>(vars, epsilon<T>());
   auto x2 = vars;
-  auto dx = (std::get<I>(x2) - std::get<I>(x1));
+  auto dx = std::get<I>(x1) - std::get<I>(x2);
 
   auto fx1 = detail::math::applyTupleAndVariadics(f, x1, args...);
   auto fx2 = detail::math::applyTupleAndVariadics(f, x2, args...);
-  if(std::get<I>(vars) == 0)
-    return (fx1 - fx2) / dx;
-  return (fx1 - fx2) / (std::get<I>(vars) * dx);
+  return (fx1 - fx2) / dx;
 }
 
 /**

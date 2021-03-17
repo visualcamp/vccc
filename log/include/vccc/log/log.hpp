@@ -63,7 +63,7 @@ if using << format, blank will be inserted between all elements
 
 class Log_{
  public:
-  Log_() = default;
+  constexpr Log_() = default;
 
   template<typename ...Args> void v(Args&&... args) const { LOGV_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
   template<typename ...Args> void d(Args&&... args) const { LOGD_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
@@ -81,7 +81,7 @@ class Log_{
   }
 };
 
-static Log_ Log;
+constexpr Log_ Log;
 
 }
 

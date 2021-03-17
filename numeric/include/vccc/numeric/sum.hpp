@@ -36,6 +36,17 @@ template<typename Arg, typename ...Args>
 constexpr auto sumImpl(const Arg& arg, const Args&... args){
   return arg + sumImpl(args...);
 }
+
+template<typename T, VCCC_ENABLE_IF(std::is_class<std::decay_t<T>>::value)>
+constexpr auto default_value() {
+  return std::decay_t<T>();
+}
+
+template<typename T, VCCC_ENABLE_IF(!std::is_class<std::decay_t<T>>::value)>
+constexpr auto default_value() {
+  return static_cast<std::decay_t<T>>(0);
+}
+
 }
 
 /**
@@ -44,13 +55,13 @@ constexpr auto sumImpl(const Arg& arg, const Args&... args){
 @param last     ending iterator
 @return         sum
 */
-template<typename InputIterator, VCCC_REQUIRE(iterable<InputIterator>)>
+template<typename InputIterator, VCCC_ENABLE_IF(iterable<InputIterator>)>
 constexpr
 auto
 sum(InputIterator first, InputIterator last)
 {
+  if(first == last) return impl::default_value<decltype(*first)>();
   auto s = *first;
-  if (first == last) return s-s;
   ++first;
   for(; first != last; ++first)
     s += *first;
@@ -64,13 +75,13 @@ sum(InputIterator first, InputIterator last)
 @param unary_op unary operator
 @return         sum
 */
-template<typename InputIterator, typename UnaryOperation, VCCC_REQUIRE(iterable<InputIterator>)>
+template<typename InputIterator, typename UnaryOperation, VCCC_ENABLE_IF(iterable<InputIterator>)>
 constexpr
 auto
 sum(InputIterator first, InputIterator last, UnaryOperation unary_op)
 {
+  if(first == last) return impl::default_value<decltype(unary_op(*first))>();
   auto s = unary_op(*first);
-  if (first == last) return s-s;
   ++first;
   for(; first != last; ++first)
     s += unary_op(*first);
@@ -84,7 +95,7 @@ sum(InputIterator first, InputIterator last, UnaryOperation unary_op)
 @param unary_op unary operator
 @return         sum
 */
-template<typename ...Args, VCCC_REQUIRE(!iterable<Args...>)>
+template<typename ...Args, VCCC_ENABLE_IF(!iterable<Args...>)>
 constexpr
 auto
 sum(const Args&... args)
@@ -135,7 +146,7 @@ square(const T& val)
 @param last     ending iterator
 @return         squared sum
 */
-template<typename InputIterator, VCCC_REQUIRE(iterable<InputIterator>)>
+template<typename InputIterator, VCCC_ENABLE_IF(iterable<InputIterator>)>
 constexpr
 auto
 square_sum(InputIterator first, InputIterator last)
@@ -151,7 +162,7 @@ square_sum(const Arg& arg)
   return square(arg);
 }
 
-template<typename Arg1, typename Arg2, VCCC_REQUIRE((!iterable<Arg1, Arg2>))>
+template<typename Arg1, typename Arg2, VCCC_ENABLE_IF((!iterable<Arg1, Arg2>))>
 constexpr
 auto
 square_sum(const Arg1& arg1, const Arg2& arg2)
@@ -164,7 +175,7 @@ square_sum(const Arg1& arg1, const Arg2& arg2)
 @param arg, ...args     args
 @return                 squared sum
 */
-template<typename Arg, typename ...Args, VCCC_REQUIRE(!iterable<Arg>)>
+template<typename Arg, typename ...Args, VCCC_ENABLE_IF(!iterable<Arg>)>
 constexpr
 auto
 square_sum(const Arg& arg, const Args&... args)

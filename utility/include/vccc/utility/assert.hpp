@@ -4,6 +4,8 @@
 #
 # ifndef VCCC_UTILITY_ASSERT_HPP
 # define VCCC_UTILITY_ASSERT_HPP
+#
+# include <cassert>
 
 /** 나중에 gsl로 대체하는게 좋을 듯.. */
 

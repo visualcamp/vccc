@@ -8,6 +8,7 @@
 # include <algorithm>
 # include "vccc/type_support/convert_to.hpp"
 # include "vccc/type_traits.hpp"
+# include "vccc/type_support/cast.hpp"
 
 
 namespace vccc{
@@ -32,7 +33,7 @@ namespace vccc{
 @param cv_type      any opencv template class
  */
 template<typename NewType, template<typename, int...> class CVType, typename OldType, int ...CVParams,
-         VCCC_REQUIRE((!std::is_same<NewType, OldType>::value))>
+         VCCC_ENABLE_IF((!std::is_same<NewType, OldType>::value))>
 decltype(auto) vtype_convert(const CVType<OldType, CVParams...>& cv_type)
 {
   return convert_to<CVType<NewType, CVParams...>>(cv_type);
@@ -61,26 +62,26 @@ decltype(auto) vtype_convert(CVType<NewType, CVParams...>&& cv_type)
 @param cv_type      any template container class
  */
 template<typename NewType, template<typename...> class Container, typename OldType, typename ...Params,
-        VCCC_REQUIRE((is_container_v<Container<OldType, Params...>>,
+        VCCC_ENABLE_IF((is_container_v<Container<OldType, Params...>> &&
                       !std::is_same<NewType, OldType>::value))>
 decltype(auto) vtype_convert(const Container<OldType, Params...>& container)
 {
   Container<NewType, std::allocator<NewType>> res(container.size());
   std::transform(std::begin(container), std::end(container), std::begin(res),
-                 [](auto &val) { return static_cast<NewType>(val); });
+                 [](auto &val) { return cast<NewType>(val); });
   return res;
 }
 
 
 template<typename NewType, template<typename...> class Container, typename ...Params,
-        VCCC_REQUIRE((is_container_v<Container<NewType, Params...>>))>
+        VCCC_ENABLE_IF((is_container_v<Container<NewType, Params...>>))>
 decltype(auto) vtype_convert(const Container<NewType, Params...>& container)
 {
   return container;
 }
 
 template<typename NewType, template<typename...> class Container, typename ...Params,
-        VCCC_REQUIRE((is_container_v<Container<NewType, Params...>>))>
+        VCCC_ENABLE_IF((is_container_v<Container<NewType, Params...>>))>
 decltype(auto) vtype_convert(Container<NewType, Params...>&& container)
 {
   return container;
@@ -94,7 +95,7 @@ decltype(auto) vtype_convert(Container<NewType, Params...>&& container)
 @param cv_type      any template container class
  */
 template<typename NewType, typename Func, template<typename...> class Container, typename OldType, typename ...Params,
-        VCCC_REQUIRE((is_container_v<Container<OldType, Params...>>,
+        VCCC_ENABLE_IF((is_container_v<Container<OldType, Params...>> &&
                       !std::is_same<NewType, OldType>::value))>
 decltype(auto) vtype_convert(const Container<OldType, Params...>& container, Func func)
 {
@@ -104,7 +105,7 @@ decltype(auto) vtype_convert(const Container<OldType, Params...>& container, Fun
 }
 
 template<typename NewType, template<typename...> class Container, typename ...Params, typename UnaryOperation,
-        VCCC_REQUIRE((is_container_v<Container<NewType, Params...>>))>
+        VCCC_ENABLE_IF((is_container_v<Container<NewType, Params...>>))>
 decltype(auto) vtype_convert(const Container<NewType, Params...>& container, UnaryOperation func)
 {
   return container;
@@ -114,13 +115,13 @@ decltype(auto) vtype_convert(const Container<NewType, Params...>& container, Una
 /** std::array specialization */
 
 template<typename NewType, typename OldType, std::size_t n,
-        VCCC_REQUIRE((!std::is_same<NewType, OldType>::value))>
+        VCCC_ENABLE_IF((!std::is_same<NewType, OldType>::value))>
 constexpr decltype(auto)
 vtype_convert(const std::array<OldType, n>& container)
 {
   std::array<NewType, n> res;
   std::transform(std::begin(container), std::end(container), std::begin(res),
-                 [](auto& val) { return static_cast<NewType>(val); });
+                 [](auto& val) { return cast<NewType>(val); });
   return res;
 }
 
@@ -142,7 +143,7 @@ vtype_convert(std::array<NewType, n>&& container)
 /** std::array with custom unary operation specialization */
 
 template<typename NewType, typename OldType, std::size_t n, typename UnaryOperation,
-        VCCC_REQUIRE((!std::is_same<NewType, OldType>::value))>
+        VCCC_ENABLE_IF((!std::is_same<NewType, OldType>::value))>
 constexpr decltype(auto)
 vtype_convert(const std::array<OldType, n>& container, UnaryOperation func)
 {

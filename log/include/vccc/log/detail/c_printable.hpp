@@ -9,6 +9,19 @@
 
 namespace vccc{ namespace detail{
 
+template<typename T>
+struct can_decay_to_scalar_impl : std::conditional<std::is_scalar<T>::value || std::is_array<T>::value,
+                                                   std::true_type, std::false_type>::type {};
+
+template<typename ...Ts>
+struct can_decay_to_scalar : are_<can_decay_to_scalar_impl<Ts>...> {};
+
+template<typename ...Ts>
+using can_decay_to_scalar_t = typename can_decay_to_scalar<Ts...>::type;
+
+template<typename ...Ts>
+constexpr bool can_decay_to_scalar_v = can_decay_to_scalar<Ts...>::value;
+
 template<typename ...>
 struct are_types_c_printable : std::false_type {};
 
@@ -19,7 +32,9 @@ template<typename T, typename ...Ts>
 struct are_types_c_printable<T, Ts...>
     : std::integral_constant<bool,
         (std::is_same<char *, std::decay_t<T>>::value || std::is_same<const char*, std::decay_t<T>>::value) &&
-        are_scalar_v<Ts...>> {};
+        can_decay_to_scalar_v<Ts...>> {};
+
+
 
 }}
 

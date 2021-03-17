@@ -21,7 +21,7 @@ Index-based value accessor
 @{
 */
 template<std::size_t i, typename Container,
-         VCCC_REQUIRE(is_container_v<Container>)>
+         VCCC_ENABLE_IF(is_container_v<Container>)>
 decltype(auto)
 at(Container& container)
 {
@@ -30,7 +30,7 @@ at(Container& container)
 }
 
 template<std::size_t i, typename Container,
-         VCCC_REQUIRE(is_container_v<Container>)>
+         VCCC_ENABLE_IF(is_container_v<Container>)>
 decltype(auto)
 at(const Container& container)
 {
@@ -39,7 +39,7 @@ at(const Container& container)
 }
 
 template<std::size_t i, typename Container,
-         VCCC_REQUIRE(is_container_v<Container>)>
+         VCCC_ENABLE_IF(is_container_v<Container>)>
 decltype(auto)
 at(Container&& container)
 {
@@ -48,7 +48,7 @@ at(Container&& container)
 }
 
 template<std::size_t i, typename Container,
-         VCCC_REQUIRE(is_container_v<Container>)>
+         VCCC_ENABLE_IF(is_container_v<Container>)>
 decltype(auto)
 at(const Container&& container)
 {

@@ -20,7 +20,7 @@ namespace vccc{
 @{
 */
 template<typename T>
-struct detail::cv_size<cv::Point3_<T>> : cv_size_n<3> {};
+struct cv_size<cv::Point3_<T>> : cv_size_n<3> {};
 //! @} type_support_cv_size_cv_point3
 //! @} type_support_cv_size
 
@@ -148,12 +148,12 @@ cv::Point3_<T> add(const cv::Point3_<T>& point3, N n)
 
 /** resize */
 
-template<int new_size, typename T, VCCC_REQUIRE(new_size==2)>
+template<int new_size, typename T, VCCC_ENABLE_IF(new_size==2)>
 auto resize(const cv::Point3_<T>& from){
   return cv::Point_<T>(from.x, from.y);
 }
 
-template<int new_size, typename T, VCCC_REQUIRE(new_size==3)>
+template<int new_size, typename T, VCCC_ENABLE_IF(new_size==3)>
 auto resize(const cv::Point3_<T>& from){
   return from;
 }

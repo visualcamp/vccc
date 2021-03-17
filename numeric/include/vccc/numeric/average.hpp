@@ -6,6 +6,7 @@
 # define VCCC_NUMERIC_AVERAGE_HPP
 #
 # include <iterator>
+# include <cassert>
 # include "vccc/type_traits.hpp"
 # include "vccc/numeric/sum.hpp"
 
@@ -29,13 +30,15 @@ namespace vccc{
 @return average
  */
 template<typename InputIterator,
-         VCCC_REQUIRE(iterable<InputIterator>)>
+         VCCC_ENABLE_IF(iterable<InputIterator>)>
 constexpr
 auto
 average(InputIterator first, InputIterator last)
 {
-  using ret_t = typename InputIterator::value_type;
-  return sum(first, last) / static_cast<decay_if_float_t<typename InputIterator::value_type>>(std::distance(first, last));
+  assert(((void)"input size muse be larger than 0", first != last));
+  using return_type = decltype(*first);
+  if(first == last) return impl::default_value<decltype(*first)>() / static_cast<decay_if_float_t<return_type>>(1);
+  return sum(first, last) / static_cast<decay_if_float_t<return_type>>(std::distance(first, last));
 }
 
 /**
@@ -46,13 +49,15 @@ average(InputIterator first, InputIterator last)
 @return average
  */
 template<typename InputIterator, typename UnaryOperation,
-         VCCC_REQUIRE(iterable<InputIterator>)>
+         VCCC_ENABLE_IF(iterable<InputIterator>)>
 constexpr
 auto
 average(InputIterator first, InputIterator last, UnaryOperation unary_op)
 {
-  using ret_t = typename InputIterator::value_type;
-  return sum(first, last, unary_op) / static_cast<decay_if_float_t<typename InputIterator::value_type>>(std::distance(first, last));
+  assert(((void)"input size muse be larger than 0", first != last));
+  using return_type = decltype(unary_op(*first));
+  if(first == last) return static_cast<decay_if_float_t<return_type>>(sum(first, last, std::move(unary_op)));
+  return sum(first, last, unary_op) / static_cast<decay_if_float_t<return_type>>(std::distance(first, last));
 }
 
 /**
@@ -67,7 +72,7 @@ Note:
 @return average
 */
 template<typename ...Numbers,
-         VCCC_REQUIRE(are_arithmetic_v<Numbers...>)>
+         VCCC_ENABLE_IF(are_arithmetic_v<Numbers...>)>
 constexpr
 auto
 average(Numbers... numbers)
@@ -83,7 +88,7 @@ average(Numbers... numbers)
 @return average
 */
 template<typename ...Ints,
-         VCCC_REQUIRE(are_integral_v<Ints...>)>
+         VCCC_ENABLE_IF(are_integral_v<Ints...>)>
 constexpr
 auto
 int_average(Ints... ints)
@@ -98,7 +103,7 @@ int_average(Ints... ints)
 @return average
 */
 template<typename ...Args,
-         VCCC_REQUIRE(!iterable<Args...> && !are_arithmetic_v<Args...>)>
+         VCCC_ENABLE_IF(!iterable<Args...> && !are_arithmetic_v<Args...>)>
 constexpr
 auto
 average(const Args&... args)

@@ -4,18 +4,18 @@
 #
 # ifndef VCCC_LOG_FUNCTION_MACRO_HPP
 # define VCCC_LOG_FUNCTION_MACRO_HPP
-
-
+#
+# include "boost/predef.h"
 
 //! @addtogroup log
 //! @{
 
 
-#ifdef __PRETTY_FUNCTION__
-#define VCCC_FUNCTION __PRETTY_FUNCTION__
-#else
-#define VCCC_FUNCTION __FUNCTION__
-#endif
+# if BOOST_COMP_MSVC != BOOST_VERSION_NUMBER_NOT_AVAILABLE
+#     define VCCC_FUNCTION __FUNCSIG__
+# else
+#     define VCCC_FUNCTION __PRETTY_FUNCTION__
+# endif
 
  //! @} log
 

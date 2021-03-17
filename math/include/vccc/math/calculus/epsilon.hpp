@@ -19,6 +19,7 @@ namespace vccc{
  * @return machine epsilon of T
  */
 
+// TODO: rename this to be meant 'machine epsilon for numerical derivation'
 template<typename T>
 auto
 epsilon()

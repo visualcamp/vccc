@@ -30,7 +30,7 @@ namespace vccc{
 @param last  ending iterator
 @return norm
  */
-template<typename InputIterator, VCCC_REQUIRE(iterable<InputIterator>)>
+template<typename InputIterator, VCCC_ENABLE_IF(iterable<InputIterator>)>
 auto
 norm(InputIterator first, InputIterator last)
 {
@@ -38,7 +38,7 @@ norm(InputIterator first, InputIterator last)
 }
 
 //! @cond ignored
-template<typename Arg, VCCC_REQUIRE(!iterable<Arg>)>
+template<typename Arg, VCCC_ENABLE_IF(!iterable<Arg>)>
 auto
 norm(Arg arg)
 {
@@ -51,7 +51,7 @@ norm(Arg arg)
 @brief calculate norm of variadics
 @return norm
  */
-template<typename Arg, typename ...Args, VCCC_REQUIRE((!iterable<Arg, Args...>))>
+template<typename Arg, typename ...Args, VCCC_ENABLE_IF((!iterable<Arg, Args...>))>
 auto
 norm(Arg arg, Args... args)
 {
