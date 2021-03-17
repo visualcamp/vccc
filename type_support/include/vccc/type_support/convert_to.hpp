@@ -63,11 +63,11 @@ template<typename To, typename From, std::enable_if_t<!std::is_same<To, From>::v
 To
 convert_to(const From& from)
 {
-  static_assert(detail::is_cv_type_v<To> || detail::is_cv_type_v<From>, "You cannot convert non-cv type to non-cv type! use vtype_convert instead");
+  static_assert(is_cv_type_v<To> || is_cv_type_v<From>, "You cannot convert non-cv type to non-cv type! use vtype_convert instead");
   using Indices = typename std::make_index_sequence<
-      ((detail::is_cv_type_v<To> && detail::is_cv_type_v<From>) ? detail::min_cv_size_v<To, From> :
-       (detail::is_cv_type_v<From> ? detail::cv_size_v<From> : detail::cv_size_v<To>))>;
-  return detail::convert_to_impl<To>(detail::is_cv_type<To>(), from, Indices{});
+      ((is_cv_type_v<To> && is_cv_type_v<From>) ? min_cv_size_v<To, From> :
+       (is_cv_type_v<From> ? cv_size_v<From> : cv_size_v<To>))>;
+  return detail::convert_to_impl<To>(is_cv_type<To>(), from, Indices{});
 }
 
 /**
@@ -85,11 +85,11 @@ template<typename To, std::size_t n, typename From, std::enable_if_t<!std::is_sa
 To
 convert_to(const From& from)
 {
-  static_assert(detail::is_cv_type_v<To> || detail::is_cv_type_v<From>, "You cannot convert non-cv type to non-cv type! use vtype_convert instead");
-  static_assert(detail::is_cv_type_v<To>   ? n <= detail::cv_size_v<To>   : true, "Converting size must be smaller than converting type's cv_size");
-  static_assert(detail::is_cv_type_v<From> ? n <= detail::cv_size_v<From> : true, "Converting size must be smaller than original type's cv_size");
+  static_assert(is_cv_type_v<To> || is_cv_type_v<From>, "You cannot convert non-cv type to non-cv type! use vtype_convert instead");
+  static_assert(is_cv_type_v<To>   ? n <= cv_size_v<To>   : true, "Converting size must be smaller than converting type's cv_size");
+  static_assert(is_cv_type_v<From> ? n <= cv_size_v<From> : true, "Converting size must be smaller than original type's cv_size");
 
-  return detail::convert_to_impl<To>(detail::is_cv_type<To>(), from, std::make_index_sequence<n>{});
+  return detail::convert_to_impl<To>(is_cv_type<To>(), from, std::make_index_sequence<n>{});
 }
 
 /**

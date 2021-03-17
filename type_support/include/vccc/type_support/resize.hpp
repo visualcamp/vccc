@@ -5,7 +5,6 @@
 # ifndef VCCC_TYPE_RESIZE_HPP
 # define VCCC_TYPE_RESIZE_HPP
 #
-# include "opencv2/core/types.hpp"
 # include "vccc/type_traits.hpp"
 # include "vccc/type_support/convert_to.hpp"
 
@@ -14,7 +13,7 @@ namespace vccc{
 //! @addtogroup type_support
 //! @{
 
-
+# if VCCC_USE_OPENCV_FEATURES
 /**
 @brief returns resized opencv type
 
@@ -29,7 +28,7 @@ auto resize(const cv::Vec<T, old_size>& from)
 {
   return convert_to<cv::Vec<T, new_size>>(from);
 }
-
+# endif
 
 /**
 @brief returns any resized resizable type

@@ -5,8 +5,8 @@
 # ifndef VCCC_TYPE_SUPPORT_OPENCV_CV_MAT_HPP
 # define VCCC_TYPE_SUPPORT_OPENCV_CV_MAT_HPP
 #
-# include "opencv2/core/types.hpp"
-# include "vccc/type_support/opencv/detail/cv_size.hpp"
+# include "opencv2/opencv.hpp"
+# include "vccc/type_support/opencv/traits.hpp"
 
 namespace vccc{
 
@@ -25,7 +25,7 @@ namespace vccc{
 @{
 */
 template<typename T, int m, int n>
-struct detail::cv_size<cv::Matx<T, m, n>> : cv_size_n<m*n> {};
+struct cv_size<cv::Matx<T, m, n>> : cv_size_n<m*n> {};
 //! @} type_support_cv_size_cv_matx
 //! @} type_support_cv_size
 

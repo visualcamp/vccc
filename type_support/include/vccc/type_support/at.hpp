@@ -6,9 +6,9 @@
 # define VCCC_TYPE_SUPPORT_AT_HPP
 #
 # include "vccc/type_support/detail/container_at.hpp"
-# include "vccc/type_traits.hpp"
-# include "opencv2/opencv.hpp"
 # include "vccc/type_support/core.hpp"
+# include "vccc/type_support/cast.hpp"
+# include "vccc/type_traits.hpp"
 #
 # /*
 #  * Note
@@ -38,11 +38,11 @@ namespace vccc{
  */
 template<std::size_t i, typename C,
          typename T>
-constexpr
+constexpr inline
 decltype(auto)
-at(const T& t)
+at(T&& t)
 {
-  return cv::saturate_cast<C>(at<i>(t));
+  return cast<C>(at<i>(std::forward<T>(t)));
 }
 
 
@@ -57,11 +57,11 @@ at(const T& t)
  */
 template<std::size_t i, std::size_t j, typename C,
          typename T>
-constexpr
+constexpr inline
 decltype(auto)
-at(const T& t)
+at(T&& t)
 {
-  return cv::saturate_cast<C>(at<i, j>(t));
+  return cast<C>(at<i, j>(std::forward<T>(t)));
 }
 
 
