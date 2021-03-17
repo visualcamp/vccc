@@ -7,4 +7,4 @@ macro(MAKE_TEST name target)
     add_test(NAME ${name} COMMAND ${name})
 endmacro()
 
-MAKE_TEST(math_test ts_test.cpp VCCC::type_support VCCC::type_traits)
+MAKE_TEST(type_support_test ts_test.cpp VCCC::type_support VCCC::type_traits)
