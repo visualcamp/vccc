@@ -6,14 +6,8 @@
 #include <cmath>
 #include <array>
 #include <vccc/log.hpp>
-
-#define ee 192829336
-
-#if ee
-#define val 1
-#else
-#define val 0
-#endif
+#include <vector>
+#include <thread>
 
 int main() {
   INIT_TEST("vccc::log")
@@ -40,7 +34,14 @@ int main() {
   LOGD(BOOST_VERSION_NUMBER_NOT_AVAILABLE);
   LOGD(BOOST_COMP_CLANG);
 
+  std::ratio<3> r1, r2;
 
+  LOGD(std::ratio_equal<decltype(r1), decltype(r2)>::value);
+
+  auto h = std::chrono::hours(10000000);
+  std::cout << std::chrono::duration_cast<std::chrono::seconds>(h).count() << std::endl;
+
+  std::cout << std::setprecision(5) << 1234.5678 << std::endl;
 
   return TEST_RETURN_RESULT;
 }
