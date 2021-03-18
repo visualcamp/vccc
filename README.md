@@ -8,6 +8,8 @@
 
 # VisualCamp Common C++ library
 * Requires C++14 or above
+* Header-only
+* Multiplatform
 
 ## Release
 ### 0.7
