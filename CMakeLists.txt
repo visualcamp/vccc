@@ -22,6 +22,7 @@ endif()
 
 if(VCCC_RUN_TEST)
     enable_testing()
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/test/include)
 endif()
 
 add_library(vccc INTERFACE)

@@ -10,12 +10,24 @@
 #include <cstdio>
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 namespace test{
 struct TestCounter {
   inline TestCounter(std::string test_name) : test_name(std::move(test_name)) {}
-  inline void addFail(std::string location) {
-    failed_locations.emplace_back(std::move(location));
+  inline bool testOne(bool expr, std::string location, std::string name="") {
+    ++num_tests;
+    if(expr) {
+      ++num_passed;
+    }
+    else {
+      addFail(std::move(location), std::move(name));
+    }
+    return expr;
+  }
+  inline void addFail(std::string location, std::string name="") {
+    ++num_failed;
+    failed_locations.push_back({std::move(location), std::move(name)});
   }
   inline ~TestCounter() {
     std::stringstream ss1, ss2;
@@ -38,20 +50,27 @@ struct TestCounter {
     if(num_failed > 0) {
       std::cerr << num_failed
                 << (num_failed == 1 ? " test" : " tests")
-                <<  " failed at: \n";
+                <<  " failed\n";
       for(const auto& location : failed_locations)
-        std::cerr << location << '\n';
+        std::cerr << location.test_name
+                  << " failed at : "
+                  << location.location
+                  << '\n';
     }
 
   }
-  int max_length = 40;
+  int max_length = 80;
   char spacer = '.';
 
   std::string test_name;
   int num_tests = 0;
   int num_passed = 0;
   int num_failed = 0;
-  std::vector<std::string> failed_locations;
+  struct FailData {
+    std::string location;
+    std::string test_name;
+  };
+  std::vector<FailData> failed_locations;
 
 };
 }
@@ -60,7 +79,7 @@ struct TestCounter {
 [](auto file, auto line) {        \
   std::stringstream ss;           \
   ss << file                      \
-     << ", at line "              \
+     << ", line "                 \
      << line;                     \
   return ss.str();                \
 } (__FILE__, __LINE__)
@@ -75,29 +94,38 @@ struct TestCounter {
 #define TEST_RESULT_CASE(index) DUMMY_NAME(__LINE__)
 #define TEST_COUNTER_NAME DUMMY_NAME(counter)
 
-#define INIT_TEST(test_name)                    \
-bool TEST_GLOBAL_RESULT = true;                 \
-const std::string TEST_NAME = (test_name);      \
-auto TEST_COUNTER_NAME                          \
-  = test::TestCounter(test_name);               \
+#define INIT_TEST(test_name)                      \
+bool TEST_GLOBAL_RESULT = true;                   \
+const std::string TEST_NAME = (test_name);        \
+auto TEST_COUNTER_NAME                            \
+  = test::TestCounter(test_name);                 \
 
-#define TEST_ENSURES(expr)                      \
-do {                                            \
-  ++TEST_COUNTER_NAME.num_tests;                \
-  bool TEST_RESULT_CASE(__LINE__)               \
-    = (expr);                                   \
-  if (!TEST_RESULT_CASE(__LINE__)) {            \
-    ++TEST_COUNTER_NAME.num_failed;             \
-    TEST_COUNTER_NAME.addFail(CALL_LOCATION);   \
-  }                                             \
-  else {                                        \
-    ++TEST_COUNTER_NAME.num_passed;             \
-  }                                             \
-  TEST_GLOBAL_RESULT                            \
-    = TEST_GLOBAL_RESULT &&                     \
-      TEST_RESULT_CASE(__LINE__);               \
+//#define TEST_ENSURES(expr)                      \
+//do {                                            \
+//  ++TEST_COUNTER_NAME.num_tests;                \
+//  bool TEST_RESULT_CASE(__LINE__)               \
+//    = (expr);                                   \
+//  if (!TEST_RESULT_CASE(__LINE__)) {            \
+//    ++TEST_COUNTER_NAME.num_failed;             \
+//    TEST_COUNTER_NAME.addFail(CALL_LOCATION);   \
+//  }                                             \
+//  else {                                        \
+//    ++TEST_COUNTER_NAME.num_passed;             \
+//  }                                             \
+//  TEST_GLOBAL_RESULT                            \
+//    = TEST_GLOBAL_RESULT &&                     \
+//      TEST_RESULT_CASE(__LINE__);               \
+//} while(false)
+
+#define TEST_ENSURES(expr)                        \
+do {                                              \
+  TEST_GLOBAL_RESULT                              \
+    = TEST_COUNTER_NAME.testOne((expr),           \
+                                CALL_LOCATION) && \
+      TEST_GLOBAL_RESULT;                         \
 } while(false)
 
+#define FLOAT_COMPARE(x, y, e) (std::abs((x) - (y)) < (e))
 
 namespace test{
 
