@@ -12,15 +12,15 @@ ENDMACRO()
 cmake_minimum_required(VERSION 3.5)
 project(vccc)
 
-if(NOT DEFINED ${RUN_TEST})
-    option(RUN_TEST "Run Test in vccc" ON)
+if(NOT DEFINED ${VCCC_RUN_TEST})
+    option(VCCC_RUN_TEST "Run Test in vccc" OFF)
 endif()
 
 if(NOT DEFINED ${VCCC_USE_OPENCV_FEATURES})
     option(VCCC_USE_OPENCV_FEATURES "Use OpenCV" ON)
 endif()
 
-if(RUN_TEST)
+if(VCCC_RUN_TEST)
     enable_testing()
 endif()
 
