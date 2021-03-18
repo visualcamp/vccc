@@ -12,43 +12,20 @@
 int main() {
   INIT_TEST("vccc::log")
 
-  LOGD(1);
+  TEST_ENSURES(vccc::Logger("").get() == "");
+  TEST_ENSURES(vccc::Logger("Hello, world!").get() == "Hello, world!");
+  TEST_ENSURES(vccc::Logger("Hello,", "world!").get() == "Hello, world!");
+  TEST_ENSURES(vccc::Logger("Hello, %s", "world!").get() == "Hello, world!");
+  TEST_ENSURES(vccc::Logger("Hello,", std::string("world!")).get() == "Hello, world!");
 
-  std::cout << std::boolalpha;
+  TEST_ENSURES(vccc::Logger(1).get() == "1");
+  TEST_ENSURES(vccc::Logger(1,2).get() == "1 2");
+  TEST_ENSURES(vccc::Logger(1,2,3).get() == "1 2 3");
 
+  TEST_ENSURES(vccc::Logger(std::vector<int>{}).get() == "{}");
+  TEST_ENSURES(vccc::Logger(std::vector<int>{1}).get() == "{ 1 }");
+  TEST_ENSURES(vccc::Logger(std::vector<int>{1,2,3}).get() == "{ 1, 2, 3 }");
 
-  char str[10] = {'h', 'e', 'l', 'l', 'o'};
-
-  LOGD("%s", str);
-  LOGD("%p", str);
-
-  std::cout << vccc::detail::are_types_c_printable<const char*, char[]>() << std::endl;
-  std::cout << vccc::detail::are_types_c_printable<const char*, char*>() << std::endl;
-  std::cout << vccc::detail::are_types_c_printable<const char*, class t>() << std::endl;
-
-
-  LOGD("pwd: ");
-  LOGD("pwd: ", PWD);
-  LOGD(VCCC_FILE_SEPARATOR);
-  LOGD(BOOST_COMP_MSVC);
-  LOGD(BOOST_VERSION_NUMBER_NOT_AVAILABLE);
-  LOGD(BOOST_COMP_CLANG);
-
-  std::ratio<3> r1, r2;
-
-  LOGD(std::ratio_equal<decltype(r1), decltype(r2)>::value);
-
-  auto h = std::chrono::hours(10000000);
-  std::cout << std::chrono::duration_cast<std::chrono::seconds>(h).count() << std::endl;
-
-  auto d = std::chrono::nanoseconds(1);
-  for(int i=0; i<50; ++i) {
-    LOGE(d.count(), ":", vccc::stringfy(d));
-    d *= 2;
-  }
-
-
-  std::cout << PWD << std::endl;
 
   return TEST_RETURN_RESULT;
 }
