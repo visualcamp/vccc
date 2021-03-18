@@ -21,19 +21,36 @@ std::string
 stringfy(const std::chrono::duration<Rep, Period>& duration) {
   std::stringstream ss;
 
-  if(duration < std::chrono::seconds(1).count()) {
+  if(duration < std::chrono::minutes(1)) {
     auto ns = std::chrono::duration_cast<std::chrono::nanoseconds>(duration);
-    ss << std::setprecision(5);
 
-    if(ns < std::chrono::nanoseconds (1'000))
-      ss << static_cast<long double>(ns.count()) << "ns";
-    else if(ns < std::chrono::milliseconds (1'000))
-      ss << static_cast<long double>(ns.count()) / 1'000 << "ms";
-    else
-
+    if(duration < std::chrono::milliseconds(1)) {
+      if(duration < std::chrono::nanoseconds(1'000))
+        ss << ns.count() << "ns";
+      else
+        ss << ns.count() / 1'000.L << "us";
+    }
+    else { // duration >= std::chrono::milliseconds(1)
+      if(duration < std::chrono::milliseconds(1'000))
+        ss << ns.count() / 1'000'000.L << "ms";
+      else
+        ss << ns.count() / 1'000'000'000.L << "s";
+    }
   }
   else {
+    auto mins = std::chrono::duration_cast<std::chrono::minutes>(duration);
+    auto secs = std::chrono::duration_cast<std::chrono::seconds>(duration);
 
+    if(duration < std::chrono::minutes(60)) {
+      ss << mins.count() << "m "
+         << (secs-mins).count() << "s";
+    }
+    else {
+      auto hrs = std::chrono::duration_cast<std::chrono::hours>(duration);
+      ss << hrs.count() << "h "
+         << (mins - hrs).count() << "m "
+         << (secs - mins).count() << "s";
+    }
   }
 
   return ss.str();
@@ -47,7 +64,7 @@ stringfy(const std::chrono::time_point<Clock, Duration>& time_point) {
   static const auto system_clock_begin = system_clock::now();
   static const auto custom_clock_begin = Clock::now();
   static const auto gap =
-      system_clock_begin.time_since_epoch() - custom_clock_begin.time_since_epoch();
+    system_clock_begin.time_since_epoch() - custom_clock_begin.time_since_epoch();
 
   auto d = std::chrono::duration_cast<std::chrono::system_clock::duration>(time_point.time_since_epoch() + gap);
   return stringfy(std::chrono::time_point<std::chrono::system_clock>() + d);
@@ -71,7 +88,7 @@ std::string stringfy(const std::chrono::time_point<std::chrono::system_clock, Du
 
   // calculate milliseconds
   auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(time_point.time_since_epoch())
-      - std::chrono::duration_cast<std::chrono::seconds>(time_point.time_since_epoch());
+            - std::chrono::duration_cast<std::chrono::seconds>(time_point.time_since_epoch());
   ss << std::setfill('0') << std::setw(3) << ms.count();
 
   return ss.str();

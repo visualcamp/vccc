@@ -41,7 +41,14 @@ int main() {
   auto h = std::chrono::hours(10000000);
   std::cout << std::chrono::duration_cast<std::chrono::seconds>(h).count() << std::endl;
 
-  std::cout << std::setprecision(5) << 1234.5678 << std::endl;
+  auto d = std::chrono::nanoseconds(1);
+  for(int i=0; i<50; ++i) {
+    LOGE(d.count(), ":", vccc::stringfy(d));
+    d *= 2;
+  }
+
+
+  std::cout << PWD << std::endl;
 
   return TEST_RETURN_RESULT;
 }
