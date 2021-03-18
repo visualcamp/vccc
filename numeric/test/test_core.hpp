@@ -120,9 +120,9 @@ auto TEST_COUNTER_NAME                            \
 #define TEST_ENSURES(expr)                        \
 do {                                              \
   TEST_GLOBAL_RESULT                              \
-    = TEST_GLOBAL_RESULT &&                       \
-      TEST_COUNTER_NAME.testOne((expr),           \
-                                CALL_LOCATION);   \
+    = TEST_COUNTER_NAME.testOne((expr),           \
+                                CALL_LOCATION) && \
+      TEST_GLOBAL_RESULT;                         \
 } while(false)
 
 #define FLOAT_COMPARE(x, y, e) (std::abs((x) - (y)) < (e))
