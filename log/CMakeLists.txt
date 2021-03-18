@@ -6,6 +6,6 @@ add_library(VCCC::log ALIAS vccc_log)
 
 target_include_directories(vccc_log INTERFACE include)
 
-if(RUN_TEST)
+if(VCCC_RUN_TEST)
     add_subdirectory(test)
 endif()

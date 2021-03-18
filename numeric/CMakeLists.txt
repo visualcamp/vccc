@@ -6,6 +6,6 @@ add_library(VCCC::numeric ALIAS vccc_numeric)
 
 target_include_directories(vccc_numeric INTERFACE include)
 
-if(RUN_TEST)
+if(VCCC_RUN_TEST)
     add_subdirectory(test)
 endif()
