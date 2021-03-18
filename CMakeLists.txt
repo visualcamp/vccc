@@ -12,7 +12,7 @@ ENDMACRO()
 cmake_minimum_required(VERSION 3.5)
 project(vccc)
 
-set(RUN_TEST ON)
+option(RUN_TEST "Run Test in vccc" ON)
 
 if(NOT DEFINED ${VCCC_USE_OPENCV_FEATURES})
     set(VCCC_USE_OPENCV_FEATURES ON)
