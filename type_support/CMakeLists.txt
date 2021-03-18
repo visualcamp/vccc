@@ -12,6 +12,6 @@ else()
     add_definitions(-DVCCC_USE_OPENCV_FEATURES=0)
 endif()
 
-if(RUN_TEST)
+if(VCCC_RUN_TEST)
     add_subdirectory(test)
 endif()

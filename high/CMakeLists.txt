@@ -6,6 +6,6 @@ add_library(VCCC::high ALIAS vccc_high)
 
 target_include_directories(vccc_high INTERFACE include)
 
-if(RUN_TEST)
+if(VCCC_RUN_TEST)
     add_subdirectory(test)
 endif()
