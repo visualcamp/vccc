@@ -98,6 +98,8 @@ std::string stringfy(const std::time_t* tt) {
   static std::mutex localtime_m;
   std::lock_guard<std::mutex> lck(localtime_m);
 
+
+#pragma warning( disable : 4996)
   const std::tm* tm_obj = std::localtime(tt);
 
   if(tm_obj == nullptr) // failed parsing
