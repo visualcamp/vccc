@@ -1,6 +1,18 @@
 name: CTest
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+  page_build:
+  release:
+    types: # This configuration does not affect the page_build event above
+      - created
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
