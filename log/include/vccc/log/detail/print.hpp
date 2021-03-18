@@ -41,7 +41,6 @@ print_tuple(std::ostream& os, const Tuple& tup, std::index_sequence<0, I...>)
 {
   os << "{ ";
   os << std::get<0>(tup);
-  [[maybe_unused]]
   int dummy[sizeof...(I)] = {
       (os << ", " << std::get<I>(tup), 0)...
   };
