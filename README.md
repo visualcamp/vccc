@@ -2,10 +2,14 @@
   <img src="/media/vc_logo.png"></img></br>
 </p>
 
-![develop](https://github.com/visualcamp/vccc/actions/workflows/CTest.yml/badge.svg?branch=main)
+![develop](https://github.com/visualcamp/vccc/actions/workflows/test-macos.yml/badge.svg?branch=main)
+![develop](https://github.com/visualcamp/vccc/actions/workflows/test-ubuntu.yml/badge.svg?branch=main)
+![develop](https://github.com/visualcamp/vccc/actions/workflows/test-windows.yml/badge.svg?branch=main)
 
 # VisualCamp Common C++ library
 * Requires C++14 or above
+* Header-only
+* Multiplatform
 
 ## Release
 ### 0.7

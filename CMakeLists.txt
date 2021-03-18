@@ -17,7 +17,7 @@ if(NOT DEFINED ${RUN_TEST})
 endif()
 
 if(NOT DEFINED ${VCCC_USE_OPENCV_FEATURES})
-    option(VCCC_USE_OPENCV_FEATURES "Use OpenCV" OFF)
+    option(VCCC_USE_OPENCV_FEATURES "Use OpenCV" ON)
 endif()
 
 if(RUN_TEST)
