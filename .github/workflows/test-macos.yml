@@ -3,7 +3,6 @@ name: MacOS
 on:
   push:
     branches:
-      - main
       - develop
   pull_request:
     branches:
