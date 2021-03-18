@@ -8,6 +8,7 @@ macro(MAKE_TEST name target)
 endmacro()
 
 if(VCCC_USE_OPENCV_FEATURES)
+    message("VCCC_USE_OPENCV_FEATURES: ${VCCC_USE_OPENCV_FEATURES}")
     find_package(OpenCV REQUIRED)
     MAKE_TEST(type_support_test ts_test.cpp
             VCCC::type_support
