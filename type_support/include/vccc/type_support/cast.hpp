@@ -16,7 +16,7 @@ namespace internal { namespace type_support {
 template<typename To, typename From, typename = void>
 struct saturate_cast_possible :
 # if VCCC_USE_OPENCV_FEATURES
-  public std::integral_constant<bool, are_arithmetic_v<To, From>>
+  public std::integral_constant<bool, are_arithmetic_v<std::decay_t<To>, std::decay_t<From>>>
 # else
   public std::false_type
 # endif
