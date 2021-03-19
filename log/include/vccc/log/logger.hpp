@@ -11,6 +11,7 @@
 # include <regex>
 # include "vccc/log/detail/c_printable.hpp"
 # include "vccc/log/detail/custom_ostream.hpp"
+# include "vccc/log/stream_wrapper.hpp"
 
 namespace vccc{
 

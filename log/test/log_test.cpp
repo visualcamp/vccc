@@ -78,5 +78,18 @@ int main() {
   TEST_ENSURES(vccc::Logger(std::make_index_sequence<3>{}).get() == "{ 0, 1, 2 }");
   TEST_ENSURES(vccc::Logger(std::index_sequence_for<int, float>{}).get() == "{ 0, 1 }");
 
+  vccc::StreamWrapper<std::stringstream> sw;
+
+  sw << std::vector<std::vector<int>>{{1, 2, 3}, {}};
+  LOGD(sw.stream().str()); sw.stream().str("");
+  sw << std::map<std::string, std::string>{{"key", "value"}};
+  LOGD(sw.stream().str()); sw.stream().str("");
+  sw << std::make_tuple();
+  LOGD(sw.stream().str()); sw.stream().str("");
+  sw << std::make_index_sequence<0>();
+  LOGD(sw.stream().str()); sw.stream().str("");
+  sw << std::make_index_sequence<3>();
+  LOGD(sw.stream().str()); sw.stream().str("");
+
   return TEST_RETURN_RESULT;
 }
