@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2021/03/20.
 #  */
 #
-# ifndef VCCC_LOG_STREAM_WRAPPER_STREAM_WRAPPER_HPP_
-# define VCCC_LOG_STREAM_WRAPPER_STREAM_WRAPPER_HPP_
+# ifndef VCCC_LOG_STREAM_WRAPPER_HPP_
+# define VCCC_LOG_STREAM_WRAPPER_HPP_
 #
 # include <iostream>
 # include <type_traits>
@@ -256,4 +256,4 @@ void StreamWrapper<Stream>::write(const std::pair<T1, T2>& value, const std::str
 
 } // namespace vccc
 
-# endif //VCCC_LOG_STREAM_WRAPPER_STREAM_WRAPPER_HPP_
+# endif //VCCC_LOG_STREAM_WRAPPER_HPP_
