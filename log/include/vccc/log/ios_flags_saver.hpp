@@ -7,13 +7,26 @@
 #
 # include <ios>
 
-//! @addtogroup log
-//! @{
 
 namespace vccc {
 
+//! @addtogroup log
+//! @{
+
 /**
+
 @brief RAII wrapper that restores stream's flags on destroyed
+
+@tparam Stream stream type
+
+@code{.cpp}
+{
+  IOSFlagsSaver<std::ostream> saver(std::cout); // flags saved
+  std::cout << std::setw(10) << 1;
+} // flags restored
+std::cout << 2;
+@endcode
+
  */
 
 template<typename Stream>
@@ -29,8 +42,9 @@ class IOSFlagsSaver {
   stream_type& stream;
 };
 
+//! @} log
+
 }
 
-//! @} log
 
 #endif //VCCC_LOG_IOS_FLAGS_SAVER_HPP_
