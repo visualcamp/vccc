@@ -81,7 +81,7 @@ class StreamWrapper {
 
   template<typename T>
   inline void writeContainer(key_value_container_t, const T& value)
-  { writeIterator(value.begin(), value.end(), [this](const auto& p){write(p, " : ");}); }
+  { writeIterator(value.begin(), value.end(), [this](const auto& p){write(p, ": ");}); }
 
   template<typename T>
   inline void writeContainer(not_key_value_container_t, const T& value)

@@ -25,7 +25,7 @@ class Logger {
   Logger(const Args&... args);
 
   inline std::string get() const {
-    return out.str();
+    return out.stream().str();
   }
 
  private:
@@ -48,8 +48,7 @@ class Logger {
   void addFormatted(const char* fmt, const Args&... val);
 
   std::vector<char> buffer;
-  std::stringstream out;
-//  static std::string separator;
+  StreamWrapper<std::stringstream> out;
 };
 
 template<typename ...Args>
