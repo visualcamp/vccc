@@ -35,14 +35,15 @@ inline void function_name_test() {
 /**
 @brief `VCCC_FUNCTION`: platform-wide function name macro
 
-Use `VCCC_FUNCTION` instead of `VCCC_FUNCTION_DOXYGEN_HELPER`.
+Use `VCCC_FUNCTION` instead of `VCCC_FUNCTION_DOXYGEN_HELPER`.<br>
  (lack of doxygen preprocessing parser)
 
-Output is compiler-specific.
+Output is compiler-specific.<br>
 `VCCC_FUNCTION` is equal to one of the followings
  - `__PRETTY_FUNCTION__`
  - `__FUNCSIG__`
  - `__func__`
+ - `"unknown"`
 
 @code{.cpp}
 int main(){
