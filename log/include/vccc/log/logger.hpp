@@ -15,11 +15,12 @@
 
 namespace vccc{
 
-using c_printable = std::true_type;
-using not_c_printable = std::false_type;
 
 class Logger {
  public:
+  using c_printable = std::true_type;
+  using not_c_printable = std::false_type;
+
   template<typename ...Args>
   Logger(const Args&... args);
 
@@ -54,7 +55,7 @@ class Logger {
 template<typename ...Args>
 Logger::Logger(const Args& ...args)
 {
-  addImpl(detail::are_types_c_printable<Args...>(), args...);
+  addImpl(detail::are_types_c_printable_t<Args...>{}, args...);
 }
 
 // TODO: move fmt_reg to class scope
