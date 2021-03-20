@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['operator_20container_546',['operator Container',['../classvccc_1_1range.html#a23975865b1493e6dca0ff82ac503a35c',1,'vccc::range::operator Container() &amp;'],['../classvccc_1_1range.html#ab956dc01fa8ed20bec26bba5b4b20b29',1,'vccc::range::operator Container() &amp;&amp;']]],
-  ['operator_22_22_5fformat_547',['operator&quot;&quot;_format',['../group__literal.html#ga23d1870f872a4dde5eb1d200fcbd2a7c',1,'vccc']]],
-  ['operator_28_29_548',['operator()',['../classvccc_1_1_formatter.html#a9dc5072f75f3100d86d3641bd37b08d6',1,'vccc::Formatter']]],
-  ['operator_2a_549',['operator*',['../classvccc_1_1back__emplace__iterator.html#a4b6cfe776733ad6f4d4ba596bd5500c0',1,'vccc::back_emplace_iterator']]],
-  ['operator_2b_2b_550',['operator++',['../classvccc_1_1back__emplace__iterator.html#a8a0d1c88e3151d8f3765a9eb47af7f72',1,'vccc::back_emplace_iterator::operator++()'],['../classvccc_1_1back__emplace__iterator.html#aaa674426fcf65fe2609ba4823bd734d3',1,'vccc::back_emplace_iterator::operator++(int)']]],
-  ['operator_3c_3c_551',['operator&lt;&lt;',['../namespacevccc.html#af14f879272f5100434405df9a1979738',1,'vccc::operator&lt;&lt;(std::ostream &amp;os, const T &amp;v)'],['../namespacevccc.html#a41b9fc7b6715fe2294e0720c6a08ecfd',1,'vccc::operator&lt;&lt;(std::ostream &amp;os, const std::tuple&lt; Args... &gt; &amp;tup)'],['../namespacevccc.html#aa0a6594e7a467b22e71575039da2e8c4',1,'vccc::operator&lt;&lt;(std::ostream &amp;os, const std::pair&lt; Args... &gt; &amp;tup)'],['../namespacevccc.html#a3fc7cc71d129d0d04c6b550c9605141c',1,'vccc::operator&lt;&lt;(std::ostream &amp;os, const std::integer_sequence&lt; T, I... &gt; &amp;seq)']]],
-  ['operator_3d_552',['operator=',['../classvccc_1_1detail_1_1bind__obj.html#a66f8dc79839da1c6dce7c6cc1a8b00af',1,'vccc::detail::bind_obj::operator=()'],['../classvccc_1_1back__emplace__iterator.html#a73324c95531dbdd87c8b638fa0bc9332',1,'vccc::back_emplace_iterator::operator=(const typename Container::value_type &amp;value)'],['../classvccc_1_1back__emplace__iterator.html#a7568ff9290f37d88377b8c1ffc70a627',1,'vccc::back_emplace_iterator::operator=(typename Container::value_type &amp;&amp;value)']]]
+  ['noalias_749',['noAlias',['../classvccc_1_1_matrix.html#a5a5c98beaa277851b2d88e36338376c2',1,'vccc::Matrix']]],
+  ['norm_750',['norm',['../group__numeric__norm.html#gaf98828a367b3d67e6fc81759213e7758',1,'vccc::norm(InputIterator first, InputIterator last)'],['../group__numeric__norm.html#ga4de09d708ab1575caa11b74e2808a9db',1,'vccc::norm(Arg arg, Args... args)']]]
 ];

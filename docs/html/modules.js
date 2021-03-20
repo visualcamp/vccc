@@ -8,6 +8,7 @@ var modules =
     [ "random", "group__random.html", "group__random" ],
     [ "range", "group__range.html", "group__range" ],
     [ "type support", "group__type__support.html", "group__type__support" ],
+    [ "Type_support_cv_size", "group__type__support__cv__size.html", "group__type__support__cv__size" ],
     [ "type_traits", "group__type__traits.html", "group__type__traits" ],
     [ "utility", "group__utility.html", "group__utility" ]
 ];

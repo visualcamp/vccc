@@ -129,14 +129,14 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga012700b3afa6f159adeffec164672800"><td class="memTemplParams" colspan="2">template&lt;std::size_t i, typename C , typename T &gt; </td></tr>
-<tr class="memitem:ga012700b3afa6f159adeffec164672800"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__type__support__at.html#ga012700b3afa6f159adeffec164672800">vccc::at</a> (const T &amp;t)</td></tr>
-<tr class="memdesc:ga012700b3afa6f159adeffec164672800"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns cv::saturate_cast&lt;C&gt;(vccc::at&lt;i&gt;(t))  <a href="group__type__support__at.html#ga012700b3afa6f159adeffec164672800">More...</a><br /></td></tr>
-<tr class="separator:ga012700b3afa6f159adeffec164672800"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf54ce87572b288c69f4f10c7ace663e8"><td class="memTemplParams" colspan="2">template&lt;std::size_t i, std::size_t j, typename C , typename T &gt; </td></tr>
-<tr class="memitem:gaf54ce87572b288c69f4f10c7ace663e8"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__type__support__at.html#gaf54ce87572b288c69f4f10c7ace663e8">vccc::at</a> (const T &amp;t)</td></tr>
-<tr class="memdesc:gaf54ce87572b288c69f4f10c7ace663e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns cv::saturate_cast&lt;C&gt;(vccc::at&lt;i, j&gt;(t))  <a href="group__type__support__at.html#gaf54ce87572b288c69f4f10c7ace663e8">More...</a><br /></td></tr>
-<tr class="separator:gaf54ce87572b288c69f4f10c7ace663e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6ccd965e66c0a77c7b399684427e65b6"><td class="memTemplParams" colspan="2">template&lt;std::size_t i, typename C , typename T &gt; </td></tr>
+<tr class="memitem:ga6ccd965e66c0a77c7b399684427e65b6"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__type__support__at.html#ga6ccd965e66c0a77c7b399684427e65b6">vccc::at</a> (T &amp;&amp;t)</td></tr>
+<tr class="memdesc:ga6ccd965e66c0a77c7b399684427e65b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns cv::saturate_cast&lt;C&gt;(vccc::at&lt;i&gt;(t))  <a href="group__type__support__at.html#ga6ccd965e66c0a77c7b399684427e65b6">More...</a><br /></td></tr>
+<tr class="separator:ga6ccd965e66c0a77c7b399684427e65b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga35e49510aadf5ad0be2c4141fc59afd4"><td class="memTemplParams" colspan="2">template&lt;std::size_t i, std::size_t j, typename C , typename T &gt; </td></tr>
+<tr class="memitem:ga35e49510aadf5ad0be2c4141fc59afd4"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__type__support__at.html#ga35e49510aadf5ad0be2c4141fc59afd4">vccc::at</a> (T &amp;&amp;t)</td></tr>
+<tr class="memdesc:ga35e49510aadf5ad0be2c4141fc59afd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns cv::saturate_cast&lt;C&gt;(vccc::at&lt;i, j&gt;(t))  <a href="group__type__support__at.html#ga35e49510aadf5ad0be2c4141fc59afd4">More...</a><br /></td></tr>
+<tr class="separator:ga35e49510aadf5ad0be2c4141fc59afd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga76defb252f31da39076bf42ce6715b75"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
 <tr class="memitem:ga76defb252f31da39076bf42ce6715b75"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1detail_1_1bind__obj.html">detail::bind_obj</a>&lt; Args... &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__type__support__at.html#ga76defb252f31da39076bf42ce6715b75">vccc::bind_at</a> (Args &amp;&amp;... args)</td></tr>
 <tr class="memdesc:ga76defb252f31da39076bf42ce6715b75"><td class="mdescLeft">&#160;</td><td class="mdescRight">call at&lt;...&gt;(...) to args...  <a href="group__type__support__at.html#ga76defb252f31da39076bf42ce6715b75">More...</a><br /></td></tr>
@@ -157,8 +157,8 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Index-based value accessor. </p>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga012700b3afa6f159adeffec164672800"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga012700b3afa6f159adeffec164672800">&#9670;&nbsp;</a></span>at() <span class="overload">[1/2]</span></h2>
+<a id="ga6ccd965e66c0a77c7b399684427e65b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6ccd965e66c0a77c7b399684427e65b6">&#9670;&nbsp;</a></span>at() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,14 +171,14 @@ template&lt;std::size_t i, typename C , typename T &gt; </div>
         <tr>
           <td class="memname">constexpr decltype(auto) vccc::at </td>
           <td>(</td>
-          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -201,8 +201,8 @@ template&lt;std::size_t i, typename C , typename T &gt; </div>
 
 </div>
 </div>
-<a id="gaf54ce87572b288c69f4f10c7ace663e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf54ce87572b288c69f4f10c7ace663e8">&#9670;&nbsp;</a></span>at() <span class="overload">[2/2]</span></h2>
+<a id="ga35e49510aadf5ad0be2c4141fc59afd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga35e49510aadf5ad0be2c4141fc59afd4">&#9670;&nbsp;</a></span>at() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -215,14 +215,14 @@ template&lt;std::size_t i, std::size_t j, typename C , typename T &gt; </div>
         <tr>
           <td class="memname">constexpr decltype(auto) vccc::at </td>
           <td>(</td>
-          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

@@ -101,71 +101,76 @@ $(document).ready(function(){initNavTree('average_8hpp_source.html',''); initRes
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"># define VCCC_NUMERIC_AVERAGE_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"># include &lt;iterator&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="type__traits_8hpp.html">vccc/type_traits.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="sum_8hpp.html">vccc/numeric/sum.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> InputIterator,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;         <a class="code" href="require_8hpp.html#ac7c48320f28d56e4261c1551bc23e058">VCCC_REQUIRE</a>(iterable&lt;InputIterator&gt;)&gt;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;constexpr</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">auto</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">   35</a></span>&#160;<a class="code" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">average</a>(InputIterator first, InputIterator last)</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keyword">using</span> ret_t = <span class="keyword">typename</span> InputIterator::value_type;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">sum</a>(first, last) / <span class="keyword">static_cast&lt;</span><a class="code" href="group__type__traits.html#ga83b21df32dbd1467115bbbd9c9bf22e7">decay_if_float_t&lt;typename InputIterator::value_type&gt;</a><span class="keyword">&gt;</span>(std::distance(first, last));</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> InputIterator, <span class="keyword">typename</span> UnaryOperation,</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;         <a class="code" href="require_8hpp.html#ac7c48320f28d56e4261c1551bc23e058">VCCC_REQUIRE</a>(iterable&lt;InputIterator&gt;)&gt;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;constexpr</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">auto</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="group__numeric__average.html#ga404ae7df6bb362a11d89cd6113b09db4">   52</a></span>&#160;<a class="code" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">average</a>(InputIterator first, InputIterator last, UnaryOperation unary_op)</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keyword">using</span> ret_t = <span class="keyword">typename</span> InputIterator::value_type;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">sum</a>(first, last, unary_op) / <span class="keyword">static_cast&lt;</span><a class="code" href="group__type__traits.html#ga83b21df32dbd1467115bbbd9c9bf22e7">decay_if_float_t&lt;typename InputIterator::value_type&gt;</a><span class="keyword">&gt;</span>(std::distance(first, last));</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Numbers,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;         <a class="code" href="require_8hpp.html#ac7c48320f28d56e4261c1551bc23e058">VCCC_REQUIRE</a>(are_arithmetic_v&lt;Numbers...&gt;)&gt;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;constexpr</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">auto</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="group__numeric__average.html#ga84508e1f9e2d06fc15712779a6d4ea8b">   73</a></span>&#160;<a class="code" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">average</a>(Numbers... numbers)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">sum</a>(numbers...) / <span class="keyword">static_cast&lt;</span><a class="code" href="group__type__traits.html#ga83b21df32dbd1467115bbbd9c9bf22e7">decay_if_float_t</a>&lt;Numbers...<span class="keyword">&gt;</span>&gt;(<span class="keyword">sizeof</span>...(numbers));</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Ints,</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;         <a class="code" href="require_8hpp.html#ac7c48320f28d56e4261c1551bc23e058">VCCC_REQUIRE</a>(are_integral_v&lt;Ints...&gt;)&gt;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;constexpr</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">auto</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="group__numeric__average.html#ga6c7d7b2543e94b24e4891cb0f7c651c6">   89</a></span>&#160;<a class="code" href="group__numeric__average.html#ga6c7d7b2543e94b24e4891cb0f7c651c6">int_average</a>(Ints... ints)</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;{</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">sum</a>(ints...) / <span class="keyword">static_cast&lt;</span><a class="code" href="group__bigger__type.html#gafb75be018b35007145e900cc33490ca2">signed_bigger_type_t</a>&lt;Ints...<span class="keyword">&gt;</span>&gt;(<span class="keyword">sizeof</span>...(Ints));</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args,</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;         <a class="code" href="require_8hpp.html#ac7c48320f28d56e4261c1551bc23e058">VCCC_REQUIRE</a>(!iterable&lt;Args...&gt; &amp;&amp; !are_arithmetic_v&lt;Args...&gt;)&gt;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;constexpr</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">auto</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="group__numeric__average.html#gaca1ff9006393ec8bf9eadcdb26ccec1b">  104</a></span>&#160;<a class="code" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">average</a>(<span class="keyword">const</span> Args&amp;... args)</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;{</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">sum</a>(args...) / <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(<span class="keyword">sizeof</span>...(args));</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"># include &lt;cassert&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="type__traits_8hpp.html">vccc/type_traits.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="sum_8hpp.html">vccc/numeric/sum.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> InputIterator,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;         <a class="code" href="require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638">VCCC_ENABLE_IF</a>(iterable&lt;InputIterator&gt;)&gt;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;constexpr</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">auto</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">   36</a></span>&#160;<a class="code" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">average</a>(InputIterator first, InputIterator last)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  assert(((<span class="keywordtype">void</span>)<span class="stringliteral">&quot;input size muse be larger than 0&quot;</span>, first != last));</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keyword">using</span> return_type = decltype(*first);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keywordflow">if</span>(first == last) <span class="keywordflow">return</span> impl::default_value&lt;decltype(*first)&gt;() / <span class="keyword">static_cast&lt;</span><a class="code" href="group__type__traits.html#ga83b21df32dbd1467115bbbd9c9bf22e7">decay_if_float_t&lt;return_type&gt;</a><span class="keyword">&gt;</span>(1);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">sum</a>(first, last) / <span class="keyword">static_cast&lt;</span><a class="code" href="group__type__traits.html#ga83b21df32dbd1467115bbbd9c9bf22e7">decay_if_float_t&lt;return_type&gt;</a><span class="keyword">&gt;</span>(std::distance(first, last));</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> InputIterator, <span class="keyword">typename</span> UnaryOperation,</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;         <a class="code" href="require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638">VCCC_ENABLE_IF</a>(iterable&lt;InputIterator&gt;)&gt;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;constexpr</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">auto</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="group__numeric__average.html#ga404ae7df6bb362a11d89cd6113b09db4">   55</a></span>&#160;<a class="code" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">average</a>(InputIterator first, InputIterator last, UnaryOperation unary_op)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  assert(((<span class="keywordtype">void</span>)<span class="stringliteral">&quot;input size muse be larger than 0&quot;</span>, first != last));</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keyword">using</span> return_type = decltype(unary_op(*first));</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keywordflow">if</span>(first == last) <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="group__type__traits.html#ga83b21df32dbd1467115bbbd9c9bf22e7">decay_if_float_t&lt;return_type&gt;</a><span class="keyword">&gt;</span>(<a class="code" href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">sum</a>(first, last, std::move(unary_op)));</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">sum</a>(first, last, unary_op) / <span class="keyword">static_cast&lt;</span><a class="code" href="group__type__traits.html#ga83b21df32dbd1467115bbbd9c9bf22e7">decay_if_float_t&lt;return_type&gt;</a><span class="keyword">&gt;</span>(std::distance(first, last));</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Numbers,</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;         <a class="code" href="require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638">VCCC_ENABLE_IF</a>(are_arithmetic_v&lt;Numbers...&gt;)&gt;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;constexpr</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">auto</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="group__numeric__average.html#ga84508e1f9e2d06fc15712779a6d4ea8b">   78</a></span>&#160;<a class="code" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">average</a>(Numbers... numbers)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">sum</a>(numbers...) / <span class="keyword">static_cast&lt;</span><a class="code" href="group__type__traits.html#ga83b21df32dbd1467115bbbd9c9bf22e7">decay_if_float_t</a>&lt;Numbers...<span class="keyword">&gt;</span>&gt;(<span class="keyword">sizeof</span>...(numbers));</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Ints,</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;         <a class="code" href="require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638">VCCC_ENABLE_IF</a>(are_integral_v&lt;Ints...&gt;)&gt;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;constexpr</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">auto</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="group__numeric__average.html#ga6c7d7b2543e94b24e4891cb0f7c651c6">   94</a></span>&#160;<a class="code" href="group__numeric__average.html#ga6c7d7b2543e94b24e4891cb0f7c651c6">int_average</a>(Ints... ints)</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;{</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">sum</a>(ints...) / <span class="keyword">static_cast&lt;</span><a class="code" href="group__bigger__type.html#gafb75be018b35007145e900cc33490ca2">signed_bigger_type_t</a>&lt;Ints...<span class="keyword">&gt;</span>&gt;(<span class="keyword">sizeof</span>...(Ints));</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args,</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;         <a class="code" href="require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638">VCCC_ENABLE_IF</a>(!iterable&lt;Args...&gt; &amp;&amp; !are_arithmetic_v&lt;Args...&gt;)&gt;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;constexpr</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">auto</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="group__numeric__average.html#gaca1ff9006393ec8bf9eadcdb26ccec1b">  109</a></span>&#160;<a class="code" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">average</a>(<span class="keyword">const</span> Args&amp;... args)</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;{</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">sum</a>(args...) / <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(<span class="keyword">sizeof</span>...(args));</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor"># endif //VCCC_NUMERIC_AVERAGE_HPP</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor"># endif //VCCC_NUMERIC_AVERAGE_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="atype__traits_8hpp_html"><div class="ttname"><a href="type__traits_8hpp.html">type_traits.hpp</a></div></div>
-<div class="ttc" id="agroup__numeric__sum_html_ga7e693141d69d7b3077157e78377d5f2a"><div class="ttname"><a href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">vccc::sum</a></div><div class="ttdeci">constexpr auto sum(InputIterator first, InputIterator last)</div><div class="ttdoc">sum of iterator [first, last)</div><div class="ttdef"><b>Definition:</b> sum.hpp:50</div></div>
-<div class="ttc" id="arequire_8hpp_html_ac7c48320f28d56e4261c1551bc23e058"><div class="ttname"><a href="require_8hpp.html#ac7c48320f28d56e4261c1551bc23e058">VCCC_REQUIRE</a></div><div class="ttdeci">#define VCCC_REQUIRE(Cond)</div><div class="ttdef"><b>Definition:</b> require.hpp:9</div></div>
+<div class="ttc" id="agroup__numeric__sum_html_ga7e693141d69d7b3077157e78377d5f2a"><div class="ttname"><a href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">vccc::sum</a></div><div class="ttdeci">constexpr auto sum(InputIterator first, InputIterator last)</div><div class="ttdoc">sum of iterator [first, last)</div><div class="ttdef"><b>Definition:</b> sum.hpp:61</div></div>
+<div class="ttc" id="arequire_8hpp_html_a076be2135fa476e0ffa180ef5d1f4638"><div class="ttname"><a href="require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638">VCCC_ENABLE_IF</a></div><div class="ttdeci">#define VCCC_ENABLE_IF(Cond)</div><div class="ttdef"><b>Definition:</b> require.hpp:9</div></div>
 <div class="ttc" id="agroup__bigger__type_html_gafb75be018b35007145e900cc33490ca2"><div class="ttname"><a href="group__bigger__type.html#gafb75be018b35007145e900cc33490ca2">vccc::signed_bigger_type_t</a></div><div class="ttdeci">typename signed_bigger_type&lt; Ts... &gt;::type signed_bigger_type_t</div><div class="ttdef"><b>Definition:</b> bigger_type.hpp:99</div></div>
-<div class="ttc" id="agroup__numeric__average_html_ga4462f1176d8e155f2e1d7b5b96ccd27d"><div class="ttname"><a href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">vccc::average</a></div><div class="ttdeci">constexpr auto average(InputIterator first, InputIterator last)</div><div class="ttdoc">get average of iterator values [first, last)</div><div class="ttdef"><b>Definition:</b> average.hpp:35</div></div>
-<div class="ttc" id="agroup__numeric__average_html_ga6c7d7b2543e94b24e4891cb0f7c651c6"><div class="ttname"><a href="group__numeric__average.html#ga6c7d7b2543e94b24e4891cb0f7c651c6">vccc::int_average</a></div><div class="ttdeci">constexpr auto int_average(Ints... ints)</div><div class="ttdoc">get average value of integers(result is floored)</div><div class="ttdef"><b>Definition:</b> average.hpp:89</div></div>
+<div class="ttc" id="agroup__numeric__average_html_ga4462f1176d8e155f2e1d7b5b96ccd27d"><div class="ttname"><a href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">vccc::average</a></div><div class="ttdeci">constexpr auto average(InputIterator first, InputIterator last)</div><div class="ttdoc">get average of iterator values [first, last)</div><div class="ttdef"><b>Definition:</b> average.hpp:36</div></div>
+<div class="ttc" id="agroup__numeric__average_html_ga6c7d7b2543e94b24e4891cb0f7c651c6"><div class="ttname"><a href="group__numeric__average.html#ga6c7d7b2543e94b24e4891cb0f7c651c6">vccc::int_average</a></div><div class="ttdeci">constexpr auto int_average(Ints... ints)</div><div class="ttdoc">get average value of integers(result is floored)</div><div class="ttdef"><b>Definition:</b> average.hpp:94</div></div>
 <div class="ttc" id="agroup__type__traits_html_ga83b21df32dbd1467115bbbd9c9bf22e7"><div class="ttname"><a href="group__type__traits.html#ga83b21df32dbd1467115bbbd9c9bf22e7">vccc::decay_if_float_t</a></div><div class="ttdeci">typename std::conditional_t&lt; are_&lt; std::is_same&lt; Types, float &gt;... &gt;::value, float, double &gt; decay_if_float_t</div><div class="ttdef"><b>Definition:</b> lossless_type.hpp:20</div></div>
 <div class="ttc" id="asum_8hpp_html"><div class="ttname"><a href="sum_8hpp.html">sum.hpp</a></div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
