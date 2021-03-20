@@ -20,10 +20,12 @@ Windows  |  '\\\\'
 Others   |  '/'
 
  */
-# if BOOST_COMP_MSVC
-#   define VCCC_FILE_SEPARATOR '\\'
-# else
-#   define VCCC_FILE_SEPARATOR '/'
+# ifndef VCCC_FILE_SEPARATOR
+#   if BOOST_COMP_MSVC
+#     define VCCC_FILE_SEPARATOR '\\'
+#   else
+#     define VCCC_FILE_SEPARATOR '/'
+#   endif
 # endif
 
 /**
