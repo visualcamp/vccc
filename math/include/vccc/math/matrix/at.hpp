@@ -9,23 +9,23 @@
 
 namespace vccc {
 
-template<std::size_t i, typename E>
-constexpr decltype(auto) at(const MatrixBase<E>& mat) { return mat(i); }
-
-template<std::size_t i, typename E>
-constexpr decltype(auto) at(MatrixBase<E>& mat) { return mat(i); }
-
-template<std::size_t i, typename E>
-constexpr decltype(auto) at(MatrixBase<E>&& mat) { return mat(i); }
-
-template<std::size_t i, std::size_t j, typename E>
-constexpr decltype(auto) at(const MatrixBase<E>& mat) { return mat(i, j); }
-
-template<std::size_t i, std::size_t j, typename E>
-constexpr decltype(auto) at(MatrixBase<E>& mat) { return mat(i, j); }
-
-template<std::size_t i, std::size_t j, typename E>
-constexpr decltype(auto) at(MatrixBase<E>&& mat) { return mat(i, j); }
+//template<std::size_t i, typename E>
+//constexpr decltype(auto) at(const MatrixBase<E>& mat) { return mat(i); }
+//
+//template<std::size_t i, typename E>
+//constexpr decltype(auto) at(MatrixBase<E>& mat) { return mat(i); }
+//
+//template<std::size_t i, typename E>
+//constexpr decltype(auto) at(MatrixBase<E>&& mat) { return mat(i); }
+//
+//template<std::size_t i, std::size_t j, typename E>
+//constexpr decltype(auto) at(const MatrixBase<E>& mat) { return mat(i, j); }
+//
+//template<std::size_t i, std::size_t j, typename E>
+//constexpr decltype(auto) at(MatrixBase<E>& mat) { return mat(i, j); }
+//
+//template<std::size_t i, std::size_t j, typename E>
+//constexpr decltype(auto) at(MatrixBase<E>&& mat) { return mat(i, j); }
 
 }
 
