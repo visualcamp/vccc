@@ -14,6 +14,7 @@
 # include <string>
 # include <ratio>
 # include <functional>
+# include <mutex>
 # include "vccc/log/ios_flags_saver.hpp"
 # include "vccc/type_traits.hpp"
 
