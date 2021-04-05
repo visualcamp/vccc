@@ -5,7 +5,7 @@
 # ifndef VCCC_LOG_LOG_HPP
 # define VCCC_LOG_LOG_HPP
 #
-# include "vccc/log/detail/platform_log.hpp"
+# include "vccc/log/detail/log_impl.h"
 # include "vccc/log/logger.hpp"
 
 //! @addtogroup log
@@ -65,20 +65,10 @@ class Log_{
  public:
   constexpr Log_() = default;
 
-  template<typename ...Args> void v(Args&&... args) const { LOGV_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
   template<typename ...Args> void d(Args&&... args) const { LOGD_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
   template<typename ...Args> void i(Args&&... args) const { LOGI_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
   template<typename ...Args> void w(Args&&... args) const { LOGW_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
-  template<typename ...Args> void e(Args&&... args) const {
-# ifdef NDEBUG
-#     if BOOST_COMP_MSVC == BOOST_VERSION_NUMBER_NOT_AVAILABLE
-#         warning "This will be printed even if the project is not debug build"
-#     else
-#         pragma message ("This will be printed even if the project is not debug build")
-#     endif
-# endif
-    LOGE_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str());
-  }
+  template<typename ...Args> void e(Args&&... args) const { LOGE_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
 };
 
 constexpr Log_ Log;
@@ -88,20 +78,13 @@ constexpr Log_ Log;
 /** @brief macro wrappers for security */
 
 # ifdef NDEBUG
-  # define LOGV(...)
-  # define LOGD(...)
-  # define LOGI(...)
-  # define LOGW(...)
-  # define LOGF(...)
-  # define LOGS(...)
+# define LOGD(...)
 #else
-  # define LOGV(...) ::vccc::Log.v(__VA_ARGS__)
-  # define LOGD(...) ::vccc::Log.d(__VA_ARGS__)
-  # define LOGI(...) ::vccc::Log.i(__VA_ARGS__)
-  # define LOGW(...) ::vccc::Log.w(__VA_ARGS__)
-  # define LOGF(...) LOGF_IMPL(__VA_ARGS__)
-  # define LOGS(...) LOGS_IMPL(__VA_ARGS__)
+# define LOGD(...) ::vccc::Log.d(__VA_ARGS__)
 # endif
+
+# define LOGI(...) ::vccc::Log.i(__VA_ARGS__)
+# define LOGW(...) ::vccc::Log.w(__VA_ARGS__)
 # define LOGE(...) ::vccc::Log.e(__VA_ARGS__)
 
 //! @} log
