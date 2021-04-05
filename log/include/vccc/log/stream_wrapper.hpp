@@ -149,9 +149,16 @@ void StreamWrapper<Stream>::writeIterator(InputIterator first, InputIterator las
 
 template<typename Stream>
 template<typename Rep, typename Period>
-void StreamWrapper<Stream>::write(const std::chrono::duration<Rep, Period>& duration) {
+void StreamWrapper<Stream>::write(const std::chrono::duration<Rep, Period>& duration_) {
+  IOSFlagsSaver<stream_type> saver(stream_);
+
+  auto duration =
+      duration_ >= std::chrono::duration<Rep, Period>::zero() ?
+      duration_ : -duration_;
+
   if(duration < std::chrono::minutes(1)) {
     auto ns = std::chrono::duration_cast<std::chrono::nanoseconds>(duration);
+    stream_ << std::setprecision(5);
 
     if(duration < std::chrono::milliseconds(1)) {
       if(duration < std::chrono::nanoseconds(1'000))
@@ -176,7 +183,7 @@ void StreamWrapper<Stream>::write(const std::chrono::duration<Rep, Period>& dura
     auto ss = std::chrono::duration_cast<std::chrono::seconds     >(duration % std::chrono::minutes(1)).count();
     auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(duration % std::chrono::seconds(1)).count();
 
-    if(duration > days(1)) {
+    if(duration >= days(1)) {
       auto DD = std::chrono::duration_cast<days  >(duration % months(1)).count();
       auto MM = std::chrono::duration_cast<months>(duration % years(1)).count();
       auto YY = std::chrono::duration_cast<years >(duration).count();
@@ -184,17 +191,20 @@ void StreamWrapper<Stream>::write(const std::chrono::duration<Rep, Period>& dura
       if(YY) stream_ << YY << "Y ";
       if(MM) stream_ << MM << "M ";
       if(DD) stream_ << DD << "D ";
+      stream_ << std::setw(2) << std::setfill(' ');
     }
 
-    IOSFlagsSaver<stream_type> saver(stream_);
-    if(duration >= std::chrono::hours(1))
-      stream_ << std::setw(2) << std::setfill(' ') << hh << "h "
-              << std::setw(2) << std::setfill(' ') << mm << "m ";
-    else if(duration >= std::chrono::minutes(1))
-      stream_ << std::setw(2) << std::setfill(' ') << mm << "m ";
+    if(hh || mm || ss || ms) {
+      if (duration >= std::chrono::hours(1))
+        stream_ << hh << "h "
+                << std::setw(2) << std::setfill(' ') << mm << "m ";
+      else if (duration >= std::chrono::minutes(1))
+        stream_ << mm << "m ";
 
-    stream_ << std::setw(2) << std::setfill(' ') << ss << '.';
-    stream_ << std::setw(3) << std::setfill('0') << ms << 's';
+      stream_ << std::setw(2) << std::setfill(' ') << ss;
+      if (ms) stream_ << '.' << std::setw(3) << std::setfill('0') << ms;
+      stream_ << 's';
+    }
   }
 }
 
