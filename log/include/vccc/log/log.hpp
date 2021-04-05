@@ -8,17 +8,16 @@
 # include "vccc/log/detail/log_impl.h"
 # include "vccc/log/logger.hpp"
 
-//! @addtogroup log
-//! @{
 
 namespace vccc {
 
-
+//! @addtogroup log
+//! @{
 
 /**
-@brief logs the given message
+@brief vccc::Logger maker
 
-v for LOGV, d for LOGD, i for LOGI, w for LOGW, e for LOGE
+d for LOGD, i for LOGI, w for LOGW, e for LOGE
 
 supports both printf-like format and ostringstream& operator <<
 @code
@@ -71,22 +70,38 @@ class Log_{
   template<typename ...Args> void e(Args&&... args) const { LOGE_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
 };
 
+/**
+@brief Global vccc::Log_ instance for syntax sugar
+ */
 constexpr Log_ Log;
 
-}
+/**
+@brief Debug log wrapper for security. This won't print in release build.
 
-/** @brief macro wrappers for security */
+Below example applies to LOGI, LOGW, LOGE
+@code{.cpp}
+    LOGD("%s %d %f", "string", 100, 3.14);  // string 100 3.14
+    LOGD("string", 100, 3.14);              // string 100 3.14
+    LOGD(std::vector<int>{1,2,3,4});        // { 1, 2, 3, 4 }
+    LOGD(std::map<string, int>{{"one", 1}, {"two", 2}}); // { { one: 1 }, { two: 2 } }
+@endcode
 
+*/
 # ifdef NDEBUG
 # define LOGD(...)
 #else
 # define LOGD(...) ::vccc::Log.d(__VA_ARGS__)
 # endif
 
+/** @brief Information log wrapper **/
 # define LOGI(...) ::vccc::Log.i(__VA_ARGS__)
+/** @brief Warning log wrapper **/
 # define LOGW(...) ::vccc::Log.w(__VA_ARGS__)
+/** @brief Error log wrapper **/
 # define LOGE(...) ::vccc::Log.e(__VA_ARGS__)
 
 //! @} log
+
+} // namespace log
 
 # endif //VCCC_LOG_LOG_HPP

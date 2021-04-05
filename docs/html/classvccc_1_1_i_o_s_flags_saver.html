@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('classvccc_1_1_i_o_s_flags_saver.html',
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classvccc_1_1_i_o_s_flags_saver-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">vccc::IOSFlagsSaver&lt; Stream &gt; Class Template Reference</div>  </div>
+<div class="title">vccc::IOSFlagsSaver&lt; Stream &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__log.html">log</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -120,7 +120,18 @@ Public Member Functions</h2></td></tr>
 class vccc::IOSFlagsSaver&lt; Stream &gt;</h3>
 
 <p>RAII wrapper that restores stream's flags on destroyed. </p>
-</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Stream</td><td>stream type</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line">{</div>
+<div class="line">  IOSFlagsSaver&lt;std::ostream&gt; saver(std::cout); <span class="comment">// flags saved</span></div>
+<div class="line">  std::cout &lt;&lt; std::setw(10) &lt;&lt; 1;</div>
+<div class="line">} <span class="comment">// flags restored</span></div>
+<div class="line">std::cout &lt;&lt; 2;</div>
+</div><!-- fragment --> </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a96c2fac96b887e776905201ad46548be"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96c2fac96b887e776905201ad46548be">&#9670;&nbsp;</a></span>stream_type</h2>
 

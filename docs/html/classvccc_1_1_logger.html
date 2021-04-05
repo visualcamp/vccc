@@ -90,41 +90,65 @@ $(document).ready(function(){initNavTree('classvccc_1_1_logger.html',''); initRe
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classvccc_1_1_logger-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">vccc::Logger Class Reference</div>  </div>
+<div class="title">vccc::Logger Class Reference<div class="ingroups"><a class="el" href="group__log.html">log</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>stream wrapper that can accept both C-style formatted and C++ style variadic  
+ <a href="classvccc_1_1_logger.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="logger_8hpp_source.html">vccc/log/logger.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a515af5e2ff096ea0ca125a294e878c12"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html#a515af5e2ff096ea0ca125a294e878c12">c_printable</a> = std::true_type</td></tr>
+<tr class="separator:a515af5e2ff096ea0ca125a294e878c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a382747f3de73d88d87175b474ab0c83d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html#a382747f3de73d88d87175b474ab0c83d">not_c_printable</a> = std::false_type</td></tr>
+<tr class="separator:a382747f3de73d88d87175b474ab0c83d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2988aa3fd0f61a4e179e6127c6c37222"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
-<tr class="memitem:a2988aa3fd0f61a4e179e6127c6c37222"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html#a2988aa3fd0f61a4e179e6127c6c37222">Logger</a> (const Args &amp;... args)</td></tr>
-<tr class="separator:a2988aa3fd0f61a4e179e6127c6c37222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2988aa3fd0f61a4e179e6127c6c37222"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
+<tr class="memitem:ga2988aa3fd0f61a4e179e6127c6c37222"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__log.html#ga2988aa3fd0f61a4e179e6127c6c37222">Logger</a> (const Args &amp;... args)</td></tr>
+<tr class="separator:ga2988aa3fd0f61a4e179e6127c6c37222"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0455f54ea1bc97837f18ad396bde19d3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html#a0455f54ea1bc97837f18ad396bde19d3">get</a> () const</td></tr>
 <tr class="separator:a0455f54ea1bc97837f18ad396bde19d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b82beb820e92e46fd0a2af948342119"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a9b82beb820e92e46fd0a2af948342119"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html#a9b82beb820e92e46fd0a2af948342119">add</a> (const T &amp;n)</td></tr>
-<tr class="separator:a9b82beb820e92e46fd0a2af948342119"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b82beb820e92e46fd0a2af948342119"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga9b82beb820e92e46fd0a2af948342119"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__log.html#ga9b82beb820e92e46fd0a2af948342119">add</a> (const T &amp;n)</td></tr>
+<tr class="separator:ga9b82beb820e92e46fd0a2af948342119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a2988aa3fd0f61a4e179e6127c6c37222"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2988aa3fd0f61a4e179e6127c6c37222">&#9670;&nbsp;</a></span>Logger()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>stream wrapper that can accept both C-style formatted and C++ style variadic </p>
+<div class="fragment"><div class="line">std::string str1 = <a class="code" href="group__log.html#ga2988aa3fd0f61a4e179e6127c6c37222">Logger</a>(<span class="stringliteral">&quot;%s %d&quot;</span>, <span class="stringliteral">&quot;Hello&quot;</span>, 100).get();</div>
+<div class="line">std::string str2 = <a class="code" href="group__log.html#ga2988aa3fd0f61a4e179e6127c6c37222">Logger</a>(1, <span class="stringliteral">&quot;Hello&quot;</span>, <span class="stringliteral">&quot;world&quot;</span>).get();</div>
+<div class="line">std::string str3 = <a class="code" href="group__log.html#ga2988aa3fd0f61a4e179e6127c6c37222">Logger</a>(std::boolalpha, <span class="keyword">true</span>).get();</div>
+</div><!-- fragment --> </div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a515af5e2ff096ea0ca125a294e878c12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a515af5e2ff096ea0ca125a294e878c12">&#9670;&nbsp;</a></span>c_printable</h2>
 
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;typename ... Args&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">vccc::Logger::Logger </td>
-          <td>(</td>
-          <td class="paramtype">const Args &amp;...&#160;</td>
-          <td class="paramname"><em>args</em></td><td>)</td>
-          <td></td>
+          <td class="memname">using <a class="el" href="classvccc_1_1_logger.html#a515af5e2ff096ea0ca125a294e878c12">vccc::Logger::c_printable</a> =  std::true_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a382747f3de73d88d87175b474ab0c83d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a382747f3de73d88d87175b474ab0c83d">&#9670;&nbsp;</a></span>not_c_printable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1_logger.html#a382747f3de73d88d87175b474ab0c83d">vccc::Logger::not_c_printable</a> =  std::false_type</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -157,31 +181,12 @@ template&lt;typename ... Args&gt; </div>
 
 </div>
 </div>
-<a id="a9b82beb820e92e46fd0a2af948342119"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b82beb820e92e46fd0a2af948342119">&#9670;&nbsp;</a></span>add()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void vccc::Logger::add </td>
-          <td>(</td>
-          <td class="paramtype">const T &amp;&#160;</td>
-          <td class="paramname"><em>n</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>log/include/vccc/log/<a class="el" href="logger_8hpp_source.html">logger.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="agroup__log_html_ga2988aa3fd0f61a4e179e6127c6c37222"><div class="ttname"><a href="group__log.html#ga2988aa3fd0f61a4e179e6127c6c37222">vccc::Logger::Logger</a></div><div class="ttdeci">Logger(const Args &amp;... args)</div><div class="ttdef"><b>Definition:</b> logger.hpp:67</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

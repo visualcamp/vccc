@@ -14,7 +14,20 @@
 
 namespace vccc{
 
+//! @addtogroup log
+//! @{
 
+
+/**
+@brief stream wrapper that can accept both C-style formatted and C++ style variadic
+
+@code{.cpp}
+    std::string str1 = Logger("%s %d", "Hello", 100).get();
+    std::string str2 = Logger(1, "Hello", "world").get();
+    std::string str3 = Logger(std::boolalpha, true).get();
+@endcode
+
+ */
 class Logger {
  public:
   using c_printable = std::true_type;
@@ -109,6 +122,8 @@ Logger::addFormatted(const char* fmt, const Args&... val)
   snprintf(buffer.data(), size + 1, fmt, val...);
   out << buffer.data();
 }
+
+//! @} log
 
 }
 

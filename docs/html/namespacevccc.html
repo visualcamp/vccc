@@ -198,9 +198,10 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1is__string__like_3_01const_01char_01_5_01_4.html">is_string_like&lt; const char * &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_log__.html">Log_</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">logs the given message  <a href="classvccc_1_1_log__.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classvccc_1_1_logger.html" title="stream wrapper that can accept both C-style formatted and C++ style variadic">vccc::Logger</a> maker  <a href="classvccc_1_1_log__.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html">Logger</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">stream wrapper that can accept both C-style formatted and C++ style variadic  <a href="classvccc_1_1_logger.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1lossless__type__add.html">lossless_type_add</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -248,7 +249,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1signed__bigger__type_3_01_t1_00_01_t2_00_01_ts_8_8_8_01_4.html">signed_bigger_type&lt; T1, T2, Ts... &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_stream_wrapper.html">StreamWrapper</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">stream wrapper that supports various operator overloading  <a href="classvccc_1_1_stream_wrapper.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">stream wrapper that supports extended operator overloading  <a href="classvccc_1_1_stream_wrapper.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1unsigned__bigger__type.html">unsigned_bigger_type</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -263,10 +264,6 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a53db3e1abe2932efbd3805efef8710d2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevccc.html#a53db3e1abe2932efbd3805efef8710d2">c_printable</a> = std::true_type</td></tr>
-<tr class="separator:a53db3e1abe2932efbd3805efef8710d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa18570b9ecf1e12eaed81db5c9a41c14"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevccc.html#aa18570b9ecf1e12eaed81db5c9a41c14">not_c_printable</a> = std::false_type</td></tr>
-<tr class="separator:aa18570b9ecf1e12eaed81db5c9a41c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abab429330de0f27e2e2484e6dc4bc924"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:abab429330de0f27e2e2484e6dc4bc924"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc.html#abab429330de0f27e2e2484e6dc4bc924">is_cv_type_t</a> = typename <a class="el" href="structvccc_1_1is__cv__type.html">is_cv_type</a>&lt; T &gt;::type</td></tr>
 <tr class="separator:abab429330de0f27e2e2484e6dc4bc924"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -367,18 +364,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ga23d1870f872a4dde5eb1d200fcbd2a7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classvccc_1_1_formatter.html">Formatter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__literal.html#ga23d1870f872a4dde5eb1d200fcbd2a7c">operator&quot;&quot;_format</a> (const char *format, std::size_t)</td></tr>
 <tr class="memdesc:ga23d1870f872a4dde5eb1d200fcbd2a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classvccc_1_1_formatter.html" title="converts c-style format and inputs to std::string">Formatter</a> helper on string literal.  <a href="group__literal.html#ga23d1870f872a4dde5eb1d200fcbd2a7c">More...</a><br /></td></tr>
 <tr class="separator:ga23d1870f872a4dde5eb1d200fcbd2a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af14f879272f5100434405df9a1979738"><td class="memTemplParams" colspan="2">template&lt;typename T , VCCC_ENABLE_IF_IMPL(is_container&lt; T &gt;::value &amp;&amp;!is_string_like&lt; T &gt;::value) &gt; </td></tr>
-<tr class="memitem:af14f879272f5100434405df9a1979738"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc.html#af14f879272f5100434405df9a1979738">operator&lt;&lt;</a> (std::ostream &amp;os, const T &amp;v)</td></tr>
-<tr class="separator:af14f879272f5100434405df9a1979738"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41b9fc7b6715fe2294e0720c6a08ecfd"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
-<tr class="memitem:a41b9fc7b6715fe2294e0720c6a08ecfd"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc.html#a41b9fc7b6715fe2294e0720c6a08ecfd">operator&lt;&lt;</a> (std::ostream &amp;os, const std::tuple&lt; Args... &gt; &amp;tup)</td></tr>
-<tr class="separator:a41b9fc7b6715fe2294e0720c6a08ecfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0a6594e7a467b22e71575039da2e8c4"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
-<tr class="memitem:aa0a6594e7a467b22e71575039da2e8c4"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc.html#aa0a6594e7a467b22e71575039da2e8c4">operator&lt;&lt;</a> (std::ostream &amp;os, const std::pair&lt; Args... &gt; &amp;tup)</td></tr>
-<tr class="separator:aa0a6594e7a467b22e71575039da2e8c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fc7cc71d129d0d04c6b550c9605141c"><td class="memTemplParams" colspan="2">template&lt;typename T , T... I&gt; </td></tr>
-<tr class="memitem:a3fc7cc71d129d0d04c6b550c9605141c"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc.html#a3fc7cc71d129d0d04c6b550c9605141c">operator&lt;&lt;</a> (std::ostream &amp;os, const std::integer_sequence&lt; T, I... &gt; &amp;seq)</td></tr>
-<tr class="separator:a3fc7cc71d129d0d04c6b550c9605141c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf239e9fe6dd0539b8e683783ea9a38f1"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:gaf239e9fe6dd0539b8e683783ea9a38f1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__calculus.html#gaf239e9fe6dd0539b8e683783ea9a38f1">epsilon</a> ()</td></tr>
 <tr class="memdesc:gaf239e9fe6dd0539b8e683783ea9a38f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">get machine epsilon for the given type  <a href="group__calculus.html#gaf239e9fe6dd0539b8e683783ea9a38f1">More...</a><br /></td></tr>
@@ -776,8 +761,9 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a7cde185c68ca38220d19182f824c98fa"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1_log__.html">Log_</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevccc.html#a7cde185c68ca38220d19182f824c98fa">Log</a></td></tr>
-<tr class="separator:a7cde185c68ca38220d19182f824c98fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7cde185c68ca38220d19182f824c98fa"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1_log__.html">Log_</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#ga7cde185c68ca38220d19182f824c98fa">Log</a></td></tr>
+<tr class="memdesc:ga7cde185c68ca38220d19182f824c98fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global <a class="el" href="classvccc_1_1_log__.html" title="vccc::Logger maker">vccc::Log_</a> instance for syntax sugar.  <a href="group__log.html#ga7cde185c68ca38220d19182f824c98fa">More...</a><br /></td></tr>
+<tr class="separator:ga7cde185c68ca38220d19182f824c98fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abcf3935ba35cb54d4a105d73e09d95e8"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="structvccc_1_1matrix__ctor__all__t.html">matrix_ctor_all_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevccc.html#abcf3935ba35cb54d4a105d73e09d95e8">matrix_ctor_all</a></td></tr>
 <tr class="separator:abcf3935ba35cb54d4a105d73e09d95e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad20cb751456a8e3563e19c12fd319130"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="structvccc_1_1matrix__ctor__diag__t.html">matrix_ctor_diag_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevccc.html#ad20cb751456a8e3563e19c12fd319130">matrix_ctor_diag</a></td></tr>
@@ -840,34 +826,6 @@ Variables</h2></td></tr>
 <tr class="separator:gaa212841d58d4644f3c3fe92244a363b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="a53db3e1abe2932efbd3805efef8710d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53db3e1abe2932efbd3805efef8710d2">&#9670;&nbsp;</a></span>c_printable</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespacevccc.html#a53db3e1abe2932efbd3805efef8710d2">vccc::c_printable</a> = typedef std::true_type</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aa18570b9ecf1e12eaed81db5c9a41c14"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa18570b9ecf1e12eaed81db5c9a41c14">&#9670;&nbsp;</a></span>not_c_printable</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespacevccc.html#aa18570b9ecf1e12eaed81db5c9a41c14">vccc::not_c_printable</a> = typedef std::false_type</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="abab429330de0f27e2e2484e6dc4bc924"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abab429330de0f27e2e2484e6dc4bc924">&#9670;&nbsp;</a></span>is_cv_type_t</h2>
 
@@ -901,126 +859,6 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="af14f879272f5100434405df9a1979738"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af14f879272f5100434405df9a1979738">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[1/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T , VCCC_ENABLE_IF_IMPL(is_container&lt; T &gt;::value &amp;&amp;!is_string_like&lt; T &gt;::value) &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; vccc::operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>os</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T &amp;&#160;</td>
-          <td class="paramname"><em>v</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a41b9fc7b6715fe2294e0720c6a08ecfd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41b9fc7b6715fe2294e0720c6a08ecfd">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[2/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename ... Args&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; vccc::operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>os</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::tuple&lt; Args... &gt; &amp;&#160;</td>
-          <td class="paramname"><em>tup</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aa0a6594e7a467b22e71575039da2e8c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0a6594e7a467b22e71575039da2e8c4">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[3/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename ... Args&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; vccc::operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>os</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::pair&lt; Args... &gt; &amp;&#160;</td>
-          <td class="paramname"><em>tup</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a3fc7cc71d129d0d04c6b550c9605141c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3fc7cc71d129d0d04c6b550c9605141c">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[4/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T , T... I&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; vccc::operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>os</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::integer_sequence&lt; T, I... &gt; &amp;&#160;</td>
-          <td class="paramname"><em>seq</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a84f9bc5a451374b26113f89adb7c4908"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a84f9bc5a451374b26113f89adb7c4908">&#9670;&nbsp;</a></span>at() <span class="overload">[1/6]</span></h2>
 
@@ -1408,7 +1246,7 @@ template&lt;typename LhsType , typename RhsType &gt; </div>
 </div>
 </div>
 <a id="a09bd0d641f1ad05a6ee896206fcec8a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09bd0d641f1ad05a6ee896206fcec8a8">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[5/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a09bd0d641f1ad05a6ee896206fcec8a8">&#9670;&nbsp;</a></span>operator&lt;&lt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1700,28 +1538,6 @@ template&lt;typename T , int cn, typename N &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a7cde185c68ca38220d19182f824c98fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7cde185c68ca38220d19182f824c98fa">&#9670;&nbsp;</a></span>Log</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr <a class="el" href="classvccc_1_1_log__.html">Log_</a> vccc::Log</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="abcf3935ba35cb54d4a105d73e09d95e8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abcf3935ba35cb54d4a105d73e09d95e8">&#9670;&nbsp;</a></span>matrix_ctor_all</h2>
 

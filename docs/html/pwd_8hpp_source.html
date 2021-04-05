@@ -104,22 +104,24 @@ $(document).ready(function(){initNavTree('pwd_8hpp_source.html',''); initResizab
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"># include &quot;boost/predef.h&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"># if BOOST_COMP_MSVC</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#   define VCCC_FILE_SEPARATOR &#39;\\&#39;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"># else</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="group__log.html#ga29cfde54927902f1f0ceae7d884c5b8b">   26</a></span>&#160;<span class="preprocessor">#   define VCCC_FILE_SEPARATOR &#39;/&#39;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor"># endif</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="group__log.html#ga0699c38e3c7f214f5c13ffe750e1f0ab">   35</a></span>&#160;<span class="preprocessor"># define PWD                                                  \</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">[](){                                                         \</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">  std::string $13vlaae_dummy_str = __FILE__;                  \</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">  return $13vlaae_dummy_str.substr(                           \</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">    0, $13vlaae_dummy_str.find_last_of(VCCC_FILE_SEPARATOR)); \</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">}()</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"># ifndef VCCC_FILE_SEPARATOR</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#   if BOOST_COMP_MSVC</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#     define VCCC_FILE_SEPARATOR &#39;\\&#39;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#   else</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="group__log.html#ga29cfde54927902f1f0ceae7d884c5b8b">   27</a></span>&#160;<span class="preprocessor">#     define VCCC_FILE_SEPARATOR &#39;/&#39;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#   endif</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"># endif</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="group__log.html#ga0699c38e3c7f214f5c13ffe750e1f0ab">   37</a></span>&#160;<span class="preprocessor"># define PWD                                                  \</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">[](){                                                         \</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">  std::string $13vlaae_dummy_str = __FILE__;                  \</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">  return $13vlaae_dummy_str.substr(                           \</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">    0, $13vlaae_dummy_str.find_last_of(VCCC_FILE_SEPARATOR)); \</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">}()</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor"># endif //VCCC_LOG_PWD_HPP</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"># endif //VCCC_LOG_PWD_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
