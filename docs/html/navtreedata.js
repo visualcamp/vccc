@@ -62,11 +62,11 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"android_8hpp.html",
-"cv__mat_8hpp.html#ga84668521d80743b0a86be00bbe0e4e0b",
-"group__numeric__stddev.html#ga9746b3bf2c74baf6c24b29f3432afc0f",
-"matrix__mul__scalar_8hpp.html#a83a3f2cedd08e6bca15fa3506f025ea5",
-"structvccc_1_1multiples__of.html"
+"annotated.html",
+"cv__point3_8hpp.html",
+"group__numeric__sum.html#gab741977af01853bffd7b4368c391e007",
+"namespacemembers.html",
+"tag_8hpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

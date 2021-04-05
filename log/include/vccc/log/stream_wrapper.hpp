@@ -18,16 +18,26 @@
 # include "vccc/log/ios_flags_saver.hpp"
 # include "vccc/type_traits.hpp"
 
-//! @addtogroup log
-//! @{
 
 namespace vccc {
 
+//! @addtogroup log
+//! @{
+
+
 /**
-@brief stream wrapper that supports various operator overloading
+@brief stream wrapper that supports extended operator overloading
 
+Support writing of
+ - container types
+ - tuple-like types
+ - container whose element is pair is treated as key-pair container
+ - std::chrono types
+ - integer sequences
+ - (of course) custom operator overloaded types (std::ostream& operator << (std::ostream&, T))
+
+@tparam Stream  stream type
  */
-
 template<typename Stream>
 class StreamWrapper {
  public:
@@ -268,8 +278,8 @@ void StreamWrapper<Stream>::write(const std::pair<T1, T2>& value, const std::str
   stream_ << " }";
 }
 
-} // namespace vccc
-
 //! @} log
+
+} // namespace vccc
 
 # endif //VCCC_LOG_STREAM_WRAPPER_HPP_

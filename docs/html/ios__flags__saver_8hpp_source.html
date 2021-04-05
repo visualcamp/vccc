@@ -102,33 +102,35 @@ $(document).ready(function(){initNavTree('ios__flags__saver_8hpp_source.html',''
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"># include &lt;ios&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a> {</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a> {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Stream&gt;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classvccc_1_1_i_o_s_flags_saver.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="classvccc_1_1_i_o_s_flags_saver.html">IOSFlagsSaver</a> {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classvccc_1_1_i_o_s_flags_saver.html#a96c2fac96b887e776905201ad46548be">   22</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="classvccc_1_1_i_o_s_flags_saver.html#a96c2fac96b887e776905201ad46548be">stream_type</a> = Stream;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classvccc_1_1_i_o_s_flags_saver.html#ad4cf4e162b123f7df4d372df658769f2">   24</a></span>&#160;  <span class="keyword">explicit</span> <a class="code" href="classvccc_1_1_i_o_s_flags_saver.html#ad4cf4e162b123f7df4d372df658769f2">IOSFlagsSaver</a>(<a class="code" href="classvccc_1_1_i_o_s_flags_saver.html#a96c2fac96b887e776905201ad46548be">stream_type</a>&amp; stream) : stream(stream), flags(stream.flags()) {}</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classvccc_1_1_i_o_s_flags_saver.html#a88d25e163971c44c2413d367b7cfd83a">   25</a></span>&#160;  <a class="code" href="classvccc_1_1_i_o_s_flags_saver.html#a88d25e163971c44c2413d367b7cfd83a">~IOSFlagsSaver</a>() { stream.flags(flags); }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  std::ios_base::fmtflags flags;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <a class="code" href="classvccc_1_1_i_o_s_flags_saver.html#a96c2fac96b887e776905201ad46548be">stream_type</a>&amp; stream;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif //VCCC_LOG_IOS_FLAGS_SAVER_HPP_</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Stream&gt;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classvccc_1_1_i_o_s_flags_saver.html">   33</a></span>&#160;<span class="keyword">class </span><a class="code" href="classvccc_1_1_i_o_s_flags_saver.html">IOSFlagsSaver</a> {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classvccc_1_1_i_o_s_flags_saver.html#a96c2fac96b887e776905201ad46548be">   35</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="classvccc_1_1_i_o_s_flags_saver.html#a96c2fac96b887e776905201ad46548be">stream_type</a> = Stream;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classvccc_1_1_i_o_s_flags_saver.html#ad4cf4e162b123f7df4d372df658769f2">   37</a></span>&#160;  <span class="keyword">explicit</span> <a class="code" href="classvccc_1_1_i_o_s_flags_saver.html#ad4cf4e162b123f7df4d372df658769f2">IOSFlagsSaver</a>(<a class="code" href="classvccc_1_1_i_o_s_flags_saver.html#a96c2fac96b887e776905201ad46548be">stream_type</a>&amp; stream) : stream(stream), flags(stream.flags()) {}</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classvccc_1_1_i_o_s_flags_saver.html#a88d25e163971c44c2413d367b7cfd83a">   38</a></span>&#160;  <a class="code" href="classvccc_1_1_i_o_s_flags_saver.html#a88d25e163971c44c2413d367b7cfd83a">~IOSFlagsSaver</a>() { stream.flags(flags); }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  std::ios_base::fmtflags flags;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <a class="code" href="classvccc_1_1_i_o_s_flags_saver.html#a96c2fac96b887e776905201ad46548be">stream_type</a>&amp; stream;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif //VCCC_LOG_IOS_FLAGS_SAVER_HPP_</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassvccc_1_1_i_o_s_flags_saver_html"><div class="ttname"><a href="classvccc_1_1_i_o_s_flags_saver.html">vccc::IOSFlagsSaver</a></div><div class="ttdoc">RAII wrapper that restores stream's flags on destroyed.</div><div class="ttdef"><b>Definition:</b> ios_flags_saver.hpp:20</div></div>
-<div class="ttc" id="aclassvccc_1_1_i_o_s_flags_saver_html_ad4cf4e162b123f7df4d372df658769f2"><div class="ttname"><a href="classvccc_1_1_i_o_s_flags_saver.html#ad4cf4e162b123f7df4d372df658769f2">vccc::IOSFlagsSaver::IOSFlagsSaver</a></div><div class="ttdeci">IOSFlagsSaver(stream_type &amp;stream)</div><div class="ttdef"><b>Definition:</b> ios_flags_saver.hpp:24</div></div>
+<div class="ttc" id="aclassvccc_1_1_i_o_s_flags_saver_html"><div class="ttname"><a href="classvccc_1_1_i_o_s_flags_saver.html">vccc::IOSFlagsSaver</a></div><div class="ttdoc">RAII wrapper that restores stream's flags on destroyed.</div><div class="ttdef"><b>Definition:</b> ios_flags_saver.hpp:33</div></div>
+<div class="ttc" id="aclassvccc_1_1_i_o_s_flags_saver_html_ad4cf4e162b123f7df4d372df658769f2"><div class="ttname"><a href="classvccc_1_1_i_o_s_flags_saver.html#ad4cf4e162b123f7df4d372df658769f2">vccc::IOSFlagsSaver::IOSFlagsSaver</a></div><div class="ttdeci">IOSFlagsSaver(stream_type &amp;stream)</div><div class="ttdef"><b>Definition:</b> ios_flags_saver.hpp:37</div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
-<div class="ttc" id="aclassvccc_1_1_i_o_s_flags_saver_html_a96c2fac96b887e776905201ad46548be"><div class="ttname"><a href="classvccc_1_1_i_o_s_flags_saver.html#a96c2fac96b887e776905201ad46548be">vccc::IOSFlagsSaver::stream_type</a></div><div class="ttdeci">Stream stream_type</div><div class="ttdef"><b>Definition:</b> ios_flags_saver.hpp:22</div></div>
-<div class="ttc" id="aclassvccc_1_1_i_o_s_flags_saver_html_a88d25e163971c44c2413d367b7cfd83a"><div class="ttname"><a href="classvccc_1_1_i_o_s_flags_saver.html#a88d25e163971c44c2413d367b7cfd83a">vccc::IOSFlagsSaver::~IOSFlagsSaver</a></div><div class="ttdeci">~IOSFlagsSaver()</div><div class="ttdef"><b>Definition:</b> ios_flags_saver.hpp:25</div></div>
+<div class="ttc" id="aclassvccc_1_1_i_o_s_flags_saver_html_a96c2fac96b887e776905201ad46548be"><div class="ttname"><a href="classvccc_1_1_i_o_s_flags_saver.html#a96c2fac96b887e776905201ad46548be">vccc::IOSFlagsSaver::stream_type</a></div><div class="ttdeci">Stream stream_type</div><div class="ttdef"><b>Definition:</b> ios_flags_saver.hpp:35</div></div>
+<div class="ttc" id="aclassvccc_1_1_i_o_s_flags_saver_html_a88d25e163971c44c2413d367b7cfd83a"><div class="ttname"><a href="classvccc_1_1_i_o_s_flags_saver.html#a88d25e163971c44c2413d367b7cfd83a">vccc::IOSFlagsSaver::~IOSFlagsSaver</a></div><div class="ttdeci">~IOSFlagsSaver()</div><div class="ttdef"><b>Definition:</b> ios_flags_saver.hpp:38</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

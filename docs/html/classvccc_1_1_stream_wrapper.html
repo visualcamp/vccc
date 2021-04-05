@@ -94,11 +94,11 @@ $(document).ready(function(){initNavTree('classvccc_1_1_stream_wrapper.html','')
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classvccc_1_1_stream_wrapper-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">vccc::StreamWrapper&lt; Stream &gt; Class Template Reference</div>  </div>
+<div class="title">vccc::StreamWrapper&lt; Stream &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__log.html">log</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>stream wrapper that supports various operator overloading  
+<p>stream wrapper that supports extended operator overloading  
  <a href="classvccc_1_1_stream_wrapper.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="stream__wrapper_8hpp_source.html">vccc/log/stream_wrapper.hpp</a>&gt;</code></p>
@@ -130,7 +130,21 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><h3>template&lt;typename Stream&gt;<br />
 class vccc::StreamWrapper&lt; Stream &gt;</h3>
 
-<p>stream wrapper that supports various operator overloading </p>
+<p>stream wrapper that supports extended operator overloading </p>
+<p>Support writing of</p><ul>
+<li>container types</li>
+<li>tuple-like types</li>
+<li>container whose element is pair is treated as key-pair container</li>
+<li>std::chrono types</li>
+<li>integer sequences</li>
+<li>(of course) custom operator overloaded types (std::ostream&amp; operator &lt;&lt; (std::ostream&amp;, T))</li>
+</ul>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Stream</td><td>stream type </td></tr>
+  </table>
+  </dd>
+</dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a4787550c82873e8ce45e4bd09ceb65dd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4787550c82873e8ce45e4bd09ceb65dd">&#9670;&nbsp;</a></span>stream_type</h2>

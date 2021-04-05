@@ -84,6 +84,7 @@ var hierarchy =
     [ "vccc::signed_bigger_type< T1, T2 >", "structvccc_1_1signed__bigger__type_3_01_t1_00_01_t2_01_4.html", null ],
     [ "vccc::signed_bigger_type< T1, T2, Ts... >", "structvccc_1_1signed__bigger__type_3_01_t1_00_01_t2_00_01_ts_8_8_8_01_4.html", null ],
     [ "vccc::StreamWrapper< Stream >", "classvccc_1_1_stream_wrapper.html", null ],
+    [ "vccc::StreamWrapper< std::stringstream >", "classvccc_1_1_stream_wrapper.html", null ],
     [ "vccc::internal::math::tag< T, val >", "structvccc_1_1internal_1_1math_1_1tag.html", null ],
     [ "vccc::internal::math::tag< T, v1 >", "structvccc_1_1internal_1_1math_1_1tag_3_01_t_00_01v1_01_4.html", [
       [ "vccc::internal::math::tag< T, v1, v2 >", "structvccc_1_1internal_1_1math_1_1tag_3_01_t_00_01v1_00_01v2_01_4.html", [
