@@ -106,13 +106,8 @@ Modules</h2></td></tr>
 <tr class="memitem:group__type__support__cvtto"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__type__support__cvtto.html">vccc::convert_to</a></td></tr>
 <tr class="memdesc:group__type__support__cvtto"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts to different type (usually for opencv types, but also supports container types) <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:group__type__support__reserved"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__type__support__reserved.html">reserved</a></td></tr>
-<tr class="memdesc:group__type__support__reserved"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns reserved container <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__type__support__vtype__convert"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__type__support__vtype__convert.html">vccc::vtype_convert</a></td></tr>
 <tr class="memdesc:group__type__support__vtype__convert"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns similar class with different value_type <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:group__type__support__cv__size"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__type__support__cv__size.html">vccc::cv_size</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -126,10 +121,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ga3360018d7f70cb5ad60c82f454c7774e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classvccc_1_1back__emplace__iterator.html">back_emplace_iterator</a>&lt; Container &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__type__support.html#ga3360018d7f70cb5ad60c82f454c7774e">vccc::back_emplacer</a> (Container &amp;container)</td></tr>
 <tr class="memdesc:ga3360018d7f70cb5ad60c82f454c7774e"><td class="mdescLeft">&#160;</td><td class="mdescRight">make <a class="el" href="classvccc_1_1back__emplace__iterator.html">back_emplace_iterator</a>  <a href="group__type__support.html#ga3360018d7f70cb5ad60c82f454c7774e">More...</a><br /></td></tr>
 <tr class="separator:ga3360018d7f70cb5ad60c82f454c7774e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1c7ebf3657deb84738c66f77871e39b1"><td class="memTemplParams" colspan="2">template&lt;int new_size, typename T , int old_size&gt; </td></tr>
-<tr class="memitem:ga1c7ebf3657deb84738c66f77871e39b1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__type__support.html#ga1c7ebf3657deb84738c66f77871e39b1">vccc::resize</a> (const cv::Vec&lt; T, old_size &gt; &amp;from)</td></tr>
-<tr class="memdesc:ga1c7ebf3657deb84738c66f77871e39b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns resized opencv type  <a href="group__type__support.html#ga1c7ebf3657deb84738c66f77871e39b1">More...</a><br /></td></tr>
-<tr class="separator:ga1c7ebf3657deb84738c66f77871e39b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabe989a4fc98bbc2a63e8f91a6aa5f4be"><td class="memTemplParams" colspan="2">template&lt;int new_size, typename T , typename  = void_t&lt;decltype(std::declval&lt;T&gt;().resize(new_size))&gt;&gt; </td></tr>
 <tr class="memitem:gabe989a4fc98bbc2a63e8f91a6aa5f4be"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__type__support.html#gabe989a4fc98bbc2a63e8f91a6aa5f4be">vccc::resize</a> (T &amp;&amp;t)</td></tr>
 <tr class="memdesc:gabe989a4fc98bbc2a63e8f91a6aa5f4be"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns any resized resizable type  <a href="group__type__support.html#gabe989a4fc98bbc2a63e8f91a6aa5f4be">More...</a><br /></td></tr>
@@ -166,44 +157,8 @@ template&lt;typename Container &gt; </div>
 
 </div>
 </div>
-<a id="ga1c7ebf3657deb84738c66f77871e39b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1c7ebf3657deb84738c66f77871e39b1">&#9670;&nbsp;</a></span>resize() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int new_size, typename T , int old_size&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">auto vccc::resize </td>
-          <td>(</td>
-          <td class="paramtype">const cv::Vec&lt; T, old_size &gt; &amp;&#160;</td>
-          <td class="paramname"><em>from</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>returns resized opencv type </p>
-<p>If new size is bigger than current type, the rest is filled with zeros.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">new_size</td><td>new size </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">from</td><td>original data </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>resized data </dd></dl>
-
-</div>
-</div>
 <a id="gabe989a4fc98bbc2a63e8f91a6aa5f4be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabe989a4fc98bbc2a63e8f91a6aa5f4be">&#9670;&nbsp;</a></span>resize() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#gabe989a4fc98bbc2a63e8f91a6aa5f4be">&#9670;&nbsp;</a></span>resize()</h2>
 
 <div class="memitem">
 <div class="memproto">

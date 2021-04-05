@@ -7,7 +7,7 @@ var pc_8hpp =
     [ "LOGD_IMPL", "pc_8hpp.html#a751c87e3346555ee0eae70969812c4d0", null ],
     [ "LOGI_IMPL", "pc_8hpp.html#a00785862b6896afcc50bbd2c92b45309", null ],
     [ "LOGW_IMPL", "pc_8hpp.html#ad372c186f5eb362e1ae047c5b62c7fb9", null ],
-    [ "LOGE_IMPL", "pc_8hpp.html#accf2fc3ff8b7f5f8357a20f5209cc2da", null ],
     [ "LOGF_IMPL", "pc_8hpp.html#aaafe64ec6cf6cf2a29a1688ec83f61d8", null ],
-    [ "LOGS_IMPL", "pc_8hpp.html#abdd1d6151838874dcfc65c9b80cb9836", null ]
+    [ "LOGS_IMPL", "pc_8hpp.html#abdd1d6151838874dcfc65c9b80cb9836", null ],
+    [ "LOGE_IMPL", "pc_8hpp.html#accf2fc3ff8b7f5f8357a20f5209cc2da", null ]
 ];

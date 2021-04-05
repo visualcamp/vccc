@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pi_597',['pi',['../group__math__constants.html#ga1bf9fa2e6839299a6b86d152bd5d2236',1,'vccc::math_constant']]]
+  ['log_815',['Log',['../namespacevccc.html#a7cde185c68ca38220d19182f824c98fa',1,'vccc']]]
 ];

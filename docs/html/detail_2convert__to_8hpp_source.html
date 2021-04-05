@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('detail_2convert__to_8hpp_source.html',
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"># include &lt;utility&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="utility_8hpp.html">vccc/utility.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="at_8hpp.html">vccc/type_support/at.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="type__support_2include_2vccc_2type__support_2at_8hpp.html">vccc/type_support/at.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{<span class="keyword">namespace </span>detail{</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('detail_2convert__to_8hpp_source.html',
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;R</div>
 <div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespacevccc_1_1detail.html#a7cada5caaa79b45219ad0b4a6957f605">   17</a></span>&#160;<a class="code" href="namespacevccc_1_1detail.html#a7cada5caaa79b45219ad0b4a6957f605">fill_rest</a>(<span class="keyword">const</span> T&amp; from, std::index_sequence&lt;I...&gt; index_seq, std::integer_sequence&lt;IT, I2...&gt; rest_seq)</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  <span class="keywordflow">return</span> R(vccc::at&lt;I, double&gt;(from)..., I2...);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  <span class="keywordflow">return</span> R(vccc::at&lt;I, typename R::value_type&gt;(from)..., I2...);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">// convert to cv type</span></div>
@@ -136,12 +136,12 @@ $(document).ready(function(){initNavTree('detail_2convert__to_8hpp_source.html',
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"># endif //VCCC_TYPE_SUPPORT_DETAIL_CONVERT_TO_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aat_8hpp_html"><div class="ttname"><a href="at_8hpp.html">at.hpp</a></div></div>
 <div class="ttc" id="anamespacevccc_1_1detail_html_a7cada5caaa79b45219ad0b4a6957f605"><div class="ttname"><a href="namespacevccc_1_1detail.html#a7cada5caaa79b45219ad0b4a6957f605">vccc::detail::fill_rest</a></div><div class="ttdeci">R fill_rest(const T &amp;from, std::index_sequence&lt; I... &gt; index_seq, std::integer_sequence&lt; IT, I2... &gt; rest_seq)</div><div class="ttdef"><b>Definition:</b> convert_to.hpp:17</div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
 <div class="ttc" id="anamespacevccc_1_1detail_html_a1578fa60df3c07b581ef5f8cc396138f"><div class="ttname"><a href="namespacevccc_1_1detail.html#a1578fa60df3c07b581ef5f8cc396138f">vccc::detail::convert_to_impl</a></div><div class="ttdeci">R convert_to_impl(std::true_type, const T &amp;from, std::index_sequence&lt; I... &gt; index_seq)</div><div class="ttdef"><b>Definition:</b> convert_to.hpp:25</div></div>
 <div class="ttc" id="autility_8hpp_html"><div class="ttname"><a href="utility_8hpp.html">utility.hpp</a></div></div>
 <div class="ttc" id="agroup__utility__sequence_html_gad6b8d1d491b749576b8b43d50a8555ee"><div class="ttname"><a href="group__utility__sequence.html#gad6b8d1d491b749576b8b43d50a8555ee">vccc::make_zero_sequence</a></div><div class="ttdeci">make_same_sequence&lt; int, 0, N &gt; make_zero_sequence</div><div class="ttdoc">alias of zero std::size_t sequence</div><div class="ttdef"><b>Definition:</b> sequence.hpp:50</div></div>
+<div class="ttc" id="atype__support_2include_2vccc_2type__support_2at_8hpp_html"><div class="ttname"><a href="type__support_2include_2vccc_2type__support_2at_8hpp.html">at.hpp</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

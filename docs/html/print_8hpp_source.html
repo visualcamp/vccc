@@ -108,7 +108,7 @@ $(document).ready(function(){initNavTree('print_8hpp_source.html',''); initResiz
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt; std::ostream&amp; <a class="code" href="namespacevccc.html#af14f879272f5100434405df9a1979738">operator &lt;&lt; </a>(std::ostream&amp; os, <span class="keyword">const</span> std::tuple&lt;Args...&gt;&amp; tup);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt; std::ostream&amp; <a class="code" href="namespacevccc.html#af14f879272f5100434405df9a1979738">operator &lt;&lt; </a>(std::ostream&amp; os, <span class="keyword">const</span> std::pair&lt;Args...&gt;&amp; tup);</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, T... I&gt; std::ostream&amp; <a class="code" href="namespacevccc.html#af14f879272f5100434405df9a1979738">operator &lt;&lt; </a>(std::ostream&amp; os, <span class="keyword">const</span> std::integer_sequence&lt;T, I...&gt;&amp; seq);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, VCCC_REQUIRE_FORWARD(is_container&lt;T&gt;::value &amp;&amp; !is_<span class="keywordtype">string</span>_like&lt;T&gt;::value)&gt;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, VCCC_ENABLE_IF_FORWARD(is_container&lt;T&gt;::value &amp;&amp; !is_<span class="keywordtype">string</span>_like&lt;T&gt;::value)&gt;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;std::ostream&amp; <a class="code" href="namespacevccc.html#af14f879272f5100434405df9a1979738">operator &lt;&lt; </a>(std::ostream&amp; os, <span class="keyword">const</span> T&amp; v);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span>detail{</div>
@@ -136,55 +136,54 @@ $(document).ready(function(){initNavTree('print_8hpp_source.html',''); initResiz
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  os &lt;&lt; <span class="stringliteral">&quot;{ &quot;</span>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  os &lt;&lt; std::get&lt;0&gt;(tup);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  [[maybe_unused]]</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keywordtype">int</span> dummy[<span class="keyword">sizeof</span>...(I)] = {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;      (os &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; std::get&lt;I&gt;(tup), 0)...</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  };</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  os &lt;&lt; <span class="stringliteral">&quot; }&quot;</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keywordflow">return</span> os;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="namespacevccc_1_1detail_1_1impl.html">   52</a></span>&#160;<span class="keyword">namespace </span>impl{</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg&gt;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">   55</a></span>&#160;  <a class="code" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">print_multiples_impl</a>(std::ostream&amp; os, <span class="keyword">const</span> Arg&amp; arg)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    os &lt;&lt; arg;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg, <span class="keyword">typename</span> ...Args&gt;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="namespacevccc_1_1detail_1_1impl.html#a94641dfe5df1610f0e73b800384134cf">   62</a></span>&#160;  <a class="code" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">print_multiples_impl</a>(std::ostream&amp; os, <span class="keyword">const</span> Arg&amp; arg, <span class="keyword">const</span> Args&amp;... args)</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">print_multiples_impl</a>(os, arg);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">print_multiples_impl</a>(os, <span class="stringliteral">&quot;, &quot;</span>);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">print_multiples_impl</a>(os, args...);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="namespacevccc_1_1detail.html#a588f4d44b61c7e2d1a7327aa0566f395">   73</a></span>&#160;<a class="code" href="namespacevccc_1_1detail.html#a588f4d44b61c7e2d1a7327aa0566f395">print_multiples</a>(std::ostream&amp; os, <span class="keyword">const</span> Args&amp;... args)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  os &lt;&lt; <span class="charliteral">&#39;{&#39;</span>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keywordflow">if</span>(<span class="keyword">sizeof</span>...(Args) &gt; 0) {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    os &lt;&lt; <span class="charliteral">&#39; &#39;</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">impl::print_multiples_impl</a>(os, args...);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    os &lt;&lt; <span class="charliteral">&#39; &#39;</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  os &lt;&lt; <span class="charliteral">&#39;}&#39;</span>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keywordtype">int</span> dummy[<span class="keyword">sizeof</span>...(I)] = {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;      (os &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; std::get&lt;I&gt;(tup), 0)...</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  };</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  os &lt;&lt; <span class="stringliteral">&quot; }&quot;</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keywordflow">return</span> os;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="namespacevccc_1_1detail_1_1impl.html">   51</a></span>&#160;<span class="keyword">namespace </span>impl{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg&gt;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">   54</a></span>&#160;  <a class="code" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">print_multiples_impl</a>(std::ostream&amp; os, <span class="keyword">const</span> Arg&amp; arg)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    os &lt;&lt; arg;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg, <span class="keyword">typename</span> ...Args&gt;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="namespacevccc_1_1detail_1_1impl.html#a94641dfe5df1610f0e73b800384134cf">   61</a></span>&#160;  <a class="code" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">print_multiples_impl</a>(std::ostream&amp; os, <span class="keyword">const</span> Arg&amp; arg, <span class="keyword">const</span> Args&amp;... args)</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">print_multiples_impl</a>(os, arg);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">print_multiples_impl</a>(os, <span class="stringliteral">&quot;, &quot;</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">print_multiples_impl</a>(os, args...);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="namespacevccc_1_1detail.html#a588f4d44b61c7e2d1a7327aa0566f395">   72</a></span>&#160;<a class="code" href="namespacevccc_1_1detail.html#a588f4d44b61c7e2d1a7327aa0566f395">print_multiples</a>(std::ostream&amp; os, <span class="keyword">const</span> Args&amp;... args)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  os &lt;&lt; <span class="charliteral">&#39;{&#39;</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keywordflow">if</span>(<span class="keyword">sizeof</span>...(Args) &gt; 0) {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    os &lt;&lt; <span class="charliteral">&#39; &#39;</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">impl::print_multiples_impl</a>(os, args...);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    os &lt;&lt; <span class="charliteral">&#39; &#39;</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  os &lt;&lt; <span class="charliteral">&#39;}&#39;</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}}</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor"># endif //VCCC_LOG_DETAIL_PRINT_HPP</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}}</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor"># endif //VCCC_LOG_DETAIL_PRINT_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="atype__traits_8hpp_html"><div class="ttname"><a href="type__traits_8hpp.html">type_traits.hpp</a></div></div>
-<div class="ttc" id="anamespacevccc_1_1detail_1_1impl_html_a904d284bf590d59f5e8bc78afa9796ab"><div class="ttname"><a href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">vccc::detail::impl::print_multiples_impl</a></div><div class="ttdeci">void print_multiples_impl(std::ostream &amp;os, const Arg &amp;arg)</div><div class="ttdef"><b>Definition:</b> print.hpp:55</div></div>
-<div class="ttc" id="anamespacevccc_1_1detail_html_a588f4d44b61c7e2d1a7327aa0566f395"><div class="ttname"><a href="namespacevccc_1_1detail.html#a588f4d44b61c7e2d1a7327aa0566f395">vccc::detail::print_multiples</a></div><div class="ttdeci">void print_multiples(std::ostream &amp;os, const Args &amp;... args)</div><div class="ttdef"><b>Definition:</b> print.hpp:73</div></div>
+<div class="ttc" id="anamespacevccc_1_1detail_1_1impl_html_a904d284bf590d59f5e8bc78afa9796ab"><div class="ttname"><a href="namespacevccc_1_1detail_1_1impl.html#a904d284bf590d59f5e8bc78afa9796ab">vccc::detail::impl::print_multiples_impl</a></div><div class="ttdeci">void print_multiples_impl(std::ostream &amp;os, const Arg &amp;arg)</div><div class="ttdef"><b>Definition:</b> print.hpp:54</div></div>
+<div class="ttc" id="anamespacevccc_1_1detail_html_a588f4d44b61c7e2d1a7327aa0566f395"><div class="ttname"><a href="namespacevccc_1_1detail.html#a588f4d44b61c7e2d1a7327aa0566f395">vccc::detail::print_multiples</a></div><div class="ttdeci">void print_multiples(std::ostream &amp;os, const Args &amp;... args)</div><div class="ttdef"><b>Definition:</b> print.hpp:72</div></div>
 <div class="ttc" id="anamespacevccc_1_1detail_html_a3bbc0bd59417ef4890eab7db1ccef48a"><div class="ttname"><a href="namespacevccc_1_1detail.html#a3bbc0bd59417ef4890eab7db1ccef48a">vccc::detail::print_tuple</a></div><div class="ttdeci">std::ostream &amp; print_tuple(std::ostream &amp;os, const Tuple &amp;tup, std::index_sequence&lt; 0, I... &gt;)</div><div class="ttdef"><b>Definition:</b> print.hpp:40</div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
 <div class="ttc" id="anamespacevccc_html_af14f879272f5100434405df9a1979738"><div class="ttname"><a href="namespacevccc.html#af14f879272f5100434405df9a1979738">vccc::operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const T &amp;v)</div><div class="ttdef"><b>Definition:</b> custom_ostream.hpp:14</div></div>

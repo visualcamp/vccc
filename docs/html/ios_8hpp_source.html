@@ -102,25 +102,29 @@ $(document).ready(function(){initNavTree('ios_8hpp_source.html',''); initResizab
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"># include &quot;TargetConditionals.h&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"># include &lt;syslog.h&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"># ifdef NDEBUG</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#     define LOGV_IMPL(...)</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#     define LOGD_IMPL(...)</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#     define LOGI_IMPL(...)</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#     define LOGW_IMPL(...)</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#     define LOGE_IMPL(...)</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#     define LOGF_IMPL(...)</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#     define LOGS_IMPL(...)</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"># else</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="ios_8hpp.html#a4d8deb7dd86a3cd730303fee394a7ef6">   19</a></span>&#160;<span class="preprocessor">#     define LOGV_IMPL(...) syslog(LOG_NOTICE, __VA_ARGS__);</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="ios_8hpp.html#a751c87e3346555ee0eae70969812c4d0">   20</a></span>&#160;<span class="preprocessor">#     define LOGD_IMPL(...) syslog(LOG_DEBUG, __VA_ARGS__);</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="ios_8hpp.html#a00785862b6896afcc50bbd2c92b45309">   21</a></span>&#160;<span class="preprocessor">#     define LOGI_IMPL(...) syslog(LOG_INFO, __VA_ARGS__);</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="ios_8hpp.html#ad372c186f5eb362e1ae047c5b62c7fb9">   22</a></span>&#160;<span class="preprocessor">#     define LOGW_IMPL(...) syslog(LOG_WARNING, __VA_ARGS__);</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="ios_8hpp.html#accf2fc3ff8b7f5f8357a20f5209cc2da">   23</a></span>&#160;<span class="preprocessor">#     define LOGE_IMPL(...) syslog(LOG_ERR, __VA_ARGS__);</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="ios_8hpp.html#aaafe64ec6cf6cf2a29a1688ec83f61d8">   24</a></span>&#160;<span class="preprocessor">#     define LOGF_IMPL(...) syslog(LOG_ERR, __VA_ARGS__);</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="ios_8hpp.html#abdd1d6151838874dcfc65c9b80cb9836">   25</a></span>&#160;<span class="preprocessor">#     define LOGS_IMPL(...) syslog(LOG_ERR, __VA_ARGS__);</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"># endif</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"># endif //VCCC_LOG_IOS_HPP</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"># ifdef DEBUG</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#     define LOGV_IMPL(...) syslog(LOG_NOTICE, __VA_ARGS__);</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#     define LOGD_IMPL(...) syslog(LOG_DEBUG, __VA_ARGS__);</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#     define LOGI_IMPL(...) syslog(LOG_INFO, __VA_ARGS__);</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#     define LOGW_IMPL(...) syslog(LOG_WARNING, __VA_ARGS__);</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#     define LOGF_IMPL(...) syslog(LOG_ERR, __VA_ARGS__);</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#     define LOGS_IMPL(...) syslog(LOG_ERR, __VA_ARGS__);</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"># else</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#     ifndef NDEBUG</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="ios_8hpp.html#a8de3ed741dadc9c979a4ff17c0a9116e">   19</a></span>&#160;<span class="preprocessor">#         define NDEBUG</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#     endif</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="ios_8hpp.html#a4d8deb7dd86a3cd730303fee394a7ef6">   22</a></span>&#160;<span class="preprocessor">#     define LOGV_IMPL(...)</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="ios_8hpp.html#a751c87e3346555ee0eae70969812c4d0">   23</a></span>&#160;<span class="preprocessor">#     define LOGD_IMPL(...)</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="ios_8hpp.html#a00785862b6896afcc50bbd2c92b45309">   24</a></span>&#160;<span class="preprocessor">#     define LOGI_IMPL(...)</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="ios_8hpp.html#ad372c186f5eb362e1ae047c5b62c7fb9">   25</a></span>&#160;<span class="preprocessor">#     define LOGW_IMPL(...)</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="ios_8hpp.html#aaafe64ec6cf6cf2a29a1688ec83f61d8">   26</a></span>&#160;<span class="preprocessor">#     define LOGF_IMPL(...)</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="ios_8hpp.html#abdd1d6151838874dcfc65c9b80cb9836">   27</a></span>&#160;<span class="preprocessor">#     define LOGS_IMPL(...)</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"># endif</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="ios_8hpp.html#accf2fc3ff8b7f5f8357a20f5209cc2da">   30</a></span>&#160;<span class="preprocessor"># define LOGE_IMPL(...) syslog(LOG_ERR, __VA_ARGS__);</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor"># endif //VCCC_LOG_IOS_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

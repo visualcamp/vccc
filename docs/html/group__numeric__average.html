@@ -101,23 +101,23 @@ $(document).ready(function(){initNavTree('group__numeric__average.html',''); ini
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga4462f1176d8e155f2e1d7b5b96ccd27d"><td class="memTemplParams" colspan="2">template&lt;typename InputIterator , VCCC_REQUIRE(iterable&lt; InputIterator &gt;) &gt; </td></tr>
+<tr class="memitem:ga4462f1176d8e155f2e1d7b5b96ccd27d"><td class="memTemplParams" colspan="2">template&lt;typename InputIterator , VCCC_ENABLE_IF(iterable&lt; InputIterator &gt;) &gt; </td></tr>
 <tr class="memitem:ga4462f1176d8e155f2e1d7b5b96ccd27d"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">vccc::average</a> (InputIterator first, InputIterator last)</td></tr>
 <tr class="memdesc:ga4462f1176d8e155f2e1d7b5b96ccd27d"><td class="mdescLeft">&#160;</td><td class="mdescRight">get average of iterator values [first, last)  <a href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">More...</a><br /></td></tr>
 <tr class="separator:ga4462f1176d8e155f2e1d7b5b96ccd27d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga404ae7df6bb362a11d89cd6113b09db4"><td class="memTemplParams" colspan="2">template&lt;typename InputIterator , typename UnaryOperation , VCCC_REQUIRE(iterable&lt; InputIterator &gt;) &gt; </td></tr>
+<tr class="memitem:ga404ae7df6bb362a11d89cd6113b09db4"><td class="memTemplParams" colspan="2">template&lt;typename InputIterator , typename UnaryOperation , VCCC_ENABLE_IF(iterable&lt; InputIterator &gt;) &gt; </td></tr>
 <tr class="memitem:ga404ae7df6bb362a11d89cd6113b09db4"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric__average.html#ga404ae7df6bb362a11d89cd6113b09db4">vccc::average</a> (InputIterator first, InputIterator last, UnaryOperation unary_op)</td></tr>
 <tr class="memdesc:ga404ae7df6bb362a11d89cd6113b09db4"><td class="mdescLeft">&#160;</td><td class="mdescRight">get average of iterator values [first, last)  <a href="group__numeric__average.html#ga404ae7df6bb362a11d89cd6113b09db4">More...</a><br /></td></tr>
 <tr class="separator:ga404ae7df6bb362a11d89cd6113b09db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga84508e1f9e2d06fc15712779a6d4ea8b"><td class="memTemplParams" colspan="2">template&lt;typename ... Numbers, VCCC_REQUIRE(are_arithmetic_v&lt; Numbers... &gt;) &gt; </td></tr>
+<tr class="memitem:ga84508e1f9e2d06fc15712779a6d4ea8b"><td class="memTemplParams" colspan="2">template&lt;typename ... Numbers, VCCC_ENABLE_IF(are_arithmetic_v&lt; Numbers... &gt;) &gt; </td></tr>
 <tr class="memitem:ga84508e1f9e2d06fc15712779a6d4ea8b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric__average.html#ga84508e1f9e2d06fc15712779a6d4ea8b">vccc::average</a> (Numbers... numbers)</td></tr>
 <tr class="memdesc:ga84508e1f9e2d06fc15712779a6d4ea8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">get average value of arithmetic types  <a href="group__numeric__average.html#ga84508e1f9e2d06fc15712779a6d4ea8b">More...</a><br /></td></tr>
 <tr class="separator:ga84508e1f9e2d06fc15712779a6d4ea8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6c7d7b2543e94b24e4891cb0f7c651c6"><td class="memTemplParams" colspan="2">template&lt;typename ... Ints, VCCC_REQUIRE(are_integral_v&lt; Ints... &gt;) &gt; </td></tr>
+<tr class="memitem:ga6c7d7b2543e94b24e4891cb0f7c651c6"><td class="memTemplParams" colspan="2">template&lt;typename ... Ints, VCCC_ENABLE_IF(are_integral_v&lt; Ints... &gt;) &gt; </td></tr>
 <tr class="memitem:ga6c7d7b2543e94b24e4891cb0f7c651c6"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric__average.html#ga6c7d7b2543e94b24e4891cb0f7c651c6">vccc::int_average</a> (Ints... ints)</td></tr>
 <tr class="memdesc:ga6c7d7b2543e94b24e4891cb0f7c651c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">get average value of integers(result is floored)  <a href="group__numeric__average.html#ga6c7d7b2543e94b24e4891cb0f7c651c6">More...</a><br /></td></tr>
 <tr class="separator:ga6c7d7b2543e94b24e4891cb0f7c651c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaca1ff9006393ec8bf9eadcdb26ccec1b"><td class="memTemplParams" colspan="2">template&lt;typename ... Args, VCCC_REQUIRE(!iterable&lt; Args... &gt; &amp;&amp;!are_arithmetic_v&lt; Args... &gt;) &gt; </td></tr>
+<tr class="memitem:gaca1ff9006393ec8bf9eadcdb26ccec1b"><td class="memTemplParams" colspan="2">template&lt;typename ... Args, VCCC_ENABLE_IF(!iterable&lt; Args... &gt; &amp;&amp;!are_arithmetic_v&lt; Args... &gt;) &gt; </td></tr>
 <tr class="memitem:gaca1ff9006393ec8bf9eadcdb26ccec1b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric__average.html#gaca1ff9006393ec8bf9eadcdb26ccec1b">vccc::average</a> (const Args &amp;... args)</td></tr>
 <tr class="memdesc:gaca1ff9006393ec8bf9eadcdb26ccec1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">get average value of custom types  <a href="group__numeric__average.html#gaca1ff9006393ec8bf9eadcdb26ccec1b">More...</a><br /></td></tr>
 <tr class="separator:gaca1ff9006393ec8bf9eadcdb26ccec1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,7 +131,7 @@ Functions</h2></td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InputIterator , VCCC_REQUIRE(iterable&lt; InputIterator &gt;) &gt; </div>
+template&lt;typename InputIterator , VCCC_ENABLE_IF(iterable&lt; InputIterator &gt;) &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -179,7 +179,7 @@ template&lt;typename InputIterator , VCCC_REQUIRE(iterable&lt; InputIterator &gt
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InputIterator , typename UnaryOperation , VCCC_REQUIRE(iterable&lt; InputIterator &gt;) &gt; </div>
+template&lt;typename InputIterator , typename UnaryOperation , VCCC_ENABLE_IF(iterable&lt; InputIterator &gt;) &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -234,7 +234,7 @@ template&lt;typename InputIterator , typename UnaryOperation , VCCC_REQUIRE(iter
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ... Numbers, VCCC_REQUIRE(are_arithmetic_v&lt; Numbers... &gt;) &gt; </div>
+template&lt;typename ... Numbers, VCCC_ENABLE_IF(are_arithmetic_v&lt; Numbers... &gt;) &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -277,7 +277,7 @@ template&lt;typename ... Numbers, VCCC_REQUIRE(are_arithmetic_v&lt; Numbers... &
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ... Ints, VCCC_REQUIRE(are_integral_v&lt; Ints... &gt;) &gt; </div>
+template&lt;typename ... Ints, VCCC_ENABLE_IF(are_integral_v&lt; Ints... &gt;) &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -314,7 +314,7 @@ template&lt;typename ... Ints, VCCC_REQUIRE(are_integral_v&lt; Ints... &gt;) &gt
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ... Args, VCCC_REQUIRE(!iterable&lt; Args... &gt; &amp;&amp;!are_arithmetic_v&lt; Args... &gt;) &gt; </div>
+template&lt;typename ... Args, VCCC_ENABLE_IF(!iterable&lt; Args... &gt; &amp;&amp;!are_arithmetic_v&lt; Args... &gt;) &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">

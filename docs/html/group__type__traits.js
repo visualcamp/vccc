@@ -19,5 +19,5 @@ var group__type__traits =
     [ "lossless_type_add_t", "group__type__traits.html#gabf2a10c550656ba9b556db9c69ccbae5", null ],
     [ "lossless_type_mul_t", "group__type__traits.html#ga7e09aada35dd8980c8bc4927ee0a3f32", null ],
     [ "lossless_type_div_t", "group__type__traits.html#gabdf7eca08b543ddd484ea11f0ce3f85f", null ],
-    [ "void_t", "group__type__traits.html#ga7eb8064b2d59905344edb05fab279ddd", null ]
+    [ "void_t", "group__type__traits.html#gaba02293d3814e942a3571c65eb7aebb3", null ]
 ];

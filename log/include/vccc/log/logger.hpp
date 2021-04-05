@@ -10,20 +10,21 @@
 # include <string>
 # include <regex>
 # include "vccc/log/detail/c_printable.hpp"
-# include "vccc/log/detail/custom_ostream.hpp"
+# include "vccc/log/stream_wrapper.hpp"
 
 namespace vccc{
 
-using c_printable = std::true_type;
-using not_c_printable = std::false_type;
 
 class Logger {
  public:
+  using c_printable = std::true_type;
+  using not_c_printable = std::false_type;
+
   template<typename ...Args>
   Logger(const Args&... args);
 
   inline std::string get() const {
-    return out.str();
+    return out.stream().str();
   }
 
  private:
@@ -46,14 +47,13 @@ class Logger {
   void addFormatted(const char* fmt, const Args&... val);
 
   std::vector<char> buffer;
-  std::stringstream out;
-//  static std::string separator;
+  StreamWrapper<std::stringstream> out;
 };
 
 template<typename ...Args>
 Logger::Logger(const Args& ...args)
 {
-  addImpl(detail::are_types_c_printable<Args...>(), args...);
+  addImpl(detail::are_types_c_printable_t<Args...>{}, args...);
 }
 
 // TODO: move fmt_reg to class scope

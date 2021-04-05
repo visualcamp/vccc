@@ -121,7 +121,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a3fc7cc71d129d0d04c6b550c9605141c"><td class="memTemplParams" colspan="2">template&lt;typename T , T... I&gt; </td></tr>
 <tr class="memitem:a3fc7cc71d129d0d04c6b550c9605141c"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc.html#a3fc7cc71d129d0d04c6b550c9605141c">vccc::operator&lt;&lt;</a> (std::ostream &amp;os, const std::integer_sequence&lt; T, I... &gt; &amp;seq)</td></tr>
 <tr class="separator:a3fc7cc71d129d0d04c6b550c9605141c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af14f879272f5100434405df9a1979738"><td class="memTemplParams" colspan="2">template&lt;typename T , VCCC_REQUIRE_IMPL(is_container&lt; T &gt;::value &amp;&amp;!is_string_like&lt; T &gt;::value) &gt; </td></tr>
+<tr class="memitem:af14f879272f5100434405df9a1979738"><td class="memTemplParams" colspan="2">template&lt;typename T , VCCC_ENABLE_IF_IMPL(is_container&lt; T &gt;::value &amp;&amp;!is_string_like&lt; T &gt;::value) &gt; </td></tr>
 <tr class="memitem:af14f879272f5100434405df9a1979738"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc.html#af14f879272f5100434405df9a1979738">vccc::operator&lt;&lt;</a> (std::ostream &amp;os, const T &amp;v)</td></tr>
 <tr class="separator:af14f879272f5100434405df9a1979738"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c8814395c6d55ce4c52cfd9beb98e21"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>

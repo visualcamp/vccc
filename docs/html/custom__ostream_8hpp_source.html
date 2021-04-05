@@ -103,7 +103,7 @@ $(document).ready(function(){initNavTree('custom__ostream_8hpp_source.html','');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, VCCC_REQUIRE_IMPL(is_container&lt;T&gt;::value &amp;&amp; !is_<span class="keywordtype">string</span>_like&lt;T&gt;::value)&gt;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, VCCC_ENABLE_IF_IMPL(is_container&lt;T&gt;::value &amp;&amp; !is_<span class="keywordtype">string</span>_like&lt;T&gt;::value)&gt;</div>
 <div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="namespacevccc.html#af14f879272f5100434405df9a1979738">   12</a></span>&#160;std::ostream&amp;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">operator</span> &lt;&lt;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;(std::ostream&amp; os, <span class="keyword">const</span> T&amp; v)</div>
@@ -142,7 +142,7 @@ $(document).ready(function(){initNavTree('custom__ostream_8hpp_source.html','');
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"># endif //VCCC_LOG_CUSTOM_OSTREAM_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespacevccc_1_1detail_html_a588f4d44b61c7e2d1a7327aa0566f395"><div class="ttname"><a href="namespacevccc_1_1detail.html#a588f4d44b61c7e2d1a7327aa0566f395">vccc::detail::print_multiples</a></div><div class="ttdeci">void print_multiples(std::ostream &amp;os, const Args &amp;... args)</div><div class="ttdef"><b>Definition:</b> print.hpp:73</div></div>
+<div class="ttc" id="anamespacevccc_1_1detail_html_a588f4d44b61c7e2d1a7327aa0566f395"><div class="ttname"><a href="namespacevccc_1_1detail.html#a588f4d44b61c7e2d1a7327aa0566f395">vccc::detail::print_multiples</a></div><div class="ttdeci">void print_multiples(std::ostream &amp;os, const Args &amp;... args)</div><div class="ttdef"><b>Definition:</b> print.hpp:72</div></div>
 <div class="ttc" id="anamespacevccc_1_1detail_html_a3bbc0bd59417ef4890eab7db1ccef48a"><div class="ttname"><a href="namespacevccc_1_1detail.html#a3bbc0bd59417ef4890eab7db1ccef48a">vccc::detail::print_tuple</a></div><div class="ttdeci">std::ostream &amp; print_tuple(std::ostream &amp;os, const Tuple &amp;tup, std::index_sequence&lt; 0, I... &gt;)</div><div class="ttdef"><b>Definition:</b> print.hpp:40</div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
 <div class="ttc" id="aprint_8hpp_html"><div class="ttname"><a href="print_8hpp.html">print.hpp</a></div></div>

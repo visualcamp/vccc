@@ -113,10 +113,16 @@ Functions</h2></td></tr>
 <tr class="memitem:ga7c58303e6b080dfaf968140ecf0bdf57"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__calculus.html#ga7c58303e6b080dfaf968140ecf0bdf57">vccc::gradient</a> (Func f, std::tuple&lt; Vars... &gt; vars, Args &amp;&amp;... args)</td></tr>
 <tr class="memdesc:ga7c58303e6b080dfaf968140ecf0bdf57"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates gradient value of the given function and variables  <a href="group__calculus.html#ga7c58303e6b080dfaf968140ecf0bdf57">More...</a><br /></td></tr>
 <tr class="separator:ga7c58303e6b080dfaf968140ecf0bdf57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1d6c2f6c3dcda3fed11915c572d4bb7d"><td class="memTemplParams" colspan="2">template&lt;std::size_t i, typename Tuple , typename T &gt; </td></tr>
-<tr class="memitem:ga1d6c2f6c3dcda3fed11915c572d4bb7d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__calculus.html#ga1d6c2f6c3dcda3fed11915c572d4bb7d">vccc::addEpsilon</a> (Tuple vars, T <a class="el" href="group__calculus.html#gaf239e9fe6dd0539b8e683783ea9a38f1">epsilon</a>)</td></tr>
-<tr class="memdesc:ga1d6c2f6c3dcda3fed11915c572d4bb7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns tuple that added \(h\) at index \(i\)( \( h = \sqrt{x}\epsilon\))  <a href="group__calculus.html#ga1d6c2f6c3dcda3fed11915c572d4bb7d">More...</a><br /></td></tr>
-<tr class="separator:ga1d6c2f6c3dcda3fed11915c572d4bb7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga13f9b33e59cbd9ac4418ca6860958eed"><td class="memTemplParams" colspan="2">template&lt;std::size_t i, typename Tuple , typename T &gt; </td></tr>
+<tr class="memitem:ga13f9b33e59cbd9ac4418ca6860958eed"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__calculus.html#ga13f9b33e59cbd9ac4418ca6860958eed">vccc::addEpsilon</a> (Tuple vars, T <a class="el" href="group__calculus.html#gaf239e9fe6dd0539b8e683783ea9a38f1">epsilon</a>)</td></tr>
+<tr class="memdesc:ga13f9b33e59cbd9ac4418ca6860958eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns tuple that added \(h\) at index \(i\)( \( h = \sqrt{x}\epsilon\))  <a href="group__calculus.html#ga13f9b33e59cbd9ac4418ca6860958eed">More...</a><br /></td></tr>
+<tr class="separator:ga13f9b33e59cbd9ac4418ca6860958eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa183ebff5c45501ef9e64c7ec364f27b"><td class="memTemplParams" colspan="2">template&lt;std::size_t i, typename MatExpr , typename Epsilon &gt; </td></tr>
+<tr class="memitem:gaa183ebff5c45501ef9e64c7ec364f27b"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__calculus.html#gaa183ebff5c45501ef9e64c7ec364f27b">vccc::addEpsilon</a> (<a class="el" href="classvccc_1_1_matrix_base.html">MatrixBase</a>&lt; MatExpr &gt; vars, Epsilon <a class="el" href="group__calculus.html#gaf239e9fe6dd0539b8e683783ea9a38f1">epsilon</a>)</td></tr>
+<tr class="separator:gaa183ebff5c45501ef9e64c7ec364f27b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9d7c5cd055bd7fee6b755b0227dd55b0"><td class="memTemplParams" colspan="2">template&lt;typename MatExpr , typename Epsilon &gt; </td></tr>
+<tr class="memitem:ga9d7c5cd055bd7fee6b755b0227dd55b0"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__calculus.html#ga9d7c5cd055bd7fee6b755b0227dd55b0">vccc::addEpsilon</a> (std::size_t i, <a class="el" href="classvccc_1_1_matrix_base.html">MatrixBase</a>&lt; MatExpr &gt; vars, Epsilon <a class="el" href="group__calculus.html#gaf239e9fe6dd0539b8e683783ea9a38f1">epsilon</a>)</td></tr>
+<tr class="separator:ga9d7c5cd055bd7fee6b755b0227dd55b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>math for calculus </p>
@@ -203,16 +209,19 @@ template&lt;typename T , typename DifferentialCategory  = differential_symmetric
 
 </div>
 </div>
-<a id="ga1d6c2f6c3dcda3fed11915c572d4bb7d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1d6c2f6c3dcda3fed11915c572d4bb7d">&#9670;&nbsp;</a></span>addEpsilon()</h2>
+<a id="ga13f9b33e59cbd9ac4418ca6860958eed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga13f9b33e59cbd9ac4418ca6860958eed">&#9670;&nbsp;</a></span>addEpsilon() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;std::size_t i, typename Tuple , typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto vccc::addEpsilon </td>
+          <td class="memname">constexpr auto vccc::addEpsilon </td>
           <td>(</td>
           <td class="paramtype">Tuple&#160;</td>
           <td class="paramname"><em>vars</em>, </td>
@@ -229,6 +238,11 @@ template&lt;std::size_t i, typename Tuple , typename T &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>returns tuple that added \(h\) at index \(i\)( \( h = \sqrt{x}\epsilon\)) </p>
@@ -246,6 +260,88 @@ template&lt;std::size_t i, typename Tuple , typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="gaa183ebff5c45501ef9e64c7ec364f27b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa183ebff5c45501ef9e64c7ec364f27b">&#9670;&nbsp;</a></span>addEpsilon() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::size_t i, typename MatExpr , typename Epsilon &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr decltype(auto) vccc::addEpsilon </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1_matrix_base.html">MatrixBase</a>&lt; MatExpr &gt;&#160;</td>
+          <td class="paramname"><em>vars</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Epsilon&#160;</td>
+          <td class="paramname"><em>epsilon</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga9d7c5cd055bd7fee6b755b0227dd55b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9d7c5cd055bd7fee6b755b0227dd55b0">&#9670;&nbsp;</a></span>addEpsilon() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MatExpr , typename Epsilon &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr decltype(auto) vccc::addEpsilon </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1_matrix_base.html">MatrixBase</a>&lt; MatExpr &gt;&#160;</td>
+          <td class="paramname"><em>vars</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Epsilon&#160;</td>
+          <td class="paramname"><em>epsilon</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
