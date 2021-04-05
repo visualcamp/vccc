@@ -91,7 +91,10 @@ $(document).ready(function(){initNavTree('group__log.html',''); initResizable();
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Macros</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">log</div>  </div>
 </div><!--header-->
@@ -102,64 +105,90 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacevccc"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevccc.html">vccc</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_i_o_s_flags_saver.html">vccc::IOSFlagsSaver&lt; Stream &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII wrapper that restores stream's flags on destroyed.  <a href="classvccc_1_1_i_o_s_flags_saver.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_log__.html">vccc::Log_</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classvccc_1_1_logger.html" title="stream wrapper that can accept both C-style formatted and C++ style variadic">vccc::Logger</a> maker  <a href="classvccc_1_1_log__.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html">vccc::Logger</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">stream wrapper that can accept both C-style formatted and C++ style variadic  <a href="classvccc_1_1_logger.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_stream_wrapper.html">vccc::StreamWrapper&lt; Stream &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">stream wrapper that supports extended operator overloading  <a href="classvccc_1_1_stream_wrapper.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ga6751c19bf1da9a5a4b3828f2c6c826bd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#ga6751c19bf1da9a5a4b3828f2c6c826bd">VCCC_FUNCTION</a>&#160;&#160;&#160;__FUNCTION__</td></tr>
-<tr class="separator:ga6751c19bf1da9a5a4b3828f2c6c826bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab78bd305488c62caf8515ee765b1ed49"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#gab78bd305488c62caf8515ee765b1ed49">LOGV</a>(...)&#160;&#160;&#160;::vccc::Log.v(__VA_ARGS__)</td></tr>
-<tr class="memdesc:gab78bd305488c62caf8515ee765b1ed49"><td class="mdescLeft">&#160;</td><td class="mdescRight">macro wrappers for security  <a href="group__log.html#gab78bd305488c62caf8515ee765b1ed49">More...</a><br /></td></tr>
-<tr class="separator:gab78bd305488c62caf8515ee765b1ed49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0c95d56f1462da57ef62d0123455b217"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#ga0c95d56f1462da57ef62d0123455b217">VCCC_FUNCTION_DOXYGEN_HELPER</a></td></tr>
+<tr class="memdesc:ga0c95d56f1462da57ef62d0123455b217"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>VCCC_FUNCTION</code>: platform-wide function name macro  <a href="group__log.html#ga0c95d56f1462da57ef62d0123455b217">More...</a><br /></td></tr>
+<tr class="separator:ga0c95d56f1462da57ef62d0123455b217"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa839997a58e14061861cd634fdb7664d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#gaa839997a58e14061861cd634fdb7664d">LOGD</a>(...)&#160;&#160;&#160;::vccc::Log.d(__VA_ARGS__)</td></tr>
+<tr class="memdesc:gaa839997a58e14061861cd634fdb7664d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug log wrapper for security. This won't print in release build.  <a href="group__log.html#gaa839997a58e14061861cd634fdb7664d">More...</a><br /></td></tr>
 <tr class="separator:gaa839997a58e14061861cd634fdb7664d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5512e59d578a380a441a70256af997d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#ga5512e59d578a380a441a70256af997d0">LOGI</a>(...)&#160;&#160;&#160;::vccc::Log.i(__VA_ARGS__)</td></tr>
+<tr class="memdesc:ga5512e59d578a380a441a70256af997d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information log wrapper.  <a href="group__log.html#ga5512e59d578a380a441a70256af997d0">More...</a><br /></td></tr>
 <tr class="separator:ga5512e59d578a380a441a70256af997d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga07f1b0d507acedeb7550353eba4f6e66"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#ga07f1b0d507acedeb7550353eba4f6e66">LOGW</a>(...)&#160;&#160;&#160;::vccc::Log.w(__VA_ARGS__)</td></tr>
+<tr class="memdesc:ga07f1b0d507acedeb7550353eba4f6e66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Warning log wrapper.  <a href="group__log.html#ga07f1b0d507acedeb7550353eba4f6e66">More...</a><br /></td></tr>
 <tr class="separator:ga07f1b0d507acedeb7550353eba4f6e66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae02538a80ad5fc009caec73487d11a8d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#gae02538a80ad5fc009caec73487d11a8d">LOGE</a>(...)&#160;&#160;&#160;::vccc::Log.e(__VA_ARGS__)</td></tr>
+<tr class="memdesc:gae02538a80ad5fc009caec73487d11a8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error log wrapper.  <a href="group__log.html#gae02538a80ad5fc009caec73487d11a8d">More...</a><br /></td></tr>
 <tr class="separator:gae02538a80ad5fc009caec73487d11a8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae8ab89c21007872cfc5289304d876d59"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#gae8ab89c21007872cfc5289304d876d59">LOGF</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#aaafe64ec6cf6cf2a29a1688ec83f61d8">LOGF_IMPL</a>(__VA_ARGS__)</td></tr>
-<tr class="separator:gae8ab89c21007872cfc5289304d876d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa6eca866a113477409fdda563cb8d391"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#gaa6eca866a113477409fdda563cb8d391">LOGS</a>(...)&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#abdd1d6151838874dcfc65c9b80cb9836">LOGS_IMPL</a>(__VA_ARGS__)</td></tr>
-<tr class="separator:gaa6eca866a113477409fdda563cb8d391"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga29cfde54927902f1f0ceae7d884c5b8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#ga29cfde54927902f1f0ceae7d884c5b8b">VCCC_FILE_SEPARATOR</a>&#160;&#160;&#160;'/'</td></tr>
+<tr class="memdesc:ga29cfde54927902f1f0ceae7d884c5b8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">file separator  <a href="group__log.html#ga29cfde54927902f1f0ceae7d884c5b8b">More...</a><br /></td></tr>
+<tr class="separator:ga29cfde54927902f1f0ceae7d884c5b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0699c38e3c7f214f5c13ffe750e1f0ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#ga0699c38e3c7f214f5c13ffe750e1f0ab">PWD</a></td></tr>
 <tr class="memdesc:ga0699c38e3c7f214f5c13ffe750e1f0ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">get current working directory  <a href="group__log.html#ga0699c38e3c7f214f5c13ffe750e1f0ab">More...</a><br /></td></tr>
 <tr class="separator:ga0699c38e3c7f214f5c13ffe750e1f0ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga2988aa3fd0f61a4e179e6127c6c37222"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
+<tr class="memitem:ga2988aa3fd0f61a4e179e6127c6c37222"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__log.html#ga2988aa3fd0f61a4e179e6127c6c37222">vccc::Logger::Logger</a> (const Args &amp;... args)</td></tr>
+<tr class="separator:ga2988aa3fd0f61a4e179e6127c6c37222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b82beb820e92e46fd0a2af948342119"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga9b82beb820e92e46fd0a2af948342119"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__log.html#ga9b82beb820e92e46fd0a2af948342119">vccc::Logger::add</a> (const T &amp;n)</td></tr>
+<tr class="separator:ga9b82beb820e92e46fd0a2af948342119"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga7cde185c68ca38220d19182f824c98fa"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1_log__.html">Log_</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__log.html#ga7cde185c68ca38220d19182f824c98fa">vccc::Log</a></td></tr>
+<tr class="memdesc:ga7cde185c68ca38220d19182f824c98fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global <a class="el" href="classvccc_1_1_log__.html" title="vccc::Logger maker">vccc::Log_</a> instance for syntax sugar.  <a href="group__log.html#ga7cde185c68ca38220d19182f824c98fa">More...</a><br /></td></tr>
+<tr class="separator:ga7cde185c68ca38220d19182f824c98fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Depends On: <a class="el" href="group__type__traits.html">type_traits</a>, boost::predef </p>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ga6751c19bf1da9a5a4b3828f2c6c826bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga6751c19bf1da9a5a4b3828f2c6c826bd">&#9670;&nbsp;</a></span>VCCC_FUNCTION</h2>
+<a id="ga0c95d56f1462da57ef62d0123455b217"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0c95d56f1462da57ef62d0123455b217">&#9670;&nbsp;</a></span>VCCC_FUNCTION_DOXYGEN_HELPER</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define VCCC_FUNCTION&#160;&#160;&#160;__FUNCTION__</td>
+          <td class="memname">#define VCCC_FUNCTION_DOXYGEN_HELPER</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="gab78bd305488c62caf8515ee765b1ed49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab78bd305488c62caf8515ee765b1ed49">&#9670;&nbsp;</a></span>LOGV</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOGV</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;::vccc::Log.v(__VA_ARGS__)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>macro wrappers for security </p>
-
+<p><code>VCCC_FUNCTION</code>: platform-wide function name macro </p>
+<p>Use <code>VCCC_FUNCTION</code> instead of <code>VCCC_FUNCTION_DOXYGEN_HELPER</code>.<br  />
+ (lack of doxygen preprocessing parser)</p>
+<p>Output is compiler-specific.<br  />
+ <code>VCCC_FUNCTION</code> is equal to one of the followings</p><ul>
+<li><code>__PRETTY_FUNCTION__</code></li>
+<li><code>__FUNCSIG__</code></li>
+<li><code>__func__</code></li>
+<li><code>"unknown"</code></li>
+</ul>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> main(){</div>
+<div class="line">  std::cout &lt;&lt; <a class="code" href="function__macro_8hpp.html#a6751c19bf1da9a5a4b3828f2c6c826bd">VCCC_FUNCTION</a> &lt;&lt; std::endl; <span class="comment">// prints something like: int main()</span></div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="gaa839997a58e14061861cd634fdb7664d"></a>
@@ -178,6 +207,12 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Debug log wrapper for security. This won't print in release build. </p>
+<p>Below example applies to LOGI, LOGW, LOGE </p><div class="fragment"><div class="line"><a class="code" href="group__log.html#gaa839997a58e14061861cd634fdb7664d">LOGD</a>(<span class="stringliteral">&quot;%s %d %f&quot;</span>, <span class="stringliteral">&quot;string&quot;</span>, 100, 3.14);  <span class="comment">// string 100 3.14</span></div>
+<div class="line"><a class="code" href="group__log.html#gaa839997a58e14061861cd634fdb7664d">LOGD</a>(<span class="stringliteral">&quot;string&quot;</span>, 100, 3.14);              <span class="comment">// string 100 3.14</span></div>
+<div class="line"><a class="code" href="group__log.html#gaa839997a58e14061861cd634fdb7664d">LOGD</a>(std::vector&lt;int&gt;{1,2,3,4});        <span class="comment">// { 1, 2, 3, 4 }</span></div>
+<div class="line"><a class="code" href="group__log.html#gaa839997a58e14061861cd634fdb7664d">LOGD</a>(std::map&lt;string, int&gt;{{<span class="stringliteral">&quot;one&quot;</span>, 1}, {<span class="stringliteral">&quot;two&quot;</span>, 2}}); <span class="comment">// { { one: 1 }, { two: 2 } }</span></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="ga5512e59d578a380a441a70256af997d0"></a>
@@ -195,6 +230,8 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Information log wrapper. </p>
 
 </div>
 </div>
@@ -214,6 +251,8 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Warning log wrapper. </p>
+
 </div>
 </div>
 <a id="gae02538a80ad5fc009caec73487d11a8d"></a>
@@ -232,41 +271,31 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Error log wrapper. </p>
+
 </div>
 </div>
-<a id="gae8ab89c21007872cfc5289304d876d59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae8ab89c21007872cfc5289304d876d59">&#9670;&nbsp;</a></span>LOGF</h2>
+<a id="ga29cfde54927902f1f0ceae7d884c5b8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga29cfde54927902f1f0ceae7d884c5b8b">&#9670;&nbsp;</a></span>VCCC_FILE_SEPARATOR</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LOGF</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#aaafe64ec6cf6cf2a29a1688ec83f61d8">LOGF_IMPL</a>(__VA_ARGS__)</td>
+          <td class="memname">#define VCCC_FILE_SEPARATOR&#160;&#160;&#160;'/'</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="gaa6eca866a113477409fdda563cb8d391"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa6eca866a113477409fdda563cb8d391">&#9670;&nbsp;</a></span>LOGS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOGS</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="pc_8hpp.html#abdd1d6151838874dcfc65c9b80cb9836">LOGS_IMPL</a>(__VA_ARGS__)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>file separator </p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Platform  </th><th class="markdownTableHeadNone">value   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Windows  </td><td class="markdownTableBodyNone">'\\'   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Others  </td><td class="markdownTableBodyNone">'/'   </td></tr>
+</table>
 
 </div>
 </div>
@@ -281,10 +310,10 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">[](){                                           \</div>
-<div class="line">  std::string $13vlaae_dummy_str = __FILE__;    \</div>
-<div class="line">  return $13vlaae_dummy_str.substr(             \</div>
-<div class="line">    0, $13vlaae_dummy_str.find_last_of(<span class="charliteral">&#39;/&#39;</span>));   \</div>
+<b>Value:</b><div class="fragment"><div class="line">[](){                                                         \</div>
+<div class="line">  std::string $13vlaae_dummy_str = __FILE__;                  \</div>
+<div class="line">  return $13vlaae_dummy_str.substr(                           \</div>
+<div class="line">    0, $13vlaae_dummy_str.find_last_of(<a class="code" href="group__log.html#ga29cfde54927902f1f0ceae7d884c5b8b">VCCC_FILE_SEPARATOR</a>)); \</div>
 <div class="line">}()</div>
 </div><!-- fragment -->
 <p>get current working directory </p>
@@ -293,8 +322,77 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga2988aa3fd0f61a4e179e6127c6c37222"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2988aa3fd0f61a4e179e6127c6c37222">&#9670;&nbsp;</a></span>Logger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">vccc::Logger::Logger </td>
+          <td>(</td>
+          <td class="paramtype">const Args &amp;...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga9b82beb820e92e46fd0a2af948342119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9b82beb820e92e46fd0a2af948342119">&#9670;&nbsp;</a></span>add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void vccc::Logger::add </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ga7cde185c68ca38220d19182f824c98fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7cde185c68ca38220d19182f824c98fa">&#9670;&nbsp;</a></span>Log</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1_log__.html">Log_</a> vccc::Log</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Global <a class="el" href="classvccc_1_1_log__.html" title="vccc::Logger maker">vccc::Log_</a> instance for syntax sugar. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="afunction__macro_8hpp_html_a6751c19bf1da9a5a4b3828f2c6c826bd"><div class="ttname"><a href="function__macro_8hpp.html#a6751c19bf1da9a5a4b3828f2c6c826bd">VCCC_FUNCTION</a></div><div class="ttdeci">#define VCCC_FUNCTION</div></div>
+<div class="ttc" id="agroup__log_html_ga29cfde54927902f1f0ceae7d884c5b8b"><div class="ttname"><a href="group__log.html#ga29cfde54927902f1f0ceae7d884c5b8b">VCCC_FILE_SEPARATOR</a></div><div class="ttdeci">#define VCCC_FILE_SEPARATOR</div><div class="ttdoc">file separator</div><div class="ttdef"><b>Definition:</b> pwd.hpp:27</div></div>
+<div class="ttc" id="agroup__log_html_gaa839997a58e14061861cd634fdb7664d"><div class="ttname"><a href="group__log.html#gaa839997a58e14061861cd634fdb7664d">LOGD</a></div><div class="ttdeci">#define LOGD(...)</div><div class="ttdoc">Debug log wrapper for security. This won't print in release build.</div><div class="ttdef"><b>Definition:</b> log.hpp:93</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

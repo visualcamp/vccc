@@ -91,7 +91,9 @@ $(document).ready(function(){initNavTree('c__printable_8hpp.html',''); initResiz
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">c_printable.hpp File Reference</div>  </div>
 </div><!--header-->
@@ -102,6 +104,10 @@ $(document).ready(function(){initNavTree('c__printable_8hpp.html',''); initResiz
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1detail_1_1can__decay__to__scalar__impl.html">vccc::detail::can_decay_to_scalar_impl&lt; T &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1detail_1_1can__decay__to__scalar.html">vccc::detail::can_decay_to_scalar&lt; Ts &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1detail_1_1are__types__c__printable.html">vccc::detail::are_types_c_printable&lt;... &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1detail_1_1are__types__c__printable_3_01_t_01_4.html">vccc::detail::are_types_c_printable&lt; T &gt;</a></td></tr>
@@ -115,6 +121,24 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacevccc_1_1detail"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevccc_1_1detail.html">vccc::detail</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:aeadf15823da804765116aee774b9a941"><td class="memTemplParams" colspan="2">template&lt;typename ... Ts&gt; </td></tr>
+<tr class="memitem:aeadf15823da804765116aee774b9a941"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc_1_1detail.html#aeadf15823da804765116aee774b9a941">vccc::detail::can_decay_to_scalar_t</a> = typename can_decay_to_scalar&lt; Ts... &gt;::type</td></tr>
+<tr class="separator:aeadf15823da804765116aee774b9a941"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadfd9745ada26c8ba9cf1afab4e3bc32"><td class="memTemplParams" colspan="2">template&lt;typename ... Ts&gt; </td></tr>
+<tr class="memitem:aadfd9745ada26c8ba9cf1afab4e3bc32"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc_1_1detail.html#aadfd9745ada26c8ba9cf1afab4e3bc32">vccc::detail::are_types_c_printable_t</a> = typename are_types_c_printable&lt; Ts... &gt;::type</td></tr>
+<tr class="separator:aadfd9745ada26c8ba9cf1afab4e3bc32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:acbea6688017c21e16c983eb02cdb8d2e"><td class="memTemplParams" colspan="2">template&lt;typename ... Ts&gt; </td></tr>
+<tr class="memitem:acbea6688017c21e16c983eb02cdb8d2e"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc_1_1detail.html#acbea6688017c21e16c983eb02cdb8d2e">vccc::detail::can_decay_to_scalar_v</a> = can_decay_to_scalar&lt;Ts...&gt;::value</td></tr>
+<tr class="separator:acbea6688017c21e16c983eb02cdb8d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae276441a76f5c7326118c7686db3899b"><td class="memTemplParams" colspan="2">template&lt;typename ... Ts&gt; </td></tr>
+<tr class="memitem:ae276441a76f5c7326118c7686db3899b"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc_1_1detail.html#ae276441a76f5c7326118c7686db3899b">vccc::detail::are_types_c_printable_v</a> = are_types_c_printable&lt;Ts...&gt;::value</td></tr>
+<tr class="separator:ae276441a76f5c7326118c7686db3899b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

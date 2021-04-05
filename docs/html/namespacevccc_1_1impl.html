@@ -107,6 +107,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac5ae7352b3773ee197051a529b6b239f"><td class="memTemplParams" colspan="2">template&lt;typename Arg , typename ... Args&gt; </td></tr>
 <tr class="memitem:ac5ae7352b3773ee197051a529b6b239f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc_1_1impl.html#ac5ae7352b3773ee197051a529b6b239f">sumImpl</a> (const Arg &amp;arg, const Args &amp;... args)</td></tr>
 <tr class="separator:ac5ae7352b3773ee197051a529b6b239f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47df0e5ee129ada65d2a5f6dff85a084"><td class="memTemplParams" colspan="2">template&lt;typename T , VCCC_ENABLE_IF(std::is_class&lt; std::decay_t&lt; T &gt;&gt;::value) &gt; </td></tr>
+<tr class="memitem:a47df0e5ee129ada65d2a5f6dff85a084"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc_1_1impl.html#a47df0e5ee129ada65d2a5f6dff85a084">default_value</a> ()</td></tr>
+<tr class="separator:a47df0e5ee129ada65d2a5f6dff85a084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="afb7679d3d447a3151d159b4b2af33f60"></a>
@@ -202,6 +205,33 @@ template&lt;typename Arg , typename ... Args&gt; </div>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a47df0e5ee129ada65d2a5f6dff85a084"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47df0e5ee129ada65d2a5f6dff85a084">&#9670;&nbsp;</a></span>default_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , VCCC_ENABLE_IF(std::is_class&lt; std::decay_t&lt; T &gt;&gt;::value) &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto vccc::impl::default_value </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>

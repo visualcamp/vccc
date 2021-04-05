@@ -3,6 +3,7 @@ var sum_8hpp =
     [ "sumImpl", "sum_8hpp.html#afb7679d3d447a3151d159b4b2af33f60", null ],
     [ "sumImpl", "sum_8hpp.html#ad50e588a56804e902bbeb4f7e19aab6a", null ],
     [ "sumImpl", "sum_8hpp.html#ac5ae7352b3773ee197051a529b6b239f", null ],
+    [ "default_value", "sum_8hpp.html#a47df0e5ee129ada65d2a5f6dff85a084", null ],
     [ "sum", "sum_8hpp.html#ga7e693141d69d7b3077157e78377d5f2a", null ],
     [ "sum", "sum_8hpp.html#gac11003a3d14f66c24174b0c0b6735304", null ],
     [ "sum", "sum_8hpp.html#gae209caf01719607ea444436ea4123b1d", null ],

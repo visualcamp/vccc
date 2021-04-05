@@ -105,14 +105,14 @@ $(document).ready(function(){initNavTree('norm_8hpp_source.html',''); initResiza
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> InputIterator, VCCC_REQUIRE(iterable&lt;InputIterator&gt;)&gt;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> InputIterator, VCCC_ENABLE_IF(iterable&lt;InputIterator&gt;)&gt;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">auto</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="group__numeric__norm.html#gaf98828a367b3d67e6fc81759213e7758">   35</a></span>&#160;<a class="code" href="group__numeric__norm.html#gaf98828a367b3d67e6fc81759213e7758">norm</a>(InputIterator first, InputIterator last)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keywordflow">return</span> std::sqrt(<a class="code" href="group__numeric__sum.html#ga50ba92b2f87b9d6b28404e5358f6a5fc">square_sum</a>(first, last));</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg, VCCC_REQUIRE(!iterable&lt;Arg&gt;)&gt;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg, VCCC_ENABLE_IF(!iterable&lt;Arg&gt;)&gt;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">auto</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<a class="code" href="group__numeric__norm.html#gaf98828a367b3d67e6fc81759213e7758">norm</a>(Arg arg)</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
@@ -120,7 +120,7 @@ $(document).ready(function(){initNavTree('norm_8hpp_source.html',''); initResiza
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg, <span class="keyword">typename</span> ...Args, <a class="code" href="require_8hpp.html#ac7c48320f28d56e4261c1551bc23e058">VCCC_REQUIRE</a>((!iterable&lt;Arg, Args...&gt;))&gt;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg, <span class="keyword">typename</span> ...Args, <a class="code" href="require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638">VCCC_ENABLE_IF</a>((!iterable&lt;Arg, Args...&gt;))&gt;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">auto</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="group__numeric__norm.html#ga4de09d708ab1575caa11b74e2808a9db">   56</a></span>&#160;<a class="code" href="group__numeric__norm.html#gaf98828a367b3d67e6fc81759213e7758">norm</a>(Arg arg, Args... args)</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div>
@@ -134,9 +134,9 @@ $(document).ready(function(){initNavTree('norm_8hpp_source.html',''); initResiza
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="atype__traits_8hpp_html"><div class="ttname"><a href="type__traits_8hpp.html">type_traits.hpp</a></div></div>
-<div class="ttc" id="arequire_8hpp_html_ac7c48320f28d56e4261c1551bc23e058"><div class="ttname"><a href="require_8hpp.html#ac7c48320f28d56e4261c1551bc23e058">VCCC_REQUIRE</a></div><div class="ttdeci">#define VCCC_REQUIRE(Cond)</div><div class="ttdef"><b>Definition:</b> require.hpp:9</div></div>
+<div class="ttc" id="arequire_8hpp_html_a076be2135fa476e0ffa180ef5d1f4638"><div class="ttname"><a href="require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638">VCCC_ENABLE_IF</a></div><div class="ttdeci">#define VCCC_ENABLE_IF(Cond)</div><div class="ttdef"><b>Definition:</b> require.hpp:9</div></div>
 <div class="ttc" id="asum_8hpp_html"><div class="ttname"><a href="sum_8hpp.html">sum.hpp</a></div></div>
-<div class="ttc" id="agroup__numeric__sum_html_ga50ba92b2f87b9d6b28404e5358f6a5fc"><div class="ttname"><a href="group__numeric__sum.html#ga50ba92b2f87b9d6b28404e5358f6a5fc">vccc::square_sum</a></div><div class="ttdeci">constexpr auto square_sum(InputIterator first, InputIterator last)</div><div class="ttdoc">square sum of iterator [first, last)</div><div class="ttdef"><b>Definition:</b> sum.hpp:141</div></div>
+<div class="ttc" id="agroup__numeric__sum_html_ga50ba92b2f87b9d6b28404e5358f6a5fc"><div class="ttname"><a href="group__numeric__sum.html#ga50ba92b2f87b9d6b28404e5358f6a5fc">vccc::square_sum</a></div><div class="ttdeci">constexpr auto square_sum(InputIterator first, InputIterator last)</div><div class="ttdoc">square sum of iterator [first, last)</div><div class="ttdef"><b>Definition:</b> sum.hpp:152</div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
 <div class="ttc" id="agroup__numeric__norm_html_gaf98828a367b3d67e6fc81759213e7758"><div class="ttname"><a href="group__numeric__norm.html#gaf98828a367b3d67e6fc81759213e7758">vccc::norm</a></div><div class="ttdeci">auto norm(InputIterator first, InputIterator last)</div><div class="ttdoc">calculate norm on iterator [first, last)</div><div class="ttdef"><b>Definition:</b> norm.hpp:35</div></div>
 <!-- start footer part -->

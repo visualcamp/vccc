@@ -30,10 +30,12 @@ var NAVTREE =
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
-        [ "All", "namespacemembers.html", null ],
+        [ "All", "namespacemembers.html", "namespacemembers_dup" ],
         [ "Functions", "namespacemembers_func.html", null ],
         [ "Variables", "namespacemembers_vars.html", null ],
-        [ "Typedefs", "namespacemembers_type.html", null ]
+        [ "Typedefs", "namespacemembers_type.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ],
+        [ "Enumerator", "namespacemembers_eval.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -41,10 +43,11 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
-        [ "Typedefs", "functions_type.html", null ]
+        [ "Typedefs", "functions_type.html", null ],
+        [ "Enumerator", "functions_eval.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -59,10 +62,11 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"android_8hpp.html",
-"dir_bdd3d0acd5cd5c7cc4d13a4f5d100839.html",
-"group__utility__time.html#ga3cf94bf21e4362995a8e8bad137d88a1",
-"sum_8hpp.html#ga7e693141d69d7b3077157e78377d5f2a"
+"annotated.html",
+"cv__point3_8hpp.html",
+"group__numeric__sum.html#gab741977af01853bffd7b4368c391e007",
+"namespacemembers.html",
+"tag_8hpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

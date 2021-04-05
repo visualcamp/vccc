@@ -12,18 +12,28 @@
 //! @{
 
 /**
+@brief file separator
+
+Platform | value
+-------- | -----
+Windows  |  '\\\\'
+Others   |  '/'
+
+ */
+# ifndef VCCC_FILE_SEPARATOR
+#   if BOOST_COMP_MSVC
+#     define VCCC_FILE_SEPARATOR '\\'
+#   else
+#     define VCCC_FILE_SEPARATOR '/'
+#   endif
+# endif
+
+/**
 @brief get current working directory
 
 returns current calling file's working directory. <br>
 This macro must be directly used in code where needed, or it will generate wrong output
  */
-
-# if BOOST_COMP_MSVC
-#   define VCCC_FILE_SEPARATOR '\\'
-# else
-#   define VCCC_FILE_SEPARATOR '/'
-# endif
-
 # define PWD                                                  \
 [](){                                                         \
   std::string $13vlaae_dummy_str = __FILE__;                  \

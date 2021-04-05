@@ -101,48 +101,50 @@ $(document).ready(function(){initNavTree('gradient_8hpp_source.html',''); initRe
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"># define VCCC_MATH_CALCULUS_GRADIENT_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="partial__diff_8hpp.html">vccc/math/calculus/partial_diff.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>detail{ <span class="keyword">namespace </span>math{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> DifferentialCategory, <span class="keyword">typename</span> Func, <span class="keyword">typename</span> VarTuple, std::size_t ...I, <span class="keyword">typename</span> ...Args&gt;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">auto</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;gradientImpl(Func f, VarTuple vars, std::index_sequence&lt;I...&gt;, Args&amp;&amp;... args)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keywordflow">return</span> std::make_tuple(</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;      partialDiff&lt;T, I&gt;(DifferentialCategory{},</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                        f,</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                        vars,</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                        std::forward&lt;Args&gt;(args)...)...);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}}</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="are_8hpp.html">vccc/type_traits/are.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span>detail{ <span class="keyword">namespace </span>math{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> DifferentialCategory, <span class="keyword">typename</span> Func, <span class="keyword">typename</span> VarTuple, std::size_t ...I, <span class="keyword">typename</span> ...Args&gt;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">auto</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;gradientImpl(Func f, VarTuple vars, std::index_sequence&lt;I...&gt;, Args&amp;&amp;... args)</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <span class="keywordflow">return</span> std::make_tuple(</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;      partialDiff&lt;T, I&gt;(DifferentialCategory{},</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                        f,</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                        vars,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                        std::forward&lt;Args&gt;(args)...)...);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}}</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> DifferentialCategory = differential_symmetric_t,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">typename</span> Func, <span class="keyword">typename</span> ...Vars, <span class="keyword">typename</span> ...Args&gt;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">auto</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="group__calculus.html#ga7c58303e6b080dfaf968140ecf0bdf57">   44</a></span>&#160;<a class="code" href="group__calculus.html#ga7c58303e6b080dfaf968140ecf0bdf57">gradient</a>(Func f, std::tuple&lt;Vars...&gt; vars, Args&amp;&amp;... args)</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  static_assert(!<a class="code" href="structvccc_1_1are__.html">vccc::are_</a>&lt;std::is_reference&lt;Vars&gt;...&gt;::value, <span class="stringliteral">&quot;tuple element of vars must not be a reference vccc::gradient&lt;&gt;&quot;</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  static_assert(<a class="code" href="structvccc_1_1are__.html">vccc::are_</a>&lt;std::is_same&lt;T, Vars&gt;...&gt;::value, <span class="stringliteral">&quot;tuple element of vars type must be same with T vccc::gradient&lt;&gt;&quot;</span>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keywordflow">return</span> detail::math::gradientImpl&lt;T, DifferentialCategory&gt;(</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      f,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      vars,</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      std::index_sequence_for&lt;Vars...&gt;{},</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;      std::forward&lt;Args&gt;(args)...);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> DifferentialCategory = differential_symmetric_t,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">typename</span> Func, <span class="keyword">typename</span> ...Vars, <span class="keyword">typename</span> ...Args&gt;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">auto</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="group__calculus.html#ga7c58303e6b080dfaf968140ecf0bdf57">   45</a></span>&#160;<a class="code" href="group__calculus.html#ga7c58303e6b080dfaf968140ecf0bdf57">gradient</a>(Func f, std::tuple&lt;Vars...&gt; vars, Args&amp;&amp;... args)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  static_assert(!<a class="code" href="structvccc_1_1are__.html">vccc::are_</a>&lt;std::is_reference&lt;Vars&gt;...&gt;::value, <span class="stringliteral">&quot;tuple element of vars must not be a reference vccc::gradient&lt;&gt;&quot;</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  static_assert(<a class="code" href="structvccc_1_1are__.html">vccc::are_</a>&lt;std::is_same&lt;T, Vars&gt;...&gt;::value, <span class="stringliteral">&quot;tuple element of vars type must be same with T vccc::gradient&lt;&gt;&quot;</span>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keywordflow">return</span> detail::math::gradientImpl&lt;T, DifferentialCategory&gt;(</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      f,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      vars,</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;      std::index_sequence_for&lt;Vars...&gt;{},</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;      std::forward&lt;Args&gt;(args)...);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor"># endif //VCCC_MATH_CALCULUS_GRADIENT_HPP</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor"># endif //VCCC_MATH_CALCULUS_GRADIENT_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aare_8hpp_html"><div class="ttname"><a href="are_8hpp.html">are.hpp</a></div></div>
 <div class="ttc" id="astructvccc_1_1are___html"><div class="ttname"><a href="structvccc_1_1are__.html">vccc::are_</a></div><div class="ttdef"><b>Definition:</b> are.hpp:43</div></div>
-<div class="ttc" id="agroup__calculus_html_ga7c58303e6b080dfaf968140ecf0bdf57"><div class="ttname"><a href="group__calculus.html#ga7c58303e6b080dfaf968140ecf0bdf57">vccc::gradient</a></div><div class="ttdeci">auto gradient(Func f, std::tuple&lt; Vars... &gt; vars, Args &amp;&amp;... args)</div><div class="ttdoc">calculates gradient value of the given function and variables</div><div class="ttdef"><b>Definition:</b> gradient.hpp:44</div></div>
+<div class="ttc" id="agroup__calculus_html_ga7c58303e6b080dfaf968140ecf0bdf57"><div class="ttname"><a href="group__calculus.html#ga7c58303e6b080dfaf968140ecf0bdf57">vccc::gradient</a></div><div class="ttdeci">auto gradient(Func f, std::tuple&lt; Vars... &gt; vars, Args &amp;&amp;... args)</div><div class="ttdoc">calculates gradient value of the given function and variables</div><div class="ttdef"><b>Definition:</b> gradient.hpp:45</div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
 <div class="ttc" id="apartial__diff_8hpp_html"><div class="ttname"><a href="partial__diff_8hpp.html">partial_diff.hpp</a></div></div>
 <!-- start footer part -->

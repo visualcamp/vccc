@@ -1,11 +1,22 @@
 var searchData=
 [
-  ['log_5ftag_635',['LOG_TAG',['../android_8hpp.html#a7ce0df38eb467e59f209470c8f5ac4e6',1,'android.hpp']]],
-  ['logd_5fimpl_636',['LOGD_IMPL',['../android_8hpp.html#a751c87e3346555ee0eae70969812c4d0',1,'LOGD_IMPL():&#160;android.hpp'],['../ios_8hpp.html#a751c87e3346555ee0eae70969812c4d0',1,'LOGD_IMPL():&#160;ios.hpp'],['../pc_8hpp.html#a751c87e3346555ee0eae70969812c4d0',1,'LOGD_IMPL():&#160;pc.hpp']]],
-  ['loge_5fimpl_637',['LOGE_IMPL',['../android_8hpp.html#accf2fc3ff8b7f5f8357a20f5209cc2da',1,'LOGE_IMPL():&#160;android.hpp'],['../ios_8hpp.html#accf2fc3ff8b7f5f8357a20f5209cc2da',1,'LOGE_IMPL():&#160;ios.hpp'],['../pc_8hpp.html#accf2fc3ff8b7f5f8357a20f5209cc2da',1,'LOGE_IMPL():&#160;pc.hpp']]],
-  ['logf_5fimpl_638',['LOGF_IMPL',['../android_8hpp.html#aaafe64ec6cf6cf2a29a1688ec83f61d8',1,'LOGF_IMPL():&#160;android.hpp'],['../ios_8hpp.html#aaafe64ec6cf6cf2a29a1688ec83f61d8',1,'LOGF_IMPL():&#160;ios.hpp'],['../pc_8hpp.html#aaafe64ec6cf6cf2a29a1688ec83f61d8',1,'LOGF_IMPL():&#160;pc.hpp']]],
-  ['logi_5fimpl_639',['LOGI_IMPL',['../android_8hpp.html#a00785862b6896afcc50bbd2c92b45309',1,'LOGI_IMPL():&#160;android.hpp'],['../ios_8hpp.html#a00785862b6896afcc50bbd2c92b45309',1,'LOGI_IMPL():&#160;ios.hpp'],['../pc_8hpp.html#a00785862b6896afcc50bbd2c92b45309',1,'LOGI_IMPL():&#160;pc.hpp']]],
-  ['logs_5fimpl_640',['LOGS_IMPL',['../android_8hpp.html#abdd1d6151838874dcfc65c9b80cb9836',1,'LOGS_IMPL():&#160;android.hpp'],['../ios_8hpp.html#abdd1d6151838874dcfc65c9b80cb9836',1,'LOGS_IMPL():&#160;ios.hpp'],['../pc_8hpp.html#abdd1d6151838874dcfc65c9b80cb9836',1,'LOGS_IMPL():&#160;pc.hpp']]],
-  ['logv_5fimpl_641',['LOGV_IMPL',['../android_8hpp.html#a4d8deb7dd86a3cd730303fee394a7ef6',1,'LOGV_IMPL():&#160;android.hpp'],['../ios_8hpp.html#a4d8deb7dd86a3cd730303fee394a7ef6',1,'LOGV_IMPL():&#160;ios.hpp'],['../pc_8hpp.html#a4d8deb7dd86a3cd730303fee394a7ef6',1,'LOGV_IMPL():&#160;pc.hpp']]],
-  ['logw_5fimpl_642',['LOGW_IMPL',['../android_8hpp.html#ad372c186f5eb362e1ae047c5b62c7fb9',1,'LOGW_IMPL():&#160;android.hpp'],['../ios_8hpp.html#ad372c186f5eb362e1ae047c5b62c7fb9',1,'LOGW_IMPL():&#160;ios.hpp'],['../pc_8hpp.html#ad372c186f5eb362e1ae047c5b62c7fb9',1,'LOGW_IMPL():&#160;pc.hpp']]]
+  ['vccc_5fenable_5fif_883',['VCCC_ENABLE_IF',['../require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638',1,'require.hpp']]],
+  ['vccc_5fenable_5fif_5fforward_884',['VCCC_ENABLE_IF_FORWARD',['../require_8hpp.html#abd135c5559e34f5307a52e43af0319c3',1,'require.hpp']]],
+  ['vccc_5fenable_5fif_5fimpl_885',['VCCC_ENABLE_IF_IMPL',['../require_8hpp.html#a838a39c6498f9aa031a34debe45432c9',1,'require.hpp']]],
+  ['vccc_5ffunction_886',['VCCC_FUNCTION',['../function__macro_8hpp.html#a6751c19bf1da9a5a4b3828f2c6c826bd',1,'function_macro.hpp']]],
+  ['vccc_5flog_5fbuffer_5fdebug_887',['VCCC_LOG_BUFFER_DEBUG',['../buffer_8h.html#a8688e14ea806987d830017bf352f9285',1,'buffer.h']]],
+  ['vccc_5flog_5fbuffer_5ferror_888',['VCCC_LOG_BUFFER_ERROR',['../buffer_8h.html#a59e1b3bebd41866037c6e02204ea61ad',1,'buffer.h']]],
+  ['vccc_5flog_5fbuffer_5finfo_889',['VCCC_LOG_BUFFER_INFO',['../buffer_8h.html#aa85c90b7689f99b436afe5751c1bc625',1,'buffer.h']]],
+  ['vccc_5flog_5fbuffer_5fwarn_890',['VCCC_LOG_BUFFER_WARN',['../buffer_8h.html#af1576d8f9ecc5afa08500493111d8f6f',1,'buffer.h']]],
+  ['vccc_5flog_5fexpand_891',['VCCC_LOG_EXPAND',['../buffer_8h.html#a63bf8588c00e20511b53033c47b11606',1,'buffer.h']]],
+  ['vccc_5flog_5fprinter_892',['VCCC_LOG_PRINTER',['../buffer_8h.html#adb521accccb4f3396d059b9e83108398',1,'buffer.h']]],
+  ['vccc_5flog_5ftag_5fdebug_893',['VCCC_LOG_TAG_DEBUG',['../tag_8h.html#abdc458740976f02dda5d36c312978070',1,'tag.h']]],
+  ['vccc_5flog_5ftag_5ferror_894',['VCCC_LOG_TAG_ERROR',['../tag_8h.html#ac3b0ca21517fbf06e036574880f01dec',1,'tag.h']]],
+  ['vccc_5flog_5ftag_5finfo_895',['VCCC_LOG_TAG_INFO',['../tag_8h.html#aa3db0afb8a7757acc363486aa1ec2d28',1,'tag.h']]],
+  ['vccc_5flog_5ftag_5fwarn_896',['VCCC_LOG_TAG_WARN',['../tag_8h.html#ad19f7b8f603c1539fdc28dd7e5d3350f',1,'tag.h']]],
+  ['vccc_5fmath_5fassert_5f1d_5fmatrix_897',['VCCC_MATH_ASSERT_1D_MATRIX',['../math_2include_2vccc_2math_2matrix_2assert_8hpp.html#aa4e22d6fa396ab327cde97c36ee756f9',1,'assert.hpp']]],
+  ['vccc_5fmath_5fassert_5fsame_5fsize_898',['VCCC_MATH_ASSERT_SAME_SIZE',['../math_2include_2vccc_2math_2matrix_2assert_8hpp.html#a8fc6543446d88acd097df8b97883caf6',1,'assert.hpp']]],
+  ['vccc_5fmath_5fruntime_5fassert_899',['VCCC_MATH_RUNTIME_ASSERT',['../math_2include_2vccc_2math_2matrix_2assert_8hpp.html#aec618acc6fa6b13232e4c7d01ea4811c',1,'assert.hpp']]],
+  ['vccc_5fmath_5fstatic_5fassert_900',['VCCC_MATH_STATIC_ASSERT',['../math_2include_2vccc_2math_2matrix_2assert_8hpp.html#ad73c8f6bc56c1514cb221d9939715228',1,'assert.hpp']]],
+  ['vccc_5fuse_5fopencv_5ffeatures_901',['VCCC_USE_OPENCV_FEATURES',['../library__config_8hpp.html#ad7624d03f75776d7ddd8e60ed33aa956',1,'library_config.hpp']]]
 ];

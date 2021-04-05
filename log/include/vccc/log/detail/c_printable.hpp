@@ -25,6 +25,7 @@ constexpr bool can_decay_to_scalar_v = can_decay_to_scalar<Ts...>::value;
 template<typename ...>
 struct are_types_c_printable : std::false_type {};
 
+// block single type to avoid std::snprintf security warnings
 template<typename T>
 struct are_types_c_printable<T> : std::false_type {};
 
@@ -34,7 +35,11 @@ struct are_types_c_printable<T, Ts...>
         (std::is_same<char *, std::decay_t<T>>::value || std::is_same<const char*, std::decay_t<T>>::value) &&
         can_decay_to_scalar_v<Ts...>> {};
 
+template<typename ...Ts>
+using are_types_c_printable_t = typename are_types_c_printable<Ts...>::type;
 
+template<typename ...Ts>
+constexpr bool are_types_c_printable_v = are_types_c_printable<Ts...>::value;
 
 }}
 

@@ -10,20 +10,34 @@
 # include <string>
 # include <regex>
 # include "vccc/log/detail/c_printable.hpp"
-# include "vccc/log/detail/custom_ostream.hpp"
+# include "vccc/log/stream_wrapper.hpp"
 
 namespace vccc{
 
-using c_printable = std::true_type;
-using not_c_printable = std::false_type;
+//! @addtogroup log
+//! @{
 
+
+/**
+@brief stream wrapper that can accept both C-style formatted and C++ style variadic
+
+@code{.cpp}
+    std::string str1 = Logger("%s %d", "Hello", 100).get();
+    std::string str2 = Logger(1, "Hello", "world").get();
+    std::string str3 = Logger(std::boolalpha, true).get();
+@endcode
+
+ */
 class Logger {
  public:
+  using c_printable = std::true_type;
+  using not_c_printable = std::false_type;
+
   template<typename ...Args>
   Logger(const Args&... args);
 
   inline std::string get() const {
-    return out.str();
+    return out.stream().str();
   }
 
  private:
@@ -46,14 +60,13 @@ class Logger {
   void addFormatted(const char* fmt, const Args&... val);
 
   std::vector<char> buffer;
-  std::stringstream out;
-//  static std::string separator;
+  StreamWrapper<std::stringstream> out;
 };
 
 template<typename ...Args>
 Logger::Logger(const Args& ...args)
 {
-  addImpl(detail::are_types_c_printable<Args...>(), args...);
+  addImpl(detail::are_types_c_printable_t<Args...>{}, args...);
 }
 
 // TODO: move fmt_reg to class scope
@@ -109,6 +122,8 @@ Logger::addFormatted(const char* fmt, const Args&... val)
   snprintf(buffer.data(), size + 1, fmt, val...);
   out << buffer.data();
 }
+
+//! @} log
 
 }
 
