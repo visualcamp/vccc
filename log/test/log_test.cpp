@@ -67,7 +67,7 @@ int main() {
   TEST_ENSURES(vccc::Logger(std::array<int, 3>{-1,-2,-3}).get() == "{ -1, -2, -3 }");
   TEST_ENSURES(vccc::Logger(std::list<int>{0,1,0}).get() == "{ 0, 1, 0 }");
   TEST_ENSURES(vccc::Logger(std::map<int, std::string>{{1,"one"},{2,"two"}}).get()
-                == "{ { 1, one }, { 2, two } }");
+                == "{ { 1: one }, { 2: two } }");
   TEST_ENSURES(vccc::Logger(bar{1,2,3}).get() == "{ 1, 2, 3 }");
 
   // test tuples
@@ -78,18 +78,57 @@ int main() {
   TEST_ENSURES(vccc::Logger(std::make_index_sequence<3>{}).get() == "{ 0, 1, 2 }");
   TEST_ENSURES(vccc::Logger(std::index_sequence_for<int, float>{}).get() == "{ 0, 1 }");
 
-  vccc::StreamWrapper<std::stringstream> sw;
+  // test chronos
+  TEST_ENSURES(vccc::Logger(std::chrono::seconds(1)).get() == "1s");
+  TEST_ENSURES(vccc::Logger(std::chrono::seconds(100)).get() == "1m 40s");
+  TEST_ENSURES(vccc::Logger(std::chrono::nanoseconds(100)).get() == "100ns");
+  TEST_ENSURES(vccc::Logger(std::chrono::nanoseconds(123'456)).get() == "123.46us");
+  TEST_ENSURES(vccc::Logger(std::chrono::milliseconds(123)).get() == "123ms");
+  LOGD(std::chrono::seconds(1));
+  LOGD(std::chrono::seconds(100));
+  LOGD(std::chrono::minutes(1));
+  LOGD(std::chrono::minutes(10));
+  LOGD(std::chrono::minutes(60));
+  LOGD(std::chrono::hours(24));
+  LOGD(std::chrono::nanoseconds(123));
+  LOGD(std::chrono::nanoseconds(123'4));
+  LOGD(std::chrono::nanoseconds(123'45));
+  LOGD(std::chrono::nanoseconds(123'456));
+  LOGD(std::chrono::nanoseconds(123'456'789));
+  LOGD(std::chrono::milliseconds(123));
+  LOGD(std::chrono::time_point<std::chrono::system_clock>(std::chrono::hours(24)*365*1));
 
-  sw << std::vector<std::vector<int>>{{1, 2, 3}, {}};
-  LOGD(sw.stream().str()); sw.stream().str("");
-  sw << std::map<std::string, std::string>{{"key", "value"}};
-  LOGD(sw.stream().str()); sw.stream().str("");
-  sw << std::make_tuple();
-  LOGD(sw.stream().str()); sw.stream().str("");
-  sw << std::make_index_sequence<0>();
-  LOGD(sw.stream().str()); sw.stream().str("");
-  sw << std::make_index_sequence<3>();
-  LOGD(sw.stream().str()); sw.stream().str("");
+  LOGD("THIS", "IS", "DEBUG");
+  LOGI("THIS", "IS", "INFO");
+  LOGW("THIS", "IS", "WARN");
+  LOGE("THIS", "IS", "ERROR");
+
+//  vccc::StreamWrapper<std::stringstream> sw;
+//
+//  sw << std::vector<std::vector<int>>{{1, 2, 3}, {}};
+//  LOGD(sw.stream().str()); sw.stream().str("");
+//  sw << std::map<std::string, std::string>{{"key", "value"}};
+//  LOGD(sw.stream().str()); sw.stream().str("");
+//  sw << std::make_tuple();
+//  LOGD(sw.stream().str()); sw.stream().str("");
+//  sw << std::make_index_sequence<0>();
+//  LOGD(sw.stream().str()); sw.stream().str("");
+//  sw << std::make_index_sequence<3>();
+//  LOGD(sw.stream().str()); sw.stream().str("");
+//
+//  sw << std::chrono::system_clock::now();
+//  LOGD(sw.stream().str()); sw.stream().str("");
+//
+//  auto now = std::chrono::steady_clock::now();
+//  for(int i=0; i<3600*3; ++i) {
+//    sw << now;
+//    std::cout << sw.stream().str() << '\n';
+//    sw.stream().str("");
+//    now += std::chrono::milliseconds (7007);
+//  }
+//
+//  vccc::IOSFlagsSaver<std::ostream> saver(std::cout);
+
 
   return TEST_RETURN_RESULT;
 }
