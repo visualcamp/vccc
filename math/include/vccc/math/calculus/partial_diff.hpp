@@ -41,19 +41,19 @@ addEpsilon(Tuple vars, T epsilon)
   return vars;
 }
 
-template<std::size_t i, typename MatExpr, typename Epsilon>
-inline constexpr decltype(auto)
-addEpsilon(MatrixBase<MatExpr> vars, Epsilon epsilon) {
-  at<i>(vars) += at<i>(vars) == 0 ? epsilon : at<i>(vars) * epsilon;
-  return vars;
-}
-
-template<typename MatExpr, typename Epsilon>
-constexpr decltype(auto)
-addEpsilon(std::size_t i, MatrixBase<MatExpr> vars, Epsilon epsilon) {
-  vars(i) += vars(i) == 0 ? epsilon : vars(i) * epsilon;
-  return vars;
-}
+//template<std::size_t i, typename MatExpr, typename Epsilon>
+//inline constexpr decltype(auto)
+//addEpsilon(MatrixBase<MatExpr> vars, Epsilon epsilon) {
+//  at<i>(vars) += at<i>(vars) == 0 ? epsilon : at<i>(vars) * epsilon;
+//  return vars;
+//}
+//
+//template<typename MatExpr, typename Epsilon>
+//constexpr decltype(auto)
+//addEpsilon(std::size_t i, MatrixBase<MatExpr> vars, Epsilon epsilon) {
+//  vars(i) += vars(i) == 0 ? epsilon : vars(i) * epsilon;
+//  return vars;
+//}
 
 //! @defgroup partial_differential partial differential
 //! @brief returns partial differential value of \f$i\f$-th parameter
