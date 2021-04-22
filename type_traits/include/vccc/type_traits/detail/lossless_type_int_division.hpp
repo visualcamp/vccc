@@ -17,7 +17,7 @@ template<typename...> struct lossless_type_int_division;
 
 template<typename T1, typename T2>
 struct lossless_type_int_division<T1, T2> {
-  using type = std::conditional_t<std::max(sizeof(T1), sizeof(T2)) <= 4, float, double>;
+  using type = std::conditional_t<(sizeof(T1) > sizeof(T2) ? sizeof(T1) : sizeof(T2)) <= 4, float, double>;
 };
 
 template<typename T1, typename T2>
