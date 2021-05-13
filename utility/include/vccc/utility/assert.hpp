@@ -7,7 +7,7 @@
 #
 # include <cassert>
 
-/** 나중에 gsl로 대체하는게 좋을 듯.. */
+/** replace to gsl... */
 
 //! @cond ignored
 
