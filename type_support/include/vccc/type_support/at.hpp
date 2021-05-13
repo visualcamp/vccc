@@ -87,7 +87,6 @@ class bind_obj {
   template<typename T, std::size_t ...I>
   constexpr void bind_impl(T&& type, std::index_sequence<I...>)
   {
-    [[maybe_unused]]
     int dummy[sizeof...(I)] = {
         (at<I>(tup) = at<I>(type), 0)...
     };

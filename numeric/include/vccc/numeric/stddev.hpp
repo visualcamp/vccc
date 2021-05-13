@@ -37,7 +37,7 @@ stddev(InputIterator first, InputIterator last, T avg)
 {
   return std::sqrt(
       sum(first, last, [avg](const auto& next) { return square(next - avg); })
-          / static_cast<decay_if_float_t<T>>(std::distance(first, last)) // TODO: 원래 1 빼야하는데 VectorMapping 에서 안빼길래 일단 안뺌
+          / static_cast<decay_if_float_t<T>>(std::distance(first, last)) // TODO: subtract 1
   );
 }
 

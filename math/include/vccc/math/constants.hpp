@@ -51,7 +51,7 @@ constexpr auto e = 2.71828182845904523536028747135266250;
  * @tparam T
  */
 template<typename T>
-constexpr auto pi = 3.14159265358979323846264338327950288;
+constexpr T pi = static_cast<T>(3.14159265358979323846264338327950288);
 
 
 //! @}
