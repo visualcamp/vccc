@@ -5,6 +5,8 @@
 # ifndef VCCC_NUMERIC_STDDEV_HPP
 # define VCCC_NUMERIC_STDDEV_HPP
 #
+# include <cmath>
+#
 # include "vccc/numeric/average.hpp"
 
 namespace vccc {
