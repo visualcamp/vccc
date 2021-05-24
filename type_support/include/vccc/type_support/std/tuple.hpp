@@ -22,7 +22,7 @@ Index-based value accessor
 template<std::size_t i,
          typename T,
          std::enable_if_t<(i < std::tuple_size<T>::value), int> = 0>
-constexpr
+constexpr inline
 decltype(auto)
 at (T& tup) {
   return std::get<i>(tup);
@@ -31,7 +31,7 @@ at (T& tup) {
 template<std::size_t i,
          typename T,
          std::enable_if_t<(i < std::tuple_size<T>::value), int> = 0>
-constexpr
+constexpr inline
 decltype(auto)
 at (const T& tup) {
   return std::get<i>(tup);
@@ -40,7 +40,7 @@ at (const T& tup) {
 template</* manual */ std::size_t i,
          /* deduce */ typename T,
          /*  cond  */ std::enable_if_t<(i < std::tuple_size<T>::value), int> = 0>
-constexpr
+constexpr inline
 decltype(auto)
 at (T&& tup) {
   return std::get<i>(std::forward<T>(tup));
@@ -49,7 +49,7 @@ at (T&& tup) {
 template</* manual */ std::size_t i,
          /* deduce */ typename T,
          /*  cond  */ std::enable_if_t<(i < std::tuple_size<T>::value), int> = 0>
-constexpr
+constexpr inline
 decltype(auto)
 at (const T&& tup) {
   return std::get<i>(std::forward<T>(tup));

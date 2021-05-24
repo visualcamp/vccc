@@ -113,7 +113,7 @@ vccc::bind_at(x, y) = p;
  */
 
 template<typename ...Args>
-constexpr detail::bind_obj<Args...> bind_at(Args&&... args) {
+constexpr inline detail::bind_obj<Args...> bind_at(Args&&... args) {
   return detail::bind_obj<Args...>(std::forward<Args>(args)...);
 }
 

@@ -23,12 +23,12 @@ namespace vccc {
 
 namespace impl{
 template<typename Arg>
-constexpr auto sumImpl(const Arg& arg){
+constexpr inline auto sumImpl(const Arg& arg){
   return arg;
 }
 
 template<typename Arg1, typename Arg2>
-constexpr auto sumImpl(const Arg1& arg1, const Arg2& arg2){
+constexpr inline auto sumImpl(const Arg1& arg1, const Arg2& arg2){
   return arg1 + arg2;
 }
 
@@ -38,12 +38,12 @@ constexpr auto sumImpl(const Arg& arg, const Args&... args){
 }
 
 template<typename T, VCCC_ENABLE_IF(std::is_class<std::decay_t<T>>::value)>
-constexpr auto default_value() {
+constexpr inline auto default_value() {
   return std::decay_t<T>();
 }
 
 template<typename T, VCCC_ENABLE_IF(!std::is_class<std::decay_t<T>>::value)>
-constexpr auto default_value() {
+constexpr inline auto default_value() {
   return static_cast<std::decay_t<T>>(0);
 }
 
@@ -96,7 +96,7 @@ sum(InputIterator first, InputIterator last, UnaryOperation unary_op)
 @return         sum
 */
 template<typename ...Args, VCCC_ENABLE_IF(!iterable<Args...>)>
-constexpr
+constexpr inline
 auto
 sum(const Args&... args)
 {
@@ -109,7 +109,7 @@ sum(const Args&... args)
 @return         sum
 */
 template<typename UnaryOperation, typename Arg>
-constexpr
+constexpr inline
 auto
 sum_custom(const UnaryOperation& unary_op, const Arg& arg)
 {
@@ -117,7 +117,7 @@ sum_custom(const UnaryOperation& unary_op, const Arg& arg)
 }
 
 template<typename UnaryOperation, typename Arg, typename ...Args>
-constexpr
+constexpr inline
 auto
 sum_custom(const UnaryOperation& unary_op, const Arg& arg, const Args&... args)
 {

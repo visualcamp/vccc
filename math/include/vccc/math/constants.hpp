@@ -38,7 +38,7 @@ namespace math_constant {
  * @tparam T
  */
 template<typename T>
-constexpr auto e = 2.71828182845904523536028747135266250;
+constexpr T e = static_cast<T>(2.71828182845904523536028747135266250);
 
 //template<typename T>
 //constexpr auto log2e = 1.44269504088896340735992468100189214;

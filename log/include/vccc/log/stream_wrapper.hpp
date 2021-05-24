@@ -110,24 +110,29 @@ class StreamWrapper {
   void write(const std::chrono::time_point<std::chrono::system_clock, Duration>& time_point);
 
   template<typename Clock, typename Duration>
-  inline void write(const std::chrono::time_point<Clock, Duration>& time_point)
-  { stream_ << "+"; write(time_point.time_since_epoch());}
+  inline void write(const std::chrono::time_point<Clock, Duration>& time_point) {
+    stream_ << "+";
+    write(time_point.time_since_epoch());
+  }
 
   void write(const std::time_t* tt);
 
 
   // tuple-like types
   template<typename ...Ts>
-  inline void write(const std::tuple<Ts...>& value)
-  { writeTuple(value, std::index_sequence_for<Ts...>{});}
+  inline void write(const std::tuple<Ts...>& value) {
+    writeTuple(value, std::index_sequence_for<Ts...>{});
+  }
 
   template<typename ...Ts>
-  inline void writeTuple(const std::tuple<Ts...>& value, std::index_sequence<>)
-  { stream_ << "{}"; }
+  inline void writeTuple(const std::tuple<Ts...>& value, std::index_sequence<>) {
+    stream_ << "{}";
+  }
 
   template<typename ...Ts>
-  inline void writeTuple(const std::tuple<Ts...>& value, std::index_sequence<0>)
-  { stream_ << "{ " << std::get<0>(value) << " }"; }
+  inline void writeTuple(const std::tuple<Ts...>& value, std::index_sequence<0>) {
+    stream_ << "{ " << std::get<0>(value) << " }";
+  }
 
   template<typename ...Ts, std::size_t ...I>
   void writeTuple(const std::tuple<Ts...>& value, std::index_sequence<0, I...>);
@@ -138,7 +143,9 @@ class StreamWrapper {
 
   // integer sequence
   template<typename T, T ...v>
-  inline void write(const std::integer_sequence<T, v...>&) { write(std::make_tuple(v...)); }
+  inline void write(const std::integer_sequence<T, v...>&) {
+    write(std::make_tuple(v...));
+  }
 };
 
 template<typename Stream>

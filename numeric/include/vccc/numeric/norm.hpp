@@ -31,7 +31,7 @@ namespace vccc{
 @return norm
  */
 template<typename InputIterator, VCCC_ENABLE_IF(iterable<InputIterator>)>
-auto
+inline auto
 norm(InputIterator first, InputIterator last)
 {
   return std::sqrt(square_sum(first, last));
@@ -39,7 +39,7 @@ norm(InputIterator first, InputIterator last)
 
 //! @cond ignored
 template<typename Arg, VCCC_ENABLE_IF(!iterable<Arg>)>
-auto
+inline auto
 norm(Arg arg)
 {
   return std::abs(arg);
@@ -52,7 +52,7 @@ norm(Arg arg)
 @return norm
  */
 template<typename Arg, typename ...Args, VCCC_ENABLE_IF((!iterable<Arg, Args...>))>
-auto
+inline auto
 norm(Arg arg, Args... args)
 {
   return std::sqrt(square_sum(arg, args...));

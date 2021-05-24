@@ -24,7 +24,7 @@ If new size is bigger than current type, the rest is filled with zeros.
 @return             resized data
  */
 template<int new_size, typename T, int old_size>
-auto resize(const cv::Vec<T, old_size>& from)
+inline auto resize(const cv::Vec<T, old_size>& from)
 {
   return convert_to<cv::Vec<T, new_size>>(from);
 }
@@ -41,7 +41,7 @@ This does not fill automatically.
 @return             resized data
  */
 template<int new_size, typename T, typename = void_t<decltype(std::declval<T>().resize(new_size))>>
-decltype(auto) resize(T&& t)
+inline decltype(auto) resize(T&& t)
 {
   auto copy_or_same = std::forward<T>(t);
   copy_or_same.resize(new_size);

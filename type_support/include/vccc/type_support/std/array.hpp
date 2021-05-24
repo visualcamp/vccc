@@ -19,7 +19,7 @@ Index-based value accessor
 @{
 */
 template<std::size_t i, typename T, int n>
-constexpr
+constexpr inline
 decltype(auto)
 at(std::array<T, n>& arr) {
   static_assert(i < n, "Index out of bounds in vccc::at<> (std::array)");
@@ -27,7 +27,7 @@ at(std::array<T, n>& arr) {
 }
 
 template<std::size_t i, typename T, int n>
-constexpr
+constexpr inline
 decltype(auto)
 at(const std::array<T, n>& arr) {
   static_assert(i < n, "Index out of bounds in vccc::at<> (const std::array)");
@@ -35,7 +35,7 @@ at(const std::array<T, n>& arr) {
 }
 
 template<std::size_t i, typename T, int n>
-constexpr
+constexpr inline
 T&&
 at(std::array<T, n>&& arr) {
   static_assert(i < n, "Index out of bounds in vccc::at<> (std::array&&)");
@@ -43,7 +43,7 @@ at(std::array<T, n>&& arr) {
 }
 
 template<std::size_t i, typename T, int n>
-constexpr
+constexpr inline
 const T&&
 at(const std::array<T, n>&& arr) {
   static_assert(i < n, "Index out of bounds in vccc::at<> (const std::array&&)");

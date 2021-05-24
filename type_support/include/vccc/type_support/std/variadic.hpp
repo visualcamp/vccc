@@ -22,7 +22,7 @@ Index-based value accessor
 template<std::size_t i,
          typename ...Args,
          std::enable_if_t<(i < sizeof...(Args)), int> = 0>
-constexpr
+inline
 decltype(auto)
 variadic_at(Args&&... args){
   return std::get<i>(std::forward_as_tuple(std::forward<Args>(args)...));

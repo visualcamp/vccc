@@ -16,7 +16,7 @@ namespace vccc{
 //! @cond ignored
 namespace detail{ namespace math{
 template<typename T, typename DifferentialCategory, typename Func, typename VarTuple, std::size_t ...I, typename ...Args>
-auto
+inline auto
 gradientImpl(Func f, VarTuple vars, std::index_sequence<I...>, Args&&... args)
 {
   return std::make_tuple(
@@ -41,7 +41,7 @@ gradientImpl(Func f, VarTuple vars, std::index_sequence<I...>, Args&&... args)
  */
 template<typename T, typename DifferentialCategory = differential_symmetric_t,
     typename Func, typename ...Vars, typename ...Args>
-auto
+inline auto
 gradient(Func f, std::tuple<Vars...> vars, Args&&... args)
 {
   static_assert(!vccc::are_<std::is_reference<Vars>...>::value, "tuple element of vars must not be a reference vccc::gradient<>");

@@ -50,7 +50,7 @@ struct cv_size<cv::Point_<T>> : cv_size_n<2> {};
 
 // index = 0
 template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
-constexpr
+constexpr inline
 T&
 at(cv::Point_<T>& point2)
 {
@@ -58,7 +58,7 @@ at(cv::Point_<T>& point2)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
-constexpr
+constexpr inline
 const T&
 at(const cv::Point_<T>& point2)
 {
@@ -66,7 +66,7 @@ at(const cv::Point_<T>& point2)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
-constexpr
+constexpr inline
 T&&
 at(cv::Point_<T>&& point2)
 {
@@ -74,7 +74,7 @@ at(cv::Point_<T>&& point2)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
-constexpr
+constexpr inline
 const T&&
 at(const cv::Point_<T>&& point2)
 {
@@ -83,7 +83,7 @@ at(const cv::Point_<T>&& point2)
 
 // index = 1
 template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
-constexpr
+constexpr inline
 T&
 at(cv::Point_<T>& point2)
 {
@@ -91,7 +91,7 @@ at(cv::Point_<T>& point2)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
-constexpr
+constexpr inline
 const T&
 at(const cv::Point_<T>& point2)
 {
@@ -99,7 +99,7 @@ at(const cv::Point_<T>& point2)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
-constexpr
+constexpr inline
 T&&
 at(cv::Point_<T>&& point2)
 {
@@ -107,7 +107,7 @@ at(cv::Point_<T>&& point2)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
-constexpr
+constexpr inline
 const T&&
 at(const cv::Point_<T>&& point2)
 {

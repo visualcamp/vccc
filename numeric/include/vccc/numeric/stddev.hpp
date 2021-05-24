@@ -34,7 +34,7 @@ namespace vccc {
  */
 template<typename InputIterator, typename T,
          VCCC_ENABLE_IF(iterable < InputIterator >)>
-auto
+inline auto
 stddev(InputIterator first, InputIterator last, T avg)
 {
   return std::sqrt(
@@ -51,7 +51,7 @@ stddev(InputIterator first, InputIterator last, T avg)
 @return standard deviation
  */
 template<typename InputIterator, VCCC_ENABLE_IF(iterable<InputIterator>)>
-auto
+inline auto
 stddev(InputIterator first, InputIterator last)
 {
   return stddev(first, last, average(first, last));
@@ -64,7 +64,7 @@ stddev(InputIterator first, InputIterator last)
 @return standard deviation
  */
 template<typename ...Numbers, VCCC_ENABLE_IF(!iterable<Numbers...>)>
-auto
+inline auto
 stddev(Numbers... numbers)
 {
   return std::sqrt(

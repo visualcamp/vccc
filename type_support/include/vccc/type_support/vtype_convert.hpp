@@ -34,7 +34,7 @@ namespace vccc{
  */
 template<typename NewType, template<typename, int...> class CVType, typename OldType, int ...CVParams,
          VCCC_ENABLE_IF((!std::is_same<NewType, OldType>::value))>
-decltype(auto) vtype_convert(const CVType<OldType, CVParams...>& cv_type)
+inline decltype(auto) vtype_convert(const CVType<OldType, CVParams...>& cv_type)
 {
   return convert_to<CVType<NewType, CVParams...>>(cv_type);
 }
@@ -42,13 +42,13 @@ decltype(auto) vtype_convert(const CVType<OldType, CVParams...>& cv_type)
 
 //! @cond ignored
 template<typename NewType, template<typename, int...> class CVType, int ...CVParams>
-decltype(auto) vtype_convert(const CVType<NewType, CVParams...>& cv_type)
+inline decltype(auto) vtype_convert(const CVType<NewType, CVParams...>& cv_type)
 {
   return cv_type;
 }
 
 template<typename NewType, template<typename, int...> class CVType, int ...CVParams>
-decltype(auto) vtype_convert(CVType<NewType, CVParams...>&& cv_type)
+inline decltype(auto) vtype_convert(CVType<NewType, CVParams...>&& cv_type)
 {
   return cv_type;
 }
@@ -75,14 +75,14 @@ decltype(auto) vtype_convert(const Container<OldType, Params...>& container)
 
 template<typename NewType, template<typename...> class Container, typename ...Params,
         VCCC_ENABLE_IF((is_container_v<Container<NewType, Params...>>))>
-decltype(auto) vtype_convert(const Container<NewType, Params...>& container)
+inline decltype(auto) vtype_convert(const Container<NewType, Params...>& container)
 {
   return container;
 }
 
 template<typename NewType, template<typename...> class Container, typename ...Params,
         VCCC_ENABLE_IF((is_container_v<Container<NewType, Params...>>))>
-decltype(auto) vtype_convert(Container<NewType, Params...>&& container)
+inline decltype(auto) vtype_convert(Container<NewType, Params...>&& container)
 {
   return container;
 }
@@ -106,7 +106,7 @@ decltype(auto) vtype_convert(const Container<OldType, Params...>& container, Fun
 
 template<typename NewType, template<typename...> class Container, typename ...Params, typename UnaryOperation,
         VCCC_ENABLE_IF((is_container_v<Container<NewType, Params...>>))>
-decltype(auto) vtype_convert(const Container<NewType, Params...>& container, UnaryOperation func)
+inline decltype(auto) vtype_convert(const Container<NewType, Params...>& container, UnaryOperation func)
 {
   return container;
 }
@@ -126,14 +126,14 @@ vtype_convert(const std::array<OldType, n>& container)
 }
 
 template<typename NewType, std::size_t n>
-constexpr decltype(auto)
+constexpr inline decltype(auto)
 vtype_convert(const std::array<NewType, n>& container)
 {
   return container;
 }
 
 template<typename NewType, std::size_t n>
-constexpr decltype(auto)
+constexpr inline decltype(auto)
 vtype_convert(std::array<NewType, n>&& container)
 {
   return container;

@@ -21,7 +21,7 @@ namespace vccc{
 
 // TODO: rename this to be meant 'machine epsilon for numerical derivation'
 template<typename T>
-auto
+inline auto
 epsilon()
 {
   static const auto e = std::cbrt(std::numeric_limits<T>::epsilon());

@@ -10,4 +10,4 @@
 # define VCCC_LOG_TAG_WARN  "SeeSo Warn  | "
 # define VCCC_LOG_TAG_ERROR "SeeSo Error | "
 #
-# endif //VCCC_LOG_INCLUDE_VCCC_LOG_DETAIL_TAG_H_
+# endif //VCCC_LOG_DETAIL_TAG_H_

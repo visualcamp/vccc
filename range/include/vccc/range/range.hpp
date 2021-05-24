@@ -32,29 +32,29 @@ class range {
     : container((b-a) * incr > 0 ? (std::abs(b-a) - 1) / std::abs(incr) + 1 : 0)
     { fill(begin(), end(), a, incr); }
 
-  decltype(auto) begin() { return container.begin(); }
-  decltype(auto) begin() const { return container.begin(); }
-  decltype(auto) cbegin() { return container.cbegin(); }
-  decltype(auto) cbegin() const { return container.cbegin(); }
-  decltype(auto) rbegin() { return container.rbegin(); }
-  decltype(auto) rbegin() const { return container.rbegin(); }
-  decltype(auto) crbegin() { return container.crbegin(); }
-  decltype(auto) crbegin() const { return container.crbegin(); }
+  inline decltype(auto) begin() { return container.begin(); }
+  inline decltype(auto) begin() const { return container.begin(); }
+  inline decltype(auto) cbegin() { return container.cbegin(); }
+  inline decltype(auto) cbegin() const { return container.cbegin(); }
+  inline decltype(auto) rbegin() { return container.rbegin(); }
+  inline decltype(auto) rbegin() const { return container.rbegin(); }
+  inline decltype(auto) crbegin() { return container.crbegin(); }
+  inline decltype(auto) crbegin() const { return container.crbegin(); }
 
-  decltype(auto) end() { return container.end(); }
-  decltype(auto) end() const { return container.end(); }
-  decltype(auto) cend() { return container.cend(); }
-  decltype(auto) cend() const { return container.cend(); }
-  decltype(auto) rend() { return container.rend(); }
-  decltype(auto) rend() const { return container.rend(); }
-  decltype(auto) crend() { return container.crend(); }
-  decltype(auto) crend() const { return container.crend(); }
+  inline decltype(auto) end() { return container.end(); }
+  inline decltype(auto) end() const { return container.end(); }
+  inline decltype(auto) cend() { return container.cend(); }
+  inline decltype(auto) cend() const { return container.cend(); }
+  inline decltype(auto) rend() { return container.rend(); }
+  inline decltype(auto) rend() const { return container.rend(); }
+  inline decltype(auto) crend() { return container.crend(); }
+  inline decltype(auto) crend() const { return container.crend(); }
 
-  operator Container() & {
+  inline operator Container() & {
     return container;
   }
 
-  operator Container() && {
+  inline operator Container() && {
     return std::move(container);
   }
 

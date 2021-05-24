@@ -12,14 +12,14 @@
 namespace vccc{ namespace detail{ namespace math{
 
 template<typename Func, typename Tuple, std::size_t ...I, typename ...Args>
-decltype(auto)
+constexpr inline decltype(auto)
 applyTupleAndVariadicsImpl(Func&& f, Tuple&& tuple, std::index_sequence<I...>, Args&&... args)
 {
   return std::forward<Func>(f)(std::get<I>(std::forward<Tuple>(tuple))..., std::forward<Args>(args)...);
 }
 
 template<typename Func, typename Tuple, typename ...Args>
-decltype(auto)
+constexpr inline decltype(auto)
 applyTupleAndVariadics(Func&& f, Tuple&& tup, Args&&... args)
 {
   return applyTupleAndVariadicsImpl(std::forward<Func>(f),

@@ -73,7 +73,7 @@ Note:
 */
 template<typename ...Numbers,
          VCCC_ENABLE_IF(are_arithmetic_v<Numbers...>)>
-constexpr
+constexpr inline
 auto
 average(Numbers... numbers)
 {
@@ -89,7 +89,7 @@ average(Numbers... numbers)
 */
 template<typename ...Ints,
          VCCC_ENABLE_IF(are_integral_v<Ints...>)>
-constexpr
+constexpr inline
 auto
 int_average(Ints... ints)
 {
@@ -104,7 +104,7 @@ int_average(Ints... ints)
 */
 template<typename ...Args,
          VCCC_ENABLE_IF(!iterable<Args...> && !are_arithmetic_v<Args...>)>
-constexpr
+constexpr inline
 auto
 average(const Args&... args)
 {

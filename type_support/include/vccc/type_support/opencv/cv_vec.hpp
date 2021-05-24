@@ -36,7 +36,7 @@ struct cv_size<cv::Vec<T, cn>> : cv_size_n<cn> {};
 */
 
 template<std::size_t i, typename T, int n>
-constexpr
+constexpr inline
 T&
 at(cv::Vec<T, n>& vec)
 {
@@ -45,7 +45,7 @@ at(cv::Vec<T, n>& vec)
 }
 
 template<std::size_t i, typename T, int n>
-constexpr
+constexpr inline
 const T&
 at(const cv::Vec<T, n>& vec)
 {
@@ -54,7 +54,7 @@ at(const cv::Vec<T, n>& vec)
 }
 
 template<std::size_t i, typename T, int n>
-constexpr
+constexpr inline
 T&&
 at(cv::Vec<T, n>&& vec)
 {
@@ -63,7 +63,7 @@ at(cv::Vec<T, n>&& vec)
 }
 
 template<std::size_t i, typename T, int n>
-constexpr
+constexpr inline
 const T&&
 at(const cv::Vec<T, n>&& vec)
 {

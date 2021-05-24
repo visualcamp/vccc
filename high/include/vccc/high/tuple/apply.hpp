@@ -22,7 +22,7 @@ namespace vccc{
  */
 
 template<class F, class Tuple>
-constexpr
+constexpr inline
 decltype(auto)
 apply(F&& f, Tuple&& t) {
   return detail::apply_impl(

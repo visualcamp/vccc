@@ -42,7 +42,7 @@ struct cv_size<cv::Matx<T, m, n>> : cv_size_n<m*n> {};
 
 template<std::size_t i, std::size_t j,
          typename T, int m, int n>
-constexpr
+constexpr inline
 T&
 at(cv::Matx<T, m, n>& matx)
 {
@@ -53,7 +53,7 @@ at(cv::Matx<T, m, n>& matx)
 
 template<std::size_t i, std::size_t j,
     typename T, int m, int n>
-constexpr
+constexpr inline
 const T&
 at(const cv::Matx<T, m, n>& matx)
 {
@@ -64,7 +64,7 @@ at(const cv::Matx<T, m, n>& matx)
 
 template<std::size_t i, std::size_t j,
     typename T, int m, int n>
-constexpr
+constexpr inline
 T&&
 at(cv::Matx<T, m, n>&& matx)
 {
@@ -75,7 +75,7 @@ at(cv::Matx<T, m, n>&& matx)
 
 template<std::size_t i, std::size_t j,
     typename T, int m, int n>
-constexpr
+constexpr inline
 const T&&
 at(const cv::Matx<T, m, n>&& matx)
 {
@@ -87,7 +87,7 @@ at(const cv::Matx<T, m, n>&& matx)
 
 template<std::size_t i,
     typename T, int m, int n>
-constexpr
+constexpr inline
 T&
 at(cv::Matx<T, m, n>& matx)
 {
@@ -98,7 +98,7 @@ at(cv::Matx<T, m, n>& matx)
 
 template<std::size_t i,
     typename T, int m, int n>
-constexpr
+constexpr inline
 const T&
 at(const cv::Matx<T, m, n>& matx)
 {
@@ -109,7 +109,7 @@ at(const cv::Matx<T, m, n>& matx)
 
 template<std::size_t i,
     typename T, int m, int n>
-constexpr
+constexpr inline
 T&&
 at(cv::Matx<T, m, n>&& matx)
 {
@@ -120,7 +120,7 @@ at(cv::Matx<T, m, n>&& matx)
 
 template<std::size_t i,
     typename T, int m, int n>
-constexpr
+constexpr inline
 const T&&
 at(const cv::Matx<T, m, n>&& matx)
 {

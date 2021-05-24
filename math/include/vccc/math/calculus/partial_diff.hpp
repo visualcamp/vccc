@@ -32,9 +32,7 @@ namespace vccc{
 
 template<std::size_t i,
          typename Tuple, typename T>
-inline
-constexpr
-auto
+constexpr inline auto
 addEpsilon(Tuple vars, T epsilon)
 {
   std::get<i>(vars) += std::get<i>(vars) == 0 ? epsilon : std::get<i>(vars) * epsilon;

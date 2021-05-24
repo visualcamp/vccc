@@ -38,7 +38,7 @@ struct cv_size<cv::Point3_<T>> : cv_size_n<3> {};
 
 // index = 0
 template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
-constexpr
+constexpr inline
 T&
 at(cv::Point3_<T>& point3)
 {
@@ -46,7 +46,7 @@ at(cv::Point3_<T>& point3)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
-constexpr
+constexpr inline
 const T&
 at(const cv::Point3_<T>& point3)
 {
@@ -54,7 +54,7 @@ at(const cv::Point3_<T>& point3)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
-constexpr
+constexpr inline
 T&&
 at(cv::Point3_<T>&& point3)
 {
@@ -62,7 +62,7 @@ at(cv::Point3_<T>&& point3)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==0, int> = 0>
-constexpr
+constexpr inline
 const T&&
 at(const cv::Point3_<T>&& point3)
 {
@@ -71,7 +71,7 @@ at(const cv::Point3_<T>&& point3)
 
 // index = 1
 template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
-constexpr
+constexpr inline
 T&
 at(cv::Point3_<T>& point3)
 {
@@ -79,7 +79,7 @@ at(cv::Point3_<T>& point3)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
-constexpr
+constexpr inline
 const T&
 at(const cv::Point3_<T>& point3)
 {
@@ -87,7 +87,7 @@ at(const cv::Point3_<T>& point3)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
-constexpr
+constexpr inline
 T&&
 at(cv::Point3_<T>&& point3)
 {
@@ -95,7 +95,7 @@ at(cv::Point3_<T>&& point3)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==1, int> = 0>
-constexpr
+constexpr inline
 const T&&
 at(const cv::Point3_<T>&& point3)
 {
@@ -104,7 +104,7 @@ at(const cv::Point3_<T>&& point3)
 
 // index = 2
 template<std::size_t i, typename T, std::enable_if_t<i==2, int> = 0>
-constexpr
+constexpr inline
 T&
 at(cv::Point3_<T>& point3)
 {
@@ -112,7 +112,7 @@ at(cv::Point3_<T>& point3)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==2, int> = 0>
-constexpr
+constexpr inline
 const T&
 at(const cv::Point3_<T>& point3)
 {
@@ -120,7 +120,7 @@ at(const cv::Point3_<T>& point3)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==2, int> = 0>
-constexpr
+constexpr inline
 T&&
 at(cv::Point3_<T>&& point3)
 {
@@ -128,7 +128,7 @@ at(cv::Point3_<T>&& point3)
 }
 
 template<std::size_t i, typename T, std::enable_if_t<i==2, int> = 0>
-constexpr
+constexpr inline
 const T&&
 at(const cv::Point3_<T>&& point3)
 {
@@ -140,7 +140,7 @@ at(const cv::Point3_<T>&& point3)
 /** add */
 
 template<typename T, typename N>
-cv::Point3_<T> add(const cv::Point3_<T>& point3, N n)
+inline cv::Point3_<T> add(const cv::Point3_<T>& point3, N n)
 {
   return cv::Point3_<T>(point3.x + n, point3.y + n, point3.z + n);
 }
@@ -149,12 +149,12 @@ cv::Point3_<T> add(const cv::Point3_<T>& point3, N n)
 /** resize */
 
 template<int new_size, typename T, VCCC_ENABLE_IF(new_size==2)>
-auto resize(const cv::Point3_<T>& from){
+inline auto resize(const cv::Point3_<T>& from){
   return cv::Point_<T>(from.x, from.y);
 }
 
 template<int new_size, typename T, VCCC_ENABLE_IF(new_size==3)>
-auto resize(const cv::Point3_<T>& from){
+inline auto resize(const cv::Point3_<T>& from){
   return from;
 }
 
