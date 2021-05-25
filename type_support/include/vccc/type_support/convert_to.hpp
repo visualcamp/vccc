@@ -95,8 +95,8 @@ convert_to(const From& from)
 /**
 @brief converting to same type
  */
-inline template<typename To> decltype(auto) convert_to(      To&& from) { return std::forward<To>(from); }
-inline template<typename To>             To convert_to(const To&  from) { return from; }
+template<typename To> inline decltype(auto) convert_to(      To&& from) { return std::forward<To>(from); }
+template<typename To> inline To             convert_to(const To&  from) { return from; }
 
 //! @} type_support_cvtto
 
