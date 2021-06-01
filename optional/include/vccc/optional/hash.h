@@ -20,8 +20,8 @@ struct hash<vccc::optional<T>> : vccc::internal::optional::hash_constructible<st
   using argument_type = vccc::optional<T>;
   using result_type = std::size_t;
 
-  inline result_type operator()(const argument_type& key) const {
-    return key.has_value() ? hash<std::remove_const_t<T>>(*key) : 0;
+  result_type operator()(const argument_type& key) const {
+    return key.has_value() ? ::std::hash<std::remove_const_t<T>>()(*key) : 0;
   }
 };
 

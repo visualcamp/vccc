@@ -81,7 +81,6 @@ int main() {
   static_assert(std::is_constructible<optional<MoveConstructableTrivially>, optional<MoveConstructableTrivially>&&>::value, "");
   static_assert(std::is_constructible<optional<MoveConstructableButNotTrivial>, optional<MoveConstructableButNotTrivial>&&>::value, "");
   static_assert(std::is_constructible<optional<MoveConstructableForbidden>, optional<MoveConstructableForbidden>&&>::value, "");
-  static_assert(std::is_constructible<optional<int>, const optional<CopyConstructableForbidden>&>::value, "");
 
   static_assert(std::is_trivially_move_constructible<optional<MoveConstructableTrivially>>::value, "");
   MoveConstructableForbidden m;
