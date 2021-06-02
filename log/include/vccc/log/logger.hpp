@@ -33,6 +33,25 @@ class Logger {
   using c_printable = std::true_type;
   using not_c_printable = std::false_type;
 
+  Logger() = default;
+  Logger(Logger const& other)
+    : buffer(other.buffer) {
+    out.stream().str(other.out.stream().str());
+  }
+  Logger(Logger&& other)
+    : buffer(std::move(other.buffer)), out(std::move(other.out)) {}
+
+  Logger& operator=(Logger const& other) {
+    buffer = other.buffer;
+    out.stream().str(other.out.stream().str());
+    return *this;
+  }
+  Logger& operator=(Logger && other) {
+    buffer = std::move(other.buffer);
+    out = std::move(other.out);
+    return *this;
+  }
+
   template<typename ...Args>
   Logger(const Args&... args) {
     addImpl(detail::are_types_c_printable_t<Args...>{}, args...);

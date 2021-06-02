@@ -15,8 +15,13 @@
 # include <ratio>
 # include <functional>
 # include <mutex>
+#
 # include "vccc/log/ios_flags_saver.hpp"
 # include "vccc/type_traits.hpp"
+#
+# if __cplusplus >= 201703
+#   include "boost/pfr.hpp"
+# endif
 
 
 namespace vccc {
@@ -81,6 +86,33 @@ class StreamWrapper {
   template<typename T>
   inline void try_write(not_default_printable_t, const T& value) { write(value); }
 
+#if __cplusplus >= 201703
+  // any aggregate type
+  template<typename T, std::enable_if_t<!is_container_v<T> && std::is_aggregate_v<T>, int> = 0>
+  void write(const T& aggr) {
+    writeAggregate(aggr, std::make_index_sequence<boost::pfr::tuple_size_v<T>>{});
+  }
+
+  template<typename T>
+  void writeAggregate(const T& aggr, std::index_sequence<>) {
+    stream_ << "{}";
+  }
+
+  template<typename T>
+  void writeAggregate(const T& aggr, std::index_sequence<0>) {
+    stream_ << "{ ";
+    (*this) << boost::pfr::get<0>(aggr);
+    stream_ << " }";
+  }
+
+  template<typename T, std::size_t ...I>
+  void writeAggregate(const T& aggr, std::index_sequence<0, I...>) {
+    stream_ << "{ ";
+    (*this) << boost::pfr::get<0>(aggr);
+    (((*this) << ", " << boost::pfr::get<I>(aggr) ), ...);
+    stream_ << " }";
+  }
+#endif
 
   // container types
   template<typename T, VCCC_ENABLE_IF_FORWARD(is_container_v<T>)>
