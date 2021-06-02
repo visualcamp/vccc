@@ -7,4 +7,4 @@ macro(MAKE_TEST name target)
     add_test(NAME ${name} COMMAND ${name})
 endmacro()
 
-MAKE_TEST(experimental_signal_test signal_test.cc VCCC::experimental VCCC::optional)
+MAKE_TEST(experimental_signal_test signal_test.cc VCCC::experimental VCCC::optional VCCC::log)

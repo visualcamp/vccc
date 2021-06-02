@@ -12,6 +12,7 @@
 # include <utility>
 #
 # include "vccc/experimental/signal/connection.h"
+# include "vccc/experimental/signal/forward_declare.h"
 # include "vccc/experimental/signal/slot_group.h"
 #
 # include "vccc/optional.hpp"
@@ -20,11 +21,14 @@ namespace vccc {
 namespace experimental {
 namespace signal {
 
-template<typename F, typename Group = int>
-class signal;
+//class signal_impl_base {
+// public:
+//  virtual void disconnect()
+//};
 
 template<typename R, typename ...Args, typename Group>
-class signal<R(Args...), Group> {
+class signal_impl<R(Args...), Group> :
+  public std::enable_shared_from_this<signal_impl<R(Args...), Group>> {
   template<typename T>
   using is_void_return_type = typename std::is_void<R>::type;
   using void_return_type = std::true_type;
@@ -37,17 +41,19 @@ class signal<R(Args...), Group> {
   using slot_list_type = grouped_slot_list<group_type, slot_type>;
   using weak_slot_list = typename slot_list_type::weak_vector;
   using weak_iterator = typename weak_slot_list::iterator;
-  using connection_body = connection_impl<group_type, slot_type>;
   using token_type = typename slot_list_type::insert_token;
+  using connection_body = connection_impl<signal_impl<R(Args...), Group>, token_type>;
+
+  friend connection_body;
 
   enum {
     arity = sizeof...(Args),
   };
 
-  signal()
+  signal_impl()
     : slot_list_(std::make_shared<slot_list_type>()) {}
 
-  connection connect(const slot_type& slot, position pos = at_back) {
+  connection connect(const slot_type& slot, position pos) {
     std::lock_guard<std::mutex> lck(slot_mutex_);
 
     std::shared_ptr<connection_impl_base> new_connection
@@ -56,7 +62,7 @@ class signal<R(Args...), Group> {
     return connection(new_connection);
   }
 
-  connection connect(group_type group, const slot_type& slot, position pos = at_back) {
+  connection connect(group_type group, const slot_type& slot, position pos) {
     std::lock_guard<std::mutex> lck(slot_mutex_);
 
     std::shared_ptr<connection_impl_base> new_connection
@@ -74,7 +80,12 @@ class signal<R(Args...), Group> {
   }
 
   void disconnect(group_type group) {
+    std::lock_guard<std::mutex> lck(slot_mutex_);
     slot_list_->remove(group);
+  }
+
+  auto size() const {
+    return slot_list_->size();
   }
 
   template<typename ...U>
@@ -88,8 +99,13 @@ class signal<R(Args...), Group> {
   }
 
  private:
-  std::shared_ptr<connection_body> make_new_connection(token_type&& token) const {
-    return std::make_shared<connection_body>(slot_list_, std::move(token));
+  void disconnect(connection_body& cbd, const token_type& token) {
+    std::lock_guard<std::mutex> lck(slot_mutex_);
+    slot_list_->remove(token);
+  }
+
+  std::shared_ptr<connection_body> make_new_connection(token_type&& token) {
+    return std::make_shared<connection_body>(this->shared_from_this(), std::move(token));
   }
 
   template<typename ...U>
@@ -124,6 +140,56 @@ class signal<R(Args...), Group> {
 
   std::shared_ptr<slot_list_type> slot_list_;
   mutable std::mutex slot_mutex_;
+};
+
+
+template<typename R, typename ...Args, typename Group>
+class signal<R(Args...), Group> {
+  using impl = signal_impl<R(Args...), Group>;
+ public:
+  using slot_type = typename impl::slot_type;
+  using group_type = Group;
+  using return_type = typename impl::return_type;
+
+  signal()
+    : pimpl_(std::make_shared<impl>()) {}
+
+  connection connect(const slot_type& slot, position pos = at_back) {
+    return pimpl_->connect(slot, pos);
+  }
+
+  connection connect(group_type group, const slot_type& slot, position pos = at_back) {
+    return pimpl_->connect(group, slot, pos);
+  }
+
+  void disconnect(connection& conn) const {
+    return pimpl_->disconnect(conn);
+  }
+
+  void disconnect(connection& conn) {
+    return pimpl_->disconnect(conn);
+  }
+
+  void disconnect(group_type group) {
+    return pimpl_->disconnect(group);
+  }
+
+  auto size() const {
+    return pimpl_->size();
+  }
+
+  template<typename ...U>
+  return_type operator()(U&&... args) {
+    return (*pimpl_)(std::forward<U>(args)...);
+  }
+
+  template<typename ...U>
+  return_type operator()(U&&... args) const {
+    return (*pimpl_)(std::forward<U>(args)...);
+  }
+
+ private:
+  std::shared_ptr<impl> pimpl_;
 };
 
 } // namespace signal
