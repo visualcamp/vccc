@@ -5,7 +5,7 @@
 # ifndef VCCC_TYPE_SUPPORT_OPENCV_CV_VEC_HPP
 # define VCCC_TYPE_SUPPORT_OPENCV_CV_VEC_HPP
 #
-# include "opencv2/core/types.hpp"
+# include "opencv2/opencv.hpp"
 # include "vccc/type_support/opencv/traits.hpp"
 
 namespace vccc{

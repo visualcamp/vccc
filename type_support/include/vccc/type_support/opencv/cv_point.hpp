@@ -6,7 +6,7 @@
 # define VCCC_TYPE_SUPPORT_OPENCV_CV_POINT_HPP
 #
 # include <type_traits>
-# include "opencv2/core/types.hpp"
+# include "opencv2/opencv.hpp"
 
 namespace vccc{
 //
