@@ -8,7 +8,11 @@
 # if __cplusplus >= 201703L
 #   include "vccc/directory/directory.h"
 # else
-#   warning "vccc::directory requires at least C++17"
+#   if _MSC_VER
+#     pragma message ("vccc::directory requires at least C++17")
+#   else
+#     warning "vccc::directory requires at least C++17"
+#   endif
 # endif
 
 /**
