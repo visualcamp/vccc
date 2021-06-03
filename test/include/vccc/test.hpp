@@ -26,6 +26,9 @@ struct TestCounter {
     return expr;
   }
   inline void addFail(std::string location, std::string name="") {
+    std::stringstream ss;
+    ss << location << " " << name << "failed" << '\n';
+    std::cerr << ss.str();
     ++num_failed;
     failed_locations.push_back({std::move(location), std::move(name)});
   }
