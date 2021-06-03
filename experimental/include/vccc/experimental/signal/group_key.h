@@ -11,7 +11,6 @@
 
 namespace vccc {
 namespace experimental {
-namespace signal {
 
 enum group_category { ungrouped_front, grouped, ungrouped_back };
 
@@ -58,7 +57,6 @@ struct group_key_compare {
   }
 };
 
-} // namespace signal
 } // namespace experimental
 } // namespace signal
 

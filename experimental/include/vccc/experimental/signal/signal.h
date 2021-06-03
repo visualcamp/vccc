@@ -19,7 +19,6 @@
 
 namespace vccc {
 namespace experimental {
-namespace signal {
 
 //class signal_impl_base {
 // public:
@@ -54,7 +53,7 @@ class signal_impl<R(Args...), Group> :
   signal_impl()
     : slot_list_(std::make_shared<slot_list_type>()) {}
 
-  connection connect(const slot_type& slot, position pos) {
+  connection connect(const slot_type& slot, slot_position pos) {
     std::lock_guard<std::mutex> lck(slot_mutex_);
 
     std::shared_ptr<connection_impl_base> new_connection
@@ -63,7 +62,7 @@ class signal_impl<R(Args...), Group> :
     return connection(new_connection);
   }
 
-  connection connect(group_type group, const slot_type& slot, position pos) {
+  connection connect(group_type group, const slot_type& slot, slot_position pos) {
     std::lock_guard<std::mutex> lck(slot_mutex_);
 
     std::shared_ptr<connection_impl_base> new_connection
@@ -166,11 +165,11 @@ class signal<R(Args...), Group> {
   signal()
     : pimpl_(std::make_shared<impl>()) {}
 
-  connection connect(const slot_type& slot, position pos = at_back) {
+  connection connect(const slot_type& slot, slot_position pos = at_back) {
     return pimpl_->connect(slot, pos);
   }
 
-  connection connect(group_type group, const slot_type& slot, position pos = at_back) {
+  connection connect(group_type group, const slot_type& slot, slot_position pos = at_back) {
     return pimpl_->connect(group, slot, pos);
   }
 
@@ -208,7 +207,6 @@ class signal<R(Args...), Group> {
   std::shared_ptr<impl> pimpl_;
 };
 
-} // namespace signal
 } // namespace experimental
 } // namespace signal
 

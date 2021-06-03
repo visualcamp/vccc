@@ -13,7 +13,7 @@
 #include "vccc/log.hpp"
 
 using namespace std::chrono_literals;
-namespace signal2 = vccc::experimental::signal;
+namespace signal2 = vccc::experimental;
 
 int main() {
   INIT_TEST("vccc::experimental::signal")
@@ -29,7 +29,7 @@ int main() {
   };
 
   { // basic call operation test
-    vccc::experimental::signal::signal<void()> signal;
+    vccc::experimental::signal<void()> signal;
 
     TEST_ENSURES((signal(), true));
 
@@ -112,11 +112,11 @@ int main() {
 //  }
 
   { // call & disconnect thread-safety test
-    vccc::experimental::signal::signal<void()> signal;
+    vccc::experimental::signal<void()> signal;
     std::atomic_int called{0};
     int test_count = 100000;
     for(int i=0; i<test_count; ++i) {
-      vccc::experimental::signal::connection conn = signal.connect([&]{++called;});
+      vccc::experimental::connection conn = signal.connect([&]{++called;});
       std::thread t2([&] { for(int i=0; i<dist(gen); ++i) std::this_thread::yield(); signal(); });
       std::thread t1([&] { conn.disconnect(); });
       std::thread t3([&] { conn.disconnect(); });
@@ -130,7 +130,7 @@ int main() {
   }
 
   { // call & connect & disconnect thread-safety test
-    vccc::experimental::signal::signal<void()> signal;
+    vccc::experimental::signal<void()> signal;
     std::atomic_int called{0};
     std::atomic_int disconnected{0};
     std::atomic_int connected{0};
@@ -190,7 +190,7 @@ int main() {
   }
 
   { // return test
-    vccc::experimental::signal::signal<int()> sig;
+    vccc::experimental::signal<int()> sig;
     auto res = sig();
     TEST_ENSURES(res.has_value() == false);
 

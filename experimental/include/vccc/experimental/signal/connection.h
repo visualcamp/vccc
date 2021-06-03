@@ -14,7 +14,6 @@
 
 namespace vccc {
 namespace experimental {
-namespace signal {
 
 struct connection_impl_base {
   virtual ~connection_impl_base() = default;
@@ -74,7 +73,6 @@ class connection {
   std::shared_ptr<connection_impl_base> pimpl;
 };
 
-} // namespace signal
 } // namespace experimental
 } // namespace signal
 

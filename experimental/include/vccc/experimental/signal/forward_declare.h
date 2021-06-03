@@ -7,7 +7,6 @@
 
 namespace vccc {
 namespace experimental {
-namespace signal {
 
 class signal_impl_base;
 
@@ -17,7 +16,6 @@ class signal_impl;
 template<typename F, typename Group = int>
 class signal;
 
-} // namespace signal
 } // namespace experimental
 } // namespace vccc
 

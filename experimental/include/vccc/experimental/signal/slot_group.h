@@ -18,9 +18,8 @@
 
 namespace vccc {
 namespace experimental {
-namespace signal {
 
-enum position {
+enum slot_position {
   at_back, at_front,
 };
 
@@ -49,7 +48,7 @@ struct grouped_slot_list {
     : list_(), map_(group_key_compare_type {}) {}
 
   // insert grouped slot
-  insert_token insert(group_type group, slot_ptr_type slot, position pos = at_back) {
+  insert_token insert(group_type group, slot_ptr_type slot, slot_position pos = at_back) {
     group_key_type key(grouped, group);
     if (pos == at_back)
       return insert_back(key, std::move(slot));
@@ -58,7 +57,7 @@ struct grouped_slot_list {
   }
 
   // insert ungrouped slot
-  insert_token insert(slot_ptr_type slot, position pos = at_back) {
+  insert_token insert(slot_ptr_type slot, slot_position pos = at_back) {
     group_key_type key;
     if (pos == at_back) {
       key.group_token.first = ungrouped_back;
@@ -203,7 +202,6 @@ struct grouped_slot_list {
   map map_;
 };
 
-} // namespace signal
 } // namespace experimental
 } // namespace signal
 
