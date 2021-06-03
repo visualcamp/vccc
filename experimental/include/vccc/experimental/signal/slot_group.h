@@ -128,8 +128,8 @@ struct grouped_slot_list {
     }
   }
 
-  void remove_group(group_type group) {
-    auto g_pos = map_.find(group);
+  void remove_group(const group_key_type& group_key) {
+    auto g_pos = map_.find(group_key);
     if (g_pos == map_.end())
       return;
 

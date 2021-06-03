@@ -39,6 +39,7 @@ class signal_impl<R(Args...), Group> :
   using group_type = Group;
   using return_type = std::conditional_t<std::is_same<void, R>::value, void, vccc::optional<R>>;
   using slot_list_type = grouped_slot_list<group_type, slot_type>;
+  using group_key_type = typename slot_list_type::group_key_type;
   using weak_slot_list = typename slot_list_type::weak_vector;
   using weak_iterator = typename weak_slot_list::iterator;
   using token_type = typename slot_list_type::insert_token;
@@ -71,17 +72,28 @@ class signal_impl<R(Args...), Group> :
     return connection(new_connection);
   }
 
-  void disconnect(connection& conn) const {
-    conn.disconnect();
-  }
-
-  void disconnect(connection& conn) {
-    conn.disconnect();
-  }
+//  void disconnect(connection& conn) const {
+//    conn.disconnect();
+//  }
+//
+//  void disconnect(connection& conn) {
+//    conn.disconnect();
+//  }
 
   void disconnect(group_type group) {
     std::lock_guard<std::mutex> lck(slot_mutex_);
-    slot_list_->remove(group);
+
+    group_key_type group_key(grouped, group);
+    slot_list_->remove_group(group_key);
+  }
+
+  void disconnect(group_category category) {
+    if (category == grouped)
+      return;
+
+    std::lock_guard<std::mutex> lck(slot_mutex_);
+    group_key_type group_key(category);
+    slot_list_->remove_group(group_key);
   }
 
   auto size() const {
@@ -162,16 +174,20 @@ class signal<R(Args...), Group> {
     return pimpl_->connect(group, slot, pos);
   }
 
-  void disconnect(connection& conn) const {
-    return pimpl_->disconnect(conn);
-  }
-
-  void disconnect(connection& conn) {
-    return pimpl_->disconnect(conn);
-  }
+//  void disconnect(connection& conn) const {
+//    return pimpl_->disconnect(conn);
+//  }
+//
+//  void disconnect(connection& conn) {
+//    return pimpl_->disconnect(conn);
+//  }
 
   void disconnect(group_type group) {
     return pimpl_->disconnect(group);
+  }
+
+  void disconnect(group_category group_cat) {
+    return pimpl_->disconnect(group_cat);
   }
 
   auto size() const {
