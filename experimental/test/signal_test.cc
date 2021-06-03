@@ -33,7 +33,7 @@ int main() {
 
     TEST_ENSURES((signal(), true));
 
-    std::atomic_int sum{0};
+    int sum = 0;
     int test_count = 100000;
 
     auto t1 = now();
@@ -58,17 +58,24 @@ int main() {
     int test_count = 100000;
 
     for (int i=0; i<test_count; ++i) {
+      std::thread t;
       {
         signal2::signal<void()> sig;
         conn = sig.connect([&] { ++dummy; });
+        t = std::thread([&]{
+          for(int i=0; i<dist(gen)*10; ++i) std::this_thread::yield();
+          conn.disconnect();
+        });
       }
-      conn.disconnect();
+      t.join();
     }
   }
 
   { // connect order test
     signal2::signal<int()> sig;
     sig.connect([]{return 1;});
+    TEST_ENSURES(*sig() == 1);
+
     sig.connect([]{return 2;}, signal2::at_front);
     TEST_ENSURES(*sig() == 1);
 
@@ -86,8 +93,23 @@ int main() {
 
     sig.disconnect(2);
     TEST_ENSURES(sig.size() == 3);
-//    TEST_ENSURES()
   }
+
+//  { // disconnect sync test
+//    signal2::signal<void()> sig;
+//    std::atomic_int num{0};
+//    auto conn = sig.connect([&]{
+//      std::this_thread::sleep_for(10s);
+//      int expected = 0;
+//      num.compare_exchange_strong(expected, 99);
+//    });
+//    std::thread t1([&]{sig();});
+//    std::this_thread::sleep_for(1s);
+//    conn.disconnect();
+//    num.store(1);
+//    t1.join();
+//    TEST_ENSURES(num == 1);
+//  }
 
   { // call & disconnect thread-safety test
     vccc::experimental::signal::signal<void()> signal;
@@ -104,7 +126,7 @@ int main() {
       t3.join();
       t4.join();
     }
-    LOGI("Thread safety test: called", called, "/", 100000);
+    LOGI("Thread safety test: called", called, "/", test_count);
   }
 
   { // call & connect & disconnect thread-safety test
@@ -114,7 +136,7 @@ int main() {
     std::atomic_int connected{0};
     std::mutex conn_m;
     std::shared_ptr<signal2::connection> conn;
-    int test_count = 1000000;
+    int test_count = 100000;
     auto random_work = [&]() -> std::function<void()> {
       switch(random_int(0, 10)) {
         case 0:
