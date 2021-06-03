@@ -7,6 +7,7 @@
 #include <chrono>
 #include <thread>
 #include <random>
+#include <functional>
 
 #include "vccc/experimental/signal.hpp"
 #include "vccc/test.hpp"

@@ -114,6 +114,10 @@ class signal_impl<R(Args...), Group> :
   }
 
  private:
+
+  template<typename T> static T default_return() { return {}; }
+  template<> static void default_return<void>() {}
+
   void disconnect(connection_body& cbd, const token_type& token) {
     std::lock_guard<std::mutex> lck(slot_mutex_);
     slot_list_->remove(token);
@@ -125,7 +129,7 @@ class signal_impl<R(Args...), Group> :
       auto target_lock = target.lock();
       if (target_lock == nullptr) {
         conn.disconnect();
-        return {};
+        return default_return<return_type>();
       }
       return func(std::forward<Args>(args)...);
     };
