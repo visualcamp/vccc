@@ -95,6 +95,27 @@ int main() {
     TEST_ENSURES(sig.size() == 3);
   }
 
+  { // track test
+    auto t = now();
+    signal2::signal<void()> sig;
+    std::atomic_int called{0};
+    int test_count = 100000;
+    for (int i=0; i<test_count; ++i) {
+      auto ptr = std::make_shared<std::vector<int>>(3);
+      auto conn = sig.connect([&, ptr = ptr.get()](){
+        ++called;
+        auto s = ptr->size();
+      }).track(ptr);
+      std::thread t1([&]{for(int j=0;j<dist(gen);++j) std::this_thread::yield(); ptr.reset();});
+      std::thread t2([&]{sig();});
+      t1.join();
+      t2.join();
+      conn.disconnect();
+    }
+
+    LOGI("Track test:", now() - t, "test count", test_count, "called", called);
+  }
+
 //  { // disconnect sync test
 //    signal2::signal<void()> sig;
 //    std::atomic_int num{0};
@@ -112,6 +133,7 @@ int main() {
 //  }
 
   { // call & disconnect thread-safety test
+    auto t = now();
     vccc::experimental::signal<void()> signal;
     std::atomic_int called{0};
     int test_count = 100000;
@@ -126,10 +148,11 @@ int main() {
       t3.join();
       t4.join();
     }
-    LOGI("Thread safety test: called", called, "/", test_count);
+    LOGI("Thread safety test:", now() - t, "called", called, "/", test_count);
   }
 
   { // call & connect & disconnect thread-safety test
+    auto t = now();
     vccc::experimental::signal<void()> signal;
     std::atomic_int called{0};
     std::atomic_int disconnected{0};
@@ -180,7 +203,8 @@ int main() {
       t2.join();
       t3.join();
     }
-    LOGI("Thread safety test2: test count", test_count,
+    LOGI("Thread safety test2:", now() - t,
+         "test count", test_count,
          "called", called,
          "connected", connected,
          "disconnected", disconnected,

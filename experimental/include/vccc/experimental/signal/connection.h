@@ -15,10 +15,13 @@
 namespace vccc {
 namespace experimental {
 
+class connection;
+
 struct connection_impl_base {
   virtual ~connection_impl_base() = default;
   virtual bool is_connected() const = 0;
   virtual void disconnect() = 0;
+  virtual void track(connection* conn, std::weak_ptr<void> target) = 0;
 };
 
 template<typename Signal, typename Token>
@@ -48,6 +51,13 @@ struct connection_impl : public connection_impl_base {
     return connected.load();
   }
 
+  void track(connection* conn, std::weak_ptr<void> target) override {
+    auto ptr = signal_ptr_.lock();
+    if (ptr == nullptr)
+      return;
+    ptr->set_track(conn, &token_, std::move(target));
+  }
+
  private:
   std::weak_ptr<signal_type> signal_ptr_;
   token_type token_;
@@ -61,12 +71,16 @@ class connection {
   explicit connection(std::shared_ptr<connection_impl_base> ptr)
     : pimpl(std::move(ptr)) {}
 
-  void disconnect() {
-    pimpl->disconnect();
-  }
+  void disconnect() const { pimpl->disconnect(); }
+  void disconnect() { pimpl->disconnect(); }
 
   bool is_connected() const {
     return pimpl->is_connected();
+  }
+
+  connection& track(std::weak_ptr<void> target) && {
+    pimpl->track(this, std::move(target));
+    return *this;
   }
 
  private:

@@ -59,6 +59,8 @@ class signal_impl<R(Args...), Group> :
     std::shared_ptr<connection_impl_base> new_connection
       = make_new_connection(slot_list_->insert(std::make_shared<slot_type>(slot), pos));
 
+//    connection conn(new_connection);
+//    slot.autoDisconnectIfTracking(conn);
     return connection(new_connection);
   }
 
@@ -68,6 +70,8 @@ class signal_impl<R(Args...), Group> :
     std::shared_ptr<connection_impl_base> new_connection
       = make_new_connection(slot_list_->insert(group, std::make_shared<slot_type>(slot), pos));
 
+//    connection conn(new_connection);
+//    slot.autoDisconnectIfTracking(conn);
     return connection(new_connection);
   }
 
@@ -113,6 +117,18 @@ class signal_impl<R(Args...), Group> :
   void disconnect(connection_body& cbd, const token_type& token) {
     std::lock_guard<std::mutex> lck(slot_mutex_);
     slot_list_->remove(token);
+  }
+
+  void set_track(connection* conn, token_type* token, std::weak_ptr<void> target) {
+    std::lock_guard<std::mutex> lck(slot_mutex_);
+    **(token->second) = [conn = *conn, target = std::move(target), func = **(token->second)](Args&&... args) -> return_type {
+      auto target_lock = target.lock();
+      if (target_lock == nullptr) {
+        conn.disconnect();
+        return {};
+      }
+      return func(std::forward<Args>(args)...);
+    };
   }
 
   std::shared_ptr<connection_body> make_new_connection(token_type&& token) {
