@@ -6,9 +6,8 @@ add_library(VCCC::experimental ALIAS vccc_experimental)
 
 target_include_directories(vccc_experimental INTERFACE include)
 
-if(UNIX)
-    find_package(Threads REQUIRED)
-    target_link_libraries(vccc_experimental INTERFACE Threads::Threads)
+if (UNIX AND NOT APPLE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
 endif()
 
 if(VCCC_RUN_TEST)
