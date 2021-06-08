@@ -71,11 +71,21 @@ class connection {
   explicit connection(std::shared_ptr<connection_impl_base> ptr)
     : pimpl(std::move(ptr)) {}
 
-  void disconnect() const { pimpl->disconnect(); }
-  void disconnect() { pimpl->disconnect(); }
+  connection(connection const&) = default;
+  connection(connection &&) = default;
+  connection& operator=(connection const&) = default;
+
+  connection& operator=(connection&& other) {
+    disconnect();
+    pimpl = std::move(other.pimpl);
+    return *this;
+  }
+
+  void disconnect() const { if(pimpl) pimpl->disconnect(); }
+  void disconnect() { if(pimpl) pimpl->disconnect(); }
 
   bool is_connected() const {
-    return pimpl->is_connected();
+    return pimpl != nullptr && pimpl->is_connected();
   }
 
   connection& track(std::weak_ptr<void> target) && {
