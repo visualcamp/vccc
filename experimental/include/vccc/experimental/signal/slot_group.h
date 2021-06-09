@@ -137,6 +137,11 @@ struct grouped_slot_list {
     map_.erase(g_pos);
   }
 
+  void remove_all() {
+    list_.clear();
+    map_.clear();
+  }
+
   weak_vector getWeakList() const {
     weak_vector wvec;
     wvec.reserve(size());

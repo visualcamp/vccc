@@ -99,6 +99,11 @@ class signal_impl<R(Args...), Group> :
     slot_list_->remove_group(group_key);
   }
 
+  void disconnect_all() {
+    std::lock_guard<std::mutex> lck(slot_mutex_);
+    slot_list_->remove_all();
+  }
+
   auto size() const {
     return slot_list_->size();
   }
@@ -204,6 +209,10 @@ class signal<R(Args...), Group> {
 
   void disconnect(group_category group_cat) {
     return pimpl_->disconnect(group_cat);
+  }
+
+  void disconnect_all() {
+    return pimpl_->disconnect_all();
   }
 
   auto size() const {

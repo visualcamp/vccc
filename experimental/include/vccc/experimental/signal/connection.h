@@ -93,8 +93,30 @@ class connection {
     return *this;
   }
 
- private:
+ protected:
   std::shared_ptr<connection_impl_base> pimpl;
+};
+
+class raii_connection : connection {
+  using base = connection;
+ public:
+  raii_connection() = default;
+  ~raii_connection() {
+    this->disconnect();
+  }
+
+  raii_connection(connection&& conn)
+    : base(std::move(conn)) {}
+
+  raii_connection& operator=(connection&& conn) {
+    base::operator=(std::move(conn));
+    return *this;
+  }
+
+//  raii_connection& operator=(connection&& conn) {
+//    base::operator=(std::move(conn));
+//    return *this;
+//  }
 };
 
 } // namespace experimental
