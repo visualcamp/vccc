@@ -29,7 +29,7 @@ class Formatter {
 
   template<typename ...Args>
   inline std::string operator()(const Args& ...args) {
-    ssize_t size = snprintf(NULL, 0, format, args...);
+    auto size = snprintf(NULL, 0, format, args...);
     if (buffer.size() < size + 1)
       buffer.resize(size + 1);
     snprintf(buffer.data(), size + 1, format, args...);
