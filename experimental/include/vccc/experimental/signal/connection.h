@@ -100,6 +100,9 @@ class connection {
 class raii_connection : connection {
   using base = connection;
  public:
+  using base::is_connected;
+  using base::disconnect;
+
   raii_connection() = default;
   ~raii_connection() {
     this->disconnect();
