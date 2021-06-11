@@ -92,7 +92,7 @@ class optional :
     this->construct_if(std::move(*other));
   }
 
-  // Separated into 2 overloads to prevent MSVC from making an ambiguous call in C++14
+  // Split into 2 overloads to prevent MSVC from making an ambiguous call in C++14
   template<std::enable_if_t<std::is_constructible<value_type>::value, int> = 0>
   constexpr explicit optional(in_place_t)
     : base(in_place) {}
@@ -101,7 +101,7 @@ class optional :
     std::enable_if_t<
       std::is_constructible<value_type, Arg, Args...>::value,
     int> = 0>
-  constexpr explicit optional(in_place_t, Arg&& arg, Args&&... args)
+  constexpr optional(in_place_t, Arg&& arg, Args&&... args)
     : base(in_place, std::forward<Arg>(arg), std::forward<Args>(args)...) {}
 
   template<typename U, typename ...Args,
@@ -124,6 +124,7 @@ class optional :
 
   optional& operator=(nullopt_t) noexcept {
     this->reset();
+    return *this;
   }
 
   constexpr optional& operator=(optional const&) = default;
@@ -164,6 +165,7 @@ class optional :
       if (this->has_value())
         this->reset();
     }
+    return *this;
   }
 
   template<typename U,
@@ -184,6 +186,7 @@ class optional :
       if (this->has_value())
         this->reset();
     }
+    return *this;
   }
 
 
@@ -196,7 +199,7 @@ class optional :
   constexpr inline       value_type&& operator*()      && { return std::move(this->ref()); }
 
   // change to implicit for sugar use
-  constexpr inline operator bool() const noexcept {
+  constexpr explicit inline operator bool() const noexcept {
     return this->valid;
   }
   constexpr inline bool has_value() const noexcept {
@@ -273,6 +276,7 @@ class optional :
   value_type& emplace() {
     this->reset();
     this->construct();
+    return **this;
   }
 
   template<typename Arg, typename ...Args,
@@ -282,6 +286,7 @@ class optional :
   value_type& emplace(Arg&& arg, Args&&... args) {
     this->reset();
     this->construct(std::forward<Arg>(arg), std::forward<Args>(args)...);
+    return **this;
   }
 
   template<typename U, typename ...Args,
@@ -291,6 +296,7 @@ class optional :
   value_type& emplace(std::initializer_list<U> ilist, Args&&... args) {
     this->reset();
     this->construct(ilist, std::forward<Args>(args)...);
+    return **this;
   }
 
 };
