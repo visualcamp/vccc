@@ -44,7 +44,7 @@ struct connection_impl : public connection_impl_base {
     if (!connected.compare_exchange_strong(state, false))
       return;
 
-    ptr->disconnect(*this, token_);
+    ptr->disconnect(token_);
   }
 
   bool is_connected() const override {

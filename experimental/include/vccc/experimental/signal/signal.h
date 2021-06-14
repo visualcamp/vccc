@@ -121,12 +121,8 @@ class signal_impl<R(Args...), Group> :
 
  private:
 
-  void disconnect(connection_body& cbd, const token_type& token) {
+  void disconnect(const token_type &token) {
     std::lock_guard<std::mutex> lck(slot_mutex_);
-    disconnect_nolock(token);
-  }
-
-  void disconnect_nolock(const token_type& token) {
     slot_list_->remove(token);
   }
 
@@ -147,14 +143,16 @@ class signal_impl<R(Args...), Group> :
       std::lock_guard<std::mutex> lck(slot_mutex_);
       weak_slots = slot_list_->getWeakList();
     }
-    // TODO: remove slot that is expired or tracking target is expired
     for (const auto& weak_slot : weak_slots) {
-      auto locked_slot = weak_slot.lock();
+      auto locked_slot = weak_slot.first.lock();
       if (locked_slot == nullptr)
         continue;
-      auto lock2 = locked_slot->lock();
-      if (locked_slot->expired())
+      auto track_lock = locked_slot->lock();
+      if (locked_slot->expired()) {
+        std::lock_guard<std::mutex> lck(slot_mutex_);
+        slot_list_->remove(weak_slot.second);
         continue;
+      }
       (*locked_slot)(args...);
     }
   }
@@ -168,18 +166,21 @@ class signal_impl<R(Args...), Group> :
     }
     return_type result;
     for (const auto& weak_slot : weak_slots) {
-      auto locked_slot = weak_slot.lock();
+      auto locked_slot = weak_slot.first.lock();
       if (locked_slot == nullptr)
         continue;
-      auto lock2 = locked_slot->lock();
-      if (locked_slot->expired())
+      auto track_lock = locked_slot->lock();
+      if (locked_slot->expired()) {
+        std::lock_guard<std::mutex> lck(slot_mutex_);
+        slot_list_->remove(weak_slot.second);
         continue;
+      }
       result = (*locked_slot)(args...);
     }
     return result;
   }
 
-  std::shared_ptr<slot_list_type> slot_list_;
+  mutable std::shared_ptr<slot_list_type> slot_list_;
   mutable std::mutex slot_mutex_;
 };
 

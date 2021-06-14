@@ -35,14 +35,15 @@ struct grouped_slot_list {
   using list_iterator = typename list::iterator;
   using map = std::map<group_key_type, list_iterator, group_key_compare_type>;
   using map_iterator = typename map::iterator;
+  using map_const_iterator = typename map::const_iterator;
 
   using weak_slot_ptr_type = std::weak_ptr<slot_type>;
-  using weak_vector = std::vector<weak_slot_ptr_type>;
 
   using iterator = list_iterator;
   using const_iterator = typename list::const_iterator;
 
   using insert_token = std::pair<map_iterator, list_iterator>;
+  using weak_vector = std::vector<std::pair<weak_slot_ptr_type, insert_token>>;
 
   grouped_slot_list()
     : list_(), map_(group_key_compare_type {}) {}
@@ -151,8 +152,21 @@ struct grouped_slot_list {
 //        wvec.emplace_back(*it);
 //    }
 
-    std::copy(list_.begin(), list_.end(), std::back_inserter(wvec));
+    for (auto group_it = map_.begin(); group_it != map_.end(); ++group_it) {
+      auto end = getNextGroupListPosition(group_it);
+      for (auto list_it = group_it->second; list_it != end; ++list_it) {
+        insert_token token{group_it, list_it};
+        wvec.emplace_back(*list_it, token);
+      }
+    }
+
     return wvec;
+//    for (auto it = list_.begin(); it != list_.end(); ++it) {
+//      wvec.emplace_back(*it, {});
+//    }
+//
+//    std::copy(list_.begin(), list_.end(), std::back_inserter(wvec));
+//    return wvec;
   }
 
  private:
@@ -167,7 +181,7 @@ struct grouped_slot_list {
     list_.erase(it);
   }
 
-  list_iterator getNextGroupListPosition(const map_iterator& m_pos) {
+  list_iterator getNextGroupListPosition(map_const_iterator m_pos) const {
     auto next_group_m_pos = std::next(m_pos);
     if (next_group_m_pos == map_.end())
       return list_.end();
@@ -198,8 +212,8 @@ struct grouped_slot_list {
     return next_group_map_it->second;
   }
 
-  list list_;
-  map map_;
+  mutable list list_;
+  mutable map map_;
 };
 
 } // namespace experimental
