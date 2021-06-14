@@ -51,6 +51,9 @@ struct connection_impl : public connection_impl_base {
     return connected.load();
   }
 
+  // WIP: use to signal::connect() only (slot != expired() must be guaranteed)
+  // signal.connect(...).track(...);  // Good
+  // std::move(conn).track(...);      // Bad
   void track(connection* conn, std::weak_ptr<void> target) override {
     auto ptr = signal_ptr_.lock();
     if (ptr == nullptr)

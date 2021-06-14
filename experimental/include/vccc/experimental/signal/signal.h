@@ -13,6 +13,7 @@
 #
 # include "vccc/experimental/signal/connection.h"
 # include "vccc/experimental/signal/forward_declare.h"
+# include "vccc/experimental/signal/slot.h"
 # include "vccc/experimental/signal/slot_group.h"
 #
 # include "vccc/optional.hpp"
@@ -34,7 +35,7 @@ class signal_impl<R(Args...), Group> :
   using not_void_return_type = std::false_type;
 
  public:
-  using slot_type = std::function<R(Args...)>;
+  using slot_type = slot<R(Args...)>;
   using group_type = Group;
   using return_type = std::conditional_t<std::is_same<void, R>::value, void, vccc::optional<R>>;
   using slot_list_type = grouped_slot_list<group_type, slot_type>;
@@ -122,19 +123,17 @@ class signal_impl<R(Args...), Group> :
 
   void disconnect(connection_body& cbd, const token_type& token) {
     std::lock_guard<std::mutex> lck(slot_mutex_);
+    disconnect_nolock(token);
+  }
+
+  void disconnect_nolock(const token_type& token) {
     slot_list_->remove(token);
   }
 
   void set_track(connection* conn, token_type* token, std::weak_ptr<void> target) {
     std::lock_guard<std::mutex> lck(slot_mutex_);
-    **(token->second) = [conn = *conn, target = std::move(target), func = **(token->second)](Args&&... args) -> return_type {
-      auto target_lock = target.lock();
-      if (target_lock == nullptr) {
-        conn.disconnect();
-        return std::conditional_t<std::is_void<return_type>::value, void, return_type>();
-      }
-      return func(std::forward<Args>(args)...);
-    };
+    auto& slot_ptr = (*(token->second));
+    slot_ptr->track(std::move(target));
   }
 
   std::shared_ptr<connection_body> make_new_connection(token_type&& token) {
@@ -148,10 +147,15 @@ class signal_impl<R(Args...), Group> :
       std::lock_guard<std::mutex> lck(slot_mutex_);
       weak_slots = slot_list_->getWeakList();
     }
-    for (const auto& weak_ptr : weak_slots) {
-      auto lock_ptr = weak_ptr.lock();
-      if (lock_ptr != nullptr)
-        (*lock_ptr)(args...);
+    // TODO: remove slot that is expired or tracking target is expired
+    for (const auto& weak_slot : weak_slots) {
+      auto locked_slot = weak_slot.lock();
+      if (locked_slot == nullptr)
+        continue;
+      auto lock2 = locked_slot->lock();
+      if (locked_slot->expired())
+        continue;
+      (*locked_slot)(args...);
     }
   }
 
@@ -163,10 +167,14 @@ class signal_impl<R(Args...), Group> :
       weak_slots = slot_list_->getWeakList();
     }
     return_type result;
-    for (const auto& weak_ptr : weak_slots) {
-      auto lock_ptr = weak_ptr.lock();
-      if (lock_ptr != nullptr)
-        result = (*lock_ptr)(args...);
+    for (const auto& weak_slot : weak_slots) {
+      auto locked_slot = weak_slot.lock();
+      if (locked_slot == nullptr)
+        continue;
+      auto lock2 = locked_slot->lock();
+      if (locked_slot->expired())
+        continue;
+      result = (*locked_slot)(args...);
     }
     return result;
   }

@@ -96,7 +96,26 @@ int main() {
     TEST_ENSURES(sig.size() == 3);
   }
 
-  { // track test
+  { // track test(sync)
+    signal2::signal<int()> sig;
+    int called = 0;
+    auto ptr = std::make_shared<int>(1);
+    auto c1 = sig.connect([&]{ return ++called; }).track(ptr);
+    TEST_ENSURES(called == 0);
+    sig();
+    TEST_ENSURES(called == 1);
+    ptr.reset();
+    sig();
+    TEST_ENSURES(called == 1);
+    ptr = std::make_shared<int>(1);
+    sig();
+    TEST_ENSURES(called == 1);
+    c1 = sig.connect([&]{ return ++called; }).track(ptr);
+    sig();
+    TEST_ENSURES(called == 2);
+  }
+
+  { // track test(async)
     auto t = now();
     signal2::signal<void()> sig;
     std::atomic_int called{0};

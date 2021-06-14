@@ -157,10 +157,6 @@ struct grouped_slot_list {
 
  private:
   void eraseList(list_iterator begin, list_iterator end) {
-    list_iterator it = begin;
-    for(; it != end; ++it) {
-      it->reset();
-    }
     list_.erase(begin, end);
   }
 
@@ -168,7 +164,6 @@ struct grouped_slot_list {
     if (it == list_.end())
       return;
 
-    it->reset();
     list_.erase(it);
   }
 

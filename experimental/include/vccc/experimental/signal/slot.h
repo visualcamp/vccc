@@ -8,59 +8,71 @@
 # include <functional>
 # include <memory>
 # include <utility>
-#
-# include "vccc/experimental/signal/connection.h"
+# include <vector>
 
 namespace vccc {
 namespace experimental {
 
-template<typename Signature, typename Function = std::function<Signature>>
+template<typename Func>
 class slot;
 
-template<typename R, typename ...Args, typename Function>
-class slot<R(Args...), Function> {
+template<typename R, typename ...Args>
+class slot<R(Args...)> {
  public:
-  using function = Function;
+  using return_type = R;
+  using function = std::function<R(Args...)>;
+  using weak_container = std::vector<std::weak_ptr<void>>;
+  using locked_container = std::vector<std::shared_ptr<void>>;
 
-  slot() = default;
+  slot(slot const&) = default;
+  slot(slot &&) = default;
+  slot& operator=(slot const&) = default;
+  slot& operator=(slot &&) = default;
 
   template<typename Func>
   slot(const Func& func)
     : func_(func) {}
+
+  locked_container lock() const {
+    locked_container locked;
+    locked.reserve(tracked_objects_.size());
+
+    for(const auto& w : tracked_objects_)
+      locked.emplace_back(w.lock());
+    return locked;
+  }
+
+  bool expired() const {
+    for(const auto& w : tracked_objects_)
+      if (w.expired())
+        return true;
+    return false;
+  }
 
   template<typename ...U>
   R operator()(U&&... args) const {
     return func_(std::forward<U>(args)...);
   }
 
-  slot& track(std::weak_ptr<void> target) {
-    conn_ = std::make_shared<connection>();
-    func_ = [target = std::move(target), conn = conn_, func = func_](Args&&... args) -> R {
-      auto lock = target.lock();
-      if (lock == nullptr) {
-        conn->disconnect();
-        return {};
-      }
-      return func(std::forward<Args>(args)...);
-    };
-    track_ = true;
+  template<typename ...U>
+  R operator()(U&&... args) {
+    return func_(std::forward<U>(args)...);
+  }
+
+  template<typename T>
+  slot& track(const std::shared_ptr<T> target) {
+    tracked_objects_.emplace_back(target);
     return *this;
   }
 
-  bool is_tracking() const { return track_; }
-
-  void autoDisconnectIfTracking(const connection& conn) const {
-    if (is_tracking())
-      *conn_ = conn;
+  slot& track(std::weak_ptr<void> target) {
+    tracked_objects_.emplace_back(target);
+    return *this;
   }
-
-  function slot_function() const & { return func_; }
-  function slot_function() const && { return std::move(func_); }
 
  private:
   function func_;
-  bool track_ = false;
-  mutable std::shared_ptr<connection> conn_;
+  weak_container tracked_objects_;
 };
 
 } // namespace experimental
