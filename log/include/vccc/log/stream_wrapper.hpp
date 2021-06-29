@@ -20,6 +20,7 @@
 # include "vccc/type_traits.hpp"
 #
 # if __cplusplus >= 201703
+#   include <filesystem>
 #   include "boost/pfr.hpp"
 # endif
 
@@ -40,6 +41,7 @@ Support writing of
  - std::chrono types
  - integer sequences
  - (of course) custom operator overloaded types (std::ostream& operator << (std::ostream&, T))
+ - aggregate type
 
 @tparam Stream  stream type
  */
@@ -178,6 +180,13 @@ class StreamWrapper {
   inline void write(const std::integer_sequence<T, v...>&) {
     write(std::make_tuple(v...));
   }
+
+  // directory_entry(Apple Clang defects)
+# if __cplusplus >= 201703L
+  void write(const std::filesystem::directory_entry& d) {
+    stream_ << d.path();
+  }
+# endif
 };
 
 template<typename Stream>
