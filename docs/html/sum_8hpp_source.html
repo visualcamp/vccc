@@ -107,12 +107,12 @@ $(document).ready(function(){initNavTree('sum_8hpp_source.html',''); initResizab
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="namespacevccc_1_1impl.html">   24</a></span>&#160;<span class="keyword">namespace </span>impl{</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg&gt;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="namespacevccc_1_1impl.html#afb7679d3d447a3151d159b4b2af33f60">   26</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="namespacevccc_1_1impl.html#afb7679d3d447a3151d159b4b2af33f60">sumImpl</a>(<span class="keyword">const</span> Arg&amp; arg){</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="namespacevccc_1_1impl.html#afb7679d3d447a3151d159b4b2af33f60">   26</a></span>&#160;constexpr <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="namespacevccc_1_1impl.html#afb7679d3d447a3151d159b4b2af33f60">sumImpl</a>(<span class="keyword">const</span> Arg&amp; arg){</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keywordflow">return</span> arg;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg1, <span class="keyword">typename</span> Arg2&gt;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="namespacevccc_1_1impl.html#ad50e588a56804e902bbeb4f7e19aab6a">   31</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="namespacevccc_1_1impl.html#afb7679d3d447a3151d159b4b2af33f60">sumImpl</a>(<span class="keyword">const</span> Arg1&amp; arg1, <span class="keyword">const</span> Arg2&amp; arg2){</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="namespacevccc_1_1impl.html#ad50e588a56804e902bbeb4f7e19aab6a">   31</a></span>&#160;constexpr <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="namespacevccc_1_1impl.html#afb7679d3d447a3151d159b4b2af33f60">sumImpl</a>(<span class="keyword">const</span> Arg1&amp; arg1, <span class="keyword">const</span> Arg2&amp; arg2){</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keywordflow">return</span> arg1 + arg2;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
@@ -122,12 +122,12 @@ $(document).ready(function(){initNavTree('sum_8hpp_source.html',''); initResizab
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, VCCC_ENABLE_IF(std::is_<span class="keyword">class</span>&lt;std::decay_t&lt;T&gt;&gt;::value)&gt;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="namespacevccc_1_1impl.html#a47df0e5ee129ada65d2a5f6dff85a084">   41</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="namespacevccc_1_1impl.html#a47df0e5ee129ada65d2a5f6dff85a084">default_value</a>() {</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="namespacevccc_1_1impl.html#a47df0e5ee129ada65d2a5f6dff85a084">   41</a></span>&#160;constexpr <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="namespacevccc_1_1impl.html#a47df0e5ee129ada65d2a5f6dff85a084">default_value</a>() {</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keywordflow">return</span> std::decay_t&lt;T&gt;();</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, VCCC_ENABLE_IF(!std::is_<span class="keyword">class</span>&lt;std::decay_t&lt;T&gt;&gt;::value)&gt;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="namespacevccc_1_1impl.html#a47df0e5ee129ada65d2a5f6dff85a084">default_value</a>() {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;constexpr <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="namespacevccc_1_1impl.html#a47df0e5ee129ada65d2a5f6dff85a084">default_value</a>() {</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>std::decay_t&lt;T&gt;<span class="keyword">&gt;</span>(0);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
@@ -160,7 +160,7 @@ $(document).ready(function(){initNavTree('sum_8hpp_source.html',''); initResizab
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args, <a class="code" href="require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638">VCCC_ENABLE_IF</a>(!iterable&lt;Args...&gt;)&gt;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;constexpr</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;constexpr <span class="keyword">inline</span></div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">auto</span></div>
 <div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="group__numeric__sum.html#gae209caf01719607ea444436ea4123b1d">  101</a></span>&#160;<a class="code" href="group__numeric__sum.html#ga7e693141d69d7b3077157e78377d5f2a">sum</a>(<span class="keyword">const</span> Args&amp;... args)</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;{</div>
@@ -168,7 +168,7 @@ $(document).ready(function(){initNavTree('sum_8hpp_source.html',''); initResizab
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> UnaryOperation, <span class="keyword">typename</span> Arg&gt;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;constexpr</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;constexpr <span class="keyword">inline</span></div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">auto</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="group__numeric__sum.html#gab741977af01853bffd7b4368c391e007">  114</a></span>&#160;<a class="code" href="group__numeric__sum.html#gab741977af01853bffd7b4368c391e007">sum_custom</a>(<span class="keyword">const</span> UnaryOperation&amp; unary_op, <span class="keyword">const</span> Arg&amp; arg)</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;{</div>
@@ -176,7 +176,7 @@ $(document).ready(function(){initNavTree('sum_8hpp_source.html',''); initResizab
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> UnaryOperation, <span class="keyword">typename</span> Arg, <span class="keyword">typename</span> ...Args&gt;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;constexpr</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;constexpr <span class="keyword">inline</span></div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">auto</span></div>
 <div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="group__numeric__sum.html#gaf656a8eefcbc64d01545c486481aafa2">  122</a></span>&#160;<a class="code" href="group__numeric__sum.html#gab741977af01853bffd7b4368c391e007">sum_custom</a>(<span class="keyword">const</span> UnaryOperation&amp; unary_op, <span class="keyword">const</span> Arg&amp; arg, <span class="keyword">const</span> Args&amp;... args)</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;{</div>

@@ -109,7 +109,7 @@ $(document).ready(function(){initNavTree('invoke_8hpp_source.html',''); initResi
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class </span>F, <span class="keyword">class</span>... Args&gt;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;constexpr</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;constexpr <span class="keyword">inline</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;decltype(<span class="keyword">auto</span>)</div>
 <div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="group__high__functional.html#ga016f25723101075df1be615a2acba11b">   28</a></span>&#160;<a class="code" href="group__high__functional.html#ga016f25723101075df1be615a2acba11b">invoke</a>(F&amp;&amp; f, Args&amp;&amp;... args) {</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="namespacevccc_1_1detail.html#aa3e3ea5794709a21fa5e2f2686e2d5fd">detail::INVOKE</a>(std::forward&lt;F&gt;(f), std::forward&lt;Args&gt;(args)...);</div>

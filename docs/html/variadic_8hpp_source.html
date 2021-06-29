@@ -107,9 +107,9 @@ $(document).ready(function(){initNavTree('variadic_8hpp_source.html',''); initRe
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">template</span>&lt;std::size_t i,</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;         <span class="keyword">typename</span> ...Args,</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;         std::enable_if_t&lt;(i &lt; <span class="keyword">sizeof</span>...(Args)), <span class="keywordtype">int</span>&gt; = 0&gt;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;constexpr</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">inline</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;decltype(<span class="keyword">auto</span>)</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="group__type__support__at__variadic.html#gaaeb83cc1c3caa49daa15b040bbe8af15">   27</a></span>&#160;<a class="code" href="group__type__support__at__variadic.html#gaaeb83cc1c3caa49daa15b040bbe8af15">variadic_at</a>(Args&amp;&amp;... args){</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="group__type__support__at__variadic.html#ga40e42b2e0ef921c1f1cbd482bf89a1bd">   27</a></span>&#160;<a class="code" href="group__type__support__at__variadic.html#ga40e42b2e0ef921c1f1cbd482bf89a1bd">variadic_at</a>(Args&amp;&amp;... args){</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keywordflow">return</span> std::get&lt;i&gt;(std::forward_as_tuple(std::forward&lt;Args&gt;(args)...));</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
@@ -119,8 +119,8 @@ $(document).ready(function(){initNavTree('variadic_8hpp_source.html',''); initRe
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"># endif //VCCC_TYPE_SUPPORT_STD_VARIADIC_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="agroup__type__support__at__variadic_html_ga40e42b2e0ef921c1f1cbd482bf89a1bd"><div class="ttname"><a href="group__type__support__at__variadic.html#ga40e42b2e0ef921c1f1cbd482bf89a1bd">vccc::variadic_at</a></div><div class="ttdeci">decltype(auto) variadic_at(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> variadic.hpp:27</div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
-<div class="ttc" id="agroup__type__support__at__variadic_html_gaaeb83cc1c3caa49daa15b040bbe8af15"><div class="ttname"><a href="group__type__support__at__variadic.html#gaaeb83cc1c3caa49daa15b040bbe8af15">vccc::variadic_at</a></div><div class="ttdeci">constexpr decltype(auto) variadic_at(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> variadic.hpp:27</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

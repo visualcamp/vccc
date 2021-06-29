@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('formatter_8hpp_source.html',''); initR
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt;</div>
 <div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classvccc_1_1_formatter.html#a9dc5072f75f3100d86d3641bd37b08d6">   31</a></span>&#160;  <span class="keyword">inline</span> std::string <a class="code" href="classvccc_1_1_formatter.html#a9dc5072f75f3100d86d3641bd37b08d6">operator()</a>(<span class="keyword">const</span> Args&amp; ...args) {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    ssize_t size = snprintf(NULL, 0, format, args...);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">auto</span> size = snprintf(NULL, 0, format, args...);</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">if</span> (buffer.size() &lt; size + 1)</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;      buffer.resize(size + 1);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    snprintf(buffer.data(), size + 1, format, args...);</div>

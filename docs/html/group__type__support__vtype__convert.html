@@ -151,6 +151,9 @@ Functions</h2></td></tr>
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename NewType , template&lt; typename, int... &gt; class CVType, typename OldType , int ... CVParams, VCCC_ENABLE_IF((!std::is_same&lt; NewType, OldType &gt;::value)) &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">decltype(auto) vccc::vtype_convert </td>
@@ -160,6 +163,11 @@ template&lt;typename NewType , template&lt; typename, int... &gt; class CVType, 
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>returns similar opencv type, but the value_type is different </p>
@@ -219,6 +227,9 @@ template&lt;typename NewType , template&lt; typename... &gt; class Container, ty
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename NewType , template&lt; typename... &gt; class Container, typename ... Params, VCCC_ENABLE_IF((is_container_v&lt; Container&lt; NewType, Params... &gt;&gt;)) &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">decltype(auto) vccc::vtype_convert </td>
@@ -228,6 +239,11 @@ template&lt;typename NewType , template&lt; typename... &gt; class Container, ty
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -239,6 +255,9 @@ template&lt;typename NewType , template&lt; typename... &gt; class Container, ty
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename NewType , template&lt; typename... &gt; class Container, typename ... Params, VCCC_ENABLE_IF((is_container_v&lt; Container&lt; NewType, Params... &gt;&gt;)) &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">decltype(auto) vccc::vtype_convert </td>
@@ -248,6 +267,11 @@ template&lt;typename NewType , template&lt; typename... &gt; class Container, ty
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -303,6 +327,9 @@ template&lt;typename NewType , typename Func , template&lt; typename... &gt; cla
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename NewType , template&lt; typename... &gt; class Container, typename ... Params, typename UnaryOperation , VCCC_ENABLE_IF((is_container_v&lt; Container&lt; NewType, Params... &gt;&gt;)) &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">decltype(auto) vccc::vtype_convert </td>
@@ -322,6 +349,11 @@ template&lt;typename NewType , template&lt; typename... &gt; class Container, ty
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -376,7 +408,7 @@ template&lt;typename NewType , std::size_t n&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -404,7 +436,7 @@ template&lt;typename NewType , std::size_t n&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

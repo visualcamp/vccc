@@ -105,33 +105,33 @@ $(document).ready(function(){initNavTree('array_8hpp_source.html',''); initResiz
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> i, <span class="keyword">typename</span> T, <span class="keywordtype">int</span> n&gt;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;constexpr</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;constexpr <span class="keyword">inline</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;decltype(<span class="keyword">auto</span>)</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="group__type__support__at__array.html#ga000aec036233e928f4e095e683d36e85">   24</a></span>&#160;<a class="code" href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">at</a>(std::array&lt;T, n&gt;&amp; arr) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="group__type__support__at__array.html#ga000aec036233e928f4e095e683d36e85">   24</a></span>&#160;<a class="code" href="group__type__support__at.html#ga6ccd965e66c0a77c7b399684427e65b6">at</a>(std::array&lt;T, n&gt;&amp; arr) {</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  static_assert(i &lt; n, <span class="stringliteral">&quot;Index out of bounds in vccc::at&lt;&gt; (std::array)&quot;</span>);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keywordflow">return</span> arr[i];</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> i, <span class="keyword">typename</span> T, <span class="keywordtype">int</span> n&gt;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;constexpr</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;constexpr <span class="keyword">inline</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;decltype(<span class="keyword">auto</span>)</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="group__type__support__at__array.html#ga44638de4308ccb13935adf4e166dff0a">   32</a></span>&#160;<a class="code" href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">at</a>(const std::array&lt;T, n&gt;&amp; arr) {</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="group__type__support__at__array.html#ga44638de4308ccb13935adf4e166dff0a">   32</a></span>&#160;<a class="code" href="group__type__support__at.html#ga6ccd965e66c0a77c7b399684427e65b6">at</a>(const std::array&lt;T, n&gt;&amp; arr) {</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  static_assert(i &lt; n, <span class="stringliteral">&quot;Index out of bounds in vccc::at&lt;&gt; (const std::array)&quot;</span>);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="keywordflow">return</span> arr[i];</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> i, <span class="keyword">typename</span> T, <span class="keywordtype">int</span> n&gt;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;constexpr</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;constexpr <span class="keyword">inline</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;T&amp;&amp;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="group__type__support__at__array.html#gad997e82b11e18afba827718f2a842249">   40</a></span>&#160;<a class="code" href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">at</a>(std::array&lt;T, n&gt;&amp;&amp; arr) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="group__type__support__at__array.html#gad997e82b11e18afba827718f2a842249">   40</a></span>&#160;<a class="code" href="group__type__support__at.html#ga6ccd965e66c0a77c7b399684427e65b6">at</a>(std::array&lt;T, n&gt;&amp;&amp; arr) {</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  static_assert(i &lt; n, <span class="stringliteral">&quot;Index out of bounds in vccc::at&lt;&gt; (std::array&amp;&amp;)&quot;</span>);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keywordflow">return</span> std::move(arr[i]);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> i, <span class="keyword">typename</span> T, <span class="keywordtype">int</span> n&gt;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;constexpr</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;constexpr <span class="keyword">inline</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">const</span> T&amp;&amp;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="group__type__support__at__array.html#ga3fae801a76663e4365f6cac23f25c515">   48</a></span>&#160;<a class="code" href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">at</a>(<span class="keyword">const</span> std::array&lt;T, n&gt;&amp;&amp; arr) {</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="group__type__support__at__array.html#ga3fae801a76663e4365f6cac23f25c515">   48</a></span>&#160;<a class="code" href="group__type__support__at.html#ga6ccd965e66c0a77c7b399684427e65b6">at</a>(<span class="keyword">const</span> std::array&lt;T, n&gt;&amp;&amp; arr) {</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  static_assert(i &lt; n, <span class="stringliteral">&quot;Index out of bounds in vccc::at&lt;&gt; (const std::array&amp;&amp;)&quot;</span>);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keywordflow">return</span> std::move(arr[i]);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
@@ -142,7 +142,7 @@ $(document).ready(function(){initNavTree('array_8hpp_source.html',''); initResiz
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor"># endif //VCCC_TYPE_SUPPORT_STD_ARRAY_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespacevccc_html_a84f9bc5a451374b26113f89adb7c4908"><div class="ttname"><a href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">vccc::at</a></div><div class="ttdeci">constexpr decltype(auto) at(const MatrixBase&lt; E &gt; &amp;mat)</div><div class="ttdef"><b>Definition:</b> at.hpp:13</div></div>
+<div class="ttc" id="agroup__type__support__at_html_ga6ccd965e66c0a77c7b399684427e65b6"><div class="ttname"><a href="group__type__support__at.html#ga6ccd965e66c0a77c7b399684427e65b6">vccc::at</a></div><div class="ttdeci">constexpr decltype(auto) at(T &amp;&amp;t)</div><div class="ttdoc">returns cv::saturate_cast&lt;C&gt;(vccc::at&lt;i&gt;(t))</div><div class="ttdef"><b>Definition:</b> at.hpp:43</div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

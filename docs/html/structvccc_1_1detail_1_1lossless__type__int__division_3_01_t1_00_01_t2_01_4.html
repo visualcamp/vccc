@@ -101,12 +101,12 @@ $(document).ready(function(){initNavTree('structvccc_1_1detail_1_1lossless__type
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a8ffee835ffffb42e6d98e18391ad44e6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1detail_1_1lossless__type__int__division_3_01_t1_00_01_t2_01_4.html#a8ffee835ffffb42e6d98e18391ad44e6">type</a> = std::conditional_t&lt; std::max(sizeof(T1), sizeof(T2))&lt;=4, float, double &gt;</td></tr>
-<tr class="separator:a8ffee835ffffb42e6d98e18391ad44e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee1f27a85fd8b72e746e7d63c84ee339"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1detail_1_1lossless__type__int__division_3_01_t1_00_01_t2_01_4.html#aee1f27a85fd8b72e746e7d63c84ee339">type</a> = std::conditional_t&lt;(sizeof(T1) &gt; sizeof(T2) ? sizeof(T1) :sizeof(T2))&lt;=4, float, double &gt;</td></tr>
+<tr class="separator:aee1f27a85fd8b72e746e7d63c84ee339"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a8ffee835ffffb42e6d98e18391ad44e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ffee835ffffb42e6d98e18391ad44e6">&#9670;&nbsp;</a></span>type</h2>
+<a id="aee1f27a85fd8b72e746e7d63c84ee339"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee1f27a85fd8b72e746e7d63c84ee339">&#9670;&nbsp;</a></span>type</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -114,7 +114,7 @@ Public Types</h2></td></tr>
 template&lt;typename T1 , typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structvccc_1_1detail_1_1lossless__type__int__division.html">vccc::detail::lossless_type_int_division</a>&lt; T1, T2 &gt;::<a class="el" href="structvccc_1_1detail_1_1lossless__type__int__division_3_01_t1_00_01_t2_01_4.html#a8ffee835ffffb42e6d98e18391ad44e6">type</a> =  std::conditional_t&lt;std::max(sizeof(T1), sizeof(T2)) &lt;= 4, float, double&gt;</td>
+          <td class="memname">using <a class="el" href="structvccc_1_1detail_1_1lossless__type__int__division.html">vccc::detail::lossless_type_int_division</a>&lt; T1, T2 &gt;::<a class="el" href="structvccc_1_1detail_1_1lossless__type__int__division_3_01_t1_00_01_t2_01_4.html#aee1f27a85fd8b72e746e7d63c84ee339">type</a> =  std::conditional_t&lt;(sizeof(T1) &gt; sizeof(T2) ? sizeof(T1) : sizeof(T2)) &lt;= 4, float, double&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

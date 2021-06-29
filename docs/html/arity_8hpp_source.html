@@ -100,43 +100,45 @@ $(document).ready(function(){initNavTree('arity_8hpp_source.html',''); initResiz
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor"># ifndef VCCC_TYPE_TRAITS_ARITY_HPP</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"># define VCCC_TYPE_TRAITS_ARITY_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"># include &lt;type_traits&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"># include &lt;cstdint&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"># include &lt;type_traits&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structvccc_1_1arity.html">   39</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1arity.html">arity</a> : <a class="code" href="structvccc_1_1arity.html">arity</a>&lt;decltype(&amp;T::operator())&gt; {};</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1arity.html">arity</a>&lt;R(*)(Args...)&gt; : std::integral_constant&lt;unsigned, <span class="keyword">sizeof</span>...(Args)&gt; {};</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">// Possibly add specialization for variadic functions</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">// Member functions:</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> C, <span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">struct </span>arity&lt;R(C::*)(Args...)&gt; :</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::integral_constant&lt;unsigned, sizeof...(Args)&gt; {};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> C, <span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">struct </span>arity&lt;R(C::*)(Args...) const&gt; :</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::integral_constant&lt;unsigned, sizeof...(Args)&gt; {};</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="group__arity.html#gaeec0e43cc0e5206fcdfb85741ed914f4">   58</a></span>&#160;<span class="keyword">using</span> <a class="code" href="group__arity.html#gaeec0e43cc0e5206fcdfb85741ed914f4">arity_t</a> = <span class="keyword">typename</span> <a class="code" href="structvccc_1_1arity.html">arity&lt;T&gt;::type</a>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="group__arity.html#ga7cc5c0208b0e4df11ec53b1cbd7ecbc2">   61</a></span>&#160;constexpr <span class="keywordtype">unsigned</span> <a class="code" href="group__arity.html#ga7cc5c0208b0e4df11ec53b1cbd7ecbc2">arity_v</a> = <a class="code" href="structvccc_1_1arity.html">arity&lt;T&gt;::value</a>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="structvccc_1_1arity.html">   41</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1arity.html">arity</a> : <a class="code" href="structvccc_1_1arity.html">arity</a>&lt;decltype(&amp;T::operator())&gt; {};</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span>... Args&gt;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1arity.html">arity</a>&lt;R(*)(Args...)&gt; : std::integral_constant&lt;unsigned, <span class="keyword">sizeof</span>...(Args)&gt; {};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// Possibly add specialization for variadic functions</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">// Member functions:</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> C, <span class="keyword">typename</span>... Args&gt;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">struct </span>arity&lt;R(C::*)(Args...)&gt; :</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::integral_constant&lt;unsigned, sizeof...(Args)&gt; {};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> C, <span class="keyword">typename</span>... Args&gt;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">struct </span>arity&lt;R(C::*)(Args...) const&gt; :</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::integral_constant&lt;unsigned, sizeof...(Args)&gt; {};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="group__arity.html#gaeec0e43cc0e5206fcdfb85741ed914f4">   60</a></span>&#160;<span class="keyword">using</span> <a class="code" href="group__arity.html#gaeec0e43cc0e5206fcdfb85741ed914f4">arity_t</a> = <span class="keyword">typename</span> <a class="code" href="structvccc_1_1arity.html">arity&lt;T&gt;::type</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="group__arity.html#ga79705252a3e7d2a47ffa7c19ba38c683">   63</a></span>&#160;constexpr std::size_t <a class="code" href="group__arity.html#ga79705252a3e7d2a47ffa7c19ba38c683">arity_v</a> = <a class="code" href="structvccc_1_1arity.html">arity&lt;T&gt;::value</a>;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif //VCCC_TYPE_TRAITS_ARITY_HPP</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif //VCCC_TYPE_TRAITS_ARITY_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="agroup__arity_html_ga79705252a3e7d2a47ffa7c19ba38c683"><div class="ttname"><a href="group__arity.html#ga79705252a3e7d2a47ffa7c19ba38c683">vccc::arity_v</a></div><div class="ttdeci">constexpr std::size_t arity_v</div><div class="ttdef"><b>Definition:</b> arity.hpp:63</div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
-<div class="ttc" id="astructvccc_1_1arity_html"><div class="ttname"><a href="structvccc_1_1arity.html">vccc::arity</a></div><div class="ttdoc">get parameter count of a given function</div><div class="ttdef"><b>Definition:</b> arity.hpp:39</div></div>
-<div class="ttc" id="agroup__arity_html_gaeec0e43cc0e5206fcdfb85741ed914f4"><div class="ttname"><a href="group__arity.html#gaeec0e43cc0e5206fcdfb85741ed914f4">vccc::arity_t</a></div><div class="ttdeci">typename arity&lt; T &gt;::type arity_t</div><div class="ttdef"><b>Definition:</b> arity.hpp:58</div></div>
-<div class="ttc" id="agroup__arity_html_ga7cc5c0208b0e4df11ec53b1cbd7ecbc2"><div class="ttname"><a href="group__arity.html#ga7cc5c0208b0e4df11ec53b1cbd7ecbc2">vccc::arity_v</a></div><div class="ttdeci">constexpr unsigned arity_v</div><div class="ttdef"><b>Definition:</b> arity.hpp:61</div></div>
+<div class="ttc" id="astructvccc_1_1arity_html"><div class="ttname"><a href="structvccc_1_1arity.html">vccc::arity</a></div><div class="ttdoc">get parameter count of a given function</div><div class="ttdef"><b>Definition:</b> arity.hpp:41</div></div>
+<div class="ttc" id="agroup__arity_html_gaeec0e43cc0e5206fcdfb85741ed914f4"><div class="ttname"><a href="group__arity.html#gaeec0e43cc0e5206fcdfb85741ed914f4">vccc::arity_t</a></div><div class="ttdeci">typename arity&lt; T &gt;::type arity_t</div><div class="ttdef"><b>Definition:</b> arity.hpp:60</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

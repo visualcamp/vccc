@@ -11,8 +11,10 @@ var dir_799ef1061f3065086ccbe1fe332aa187 =
     [ "is_string_like.hpp", "is__string__like_8hpp.html", "is__string__like_8hpp" ],
     [ "iterable.hpp", "iterable_8hpp.html", "iterable_8hpp" ],
     [ "lossless_type.hpp", "lossless__type_8hpp.html", "lossless__type_8hpp" ],
+    [ "macro.h", "macro_8h.html", "macro_8h" ],
     [ "numeric.hpp", "type__traits_2include_2vccc_2type__traits_2numeric_8hpp.html", "type__traits_2include_2vccc_2type__traits_2numeric_8hpp" ],
     [ "require.hpp", "require_8hpp.html", "require_8hpp" ],
+    [ "std_type_traits.h", "std__type__traits_8h.html", "std__type__traits_8h" ],
     [ "void_t.hpp", "void__t_8hpp.html", "void__t_8hpp" ],
     [ "vtype_t.hpp", "vtype__t_8hpp.html", "vtype__t_8hpp" ]
 ];

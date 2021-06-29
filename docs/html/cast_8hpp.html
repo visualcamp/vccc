@@ -90,24 +90,48 @@ $(document).ready(function(){initNavTree('cast_8hpp.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">cast.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="library__config_8hpp_source.html">vccc/type_support/library_config.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="type__traits_8hpp_source.html">vccc/type_traits.hpp</a>&quot;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
 </div>
 <p><a href="cast_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1internal_1_1type__support_1_1saturate__cast__possible.html">vccc::internal::type_support::saturate_cast_possible&lt; To, From, typename &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacevccc"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevccc.html">vccc</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacevccc_1_1internal"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevccc_1_1internal.html">vccc::internal</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacevccc_1_1internal_1_1type__support"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevccc_1_1internal_1_1type__support.html">vccc::internal::type_support</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ae8f23d7d250cc2c27f65c75e5fa2c8e8"><td class="memTemplParams" colspan="2">template&lt;typename To , typename From &gt; </td></tr>
+<tr class="memitem:ae8f23d7d250cc2c27f65c75e5fa2c8e8"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc_1_1internal_1_1type__support.html#ae8f23d7d250cc2c27f65c75e5fa2c8e8">vccc::internal::type_support::saturate_cast_possible_t</a> = typename saturate_cast_possible&lt; To, From &gt;::type</td></tr>
+<tr class="separator:ae8f23d7d250cc2c27f65c75e5fa2c8e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a5f5e216832ebba02e1a2192ef6d01fb8"><td class="memTemplParams" colspan="2">template&lt;typename To , typename From &gt; </td></tr>
+<tr class="memitem:a5f5e216832ebba02e1a2192ef6d01fb8"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc_1_1internal_1_1type__support.html#a5f5e216832ebba02e1a2192ef6d01fb8">vccc::internal::type_support::cast</a> (std::false_type, From &amp;&amp;from)</td></tr>
+<tr class="separator:a5f5e216832ebba02e1a2192ef6d01fb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdedb9d028a0f3ae9582eaa8ee7ab549"><td class="memTemplParams" colspan="2">template&lt;typename To , typename From &gt; </td></tr>
+<tr class="memitem:abdedb9d028a0f3ae9582eaa8ee7ab549"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc_1_1internal_1_1type__support.html#abdedb9d028a0f3ae9582eaa8ee7ab549">vccc::internal::type_support::cast</a> (std::true_type, From from)</td></tr>
+<tr class="separator:abdedb9d028a0f3ae9582eaa8ee7ab549"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4117b3762330cf78fd14af93b6e7dd81"><td class="memTemplParams" colspan="2">template&lt;typename ToType , typename FromType &gt; </td></tr>
 <tr class="memitem:a4117b3762330cf78fd14af93b6e7dd81"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevccc.html#a4117b3762330cf78fd14af93b6e7dd81">vccc::cast</a> (FromType &amp;&amp;from)</td></tr>
 <tr class="separator:a4117b3762330cf78fd14af93b6e7dd81"><td class="memSeparator" colspan="2">&#160;</td></tr>
