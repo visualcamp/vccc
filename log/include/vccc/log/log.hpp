@@ -57,17 +57,31 @@ if using << format, blank will be inserted between all elements
     Log.d("AB", "CD", 12)   // AB CD 12
 @endcode
 
-* std::pair, std::tuple, std::integer_sequence, containers(non default-printable) are overloaded, and can be printed.
+* std::pair, std::tuple, std::integer_sequence, containers, chrono types, aggregate(since C++17) types can be printed.
+
+@code
+    Log.d(std::vector<std::vector<int>>{{1, 2}, {3}});  // { { 1, 2 }, { 3 } }
+    Log.d(std::make_tuple(1, "hello"));                 // { 1, hello }
+    Log.d(std::chrono::system_clock::now());            // 2021-06-29 14:35:27.917
+
+    // Since C++ 17
+    struct foo {
+      int x;
+      std::string name;
+    };
+    Log.d(foo{100, "Tony"});    // { 100, Tony }
+@endcode
+
  */
 
 class Log_{
  public:
   constexpr Log_() = default;
 
-  template<typename ...Args> inline void d(Args&&... args) const { LOGD_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
-  template<typename ...Args> inline void i(Args&&... args) const { LOGI_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
-  template<typename ...Args> inline void w(Args&&... args) const { LOGW_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
-  template<typename ...Args> inline void e(Args&&... args) const { LOGE_IMPL("%s", Logger(std::forward<Args>(args)...).get().c_str()); }
+  template<typename ...Args> constexpr inline void d(const Args&... args) const { LOGD_IMPL("%s", Logger(args...).get().c_str()); }
+  template<typename ...Args> constexpr inline void i(const Args&... args) const { LOGI_IMPL("%s", Logger(args...).get().c_str()); }
+  template<typename ...Args> constexpr inline void w(const Args&... args) const { LOGW_IMPL("%s", Logger(args...).get().c_str()); }
+  template<typename ...Args> constexpr inline void e(const Args&... args) const { LOGE_IMPL("%s", Logger(args...).get().c_str()); }
 };
 
 /**

@@ -105,10 +105,10 @@ $(document).ready(function(){initNavTree('is__specialization_8hpp_source.html','
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Test, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>Ref&gt;</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structvccc_1_1is__specialization.html">   30</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1is__specialization.html">is_specialization</a> : std::false_type {};</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structvccc_1_1is__specialization.html">   30</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1is__specialization.html">is_specialization</a> : <a class="code" href="namespacevccc.html#a91c37665dd6eff0ee09d35b5da778195">std::false_type</a> {};</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">template</span>&lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>Ref, <span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structvccc_1_1is__specialization_3_01_ref_3_01_args_8_8_8_01_4_00_01_ref_01_4.html">   33</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1is__specialization.html">is_specialization</a>&lt;Ref&lt;Args...&gt;, Ref&gt; : std::true_type {};</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structvccc_1_1is__specialization_3_01_ref_3_01_args_8_8_8_01_4_00_01_ref_01_4.html">   33</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1is__specialization.html">is_specialization</a>&lt;Ref&lt;Args...&gt;, Ref&gt; : <a class="code" href="namespacevccc.html#af23be52951d9c7fbfa3b0cbf7514ee68">std::true_type</a> {};</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
@@ -117,6 +117,8 @@ $(document).ready(function(){initNavTree('is__specialization_8hpp_source.html','
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astructvccc_1_1is__specialization_html"><div class="ttname"><a href="structvccc_1_1is__specialization.html">vccc::is_specialization</a></div><div class="ttdef"><b>Definition:</b> is_specialization.hpp:30</div></div>
+<div class="ttc" id="anamespacevccc_html_a91c37665dd6eff0ee09d35b5da778195"><div class="ttname"><a href="namespacevccc.html#a91c37665dd6eff0ee09d35b5da778195">vccc::false_type</a></div><div class="ttdeci">integral_constant&lt; bool, false &gt; false_type</div><div class="ttdef"><b>Definition:</b> std_type_traits.h:27</div></div>
+<div class="ttc" id="anamespacevccc_html_af23be52951d9c7fbfa3b0cbf7514ee68"><div class="ttname"><a href="namespacevccc.html#af23be52951d9c7fbfa3b0cbf7514ee68">vccc::true_type</a></div><div class="ttdeci">integral_constant&lt; bool, true &gt; true_type</div><div class="ttdef"><b>Definition:</b> std_type_traits.h:26</div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

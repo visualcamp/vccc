@@ -112,20 +112,27 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ga2988aa3fd0f61a4e179e6127c6c37222"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
-<tr class="memitem:ga2988aa3fd0f61a4e179e6127c6c37222"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__log.html#ga2988aa3fd0f61a4e179e6127c6c37222">Logger</a> (const Args &amp;... args)</td></tr>
-<tr class="separator:ga2988aa3fd0f61a4e179e6127c6c37222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4acaec2a01fbc262d285afad0ec29207"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html#a4acaec2a01fbc262d285afad0ec29207">Logger</a> ()=default</td></tr>
+<tr class="separator:a4acaec2a01fbc262d285afad0ec29207"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa65ca45341c773d8fa1783ae50aa086"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html#aaa65ca45341c773d8fa1783ae50aa086">Logger</a> (<a class="el" href="classvccc_1_1_logger.html">Logger</a> const &amp;other)</td></tr>
+<tr class="separator:aaa65ca45341c773d8fa1783ae50aa086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f76ee2ce789ce5a11656fd40402d89a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html#a3f76ee2ce789ce5a11656fd40402d89a">Logger</a> (<a class="el" href="classvccc_1_1_logger.html">Logger</a> &amp;&amp;other)</td></tr>
+<tr class="separator:a3f76ee2ce789ce5a11656fd40402d89a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a725b87bc23970cbbaa3b12b2996e5d6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classvccc_1_1_logger.html">Logger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html#a725b87bc23970cbbaa3b12b2996e5d6c">operator=</a> (<a class="el" href="classvccc_1_1_logger.html">Logger</a> const &amp;other)</td></tr>
+<tr class="separator:a725b87bc23970cbbaa3b12b2996e5d6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebfdafede1b88d76586ece43f29940e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classvccc_1_1_logger.html">Logger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html#aebfdafede1b88d76586ece43f29940e5">operator=</a> (<a class="el" href="classvccc_1_1_logger.html">Logger</a> &amp;&amp;other)</td></tr>
+<tr class="separator:aebfdafede1b88d76586ece43f29940e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2988aa3fd0f61a4e179e6127c6c37222"><td class="memTemplParams" colspan="2">template&lt;typename ... Args&gt; </td></tr>
+<tr class="memitem:a2988aa3fd0f61a4e179e6127c6c37222"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html#a2988aa3fd0f61a4e179e6127c6c37222">Logger</a> (const Args &amp;... args)</td></tr>
+<tr class="separator:a2988aa3fd0f61a4e179e6127c6c37222"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0455f54ea1bc97837f18ad396bde19d3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1_logger.html#a0455f54ea1bc97837f18ad396bde19d3">get</a> () const</td></tr>
 <tr class="separator:a0455f54ea1bc97837f18ad396bde19d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9b82beb820e92e46fd0a2af948342119"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga9b82beb820e92e46fd0a2af948342119"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__log.html#ga9b82beb820e92e46fd0a2af948342119">add</a> (const T &amp;n)</td></tr>
-<tr class="separator:ga9b82beb820e92e46fd0a2af948342119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>stream wrapper that can accept both C-style formatted and C++ style variadic </p>
-<div class="fragment"><div class="line">std::string str1 = <a class="code" href="group__log.html#ga2988aa3fd0f61a4e179e6127c6c37222">Logger</a>(<span class="stringliteral">&quot;%s %d&quot;</span>, <span class="stringliteral">&quot;Hello&quot;</span>, 100).get();</div>
-<div class="line">std::string str2 = <a class="code" href="group__log.html#ga2988aa3fd0f61a4e179e6127c6c37222">Logger</a>(1, <span class="stringliteral">&quot;Hello&quot;</span>, <span class="stringliteral">&quot;world&quot;</span>).get();</div>
-<div class="line">std::string str3 = <a class="code" href="group__log.html#ga2988aa3fd0f61a4e179e6127c6c37222">Logger</a>(std::boolalpha, <span class="keyword">true</span>).get();</div>
+<div class="fragment"><div class="line">std::string str1 = <a class="code" href="classvccc_1_1_logger.html#a4acaec2a01fbc262d285afad0ec29207">Logger</a>(<span class="stringliteral">&quot;%s %d&quot;</span>, <span class="stringliteral">&quot;Hello&quot;</span>, 100).get();</div>
+<div class="line">std::string str2 = <a class="code" href="classvccc_1_1_logger.html#a4acaec2a01fbc262d285afad0ec29207">Logger</a>(1, <span class="stringliteral">&quot;Hello&quot;</span>, <span class="stringliteral">&quot;world&quot;</span>).get();</div>
+<div class="line">std::string str3 = <a class="code" href="classvccc_1_1_logger.html#a4acaec2a01fbc262d285afad0ec29207">Logger</a>(std::boolalpha, <span class="keyword">true</span>).get();</div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a515af5e2ff096ea0ca125a294e878c12"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a515af5e2ff096ea0ca125a294e878c12">&#9670;&nbsp;</a></span>c_printable</h2>
@@ -155,7 +162,165 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4acaec2a01fbc262d285afad0ec29207"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4acaec2a01fbc262d285afad0ec29207">&#9670;&nbsp;</a></span>Logger() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vccc::Logger::Logger </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa65ca45341c773d8fa1783ae50aa086"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa65ca45341c773d8fa1783ae50aa086">&#9670;&nbsp;</a></span>Logger() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vccc::Logger::Logger </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1_logger.html">Logger</a> const &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f76ee2ce789ce5a11656fd40402d89a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f76ee2ce789ce5a11656fd40402d89a">&#9670;&nbsp;</a></span>Logger() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vccc::Logger::Logger </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1_logger.html">Logger</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2988aa3fd0f61a4e179e6127c6c37222"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2988aa3fd0f61a4e179e6127c6c37222">&#9670;&nbsp;</a></span>Logger() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vccc::Logger::Logger </td>
+          <td>(</td>
+          <td class="paramtype">const Args &amp;...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a725b87bc23970cbbaa3b12b2996e5d6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a725b87bc23970cbbaa3b12b2996e5d6c">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classvccc_1_1_logger.html">Logger</a>&amp; vccc::Logger::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1_logger.html">Logger</a> const &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aebfdafede1b88d76586ece43f29940e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebfdafede1b88d76586ece43f29940e5">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classvccc_1_1_logger.html">Logger</a>&amp; vccc::Logger::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1_logger.html">Logger</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0455f54ea1bc97837f18ad396bde19d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0455f54ea1bc97837f18ad396bde19d3">&#9670;&nbsp;</a></span>get()</h2>
 
@@ -186,7 +351,7 @@ Public Member Functions</h2></td></tr>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup__log_html_ga2988aa3fd0f61a4e179e6127c6c37222"><div class="ttname"><a href="group__log.html#ga2988aa3fd0f61a4e179e6127c6c37222">vccc::Logger::Logger</a></div><div class="ttdeci">Logger(const Args &amp;... args)</div><div class="ttdef"><b>Definition:</b> logger.hpp:67</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_a4acaec2a01fbc262d285afad0ec29207"><div class="ttname"><a href="classvccc_1_1_logger.html#a4acaec2a01fbc262d285afad0ec29207">vccc::Logger::Logger</a></div><div class="ttdeci">Logger()=default</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

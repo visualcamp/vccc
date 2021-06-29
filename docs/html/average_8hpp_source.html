@@ -133,7 +133,7 @@ $(document).ready(function(){initNavTree('average_8hpp_source.html',''); initRes
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Numbers,</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;         <a class="code" href="require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638">VCCC_ENABLE_IF</a>(are_arithmetic_v&lt;Numbers...&gt;)&gt;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;constexpr</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;constexpr <span class="keyword">inline</span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">auto</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="group__numeric__average.html#ga84508e1f9e2d06fc15712779a6d4ea8b">   78</a></span>&#160;<a class="code" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">average</a>(Numbers... numbers)</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
@@ -143,7 +143,7 @@ $(document).ready(function(){initNavTree('average_8hpp_source.html',''); initRes
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Ints,</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;         <a class="code" href="require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638">VCCC_ENABLE_IF</a>(are_integral_v&lt;Ints...&gt;)&gt;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;constexpr</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;constexpr <span class="keyword">inline</span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">auto</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="group__numeric__average.html#ga6c7d7b2543e94b24e4891cb0f7c651c6">   94</a></span>&#160;<a class="code" href="group__numeric__average.html#ga6c7d7b2543e94b24e4891cb0f7c651c6">int_average</a>(Ints... ints)</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;{</div>
@@ -152,7 +152,7 @@ $(document).ready(function(){initNavTree('average_8hpp_source.html',''); initRes
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args,</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;         <a class="code" href="require_8hpp.html#a076be2135fa476e0ffa180ef5d1f4638">VCCC_ENABLE_IF</a>(!iterable&lt;Args...&gt; &amp;&amp; !are_arithmetic_v&lt;Args...&gt;)&gt;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;constexpr</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;constexpr <span class="keyword">inline</span></div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">auto</span></div>
 <div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="group__numeric__average.html#gaca1ff9006393ec8bf9eadcdb26ccec1b">  109</a></span>&#160;<a class="code" href="group__numeric__average.html#ga4462f1176d8e155f2e1d7b5b96ccd27d">average</a>(<span class="keyword">const</span> Args&amp;... args)</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;{</div>

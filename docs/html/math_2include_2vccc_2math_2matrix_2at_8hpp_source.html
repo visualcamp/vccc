@@ -104,33 +104,31 @@ $(document).ready(function(){initNavTree('math_2include_2vccc_2math_2matrix_2at_
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a> {</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> i, <span class="keyword">typename</span> E&gt;</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">   13</a></span>&#160;constexpr decltype(<span class="keyword">auto</span>) <a class="code" href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">at</a>(const <a class="code" href="classvccc_1_1_matrix_base.html">MatrixBase</a>&lt;E&gt;&amp; mat) { <span class="keywordflow">return</span> mat(i); }</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> i, <span class="keyword">typename</span> E&gt;</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="namespacevccc.html#a6864056e1aa9770293d3c4c91fd13f66">   16</a></span>&#160;constexpr decltype(<span class="keyword">auto</span>) <a class="code" href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">at</a>(<a class="code" href="classvccc_1_1_matrix_base.html">MatrixBase</a>&lt;E&gt;&amp; mat) { <span class="keywordflow">return</span> mat(i); }</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> i, <span class="keyword">typename</span> E&gt;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="namespacevccc.html#afe89f1324c89e8aa4df76eafbdd3d210">   19</a></span>&#160;constexpr decltype(<span class="keyword">auto</span>) <a class="code" href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">at</a>(<a class="code" href="classvccc_1_1_matrix_base.html">MatrixBase</a>&lt;E&gt;&amp;&amp; mat) { <span class="keywordflow">return</span> mat(i); }</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> i, std::<span class="keywordtype">size_t</span> j, <span class="keyword">typename</span> E&gt;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="namespacevccc.html#a6d9ad8fc6c07f72db38cce5f75bea3f7">   22</a></span>&#160;constexpr decltype(<span class="keyword">auto</span>) <a class="code" href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">at</a>(const <a class="code" href="classvccc_1_1_matrix_base.html">MatrixBase</a>&lt;E&gt;&amp; mat) { <span class="keywordflow">return</span> mat(i, j); }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> i, std::<span class="keywordtype">size_t</span> j, <span class="keyword">typename</span> E&gt;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespacevccc.html#aa4fb16c71ca210af7a0c9871dab61951">   25</a></span>&#160;constexpr decltype(<span class="keyword">auto</span>) <a class="code" href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">at</a>(<a class="code" href="classvccc_1_1_matrix_base.html">MatrixBase</a>&lt;E&gt;&amp; mat) { <span class="keywordflow">return</span> mat(i, j); }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> i, std::<span class="keywordtype">size_t</span> j, <span class="keyword">typename</span> E&gt;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="namespacevccc.html#ad570ab73ab168a70d43301ba1eea31e0">   28</a></span>&#160;constexpr decltype(<span class="keyword">auto</span>) <a class="code" href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">at</a>(<a class="code" href="classvccc_1_1_matrix_base.html">MatrixBase</a>&lt;E&gt;&amp;&amp; mat) { <span class="keywordflow">return</span> mat(i, j); }</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//template&lt;std::size_t i, typename E&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">//constexpr decltype(auto) at(const MatrixBase&lt;E&gt;&amp; mat) { return mat(i); }</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//template&lt;std::size_t i, typename E&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">//constexpr decltype(auto) at(MatrixBase&lt;E&gt;&amp; mat) { return mat(i); }</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">//template&lt;std::size_t i, typename E&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//constexpr decltype(auto) at(MatrixBase&lt;E&gt;&amp;&amp; mat) { return mat(i); }</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">//template&lt;std::size_t i, std::size_t j, typename E&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">//constexpr decltype(auto) at(const MatrixBase&lt;E&gt;&amp; mat) { return mat(i, j); }</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">//template&lt;std::size_t i, std::size_t j, typename E&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//constexpr decltype(auto) at(MatrixBase&lt;E&gt;&amp; mat) { return mat(i, j); }</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">//template&lt;std::size_t i, std::size_t j, typename E&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//constexpr decltype(auto) at(MatrixBase&lt;E&gt;&amp;&amp; mat) { return mat(i, j); }</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor"># endif //VCCC_MATH_MATRIX_GET_HPP_</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespacevccc_html_a84f9bc5a451374b26113f89adb7c4908"><div class="ttname"><a href="namespacevccc.html#a84f9bc5a451374b26113f89adb7c4908">vccc::at</a></div><div class="ttdeci">constexpr decltype(auto) at(const MatrixBase&lt; E &gt; &amp;mat)</div><div class="ttdef"><b>Definition:</b> at.hpp:13</div></div>
 <div class="ttc" id="amatrix__base_8hpp_html"><div class="ttname"><a href="matrix__base_8hpp.html">matrix_base.hpp</a></div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
-<div class="ttc" id="aclassvccc_1_1_matrix_base_html"><div class="ttname"><a href="classvccc_1_1_matrix_base.html">vccc::MatrixBase</a></div><div class="ttdef"><b>Definition:</b> matrix_base.hpp:14</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

@@ -106,12 +106,12 @@ $(document).ready(function(){initNavTree('is__printable_8hpp_source.html',''); i
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a>{</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> = <span class="keywordtype">void</span>&gt;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structvccc_1_1is__printable.html">   24</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1is__printable.html">is_printable</a> : std::false_type {};</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structvccc_1_1is__printable.html">   24</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1is__printable.html">is_printable</a> : <a class="code" href="namespacevccc.html#a91c37665dd6eff0ee09d35b5da778195">std::false_type</a> {};</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structvccc_1_1is__printable_3_01_t_00_01void__t_3_01decltype_07std_1_1cout_3_3_01std_1_1declval_3_01_t_01_4_07_08_08_4_01_4.html">   27</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1is__printable.html">is_printable</a>&lt;T, <a class="code" href="group__type__traits.html#gaba02293d3814e942a3571c65eb7aebb3">void_t</a>&lt;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    decltype(std::cout &lt;&lt; std::declval&lt;T&gt;())</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;&gt;&gt; : std::true_type {};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;&gt;&gt; : <a class="code" href="namespacevccc.html#af23be52951d9c7fbfa3b0cbf7514ee68">std::true_type</a> {};</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
@@ -122,6 +122,8 @@ $(document).ready(function(){initNavTree('is__printable_8hpp_source.html',''); i
 <div class="ttc" id="astructvccc_1_1is__printable_html"><div class="ttname"><a href="structvccc_1_1is__printable.html">vccc::is_printable</a></div><div class="ttdef"><b>Definition:</b> is_printable.hpp:24</div></div>
 <div class="ttc" id="agroup__type__traits_html_gaba02293d3814e942a3571c65eb7aebb3"><div class="ttname"><a href="group__type__traits.html#gaba02293d3814e942a3571c65eb7aebb3">vccc::void_t</a></div><div class="ttdeci">void void_t</div><div class="ttdef"><b>Definition:</b> void_t.hpp:20</div></div>
 <div class="ttc" id="avoid__t_8hpp_html"><div class="ttname"><a href="void__t_8hpp.html">void_t.hpp</a></div></div>
+<div class="ttc" id="anamespacevccc_html_a91c37665dd6eff0ee09d35b5da778195"><div class="ttname"><a href="namespacevccc.html#a91c37665dd6eff0ee09d35b5da778195">vccc::false_type</a></div><div class="ttdeci">integral_constant&lt; bool, false &gt; false_type</div><div class="ttdef"><b>Definition:</b> std_type_traits.h:27</div></div>
+<div class="ttc" id="anamespacevccc_html_af23be52951d9c7fbfa3b0cbf7514ee68"><div class="ttname"><a href="namespacevccc.html#af23be52951d9c7fbfa3b0cbf7514ee68">vccc::true_type</a></div><div class="ttdeci">integral_constant&lt; bool, true &gt; true_type</div><div class="ttdef"><b>Definition:</b> std_type_traits.h:26</div></div>
 <div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> invoke.hpp:11</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
