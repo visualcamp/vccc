@@ -93,8 +93,12 @@ class optional :
   }
 
   // Split into 2 overloads to prevent MSVC from making an ambiguous call in C++14
-  template<std::enable_if_t<std::is_constructible<value_type>::value, int> = 0>
-  constexpr explicit optional(in_place_t)
+  template<typename InPlaceT,
+    std::enable_if_t<
+      std::is_same<InPlaceT, in_place_t>::value &&
+      std::is_constructible<value_type>::value,
+    int> = 0>
+  constexpr explicit optional(InPlaceT)
     : base(in_place) {}
 
   template<typename Arg, typename ...Args,
@@ -272,7 +276,11 @@ class optional :
     }
   }
 
-  template<std::enable_if_t<std::is_constructible<value_type>::value, int> = 0>
+  template<typename Dummy = void,
+    std::enable_if_t<
+      std::is_same<Dummy, void>::value &&
+      std::is_constructible<value_type>::value,
+    int> = 0>
   value_type& emplace() {
     this->reset();
     this->construct();
