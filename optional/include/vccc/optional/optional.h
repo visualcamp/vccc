@@ -105,7 +105,7 @@ class optional :
     std::enable_if_t<
       std::is_constructible<value_type, Arg, Args...>::value,
     int> = 0>
-  constexpr optional(in_place_t, Arg&& arg, Args&&... args)
+  constexpr explicit optional(in_place_t, Arg&& arg, Args&&... args)
     : base(in_place, std::forward<Arg>(arg), std::forward<Args>(args)...) {}
 
   template<typename U, typename ...Args,
