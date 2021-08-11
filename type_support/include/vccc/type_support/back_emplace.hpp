@@ -9,16 +9,40 @@
 
 namespace vccc{
 
+namespace internal {
+
+class back_emplace_iterator_base;
+
+# if __cplusplus >= 201703L
+class back_emplace_iterator_base {
+  using iterator_category = std::output_iterator_tag;
+
+  using value_type      = void;
+# if __cplusplus >= 202002L
+  using difference_type = std::ptrdiff_t;
+# else
+  using difference_type = void;
+# endif
+  using pointer         = void;
+  using reference       = void;
+};
+# else
+class back_emplace_iterator_base
+    : public std::iterator<std::output_iterator_tag,
+                           void,
+                           void,
+                           void,
+                           void> {};
+# endif
+
+} // namespace internal
+
 //! @addtogroup type_support
 //! @{
 
 template <class Container>
 class back_emplace_iterator
-    : public std::iterator<std::output_iterator_tag,
-                           void,
-                           void,
-                           void,
-                           void>
+    : public internal::back_emplace_iterator_base
 {
  protected:
   Container* container;

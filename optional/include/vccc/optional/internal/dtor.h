@@ -14,7 +14,7 @@ namespace vccc {
 namespace internal {
 namespace optional {
 
-template<typename T, bool v = std::is_trivially_destructible<T>::value>
+template<typename T, bool v = /* true */ std::is_trivially_destructible<T>::value>
 struct dtor {
   using value_type = T;
 
@@ -33,24 +33,24 @@ struct dtor {
     }
   }
 
-  constexpr inline const value_type* pointer() const { return &val; }
-  constexpr inline       value_type* pointer()       { return &val; }
+  constexpr inline const value_type* pointer() const { return std::addressof(val); }
+  constexpr inline       value_type* pointer()       { return std::addressof(val); }
 
   constexpr inline const value_type& ref() const&  { return val;             }
   constexpr inline       value_type& ref()      &  { return val;             }
   constexpr inline const value_type& ref() const&& { return std::move(val);  }
   constexpr inline       value_type& ref()      && { return std::move(val);  }
 
-  template<typename ...U>
-  void construct(U&&... args) {
-    ::new((void*)&val) value_type(std::forward<U>(args)...);
+  template<typename ...Args>
+  void construct(Args&&... args) {
+    ::new((void*)std::addressof(val)) value_type(std::forward<Args>(args)...);
     valid = true;
   }
 
-  template<typename U>
-  void construct_if(U&& arg) {
-    if (valid)
-      construct(std::forward<U>(arg));
+  template<typename Other>
+  void construct_if(Other&& other) {
+    if (other)
+      construct(*std::forward<Other>(other));
   }
 
   ~dtor() = default;
@@ -66,11 +66,11 @@ template<typename T>
 struct dtor<T, false> {
   using value_type = T;
 
-  constexpr explicit dtor() noexcept
+  constexpr dtor() noexcept
     : null{} {}
 
   template<typename ...Args>
-  constexpr dtor(in_place_t, Args&&... args)
+  constexpr explicit dtor(in_place_t, Args&&... args)
     : val(std::forward<Args>(args)...),
       valid(true) {}
 
@@ -81,18 +81,24 @@ struct dtor<T, false> {
     }
   }
 
-  constexpr inline const value_type* pointer() const { return &val; }
-  constexpr inline       value_type* pointer()       { return &val; }
+  constexpr inline const value_type* pointer() const { return std::addressof(val); }
+  constexpr inline       value_type* pointer()       { return std::addressof(val); }
 
   constexpr inline const value_type& ref() const&  { return val;             }
   constexpr inline       value_type& ref()      &  { return val;             }
   constexpr inline const value_type& ref() const&& { return std::move(val);  }
   constexpr inline       value_type& ref()      && { return std::move(val);  }
 
-  template<typename U>
-  void construct(U&& arg) {
-    ::new((void*)&val) value_type(std::forward<U>(arg));
+  template<typename ...Args>
+  void construct(Args&&... args) {
+    ::new((void*)std::addressof(val)) value_type(std::forward<Args>(args)...);
     valid = true;
+  }
+
+  template<typename Other>
+  void construct_if(Other&& other) {
+    if (other)
+      construct(*std::forward<Other>(other));
   }
 
   ~dtor() {
