@@ -35,7 +35,7 @@ int main() {
     TEST_ENSURES((signal(), true));
 
     int sum = 0;
-    int test_count = 100000;
+    int test_count = 10000;
 
     auto t1 = now();
     for(int i=0; i<test_count; ++i)
@@ -56,7 +56,7 @@ int main() {
   { // object safety test
     signal2::connection conn;
     std::atomic_int dummy{0};
-    int test_count = 100000;
+    int test_count = 10000;
 
     for (int i=0; i<test_count; ++i) {
       std::thread t;
@@ -119,7 +119,7 @@ int main() {
     auto t = now();
     signal2::signal<void()> sig;
     std::atomic_int called{0};
-    int test_count = 100000;
+    int test_count = 10000;
     for (int i=0; i<test_count; ++i) {
       auto ptr = std::make_shared<std::vector<int>>(3);
       auto conn = sig.connect([&, ptr = ptr.get()](){
@@ -156,7 +156,7 @@ int main() {
     auto t = now();
     vccc::experimental::signal<void()> signal;
     std::atomic_int called{0};
-    int test_count = 100000;
+    int test_count = 10000;
     for(int i=0; i<test_count; ++i) {
       vccc::experimental::connection conn = signal.connect([&]{++called;});
       std::thread t2([&] { for(int i=0; i<dist(gen); ++i) std::this_thread::yield(); signal(); });
@@ -179,7 +179,7 @@ int main() {
     std::atomic_int connected{0};
     std::mutex conn_m;
     std::shared_ptr<signal2::connection> conn;
-    int test_count = 100000;
+    int test_count = 10000;
     auto random_work = [&]() -> std::function<void()> {
       switch(random_int(0, 10)) {
         case 0:
