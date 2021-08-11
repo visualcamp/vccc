@@ -14,7 +14,7 @@ namespace internal {
 class back_emplace_iterator_base;
 
 # if __cplusplus >= 201703L
-class back_emplace_iterator_base {
+struct back_emplace_iterator_base {
   using iterator_category = std::output_iterator_tag;
 
   using value_type      = void;
@@ -27,7 +27,7 @@ class back_emplace_iterator_base {
   using reference       = void;
 };
 # else
-class back_emplace_iterator_base
+struct back_emplace_iterator_base
     : public std::iterator<std::output_iterator_tag,
                            void,
                            void,
