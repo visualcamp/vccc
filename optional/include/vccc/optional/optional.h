@@ -57,7 +57,7 @@ class optional :
       internal::optional::check_convertible  <value_type, optional<U>>::value,
     int> = 0>
   constexpr optional(const optional<U>& other) {
-    this->construct_if(*other);
+    this->construct_if(other);
   }
 
   template<typename U,
@@ -68,7 +68,7 @@ class optional :
       !std::is_convertible<const U&, value_type>::value,
     int> = 0>
   explicit constexpr optional(const optional<U>& other) {
-    this->construct_if(*other);
+    this->construct_if(other);
   }
 
   template<typename U,
@@ -78,7 +78,7 @@ class optional :
       internal::optional::check_convertible  <value_type, optional<U>>::value,
     int> = 0>
   constexpr optional(optional<U>&& other) {
-    this->construct_if(std::move(*other));
+    this->construct_if(std::move(other));
   }
 
   template<typename U,
@@ -89,7 +89,7 @@ class optional :
       !std::is_convertible<U&&, value_type>::value,
     int> = 0>
   explicit constexpr optional(optional<U>&& other) {
-    this->construct_if(std::move(*other));
+    this->construct_if(std::move(other));
   }
 
   // Split into 2 overloads to prevent MSVC from making an ambiguous call in C++14
@@ -141,7 +141,7 @@ class optional :
        !std::is_same<internal::optional::strip_t<U>, optional>::value) &&
       (!std::is_scalar<value_type>::value ||
        !std::is_same<std::decay_t<U>, value_type>::value),
-      int> = 0>
+    int> = 0>
   optional& operator=(U&& value) {
     if (has_value()) {
       this->val = std::forward<U>(value);
@@ -202,7 +202,6 @@ class optional :
   constexpr inline const value_type&& operator*() const&& { return std::move(this->ref()); }
   constexpr inline       value_type&& operator*()      && { return std::move(this->ref()); }
 
-  // change to implicit for sugar use
   constexpr explicit inline operator bool() const noexcept {
     return this->valid;
   }
