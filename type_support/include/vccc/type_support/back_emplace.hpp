@@ -11,8 +11,6 @@ namespace vccc{
 
 namespace internal {
 
-class back_emplace_iterator_base;
-
 # if __cplusplus >= 201703L
 struct back_emplace_iterator_base {
   using iterator_category = std::output_iterator_tag;
@@ -27,12 +25,12 @@ struct back_emplace_iterator_base {
   using reference       = void;
 };
 # else
-struct back_emplace_iterator_base
-    : public std::iterator<std::output_iterator_tag,
-                           void,
-                           void,
-                           void,
-                           void> {};
+using back_emplace_iterator_base =
+    std::iterator<std::output_iterator_tag,
+                  void,
+                  void,
+                  void,
+                  void>;
 # endif
 
 } // namespace internal
