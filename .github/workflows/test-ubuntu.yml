@@ -48,7 +48,7 @@ jobs:
         cmake -B ${{github.workspace}}/build-opencv
         -DCMAKE_BUILD_TYPE=$BUILD_TYPE
         -DCMAKE_CXX_STANDARD=${{matrix.cxx}}
-        -DVCCC_USE_OPENCV_FEATURES=ON
+        -DVCCC_TEST_SYSTEM_OPENCV=ON
         -DVCCC_RUN_TEST=ON
         -DVCCC_TEST_MATRIX=ON
 
