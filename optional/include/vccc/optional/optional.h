@@ -205,13 +205,13 @@ class optional :
   }
 
 
-  constexpr inline const value_type*  operator->() const { return this->pointer(); }
-  constexpr inline       value_type*  operator->()       { return this->pointer(); }
+  constexpr inline const value_type*  operator->() const noexcept { return this->pointer(); }
+  constexpr inline       value_type*  operator->()       noexcept { return this->pointer(); }
 
-  constexpr inline const value_type&  operator*() const&  { return this->ref(); }
-  constexpr inline       value_type&  operator*()      &  { return this->ref(); }
-  constexpr inline const value_type&& operator*() const&& { return std::move(this->ref()); }
-  constexpr inline       value_type&& operator*()      && { return std::move(this->ref()); }
+  constexpr inline const value_type&  operator*() const&  noexcept { return this->ref(); }
+  constexpr inline       value_type&  operator*()      &  noexcept { return this->ref(); }
+  constexpr inline const value_type&& operator*() const&& noexcept { return std::move(this->ref()); }
+  constexpr inline       value_type&& operator*()      && noexcept { return std::move(this->ref()); }
 
   constexpr explicit inline operator bool() const noexcept {
     return this->valid;
