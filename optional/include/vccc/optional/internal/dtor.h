@@ -33,13 +33,13 @@ struct dtor {
     }
   }
 
-  constexpr inline const value_type* pointer() const { return std::addressof(val); }
-  constexpr inline       value_type* pointer()       { return std::addressof(val); }
+  constexpr inline const value_type* pointer() const noexcept { return std::addressof(val); }
+  constexpr inline       value_type* pointer()       noexcept { return std::addressof(val); }
 
-  constexpr inline const value_type& ref() const&  { return val;             }
-  constexpr inline       value_type& ref()      &  { return val;             }
-  constexpr inline const value_type& ref() const&& { return std::move(val);  }
-  constexpr inline       value_type& ref()      && { return std::move(val);  }
+  constexpr inline const value_type& ref() const&  noexcept { return val;             }
+  constexpr inline       value_type& ref()      &  noexcept { return val;             }
+  constexpr inline const value_type& ref() const&& noexcept { return std::move(val);  }
+  constexpr inline       value_type& ref()      && noexcept { return std::move(val);  }
 
   template<typename ...Args>
   void construct(Args&&... args) {
@@ -81,13 +81,13 @@ struct dtor<T, false> {
     }
   }
 
-  constexpr inline const value_type* pointer() const { return std::addressof(val); }
-  constexpr inline       value_type* pointer()       { return std::addressof(val); }
+  constexpr inline const value_type* pointer() const noexcept { return std::addressof(val); }
+  constexpr inline       value_type* pointer()       noexcept { return std::addressof(val); }
 
-  constexpr inline const value_type& ref() const&  { return val;             }
-  constexpr inline       value_type& ref()      &  { return val;             }
-  constexpr inline const value_type& ref() const&& { return std::move(val);  }
-  constexpr inline       value_type& ref()      && { return std::move(val);  }
+  constexpr inline const value_type& ref() const&  noexcept { return val;             }
+  constexpr inline       value_type& ref()      &  noexcept { return val;             }
+  constexpr inline const value_type& ref() const&& noexcept { return std::move(val);  }
+  constexpr inline       value_type& ref()      && noexcept { return std::move(val);  }
 
   template<typename ...Args>
   void construct(Args&&... args) {
