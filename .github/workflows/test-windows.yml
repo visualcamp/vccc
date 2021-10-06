@@ -37,7 +37,7 @@ jobs:
         -DVCCC_TEST_MATRIX=ON
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -G "Ninja" -m
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} # -G "Ninja" -m
 
     - name: Test
       working-directory: ${{github.workspace}}/build
