@@ -74,7 +74,7 @@ struct dtor<T, false> {
     : val(std::forward<Args>(args)...),
       valid(true) {}
 
-  inline void reset() {
+  void reset() {
     if (valid) {
       val.T::~T();
       valid = false;

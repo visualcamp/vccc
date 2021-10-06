@@ -317,6 +317,7 @@ class optional :
     return **this;
   }
 
+  using base::reset;
 };
 
 # if __cplusplus >= 201703
