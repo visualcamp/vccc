@@ -22,6 +22,7 @@
 #
 # if __cplusplus >= 201703
 #   include <filesystem>
+#   include <optional>
 #   include "boost/pfr.hpp"
 # endif
 
