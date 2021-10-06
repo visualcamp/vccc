@@ -23,6 +23,7 @@ jobs:
     strategy:
       matrix:
         cxx: [ 14, 17 ]
+      fail-fast: false
 
     steps:
     - uses: actions/checkout@v2
