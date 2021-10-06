@@ -17,10 +17,12 @@
 # include <mutex>
 #
 # include "vccc/log/ios_flags_saver.hpp"
+# include "vccc/optional.hpp"
 # include "vccc/type_traits.hpp"
 #
 # if __cplusplus >= 201703
 #   include <filesystem>
+#   include <optional>
 #   include "boost/pfr.hpp"
 # endif
 
@@ -181,10 +183,26 @@ class StreamWrapper {
     write(std::make_tuple(v...));
   }
 
+  template<typename T>
+  void write(const vccc::optional<T>& op) {
+    if (op)
+      *this << *op;
+    else
+      stream_ << "nullopt";
+  }
+
   // directory_entry(Apple Clang defects)
 # if __cplusplus >= 201703L
   void write(const std::filesystem::directory_entry& d) {
     stream_ << d.path();
+  }
+
+  template<typename T>
+  void write(const std::optional<T>& op) {
+    if (op)
+      *this << *op;
+    else
+      stream_ << "nullopt";
   }
 # endif
 };
