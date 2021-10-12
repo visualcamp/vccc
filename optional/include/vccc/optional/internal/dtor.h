@@ -28,7 +28,7 @@ struct dtor {
 
   void reset() {
     if (valid) {
-      val.value_type::~value_type();
+      val.~value_type();
       valid = false;
     }
   }
@@ -76,7 +76,7 @@ struct dtor<T, false> {
 
   void reset() {
     if (valid) {
-      val.T::~T();
+      val.~value_type();
       valid = false;
     }
   }
