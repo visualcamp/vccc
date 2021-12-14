@@ -20,37 +20,33 @@ Index-based value accessor
 @addtogroup type_support_at_container
 @{
 */
-template<std::size_t i, typename Container,
-         VCCC_ENABLE_IF(is_container_v<Container>)>
+template<std::size_t i, typename Range, std::enable_if_t<is_range<Range>::value, int> = 0>
 decltype(auto)
-at(Container& container)
+at(Range& container)
 {
   BOUNDS_ASSERT(i, container.size());
   return *std::next(std::begin(container), i);
 }
 
-template<std::size_t i, typename Container,
-         VCCC_ENABLE_IF(is_container_v<Container>)>
+template<std::size_t i, typename Range, std::enable_if_t<is_range<Range>::value, int> = 0>
 decltype(auto)
-at(const Container& container)
+at(const Range& container)
 {
   BOUNDS_ASSERT(i, container.size());
   return *std::next(std::begin(container), i);
 }
 
-template<std::size_t i, typename Container,
-         VCCC_ENABLE_IF(is_container_v<Container>)>
+template<std::size_t i, typename Range, std::enable_if_t<is_range<Range>::value, int> = 0>
 decltype(auto)
-at(Container&& container)
+at(Range&& container)
 {
   BOUNDS_ASSERT(i, container.size());
   return std::move(*std::next(std::begin(container), i));
 }
 
-template<std::size_t i, typename Container,
-         VCCC_ENABLE_IF(is_container_v<Container>)>
+template<std::size_t i, typename Range, std::enable_if_t<is_range<Range>::value, int> = 0>
 decltype(auto)
-at(const Container&& container)
+at(const Range&& container)
 {
   BOUNDS_ASSERT(i, container.size());
   return std::move(*std::next(std::begin(container), i));

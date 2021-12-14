@@ -92,7 +92,7 @@ class StreamWrapper {
 
 #if __cplusplus >= 201703
   // any aggregate type
-  template<typename T, std::enable_if_t<!is_container_v<T> && std::is_aggregate_v<T>, int> = 0>
+  template<typename T, std::enable_if_t<!is_range_v<T> && std::is_aggregate_v<T>, int> = 0>
   void write(const T& aggr) {
     writeAggregate(aggr, std::make_index_sequence<boost::pfr::tuple_size_v<T>>{});
   }
@@ -119,7 +119,7 @@ class StreamWrapper {
 #endif
 
   // container types
-  template<typename T, VCCC_ENABLE_IF_FORWARD(is_container_v<T>)>
+  template<typename T, std::enable_if_t<is_range<T>::value, int> = 0>
   inline void write(const T& value) {
     use_key_value_separator?
       writeContainer(is_key_value_container_t<T>{}, value):

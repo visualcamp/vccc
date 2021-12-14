@@ -62,7 +62,7 @@ inline decltype(auto) vtype_convert(CVType<NewType, CVParams...>&& cv_type)
 @param cv_type      any template container class
  */
 template<typename NewType, template<typename...> class Container, typename OldType, typename ...Params,
-        VCCC_ENABLE_IF((is_container_v<Container<OldType, Params...>> &&
+        VCCC_ENABLE_IF((is_range_v<Container<OldType, Params...>> &&
                       !std::is_same<NewType, OldType>::value))>
 decltype(auto) vtype_convert(const Container<OldType, Params...>& container)
 {
@@ -74,14 +74,14 @@ decltype(auto) vtype_convert(const Container<OldType, Params...>& container)
 
 
 template<typename NewType, template<typename...> class Container, typename ...Params,
-        VCCC_ENABLE_IF((is_container_v<Container<NewType, Params...>>))>
+        VCCC_ENABLE_IF((is_range_v<Container<NewType, Params...>>))>
 inline decltype(auto) vtype_convert(const Container<NewType, Params...>& container)
 {
   return container;
 }
 
 template<typename NewType, template<typename...> class Container, typename ...Params,
-        VCCC_ENABLE_IF((is_container_v<Container<NewType, Params...>>))>
+        VCCC_ENABLE_IF((is_range_v<Container<NewType, Params...>>))>
 inline decltype(auto) vtype_convert(Container<NewType, Params...>&& container)
 {
   return container;
@@ -95,7 +95,7 @@ inline decltype(auto) vtype_convert(Container<NewType, Params...>&& container)
 @param cv_type      any template container class
  */
 template<typename NewType, typename Func, template<typename...> class Container, typename OldType, typename ...Params,
-        VCCC_ENABLE_IF((is_container_v<Container<OldType, Params...>> &&
+        VCCC_ENABLE_IF((is_range_v<Container<OldType, Params...>> &&
                       !std::is_same<NewType, OldType>::value))>
 decltype(auto) vtype_convert(const Container<OldType, Params...>& container, Func func)
 {
@@ -105,7 +105,7 @@ decltype(auto) vtype_convert(const Container<OldType, Params...>& container, Fun
 }
 
 template<typename NewType, template<typename...> class Container, typename ...Params, typename UnaryOperation,
-        VCCC_ENABLE_IF((is_container_v<Container<NewType, Params...>>))>
+        VCCC_ENABLE_IF((is_range_v<Container<NewType, Params...>>))>
 inline decltype(auto) vtype_convert(const Container<NewType, Params...>& container, UnaryOperation func)
 {
   return container;
