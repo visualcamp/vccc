@@ -12,11 +12,10 @@ namespace vccc{
 /**
 @addtogroup type_traits
 @{
-    @defgroup multiples_of multiples_of
-@}
 
-@addtogroup multiples_of
-@{ */
+@addtogroup multiples_of multiples_of
+@{
+*/
 
 /** @brief check if A is multiples of B
 
@@ -39,12 +38,8 @@ constexpr bool multiples_of_v = multiples_of<T, A, B>::value;
 
 //! @} multiples_of
 
-/** @addtogroup type_traits
-@{
-    @defgroup is_odd is_odd
-@}
-
-@addtogroup is_odd
+/**
+@addtogroup is_odd is_odd
 @{
 */
 
@@ -69,14 +64,8 @@ constexpr bool is_odd_v = is_odd<T, A>::value;
 
 //! @} is_odd
 
-
 /**
-@addtogroup type_traits
-@{
-    @defgroup is_even is_even
-@}
-
-@addtogroup is_even
+@addtogroup is_even is_even
 @{
 */
 
@@ -100,7 +89,64 @@ using is_even_t = typename is_even<T, A>::type;
 template<typename T, T A>
 constexpr bool is_even_v = is_even<T, A>::value;
 
-//! @}
+//! @} is_even
+
+/**
+@addtogroup type_traits_static_max static_max
+@{
+
+@brief Get max value in compile-time
+@sa static_min
+@sa static_diff
+*/
+
+template<typename T, T ...>
+struct static_max;
+
+template<typename T, T v>
+struct static_max<T, v> : std::integral_constant<T, v> {};
+
+template<typename T, T v1, T v2, T ...v3>
+struct static_max<T, v1, v2, v3...>
+    : std::conditional_t<(v1 > v2), static_max<T, v1, v3...>, static_max<T, v2, v3...>> {};
+
+//! @} type_traits_static_max
+
+/**
+@addtogroup type_traits_static_min static_min
+@{
+
+@brief Get min value in compile-time
+@sa static_max
+@sa static_diff
+*/
+
+template<typename T, T ...>
+struct static_min;
+
+template<typename T, T v>
+struct static_min<T, v> : integral_constant<T, v> {};
+
+template<typename T, T v1, T v2, T ...v3>
+struct static_min<T, v1, v2, v3...>
+    : std::conditional_t<(v1 < v2), static_max<T, v1, v3...>, static_max<T, v2, v3...>> {};
+
+
+/**
+
+@brief Get abs(v1 - v2) in compile-time
+@sa static_min
+@sa static_max
+*/
+template<typename T, T v1, T v2>
+struct static_diff {
+  static constexpr T value = static_max<T, v1, v2>::value - static_min<T, v1, v2>::value;
+};
+
+//! @} type_traits
+
+
+
 
 }
 
