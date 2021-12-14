@@ -12,7 +12,7 @@
 #
 # /*
 #  * Note
-#  * vccc::at is implemented in each class' headers
+#  * Specializing std::get is implemented in each class' headers
 #  */
 
 namespace vccc{
@@ -29,6 +29,19 @@ namespace vccc{
 //! @{
 
 /**
+ * @brief returns std::get<I>(t)
+ *
+ * @tparam I
+ * @tparam T
+ * @param t
+ * @return
+ */
+template<std::size_t I, typename T, std::enable_if_t<detail::is_tuple_like<std::decay_t<T>>::value, int> = 0>
+constexpr decltype(auto) at(T&& t) noexcept {
+  return std::get<I>(std::forward<T>(t));
+}
+
+/**
 @brief returns cv::saturate_cast<C>(vccc::at<i>(t))
 
 @tparam i   index
@@ -36,12 +49,8 @@ namespace vccc{
 @param t    param
 @return     cv::saturate_cast<C>(at<i>(t))
  */
-template<std::size_t i, typename C,
-         typename T>
-constexpr inline
-decltype(auto)
-at(T&& t)
-{
+template<std::size_t i, typename C, typename T, std::enable_if_t<detail::is_tuple_like<std::decay_t<T>>::value, int> = 0>
+constexpr inline decltype(auto) at(T&& t) {
   return cast<C>(at<i>(std::forward<T>(t)));
 }
 
@@ -55,12 +64,8 @@ at(T&& t)
 @param t    param
 @return     cv::saturate_cast<C>(at<i, j>(t))
  */
-template<std::size_t i, std::size_t j, typename C,
-         typename T>
-constexpr inline
-decltype(auto)
-at(T&& t)
-{
+template<std::size_t i, std::size_t j, typename C, typename T, std::enable_if_t<detail::is_tuple_like<std::decay_t<T>>::value, int> = 0>
+constexpr inline decltype(auto) at(T&& t) {
   return cast<C>(at<i, j>(std::forward<T>(t)));
 }
 
@@ -74,7 +79,7 @@ template<typename ...Ts>
 class bind_obj {
  public:
   template<typename ...Args>
-  constexpr bind_obj(Args&&... args) : tup(std::forward<Args>(args)...) {}
+  constexpr bind_obj(Args&... args) : tup(args...) {}
 
   template<typename T>
   constexpr bind_obj& operator = (T&& type)
@@ -113,8 +118,8 @@ vccc::bind_at(x, y) = p;
  */
 
 template<typename ...Args>
-constexpr inline detail::bind_obj<Args...> bind_at(Args&&... args) {
-  return detail::bind_obj<Args...>(std::forward<Args>(args)...);
+constexpr inline detail::bind_obj<Args&...> bind_at(Args&... args) {
+  return detail::bind_obj<Args&...>(args...);
 }
 
 //! @} type_support_at

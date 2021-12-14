@@ -12,7 +12,7 @@
 
 namespace vccc{
 
-//! @addtogroup type_support_at
+//! @addtogroup type_support
 //! @{
 
 //! @cond ignored
@@ -72,7 +72,7 @@ std::vector<T, Allocator>& concat(std::vector<T, Allocator>& to, std::vector<T, 
   return to;
 }
 
-//! @} type_support_at
+//! @} type_support
 
 //
 //template<typename T, typename Allocator>

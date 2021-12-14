@@ -13,7 +13,7 @@ namespace vccc {
 @addtogroup type_support
 @{
     @defgroup type_support_cvtto vccc::convert_to
-    @brief converts to different type (usually for opencv types, but also supports container types)
+    @brief converts to different type (usually for opencv types, but also supports container & tuple-like types)
 @}
 
 */
@@ -24,26 +24,31 @@ namespace vccc {
 
 !Warning! if input container size is smaller then R's size, it's ub.
 
-conversion rule:
-  * cv::saturate_cast is used in every element-wise conversion
-      1. converting opencv-types to opencv-types
-         a. cv_size_v<To> == cv_size_v<From>
-             convert all elements.
-         b. cv_size_v<To> < cv_size_v<From>
-             convert only cv_size_v<To> amount of From's element. Remainders won't convert
-         c. cv_size_v<To> > cv_size_v<From>
-             convert all From's element, and fill rest with zeros
-      2. converting opencv-types to container-types(constructable with std::initializer_list)
-         creates a container that contains all From's elements
-      3. converting container-types to opencv-types
-         a. cv_size_v<To> == container.size()
-             converts every element
-         b. cv_size_v<To> < container.size()
-             convert only cv_size_v<To> amount of container's element. Remainders won't convert
-         c. cv_size_v<To> > container.size()
-             !!- undefined behaviour -!!
-      4. converting container-types to container-types
-         * not supported
+Conversion rule:  
+      1. If `std::is_convertible<From, To>::value == true`  
+         Construct `To` with `std::forward<From>(from)`  
+         
+      Else, `cv::saturate_cast` is used in every element-wise conversion.  
+      Suppose `T = std::tuple_size<To>::value`, and `F = std::tuple_size<From>::value`.  
+      
+      2. Converting tuple-like type to tuple-like type  
+         a. `T <= F`  
+             Construct To with `std::get<Ti>(From)...`  
+         b. `T > F`  
+             Convert all From's element, remainders will be zero-initialized.  
+
+      3. Converting tuple-like type to range type(see @ref is_range)  
+         Creates a container that contains all From's elements.  
+
+      4. Converting range type to tuple-like type  
+         a. `range.size() >= T`  
+             Convert only `F` amount of container's element. Remainders will be zero-initialized.  
+         c. `range.size() < T`  
+             !!- undefined behaviour -!!  
+
+      5. Converting range to range
+         * Not supported
+
 @tparam To   to type
 @param from  original data
 @return      converted class
@@ -59,16 +64,12 @@ conversion rule:
 @endcode
 */
 
-template<typename To, typename From, std::enable_if_t<!std::is_same<To, From>::value, int> = 0>
-inline To
-convert_to(const From& from)
-{
-  static_assert(is_cv_type_v<To> || is_cv_type_v<From>, "You cannot convert non-cv type to non-cv type! use vtype_convert instead");
-  using Indices = typename std::make_index_sequence<
-      ((is_cv_type_v<To> && is_cv_type_v<From>) ? min_cv_size_v<To, From> :
-       (is_cv_type_v<From> ? cv_size_v<From> : cv_size_v<To>))>;
-  return detail::convert_to_impl<To>(is_cv_type<To>(), from, Indices{});
-}
+//template<typename To, typename From,
+//    std::enable_if_t<
+//      detail::check_convert_to<const From&, To>::value,
+//    int> = 0>
+//constexpr To
+//convert_to(const From& from);
 
 /**
 @brief convert with specifying the converting size
@@ -81,22 +82,33 @@ convert_to(const From& from)
 @return          converted data
  */
 
-template<typename To, std::size_t n, typename From, std::enable_if_t<!std::is_same<To, From>::value, int> = 0>
-inline To
-convert_to(const From& from)
-{
-  static_assert(is_cv_type_v<To> || is_cv_type_v<From>, "You cannot convert non-cv type to non-cv type! use vtype_convert instead");
-  static_assert(is_cv_type_v<To>   ? n <= cv_size_v<To>   : true, "Converting size must be smaller than converting type's cv_size");
-  static_assert(is_cv_type_v<From> ? n <= cv_size_v<From> : true, "Converting size must be smaller than original type's cv_size");
-
-  return detail::convert_to_impl<To>(is_cv_type<To>(), from, std::make_index_sequence<n>{});
+template<typename To, std::size_t n, typename From,
+  std::enable_if_t<
+    detail::check_convert_to<From&&, To>::value,
+  int> = 0>
+constexpr To
+convert_to(From& from) {
+  return detail::convert_to_impl<To>(
+    std::is_convertible<From&&, To>{},
+    conjunction<detail::is_tuple_like<std::decay_t<To>>, detail::is_tuple_like<std::decay_t<From>>>{},
+    std::forward<From>(from),
+    std::make_index_sequence<n>{});
 }
 
-/**
-@brief converting to same type
- */
-template<typename To> inline decltype(auto) convert_to(      To&& from) { return std::forward<To>(from); }
-template<typename To> inline To             convert_to(const To&  from) { return from; }
+
+template<typename To, typename From,
+  std::enable_if_t<
+    detail::check_convert_to<From&&, To>::value,
+  int> = 0>
+constexpr To
+convert_to(From&& from) {
+//  return convert_to<To, detail::check_convert_to<From&&, To>::converting_size>(std::forward<From>(from));
+  return detail::convert_to_impl<To>(
+    std::is_convertible<const From&, To>{},
+    conjunction<detail::is_tuple_like<std::decay_t<To>>, detail::is_tuple_like<std::decay_t<From>>>{},
+    std::forward<From>(from),
+    std::make_index_sequence<detail::check_convert_to<From&&, To>::converting_size>{});
+}
 
 //! @} type_support_cvtto
 
