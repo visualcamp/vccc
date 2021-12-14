@@ -7,6 +7,8 @@
 #
 # include <vector>
 # include <algorithm>
+#
+# include "vccc/utility.hpp"
 
 namespace vccc{
 
@@ -16,8 +18,9 @@ namespace vccc{
 //! @cond ignored
 template<typename T>
 std::vector<T> reserved_vector(typename std::vector<T>::size_type size){
-  std::vector<T> vec;
-  vec.reserve(size);
+  std::vector<T> vec(size);
+  vec.resize(0);
+  ENSURES(vec.capacity() == size, "Failed to ");
   return vec;
 }
 //! @endcond
