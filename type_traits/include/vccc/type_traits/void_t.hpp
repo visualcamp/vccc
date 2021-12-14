@@ -9,8 +9,6 @@
 
 namespace vccc{
 
-#if __cplusplus <= 201402L
-
 /**
 @addtogroup type_traits
 @{
@@ -20,9 +18,6 @@ template<typename ...>
 using void_t = void;
 
 //! @}
-#else
-template<typename ...Args> using void_t = ::std::void_t<Args...>;
-# endif
 
 
 }

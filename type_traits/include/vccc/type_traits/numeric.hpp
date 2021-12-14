@@ -125,7 +125,7 @@ template<typename T, T ...>
 struct static_min;
 
 template<typename T, T v>
-struct static_min<T, v> : integral_constant<T, v> {};
+struct static_min<T, v> : std::integral_constant<T, v> {};
 
 template<typename T, T v1, T v2, T ...v3>
 struct static_min<T, v1, v2, v3...>
@@ -139,9 +139,7 @@ struct static_min<T, v1, v2, v3...>
 @sa static_max
 */
 template<typename T, T v1, T v2>
-struct static_diff {
-  static constexpr T value = static_max<T, v1, v2>::value - static_min<T, v1, v2>::value;
-};
+struct static_diff : std::integral_constant<T, static_max<T, v1, v2>::value - static_min<T, v1, v2>::value> {};
 
 //! @} type_traits
 
