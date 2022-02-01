@@ -12,7 +12,6 @@
 # include "type_traits/is_range.hpp"
 # include "type_traits/is_printable.hpp"
 # include "type_traits/is_specialization.hpp"
-# include "type_traits/is_std_array.hpp"
 # include "type_traits/is_string_like.hpp"
 # include "type_traits/is_tuple_like.h"
 # include "type_traits/iterable.hpp"
