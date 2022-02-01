@@ -26,21 +26,21 @@ namespace vccc {
 
 conversion rule:
   * cv::saturate_cast is used in every element-wise conversion
-      1. converting opencv-types to opencv-types
-         a. cv_size_v<To> == cv_size_v<From>
+      1. converting tuple-like types to tuple-like types
+         a. tuple_size<To>::value == tuple_size<From>::value
              convert all elements.
-         b. cv_size_v<To> < cv_size_v<From>
-             convert only cv_size_v<To> amount of From's element. Remainders won't convert
-         c. cv_size_v<To> > cv_size_v<From>
+         b. tuple_size<To>::value < tuple_size<From>::value
+             convert only tuple_size<To>::value amount of From's element. Remainders won't convert
+         c. tuple_size<To>::value > tuple_size<From>::value
              convert all From's element, and fill rest with zeros
-      2. converting opencv-types to container-types(constructable with std::initializer_list)
+      2. converting tuple-like types to container-types
          creates a container that contains all From's elements
-      3. converting container-types to opencv-types
-         a. cv_size_v<To> == container.size()
+      3. converting container-types to tuple-like types
+         a. tuple_size<To>::value == container.size()
              converts every element
-         b. cv_size_v<To> < container.size()
+         b. tuple_size<To>::value < container.size()
              convert only cv_size_v<To> amount of container's element. Remainders won't convert
-         c. cv_size_v<To> > container.size()
+         c. tuple_size<To>::value > container.size()
              !!- undefined behaviour -!!
       4. converting container-types to container-types
          * not supported
@@ -60,14 +60,12 @@ conversion rule:
 */
 
 template<typename To, typename From, std::enable_if_t<!std::is_same<To, From>::value, int> = 0>
-inline To
+inline std::enable_if_t<disjunction<is_tuple_like<To>, is_tuple_like<From>>::value, To>
 convert_to(const From& from)
 {
-  static_assert(is_cv_type_v<To> || is_cv_type_v<From>, "You cannot convert non-cv type to non-cv type! use vtype_convert instead");
   using Indices = typename std::make_index_sequence<
-      ((is_cv_type_v<To> && is_cv_type_v<From>) ? min_cv_size_v<To, From> :
-       (is_cv_type_v<From> ? cv_size_v<From> : cv_size_v<To>))>;
-  return detail::convert_to_impl<To>(is_cv_type<To>(), from, Indices{});
+      static_min<size_t, detail::tuple_size_or_zero<To>::value, detail::tuple_size_or_zero<From>::value>::value>;
+  return detail::convert_to_impl<To>(is_tuple_like<To>(), from, Indices{});
 }
 
 /**
@@ -82,14 +80,15 @@ convert_to(const From& from)
  */
 
 template<typename To, std::size_t n, typename From, std::enable_if_t<!std::is_same<To, From>::value, int> = 0>
-inline To
+inline std::enable_if_t<disjunction<is_tuple_like<To>, is_tuple_like<From>>::value, To>
 convert_to(const From& from)
 {
-  static_assert(is_cv_type_v<To> || is_cv_type_v<From>, "You cannot convert non-cv type to non-cv type! use vtype_convert instead");
-  static_assert(is_cv_type_v<To>   ? n <= cv_size_v<To>   : true, "Converting size must be smaller than converting type's cv_size");
-  static_assert(is_cv_type_v<From> ? n <= cv_size_v<From> : true, "Converting size must be smaller than original type's cv_size");
+  static_assert(is_tuple_like<To>::value   ? n <= detail::tuple_size_or_zero<To>::value   : true,
+      "Converting size must be smaller than converting type's tuple_size");
+  static_assert(is_tuple_like<From>::value ? n <= detail::tuple_size_or_zero<From>::value : true,
+      "Converting size must be smaller than original type's tuple_size");
 
-  return detail::convert_to_impl<To>(is_cv_type<To>(), from, std::make_index_sequence<n>{});
+  return detail::convert_to_impl<To>(is_tuple_like<To>{}, from, std::make_index_sequence<n>{});
 }
 
 /**

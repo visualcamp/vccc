@@ -5,11 +5,22 @@
 # ifndef VCCC_TYPE_SUPPORT_DETAIL_CONVERT_TO_HPP
 # define VCCC_TYPE_SUPPORT_DETAIL_CONVERT_TO_HPP
 #
+# include <tuple>
 # include <utility>
+# 
 # include "vccc/utility.hpp"
+# include "vccc/type_traits.hpp"
 # include "vccc/type_support/at.hpp"
 
-namespace vccc{namespace detail{
+namespace vccc{
+namespace detail{
+
+template<typename T, bool v = is_tuple_like<T>::value>
+struct tuple_size_or_zero : std::integral_constant<size_t, 0> {};
+
+template<typename T>
+struct tuple_size_or_zero<T, true> : std::tuple_size<T> {};
+          
 
 // fill rest with integer_sequence
 template<typename R, typename T, std::size_t... I, typename IT, IT... I2>
@@ -23,8 +34,10 @@ fill_rest(const T& from, std::index_sequence<I...> index_seq, std::integer_seque
 template<typename R, typename T, std::size_t... I>
 inline R
 convert_to_impl(std::true_type, const T& from, std::index_sequence<I...> index_seq)
-{
-  using Zeros = make_zero_sequence<((cv_size_v<R> > cv_size_v<T> && is_cv_type_v<T>) ? diff_cv_size_v<R, T> : 0)>;
+{  
+  using Zeros = make_zero_sequence<(
+    (tuple_size_or_zero<R>::value > tuple_size_or_zero<T>::value && is_tuple_like<T>::value)
+        ? static_diff<size_t, tuple_size_or_zero<R>::value, tuple_size_or_zero<T>::value>::value : 0)>;
   return fill_rest<R>(from, index_seq, Zeros{});
 }
 

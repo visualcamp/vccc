@@ -29,6 +29,19 @@ namespace vccc{
 //! @{
 
 /**
+ * @brief returns std::get<I>(t)
+ *
+ * @tparam I
+ * @tparam T
+ * @param t
+ * @return
+ */
+template<std::size_t I, typename T, std::enable_if_t<is_tuple_like<std::decay_t<T>>::value, int> = 0>
+constexpr decltype(auto) at(T&& t) noexcept {
+  return std::get<I>(std::forward<T>(t));
+}
+
+/**
 @brief returns cv::saturate_cast<C>(vccc::at<i>(t))
 
 @tparam i   index
@@ -88,7 +101,7 @@ class bind_obj {
   constexpr void bind_impl(T&& type, std::index_sequence<I...>)
   {
     int dummy[sizeof...(I)] = {
-        (at<I>(tup) = at<I>(type), 0)...
+        (at<I>(tup) = at<I>(std::forward<T>(type)), 0)...
     };
   }
 
