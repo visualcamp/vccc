@@ -6,6 +6,7 @@
 # define VCCC_TYPE_SUPPORT_CONVERT_HPP
 #
 # include "vccc/type_support/detail/convert_to.hpp"
+# include "vccc/type_support/opencv/core.hpp"
 
 namespace vccc {
 
@@ -22,7 +23,8 @@ namespace vccc {
 @addtogroup type_support_cvtto
 @{
 
-!Warning! if input container size is smaller then R's size, it's ub.
+!Warning! If input container size is smaller then R's size, it's ub.
+!Warning! If OpenCV is enabled, arithmetic floating-to-integer will be rounded(e.g 3.6 -> 4)
 
 conversion rule:
   * cv::saturate_cast is used in every element-wise conversion
@@ -63,8 +65,14 @@ template<typename To, typename From, std::enable_if_t<!std::is_same<To, From>::v
 inline std::enable_if_t<disjunction<is_tuple_like<To>, is_tuple_like<From>>::value, To>
 convert_to(const From& from)
 {
+  const auto v1 = is_tuple_like<To>::value;
+  const auto v2 = is_tuple_like<From>::value;
+  const auto v3 = detail::tuple_size_or_zero<To>::value;
+  const auto v4 = detail::tuple_size_or_zero<From>::value;
   using Indices = typename std::make_index_sequence<
-      static_min<size_t, detail::tuple_size_or_zero<To>::value, detail::tuple_size_or_zero<From>::value>::value>;
+      (is_tuple_like<To>::value && is_tuple_like<From>::value) ? static_min<size_t, detail::tuple_size_or_zero<To>::value, detail::tuple_size_or_zero<From>::value>::value :
+                                   is_tuple_like<From>::value  ? detail::tuple_size_or_zero<From>::value :
+                                   detail::tuple_size_or_zero<To>::value>;
   return detail::convert_to_impl<To>(is_tuple_like<To>(), from, Indices{});
 }
 
