@@ -5,7 +5,7 @@
 # ifndef VCCC_TYPE_TRAITS_IS_PRINTABLE_HPP
 # define VCCC_TYPE_TRAITS_IS_PRINTABLE_HPP
 #
-# include <iostream>
+# include <ostream>
 # include "vccc/type_traits/void_t.hpp"
 
 namespace vccc{
@@ -25,7 +25,7 @@ struct is_printable : std::false_type {};
 
 template<typename T>
 struct is_printable<T, void_t<
-    decltype(std::cout << std::declval<T>())
+    decltype(std::declval<std::ostream&>() << std::declval<const T&>())
 >> : std::true_type {};
 
 //! @} is_printable
