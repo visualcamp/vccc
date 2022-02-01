@@ -5,7 +5,8 @@
 # ifndef VCCC_TYPE_TRAITS_LOGICAL_OP_H_
 # define VCCC_TYPE_TRAITS_LOGICAL_OP_H_
 #
-# include "vccc/type_traits/conditional.h"
+# include <type_traits>
+# 
 # include "vccc/type_traits/integral_constant.h"
 
 namespace vccc {
@@ -15,10 +16,10 @@ namespace vccc {
  * @tparam ...B
  */
 template<typename ...B> struct conjunction;
-template<> struct conjunction<> : true_type {};
+template<> struct conjunction<> : std::true_type {};
 template<typename B1> struct conjunction<B1> : B1 {};
 template<typename B1, typename ...BN>
-struct conjunction<B1, BN...> : conditional_t<bool(B1::value), conjunction<BN...>, B1> {};
+struct conjunction<B1, BN...> : std::conditional_t<bool(B1::value), conjunction<BN...>, B1> {};
 
 template<typename ...B>
 constexpr bool conjunction_v = conjunction<B...>::value;
@@ -29,10 +30,10 @@ constexpr bool conjunction_v = conjunction<B...>::value;
  * @tparam ...B
  */
 template<typename ...B> struct disjunction;
-template<> struct disjunction<> : false_type {};
+template<> struct disjunction<> : std::false_type {};
 template<typename B1> struct disjunction<B1> : B1 {};
 template<typename B1, typename ...BN>
-struct disjunction<B1, BN...> : conditional_t<bool(B1::value), B1, disjunction<BN...>> {};
+struct disjunction<B1, BN...> : std::conditional_t<bool(B1::value), B1, disjunction<BN...>> {};
 
 template<typename ...B>
 constexpr bool disjunction_v = disjunction<B...>::value;
