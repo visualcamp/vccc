@@ -20,8 +20,7 @@ Index-based value accessor
 @addtogroup type_support_at_container
 @{
 */
-template<std::size_t i, typename Container,
-         VCCC_ENABLE_IF(is_container_v<Container>)>
+template<std::size_t i, typename Container, std::enable_if_t<is_range_v<Container>, int> = 0>
 decltype(auto)
 at(Container& container)
 {
@@ -29,8 +28,7 @@ at(Container& container)
   return *std::next(std::begin(container), i);
 }
 
-template<std::size_t i, typename Container,
-         VCCC_ENABLE_IF(is_container_v<Container>)>
+template<std::size_t i, typename Container, std::enable_if_t<is_range_v<Container>, int> = 0>
 decltype(auto)
 at(const Container& container)
 {
@@ -38,8 +36,7 @@ at(const Container& container)
   return *std::next(std::begin(container), i);
 }
 
-template<std::size_t i, typename Container,
-         VCCC_ENABLE_IF(is_container_v<Container>)>
+template<std::size_t i, typename Container, std::enable_if_t<is_range_v<Container>, int> = 0>
 decltype(auto)
 at(Container&& container)
 {
@@ -47,8 +44,7 @@ at(Container&& container)
   return std::move(*std::next(std::begin(container), i));
 }
 
-template<std::size_t i, typename Container,
-         VCCC_ENABLE_IF(is_container_v<Container>)>
+template<std::size_t i, typename Container, std::enable_if_t<is_range_v<Container>, int> = 0>
 decltype(auto)
 at(const Container&& container)
 {
