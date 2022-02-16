@@ -5,7 +5,12 @@ add_library(vccc_log INTERFACE)
 add_library(VCCC::log ALIAS vccc_log)
 
 target_include_directories(vccc_log INTERFACE include)
-target_link_libraries(vccc_log INTERFACE VCCC::type_traits VCCC::optional Boost::predef Boost::pfr)
+
+if(ANDROID)
+    target_link_libraries(vccc_log INTERFACE VCCC::type_traits VCCC::optional Boost::predef Boost::pfr log)
+else()
+    target_link_libraries(vccc_log INTERFACE VCCC::type_traits VCCC::optional Boost::predef Boost::pfr)
+endif()
 
 if(VCCC_RUN_TEST)
     add_subdirectory(test)
