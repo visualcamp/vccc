@@ -56,47 +56,13 @@ inline decltype(auto) vtype_convert(CVType<NewType, CVParams...>&& cv_type)
 
 
 /**
-@brief returns similar container type, but the value_type is different
-
-@tparam NewType     new value_type
-@param cv_type      any template container class
- */
-template<typename NewType, template<typename...> class Container, typename OldType, typename ...Params,
-        VCCC_ENABLE_IF((is_container_v<Container<OldType, Params...>> &&
-                      !std::is_same<NewType, OldType>::value))>
-decltype(auto) vtype_convert(const Container<OldType, Params...>& container)
-{
-  Container<NewType, std::allocator<NewType>> res(container.size());
-  std::transform(std::begin(container), std::end(container), std::begin(res),
-                 [](auto &val) { return cast<NewType>(val); });
-  return res;
-}
-
-
-template<typename NewType, template<typename...> class Container, typename ...Params,
-        VCCC_ENABLE_IF((is_container_v<Container<NewType, Params...>>))>
-inline decltype(auto) vtype_convert(const Container<NewType, Params...>& container)
-{
-  return container;
-}
-
-template<typename NewType, template<typename...> class Container, typename ...Params,
-        VCCC_ENABLE_IF((is_container_v<Container<NewType, Params...>>))>
-inline decltype(auto) vtype_convert(Container<NewType, Params...>&& container)
-{
-  return container;
-}
-
-
-/**
 @brief vtype_convert on container types with custom unary operation
 
 @tparam NewType     new value_type
 @param cv_type      any template container class
  */
 template<typename NewType, typename Func, template<typename...> class Container, typename OldType, typename ...Params,
-        VCCC_ENABLE_IF((is_container_v<Container<OldType, Params...>> &&
-                      !std::is_same<NewType, OldType>::value))>
+    std::enable_if_t<is_range<Container<OldType, Params...>>::value, int> = 0>
 decltype(auto) vtype_convert(const Container<OldType, Params...>& container, Func func)
 {
   Container<NewType, std::allocator<NewType>> res(container.size());
@@ -105,45 +71,46 @@ decltype(auto) vtype_convert(const Container<OldType, Params...>& container, Fun
 }
 
 template<typename NewType, template<typename...> class Container, typename ...Params, typename UnaryOperation,
-        VCCC_ENABLE_IF((is_container_v<Container<NewType, Params...>>))>
+    std::enable_if_t<is_range<Container<NewType, Params...>>::value, int> = 0>
 inline decltype(auto) vtype_convert(const Container<NewType, Params...>& container, UnaryOperation func)
 {
   return container;
 }
 
 
-/** std::array specialization */
+/**
+@brief returns similar container type, but the value_type is different
 
-template<typename NewType, typename OldType, std::size_t n,
-        VCCC_ENABLE_IF((!std::is_same<NewType, OldType>::value))>
-constexpr decltype(auto)
-vtype_convert(const std::array<OldType, n>& container)
+@tparam NewType     new value_type
+@param cv_type      any template container class
+ */
+template<typename NewType, template<typename...> class Container, typename OldType, typename ...Params,
+    std::enable_if_t<is_range<Container<OldType, Params...>>::value, int> = 0>
+decltype(auto) vtype_convert(const Container<OldType, Params...>& container)
 {
-  std::array<NewType, n> res;
-  std::transform(std::begin(container), std::end(container), std::begin(res),
-                 [](auto& val) { return cast<NewType>(val); });
-  return res;
+  return vtype_convert<NewType>(container, [](auto &val) { return cast<NewType>(val); });
 }
 
-template<typename NewType, std::size_t n>
-constexpr inline decltype(auto)
-vtype_convert(const std::array<NewType, n>& container)
+
+template<typename NewType, template<typename...> class Container, typename ...Params,
+    std::enable_if_t<is_range<Container<NewType, Params...>>::value, int> = 0>
+inline decltype(auto) vtype_convert(const Container<NewType, Params...>& container)
 {
   return container;
 }
 
-template<typename NewType, std::size_t n>
-constexpr inline decltype(auto)
-vtype_convert(std::array<NewType, n>&& container)
+template<typename NewType, template<typename...> class Container, typename ...Params,
+    std::enable_if_t<is_range<Container<NewType, Params...>>::value, int> = 0>
+inline decltype(auto) vtype_convert(Container<NewType, Params...>&& container)
 {
-  return container;
+  return std::move(container);
 }
 
 
 /** std::array with custom unary operation specialization */
 
 template<typename NewType, typename OldType, std::size_t n, typename UnaryOperation,
-        VCCC_ENABLE_IF((!std::is_same<NewType, OldType>::value))>
+    std::enable_if_t<!std::is_same<NewType, OldType>::value, int> = 0>
 constexpr decltype(auto)
 vtype_convert(const std::array<OldType, n>& container, UnaryOperation func)
 {
@@ -167,6 +134,34 @@ vtype_convert(std::array<NewType, n>&& container, UnaryOperation func)
 {
   std::for_each(std::begin(container), std::end(container), func);
   return container;
+}
+
+
+/** std::array specialization */
+
+template<typename NewType, typename OldType, std::size_t n,
+    std::enable_if_t<!std::is_same<NewType, OldType>::value, int> = 0>
+constexpr decltype(auto)
+vtype_convert(const std::array<OldType, n>& container)
+{
+  std::array<NewType, n> res;
+  std::transform(std::begin(container), std::end(container), std::begin(res),
+                 [](auto& val) { return cast<NewType>(val); });
+  return res;
+}
+
+template<typename NewType, std::size_t n>
+constexpr inline decltype(auto)
+vtype_convert(const std::array<NewType, n>& container)
+{
+  return container;
+}
+
+template<typename NewType, std::size_t n>
+constexpr inline decltype(auto)
+vtype_convert(std::array<NewType, n>&& container)
+{
+  return std::move(container);
 }
 
 //! @} type_support_vtype_convert
