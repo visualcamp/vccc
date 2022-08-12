@@ -111,6 +111,12 @@ class raii_connection : connection {
     this->disconnect();
   }
 
+  raii_connection(const raii_connection&) = default;
+  raii_connection(raii_connection&&) = default;
+
+  raii_connection& operator=(const raii_connection&) = default;
+  raii_connection& operator=(raii_connection&&) = default;
+
   raii_connection(connection&& conn)
     : base(std::move(conn)) {}
 
