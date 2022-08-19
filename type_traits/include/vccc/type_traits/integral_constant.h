@@ -12,8 +12,8 @@ namespace vccc {
 template<bool v>
 using bool_constant = std::integral_constant<bool, v>;
 
-template<typename ...> using always_false = std::false_type;
-template<typename ...> using always_true = std::true_type;
+template<typename ...> struct always_false : std::false_type {};
+template<typename ...> struct always_true : std::true_type {};
 
 } // namespace vccc
 
