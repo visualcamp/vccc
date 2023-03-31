@@ -28,6 +28,7 @@ jobs:
       run: |
         git config --local user.email "noreply@visual.camp"
         git config --local user.name "vccc-docs-generator"
+        git add docs/*
         git commit -a -m "Add changes"
 
     - name: Push changes
