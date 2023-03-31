@@ -1,6 +1,6 @@
 var group__range =
 [
-    [ "range", "classvccc_1_1range.html", [
+    [ "vccc::range< T, Container >", "classvccc_1_1range.html", [
       [ "value_type", "classvccc_1_1range.html#ad5fe17ecf44b34934d52bf44bf030cea", null ],
       [ "container_type", "classvccc_1_1range.html#a54e5a3d6beea31b78aecb70555d8c398", null ],
       [ "iterator", "classvccc_1_1range.html#a4757119781b7e9f6711ba3a3cdf54d45", null ],

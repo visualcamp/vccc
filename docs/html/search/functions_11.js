@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zeros_878',['zeros',['../classvccc_1_1_matrix.html#a86ca10012210925bc34b58a437c1a37d',1,'vccc::Matrix']]]
+  ['w_0',['w',['../classvccc_1_1_logger.html#acbedd8841d71b19dd010518bc9e05cc1',1,'vccc::Logger']]]
 ];

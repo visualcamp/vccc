@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['get_5finvoke_5fcategory_5ft_948',['get_invoke_category_t',['../namespacevccc_1_1detail.html#ad7a2d833924cd17c7a84edac817b0ab1',1,'vccc::detail']]]
+  ['hold_5ftype_5fselector_5ft_0',['hold_type_selector_t',['../namespacevccc_1_1internal_1_1math.html#af2d018c0c39411ead814c5549710ac26',1,'vccc::internal::math']]]
 ];

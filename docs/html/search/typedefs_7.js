@@ -1,14 +1,8 @@
 var searchData=
 [
-  ['is_5falias_5fsafe_5ft_950',['is_alias_safe_t',['../namespacevccc_1_1internal_1_1math.html#a4487fbe593420f0c1b70680f416c680c',1,'vccc::internal::math']]],
-  ['is_5fconcrete_5fmatrix_5ft_951',['is_concrete_matrix_t',['../namespacevccc_1_1internal_1_1math.html#a3992211e2fa27a8e436f27d734eff85a',1,'vccc::internal::math']]],
-  ['is_5fcontainer_5ft_952',['is_container_t',['../group__is__container.html#gabbc9292224c9dd0832a32a18897a7490',1,'vccc']]],
-  ['is_5fcv_5ftype_5ft_953',['is_cv_type_t',['../namespacevccc.html#abab429330de0f27e2e2484e6dc4bc924',1,'vccc']]],
-  ['is_5feven_5ft_954',['is_even_t',['../group__is__even.html#gaad7a8ca885c3cf50a872e5f923a67e79',1,'vccc']]],
-  ['is_5fiterator_5ft_955',['is_iterator_t',['../group__is__iterator.html#ga665606f4bca714d001f8fa68b0026831',1,'vccc']]],
-  ['is_5fnot_5fsame_5ft_956',['is_not_same_t',['../namespacevccc.html#a038809c3b8070e769c398e9c05318ade',1,'vccc']]],
-  ['is_5fodd_5ft_957',['is_odd_t',['../group__is__odd.html#gaffd543840d72f3d8815c1f2689b3e9d0',1,'vccc']]],
-  ['is_5fsame_5ft_958',['is_same_t',['../namespacevccc.html#a8be04d66297a74193cff2e6caf97b630',1,'vccc']]],
-  ['is_5fstring_5flike_5ft_959',['is_string_like_t',['../group__is__string__like.html#ga7c3c6588f01734b381d9509d087e4c94',1,'vccc']]],
-  ['iterator_960',['iterator',['../classvccc_1_1range.html#a4757119781b7e9f6711ba3a3cdf54d45',1,'vccc::range']]]
+  ['lhs_5ftype_0',['lhs_type',['../classvccc_1_1_matrix_minus.html#ae899f37c54b4bca1c85a357a28c22554',1,'vccc::MatrixMinus::lhs_type'],['../classvccc_1_1_matrix_mul_matrix.html#ab4addae888bee1bd29285268028c08b6',1,'vccc::MatrixMulMatrix::lhs_type'],['../classvccc_1_1_matrix_mul_scalar.html#ad98d0e1be006264a62a643329fb8354e',1,'vccc::MatrixMulScalar::lhs_type'],['../classvccc_1_1_matrix_sub.html#a2a9a43d1db3103ffac73413fdacf0e75',1,'vccc::MatrixSub::lhs_type'],['../classvccc_1_1_matrix_sum.html#ad1b60d449af517f77d7fd47f5e3ebcfd',1,'vccc::MatrixSum::lhs_type']]],
+  ['lossless_5ftype_5fadd_5ft_1',['lossless_type_add_t',['../group__type__traits.html#gabf2a10c550656ba9b556db9c69ccbae5',1,'vccc']]],
+  ['lossless_5ftype_5fdiv_5ft_2',['lossless_type_div_t',['../group__type__traits.html#gabdf7eca08b543ddd484ea11f0ce3f85f',1,'vccc']]],
+  ['lossless_5ftype_5fint_5fdivision_5ft_3',['lossless_type_int_division_t',['../namespacevccc_1_1detail.html#a3d5ab027935e217762cbca5b04a82b3c',1,'vccc::detail']]],
+  ['lossless_5ftype_5fmul_5ft_4',['lossless_type_mul_t',['../group__type__traits.html#ga7e09aada35dd8980c8bc4927ee0a3f32',1,'vccc']]]
 ];
