@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['w_529',['w',['../classvccc_1_1_log__.html#a12c4e079e10070b1f1612d3b6b5dcdff',1,'vccc::Log_']]]
+  ['w_0',['w',['../classvccc_1_1_logger.html#acbedd8841d71b19dd010518bc9e05cc1',1,'vccc::Logger']]]
 ];

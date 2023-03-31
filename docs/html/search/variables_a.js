@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['third_917',['third',['../structvccc_1_1internal_1_1math_1_1tag_3_01_t_00_01v1_00_01v2_00_01v3_01_4.html#a57669c4b87f7584f4bcf4507f4a21060',1,'vccc::internal::math::tag&lt; T, v1, v2, v3 &gt;']]]
+  ['second_0',['second',['../structvccc_1_1internal_1_1math_1_1tag_3_01_t_00_01v1_00_01v2_01_4.html#a9cb7d09fd8f07fec20f70f6cfc2ea3a8',1,'vccc::internal::math::tag&lt; T, v1, v2 &gt;']]],
+  ['separator_5f_1',['separator_',['../classvccc_1_1_stream_wrapper_base.html#ac4f3848ca1d05cd2195229435df39c9a',1,'vccc::StreamWrapperBase']]]
 ];

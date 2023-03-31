@@ -6,19 +6,29 @@
 \subpage introduction
 
 <a href="modules.html">Modules</a>:
-- \subpage high C++14 implementation of STL that is in C++17 or higher version.
-- \subpage literal python-like _format support.
-- \subpage log logging support for multiplatform.
-- \subpage math mathematics.
-- \subpage numeric numerics.
-- \subpage random random algorithms.
-- \subpage range python-like range class.
-- \subpage type_support syntax sugar for C++.
-- \subpage type_traits type_traits.
-- \subpage utility utilities.
+- \subpage high. C++14 implementation of STL that is in C++17 or higher version
+<hr>
+- \subpage literal. Python-like _format library
+<hr>
+- \subpage log. Cross-platform logging library
+<hr>
+- \subpage math. Mathematics
+<hr>
+- \subpage numeric. Numerics
+<hr>
+- \subpage random. Random algorithms
+<hr>
+- \subpage range. Python-like range class
+<hr>
+- \subpage type_support. Syntax sugar for C++
+<hr>
+- \subpage type_traits. Extra type_traits
+<hr>
+- \subpage utility. Utilities
+<hr>
 
 \subpage version_history "Version History"
-- \subpage v_alpha "alpha version"
+- \subpage v_alpha "Alpha version"
 
 
 \subpage third_parties "Third parties"

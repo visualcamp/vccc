@@ -1,8 +1,4 @@
 var structvccc_1_1internal_1_1math_1_1traits_3_01_matrix_mul_scalar_3_01_lhs_type_00_01_rhs_type_01_4_01_4 =
 [
-    [ "value_type", "structvccc_1_1internal_1_1math_1_1traits_3_01_matrix_mul_scalar_3_01_lhs_type_00_01_rhs_type_01_4_01_4.html#a0db6ead2c4d1954fe4eb2f5008dbba29", null ],
-    [ "rows", "structvccc_1_1internal_1_1math_1_1traits_3_01_matrix_mul_scalar_3_01_lhs_type_00_01_rhs_type_01_4_01_4.html#a8b94ede7633f751486aa01928ce4c995a62c76d7084f5ae958392b92eff6ce91c", null ],
-    [ "cols", "structvccc_1_1internal_1_1math_1_1traits_3_01_matrix_mul_scalar_3_01_lhs_type_00_01_rhs_type_01_4_01_4.html#a8b94ede7633f751486aa01928ce4c995a39d963eff511edd0f4df7167a64c5e2c", null ],
-    [ "size", "structvccc_1_1internal_1_1math_1_1traits_3_01_matrix_mul_scalar_3_01_lhs_type_00_01_rhs_type_01_4_01_4.html#a8b94ede7633f751486aa01928ce4c995a5ce4adcaaf937fb48690316901251d56", null ],
-    [ "option", "structvccc_1_1internal_1_1math_1_1traits_3_01_matrix_mul_scalar_3_01_lhs_type_00_01_rhs_type_01_4_01_4.html#a1983cc7746a770aa82617cd74c006f86af41b9e176920dfd8be8e5d04d2dd669d", null ]
+    [ "value_type", "structvccc_1_1internal_1_1math_1_1traits_3_01_matrix_mul_scalar_3_01_lhs_type_00_01_rhs_type_01_4_01_4.html#a0db6ead2c4d1954fe4eb2f5008dbba29", null ]
 ];

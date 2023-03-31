@@ -1,9 +1,9 @@
 var detail_2invoke_8hpp =
 [
-    [ "invoke_category_base_of", "structvccc_1_1detail_1_1invoke__category__base__of.html", null ],
-    [ "invoke_category_reference_wrapper", "structvccc_1_1detail_1_1invoke__category__reference__wrapper.html", null ],
-    [ "invoke_category_normal", "structvccc_1_1detail_1_1invoke__category__normal.html", null ],
-    [ "get_invoke_category", "structvccc_1_1detail_1_1get__invoke__category.html", "structvccc_1_1detail_1_1get__invoke__category" ],
+    [ "vccc::detail::invoke_category_base_of", "structvccc_1_1detail_1_1invoke__category__base__of.html", null ],
+    [ "vccc::detail::invoke_category_reference_wrapper", "structvccc_1_1detail_1_1invoke__category__reference__wrapper.html", null ],
+    [ "vccc::detail::invoke_category_normal", "structvccc_1_1detail_1_1invoke__category__normal.html", null ],
+    [ "vccc::detail::get_invoke_category< T, T1 >", "structvccc_1_1detail_1_1get__invoke__category.html", "structvccc_1_1detail_1_1get__invoke__category" ],
     [ "get_invoke_category_t", "detail_2invoke_8hpp.html#ad7a2d833924cd17c7a84edac817b0ab1", null ],
     [ "INVOKEP_MF", "detail_2invoke_8hpp.html#a57b2568a4d02d9d54d19b1038e8fb2bc", null ],
     [ "INVOKEP_MF", "detail_2invoke_8hpp.html#ac4385f6b31aaa26a27de6033143e7dc1", null ],
