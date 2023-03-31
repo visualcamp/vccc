@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: [ self-hosted, doxygen ]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Delete existing docs
+      run: rm -rf ${{ github.workspace }}/docs/html
+
+    - name: Re-run doxygen
+      run: doxygen
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "noreply@visual.camp"
+        git config --local user.name "vccc-docs-generator"
+        git add docs/*
+        git commit -a -m "Add changes"
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: release

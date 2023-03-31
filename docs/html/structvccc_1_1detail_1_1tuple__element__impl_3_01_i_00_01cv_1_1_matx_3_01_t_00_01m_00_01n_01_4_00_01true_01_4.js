@@ -1,4 +1,0 @@
-var structvccc_1_1detail_1_1tuple__element__impl_3_01_i_00_01cv_1_1_matx_3_01_t_00_01m_00_01n_01_4_00_01true_01_4 =
-[
-    [ "type", "structvccc_1_1detail_1_1tuple__element__impl_3_01_i_00_01cv_1_1_matx_3_01_t_00_01m_00_01n_01_4_00_01true_01_4.html#a884ff55801bcac90c498ca46a91cb8db", null ]
-];
