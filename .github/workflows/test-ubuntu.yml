@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - '**'
+      - '!releases'
 
 env:
   BUILD_TYPE: Release
