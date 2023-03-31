@@ -1,4 +1,0 @@
-var structvccc_1_1internal_1_1math_1_1traits_3_01_matrix_sum_3_01_lhs_type_00_01_rhs_type_01_4_01_4 =
-[
-    [ "value_type", "structvccc_1_1internal_1_1math_1_1traits_3_01_matrix_sum_3_01_lhs_type_00_01_rhs_type_01_4_01_4.html#a37a0fcc0cf862eb11a96a195cc56af48", null ]
-];
