@@ -6,8 +6,9 @@
 # define VCCC_LOG_HPP
 #
 # include "vccc/log/pwd.hpp"
-# include "vccc/log/log.hpp"
+# include "vccc/log/logger.hpp"
 # include "vccc/log/function_macro.hpp"
+# include "vccc/log/iomanip.hpp"
 
 /**
 @defgroup log log

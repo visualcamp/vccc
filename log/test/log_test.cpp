@@ -37,53 +37,59 @@ struct bar {
 int main() {
   INIT_TEST("vccc::log")
 
-  // test printf-like
-  TEST_ENSURES(vccc::Logger("").get() == "");
-  TEST_ENSURES(vccc::Logger("Hello, world!").get() == "Hello, world!");
-  TEST_ENSURES(vccc::Logger("Hello, %s", "world!").get() == "Hello, world!");
-  TEST_ENSURES(vccc::Logger("%d %.2f", 1234567, 123.4567).get() == "1234567 123.46");
-  TEST_ENSURES(vccc::Logger("%p", NULL).get().size() != 0);
-  TEST_ENSURES(vccc::Logger("%s", message).get() == message);
+  vccc::StreamWrapper stream;
+  stream << vccc::Separator("");
 
   // test cout-like
-  TEST_ENSURES(vccc::Logger(1).get() == "1");
-  TEST_ENSURES(vccc::Logger(1,2).get() == "1 2");
-  TEST_ENSURES(vccc::Logger(1,2,3).get() == "1 2 3");
-  TEST_ENSURES(vccc::Logger("Hello,", "world!").get() == "Hello, world!");
-  TEST_ENSURES(vccc::Logger("Hello,", std::string("world!")).get() == "Hello, world!");
+  TEST_ENSURES(vccc::Logger{}.to_string(1) == "1");
+  TEST_ENSURES(vccc::Logger{}.to_string(1,2) == "12");
+  TEST_ENSURES(vccc::Logger{}.to_string(1,2,3) == "123");
+  TEST_ENSURES(vccc::Logger{}.to_string("Hello,", "world!") == "Hello,world!");
+  TEST_ENSURES(vccc::Logger{}.to_string("Hello,", std::string("world!")) == "Hello,world!");
   // TODO: ignore separator on manipulators
-  TEST_ENSURES(vccc::Logger(std::boolalpha, true, false, std::true_type{}, std::false_type{}).get()
-                == " true false true false");
-  TEST_ENSURES(vccc::Logger(std::setprecision(5), 3.14159265).get() == " 3.1416");
-  TEST_ENSURES(vccc::Logger(foo{}).get() == message);
+  TEST_ENSURES(vccc::Logger{}.to_string(vccc::Separator(" "), std::boolalpha, true, false, std::true_type{}, std::false_type{})
+                == "true false true false");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::setprecision(5), 3.14159265) == "3.1416");
+  TEST_ENSURES(vccc::Logger{}.to_string(foo{}) == message);
 
+  // test manipulator
+  {
+    TEST_ENSURES(vccc::Logger{}.to_string(1,2,3) == "123");
+    vccc::Logger::global_separator() = "?";
+    TEST_ENSURES(vccc::Logger{}.to_string(1,2,3) == "1?2?3");
+    vccc::Logger::global_separator().clear();
+    TEST_ENSURES(vccc::Logger{}.to_string(1,2,3) == "123");
+
+    TEST_ENSURES(vccc::Logger{}.to_string(vccc::Separator(" "),1,2,3) == "1 2 3");
+    TEST_ENSURES(vccc::Logger{}.to_string(vccc::Separator("TONY"),1,2,3) == "1TONY2TONY3");
+  }
 
   // test containers
-  TEST_ENSURES(vccc::Logger(std::vector<int>{}).get() == "{}");
-  TEST_ENSURES(vccc::Logger(std::vector<int>{1}).get() == "{ 1 }");
-  TEST_ENSURES(vccc::Logger(std::vector<int>{1,2,3}).get() == "{ 1, 2, 3 }");
-  TEST_ENSURES(vccc::Logger(std::vector<int>{1,2,3}, std::vector<int>{4,5,6}).get() == "{ 1, 2, 3 } { 4, 5, 6 }");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::vector<int>{}) == "{}");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::vector<int>{1}) == "{ 1 }");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::vector<int>{1,2,3}) == "{ 1, 2, 3 }");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::vector<int>{1,2,3}, " ", std::vector<int>{4,5,6}) == "{ 1, 2, 3 } { 4, 5, 6 }");
 
-  TEST_ENSURES(vccc::Logger(std::array<int, 3>{-1,-2,-3}).get() == "{ -1, -2, -3 }");
-  TEST_ENSURES(vccc::Logger(std::list<int>{0,1,0}).get() == "{ 0, 1, 0 }");
-  TEST_ENSURES(vccc::Logger(std::map<int, std::string>{{1,"one"},{2,"two"}}).get()
+  TEST_ENSURES(vccc::Logger{}.to_string(std::array<int, 3>{-1,-2,-3}) == "{ -1, -2, -3 }");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::list<int>{0,1,0}) == "{ 0, 1, 0 }");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::map<int, std::string>{{1,"one"},{2,"two"}})
                 == "{ { 1: one }, { 2: two } }");
-  TEST_ENSURES(vccc::Logger(bar{1,2,3}).get() == "{ 1, 2, 3 }");
+  TEST_ENSURES(vccc::Logger{}.to_string(bar{1,2,3}) == "{ 1, 2, 3 }");
 
   // test tuples
-  TEST_ENSURES(vccc::Logger(std::pair<int, int>(1, 2)).get() == "{ 1, 2 }");
-  TEST_ENSURES(vccc::Logger(std::make_tuple(1, "hi", std::vector<int>{0,0,0})).get() == "{ 1, hi, { 0, 0, 0 } }");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::pair<int, int>(1, 2)) == "{ 1, 2 }");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::make_tuple(1, "hi", std::vector<int>{0,0,0})) == "{ 1, hi, { 0, 0, 0 } }");
 
   // test integer_sequence
-  TEST_ENSURES(vccc::Logger(std::make_index_sequence<3>{}).get() == "{ 0, 1, 2 }");
-  TEST_ENSURES(vccc::Logger(std::index_sequence_for<int, float>{}).get() == "{ 0, 1 }");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::make_index_sequence<3>{}) == "{ 0, 1, 2 }");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::index_sequence_for<int, float>{}) == "{ 0, 1 }");
 
   // test chronos
-  TEST_ENSURES(vccc::Logger(std::chrono::seconds(1)).get() == "1s");
-  TEST_ENSURES(vccc::Logger(std::chrono::seconds(100)).get() == "1m 40s");
-  TEST_ENSURES(vccc::Logger(std::chrono::nanoseconds(100)).get() == "100ns");
-  TEST_ENSURES(vccc::Logger(std::chrono::nanoseconds(123'456)).get() == "123.46us");
-  TEST_ENSURES(vccc::Logger(std::chrono::milliseconds(123)).get() == "123ms");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::chrono::seconds(1)) == "1s");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::chrono::seconds(100)) == "1m 40s");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::chrono::nanoseconds(100)) == "100ns");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::chrono::nanoseconds(123'456)) == "123.46us");
+  TEST_ENSURES(vccc::Logger{}.to_string(std::chrono::milliseconds(123)) == "123ms");
   LOGD(std::chrono::seconds(1));
   LOGD(std::chrono::seconds(100));
   LOGD(std::chrono::minutes(1));

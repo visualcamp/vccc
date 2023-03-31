@@ -5,20 +5,21 @@
 # ifndef VCCC_LOG_STREAM_WRAPPER_HPP_
 # define VCCC_LOG_STREAM_WRAPPER_HPP_
 #
-# include <iostream>
-# include <type_traits>
-# include <iomanip>
 # include <chrono>
-# include <tuple>
-# include <utility>
-# include <string>
-# include <ratio>
 # include <functional>
+# include <ostream>
+# include <iomanip>
 # include <mutex>
+# include <ratio>
+# include <sstream>
+# include <string>
+# include <tuple>
+# include <type_traits>
+# include <utility>
 #
-# include "vccc/log/ios_flags_saver.hpp"
 # include "vccc/optional.hpp"
 # include "vccc/type_traits.hpp"
+# include "vccc/log/ios_flags_saver.hpp"
 #
 # if __cplusplus >= 201703
 #   include <filesystem>
@@ -32,42 +33,149 @@ namespace vccc {
 //! @addtogroup log
 //! @{
 
+/**
+@brief Manipulator for vccc::StreamWrapper
+ */
+class StreamManipulator {
+ public:
+  StreamManipulator() = default;
+  ~StreamManipulator() = default;
+};
+
+/**
+ *
+ * @tparam CharT
+ * @tparam String
+ * @tparam Stream
+ */
+template<typename String, typename Stream>
+class StreamWrapperBase {
+ public:
+  using stream_type = Stream;
+  using string_type = String;
+  using traits_type = typename stream_type::traits_type;
+
+  /** @brief Get global separator
+   *
+   * Default value is an empty string
+   * @return Global separator
+   */
+  static string_type& global_separator() {
+    static string_type s;
+    return s;
+  }
+
+  /** @brief Get current separator
+   *
+   * Default-initialized with StreamWrapperBase::global_separator()
+   * @return Current separator
+   */
+  const string_type& separator() const { return separator_; }
+
+  /** @brief Set current separator
+   *
+   * Set current separator with new value and return the previous one
+   * @return Previous separator
+   */
+  string_type separator(string_type new_separator) {
+    auto prev = std::move(separator_);
+    separator_ = std::move(new_separator);
+    return prev;
+  }
+
+ protected:
+  struct {
+    string_type separator_ = global_separator();
+    bool first_ = true;
+  };
+};
 
 /**
 @brief stream wrapper that supports extended operator overloading
 
 Support writing of
- - container types
- - tuple-like types
+ - container types*
+ - tuple-like types*
  - container whose element is pair is treated as key-pair container
  - std::chrono types
- - integer sequences
+ - integer sequences*
  - (of course) custom operator overloaded types (std::ostream& operator << (std::ostream&, T))
- - aggregate type
+ - aggregate type*
 
-@tparam Stream  stream type
+Note: Types marked with (*) are default-separated with a single space
+
+@tparam CharT
+@tparam String
+@tparam Stream
  */
-template<typename Stream>
-class StreamWrapper {
+template<typename CharT,
+         typename String = std::basic_string<CharT>,
+         typename Stream = std::basic_stringstream<CharT>>
+class BasicStreamWrapper : public StreamWrapperBase<String, Stream> {
  public:
-  using stream_type = Stream;
-  using char_type = typename stream_type::char_type;
-  using traits_type = typename stream_type::traits_type;
-  using basic_ostream_type = std::basic_ostream<char_type, traits_type>;
+  using base = StreamWrapperBase<String, Stream>;
+  using char_type = CharT;
+  using stream_type = typename base::stream_type;
+  using string_type = typename base::string_type;
+  using traits_type = typename base::traits_type;
 
+  BasicStreamWrapper() = default;
+  explicit BasicStreamWrapper(string_type str) : stream_(std::move(str)) {}
+  explicit BasicStreamWrapper(stream_type&& stream) : stream_(std::move(stream)) {}
 
   // for std::endl
-  inline StreamWrapper&
-  operator << (std::ostream& (*pf)(std::ostream&))
-  { pf(stream_); return *this; }
+  BasicStreamWrapper& operator << (std::ostream& (*pf)(std::ostream&)) {
+    pf(stream_);
+    return *this;
+  }
 
-  template<typename T>
-  inline StreamWrapper&
-  operator << (const T& value)
-  { try_write(typename is_printable<T>::type{}, value); return *this; }
+  // I/O manipulators
+  BasicStreamWrapper& operator << (std::ios_base& (&io_manip)(std::ios_base&)) {
+    stream_ << io_manip;
+    return *this;
+  }
 
-  inline stream_type& stream() { return stream_; }
-  inline const stream_type& stream() const { return stream_; }
+  template<typename T, typename
+    std::enable_if_t<
+      std::is_base_of<StreamManipulator, remove_cvref_t<T>>::value,
+    int> = 0>
+  BasicStreamWrapper& operator << (const T& manipulator) {
+    manipulator(*this);
+    return *this;
+  }
+
+  template<typename T, typename
+    std::enable_if_t<
+      !std::is_base_of<StreamManipulator, remove_cvref_t<T>>::value,
+    int> = 0>
+  BasicStreamWrapper& operator << (const T& value) {
+    if (base::first_) {
+      base::first_ = false;
+    } else {
+      stream_ << base::separator();
+    }
+    try_write(typename is_printable<T>::type{}, value);
+    return *this;
+  }
+
+  /** @brief Return internal stream
+   *
+   * @return Internal stream object
+   */
+  stream_type& stream() { return stream_; }
+  const stream_type& stream() const { return stream_; }
+
+  /** @brief Equals to stream().str()
+   *
+   * @return stream().str()
+   */
+  string_type str() const { return stream().str(); }
+
+   /** @brief Equals to stream().str(string_type)
+    *
+    * @param s New string
+    */
+  void str(string_type s) { stream().str(std::move(s)); }
 
  private:
   stream_type stream_;
@@ -88,7 +196,7 @@ class StreamWrapper {
   inline void try_write(default_printable_t, const T& value) { stream_ << value;}
 
   template<typename T>
-  inline void try_write(not_default_printable_t, const T& value) { write(value); }
+  constexpr void try_write(not_default_printable_t, const T& value) { write(value); }
 
 #if __cplusplus >= 201703
   // any aggregate type
@@ -207,9 +315,9 @@ class StreamWrapper {
 # endif
 };
 
-template<typename Stream>
+template<typename CharT, typename String, typename Stream>
 template<typename InputIterator, typename Func>
-void StreamWrapper<Stream>::writeIterator(InputIterator first, InputIterator last, Func f) {
+void BasicStreamWrapper<CharT, String, Stream>::writeIterator(InputIterator first, InputIterator last, Func f) {
   stream_ << '{';
   if (first != last) {
     stream_ << ' ';
@@ -224,9 +332,9 @@ void StreamWrapper<Stream>::writeIterator(InputIterator first, InputIterator las
   stream_ << '}';
 }
 
-template<typename Stream>
+template<typename CharT, typename String, typename Stream>
 template<typename Rep, typename Period>
-void StreamWrapper<Stream>::write(const std::chrono::duration<Rep, Period>& duration_) {
+void BasicStreamWrapper<CharT, String, Stream>::write(const std::chrono::duration<Rep, Period>& duration_) {
   IOSFlagsSaver<stream_type> saver(stream_);
 
   auto duration =
@@ -285,17 +393,17 @@ void StreamWrapper<Stream>::write(const std::chrono::duration<Rep, Period>& dura
   }
 }
 
-template<typename Stream>
+template<typename CharT, typename String, typename Stream>
 template<typename Duration>
-void StreamWrapper<Stream>::write(const std::chrono::time_point<std::chrono::system_clock, Duration>& time_point) {
-  static std::mutex localtime_m;
+void BasicStreamWrapper<CharT, String, Stream>::write(const std::chrono::time_point<std::chrono::system_clock, Duration>& time_point) {
+  static auto localtime_m = new std::mutex();
 
   auto tt = std::chrono::system_clock::to_time_t(time_point);
 
-  std::unique_lock<std::mutex> lck(localtime_m);
+  std::unique_lock<std::mutex> lck(*localtime_m);
   const std::tm* tm_obj = std::localtime(&tt);
 
-  if(tm_obj == nullptr){// failed parsing
+  if (tm_obj == nullptr) {// failed parsing
     std::to_string(tt);
     return;
   }
@@ -310,8 +418,8 @@ void StreamWrapper<Stream>::write(const std::chrono::time_point<std::chrono::sys
   stream_ << std::setfill('0') << std::setw(3) << ms;
 }
 
-template<typename Stream>
-void StreamWrapper<Stream>::write(const std::time_t *tt) {
+template<typename CharT, typename String, typename Stream>
+void BasicStreamWrapper<CharT, String, Stream>::write(const std::time_t *tt) {
   static std::mutex localtime_m;
   std::lock_guard<std::mutex> lck(localtime_m);
 
@@ -323,9 +431,9 @@ void StreamWrapper<Stream>::write(const std::time_t *tt) {
   stream_ << std::put_time(tm_obj, "%Y-%m-%d %H:%M:%S.");
 }
 
-template<typename Stream>
+template<typename CharT, typename String, typename Stream>
 template<typename ...Ts, std::size_t ...I>
-void StreamWrapper<Stream>::writeTuple(const std::tuple<Ts...>& value, std::index_sequence<0, I...>) {
+void BasicStreamWrapper<CharT, String, Stream>::writeTuple(const std::tuple<Ts...>& value, std::index_sequence<0, I...>) {
   stream_ << "{ ";
   *this << std::get<0>(value);
   int dummy[sizeof...(I)] = {
@@ -334,15 +442,17 @@ void StreamWrapper<Stream>::writeTuple(const std::tuple<Ts...>& value, std::inde
   stream_ << " }";
 }
 
-template<typename Stream>
+template<typename CharT, typename String, typename Stream>
 template<typename T1, typename T2>
-void StreamWrapper<Stream>::write(const std::pair<T1, T2>& value, const std::string& sep) {
+void BasicStreamWrapper<CharT, String, Stream>::write(const std::pair<T1, T2>& value, const std::string& sep) {
   stream_ << "{ ";
   *this << value.first;
   stream_ << sep;
   *this << value.second;
   stream_ << " }";
 }
+
+using StreamWrapper = BasicStreamWrapper<char>;
 
 //! @} log
 

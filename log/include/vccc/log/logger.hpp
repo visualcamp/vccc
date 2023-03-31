@@ -2,114 +2,127 @@
 #  * Created by YongGyu Lee on 2020/12/08.
 #  */
 #
-# ifndef VCCC_LOG_LOGGER_HPP
-# define VCCC_LOG_LOGGER_HPP
+# ifndef VCCC_LOG_LOG_HPP
+# define VCCC_LOG_LOG_HPP
 #
-# include <vector>
-# include <sstream>
-# include <string>
-# include <regex>
-# include "vccc/log/detail/c_printable.hpp"
+# include "vccc/log/detail/log_impl.h"
 # include "vccc/log/stream_wrapper.hpp"
 
-namespace vccc{
+
+namespace vccc {
 
 //! @addtogroup log
 //! @{
 
-
 /**
-@brief stream wrapper that can accept both C-style formatted and C++ style variadic
+@brief Ease use of vccc::StreamWrapper
 
-@code{.cpp}
-    std::string str1 = Logger("%s %d", "Hello", 100).get();
-    std::string str2 = Logger(1, "Hello", "world").get();
-    std::string str3 = Logger(std::boolalpha, true).get();
+d for LOGD, i for LOGI, w for LOGW, e for LOGE
+
+supports ostringstream& operator <<
+@code
+    Log.d("Hello, world")                   // Hello, world
+    Log.d("First: ", 3, " Second: ", 3.14)     // First: 3 Second: 3.14
+@endcode
+
+To use printf-like format, use vccc::Formatter
+
+if ostringstream& operator << is overloaded for user-defined types, it can be printed
+@code
+    Log.d("string: ", std::string("wow!"))   // string: wow!
+    Log.d("Point: ", cv::Point2i(3,4))       // Point: [3, 4]
+@endcode
+
+* std::pair, std::tuple, std::integer_sequence, containers, chrono types, aggregate(since C++17) types can be printed.
+
+@code
+    Log.d(std::vector<std::vector<int>>{{1, 2}, {3}});  // { { 1, 2 }, { 3 } }
+    Log.d(std::make_tuple(1, "hello"));                 // { 1, hello }
+    Log.d(std::chrono::system_clock::now());            // 2021-06-29 14:35:27.917
+
+    // Since C++ 17
+    struct foo {
+      int x;
+      std::string name;
+    };
+    Log.d(foo{100, "Tony"});    // { 100, Tony }
 @endcode
 
  */
 class Logger {
  public:
-  using c_printable = std::true_type;
-  using not_c_printable = std::false_type;
+  using stream_type = StreamWrapper;
+  using string_type = std::string;
 
-  Logger() = default;
-  Logger(Logger const& other)
-    : buffer(other.buffer) {
-    out.stream().str(other.out.stream().str());
-  }
-  Logger(Logger&& other)
-    : buffer(std::move(other.buffer)), out(std::move(other.out)) {}
+  constexpr Logger() = default;
 
-  Logger& operator=(Logger const& other) {
-    buffer = other.buffer;
-    out.stream().str(other.out.stream().str());
-    return *this;
-  }
-  Logger& operator=(Logger && other) {
-    buffer = std::move(other.buffer);
-    out = std::move(other.out);
-    return *this;
+  /** @brief Log output as debug */
+  template<typename ...Args> void d(const Args&... args) const { d_(to_string(args...)); }
+  /** @brief Informational log */
+  template<typename ...Args> void i(const Args&... args) const { i_(to_string(args...)); }
+  /** @brief Warning log */
+  template<typename ...Args> void w(const Args&... args) const { w_(to_string(args...)); }
+  /** @brief Error log */
+  template<typename ...Args> void e(const Args&... args) const { e_(to_string(args...)); }
+
+  /** @brief Return logged value as std::string
+   *
+   * @tparam Args
+   * @param args
+   * @return Logged value as std::string
+   */
+  template<typename ...Args> string_type to_string(const Args&... args) const {
+    stream_type stream;
+    int dummy[] = { (stream << args, 0)... };
+    return stream.stream().str();
   }
 
-  template<typename ...Args>
-  Logger(const Args&... args) {
-    addImpl(detail::are_types_c_printable_t<Args...>{}, args...);
+  /** @brief Equals to stream_type::global_separator
+   *
+   * @return stream_type::global_separator()
+   */
+  static string_type& global_separator() {
+    return stream_type::global_separator();
   }
 
-  inline std::string get() const {
-    return out.stream().str();
-  }
  private:
-
-  template<typename CharT>
-  static bool isFormatted(const CharT& str) {
-    // TODO: move fmt_reg to class scope
-    // TODO: add PRI.. format
-    static const std::regex fmt_reg(R"(%(?:\d+\$)?[+-]?(?:[ 0]|'.{1})?-?\d*(?:\.\d+)?[bcdeEufFgGosxXp])");
-    return std::regex_search(str, fmt_reg);
-  }
-
-  template<typename Arg, typename ...Args>
-  void addImpl(c_printable, const Arg& arg, const Args&... args) {
-    if (isFormatted(arg))
-      addFormatted(arg, args...);
-    else
-      addImpl(not_c_printable(), arg, args...);
-  }
-
-  template<typename Arg, typename ...Args>
-  inline void addImpl(not_c_printable, const Arg& arg, const Args&... args) {
-    add(arg, args...);
-  }
-
-  template<typename Arg>
-  inline void add(const Arg& n) {
-    out << n;
-  }
-
-  template<typename Arg, typename ...Args>
-  void add(const Arg& arg, const Args&... args) {
-    add(arg);
-    add(' '); // default separator
-    add(args...);
-  }
-
-  template<typename ...Args>
-  void addFormatted(const char* fmt, const Args&... val) {
-    int size = snprintf(NULL, 0, fmt, val...);
-    if(buffer.size() < size + 1)    buffer.resize(size + 1);
-    else if (buffer.size() > 100)   buffer.resize(100); // prevents too frequent resizing
-    snprintf(buffer.data(), size + 1, fmt, val...);
-    out << buffer.data();
-  }
-
-  std::vector<char> buffer;
-  StreamWrapper<std::stringstream> out;
+  template<typename ...Args> void d_(const std::string& str) const { LOGD_IMPL("%s", str.c_str()); }
+  template<typename ...Args> void i_(const std::string& str) const { LOGI_IMPL("%s", str.c_str()); }
+  template<typename ...Args> void w_(const std::string& str) const { LOGW_IMPL("%s", str.c_str()); }
+  template<typename ...Args> void e_(const std::string& str) const { LOGE_IMPL("%s", str.c_str()); }
 };
+
+/**
+@brief Global vccc::Logger instance for syntax sugar
+ */
+constexpr Logger Log;
+
+/**
+@brief Debug log wrapper for security. This won't print in release build.
+
+Below example applies to LOGI, LOGW, LOGE
+@code{.cpp}
+    LOGD("string ", 100, " ", 3.14);              // string 100 3.14
+    LOGD(std::vector<int>{1,2,3,4});        // { 1, 2, 3, 4 }
+    LOGD(std::map<string, int>{{"one", 1}, {"two", 2}}); // { { one: 1 }, { two: 2 } }
+@endcode
+
+*/
+# ifdef NDEBUG
+# define LOGD(...)
+#else
+# define LOGD(...) ::vccc::Log.d(__VA_ARGS__)
+# endif
+
+/** @brief Information log wrapper **/
+# define LOGI(...) ::vccc::Log.i(__VA_ARGS__)
+/** @brief Warning log wrapper **/
+# define LOGW(...) ::vccc::Log.w(__VA_ARGS__)
+/** @brief Error log wrapper **/
+# define LOGE(...) ::vccc::Log.e(__VA_ARGS__)
 
 //! @} log
 
-}
+} // namespace log
 
-# endif //VCCC_LOG_LOGGER_HPP
+# endif //VCCC_LOG_LOG_HPP
