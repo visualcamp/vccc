@@ -14,8 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      persist-credentials: false
-      fetch-depth: 0
+      with:
+        persist-credentials: false
+        fetch-depth: 0
 
     - name: Delete existing docs
       run: rm -rf ${{ github.workspace }}/docs/html
