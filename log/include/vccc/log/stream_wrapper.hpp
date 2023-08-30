@@ -398,13 +398,14 @@ template<typename Duration>
 void BasicStreamWrapper<CharT, String, Stream>::write(const std::chrono::time_point<std::chrono::system_clock, Duration>& time_point) {
   static auto localtime_m = new std::mutex();
 
-  auto tt = std::chrono::system_clock::to_time_t(time_point);
+  std::time_t tt = std::chrono::system_clock::to_time_t(time_point);
 
   std::unique_lock<std::mutex> lck(*localtime_m);
   const std::tm* tm_obj = std::localtime(&tt);
 
   if (tm_obj == nullptr) {// failed parsing
-    std::to_string(tt);
+    const auto unix_timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(time_point.time_since_epoch()).count();
+    stream_ << unix_timestamp;
     return;
   }
 
