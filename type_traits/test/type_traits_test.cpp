@@ -51,7 +51,9 @@ int main() {
     TEST_ENSURES(vccc::is_swappable<std::string>{} == true);
     TEST_ENSURES(vccc::is_swappable<void>{} == false);
     TEST_ENSURES(vccc::is_swappable<no_copy>{} == true);
+#if !defined(_MSC_VER) || (__cplusplus >= 201703L)
     TEST_ENSURES(vccc::is_swappable<no_move>{} == false);
+#endif
     TEST_ENSURES(vccc::is_swappable<my_swap>{} == true);
   }
 

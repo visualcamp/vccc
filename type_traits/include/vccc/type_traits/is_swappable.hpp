@@ -13,9 +13,6 @@
 namespace vccc {
 namespace detail {
 
-template<typename T>
-using void_t = void;
-
 namespace swappable_test {
 using std::swap;
 
