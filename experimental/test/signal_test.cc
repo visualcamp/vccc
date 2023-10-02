@@ -44,13 +44,13 @@ int main() {
 
     TEST_ENSURES(signal.size() == test_count);
 
-    LOGI("Connecting", signal.size(), "slots took", t2 - t1);
+    LOGI("Connecting ", signal.size(), " slots took ", t2 - t1);
 
     t1 = now();
     signal();
     t2 = now();
     TEST_ENSURES(sum == test_count);
-    LOGI("Invoking", signal.size(), "slots took", t2 - t1);
+    LOGI("Invoking ", signal.size(), " slots took ", t2 - t1);
   }
 
   { // object safety test
@@ -133,7 +133,7 @@ int main() {
       conn.disconnect();
     }
 
-    LOGI("Track test:", now() - t, "test count", test_count, "called", called);
+    LOGI("Track test: ", now() - t, " test count ", test_count, " called ", called);
   }
 
 //  { // disconnect sync test
@@ -168,7 +168,7 @@ int main() {
       t3.join();
       t4.join();
     }
-    LOGI("Thread safety test:", now() - t, "called", called, "/", test_count);
+    LOGI("Thread safety test: ", now() - t, " called ", called, " / ", test_count);
   }
 
   { // call & connect & disconnect thread-safety test
@@ -223,12 +223,12 @@ int main() {
       t2.join();
       t3.join();
     }
-    LOGI("Thread safety test2:", now() - t,
-         "test count", test_count,
-         "called", called,
-         "connected", connected,
-         "disconnected", disconnected,
-         "remained connections", signal.size());
+    LOGI("Thread safety test2: ", now() - t,
+         " test count ", test_count,
+         " called ", called,
+         " connected ", connected,
+         " disconnected ", disconnected,
+         " remained connections ", signal.size());
 //    TEST_ENSURES(called <= connected);
     TEST_ENSURES(connected - disconnected <= signal.size());
   }
