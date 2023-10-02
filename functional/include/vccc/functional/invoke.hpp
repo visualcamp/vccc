@@ -2,17 +2,16 @@
 #  * Created by YongGyu Lee on 2020/12/08.
 #  */
 #
-#ifndef VCCC_HIGH_FUNCTIONAL_INVOKE_HPP
-#define VCCC_HIGH_FUNCTIONAL_INVOKE_HPP
+#ifndef VCCC_FUNCTIONAL_INVOKE_HPP
+#define VCCC_FUNCTIONAL_INVOKE_HPP
 #
 #
 # if __cplusplus <= 201402L
-#
-# include "vccc/high/functional/detail/invoke.hpp"
+# include "vccc/functional/detail/invoke.hpp"
 
 namespace vccc{
 
-//! @addtogroup high_functional
+//! @addtogroup functional
 //! @{
 
 /**
@@ -37,17 +36,16 @@ invoke(F&& f, Args&&... args) {
 #
 # include <functional>
 
-namespace vccc{
+namespace vccc {
 
 template<class F, class... Args>
-[[deprecated("use std::invoke instead")]]
-constexpr
-auto
+constexpr inline auto
 invoke(F&& f, Args&&... args) {
   return std::invoke(std::forward<F>(f), std::forward<Args>(args)...);
 }
 
-}
+} // namespace vccc
+
 # endif
 
-#endif //VCCC_HIGH_FUNCTIONAL_INVOKE_HPP
+#endif // VCCC_FUNCTIONAL_INVOKE_HPP
