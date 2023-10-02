@@ -42,6 +42,11 @@ bool operator==(const group_key<Group>& lhs, const group_key<Group>& rhs) {
 }
 
 template<typename Group>
+bool operator!=(const group_key<Group>& lhs, const group_key<Group>& rhs) {
+  return !(lhs == rhs);
+}
+
+template<typename Group>
 struct group_key_compare {
   using group_type = Group;
   using group_key_type = group_key<group_type>;
