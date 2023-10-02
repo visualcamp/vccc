@@ -11,5 +11,10 @@
 # include "vccc/optional/nullopt_t.h"
 # include "vccc/optional/optional.h"
 # include "vccc/optional/swap.h"
-#
+
+/**
+@defgroup optional optional
+Implementation of <a href="https://en.cppreference.com/w/cpp/utility/optional">std::optional</a>
+*/
+
 # endif // VCCC_OPTIONAL_HPP_
