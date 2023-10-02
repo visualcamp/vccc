@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2021/06/03.
 #  */
 #
-# ifndef VCCC_EXPERIMENTAL_SIGNAL_SLOT_H_
-# define VCCC_EXPERIMENTAL_SIGNAL_SLOT_H_
+# ifndef VCCC_SIGNAL_SLOT_H_
+# define VCCC_SIGNAL_SLOT_H_
 #
 # include <functional>
 # include <memory>
@@ -11,7 +11,6 @@
 # include <vector>
 
 namespace vccc {
-namespace experimental {
 
 template<typename Func>
 class slot;
@@ -75,7 +74,6 @@ class slot<R(Args...)> {
   weak_container tracked_objects_;
 };
 
-} // namespace experimental
 } // namespace vccc
 
-# endif // VCCC_EXPERIMENTAL_SIGNAL_SLOT_H_
+# endif // VCCC_SIGNAL_SLOT_H_

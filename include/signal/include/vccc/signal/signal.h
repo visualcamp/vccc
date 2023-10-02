@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2021/06/03.
 #  */
 #
-# ifndef VCCC_EXPERIMENTAL_SIGNAL_SIGNAL_H_
-# define VCCC_EXPERIMENTAL_SIGNAL_SIGNAL_H_
+# ifndef VCCC_SIGNAL_SIGNAL_H_
+# define VCCC_SIGNAL_SIGNAL_H_
 #
 # include <functional>
 # include <memory>
@@ -11,20 +11,19 @@
 # include <type_traits>
 # include <utility>
 #
-# include "vccc/experimental/signal/connection.h"
-# include "vccc/experimental/signal/forward_declare.h"
-# include "vccc/experimental/signal/slot.h"
-# include "vccc/experimental/signal/slot_group.h"
+# include "vccc/signal/connection.h"
+# include "vccc/signal/forward_declare.h"
+# include "vccc/signal/slot.h"
+# include "vccc/signal/slot_group.h"
 #
 # include "vccc/optional.hpp"
 
 namespace vccc {
-namespace experimental {
 
-//class signal_impl_base {
-// public:
-//  virtual void disconnect()
-//};
+//! @addtogroup signal
+
+
+//! @cond IGNORED
 
 template<typename R, typename ...Args, typename Group>
 class signal_impl<R(Args...), Group> :
@@ -185,7 +184,16 @@ class signal_impl<R(Args...), Group> :
   mutable std::mutex slot_mutex_;
 };
 
+//! @endcond
 
+
+/**
+ * @brief Signal handling class
+ *
+ * @tparam R
+ * @tparam Args
+ * @tparam Group
+ */
 template<typename R, typename ...Args, typename Group>
 class signal<R(Args...), Group> {
   using impl = signal_impl<R(Args...), Group>;
@@ -243,7 +251,8 @@ class signal<R(Args...), Group> {
   std::shared_ptr<impl> pimpl_;
 };
 
-} // namespace experimental
-} // namespace signal
+//! @} signal
 
-# endif //VCCC_EXPERIMENTAL_SIGNAL_SIGNAL_H_
+} // namespace vccc
+
+# endif //VCCC_SIGNAL_SIGNAL_H_

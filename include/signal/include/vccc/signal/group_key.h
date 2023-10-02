@@ -2,15 +2,14 @@
 #  * Created by YongGyu Lee on 2021/06/03.
 #  */
 #
-# ifndef VCCC_EXPERIMENTAL_SIGNAL_GROUP_KEY_H_
-# define VCCC_EXPERIMENTAL_SIGNAL_GROUP_KEY_H_
+# ifndef VCCC_SIGNAL_GROUP_KEY_H_
+# define VCCC_SIGNAL_GROUP_KEY_H_
 #
 # include <utility>
 #
 # include "vccc/optional.hpp"
 
 namespace vccc {
-namespace experimental {
 
 enum group_category { ungrouped_front, grouped, ungrouped_back };
 
@@ -62,7 +61,6 @@ struct group_key_compare {
   }
 };
 
-} // namespace experimental
-} // namespace signal
+} // namespace vccc
 
-# endif // VCCC_EXPERIMENTAL_SIGNAL_GROUP_KEY_H_
+# endif // VCCC_SIGNAL_GROUP_KEY_H_

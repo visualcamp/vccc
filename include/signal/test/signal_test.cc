@@ -9,15 +9,14 @@
 #include <random>
 #include <functional>
 
-#include "vccc/experimental/signal.hpp"
+#include "vccc/signal.hpp"
 #include "vccc/test.hpp"
 #include "vccc/log.hpp"
 
 using namespace std::chrono_literals;
-namespace signal2 = vccc::experimental;
 
 int main() {
-  INIT_TEST("vccc::experimental::signal")
+  INIT_TEST("vccc::signal")
 
   using clock = std::chrono::steady_clock;
   auto& now = clock::now;
@@ -30,7 +29,7 @@ int main() {
   };
 
   { // basic call operation test
-    vccc::experimental::signal<void()> signal;
+    vccc::signal<void()> signal;
 
     TEST_ENSURES((signal(), true));
 
@@ -54,14 +53,14 @@ int main() {
   }
 
   { // object safety test
-    signal2::connection conn;
+    vccc::connection conn;
     std::atomic_int dummy{0};
     int test_count = 10000;
 
     for (int i=0; i<test_count; ++i) {
       std::thread t;
       {
-        signal2::signal<void()> sig;
+        vccc::signal<void()> sig;
         conn = sig.connect([&] { ++dummy; });
         t = std::thread([&]{
           for(int i=0; i<dist(gen)*10; ++i) std::this_thread::yield();
@@ -73,14 +72,14 @@ int main() {
   }
 
   { // connect order test
-    signal2::signal<int()> sig;
+    vccc::signal<int()> sig;
     sig.connect([]{return 1;});
     TEST_ENSURES(*sig() == 1);
 
-    sig.connect([]{return 2;}, signal2::at_front);
+    sig.connect([]{return 2;}, vccc::at_front);
     TEST_ENSURES(*sig() == 1);
 
-    sig.disconnect(signal2::ungrouped_back);
+    sig.disconnect(vccc::ungrouped_back);
     TEST_ENSURES(sig.size() == 1);
 
     sig.connect(1, []{return 3;});
@@ -97,7 +96,7 @@ int main() {
   }
 
   { // track test(sync)
-    signal2::signal<int()> sig;
+    vccc::signal<int()> sig;
     int called = 0;
     auto ptr = std::make_shared<int>(1);
     auto c1 = sig.connect([&]{ return ++called; }).track(ptr);
@@ -117,7 +116,7 @@ int main() {
 
   { // track test(async)
     auto t = now();
-    signal2::signal<void()> sig;
+    vccc::signal<void()> sig;
     std::atomic_int called{0};
     int test_count = 10000;
     for (int i=0; i<test_count; ++i) {
@@ -137,7 +136,7 @@ int main() {
   }
 
 //  { // disconnect sync test
-//    signal2::signal<void()> sig;
+//    vccc::signal<void()> sig;
 //    std::atomic_int num{0};
 //    auto conn = sig.connect([&]{
 //      std::this_thread::sleep_for(10s);
@@ -154,11 +153,11 @@ int main() {
 
   { // call & disconnect thread-safety test
     auto t = now();
-    vccc::experimental::signal<void()> signal;
+    vccc::signal<void()> signal;
     std::atomic_int called{0};
     int test_count = 10000;
     for(int i=0; i<test_count; ++i) {
-      vccc::experimental::connection conn = signal.connect([&]{++called;});
+      vccc::connection conn = signal.connect([&]{++called;});
       std::thread t2([&] { for(int i=0; i<dist(gen); ++i) std::this_thread::yield(); signal(); });
       std::thread t1([&] { conn.disconnect(); });
       std::thread t3([&] { conn.disconnect(); });
@@ -173,12 +172,12 @@ int main() {
 
   { // call & connect & disconnect thread-safety test
     auto t = now();
-    vccc::experimental::signal<void()> signal;
+    vccc::signal<void()> signal;
     std::atomic_int called{0};
     std::atomic_int disconnected{0};
     std::atomic_int connected{0};
     std::mutex conn_m;
-    std::shared_ptr<signal2::connection> conn;
+    std::shared_ptr<vccc::connection> conn;
     int test_count = 10000;
     auto random_work = [&]() -> std::function<void()> {
       switch(random_int(0, 10)) {
@@ -194,14 +193,14 @@ int main() {
             for(int i=1; i<dist(gen); ++i) std::this_thread::yield();
             {
               std::lock_guard<std::mutex> lck(conn_m);
-              conn = std::make_shared<signal2::connection>(signal.connect([&]{++called;}));
+              conn = std::make_shared<vccc::connection>(signal.connect([&]{++called;}));
             }
             ++connected;
           };
         default:
           return [&]{ // disconnect
             for(int i=2; i<dist(gen); ++i) std::this_thread::yield();
-            std::weak_ptr<signal2::connection> wptr;
+            std::weak_ptr<vccc::connection> wptr;
             {
               std::lock_guard<std::mutex> lck(conn_m);
               wptr = conn;
@@ -234,7 +233,7 @@ int main() {
   }
 
   { // return test
-    vccc::experimental::signal<int()> sig;
+    vccc::signal<int()> sig;
     auto res = sig();
     TEST_ENSURES(res.has_value() == false);
 

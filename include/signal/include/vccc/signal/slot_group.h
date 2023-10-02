@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2021/06/03.
 #  */
 #
-# ifndef VCCC_EXPERIMENTAL_SIGNAL_SLOT_GROUP_H_
-# define VCCC_EXPERIMENTAL_SIGNAL_SLOT_GROUP_H_
+# ifndef VCCC_SIGNAL_SLOT_GROUP_H_
+# define VCCC_SIGNAL_SLOT_GROUP_H_
 #
 # include <algorithm>
 # include <iterator>
@@ -14,10 +14,9 @@
 # include <utility>
 # include <vector>
 #
-# include "vccc/experimental/signal/group_key.h"
+# include "vccc/signal/group_key.h"
 
 namespace vccc {
-namespace experimental {
 
 enum slot_position {
   at_back, at_front,
@@ -214,7 +213,6 @@ struct grouped_slot_list {
   mutable map map_;
 };
 
-} // namespace experimental
-} // namespace signal
+} // namespace vccc
 
-# endif //VCCC_EXPERIMENTAL_SIGNAL_SLOT_GROUP_H_
+# endif //VCCC_SIGNAL_SLOT_GROUP_H_

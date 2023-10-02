@@ -2,18 +2,17 @@
 #  * Created by YongGyu Lee on 2021/06/03.
 #  */
 #
-# ifndef VCCC_EXPERIMENTAL_SIGNAL_CONNECTION_H_
-# define VCCC_EXPERIMENTAL_SIGNAL_CONNECTION_H_
+# ifndef VCCC_SIGNAL_CONNECTION_H_
+# define VCCC_SIGNAL_CONNECTION_H_
 #
 # include <atomic>
 # include <memory>
 # include <utility>
 #
-# include "vccc/experimental/signal/forward_declare.h"
-# include "vccc/experimental/signal/slot_group.h"
+# include "vccc/signal/forward_declare.h"
+# include "vccc/signal/slot_group.h"
 
 namespace vccc {
-namespace experimental {
 
 class connection;
 
@@ -143,7 +142,6 @@ class raii_connection : connection {
   }
 };
 
-} // namespace experimental
-} // namespace signal
+} // namespace vccc
 
-# endif //VCCC_EXPERIMENTAL_SIGNAL_CONNECTION_H_
+# endif //VCCC_SIGNAL_CONNECTION_H_
