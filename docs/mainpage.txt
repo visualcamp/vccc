@@ -6,7 +6,9 @@
 \subpage introduction
 
 <a href="modules.html">Modules</a>:
-- \subpage high. C++14 implementation of STL that is in C++17 or higher version
+- \subpage experimental. Contains signal library
+<hr>
+- \subpage functional. Implementation of STL header <functional>
 <hr>
 - \subpage literal. Python-like _format library
 <hr>
@@ -16,9 +18,13 @@
 <hr>
 - \subpage numeric. Numerics
 <hr>
+- \subpage optional. Implementation of STL header <optional>
+<hr>
 - \subpage random. Random algorithms
 <hr>
 - \subpage range. Python-like range class
+<hr>
+- \subpage tuple. Implementation of STL header <functional>
 <hr>
 - \subpage type_support. Syntax sugar for C++
 <hr>

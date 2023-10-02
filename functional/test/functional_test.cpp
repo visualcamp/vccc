@@ -3,7 +3,7 @@
 //
 
 #include "test_core.hpp"
-#include <vccc/high/functional.hpp>
+#include <vccc/functional.hpp>
 #include <cmath>
 
 int foo(int a, int b, int c) {
@@ -11,7 +11,7 @@ int foo(int a, int b, int c) {
 }
 
 int main() {
-  INIT_TEST("vccc::high/functional")
+  INIT_TEST("vccc::functional")
 
   // normal function
   TEST_ENSURES(vccc::invoke(foo, 3, 4, 5) == 35);

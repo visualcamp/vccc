@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2020/12/08.
 #  */
 #
-# ifndef VCCC_HIGH_FUNCTIONAL_DETAIL_INVOKE_HPP
-# define VCCC_HIGH_FUNCTIONAL_DETAIL_INVOKE_HPP
+# ifndef VCCC_FUNCTIONAL_DETAIL_INVOKE_HPP
+# define VCCC_FUNCTIONAL_DETAIL_INVOKE_HPP
 #
 # include <utility>
 # include <type_traits>
@@ -113,4 +113,4 @@ INVOKE(F&& f, Args&&... args)
 
 }}
 
-#endif //VCCC_HIGH_FUNCTIONAL_DETAIL_INVOKE_HPP
+#endif // VCCC_FUNCTIONAL_DETAIL_INVOKE_HPP

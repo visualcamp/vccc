@@ -2,17 +2,14 @@
 #  * Created by YongGyu Lee on 2020/12/08.
 #  */
 #
-#ifndef VCCC_HIGH_TUPLE_APPLY_HPP
-#define VCCC_HIGH_TUPLE_APPLY_HPP
+#ifndef VCCC_TUPLE_APPLY_HPP
+#define VCCC_TUPLE_APPLY_HPP
 #
-#
-# if __cplusplus <= 201402L
-#
-# include "vccc/high/tuple/detail/apply.hpp"
+# include "vccc/tuple/detail/apply.hpp"
 
-namespace vccc{
+namespace vccc {
 
-//! @addtogroup high_tuple
+//! @addtogroup tuple
 //! @{
 
 /** @brief invokes the callable object f with a tuple of arguments
@@ -32,24 +29,6 @@ apply(F&& f, Tuple&& t) {
 
 //! @}
 
-}
+} // namespace vccc
 
-# else
-#
-# include <tuple>
-
-namespace vccc{
-
-template<class F, class Tuple>
-[[deprecated("use std::apply instead")]]
-constexpr
-decltype(auto)
-apply(F&& f, Tuple&& t) {
-  return std::apply(std::forward<F>(f), std::forward<Tuple>(t));
-}
-
-}
-
-# endif
-#
-# endif //VCCC_HIGH_TUPLE_APPLY_HPP
+# endif // VCCC_TUPLE_APPLY_HPP
