@@ -40,10 +40,11 @@ class signal_impl<R(Args...), Group> :
   using return_type = std::conditional_t<std::is_same<void, R>::value, void, vccc::optional<R>>;
   using slot_list_type = grouped_slot_list<group_type, slot_type>;
   using group_key_type = typename slot_list_type::group_key_type;
-  using weak_slot_list = typename slot_list_type::weak_vector;
+  using weak_slot = typename slot_list_type::weak_slot;
+  using weak_slot_list = typename slot_list_type::weak_slot_list;
   using weak_iterator = typename weak_slot_list::iterator;
   using token_type = typename slot_list_type::insert_token;
-  using connection_body = connection_impl<signal_impl<R(Args...), Group>, token_type>;
+  using connection_body = connection_impl<signal_impl<R(Args...), Group>, weak_slot>;
 
   friend connection_body;
 
@@ -62,7 +63,7 @@ class signal_impl<R(Args...), Group> :
 
 //    connection conn(new_connection);
 //    slot.autoDisconnectIfTracking(conn);
-    return connection(new_connection);
+    return connection(std::move(new_connection));
   }
 
   connection connect(group_type group, const slot_type& slot, slot_position pos) {
@@ -126,14 +127,14 @@ class signal_impl<R(Args...), Group> :
     slot_list_->remove(token);
   }
 
-  void set_track(connection* conn, token_type* token, std::weak_ptr<void> target) {
+  void set_track(connection*, token_type* token, std::weak_ptr<void> target) {
     std::lock_guard<std::mutex> lck(slot_mutex_);
     auto& slot_ptr = (*(token->second));
     slot_ptr->track(std::move(target));
   }
 
-  std::shared_ptr<connection_body> make_new_connection(token_type&& token) {
-    return std::make_shared<connection_body>(this->shared_from_this(), std::move(token));
+  std::shared_ptr<connection_body> make_new_connection(weak_slot&& slot) {
+    return std::make_shared<connection_body>(this->shared_from_this(), std::move(slot));
   }
 
   template<typename ...U>

@@ -24,17 +24,18 @@ struct connection_impl_base {
   virtual void track(connection* conn, std::weak_ptr<void> target) = 0;
 };
 
-template<typename Signal, typename Token>
+template<typename Signal, typename SlotPtr>
 struct connection_impl : public connection_impl_base {
   using signal_type = Signal;
-  using token_type = Token;
+  using slot_ptr = SlotPtr;
 
   connection_impl()
     : connected(false) {}
 
-  connection_impl(const std::shared_ptr<signal_type>& signal_ptr, token_type&& token)
-    : signal_ptr_(signal_ptr), token_(std::move(token)), connected(true) {}
+  connection_impl(const std::shared_ptr<signal_type>& signal_ptr, SlotPtr&& slot)
+    : signal_ptr_(signal_ptr), slot_(std::move(slot)), connected(true) {}
 
+  // TODO(Tony): Optimize
   void disconnect() override {
     auto ptr = signal_ptr_.lock();
     if (ptr == nullptr)
@@ -44,7 +45,11 @@ struct connection_impl : public connection_impl_base {
     if (!connected.compare_exchange_strong(state, false))
       return;
 
-    ptr->disconnect(token_);
+    auto weak_slot = slot_.first;
+    if (weak_slot.lock() == nullptr)
+      return;
+
+    ptr->disconnect(slot_.second);
   }
 
   bool is_connected() const override {
@@ -55,15 +60,15 @@ struct connection_impl : public connection_impl_base {
   // signal.connect(...).track(...);  // Good
   // std::move(conn).track(...);      // Bad
   void track(connection* conn, std::weak_ptr<void> target) override {
-    auto ptr = signal_ptr_.lock();
-    if (ptr == nullptr)
+    auto signal = signal_ptr_.lock();
+    if (signal == nullptr)
       return;
-    ptr->set_track(conn, &token_, std::move(target));
+    signal->set_track(conn, std::addressof(slot_.second), std::move(target));
   }
 
  private:
   std::weak_ptr<signal_type> signal_ptr_;
-  token_type token_;
+  slot_ptr slot_;
   std::atomic_bool connected{false};
 };
 
@@ -75,25 +80,23 @@ class connection {
     : pimpl(std::move(ptr)) {}
 
   connection(connection const&) = default;
-  connection(connection &&) = default;
-  connection& operator=(connection const&) = default;
+  connection(connection&&) noexcept = default;
+  connection& operator=(connection const& other) = default;
+  connection& operator=(connection&& other) noexcept = default;
 
-  connection& operator=(connection&& other) {
-    disconnect();
-    pimpl = std::move(other.pimpl);
-    return *this;
+  void disconnect() const {
+    if(pimpl == nullptr)
+      return;
+    pimpl->disconnect();
   }
-
-  void disconnect() const { if(pimpl) pimpl->disconnect(); }
-  void disconnect() { if(pimpl) pimpl->disconnect(); }
 
   bool is_connected() const {
     return pimpl != nullptr && pimpl->is_connected();
   }
 
-  connection& track(std::weak_ptr<void> target) && {
+  connection track(std::weak_ptr<void> target) && {
     pimpl->track(this, std::move(target));
-    return *this;
+    return std::move(*this);
   }
 
  protected:
@@ -108,27 +111,36 @@ class raii_connection : connection {
 
   raii_connection() = default;
   ~raii_connection() {
-    this->disconnect();
+    disconnect();
   }
 
-  raii_connection(const raii_connection&) = default;
-  raii_connection(raii_connection&&) = default;
+  raii_connection(const raii_connection& other) = delete;
+  raii_connection(raii_connection&& other) noexcept : base(other) {}
+  raii_connection(const connection& conn) : base(conn) {}
+  raii_connection(connection&& conn) noexcept : base(std::move(conn)) {}
 
-  raii_connection& operator=(const raii_connection&) = default;
-  raii_connection& operator=(raii_connection&&) = default;
-
-  raii_connection(connection&& conn)
-    : base(std::move(conn)) {}
-
-  raii_connection& operator=(connection&& conn) {
-    base::operator=(std::move(conn));
+  raii_connection& operator=(const raii_connection &rhs) = delete;
+  raii_connection& operator=(raii_connection&& other) {
+    if (this != std::addressof(other)) {
+      disconnect();
+      base::operator=(std::move(other));
+    }
     return *this;
   }
 
-//  raii_connection& operator=(connection&& conn) {
-//    base::operator=(std::move(conn));
-//    return *this;
-//  }
+  raii_connection& operator=(const connection& conn) {
+    disconnect();
+    base::operator=(conn);
+    return *this;
+  }
+
+  raii_connection& operator=(connection&& conn) {
+    if (this != std::addressof(conn)) {
+      disconnect();
+      base::operator=(std::move(conn));
+    }
+    return *this;
+  }
 };
 
 } // namespace experimental

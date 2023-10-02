@@ -43,13 +43,14 @@ struct grouped_slot_list {
   using const_iterator = typename list::const_iterator;
 
   using insert_token = std::pair<map_iterator, list_iterator>;
-  using weak_vector = std::vector<std::pair<weak_slot_ptr_type, insert_token>>;
+  using weak_slot = std::pair<weak_slot_ptr_type, insert_token>;
+  using weak_slot_list = std::vector<weak_slot>;
 
   grouped_slot_list()
     : list_(), map_(group_key_compare_type {}) {}
 
   // insert grouped slot
-  insert_token insert(group_type group, slot_ptr_type slot, slot_position pos = at_back) {
+  weak_slot insert(group_type group, slot_ptr_type slot, slot_position pos = at_back) {
     group_key_type key(grouped, group);
     if (pos == at_back)
       return insert_back(key, std::move(slot));
@@ -58,7 +59,7 @@ struct grouped_slot_list {
   }
 
   // insert ungrouped slot
-  insert_token insert(slot_ptr_type slot, slot_position pos = at_back) {
+  weak_slot insert(slot_ptr_type slot, slot_position pos = at_back) {
     group_key_type key;
     if (pos == at_back) {
       key.group_token.first = ungrouped_back;
@@ -68,36 +69,41 @@ struct grouped_slot_list {
     return insert_back(key, std::move(slot));
   }
 
-  insert_token insert_back(group_key_type group, slot_ptr_type slot) {
-    auto pos = map_.upper_bound(group); // find a upper bound of a group_key
-    if (pos == map_.end()) {
-      auto l_pos = list_.emplace(list_.end(), std::move(slot));
-      return {map_.emplace_hint(pos, group, l_pos), l_pos};
+  weak_slot insert_back(group_key_type group, slot_ptr_type slot) {
+    auto group_it = map_.upper_bound(group); // find a upper bound of a group_key
+    list_iterator list_it;
+
+    if (group_it == map_.end()) {
+      list_it = list_.emplace(list_.end(), std::move(slot));
+      group_it = map_.emplace_hint(group_it, group, list_it);
     } else {
-      auto l_pos = list_.emplace(pos->second, std::move(slot));
-      if (pos->first == group) { // if group exists
-        return {pos, l_pos};
+      list_it = list_.emplace(group_it->second, std::move(slot));
+      if (group_it->first != group) { // if group does not exist
+        group_it = map_.emplace_hint(group_it, group, list_it);
       }
-      return {map_.emplace_hint(pos, group, l_pos), l_pos};
     }
+
+    return getWeakSlot(group_it, list_it);
   }
 
-  insert_token insert_front(group_key_type group, slot_ptr_type slot) {
-    auto pos = map_.lower_bound(group); // find a lower bound of a group_key
-    if (pos == map_.end()) {
-      auto l_pos = list_.emplace(list_.end(), std::move(slot));
-      return {map_.emplace_hint(pos, group, l_pos), l_pos};
+  weak_slot insert_front(group_key_type group, slot_ptr_type slot) {
+    map_iterator group_it = map_.lower_bound(group); // find a lower bound of a group_key
+    list_iterator list_it;
+
+    if (group_it == map_.end()) {
+      list_it = list_.emplace(list_.end(), std::move(slot));
+      group_it = map_.emplace_hint(group_it, group, list_it);
     } else {
-      if (pos->first == group) { // if group exists
-        auto l_pos = list_.emplace(pos->second, std::move(slot));
-        pos->second = l_pos;
-        return {pos, l_pos};
+      if (group_it->first == group) { // if group exists
+        list_it = list_.emplace(group_it->second, std::move(slot));
+        group_it->second = list_it;
       } else { // group not exists
-        auto l_pos = list_.emplace(pos->second, std::move(slot));
-        auto g_pos = map_.emplace_hint(pos, group, l_pos);
-        return {g_pos, l_pos};
+        list_it = list_.emplace(group_it->second, std::move(slot));
+        group_it = map_.emplace_hint(group_it, group, list_it);
       }
     }
+
+    return getWeakSlot(group_it, list_it);
   }
 
   iterator begin() { return list_.begin(); }
@@ -143,30 +149,22 @@ struct grouped_slot_list {
     map_.clear();
   }
 
-  weak_vector getWeakList() const {
-    weak_vector wvec;
-    wvec.reserve(size());
+  weak_slot getWeakSlot(map_iterator group, list_iterator index) const {
+    return {*index, insert_token{group, index}};
+  }
 
-//    for (auto it = list_.begin(); it != list_.end(); ++it) {
-//      if (*it != nullptr)
-//        wvec.emplace_back(*it);
-//    }
+  weak_slot_list getWeakList() const {
+    weak_slot_list weak_list;
+    weak_list.reserve(size());
 
     for (auto group_it = map_.begin(); group_it != map_.end(); ++group_it) {
-      auto end = getNextGroupListPosition(group_it);
-      for (auto list_it = group_it->second; list_it != end; ++list_it) {
-        insert_token token{group_it, list_it};
-        wvec.emplace_back(*list_it, token);
+      auto list_end = getNextGroupListPosition(group_it);
+      for (auto list_it = group_it->second; list_it != list_end; ++list_it) {
+        weak_list.emplace_back(getWeakSlot(group_it, list_it));
       }
     }
 
-    return wvec;
-//    for (auto it = list_.begin(); it != list_.end(); ++it) {
-//      wvec.emplace_back(*it, {});
-//    }
-//
-//    std::copy(list_.begin(), list_.end(), std::back_inserter(wvec));
-//    return wvec;
+    return weak_list;
   }
 
  private:
