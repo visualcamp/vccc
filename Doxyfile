@@ -179,18 +179,18 @@ STRIP_FROM_PATH        =
 # specify the list of include paths that are normally passed to the compiler
 # using the -I flag.
 
-STRIP_FROM_INC_PATH    = functional/include \
-                         literal/include \
-                         log/include \
-                         math/include \
-                         numeric/include \
-                         optional/include \
-                         random/include \
-                         range/include \
-                         tuple/include \
-                         type_support/include \
-                         type_traits/include \
-                         utility/include
+STRIP_FROM_INC_PATH    = include/functional/include \
+                         include/literal/include \
+                         include/log/include \
+                         include/math/include \
+                         include/numeric/include \
+                         include/optional/include \
+                         include/random/include \
+                         include/range/include \
+                         include/tuple/include \
+                         include/type_support/include \
+                         include/type_traits/include \
+                         include/utility/include
 
 # If the SHORT_NAMES tag is set to YES, doxygen will generate much shorter (but
 # less readable) file names. This can be useful is your file systems doesn't
@@ -855,15 +855,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = literal/include/vccc \
-                         log/include/vccc \
-                         math/include/vccc \
-                         numeric/include/vccc \
-                         random/include/vccc \
-                         range/include/vccc \
-                         type_support/include/vccc \
-                         type_traits/include/vccc \
-                         utility/include/vccc \
+INPUT                  = include/ \
                          docs/mainpage.txt \
                          docs/pages
 
