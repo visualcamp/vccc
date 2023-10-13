@@ -35,19 +35,19 @@ class MatrixMinus : public MatrixBase<MatrixMinus<E>> {
 
  public:
   using lhs_type = internal::math::hold_type_selector_t<E>;
+  using value_type = typename E::value_type;
 
+  constexpr explicit MatrixMinus(const E& e) : e(e) {}
 
-  constexpr inline explicit MatrixMinus(const E& e) : e(e) {}
-
-  constexpr inline decltype(auto) operator() (std::size_t i) const { return -e(i); }
-  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const { return -e(i, j); }
-  constexpr inline decltype(auto) operator[] (std::size_t i) const { return -e[i]; }
+  constexpr value_type operator() (std::size_t i) const { return -e(i); }
+  constexpr value_type operator() (std::size_t i, std::size_t j) const { return -e(i, j); }
+  constexpr value_type operator[] (std::size_t i) const { return -e[i]; }
 };
 
 template<typename E>
 constexpr inline
 MatrixMinus<E>
-operator - (const MatrixBase<E>& lhs) {
+operator-(const MatrixBase<E>& lhs) {
   return MatrixMinus<E>(*static_cast<const E*>(&lhs));
 }
 

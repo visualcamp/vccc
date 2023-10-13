@@ -15,6 +15,7 @@ class MatrixBase {
  public:
   using derived_type = Derived;
   using derived_traits = internal::math::traits<derived_type>;
+  using value_type = typename derived_traits::value_type;
 
   enum {
     rows = derived_traits::rows,
@@ -26,14 +27,14 @@ class MatrixBase {
   static_assert((rows > 0 && cols > 0), "matrix size must be greater than 0");
 
   //! static polymorphic virtual-like member functions
-  constexpr inline decltype(auto) operator() (std::size_t i) const {
-    return static_cast<const derived_type&>(*this)(i);
+  constexpr value_type operator() (std::size_t i) const {
+    return derived()(i);
   }
-  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const {
-    return static_cast<const derived_type&>(*this)(i, j);
+  constexpr value_type operator() (std::size_t i, std::size_t j) const {
+    return derived()(i, j);
   }
-  constexpr inline decltype(auto) operator[] (std::size_t i) const {
-    return static_cast<const derived_type&>(*this)[i];
+  constexpr value_type operator[] (std::size_t i) const {
+    return derived()[i];
   }
 
   constexpr inline const derived_type& derived() const {
@@ -42,10 +43,6 @@ class MatrixBase {
   constexpr inline derived_type& derived() {
     return static_cast<derived_type&>(*this);
   }
-
-//  constexpr inline Matrix createNew() const {
-//    return derived_type(derived());
-//  }
 };
 
 

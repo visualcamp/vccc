@@ -5,6 +5,8 @@
 # ifndef VCCC_MATH_MATRIX_MATRIX_HPP
 # define VCCC_MATH_MATRIX_MATRIX_HPP
 #
+# include <utility>
+#
 # include "vccc/math/matrix/matrix_base.hpp"
 # include "vccc/math/matrix/matrix_assigner.hpp"
 # include "vccc/math/matrix/assert.hpp"
@@ -32,11 +34,25 @@ struct traits<Matrix<T, m, n>> {
 struct matrix_ctor_all_t {};
 struct matrix_ctor_diag_t {};
 struct matrix_ctor_matmul_t {};
+struct matrix_ctor_array_t {};
 
 constexpr matrix_ctor_all_t matrix_ctor_all;
 constexpr matrix_ctor_diag_t matrix_ctor_diag;
 constexpr matrix_ctor_matmul_t matrix_ctor_matmul;
+constexpr matrix_ctor_array_t matrix_ctor_array;
 
+/// @addtogroup math_matrix
+/// @{
+
+/**
+ * A class that represents 2D matrix
+ *
+ * All matrix operations are using expression template
+ *
+ * @tparam T
+ * @tparam m
+ * @tparam n
+ */
 template<typename T, int m, int n>
 class Matrix : public MatrixBase<Matrix<T, m, n>> {
  public:
@@ -49,7 +65,9 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
   using base_type::size;
   using base_type::shortdim;
 
-  // default ctor with all value 0
+  /**
+   * Create a zero matrix
+   */
   constexpr Matrix();
 
   constexpr explicit Matrix(T v0);
@@ -69,68 +87,143 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
   constexpr Matrix(T v0, T v1, T v2, T v3, T v4, T v5, T v6, T v7, T v8, T v9, T v10, T v11, T v12, T v13, T v14);
   constexpr Matrix(T v0, T v1, T v2, T v3, T v4, T v5, T v6, T v7, T v8, T v9, T v10, T v11, T v12, T v13, T v14, T v15);
 
-  template<std::size_t N>
-  constexpr explicit Matrix(const T(& arr)[N]);
+  constexpr explicit Matrix(const T(& arr)[size])
+    : Matrix(matrix_ctor_array, arr, std::make_index_sequence<size>{}) {}
 
-//  template<typename U, std::enable_if_t<!is_matrix<std::decay_t<U>>::value, int> = 0> constexpr explicit Matrix(U&& v0);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9, U&& v10);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9, U&& v10, U&& v11);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9, U&& v10, U&& v11, U&& v12);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9, U&& v10, U&& v11, U&& v12, U&& v13);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9, U&& v10, U&& v11, U&& v12, U&& v13, U&& v14);
-//  template<typename U> constexpr Matrix(U&& v0, U&& v1, U&& v2, U&& v3, U&& v4, U&& v5, U&& v6, U&& v7, U&& v8, U&& v9, U&& v10, U&& v11, U&& v12, U&& v13, U&& v14, U&& v15);
+  template<std::size_t N, std::size_t... I>
+  constexpr Matrix(matrix_ctor_array_t, const T(& arr)[N], std::index_sequence<I...>)
+      : data{((void)I, arr[I])...} {}
 
   constexpr Matrix(matrix_ctor_all_t, T value);
   constexpr Matrix(matrix_ctor_diag_t, const diag_type& value);
   constexpr Matrix(matrix_ctor_all_t, matrix_ctor_diag_t, T value);
 
-//  template<typename LhsType, typename RhsType, int l>
-//  constexpr Matrix(matrix_ctor_matmul_t, const MatrixMulMatrix<LhsType, RhsType, m, l, n>& );
-
-  template<typename E>
-  constexpr Matrix(const MatrixBase<E>& expr);
-
-  template<typename E>
-  constexpr Matrix& operator = (const MatrixBase<E>& expr);
-
-  inline MatrixProxyNocopy<matrix_type> noAlias() {
-    return MatrixProxyNocopy<matrix_type>(*this);
+  template<typename E, std::enable_if_t<internal::math::is_same_size<matrix_type, E>::value, int> = 0>
+  constexpr Matrix(const MatrixBase<E>& expr) {
+    MatrixAssigner::assign(expr, *this);
   }
 
-  constexpr static Matrix all(T value);
-  constexpr static Matrix zeros();
-  constexpr static Matrix ones();
-  constexpr static Matrix eye();
-  constexpr static Matrix diag(const diag_type& value);
-
-
-  constexpr inline decltype(auto) operator[](std::size_t i) const {
-    VCCC_MATH_ASSERT_1D_MATRIX(matrix_type);
-    return data[i];
-  }
-  constexpr inline decltype(auto) operator[](std::size_t i) {
-    VCCC_MATH_ASSERT_1D_MATRIX(matrix_type);
-    return data[i];
+  template<typename E, std::enable_if_t<internal::math::is_same_size<matrix_type, E>::value, int> = 0>
+  constexpr Matrix& operator=(const MatrixBase<E>& expr) {
+    MatrixAssigner::assign(expr, *this);
+    return *this;
   }
 
-  constexpr inline decltype(auto) operator()(std::size_t i) const { return data[i]; }
-  constexpr inline decltype(auto) operator()(std::size_t i) { return data[i]; }
+//  inline MatrixProxyNocopy<matrix_type> noAlias() {
+//    return MatrixProxyNocopy<matrix_type>(*this);
+//  }
 
-  constexpr inline decltype(auto) operator()(std::size_t i, std::size_t j) const { return data[i * matrix_type::cols + j]; }
-  constexpr inline decltype(auto) operator()(std::size_t i, std::size_t j) { return data[i * matrix_type::cols + j]; }
+  /**
+   * Create all-value matrix
+   */
+  constexpr static Matrix all(T value) {
+    return Matrix<T, m, n>(matrix_ctor_all, value);
+  }
 
-// private:
+  /**
+   * Create zero matrix
+   */
+  constexpr static Matrix zeros() {
+    return all(T(0));
+  }
+
+  /**
+   * Create all-ones matrix
+   */
+  constexpr static Matrix ones() {
+    return all(T(1));
+  }
+
+  /**
+   * Create a diagonal matrix
+   */
+  constexpr static Matrix diag(const diag_type& value) {
+    return Matrix<T, m, n>(matrix_ctor_diag, value);
+  }
+
+  /**
+   * Create an identity matrix
+   */
+  template<typename Dummy = void, std::enable_if_t<
+      std::is_void<Dummy>::value &&
+      (matrix_type::rows == matrix_type::cols), int> = 0>
+  constexpr static Matrix eye() {
+    return Matrix<T, m, n>(matrix_ctor_all, matrix_ctor_diag, 1);
+  }
+
+  constexpr       value_type& operator[](std::size_t i)       noexcept { return data[i]; }
+  constexpr const value_type& operator[](std::size_t i) const noexcept { return data[i]; }
+
+  constexpr       value_type& operator()(std::size_t i)       noexcept { return data[i]; }
+  constexpr const value_type& operator()(std::size_t i) const noexcept { return data[i]; }
+
+  constexpr       value_type& operator()(std::size_t i, std::size_t j)       noexcept { return data[i * matrix_type::cols + j]; }
+  constexpr const value_type& operator()(std::size_t i, std::size_t j) const noexcept { return data[i * matrix_type::cols + j]; }
+
+  /**
+   * Create a matrix with a different type
+   *
+   * @tparam U New type
+   * @return Matrix<U, m, n>
+   */
+  template<typename U>
+  Matrix<U, m, n> AsType() const {
+    return Matrix<U, m, n>(*this);
+  }
+
+ private:
   T data[m * n];
 };
+
+using Matrix12i = Matrix<int, 1, 2>;
+using Matrix13i = Matrix<int, 1, 3>;
+using Matrix14i = Matrix<int, 1, 4>;
+using Matrix21i = Matrix<int, 2, 1>;
+using Matrix22i = Matrix<int, 2, 2>;
+using Matrix23i = Matrix<int, 2, 3>;
+using Matrix24i = Matrix<int, 2, 4>;
+using Matrix31i = Matrix<int, 3, 1>;
+using Matrix32i = Matrix<int, 3, 2>;
+using Matrix33i = Matrix<int, 3, 3>;
+using Matrix34i = Matrix<int, 3, 4>;
+using Matrix41i = Matrix<int, 4, 1>;
+using Matrix42i = Matrix<int, 4, 2>;
+using Matrix43i = Matrix<int, 4, 3>;
+using Matrix44i = Matrix<int, 4, 4>;
+
+using Matrix12f = Matrix<float, 1, 2>;
+using Matrix13f = Matrix<float, 1, 3>;
+using Matrix14f = Matrix<float, 1, 4>;
+using Matrix21f = Matrix<float, 2, 1>;
+using Matrix22f = Matrix<float, 2, 2>;
+using Matrix23f = Matrix<float, 2, 3>;
+using Matrix24f = Matrix<float, 2, 4>;
+using Matrix31f = Matrix<float, 3, 1>;
+using Matrix32f = Matrix<float, 3, 2>;
+using Matrix33f = Matrix<float, 3, 3>;
+using Matrix34f = Matrix<float, 3, 4>;
+using Matrix41f = Matrix<float, 4, 1>;
+using Matrix42f = Matrix<float, 4, 2>;
+using Matrix43f = Matrix<float, 4, 3>;
+using Matrix44f = Matrix<float, 4, 4>;
+
+using Matrix12d = Matrix<double, 1, 2>;
+using Matrix13d = Matrix<double, 1, 3>;
+using Matrix14d = Matrix<double, 1, 4>;
+using Matrix21d = Matrix<double, 2, 1>;
+using Matrix22d = Matrix<double, 2, 2>;
+using Matrix23d = Matrix<double, 2, 3>;
+using Matrix24d = Matrix<double, 2, 4>;
+using Matrix31d = Matrix<double, 3, 1>;
+using Matrix32d = Matrix<double, 3, 2>;
+using Matrix33d = Matrix<double, 3, 3>;
+using Matrix34d = Matrix<double, 3, 4>;
+using Matrix41d = Matrix<double, 4, 1>;
+using Matrix42d = Matrix<double, 4, 2>;
+using Matrix43d = Matrix<double, 4, 3>;
+using Matrix44d = Matrix<double, 4, 4>;
+
+/// @} math_matrix
 
 template<typename T, int m, int n>
 constexpr Matrix<T, m, n>::Matrix() : data{} {}
@@ -248,181 +341,6 @@ constexpr Matrix<T, m, n>::Matrix(
            std::move(v8),  std::move(v9),  std::move(v10), std::move(v11),
            std::move(v12), std::move(v13), std::move(v14), std::move(v15)} {}
 
-//template<typename T, int m, int n>
-//template<typename U, std::enable_if_t<!is_matrix<std::decay_t<U>>::value, int>>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0)
-//    : data{std::forward<U>(v0)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1)
-//    : data{std::forward<U>(v0), std::forward<U>(v1)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3,
-//    U&& v4)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
-//           std::forward<U>(v4)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3,
-//    U&& v4, U&& v5)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
-//           std::forward<U>(v4), std::forward<U>(v5)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3,
-//    U&& v4, U&& v5, U&& v6)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
-//           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3,
-//    U&& v4, U&& v5, U&& v6, U&& v7)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
-//           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3,
-//    U&& v4, U&& v5, U&& v6, U&& v7,
-//    U&& v8)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
-//           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
-//           std::forward<U>(v8)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3,
-//    U&& v4, U&& v5, U&& v6, U&& v7,
-//    U&& v8, U&& v9)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
-//           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
-//           std::forward<U>(v8), std::forward<U>(v9)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3,
-//    U&& v4, U&& v5, U&& v6, U&& v7,
-//    U&& v8, U&& v9, U&& v10)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
-//           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
-//           std::forward<U>(v8), std::forward<U>(v9), std::forward<U>(v10)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3,
-//    U&& v4, U&& v5, U&& v6, U&& v7,
-//    U&& v8, U&& v9, U&& v10, U&& v11)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
-//           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
-//           std::forward<U>(v8), std::forward<U>(v9), std::forward<U>(v10), std::forward<U>(v11)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3,
-//    U&& v4, U&& v5, U&& v6, U&& v7,
-//    U&& v8, U&& v9, U&& v10, U&& v11,
-//    U&& v12)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
-//           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
-//           std::forward<U>(v8), std::forward<U>(v9), std::forward<U>(v10), std::forward<U>(v11),
-//           std::forward<U>(v12)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3,
-//    U&& v4, U&& v5, U&& v6, U&& v7,
-//    U&& v8, U&& v9, U&& v10, U&& v11,
-//    U&& v12, U&& v13)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
-//           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
-//           std::forward<U>(v8), std::forward<U>(v9), std::forward<U>(v10), std::forward<U>(v11),
-//           std::forward<U>(v12), std::forward<U>(v13)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3,
-//    U&& v4, U&& v5, U&& v6, U&& v7,
-//    U&& v8, U&& v9, U&& v10, U&& v11,
-//    U&& v12, U&& v13, U&& v14)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
-//           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
-//           std::forward<U>(v8), std::forward<U>(v9), std::forward<U>(v10), std::forward<U>(v11),
-//           std::forward<U>(v12), std::forward<U>(v13), std::forward<U>(v14)} {}
-//
-//template<typename T, int m, int n>
-//template<typename U>
-//constexpr Matrix<T, m, n>::Matrix(
-//    U&& v0, U&& v1, U&& v2, U&& v3,
-//    U&& v4, U&& v5, U&& v6, U&& v7,
-//    U&& v8, U&& v9, U&& v10, U&& v11,
-//    U&& v12, U&& v13, U&& v14, U&& v15)
-//    : data{std::forward<U>(v0), std::forward<U>(v1), std::forward<U>(v2), std::forward<U>(v3),
-//           std::forward<U>(v4), std::forward<U>(v5), std::forward<U>(v6), std::forward<U>(v7),
-//           std::forward<U>(v8), std::forward<U>(v9), std::forward<U>(v10), std::forward<U>(v11),
-//           std::forward<U>(v12), std::forward<U>(v13), std::forward<U>(v14), std::forward<U>(v15)} {}
-
-
-template<typename T, int m, int n>
-template<std::size_t N>
-constexpr
-Matrix<T, m, n>::Matrix(const T (& arr)[N]) : data{} {
-  static_assert(N <= m * n, "array size must not bigger than size of the matrix");
-
-  int i = 0;
-  for (; i < N; ++i)
-    data[i] = arr[i];
-}
-
-template<typename T, int m, int n>
-template<typename E>
-constexpr
-Matrix<T, m, n>::Matrix(const MatrixBase<E>& expr) {
-  VCCC_MATH_ASSERT_SAME_SIZE(E, matrix_type);
-  MatrixAssigner::assign(expr, *this);
-}
-
-template<typename T, int m, int n>
-template<typename E>
-constexpr
-Matrix<T, m, n>&
-Matrix<T, m, n>::operator=(const MatrixBase<E>& expr) {
-  VCCC_MATH_ASSERT_SAME_SIZE(E, matrix_type);
-  MatrixAssigner::assign(expr, *this);
-  return *this;
-}
-
-
 template<typename T, int m, int n>
 constexpr Matrix<T, m, n>::Matrix(matrix_ctor_all_t, value_type value)
   : data{}
@@ -444,41 +362,9 @@ constexpr Matrix<T, m, n>::Matrix(matrix_ctor_diag_t, const Matrix::diag_type& v
   : data{}
 {
   for (int i = 0; i < shortdim; ++i)
-    data[i * rows + i] = value[i];
+    data[i * cols + i] = value[i];
 }
 
-//! static Matrix make functions
-template<typename T, int m, int n>
-constexpr
-Matrix<T, m, n>
-Matrix<T, m, n>::all(T value) {
-  return Matrix<T, m, n>(matrix_ctor_all, value);
-}
-
-template<typename T, int m, int n>
-constexpr Matrix<T, m, n>
-Matrix<T, m, n>::zeros() {
-  return all(T(0));
-}
-
-template<typename T, int m, int n>
-constexpr Matrix<T, m, n>
-Matrix<T, m, n>::ones() {
-  return all(T(1));
-}
-
-template<typename T, int m, int n>
-constexpr Matrix<T, m, n>
-Matrix<T, m, n>::eye() {
-  static_assert(m == n, "Eye matrix must be square");
-  return Matrix<T, m, n>(matrix_ctor_all, matrix_ctor_diag, 1);
-}
-
-template<typename T, int m, int n>
-constexpr Matrix<T, m, n>
-Matrix<T, m, n>::diag(const Matrix::diag_type& value) {
-  return Matrix<T, m, n>(matrix_ctor_diag, value);
-}
 
 //! matrix out-of-class operations
 
@@ -489,7 +375,7 @@ operator *= (Matrix<T, m, n>& mat, T val) {
   // TODO: use MatrixAssigner or raw access?
 //  MatrixAssigner::assign(mat*val, mat);
   for(int i=0; i<mat.size; ++i)
-    mat.data[i] *= val;
+    mat[i] *= val;
   return mat;
 }
 
@@ -498,7 +384,7 @@ static inline
 Matrix<T, m, n>&
 operator /= (Matrix<T, m, n>& mat, T val) {
   for(int i=0; i<mat.size; ++i)
-    mat.data[i] /= val;
+    mat[i] /= val;
   return mat;
 }
 
@@ -507,7 +393,7 @@ static inline
 Matrix<T, m, n>&
 operator += (Matrix<T, m, n>& mat, const MatrixBase<E>& expr) {
   for(int i=0; i<mat.size; ++i)
-    mat.data[i] += expr[i];
+    mat[i] += expr[i];
   return mat;
 }
 
@@ -516,7 +402,7 @@ static inline
 Matrix<T, m, n>&
 operator -= (Matrix<T, m, n>& mat, const MatrixBase<E>& expr) {
   for(int i=0; i<mat.size; ++i)
-    mat.data[i] -= expr[i];
+    mat[i] -= expr[i];
   return mat;
 }
 
