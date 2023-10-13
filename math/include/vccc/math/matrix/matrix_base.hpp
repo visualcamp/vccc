@@ -7,6 +7,8 @@
 #
 # include <cstddef>
 # include <type_traits>
+#
+# include "vccc/math/matrix/forward_declare.hpp"
 
 namespace vccc{
 
