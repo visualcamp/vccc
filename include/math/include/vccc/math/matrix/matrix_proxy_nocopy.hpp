@@ -37,7 +37,7 @@ class MatrixProxyNocopy : public MatrixBase<MatrixProxyNocopy<ExprType>> {
 
   explicit MatrixProxyNocopy(ExprType& expr) : expr(expr) {}
 
-  template<typename E>
+  template<typename E, std::enable_if_t<internal::math::is_same_size<ExprType, E>::value, int> = 0>
   MatrixProxyNocopy& operator = (const MatrixBase<E>& rhs) && {
     MatrixAssigner::assignNocopy(rhs, expr);
     return *this;

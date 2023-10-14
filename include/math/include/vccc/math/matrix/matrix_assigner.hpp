@@ -25,13 +25,11 @@ class MatrixAssigner {
 
   template<typename ExprType, typename DstType>
   static inline void assign(const MatrixBase<ExprType>& expr, MatrixBase<DstType>& dst) {
-    VCCC_MATH_ASSERT_SAME_SIZE(ExprType, DstType);
     assignImpl(internal::math::is_alias_safe_t<ExprType>{}, expr, dst.derived());
   }
 
   template<typename ExprType, typename DstType>
   static inline void assignNocopy(const MatrixBase<ExprType>& expr, MatrixBase<DstType>& dst) {
-    VCCC_MATH_ASSERT_SAME_SIZE(ExprType, DstType);
     assignImpl(alias_safe_t{}, expr, dst.derived());
   }
 
