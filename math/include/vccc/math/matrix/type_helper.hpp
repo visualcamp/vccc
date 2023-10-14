@@ -47,6 +47,19 @@ using is_concrete_matrix_t = typename is_concrete_matrix<T>::type;
 template<typename T>
 constexpr bool is_concrete_matrix_v = is_concrete_matrix<T>::value;
 
+template<typename TL, typename TR>
+struct is_same_size_impl
+    : std::integral_constant<bool, ((TL::rows == TR::rows) && (TL::cols == TR::cols))> {};
+
+template<typename A, typename B>
+struct is_same_size : is_same_size_impl<traits<A>, traits<B>> {};
+
+template<typename TL, typename TR>
+struct is_same_type_impl : std::is_same<typename TL::value_type, typename TR::value_type> {};
+
+template<typename A, typename B>
+struct is_same_type : is_same_type_impl<traits<A>, traits<B>> {};
+
 }} // namespace internal::math
 } // namespace vccc
 

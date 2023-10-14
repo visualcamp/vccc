@@ -37,22 +37,20 @@ class MatrixSub : public MatrixBase<MatrixSub<LhsType, RhsType>> {
 
   using value_type = typename LhsType::value_type;
 
-  constexpr inline MatrixSub(const LhsType& lhs, const RhsType& rhs) : lhs(lhs), rhs(rhs) {
-    VCCC_MATH_ASSERT_SAME_SIZE(LhsType, RhsType);
-  }
+  constexpr MatrixSub(const LhsType& lhs, const RhsType& rhs) noexcept : lhs(lhs), rhs(rhs) {}
 
-  constexpr inline decltype(auto) operator() (std::size_t i) const { return lhs(i) - rhs(i); }
-  constexpr inline decltype(auto) operator() (std::size_t i, std::size_t j) const { return lhs(i, j) - rhs(i, j); }
-  constexpr inline decltype(auto) operator[] (std::size_t i) const { return lhs[i] - rhs[i]; }
+  constexpr value_type operator() (std::size_t i) const { return lhs(i) - rhs(i); }
+  constexpr value_type operator() (std::size_t i, std::size_t j) const { return lhs(i, j) - rhs(i, j); }
+  constexpr value_type operator[] (std::size_t i) const { return lhs[i] - rhs[i]; }
 
  private:
   lhs_type lhs;
   rhs_type rhs;
 };
 
-template<typename E1, typename E2>
+template<typename E1, typename E2, std::enable_if_t<internal::math::is_same_size<E1, E2>::value, int> = 0>
 MatrixSub<E1, E2>
-operator - (const MatrixBase<E1>& lhs, const MatrixBase<E2>& rhs) {
+operator-(const MatrixBase<E1>& lhs, const MatrixBase<E2>& rhs) noexcept {
   return MatrixSub<E1, E2>{*static_cast<const E1*>(&lhs), *static_cast<const E2*>(&rhs)};
 }
 
