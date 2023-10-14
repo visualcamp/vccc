@@ -215,4 +215,4 @@ struct grouped_slot_list {
 
 } // namespace vccc
 
-# endif //VCCC_SIGNAL_SLOT_GROUP_H_
+# endif // VCCC_SIGNAL_SLOT_GROUP_H_

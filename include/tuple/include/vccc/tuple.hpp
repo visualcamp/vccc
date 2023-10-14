@@ -11,4 +11,4 @@
 @defgroup tuple tuple
 */
 
-# endif //VCCC_TUPLE_HPP
+# endif // VCCC_TUPLE_HPP

@@ -28,4 +28,4 @@
 
 //! @} utility_assert
 
-# endif //VCCC_UTILITY_ASSERT_HPP
+# endif // VCCC_UTILITY_ASSERT_HPP

@@ -2,16 +2,16 @@
 #  * Created by YongGyu Lee on 2020/02/23.
 #  */
 #
-# ifndef VCCC_MATH_MATRIX_TYPE_HELPER_HPP_
-# define VCCC_MATH_MATRIX_TYPE_HELPER_HPP_
+# ifndef VCCC_MATH_MATRIX_TYPE_HELPER_HPP
+# define VCCC_MATH_MATRIX_TYPE_HELPER_HPP
 #
 # include <type_traits>
 #
 # include "vccc/math/matrix/forward_declare.hpp"
 
 namespace vccc {
-
-namespace internal{ namespace math{
+namespace internal {
+namespace math {
 
 template<typename T>
 struct hold_type_selector {
@@ -32,7 +32,6 @@ template<typename T>
 struct is_alias_safe : std::integral_constant<bool, !(traits<T>::option & Flag::kAliasUnsafe)> {};
 
 template<typename T> using is_alias_safe_t = typename is_alias_safe<T>::type;
-template<typename T> constexpr bool is_alias_safe_v = is_alias_safe<T>::value;
 
 
 template<typename T>
@@ -43,9 +42,6 @@ struct is_concrete_matrix<Matrix<T, m, n>> : std::true_type {};
 
 template<typename T>
 using is_concrete_matrix_t = typename is_concrete_matrix<T>::type;
-
-template<typename T>
-constexpr bool is_concrete_matrix_v = is_concrete_matrix<T>::value;
 
 template<typename TL, typename TR>
 struct is_same_size_impl
@@ -60,8 +56,9 @@ struct is_same_type_impl : std::is_same<typename TL::value_type, typename TR::va
 template<typename A, typename B>
 struct is_same_type : is_same_type_impl<traits<A>, traits<B>> {};
 
-}} // namespace internal::math
+} // namespace math
+} // namespace internal
 } // namespace vccc
 
 
-# endif //VCCC_MATH_MATRIX_TYPE_HELPER_HPP_
+# endif // VCCC_MATH_MATRIX_TYPE_HELPER_HPP

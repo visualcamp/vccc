@@ -7,7 +7,7 @@
 #
 # include <type_traits>
 
-namespace vccc{
+namespace vccc {
 
 /**
 @addtogroup type_traits
@@ -33,9 +33,6 @@ struct multiples_of : std::integral_constant<bool, A%B==0> {};
 template<typename T, T A, T B>
 using multiples_of_t = typename multiples_of<T, A, B>::type;
 
-template<typename T, T A, T B>
-constexpr bool multiples_of_v = multiples_of<T, A, B>::value;
-
 //! @} multiples_of
 
 /**
@@ -58,9 +55,6 @@ struct is_odd : std::integral_constant<bool, A&1> {
 
 template<typename T, T A>
 using is_odd_t = typename is_odd<T, A>::type;
-
-template<typename T, T A>
-constexpr bool is_odd_v = is_odd<T, A>::value;
 
 //! @} is_odd
 
@@ -85,9 +79,6 @@ struct is_even : std::integral_constant<bool, (A&1) != 1> {
 
 template<typename T, T A>
 using is_even_t = typename is_even<T, A>::type;
-
-template<typename T, T A>
-constexpr bool is_even_v = is_even<T, A>::value;
 
 //! @} is_even
 
@@ -143,9 +134,6 @@ struct static_diff : std::integral_constant<T, static_max<T, v1, v2>::value - st
 
 //! @} type_traits
 
+} // namespace vccc
 
-
-
-}
-
-# endif //VCCC_TYPE_TRAITS_NUMERIC_HPP
+# endif // VCCC_TYPE_TRAITS_NUMERIC_HPP

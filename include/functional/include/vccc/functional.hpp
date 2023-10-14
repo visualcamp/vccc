@@ -11,5 +11,4 @@
 @defgroup functional functional
 */
 
-
 # endif // VCCC_FUNCTIONAL_FUNCTIONAL_HPP

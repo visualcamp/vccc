@@ -10,7 +10,7 @@
 # include <numeric>
 # include <vector>
 
-namespace vccc{
+namespace vccc {
 
 //! @addtogroup range
 //! @{
@@ -20,7 +20,10 @@ class range {
  public:
   using value_type = T;
   using container_type = Container;
-  using iterator = typename Container::iterator;
+  using iterator = typename container_type::iterator;
+  using const_iterator = typename container_type::const_iterator;
+  using reverse_iterator = typename container_type::reverse_iterator;
+  using const_reverse_iterator = typename container_type::const_reverse_iterator;
 
   explicit range(value_type b)
     : container(b)
@@ -32,23 +35,19 @@ class range {
     : container((b-a) * incr > 0 ? (std::abs(b-a) - 1) / std::abs(incr) + 1 : 0)
     { fill(begin(), end(), a, incr); }
 
-  inline decltype(auto) begin() { return container.begin(); }
-  inline decltype(auto) begin() const { return container.begin(); }
-  inline decltype(auto) cbegin() { return container.cbegin(); }
-  inline decltype(auto) cbegin() const { return container.cbegin(); }
-  inline decltype(auto) rbegin() { return container.rbegin(); }
-  inline decltype(auto) rbegin() const { return container.rbegin(); }
-  inline decltype(auto) crbegin() { return container.crbegin(); }
-  inline decltype(auto) crbegin() const { return container.crbegin(); }
+  inline iterator begin() { return container.begin(); }
+  inline const_iterator begin() const { return container.begin(); }
+  inline const_iterator cbegin() const { return container.cbegin(); }
+  inline reverse_iterator rbegin() { return container.rbegin(); }
+  inline const_reverse_iterator rbegin() const { return container.rbegin(); }
+  inline const_reverse_iterator crbegin() const { return container.crbegin(); }
 
-  inline decltype(auto) end() { return container.end(); }
-  inline decltype(auto) end() const { return container.end(); }
-  inline decltype(auto) cend() { return container.cend(); }
-  inline decltype(auto) cend() const { return container.cend(); }
-  inline decltype(auto) rend() { return container.rend(); }
-  inline decltype(auto) rend() const { return container.rend(); }
-  inline decltype(auto) crend() { return container.crend(); }
-  inline decltype(auto) crend() const { return container.crend(); }
+  inline iterator end() { return container.end(); }
+  inline const_iterator end() const { return container.end(); }
+  inline const_iterator cend() const { return container.cend(); }
+  inline reverse_iterator rend() { return container.rend(); }
+  inline const_reverse_iterator rend() const { return container.rend(); }
+  inline const_reverse_iterator crend() const { return container.crend(); }
 
   inline operator Container() & {
     return container;
@@ -70,6 +69,6 @@ class range {
 
 //! @}
 
-}
+} // namespace vccc
 
-# endif //VCCC_RANGE_RANGE_HPP
+# endif // VCCC_RANGE_RANGE_HPP

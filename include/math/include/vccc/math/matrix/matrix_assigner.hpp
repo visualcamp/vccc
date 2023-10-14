@@ -7,7 +7,6 @@
 #
 # include "vccc/math/matrix/forward_declare.hpp"
 # include "vccc/math/matrix/type_helper.hpp"
-# include "vccc/math/matrix/assert.hpp"
 # include <type_traits>
 # include <string>
 
@@ -55,4 +54,4 @@ class MatrixAssigner {
 
 } // namespace vccc
 
-#endif //VCCC_MATH_MATRIX_MATRIXASSIGNER_H
+#endif // VCCC_MATH_MATRIX_MATRIXASSIGNER_H

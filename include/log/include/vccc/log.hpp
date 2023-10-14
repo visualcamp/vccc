@@ -16,4 +16,4 @@
 Depends On: \ref type_traits, boost::predef
 */
 
-# endif //VCCC_LOG_HPP
+# endif // VCCC_LOG_HPP

@@ -6,9 +6,11 @@
 # define VCCC_TYPE_TRAITS_IS_PRINTABLE_HPP
 #
 # include <ostream>
+# include <type_traits>
+#
 # include "vccc/type_traits/void_t.hpp"
 
-namespace vccc{
+namespace vccc {
 
 /**
 @addtogroup type_traits
@@ -30,6 +32,6 @@ struct is_printable<T, void_t<
 
 //! @} is_printable
 
-}
+} // namespace vccc
 
-# endif //VCCC_TYPE_TRAITS_IS_PRINTABLE_HPP
+# endif // VCCC_TYPE_TRAITS_IS_PRINTABLE_HPP

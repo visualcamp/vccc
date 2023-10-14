@@ -41,7 +41,7 @@ conversion rule:
          a. tuple_size<To>::value == container.size()
              converts every element
          b. tuple_size<To>::value < container.size()
-             convert only cv_size_v<To> amount of container's element. Remainders won't convert
+             convert only tuple_size<To>::value amount of container's element. Remainders won't convert
          c. tuple_size<To>::value > container.size()
              !!- undefined behaviour -!!
       4. converting container-types to container-types
@@ -57,7 +57,7 @@ conversion rule:
       auto v2 = convert_to<cv::Vec4d>(point);     // v2 = {1.1, 2.4, 0, 0}
 
       point = convert_to<cv::Point2f>(vec);       // point = {1, 2}
-      // v2 = convert_to<cv::Vec4d>(vec); undefined behaviour! vec.size() < cv_size_v<Vec4d>
+      // v2 = convert_to<cv::Vec4d>(vec); undefined behaviour! vec.size() < tuple_size<Vec4d>::value
 @endcode
 */
 
@@ -67,13 +67,13 @@ convert_to(const From& from)
 {
   const auto v1 = is_tuple_like<To>::value;
   const auto v2 = is_tuple_like<From>::value;
-  const auto v3 = detail::tuple_size_or_zero<To>::value;
-  const auto v4 = detail::tuple_size_or_zero<From>::value;
+  const auto v3 = internal::tuple_size_or_zero<To>::value;
+  const auto v4 = internal::tuple_size_or_zero<From>::value;
   using Indices = typename std::make_index_sequence<
-      (is_tuple_like<To>::value && is_tuple_like<From>::value) ? static_min<size_t, detail::tuple_size_or_zero<To>::value, detail::tuple_size_or_zero<From>::value>::value :
-                                   is_tuple_like<From>::value  ? detail::tuple_size_or_zero<From>::value :
-                                   detail::tuple_size_or_zero<To>::value>;
-  return detail::convert_to_impl<To>(is_tuple_like<To>(), from, Indices{});
+      (is_tuple_like<To>::value && is_tuple_like<From>::value) ? static_min<size_t, internal::tuple_size_or_zero<To>::value, internal::tuple_size_or_zero<From>::value>::value :
+                                   is_tuple_like<From>::value  ? internal::tuple_size_or_zero<From>::value :
+                                   internal::tuple_size_or_zero<To>::value>;
+  return internal::convert_to_impl<To>(is_tuple_like<To>(), from, Indices{});
 }
 
 /**
@@ -91,12 +91,12 @@ template<typename To, std::size_t n, typename From, std::enable_if_t<!std::is_sa
 inline std::enable_if_t<disjunction<is_tuple_like<To>, is_tuple_like<From>>::value, To>
 convert_to(const From& from)
 {
-  static_assert(is_tuple_like<To>::value   ? n <= detail::tuple_size_or_zero<To>::value   : true,
+  static_assert(is_tuple_like<To>::value   ? n <= internal::tuple_size_or_zero<To>::value   : true,
       "Converting size must be smaller than converting type's tuple_size");
-  static_assert(is_tuple_like<From>::value ? n <= detail::tuple_size_or_zero<From>::value : true,
+  static_assert(is_tuple_like<From>::value ? n <= internal::tuple_size_or_zero<From>::value : true,
       "Converting size must be smaller than original type's tuple_size");
 
-  return detail::convert_to_impl<To>(is_tuple_like<To>{}, from, std::make_index_sequence<n>{});
+  return internal::convert_to_impl<To>(is_tuple_like<To>{}, from, std::make_index_sequence<n>{});
 }
 
 /**
@@ -107,6 +107,6 @@ template<typename To> inline To             convert_to(const To&  from) { return
 
 //! @} type_support_cvtto
 
-}
+} // namespace vccc
 
-# endif //VCCC_TYPE_SUPPORT_CONVERT_HPP
+# endif // VCCC_TYPE_SUPPORT_CONVERT_HPP

@@ -11,7 +11,10 @@
 #
 # include "vccc/math/matrix/forward_declare.hpp"
 
-namespace vccc{
+namespace vccc {
+
+//! @addtogroup math_matrix
+//! @{
 
 template<typename Derived>
 class MatrixBase {
@@ -48,14 +51,17 @@ class MatrixBase {
   }
 };
 
+//! @} math_matrix
 
-namespace internal { namespace math {
+namespace internal {
+namespace math {
 
 template<typename Derived>
 std::true_type is_matrix_impl(const vccc::MatrixBase<Derived>&);
 std::false_type is_matrix_impl(...);
 
-}} // namespace internal::math
+} // namespace math
+} // namespace internal
 
 template<typename T>
 struct is_matrix : decltype(::vccc::internal::math::is_matrix_impl(std::declval<T>())) {};
@@ -76,4 +82,4 @@ get(const vccc::MatrixBase<Derived>& m) {
 
 } // namespace std
 
-#endif //VCCC_MATH_MAT_EXPRESSION_HPP
+#endif // VCCC_MATH_MAT_EXPRESSION_HPP

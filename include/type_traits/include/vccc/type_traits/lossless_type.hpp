@@ -5,11 +5,11 @@
 # ifndef VCCC_TYPE_TRAITS_LOSSLESS_TYPE_HPP
 # define VCCC_TYPE_TRAITS_LOSSLESS_TYPE_HPP
 #
-# include "vccc/type_traits/are.hpp"
 # include "vccc/type_traits/bigger_type.hpp"
+# include "vccc/type_traits/conjunction.hpp"
 # include "vccc/type_traits/detail/lossless_type_int_division.hpp"
 
-namespace vccc{
+namespace vccc {
 
 
 //! @addtogroup type_traits
@@ -17,7 +17,7 @@ namespace vccc{
 
 // TODO: change double to biggest among input floating_point type
 template<typename ...Types>
-using decay_if_float_t = typename std::conditional_t<are_<std::is_same<Types, float>...>::value, float, double>;
+using decay_if_float_t = typename std::conditional_t<conjunction<std::is_same<Types, float>...>::value, float, double>;
 
 
 /**
@@ -106,8 +106,8 @@ struct lossless_type_div<T> {
 template<typename T1, typename T2>
 struct lossless_type_div<T1, T2> {
   using type =
-      std::conditional_t<are_integral_v<T1, T2>,
-          detail::lossless_type_int_division_t<T1, T2>,
+      std::conditional_t<are_integral<T1, T2>::value,
+          internal::lossless_type_int_division_t<T1, T2>,
           decltype(static_cast<lossless_type_div_t<T1>>(0) /
                    static_cast<lossless_type_div_t<T2>>(0))>;
 };
@@ -123,5 +123,6 @@ struct lossless_type_div<T1, T2, Ts...> {
 
 //! @} type_traits
 
-}
-# endif //VCCC_TYPE_TRAITS_LOSSLESS_TYPE_HPP
+} // namespace vccc
+
+# endif // VCCC_TYPE_TRAITS_LOSSLESS_TYPE_HPP

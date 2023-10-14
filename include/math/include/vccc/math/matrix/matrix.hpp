@@ -13,7 +13,8 @@
 
 namespace vccc {
 
-namespace internal { namespace math {
+namespace internal {
+namespace math {
 
 template<typename T, int m, int n>
 struct traits<Matrix<T, m, n>> {
@@ -37,13 +38,14 @@ constexpr matrix_ctor_all_t matrix_ctor_all;
 constexpr matrix_ctor_diag_t matrix_ctor_diag;
 constexpr matrix_ctor_indexable_t matrix_ctor_indexable;
 
-}} // namespace internal::math
+} // namespace math
+} // namespace internal
 
 /// @addtogroup math_matrix
 /// @{
 
 /**
- * A class that represents 2D matrix
+ * @brief A class that represents 2D matrix
  *
  * All matrix operations are using expression template
  *
@@ -67,7 +69,7 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
   friend class Matrix;
 
   /**
-   * Create a zero matrix
+   * @brief Create a zero matrix
    */
   constexpr Matrix();
 
@@ -89,7 +91,7 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
   constexpr Matrix(T v0, T v1, T v2, T v3, T v4, T v5, T v6, T v7, T v8, T v9, T v10, T v11, T v12, T v13, T v14, T v15);
 
   /**
-   * Construct from an array.
+   * @brief Construct from an array.
    *
    * If the size of an array is smaller than the size of the matrix,
    * remaining elements is initialized to 0
@@ -105,7 +107,7 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
     : Matrix(internal::math::matrix_ctor_indexable, arr, std::make_index_sequence<N>{}, std::true_type{}) {}
 
   /**
-   * Construct from matrix expression
+   * @brief Construct from matrix expression
    *
    * @tparam E
    * @param expr
@@ -117,7 +119,7 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
       : Matrix(internal::math::matrix_ctor_indexable, expr, std::make_index_sequence<size>{}, internal::math::is_alias_safe_t<E>{}) {}
 
   /**
-   * Assign from matrix expression
+   * @brief Assign from matrix expression
    *
    * @tparam E
    * @param expr
@@ -132,7 +134,7 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
   }
 
   /**
-   * Create a matrix with a different type
+   * @brief Create a matrix with a different type
    *
    * @tparam U New type
    * @return Matrix<U, m, n>
@@ -143,7 +145,7 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
   }
 
   /**
-   * Create a matrix with a different shape but same size
+   * @brief Create a matrix with a different shape but same size
    *
    * @tparam rows New rows
    * @tparam cols New columns
@@ -159,35 +161,35 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
 //  }
 
   /**
-   * Create all-value matrix
+   * @brief Create all-value matrix
    */
   constexpr static Matrix all(T value) {
     return Matrix(internal::math::matrix_ctor_all, value, std::make_index_sequence<size>{});
   }
 
   /**
-   * Create zero matrix
+   * @brief Create zero matrix
    */
   constexpr static Matrix zeros() {
     return all(T(0));
   }
 
   /**
-   * Create all-ones matrix
+   * @brief Create all-ones matrix
    */
   constexpr static Matrix ones() {
     return all(T(1));
   }
 
   /**
-   * Create a diagonal matrix
+   * @brief Create a diagonal matrix
    */
   constexpr static Matrix diag(const diag_type& value) {
     return Matrix(internal::math::matrix_ctor_diag, value);
   }
 
   /**
-   * Create an identity matrix
+   * @brief Create an identity matrix
    */
   template<typename Dummy = void, std::enable_if_t<
       std::is_void<Dummy>::value &&
@@ -196,12 +198,35 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
     return Matrix(internal::math::matrix_ctor_all, internal::math::matrix_ctor_diag, 1);
   }
 
+  /**
+   * @brief Access element `i`th element from the beginning as if the Matrix is 1-D
+   * The behavior is undefined if `i` >= `size`.
+   *
+   * @param i
+   * @return Element at the given index
+   */
   constexpr       value_type& operator[](std::size_t i)       noexcept { return data[i]; }
   constexpr const value_type& operator[](std::size_t i) const noexcept { return data[i]; }
 
+  /**
+   * @brief Access element `i`th element from the beginning as if the Matrix is 1-D
+   * The behavior is undefined if `i` >= `size`.
+   *
+   *
+   * @param i
+   * @return Element at the given index
+   */
   constexpr       value_type& operator()(std::size_t i)       noexcept { return data[i]; }
   constexpr const value_type& operator()(std::size_t i) const noexcept { return data[i]; }
 
+  /**
+   * @brief Access element at (`i`, `j`)
+   * The behavior is undefined if `i` * `j` > `size`
+   *
+   * @param i
+   * @param j
+   * @return Element at the given index
+   */
   constexpr       value_type& operator()(std::size_t i, std::size_t j)       noexcept { return data[i * matrix_type::cols + j]; }
   constexpr const value_type& operator()(std::size_t i, std::size_t j) const noexcept { return data[i * matrix_type::cols + j]; }
 
@@ -254,6 +279,7 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
   T data[m * n];
 };
 
+//! @cond IGNORED
 using Matrix12i = Matrix<int, 1, 2>;
 using Matrix13i = Matrix<int, 1, 3>;
 using Matrix14i = Matrix<int, 1, 4>;
@@ -301,8 +327,6 @@ using Matrix41d = Matrix<double, 4, 1>;
 using Matrix42d = Matrix<double, 4, 2>;
 using Matrix43d = Matrix<double, 4, 3>;
 using Matrix44d = Matrix<double, 4, 4>;
-
-/// @} math_matrix
 
 template<typename T, int m, int n>
 constexpr Matrix<T, m, n>::Matrix() : data{} {}
@@ -420,8 +444,9 @@ constexpr Matrix<T, m, n>::Matrix(
            std::move(v8),  std::move(v9),  std::move(v10), std::move(v11),
            std::move(v12), std::move(v13), std::move(v14), std::move(v15)} {}
 
+//! @endcond IGNORED
 
-//! matrix out-of-class operations
+// matrix out-of-class operations
 
 template<typename T, int m, int n>
 static inline
@@ -459,6 +484,8 @@ operator -= (Matrix<T, m, n>& mat, const MatrixBase<E>& expr) {
   return mat;
 }
 
+/// @} math_matrix
+
 } // namespace vccc
 
 template<typename T, int m, int n>
@@ -493,4 +520,4 @@ get(const vccc::Matrix<T, m, n>&& matrix) {
 
 } // namespace std
 
-# endif //VCCC_MATH_MATRIX_MATRIX_HPP
+# endif // VCCC_MATH_MATRIX_MATRIX_HPP

@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2021/03/20.
 #  */
 #
-# ifndef VCCC_LOG_STREAM_WRAPPER_HPP_
-# define VCCC_LOG_STREAM_WRAPPER_HPP_
+# ifndef VCCC_LOG_STREAM_WRAPPER_HPP
+# define VCCC_LOG_STREAM_WRAPPER_HPP
 #
 # include <chrono>
 # include <functional>
@@ -26,7 +26,6 @@
 #   include <optional>
 #   include "boost/pfr.hpp"
 # endif
-
 
 namespace vccc {
 
@@ -227,7 +226,7 @@ class BasicStreamWrapper : public StreamWrapperBase<String, Stream> {
 #endif
 
   // container types
-  template<typename T, VCCC_ENABLE_IF_FORWARD(is_range_v<T>)>
+  template<typename T, std::enable_if_t<is_range<T>::value, int> = 0>
   inline void write(const T& value) {
     use_key_value_separator?
       writeContainer(is_key_value_container_t<T>{}, value):
@@ -315,6 +314,7 @@ class BasicStreamWrapper : public StreamWrapperBase<String, Stream> {
 # endif
 };
 
+//! @cond ignored
 template<typename CharT, typename String, typename Stream>
 template<typename InputIterator, typename Func>
 void BasicStreamWrapper<CharT, String, Stream>::writeIterator(InputIterator first, InputIterator last, Func f) {
@@ -452,6 +452,7 @@ void BasicStreamWrapper<CharT, String, Stream>::write(const std::pair<T1, T2>& v
   *this << value.second;
   stream_ << " }";
 }
+//! @endcond ignored
 
 using StreamWrapper = BasicStreamWrapper<char>;
 
@@ -459,4 +460,4 @@ using StreamWrapper = BasicStreamWrapper<char>;
 
 } // namespace vccc
 
-# endif //VCCC_LOG_STREAM_WRAPPER_HPP_
+# endif // VCCC_LOG_STREAM_WRAPPER_HPP

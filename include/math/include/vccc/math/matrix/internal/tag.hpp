@@ -2,10 +2,12 @@
 #  * Created by YongGyu Lee on 2020/03/02.
 #  */
 #
-# ifndef VCCC_MATH_MATRIX_INTERNAL_TAG_HPP_
-# define VCCC_MATH_MATRIX_INTERNAL_TAG_HPP_
+# ifndef VCCC_MATH_MATRIX_INTERNAL_TAG_HPP
+# define VCCC_MATH_MATRIX_INTERNAL_TAG_HPP
 
-namespace vccc { namespace internal { namespace math {
+namespace vccc {
+namespace internal {
+namespace math {
 
 template<typename T, T ...val> struct tag {};
 
@@ -30,6 +32,8 @@ template<typename T, T v1, T v2, T v3, T v4, T v5> struct tag<T, v1, v2, v3, v4,
   static constexpr T fifth = v5;
 };
 
-}}} // namespace vccc::internal::math
+} // namespace math
+} // namespace internal
+} // namespace vccc
 
-# endif //VCCC_MATH_MATRIX_INTERNAL_TAG_HPP_
+# endif // VCCC_MATH_MATRIX_INTERNAL_TAG_HPP

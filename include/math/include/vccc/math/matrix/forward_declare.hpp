@@ -5,9 +5,9 @@
 # ifndef VCCC_MATH_MATRIX_FORWARD_DECLARE_HPP
 # define VCCC_MATH_MATRIX_FORWARD_DECLARE_HPP
 
-namespace vccc{
+namespace vccc {
 
-namespace internal{
+namespace internal {
 namespace math{
 
 template<typename T> struct traits;
@@ -39,6 +39,7 @@ template<typename LhsType, typename RhsType> class MatrixDivScalar;
 template<typename LhsType, typename RhsType> class MatrixMulMatrix;
 
 template<typename ExprType> class MatrixProxyNocopy;
-}
 
-# endif //VCCC_MATH_MATRIX_FORWARD_DECLARE_HPP
+} // namespace vccc
+
+# endif // VCCC_MATH_MATRIX_FORWARD_DECLARE_HPP

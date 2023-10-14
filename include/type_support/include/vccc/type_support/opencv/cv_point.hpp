@@ -12,7 +12,7 @@
 # include "opencv2/opencv.hpp"
 
 namespace vccc {
-namespace detail {
+namespace internal {
 
 template<size_t I>
 struct get_cv_point;
@@ -51,7 +51,7 @@ struct get_cv_point<2> {
   template<typename T> static constexpr const T&& get(const cv::Point3_<T>&& p) noexcept { return std::move(p.z); }
 };
 
-} // namespace detail
+} // namespace internal
 } // namespace vccc
 
 namespace std {
@@ -115,25 +115,25 @@ template<typename T> struct tuple_element<2, cv::Point3_<T>> { using type = T; }
 template<std::size_t i, typename T>
 constexpr inline tuple_element_t<i, cv::Point_<T>>&
 get(cv::Point_<T>& p) noexcept {
-  return vccc::detail::get_cv_point<i>::get(p);
+  return vccc::internal::get_cv_point<i>::get(p);
 }
 
 template<std::size_t i, typename T>
 constexpr inline const tuple_element_t<i, cv::Point_<T>>&
 get(const cv::Point_<T>& p) noexcept {
-  return vccc::detail::get_cv_point<i>::get(p);
+  return vccc::internal::get_cv_point<i>::get(p);
 }
 
 template<std::size_t i, typename T>
 constexpr inline tuple_element_t<i, cv::Point_<T>>&&
 get(cv::Point_<T>&& p) noexcept {
-  return std::move(vccc::detail::get_cv_point<i>::get(std::move(p)));
+  return std::move(vccc::internal::get_cv_point<i>::get(std::move(p)));
 }
 
 template<std::size_t i, typename T>
 constexpr inline const tuple_element_t<i, cv::Point_<T>>&&
 get(const cv::Point_<T>&& p) noexcept {
-  return std::move(vccc::detail::get_cv_point<i>::get(std::move(p)));
+  return std::move(vccc::internal::get_cv_point<i>::get(std::move(p)));
 }
 //! @} type_support_at_cv_point
 
@@ -145,25 +145,25 @@ get(const cv::Point_<T>&& p) noexcept {
 template<std::size_t i, typename T>
 constexpr inline tuple_element_t<i, cv::Point3_<T>>&
 get(cv::Point3_<T>& p) noexcept {
-  return vccc::detail::get_cv_point<i>::get(p);
+  return vccc::internal::get_cv_point<i>::get(p);
 }
 
 template<std::size_t i, typename T>
 constexpr inline const tuple_element_t<i, cv::Point3_<T>>&
 get(const cv::Point3_<T>& p) noexcept {
-  return vccc::detail::get_cv_point<i>::get(p);
+  return vccc::internal::get_cv_point<i>::get(p);
 }
 
 template<std::size_t i, typename T>
 constexpr inline tuple_element_t<i, cv::Point3_<T>>&&
 get(cv::Point3_<T>&& p) noexcept {
-  return std::move(vccc::detail::get_cv_point<i>::get(std::move(p)));
+  return std::move(vccc::internal::get_cv_point<i>::get(std::move(p)));
 }
 
 template<std::size_t i, typename T>
 constexpr inline const tuple_element_t<i, cv::Point3_<T>>&&
 get(const cv::Point3_<T>&& p) noexcept {
-  return std::move(vccc::detail::get_cv_point<i>::get(std::move(p)));
+  return std::move(vccc::internal::get_cv_point<i>::get(std::move(p)));
 }
 //! @} type_support_at_cv_point3
 //! @} type_support_get
@@ -207,7 +207,6 @@ inline auto resize(const cv::Point3_<T>& from){
   return from;
 }
 
-
 } // namespace vccc
 
-# endif //VCCC_TYPE_SUPPORT_OPENCV_CV_POINT_HPP
+# endif // VCCC_TYPE_SUPPORT_OPENCV_CV_POINT_HPP

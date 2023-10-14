@@ -7,7 +7,7 @@
 #
 # include <cstdlib>
 
-namespace vccc{
+namespace vccc {
 
 /**
 @addtogroup type_support_at
@@ -31,6 +31,6 @@ variadic_at(Args&&... args){
 //! @} type_support_at_variadic
 //! @} type_support_at
 
-}
+} // namespace vccc
 
-# endif //VCCC_TYPE_SUPPORT_STD_VARIADIC_HPP
+# endif // VCCC_TYPE_SUPPORT_STD_VARIADIC_HPP

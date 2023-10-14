@@ -10,7 +10,8 @@
 
 namespace vccc {
 
-namespace internal{ namespace math {
+namespace internal {
+namespace math {
 
 template<typename E>
 struct traits<MatrixMinus<E>> {
@@ -26,8 +27,11 @@ struct traits<MatrixMinus<E>> {
   using value_type = typename E::value_type;
 };
 
-}}
+} // namespace math
+} // namespace internal
 
+//! @addtogroup math_matrix
+//! @{
 
 template<typename E>
 class MatrixMinus : public MatrixBase<MatrixMinus<E>> {
@@ -45,14 +49,12 @@ class MatrixMinus : public MatrixBase<MatrixMinus<E>> {
 };
 
 template<typename E>
-constexpr inline
-MatrixMinus<E>
-operator-(const MatrixBase<E>& lhs) {
+constexpr inline MatrixMinus<E> operator-(const MatrixBase<E>& lhs) {
   return MatrixMinus<E>(*static_cast<const E*>(&lhs));
 }
 
-}
+//! @} math_matrix
 
+} // namespace vccc
 
-
-# endif //VCCC_MATH_MATRIX_MATRIX_MINUS_HPP
+# endif // VCCC_MATH_MATRIX_MATRIX_MINUS_HPP

@@ -8,7 +8,7 @@
 # include "vccc/math/matrix/matrix_base.hpp"
 # include "vccc/math/matrix/type_helper.hpp"
 
-namespace vccc{
+namespace vccc {
 
 template<typename E1, typename E2, std::enable_if_t<internal::math::is_same_size<E1, E2>::value, int> = 0>
 constexpr bool
@@ -24,6 +24,6 @@ operator != (const MatrixBase<E1>& lhs, const MatrixBase<E2>& rhs) {
   return !(lhs == rhs);
 }
 
-}
+} // namespace vccc
 
-#endif //VCCC_MATH_MATRIX_MAT_EXPR_OPERATIONS_HPP
+#endif // VCCC_MATH_MATRIX_MAT_EXPR_OPERATIONS_HPP

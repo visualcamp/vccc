@@ -5,9 +5,7 @@
 # ifndef VCCC_MATH_MATRIX_HPP
 # define VCCC_MATH_MATRIX_HPP
 #
-# include "vccc/math/matrix/assert.hpp"
 # include "vccc/math/matrix/forward_declare.hpp"
-# include "vccc/math/matrix/at.hpp"
 # include "vccc/math/matrix/mat_expr_operations.hpp"
 # include "vccc/math/matrix/matrix_base.hpp"
 # include "vccc/math/matrix/matrix_div_scalar.hpp"
@@ -27,8 +25,8 @@
 @addtogroup math
 @{
     @defgroup math_matrix matrix
-    Matrix
+    @brief %Matrix implemented with expression template
 @}
 */
 
-# endif //VCCC_MATH_MATRIX_HPP
+# endif // VCCC_MATH_MATRIX_HPP

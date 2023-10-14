@@ -11,8 +11,8 @@
 @addtogroup math
 @{
     @defgroup calculus calculus
-    math for calculus
+    @brief Mathematics for calculus
 @}
 */
 
-# endif //VCCC_MATH_CALCULUS_HPP
+# endif // VCCC_MATH_CALCULUS_HPP

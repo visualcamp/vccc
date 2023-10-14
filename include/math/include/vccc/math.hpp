@@ -13,4 +13,4 @@
 @defgroup math math
 */
 
-# endif //VCCC_MATH_HPP
+# endif // VCCC_MATH_HPP

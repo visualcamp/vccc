@@ -7,9 +7,7 @@
 #
 # include <type_traits>
 
-namespace vccc{
-
-#if __cplusplus <= 201402L
+namespace vccc {
 
 /**
 @addtogroup type_traits
@@ -19,12 +17,8 @@ namespace vccc{
 template<typename ...>
 using void_t = void;
 
-//! @}
-#else
-template<typename ...Args> using void_t = ::std::void_t<Args...>;
-# endif
+//! @} type_traits
 
+} // namespace vccc
 
-}
-
-# endif //VCCC_TYPE_TRAITS_VOID_T_HPP
+# endif // VCCC_TYPE_TRAITS_VOID_T_HPP

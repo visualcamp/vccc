@@ -8,9 +8,10 @@
 # include "vccc/math/matrix/forward_declare.hpp"
 # include "vccc/math/matrix/internal/tag.hpp"
 
-namespace vccc{
+namespace vccc {
 
-namespace internal{ namespace math {
+namespace internal {
+namespace math {
 
 template<typename LhsType, typename RhsType>
 struct traits<MatrixMulMatrix<LhsType, RhsType>> {
@@ -25,7 +26,12 @@ struct traits<MatrixMulMatrix<LhsType, RhsType>> {
   };
   using value_type = typename LhsType::value_type;
 };
-}}
+
+} // namespace math
+} // namespace internal
+
+//! @addtogroup math_matrix
+//! @{
 
 template<typename LhsType, typename RhsType>
 class MatrixMulMatrix : public MatrixBase<MatrixMulMatrix<LhsType, RhsType>>{
@@ -72,6 +78,7 @@ operator*(const MatrixBase<E1>& lhs, const MatrixBase<E2>& rhs) {
   return MatrixMulMatrix<E1, E2>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(&rhs));
 }
 
+//! @cond ignored
 template<typename LhsType, typename RhsType>
 constexpr auto MatrixMulMatrix<LhsType, RhsType>::operator()(std::size_t i, std::size_t j) const {
   value_type sum(0);
@@ -89,7 +96,9 @@ template<typename LhsType, typename RhsType>
 constexpr auto MatrixMulMatrix<LhsType, RhsType>::operator[](std::size_t i) const {
   return operator()(i / base::cols, i % base::cols);
 }
+//! @endcond
 
+//! @} math_matrix
 
 
 //template<typename E1, typename E2>
@@ -132,6 +141,6 @@ constexpr auto MatrixMulMatrix<LhsType, RhsType>::operator[](std::size_t i) cons
 //  dst.data[0] = sum;
 //}
 
-}
+} // namespace vccc
 
-# endif //VCCC_MATH_MATRIX_MATRIX_MUL_MATRIX_HPP
+# endif // VCCC_MATH_MATRIX_MATRIX_MUL_MATRIX_HPP

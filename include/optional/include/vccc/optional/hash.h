@@ -27,4 +27,4 @@ struct hash<vccc::optional<T>> : vccc::internal::optional::hash_constructible<st
 
 } // namespace std
 
-# endif //VCCC_OPTIONAL_HASH_H_
+# endif // VCCC_OPTIONAL_HASH_H_

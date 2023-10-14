@@ -14,7 +14,7 @@
 # include "vccc/type_traits.hpp"
 
 namespace vccc {
-namespace detail {
+namespace internal {
 
 template<size_t I>
 struct get_cv_size;
@@ -35,7 +35,7 @@ struct get_cv_size<1> {
   template<typename T> static constexpr const T&& get(const cv::Size_<T>&& s) noexcept { return std::move(s.height); }
 };
 
-} // namespace detail
+} // namespace internal
 } // namespace vccc
 
 namespace std {
@@ -78,7 +78,7 @@ template<typename T> struct tuple_element<1, cv::Size_<T>> { using type = T; };
 template<std::size_t i, typename T>
 constexpr inline tuple_element_t<i, cv::Size_<T>>&
 get(cv::Size_<T>& size) noexcept {
-  return vccc::detail::get_cv_size<i>::get(size);
+  return vccc::internal::get_cv_size<i>::get(size);
 }
 
 template<std::size_t i, typename T>
@@ -90,19 +90,19 @@ get(const cv::Size_<T>& size) noexcept {
 template<std::size_t i, typename T>
 constexpr inline tuple_element_t<i, cv::Size_<T>>&&
 get(cv::Size_<T>&& size) noexcept {
-  return std::move(vccc::detail::get_cv_size<i>::get(std::move(size)));
+  return std::move(vccc::internal::get_cv_size<i>::get(std::move(size)));
 }
 
 template<std::size_t i, typename T>
 constexpr inline const tuple_element_t<i, cv::Size_<T>>&&
 get(const cv::Size_<T>&& size) noexcept {
-  return std::move(vccc::detail::get_cv_size<i>::get(std::move(size)));
+  return std::move(vccc::internal::get_cv_size<i>::get(std::move(size)));
 }
 
 //! @} type_support_get_cv_size
 //! @} type_support_get
 //! @} type_support
 
-}
+} // namespace std
 
-# endif //VCCC_TYPE_SUPPORT_OPENCV_CV_SIZE_HPP
+# endif // VCCC_TYPE_SUPPORT_OPENCV_CV_SIZE_HPP

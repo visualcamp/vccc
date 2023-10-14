@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2022/02/01.
 #  */
 #
-# ifndef VCCC_TYPE_TRAITS_IS_TUPLE_LIKE_H_
-# define VCCC_TYPE_TRAITS_IS_TUPLE_LIKE_H_
+# ifndef VCCC_TYPE_TRAITS_IS_TUPLE_LIKE_HPP
+# define VCCC_TYPE_TRAITS_IS_TUPLE_LIKE_HPP
 # 
 # include <tuple>
 # include <type_traits>
@@ -18,4 +18,4 @@ struct is_tuple_like<T, void_t<decltype(std::tuple_size<T>::value)>> : std::true
 
 } // namespace vccc
 
-# endif // VCCC_TYPE_TRAITS_IS_TUPLE_LIKE_H_
+# endif // VCCC_TYPE_TRAITS_IS_TUPLE_LIKE_HPP

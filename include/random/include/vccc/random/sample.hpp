@@ -5,11 +5,13 @@
 # ifndef VCCC_RANDOM_SAMPLE_HPP
 # define VCCC_RANDOM_SAMPLE_HPP
 #
-# include <vector>
 # include <iterator>
+# include <random>
+# include <vector>
+#
 # include "vccc/random/pick.hpp"
 
-namespace vccc{
+namespace vccc {
 
 //! @addtogroup random{
 //! @{
@@ -50,6 +52,6 @@ random_sample(T a, T b, T k, Generator&& gen)
 
 //! @}
 
-}
+} // namespace vccc
 
-# endif //VCCC_RANDOM_SAMPLE_HPP
+# endif // VCCC_RANDOM_SAMPLE_HPP

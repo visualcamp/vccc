@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2021/09/03.
 #  */
 #
-# ifndef VCCC_TYPE_TRAITS_INTEGRAL_CONSTANT_H_
-# define VCCC_TYPE_TRAITS_INTEGRAL_CONSTANT_H_
+# ifndef VCCC_TYPE_TRAITS_BOOL_CONSTANT_HPP
+# define VCCC_TYPE_TRAITS_BOOL_CONSTANT_HPP
 # 
 # include <type_traits>
 
@@ -17,4 +17,4 @@ template<typename ...> struct always_true : std::true_type {};
 
 } // namespace vccc
 
-# endif // VCCC_TYPE_TRAITS_INTEGRAL_CONSTANT_H_
+# endif // VCCC_TYPE_TRAITS_BOOL_CONSTANT_HPP

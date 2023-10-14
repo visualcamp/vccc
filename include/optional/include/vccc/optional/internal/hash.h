@@ -29,4 +29,4 @@ std::conditional_t<
 } // namespace internal
 } // namespace vccc
 
-# endif //VCCC_OPTIONAL_INTERNAL_HASH_H_
+# endif // VCCC_OPTIONAL_INTERNAL_HASH_H_

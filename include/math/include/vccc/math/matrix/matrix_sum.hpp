@@ -7,11 +7,11 @@
 #
 # include "vccc/math/matrix/matrix_base.hpp"
 # include "vccc/math/matrix/type_helper.hpp"
-# include "vccc/math/matrix/assert.hpp"
 
 namespace vccc {
 
-namespace internal { namespace math {
+namespace internal {
+namespace math {
 
 template<typename LhsType, typename RhsType>
 struct traits<MatrixSum<LhsType, RhsType>> {
@@ -27,7 +27,11 @@ struct traits<MatrixSum<LhsType, RhsType>> {
   using value_type = typename LhsType::value_type;
 };
 
-}} // namespace internal::math
+} // namespace math
+} // namespace internal
+
+//! @addtogroup math_matrix
+//! @{
 
 template<typename LhsType, typename RhsType>
 class MatrixSum : public MatrixBase<MatrixSum<LhsType, RhsType>> {
@@ -56,6 +60,8 @@ operator+(const MatrixBase<E1>& lhs, const MatrixBase<E2>& rhs) {
   return MatrixSum<E1, E2>(*static_cast<const E1*>(&lhs), *static_cast<const E2*>(&rhs));
 }
 
-}
+//! @} math_matrix
 
-# endif //VCCC_MATH_MATRIX_MATRIX_SUM_HPP
+} // namespace vccc
+
+# endif // VCCC_MATH_MATRIX_MATRIX_SUM_HPP

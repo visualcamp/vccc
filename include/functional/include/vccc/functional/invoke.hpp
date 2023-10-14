@@ -9,7 +9,7 @@
 # if __cplusplus <= 201402L
 # include "vccc/functional/detail/invoke.hpp"
 
-namespace vccc{
+namespace vccc {
 
 //! @addtogroup functional
 //! @{
@@ -25,12 +25,12 @@ template<class F, class... Args>
 constexpr inline
 decltype(auto)
 invoke(F&& f, Args&&... args) {
-  return detail::INVOKE(std::forward<F>(f), std::forward<Args>(args)...);
+  return internal::INVOKE(std::forward<F>(f), std::forward<Args>(args)...);
 }
 
 //! @}
 
-}
+} // namespace vccc
 
 # else
 #

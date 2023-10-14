@@ -8,9 +8,8 @@
 //! @addtogroup log
 //! @{
 
-
 namespace vccc {
-namespace internal{
+namespace internal {
 
 /**
  * @brief test
@@ -57,5 +56,4 @@ int main(){
 
 //! @} log
 
-
-# endif //VCCC_LOG_FUNCTION_MACRO_HPP
+# endif // VCCC_LOG_FUNCTION_MACRO_HPP

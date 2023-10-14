@@ -173,4 +173,4 @@ struct NonMoveAssignable {
 
 }
 
-#endif //VCCC_TEST_CORE_HPP
+#endif // VCCC_TEST_CORE_HPP

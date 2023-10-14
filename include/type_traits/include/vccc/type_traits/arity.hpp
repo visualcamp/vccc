@@ -7,7 +7,7 @@
 #
 # include <type_traits>
 
-namespace vccc{
+namespace vccc {
 
 /**
 @addtogroup type_traits
@@ -30,7 +30,7 @@ using on non-function types will cause syntax failure.
         return a+b;
     }
 
-    auto n = arity_v<decltype(f)>;
+    auto n = arity<decltype(f)>::value;
 @endcode
 
 @tparam T function type
@@ -57,11 +57,8 @@ struct arity<R(C::*)(Args...) const> :
 template<typename T>
 using arity_t = typename arity<T>::type;
 
-template<typename T>
-constexpr unsigned arity_v = arity<T>::value;
-
 //! @} arity
 
-}
+} // namespace vccc
 
-#endif //VCCC_TYPE_TRAITS_ARITY_HPP
+#endif // VCCC_TYPE_TRAITS_ARITY_HPP

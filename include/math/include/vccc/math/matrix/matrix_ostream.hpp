@@ -10,6 +10,9 @@
 
 namespace vccc {
 
+//! @addtogroup math_matrix
+//! @{
+
 template<typename E>
 std::ostream& operator << (std::ostream& os, const MatrixBase<E>& mat_expr) {
   os << '[';
@@ -32,6 +35,8 @@ std::ostream& operator << (std::ostream& os, const MatrixBase<E>& mat_expr) {
   return os;
 }
 
-}
+//! @} math_matrix
 
-# endif //VCCC_MATH_MATRIX_MATRIX_OSTREAM_HPP
+} // namespace vccc
+
+# endif // VCCC_MATH_MATRIX_MATRIX_OSTREAM_HPP

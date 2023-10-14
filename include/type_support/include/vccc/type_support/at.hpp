@@ -15,7 +15,7 @@
 #  * vccc::at is implemented in each class' headers
 #  */
 
-namespace vccc{
+namespace vccc {
 
 /**
 @addtogroup type_support
@@ -79,7 +79,7 @@ at(T&& t)
 
 
 
-namespace detail{
+namespace internal {
 
 
 //TODO: change tuple element to use reference_wrapper
@@ -109,7 +109,7 @@ class bind_obj {
   std::tuple<Ts...> tup;
 };
 
-}
+} // namespace internal
 
 /**
 @brief call at<...>(...) to args...
@@ -126,12 +126,12 @@ vccc::bind_at(x, y) = p;
  */
 
 template<typename ...Args>
-constexpr inline detail::bind_obj<Args...> bind_at(Args&&... args) {
-  return detail::bind_obj<Args...>(std::forward<Args>(args)...);
+constexpr inline internal::bind_obj<Args...> bind_at(Args&&... args) {
+  return internal::bind_obj<Args...>(std::forward<Args>(args)...);
 }
 
 //! @} type_support_at
 
-}
+} // namespace vccc
 
-# endif //VCCC_TYPE_SUPPORT_AT_HPP
+# endif // VCCC_TYPE_SUPPORT_AT_HPP

@@ -2,8 +2,11 @@
 #  * Created by YongGyu Lee on 2020/12/08.
 #  */
 #
-#ifndef VCCC_TUPLE_APPLY_HPP
-#define VCCC_TUPLE_APPLY_HPP
+# ifndef VCCC_TUPLE_APPLY_HPP
+# define VCCC_TUPLE_APPLY_HPP
+#
+# include <type_traits>
+# include <utility>
 #
 # include "vccc/tuple/detail/apply.hpp"
 
@@ -22,7 +25,7 @@ template<class F, class Tuple>
 constexpr inline
 decltype(auto)
 apply(F&& f, Tuple&& t) {
-  return detail::apply_impl(
+  return internal::apply_impl(
       std::forward<F>(f), std::forward<Tuple>(t),
       std::make_index_sequence<std::tuple_size<std::remove_reference_t<Tuple>>::value>{});
 }

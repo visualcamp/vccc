@@ -9,4 +9,4 @@
 # include "vccc/type_support/std/core.hpp"
 # include "vccc/type_support/opencv/core.hpp"
 #
-# endif //VCCC_TYPE_SUPPORT_CORE_HPP
+# endif // VCCC_TYPE_SUPPORT_CORE_HPP

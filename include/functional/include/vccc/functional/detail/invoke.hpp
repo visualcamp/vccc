@@ -8,13 +8,13 @@
 # include <utility>
 # include <type_traits>
 
-namespace vccc{ namespace detail {
+namespace vccc {
+namespace internal {
 
-
-template <class>
-constexpr bool is_reference_wrapper_v = false;
-template <class U>
-constexpr bool is_reference_wrapper_v<std::reference_wrapper<U>> = true;
+template<typename T>
+struct is_reference_wrapper : std::false_type {};
+template<typename T>
+struct is_reference_wrapper<std::reference_wrapper<T>> : std::true_type {};
 
 struct invoke_category_base_of{};
 struct invoke_category_reference_wrapper{};
@@ -27,7 +27,7 @@ struct get_invoke_category {
       std::is_base_of<T, std::decay_t<T1>>::value,
         invoke_category_base_of,
         std::conditional_t<
-          is_reference_wrapper_v<std::decay_t<T1>>,
+            is_reference_wrapper<std::decay_t<T1>>::value,
             invoke_category_reference_wrapper,
             invoke_category_normal>>;
 };
@@ -110,7 +110,7 @@ INVOKE(F&& f, Args&&... args)
   return std::forward<F>(f)(std::forward<Args>(args)...);
 }
 
-
-}}
+} // namespace internal
+} // namespace vccc
 
 #endif // VCCC_FUNCTIONAL_DETAIL_INVOKE_HPP

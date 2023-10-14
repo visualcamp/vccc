@@ -47,8 +47,8 @@ pick_k(T a, T b, T k, RandomGenerator&& gen)
   return elems;
 }
 
-//! @}
+//! @} random
 
-}
+} // namespace vccc
 
-# endif //VCCC_RANDOM_INCLUDE_VCCC_RANDOM_DETAIL_PICK_HPP
+# endif // VCCC_RANDOM_INCLUDE_VCCC_RANDOM_DETAIL_PICK_HPP

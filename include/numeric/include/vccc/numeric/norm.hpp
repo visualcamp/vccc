@@ -5,10 +5,12 @@
 # ifndef VCCC_NUMERIC_NORM_HPP
 # define VCCC_NUMERIC_NORM_HPP
 #
+# include <cmath>
+#
 # include "vccc/type_traits.hpp"
 # include "vccc/numeric/sum.hpp"
 
-namespace vccc{
+namespace vccc {
 
 /**
 @addtogroup numeric
@@ -30,7 +32,7 @@ namespace vccc{
 @param last  ending iterator
 @return norm
  */
-template<typename InputIterator, VCCC_ENABLE_IF(iterable<InputIterator>)>
+template<typename InputIterator, std::enable_if_t<is_iterable<InputIterator>::value, int> = 0>
 inline auto
 norm(InputIterator first, InputIterator last)
 {
@@ -38,10 +40,8 @@ norm(InputIterator first, InputIterator last)
 }
 
 //! @cond ignored
-template<typename Arg, VCCC_ENABLE_IF(!iterable<Arg>)>
-inline auto
-norm(Arg arg)
-{
+template<typename T, std::enable_if_t<std::is_arithmetic<T>::value, int> = 0>
+inline T norm(T arg) {
   return std::abs(arg);
 }
 //! @endcond
@@ -51,7 +51,8 @@ norm(Arg arg)
 @brief calculate norm of variadics
 @return norm
  */
-template<typename Arg, typename ...Args, VCCC_ENABLE_IF((!iterable<Arg, Args...>))>
+template<typename Arg, typename ...Args,
+    std::enable_if_t<conjunction<std::is_arithmetic<Arg>, std::is_arithmetic<Args...>>::value, int> = 0>
 inline auto
 norm(Arg arg, Args... args)
 {
@@ -61,6 +62,6 @@ norm(Arg arg, Args... args)
 //! @} numeric_norm
 //! @} numeric
 
-}
+} // namespace vccc
 
-#endif //VCCC_NUMERIC_NORM_HPP
+#endif // VCCC_NUMERIC_NORM_HPP

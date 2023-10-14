@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2021/05/23.
 #  */
 #
-# ifndef VCCC_OPTIONAL_HPP_
-# define VCCC_OPTIONAL_HPP_
+# ifndef VCCC_OPTIONAL_HPP
+# define VCCC_OPTIONAL_HPP
 #
 # include "vccc/optional/bad_optional_access.h"
 # include "vccc/optional/hash.h"
@@ -17,4 +17,4 @@
 Implementation of <a href="https://en.cppreference.com/w/cpp/utility/optional">std::optional</a>
 */
 
-# endif // VCCC_OPTIONAL_HPP_
+# endif // VCCC_OPTIONAL_HPP

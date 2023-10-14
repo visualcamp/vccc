@@ -7,7 +7,7 @@
 #
 # include "vccc/type_traits.hpp"
 
-namespace vccc{
+namespace vccc {
 
 //! @addtogroup numeric
 //! @{
@@ -17,7 +17,7 @@ namespace vccc{
 
 @param a        numerator
 @param b        denominator
-@return a / b
+@return \f$ {\large \frac{a}{b}} \f$
  */
 template<typename T1, typename T2>
 decltype(auto)
@@ -29,6 +29,6 @@ lossless_div(const T1 a, const T2 b)
 
 //! @} numeric
 
-}
+} // namespace vccc
 
-# endif //VCCC_NUMERIC_LOSSLESS_DIV_HPP
+# endif // VCCC_NUMERIC_LOSSLESS_DIV_HPP

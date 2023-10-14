@@ -11,9 +11,8 @@
 # include <string_view>
 # endif
 # include "vccc/type_traits/is_specialization.hpp"
-# include "vccc/type_traits/require.hpp"
 
-namespace vccc{
+namespace vccc {
 
 /**
 @addtogroup type_traits
@@ -40,11 +39,8 @@ struct is_string_like<const char*> : public std::true_type {};
 template<typename T>
 using is_string_like_t = typename is_string_like<T>::type;
 
-template<typename T>
-constexpr bool is_string_like_v = is_string_like<T>::value;
-
 //! @}
 
-}
+} // namespace vccc
 
-# endif //VCCC_TYPE_TRAITS_IS_STRING_LIKE_HPP
+# endif // VCCC_TYPE_TRAITS_IS_STRING_LIKE_HPP

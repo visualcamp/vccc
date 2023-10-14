@@ -32,11 +32,8 @@ struct is_range<T, void_t<decltype(std::declval<T>().begin()),
 template<typename T>
 using is_range_t = typename is_range<T>::type;
 
-template<typename T>
-constexpr bool is_range_v = is_range<T>::value;
-
 //! @} is_range
 
-}
+} // namespace vccc
 
 # endif // VCCC_TYPE_TRAITS_IS_RANGE_HPP

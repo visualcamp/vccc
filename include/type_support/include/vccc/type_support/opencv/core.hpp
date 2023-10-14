@@ -14,4 +14,4 @@
 #   include "vccc/type_support/opencv/cv_vec.hpp"
 # endif
 #
-# endif //VCCC_TYPE_SUPPORT_OPENCV_CORE_HPP
+# endif // VCCC_TYPE_SUPPORT_OPENCV_CORE_HPP

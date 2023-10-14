@@ -43,5 +43,4 @@ This macro must be directly used in code where needed, or it will generate wrong
 
 //! @} log
 
-
-# endif //VCCC_LOG_PWD_HPP
+# endif // VCCC_LOG_PWD_HPP

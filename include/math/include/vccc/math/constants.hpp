@@ -5,13 +5,14 @@
 #ifndef VCCC_MATH_CONSTANTS_HPP
 #define VCCC_MATH_CONSTANTS_HPP
 
-namespace vccc{
+namespace vccc {
+namespace math {
 
 /**
 @addtogroup math
 @{
     @defgroup math_constants constants
-    math constants
+    @brief Mathematical constants
 @}
 
 @addtogroup math_constants
@@ -32,7 +33,6 @@ namespace vccc{
 //#define M_SQRT1_2   0.707106781186547524400844362104849039  /* 1/sqrt(2)      */
 //
 //#define MAXFLOAT    0x1.fffffep+127f
-namespace math_constant {
 
 /** @brief natural constant
  * @tparam T
@@ -54,11 +54,9 @@ template<typename T>
 constexpr T pi = static_cast<T>(3.14159265358979323846264338327950288);
 
 
-//! @}
+//! @} math_constants
 
-}
-}
+} // namespace math
+} // namespace vccc
 
-
-
-#endif //VCCC_MATH_CONSTANTS_HPP
+#endif // VCCC_MATH_CONSTANTS_HPP

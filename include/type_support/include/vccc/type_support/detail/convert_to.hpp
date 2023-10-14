@@ -12,8 +12,8 @@
 # include "vccc/type_traits.hpp"
 # include "vccc/type_support/at.hpp"
 
-namespace vccc{
-namespace detail{
+namespace vccc {
+namespace internal {
 
 template<typename T, typename = void>
 struct has_size : std::false_type {};
@@ -57,9 +57,10 @@ template<typename R, typename T, std::size_t... I>
 inline R
 convert_to_impl(std::false_type, const T& from, std::index_sequence<I...>)
 {
-  return {vccc::at<I, vccc::vtype_t<R>>(from)...};
+  return {vccc::at<I, typename R::value_type>(from)...};
 }
 
-}}
+} // namespace internal
+} // namespace vccc
 
-# endif //VCCC_TYPE_SUPPORT_DETAIL_CONVERT_TO_HPP
+# endif // VCCC_TYPE_SUPPORT_DETAIL_CONVERT_TO_HPP

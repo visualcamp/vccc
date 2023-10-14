@@ -18,4 +18,4 @@
 @defgroup type_support type support
 */
 
-# endif //VCCC_TYPE_SUPPORT_HPP
+# endif // VCCC_TYPE_SUPPORT_HPP

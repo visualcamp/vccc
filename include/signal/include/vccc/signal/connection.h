@@ -14,8 +14,12 @@
 
 namespace vccc {
 
+//! @addtogroup signal
+//! @{
+
 class connection;
 
+//! @cond IGNORED
 struct connection_impl_base {
   virtual ~connection_impl_base() = default;
   virtual bool is_connected() const = 0;
@@ -71,6 +75,11 @@ struct connection_impl : public connection_impl_base {
   std::atomic_bool connected{false};
 };
 
+//! @endcond IGNORED
+
+/**
+ @brief Connection manager for a single slot
+ */
 class connection {
  public:
   connection() = default;
@@ -83,6 +92,9 @@ class connection {
   connection& operator=(connection const& other) = default;
   connection& operator=(connection&& other) noexcept = default;
 
+  /**
+   * Disconnect a given slot
+   */
   void disconnect() const {
     if(pimpl == nullptr)
       return;
@@ -102,6 +114,9 @@ class connection {
   std::shared_ptr<connection_impl_base> pimpl;
 };
 
+/**
+ @brief Scoped connection manager for a single slot
+ */
 class raii_connection : connection {
   using base = connection;
  public:
@@ -142,6 +157,8 @@ class raii_connection : connection {
   }
 };
 
+//! @} addtogroup signal
+
 } // namespace vccc
 
-# endif //VCCC_SIGNAL_CONNECTION_H_
+# endif // VCCC_SIGNAL_CONNECTION_H_

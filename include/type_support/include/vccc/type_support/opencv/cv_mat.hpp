@@ -12,7 +12,7 @@
 # include "opencv2/opencv.hpp"
 
 namespace vccc {
-namespace detail {
+namespace internal {
 
 template<size_t I, typename CVMatX, bool v>
 struct tuple_element_impl;
@@ -22,12 +22,12 @@ struct tuple_element_impl<I, cv::Matx<T, m, n>, true> {
   using type = T;
 };
 
-} // namespace detail
+} // namespace internal
 } // namespace vccc
 
 namespace std {
 
-//template<typename T, int m, int n> struct detail::cv_size<cv::Matx<T, m, n>>;
+//template<typename T, int m, int n> struct internal::cv_size<cv::Matx<T, m, n>>;
 //template<std::size_t i, std::size_t j, typename T, int m, int n> constexpr T& at(cv::Matx<T, m, n>& matx);
 //template<std::size_t i, std::size_t j, typename T, int m, int n> constexpr const T& at(const cv::Matx<T, m, n>& matx);
 //template<std::size_t i, std::size_t j, typename T, int m, int n> constexpr T&& at(cv::Matx<T, m, n>&& matx);
@@ -55,7 +55,7 @@ struct tuple_size<cv::Matx<T, m, n>> : std::integral_constant<size_t, m * n> {};
 */
 template<size_t I, typename T, int m, int n>
 struct tuple_element<I, cv::Matx<T, m, n>> :
-    vccc::detail::tuple_element_impl<I, cv::Matx<T, m, n>, (I < m * n)> {};
+    vccc::internal::tuple_element_impl<I, cv::Matx<T, m, n>, (I < m * n)> {};
 //! @} type_support_tuple_element_cv_matx
 //! @} type_support_tuple_element
 
@@ -154,4 +154,4 @@ cv::Matx<T, m, n> add(const cv::Matx<T, m, n>& matx, N n_)
 
 } // namespace vccc
 
-# endif //VCCC_TYPE_SUPPORT_OPENCV_CV_MAT_HPP
+# endif // VCCC_TYPE_SUPPORT_OPENCV_CV_MAT_HPP

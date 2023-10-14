@@ -5,10 +5,13 @@
 # ifndef VCCC_TYPE_SUPPORT_DETAIL_CONTAINER_AT_HPP
 # define VCCC_TYPE_SUPPORT_DETAIL_CONTAINER_AT_HPP
 #
+# include <type_traits>
+# include <utility>
+#
 # include "vccc/type_traits.hpp"
 # include "vccc/utility.hpp"
 
-namespace vccc{
+namespace vccc {
 
 /**
 @addtogroup type_support_at
@@ -20,7 +23,7 @@ Index-based value accessor
 @addtogroup type_support_at_container
 @{
 */
-template<std::size_t i, typename Container, std::enable_if_t<is_range_v<Container>, int> = 0>
+template<std::size_t i, typename Container, std::enable_if_t<is_range<Container>::value, int> = 0>
 decltype(auto)
 at(Container& container)
 {
@@ -28,7 +31,7 @@ at(Container& container)
   return *std::next(std::begin(container), i);
 }
 
-template<std::size_t i, typename Container, std::enable_if_t<is_range_v<Container>, int> = 0>
+template<std::size_t i, typename Container, std::enable_if_t<is_range<Container>::value, int> = 0>
 decltype(auto)
 at(const Container& container)
 {
@@ -36,7 +39,7 @@ at(const Container& container)
   return *std::next(std::begin(container), i);
 }
 
-template<std::size_t i, typename Container, std::enable_if_t<is_range_v<Container>, int> = 0>
+template<std::size_t i, typename Container, std::enable_if_t<is_range<Container>::value, int> = 0>
 decltype(auto)
 at(Container&& container)
 {
@@ -44,7 +47,7 @@ at(Container&& container)
   return std::move(*std::next(std::begin(container), i));
 }
 
-template<std::size_t i, typename Container, std::enable_if_t<is_range_v<Container>, int> = 0>
+template<std::size_t i, typename Container, std::enable_if_t<is_range<Container>::value, int> = 0>
 decltype(auto)
 at(const Container&& container)
 {
@@ -57,4 +60,4 @@ at(const Container&& container)
 
 }
 
-# endif //VCCC_TYPE_SUPPORT_DETAIL_CONTAINER_AT_HPP
+# endif // VCCC_TYPE_SUPPORT_DETAIL_CONTAINER_AT_HPP

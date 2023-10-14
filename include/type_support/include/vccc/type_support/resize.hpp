@@ -8,7 +8,7 @@
 # include "vccc/type_traits.hpp"
 # include "vccc/type_support/convert_to.hpp"
 
-namespace vccc{
+namespace vccc {
 
 //! @addtogroup type_support
 //! @{
@@ -48,8 +48,8 @@ inline decltype(auto) resize(T&& t)
   return copy_or_same;
 }
 
-//! @}
+//! @} type_support
 
-}
+} // namespace vccc
 
-# endif //VCCC_TYPE_RESIZE_HPP
+# endif // VCCC_TYPE_RESIZE_HPP

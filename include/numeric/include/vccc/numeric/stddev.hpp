@@ -33,7 +33,7 @@ namespace vccc {
 @return standard deviation
  */
 template<typename InputIterator, typename T,
-         VCCC_ENABLE_IF(iterable < InputIterator >)>
+         std::enable_if_t<is_iterator<InputIterator>::value, int> = 0>
 inline auto
 stddev(InputIterator first, InputIterator last, T avg)
 {
@@ -50,7 +50,7 @@ stddev(InputIterator first, InputIterator last, T avg)
 @param last     ending iterator
 @return standard deviation
  */
-template<typename InputIterator, VCCC_ENABLE_IF(iterable<InputIterator>)>
+template<typename InputIterator, std::enable_if_t<is_iterable<InputIterator>::value, int> = 0>
 inline auto
 stddev(InputIterator first, InputIterator last)
 {
@@ -63,7 +63,7 @@ stddev(InputIterator first, InputIterator last)
 @param ...numbers   numbers
 @return standard deviation
  */
-template<typename ...Numbers, VCCC_ENABLE_IF(!iterable<Numbers...>)>
+template<typename ...Numbers, std::enable_if_t<negation<disjunction<is_iterable<Numbers>...>>::value, int> = 0>
 inline auto
 stddev(Numbers... numbers)
 {
@@ -89,6 +89,6 @@ avg_stddev(InputIterator first, InputIterator last)
 
 //! @} numeric_stddev
 
-}
+} // namespace vccc
 
-# endif //VCCC_NUMERIC_STDDEV_HPP
+# endif // VCCC_NUMERIC_STDDEV_HPP

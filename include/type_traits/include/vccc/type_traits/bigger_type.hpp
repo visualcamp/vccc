@@ -7,7 +7,7 @@
 #
 # include <type_traits>
 
-namespace vccc{
+namespace vccc {
 
 /**
 @addtogroup type_traits
@@ -142,6 +142,6 @@ using unsigned_bigger_type_t = typename unsigned_bigger_type<Ts...>::type;
 
 //! @} bigger_type
 
-}
+} // namespace vccc
 
-# endif //VCCC_TYPE_TRAITS_BIGGER_TYPE_HPP
+# endif // VCCC_TYPE_TRAITS_BIGGER_TYPE_HPP

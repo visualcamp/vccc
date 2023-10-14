@@ -6,26 +6,23 @@
 # define VCCC_MATH_CALCULUS_GRADIENT_HPP
 #
 # include "vccc/math/calculus/partial_diff.hpp"
-# include "vccc/type_traits/are.hpp"
+# include "vccc/type_traits.hpp"
 
-namespace vccc{
+namespace vccc {
 
 //! @addtogroup calculus
 //! @{
 
 //! @cond ignored
-namespace detail{ namespace math{
+namespace internal {
+namespace math {
 template<typename T, typename DifferentialCategory, typename Func, typename VarTuple, std::size_t ...I, typename ...Args>
-inline auto
-gradientImpl(Func f, VarTuple vars, std::index_sequence<I...>, Args&&... args)
-{
+inline auto gradientImpl(Func f, VarTuple vars, std::index_sequence<I...>, Args&&... args) {
   return std::make_tuple(
-      partialDiff<T, I>(DifferentialCategory{},
-                        f,
-                        vars,
-                        std::forward<Args>(args)...)...);
+      partialDiff<T, I>(DifferentialCategory{}, f, vars, std::forward<Args>(args)...)...);
 }
-}}
+} // namespace math
+} // namespace internal
 //! @endcond
 
 
@@ -41,12 +38,12 @@ gradientImpl(Func f, VarTuple vars, std::index_sequence<I...>, Args&&... args)
  */
 template<typename T, typename DifferentialCategory = differential_symmetric_t,
     typename Func, typename ...Vars, typename ...Args>
-inline auto
-gradient(Func f, std::tuple<Vars...> vars, Args&&... args)
-{
-  static_assert(!vccc::are_<std::is_reference<Vars>...>::value, "tuple element of vars must not be a reference vccc::gradient<>");
-  static_assert(vccc::are_<std::is_same<T, Vars>...>::value, "tuple element of vars type must be same with T vccc::gradient<>");
-  return detail::math::gradientImpl<T, DifferentialCategory>(
+inline auto gradient(Func f, std::tuple<Vars...> vars, Args&&... args) {
+  static_assert(negation<disjunction<std::is_reference<Vars>...>>::value,
+                "tuple element of vars must not be a reference vccc::gradient<>");
+  static_assert(negation<disjunction<std::is_same<T, Vars>...>>::value,
+                "tuple element of vars type must be same with T vccc::gradient<>");
+  return internal::math::gradientImpl<T, DifferentialCategory>(
       f,
       vars,
       std::index_sequence_for<Vars...>{},
@@ -55,8 +52,6 @@ gradient(Func f, std::tuple<Vars...> vars, Args&&... args)
 
 //! @} calculus
 
-}
+} // namespace vccc
 
-
-
-# endif //VCCC_MATH_CALCULUS_GRADIENT_HPP
+# endif // VCCC_MATH_CALCULUS_GRADIENT_HPP

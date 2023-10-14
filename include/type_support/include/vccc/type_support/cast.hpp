@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2021/03/17.
 #  */
 #
-# ifndef VCCC_TYPE_SUPPORT_CAST_HPP_
-# define VCCC_TYPE_SUPPORT_CAST_HPP_
+# ifndef VCCC_TYPE_SUPPORT_CAST_HPP
+# define VCCC_TYPE_SUPPORT_CAST_HPP
 #
 # include "vccc/type_support/library_config.hpp"
 # include "vccc/type_traits.hpp"
@@ -11,12 +11,13 @@
 
 namespace vccc {
 
-namespace internal { namespace type_support {
+namespace internal {
+namespace type_support {
 
 template<typename To, typename From, typename = void>
 struct saturate_cast_possible :
 # if VCCC_USE_OPENCV_FEATURES
-  public std::integral_constant<bool, are_arithmetic_v<std::decay_t<To>, std::decay_t<From>>>
+  public std::integral_constant<bool, are_arithmetic<std::decay_t<To>, std::decay_t<From>>::value>
 # else
   public std::false_type
 # endif
@@ -44,7 +45,8 @@ cast(std::true_type, From from) {
 }
 
 
-}}
+} // namespace type_support
+} // namespace internal
 
 template<typename ToType, typename FromType>
 constexpr inline
@@ -55,6 +57,6 @@ cast(FromType&& from) {
       std::forward<FromType>(from));
 }
 
-}
+} // namespace vccc
 
-# endif //VCCC_TYPE_SUPPORT_CAST_HPP_
+# endif // VCCC_TYPE_SUPPORT_CAST_HPP

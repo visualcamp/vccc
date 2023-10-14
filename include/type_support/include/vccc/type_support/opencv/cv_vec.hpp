@@ -14,7 +14,7 @@
 # include "vccc/type_support/opencv/cv_mat.hpp"
 
 namespace vccc {
-namespace detail {
+namespace internal {
 
 template<size_t I, bool size_check>
 struct get_cv_vec;
@@ -32,7 +32,7 @@ struct tuple_element_impl<I, cv::Vec<T, n>, true> {
   using type = T;
 };
 
-} // namespace detail
+} // namespace internal
 } // namespace vccc
 
 namespace std {
@@ -58,7 +58,7 @@ struct tuple_size<cv::Vec<T, cn>> : std::integral_constant<size_t, cn> {};
 @{
 */
 template<size_t I, typename T, int cn>
-struct tuple_element<I, cv::Vec<T, cn>> : vccc::detail::tuple_element_impl<I, cv::Vec<T, cn>, (I < cn)> {};
+struct tuple_element<I, cv::Vec<T, cn>> : vccc::internal::tuple_element_impl<I, cv::Vec<T, cn>, (I < cn)> {};
 //! @} type_support_tuple_element_cv_vec
 //! @} type_support_tuple_element
 
@@ -98,7 +98,6 @@ get(const cv::Vec<T, n>&& vec) {
 
 } // namespace std
 
-
 namespace vccc {
 
 /** add */
@@ -114,4 +113,4 @@ cv::Vec<T, cn> add(const cv::Vec<T, cn>& vec, N n)
 
 } // namespace vccc
 
-# endif //VCCC_TYPE_SUPPORT_OPENCV_CV_VEC_HPP
+# endif // VCCC_TYPE_SUPPORT_OPENCV_CV_VEC_HPP

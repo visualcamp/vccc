@@ -22,4 +22,4 @@
 
 
 #
-# endif //VCCC_UTILITY_HPP
+# endif // VCCC_UTILITY_HPP

@@ -2,8 +2,8 @@
 // Created by yonggyulee on 2023/09/29.
 //
 
-#ifndef VCCC_TYPE_TRAITS_TYPE_IDENTITY_HPP_
-#define VCCC_TYPE_TRAITS_TYPE_IDENTITY_HPP_
+#ifndef VCCC_TYPE_TRAITS_TYPE_IDENTITY_HPP
+#define VCCC_TYPE_TRAITS_TYPE_IDENTITY_HPP
 
 namespace vccc {
 
@@ -17,4 +17,4 @@ using type_identity_t = typename type_identity<T>::type;
 
 } // namespace vccc
 
-#endif // VCCC_TYPE_TRAITS_TYPE_IDENTITY_HPP_
+#endif // VCCC_TYPE_TRAITS_TYPE_IDENTITY_HPP

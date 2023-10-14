@@ -7,11 +7,10 @@
 #
 # include <algorithm>
 # include "vccc/type_support/convert_to.hpp"
-# include "vccc/type_traits.hpp"
 # include "vccc/type_support/cast.hpp"
+# include "vccc/type_traits.hpp"
 
-
-namespace vccc{
+namespace vccc {
 
 /**
 @addtogroup type_support
@@ -33,7 +32,7 @@ namespace vccc{
 @param cv_type      any opencv template class
  */
 template<typename NewType, template<typename, int...> class CVType, typename OldType, int ...CVParams,
-         VCCC_ENABLE_IF((!std::is_same<NewType, OldType>::value))>
+         std::enable_if_t<!std::is_same<NewType, OldType>::value, int> = 0>
 inline decltype(auto) vtype_convert(const CVType<OldType, CVParams...>& cv_type)
 {
   return convert_to<CVType<NewType, CVParams...>>(cv_type);
@@ -166,9 +165,6 @@ vtype_convert(std::array<NewType, n>&& container)
 
 //! @} type_support_vtype_convert
 
+} // namespace vccc
 
-
-
-}
-
-# endif //VCCC_TYPE_SUPPORT_VTYPE_CONVERT_HPP
+# endif // VCCC_TYPE_SUPPORT_VTYPE_CONVERT_HPP

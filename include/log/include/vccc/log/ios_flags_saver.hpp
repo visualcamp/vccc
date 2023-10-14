@@ -2,11 +2,10 @@
 #  * Created by YongGyu Lee on 2021/03/20.
 #  */
 #
-# ifndef VCCC_LOG_IOS_FLAGS_SAVER_HPP_
-# define VCCC_LOG_IOS_FLAGS_SAVER_HPP_
+# ifndef VCCC_LOG_IOS_FLAGS_SAVER_HPP
+# define VCCC_LOG_IOS_FLAGS_SAVER_HPP
 #
 # include <ios>
-
 
 namespace vccc {
 
@@ -44,7 +43,6 @@ class IOSFlagsSaver {
 
 //! @} log
 
-}
+} // namespace vccc
 
-
-#endif //VCCC_LOG_IOS_FLAGS_SAVER_HPP_
+#endif // VCCC_LOG_IOS_FLAGS_SAVER_HPP

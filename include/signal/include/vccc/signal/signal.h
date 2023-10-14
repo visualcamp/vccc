@@ -21,7 +21,7 @@
 namespace vccc {
 
 //! @addtogroup signal
-
+//! @{
 
 //! @cond IGNORED
 
@@ -190,9 +190,8 @@ class signal_impl<R(Args...), Group> :
 /**
  * @brief Signal handling class
  *
- * @tparam R
- * @tparam Args
- * @tparam Group
+ * @tparam R(Args)  Signature of a slot(functor)
+ * @tparam Group    Key type for a group(default:`int`)
  */
 template<typename R, typename ...Args, typename Group>
 class signal<R(Args...), Group> {
@@ -255,4 +254,4 @@ class signal<R(Args...), Group> {
 
 } // namespace vccc
 
-# endif //VCCC_SIGNAL_SIGNAL_H_
+# endif // VCCC_SIGNAL_SIGNAL_H_

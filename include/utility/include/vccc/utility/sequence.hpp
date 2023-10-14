@@ -22,7 +22,7 @@ creates std::index_sequence<N-1, N-2, ... 0>
 
 template <std::size_t N>
 using make_rindex_sequence
-= decltype(detail::rindex_sequence(std::make_index_sequence<N>{}));
+= decltype(internal::rindex_sequence(std::make_index_sequence<N>{}));
 
 /**
 @brief alias of same integer sequence
@@ -36,7 +36,7 @@ creates std::integer_sequence<T, v, v, ... v>
 
 template <typename T, T v, std::size_t N>
 using make_same_sequence
-= decltype(detail::same_sequence<T, v>(std::make_integer_sequence<T, N>{}));
+= decltype(internal::same_sequence<T, v>(std::make_integer_sequence<T, N>{}));
 
 /**
 @brief alias of zero std::size_t sequence
@@ -65,7 +65,7 @@ template values satisfies [begin, end)
 */
 template <typename T, T begin, T end, T step=1, T size = (end + (end>0?-1:1) - begin)/step>
 using make_range_sequence
-= decltype(detail::range_sequence<T, begin, step>(std::make_integer_sequence<T, (size >= 0 ? size+1 : size)>{}));
+= decltype(internal::range_sequence<T, begin, step>(std::make_integer_sequence<T, (size >= 0 ? size+1 : size)>{}));
 
 /**
 @brief alias of range index sequence
@@ -79,10 +79,10 @@ using make_range_sequence
 */
 template <std::size_t begin, std::size_t end, std::size_t step=1, std::size_t size = (end + (end>0?-1:1) - begin)/step>
 using make_index_range_sequence
-= decltype(detail::range_sequence<std::size_t, begin, step>(std::make_integer_sequence<std::size_t, (size >= 0 ? size+1 : size)>{}));
+= decltype(internal::range_sequence<std::size_t, begin, step>(std::make_integer_sequence<std::size_t, (size >= 0 ? size+1 : size)>{}));
 
 //! @} utility utility_sequence
 
-}
+} // namespace vccc
 
-# endif //VCCC_UTILITY_SEQUENCE_HPP
+# endif // VCCC_UTILITY_SEQUENCE_HPP

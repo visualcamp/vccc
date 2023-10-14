@@ -63,4 +63,4 @@ struct check_move_assignable<T, false> {
 } // namespace internal
 } // namespace vccc
 
-# endif //VCCC_OPTIONAL_INTERNAL_CHECK_OVERLOAD_H_
+# endif // VCCC_OPTIONAL_INTERNAL_CHECK_OVERLOAD_H_

@@ -8,7 +8,7 @@
 # include <vector>
 # include <algorithm>
 
-namespace vccc{
+namespace vccc {
 
 //! @addtogroup type_support_at
 //! @{
@@ -96,6 +96,6 @@ std::vector<T, Allocator>& concat(std::vector<T, Allocator>& to, std::vector<T, 
 //                                   std::make_move_iterator(std::min(vec.end(), vec.begin() + last)));
 //}
 
-}
+} // namespace vccc
 
-# endif //VCCC_TYPE_SUPPORT_STD_VECTOR_HPP
+# endif // VCCC_TYPE_SUPPORT_STD_VECTOR_HPP

@@ -12,4 +12,4 @@
 @defgroup random random
 */
 
-# endif //VCCC_RANDOM_HPP
+# endif // VCCC_RANDOM_HPP

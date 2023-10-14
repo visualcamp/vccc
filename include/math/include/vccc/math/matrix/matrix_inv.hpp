@@ -21,4 +21,4 @@ class MatrixInverter {
 
 }
 
-# endif //VCCC_MATH_MATRIX_MATRIX_INV_HPP
+# endif // VCCC_MATH_MATRIX_MATRIX_INV_HPP

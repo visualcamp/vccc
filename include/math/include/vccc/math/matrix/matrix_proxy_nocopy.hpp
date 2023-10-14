@@ -2,15 +2,16 @@
 #  * Created by YongGyu Lee on 2020/03/02.
 #  */
 #
-# ifndef VCCC_MATH_MATRIX_MATRIX_PROXY_NOCOPY_HPP_
-# define VCCC_MATH_MATRIX_MATRIX_PROXY_NOCOPY_HPP_
+# ifndef VCCC_MATH_MATRIX_MATRIX_PROXY_NOCOPY_HPP
+# define VCCC_MATH_MATRIX_MATRIX_PROXY_NOCOPY_HPP
 #
 # include "vccc/math/matrix/forward_declare.hpp"
 # include "vccc/math/matrix/type_helper.hpp"
 
-namespace vccc{
+namespace vccc {
 
-namespace internal { namespace math {
+namespace internal {
+namespace math {
 
 template<typename ExprType>
 struct traits<MatrixProxyNocopy<ExprType>> {
@@ -26,12 +27,13 @@ struct traits<MatrixProxyNocopy<ExprType>> {
   using value_type = typename traits<ExprType>::value_type;
 };
 
-}} // namespace internal/math
+} // namespace math
+} // namespace internal
 
 template<typename ExprType>
 class MatrixProxyNocopy : public MatrixBase<MatrixProxyNocopy<ExprType>> {
  public:
-  static_assert(internal::math::is_concrete_matrix_v<ExprType>, "Only Concrete Matrix type is allowed");
+  static_assert(internal::math::is_concrete_matrix<ExprType>::value, "Only Concrete Matrix type is allowed");
 
   explicit MatrixProxyNocopy(ExprType& expr) : expr(expr) {}
 
@@ -47,4 +49,4 @@ class MatrixProxyNocopy : public MatrixBase<MatrixProxyNocopy<ExprType>> {
 
 } // namespace vccc
 
-# endif //VCCC_MATH_MATRIX_MATRIX_PROXY_NOCOPY_HPP_
+# endif // VCCC_MATH_MATRIX_MATRIX_PROXY_NOCOPY_HPP

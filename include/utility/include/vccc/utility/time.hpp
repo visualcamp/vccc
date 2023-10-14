@@ -7,7 +7,7 @@
 #
 # include <chrono>
 
-namespace vccc{
+namespace vccc {
 
 //! @addtogroup utility_time
 //! @{
@@ -44,6 +44,6 @@ getCurrentNanoseconds()
 
 //! @} utility_time
 
-}
+} // namespace vccc
 
-# endif //VCCC_UTILITY_TIME_HPP
+# endif // VCCC_UTILITY_TIME_HPP

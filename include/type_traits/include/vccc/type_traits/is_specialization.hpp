@@ -7,7 +7,7 @@
 #
 # include <type_traits>
 
-namespace vccc{
+namespace vccc {
 
 /**
 @addtogroup type_traits
@@ -34,6 +34,6 @@ struct is_specialization<Ref<Args...>, Ref> : std::true_type {};
 
 //! @} is_specialization
 
-}
+} // namespace vccc
 
-# endif //VCCC_TYPE_TRAITS_IS_SPECIALIZATION_HPP
+# endif // VCCC_TYPE_TRAITS_IS_SPECIALIZATION_HPP

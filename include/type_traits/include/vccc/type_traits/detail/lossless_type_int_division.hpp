@@ -8,9 +8,9 @@
 # include <type_traits>
 # include <algorithm>
 
-namespace vccc{
+namespace vccc {
 
-namespace detail{
+namespace internal {
 
 // left for specialization
 template<typename...> struct lossless_type_int_division;
@@ -23,8 +23,8 @@ struct lossless_type_int_division<T1, T2> {
 template<typename T1, typename T2>
 using lossless_type_int_division_t = typename lossless_type_int_division<T1, T2>::type;
 
-}
+} // namespace internal
 
-}
+} // namespace vccc
 
-# endif //VCCC_TYPE_TRAITS_DETAIL_LOSSLESS_TYPE_INT_DIVISION_HPP
+# endif // VCCC_TYPE_TRAITS_DETAIL_LOSSLESS_TYPE_INT_DIVISION_HPP

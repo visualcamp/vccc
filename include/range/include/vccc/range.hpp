@@ -10,4 +10,5 @@
 /**
 @defgroup range range
 */
-# endif //VCCC_RANGE_HPP
+
+# endif // VCCC_RANGE_HPP

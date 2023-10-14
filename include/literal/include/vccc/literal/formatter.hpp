@@ -62,7 +62,6 @@ inline Formatter operator "" _format(const char *format, std::size_t) {
 
 //! @} literal
 
+} // namespace vccc
 
-}
-
-# endif //VCCC_LITERAL_FORMATTER_HPP
+# endif // VCCC_LITERAL_FORMATTER_HPP

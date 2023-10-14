@@ -2,8 +2,8 @@
 // Created by yonggyulee on 2023/09/29.
 //
 
-#ifndef VCCC_TYPE_TRAITS_IS_SWAPPABLE_HPP_
-#define VCCC_TYPE_TRAITS_IS_SWAPPABLE_HPP_
+#ifndef VCCC_TYPE_TRAITS_IS_SWAPPABLE_HPP
+#define VCCC_TYPE_TRAITS_IS_SWAPPABLE_HPP
 
 #include <utility>
 #include <type_traits>
@@ -11,7 +11,8 @@
 #include "vccc/type_traits/void_t.hpp"
 
 namespace vccc {
-namespace detail {
+
+namespace internal {
 
 namespace swappable_test {
 using std::swap;
@@ -34,18 +35,18 @@ struct is_referencable : std::false_type {};
 template<typename T>
 struct is_referencable<T, void_t<T&>> : std::true_type {};
 
-} // namespace detail
+} // namespace internal
 
 template<typename T, typename U>
-using is_swappable_with = detail::is_swappable_with_impl<T, U>;
+using is_swappable_with = internal::is_swappable_with_impl<T, U>;
 
 template<typename T>
 struct is_swappable :
     std::conditional_t<
-        !detail::is_referencable<T>::value,
+        !internal::is_referencable<T>::value,
         std::false_type,
         is_swappable_with<std::add_lvalue_reference_t<T>, std::add_lvalue_reference_t<T>>>{};
 
 } // namespace vccc
 
-#endif // VCCC_TYPE_TRAITS_IS_SWAPPABLE_HPP_
+#endif // VCCC_TYPE_TRAITS_IS_SWAPPABLE_HPP

@@ -11,5 +11,4 @@
 @defgroup literal literal
 */
 
-
-# endif //VCCC_LITERAL_HPP
+# endif // VCCC_LITERAL_HPP

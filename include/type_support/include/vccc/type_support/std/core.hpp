@@ -8,4 +8,4 @@
 # include "vccc/type_support/std/variadic.hpp"
 # include "vccc/type_support/std/vector.hpp"
 #
-# endif //VCCC_TYPE_SUPPORT_STD_CORE_HPP
+# endif // VCCC_TYPE_SUPPORT_STD_CORE_HPP

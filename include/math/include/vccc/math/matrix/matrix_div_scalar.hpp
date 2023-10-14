@@ -10,9 +10,10 @@
 # include <type_traits>
 # include <cassert>
 
-namespace vccc{
+namespace vccc {
 
-namespace internal{ namespace math {
+namespace internal {
+namespace math {
 
 template<typename LhsType, typename RhsType>
 struct traits<MatrixDivScalar<LhsType, RhsType>> {
@@ -28,7 +29,11 @@ struct traits<MatrixDivScalar<LhsType, RhsType>> {
   using value_type = typename LhsType::value_type;
 };
 
-}}
+} // namespace math
+} // namespace internal
+
+//! @addtogroup math_matrix
+//! @{
 
 template<typename LhsType, typename RhsType>
 class MatrixDivScalar : public MatrixBase<MatrixDivScalar<LhsType, RhsType>> {
@@ -57,6 +62,8 @@ operator/(const MatrixBase<LhsType>& lhs, const RhsType& value) {
   return MatrixDivScalar<LhsType, RhsType>(*static_cast<const LhsType*>(&lhs), value);
 }
 
-}
+//! @} math_matrix
+
+} // namespace vccc
 
 # endif // VCCC_MATH_MATRIX_MATRIX_DIV_SCALAR_HPP

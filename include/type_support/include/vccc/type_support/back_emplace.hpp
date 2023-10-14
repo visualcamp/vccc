@@ -7,7 +7,7 @@
 #
 # include <iterator>
 
-namespace vccc{
+namespace vccc {
 
 namespace internal {
 
@@ -71,6 +71,6 @@ back_emplacer(Container& container)
 
 //! @}
 
-}
+} // namespace vccc
 
-# endif //VCCC_TYPE_SUPPORT_BACK_EMPLACE_HPP
+# endif // VCCC_TYPE_SUPPORT_BACK_EMPLACE_HPP

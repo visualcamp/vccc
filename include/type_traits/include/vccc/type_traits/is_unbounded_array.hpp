@@ -2,8 +2,8 @@
 // Created by yonggyulee on 2023/09/29.
 //
 
-#ifndef VCCC_TYPE_TRAITS_IS_UNBOUNDED_ARRAY_HPP_
-#define VCCC_TYPE_TRAITS_IS_UNBOUNDED_ARRAY_HPP_
+#ifndef VCCC_TYPE_TRAITS_IS_UNBOUNDED_ARRAY_HPP
+#define VCCC_TYPE_TRAITS_IS_UNBOUNDED_ARRAY_HPP
 
 #include <cstddef>
 #include <type_traits>
@@ -18,4 +18,4 @@ struct is_unbounded_array<T[]> : std::true_type {};
 
 } // namespace vccc
 
-#endif // VCCC_TYPE_TRAITS_IS_UNBOUNDED_ARRAY_HPP_
+#endif // VCCC_TYPE_TRAITS_IS_UNBOUNDED_ARRAY_HPP
