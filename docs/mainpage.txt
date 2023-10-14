@@ -6,7 +6,7 @@
 \subpage introduction
 
 <a href="modules.html">Modules</a>:
-- \subpage experimental. Contains signal library
+- \subpage signal. Contains signal library
 <hr>
 - \subpage functional. Implementation of STL header <functional>
 <hr>
@@ -34,11 +34,10 @@
 <hr>
 
 \subpage version_history "Version History"
-- \subpage v_alpha "Alpha version"
 
 
 \subpage third_parties "Third parties"
 
-© 2021 VisualCamp All Rights Reserved
+© 2023 VisualCamp All Rights Reserved
 
 */
