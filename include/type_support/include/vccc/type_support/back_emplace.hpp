@@ -6,6 +6,11 @@
 # define VCCC_TYPE_SUPPORT_BACK_EMPLACE_HPP
 #
 # include <iterator>
+#
+# ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996)
+# endif
 
 namespace vccc {
 
@@ -72,5 +77,9 @@ back_emplacer(Container& container)
 //! @}
 
 } // namespace vccc
+
+# ifdef _MSC_VER
+# pragma warning( pop )
+# endif
 
 # endif // VCCC_TYPE_SUPPORT_BACK_EMPLACE_HPP

@@ -90,8 +90,6 @@ int main() {
   optional<int> op2;
   op2.has_value();
 
-  MoveConstructableForbidden mcf;
-
   {
     vccc::optional<int> o1, // empty
     o2 = 1, // init from rvalue
@@ -100,7 +98,7 @@ int main() {
     try {
       o1.value();
       TEST_ENSURES(false);
-    } catch (const vccc::bad_optional_access& e) {
+    } catch (const vccc::bad_optional_access&) {
       TEST_ENSURES(true);
     }
 
@@ -109,7 +107,7 @@ int main() {
     try {
       o2.value();
       TEST_ENSURES(true);
-    } catch (const vccc::bad_optional_access& e) {
+    } catch (const vccc::bad_optional_access&) {
       TEST_ENSURES(false);
     }
     TEST_ENSURES(o2.value() == 1);

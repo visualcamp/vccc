@@ -12,7 +12,7 @@
 int main() {
   INIT_TEST("vccc::type_support")
 
-  std::vector<float> v = {1.3,2.6,3.9};
+  std::vector<double> v = {1.3,2.6,3.9};
 
 # if VCCC_USE_OPENCV_FEATURES
   TEST_ENSURES(vccc::vtype_convert<int>(v)[1] == 3);
