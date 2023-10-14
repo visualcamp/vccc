@@ -1,0 +1,4 @@
+var structvccc_1_1internal_1_1math_1_1traits_3_01_matrix_sub_3_01_lhs_type_00_01_rhs_type_01_4_01_4 =
+[
+    [ "value_type", "structvccc_1_1internal_1_1math_1_1traits_3_01_matrix_sub_3_01_lhs_type_00_01_rhs_type_01_4_01_4.html#ae3dd5042c51dc2ee31e3fb37af65bc26", null ]
+];

@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['sequence_0',['Integer Sequence',['../group__utility__sequence.html',1,'']]],
+  ['signal_1',['signal',['../group__signal.html',1,'']]],
+  ['standard_20deviation_2',['standard deviation',['../group__numeric__stddev.html',1,'']]],
+  ['static_5fmax_3',['static_max',['../group__type__traits__static__max.html',1,'']]],
+  ['static_5fmin_4',['static_min',['../group__type__traits__static__min.html',1,'']]],
+  ['std_3a_3aget_5',['std::get',['../group__type__support__get.html',1,'']]],
+  ['std_3a_3aget_20cv_3a_3amatx_6',['std::get(cv::Matx)',['../group__type__support__get__cv__matx.html',1,'']]],
+  ['std_3a_3aget_20cv_3a_3apoint3_5f_7',['std::get(cv::Point3_)',['../group__type__support__at__cv__point3.html',1,'']]],
+  ['std_3a_3aget_20cv_3a_3apoint_5f_8',['std::get(cv::Point_)',['../group__type__support__at__cv__point.html',1,'']]],
+  ['std_3a_3aget_20cv_3a_3asize_5f_9',['std::get(cv::Size_)',['../group__type__support__get__cv__size.html',1,'']]],
+  ['std_3a_3aget_20cv_3a_3avec_10',['std::get(cv::Vec)',['../group__type__support__at__cv__vec.html',1,'']]],
+  ['std_3a_3atuple_5felement_11',['std::tuple_element',['../group__type__support__tuple__element.html',1,'']]],
+  ['std_3a_3atuple_5felement_20cv_3a_3amatx_12',['std::tuple_element&lt;cv::Matx&gt;',['../group__type__support__tuple__element__cv__matx.html',1,'']]],
+  ['std_3a_3atuple_5felement_20cv_3a_3apoint3_5f_13',['std::tuple_element&lt;cv::Point3_&gt;',['../group__type__support__tuple__element__cv__point3.html',1,'']]],
+  ['std_3a_3atuple_5felement_20cv_3a_3apoint_5f_14',['std::tuple_element&lt;cv::Point_&gt;',['../group__type__support__tuple__element__cv__point.html',1,'']]],
+  ['std_3a_3atuple_5felement_20cv_3a_3asize_5f_15',['std::tuple_element&lt;cv::Size_&gt;',['../group__type__support__tuple__element__cv__size.html',1,'']]],
+  ['std_3a_3atuple_5felement_20cv_3a_3avec_16',['std::tuple_element&lt;cv::Vec&gt;',['../group__type__support__tuple__element__cv__vec.html',1,'']]],
+  ['std_3a_3atuple_5fsize_17',['std::tuple_size',['../group__type__support__tuple__size.html',1,'']]],
+  ['std_3a_3atuple_5fsize_20cv_3a_3amatx_18',['std::tuple_size&lt;cv::Matx&gt;',['../group__type__support__tuple__size__cv__matx.html',1,'']]],
+  ['std_3a_3atuple_5fsize_20cv_3a_3apoint3_5f_19',['std::tuple_size&lt;cv::Point3_&gt;',['../group__type__support__tuple__size__cv__point3.html',1,'']]],
+  ['std_3a_3atuple_5fsize_20cv_3a_3apoint_5f_20',['std::tuple_size&lt;cv::Point_&gt;',['../group__type__support__tuple__size__cv__point.html',1,'']]],
+  ['std_3a_3atuple_5fsize_20cv_3a_3asize_5f_21',['std::tuple_size&lt;cv::Size_&gt;',['../group__type__support__tuple__size__cv__size.html',1,'']]],
+  ['std_3a_3atuple_5fsize_20cv_3a_3avec_22',['std::tuple_size&lt;cv::Vec&gt;',['../group__type__support__tuple__size__cv__vec.html',1,'']]],
+  ['sum_23',['sum',['../group__numeric__sum.html',1,'']]],
+  ['support_24',['type support',['../group__type__support.html',1,'']]]
+];
