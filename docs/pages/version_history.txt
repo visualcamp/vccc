@@ -2,7 +2,7 @@
 \page version_history Version History
 
 Versions:
-    - 1.0
+    - 1.0 (2023.10.14)
         - Common
             - All libraries are moved under directory \ref include
             - Applied consistent naming convention
