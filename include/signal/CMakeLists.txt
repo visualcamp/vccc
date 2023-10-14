@@ -15,3 +15,5 @@ target_link_libraries(vccc_signal INTERFACE VCCC::optional)
 if(VCCC_RUN_TEST)
     add_subdirectory(test)
 endif()
+
+target_link_libraries(vccc INTERFACE vccc_signal)

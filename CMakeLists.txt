@@ -75,10 +75,6 @@ ENDMACRO()
 
 SUBDIRLIST(SUBDIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-SET(libraries_list "")
-
 FOREACH(subdir ${SUBDIRS})
     ADD_SUBDIRECTORY(${subdir})
-    LIST(APPEND libraries_list "VCCC::${subdir}")
 ENDFOREACH()
-target_link_libraries(vccc INTERFACE ${libraries_list} Boost::predef Boost::pfr)
