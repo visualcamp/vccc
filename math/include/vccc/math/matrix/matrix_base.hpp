@@ -6,6 +6,7 @@
 # define VCCC_MATH_MAT_EXPRESSION_HPP
 #
 # include <cstddef>
+# include <tuple>
 # include <type_traits>
 #
 # include "vccc/math/matrix/forward_declare.hpp"
@@ -59,7 +60,20 @@ std::false_type is_matrix_impl(...);
 template<typename T>
 struct is_matrix : decltype(::vccc::internal::math::is_matrix_impl(std::declval<T>())) {};
 
+} // namespace vccc
+
+template<typename Derived>
+struct std::tuple_size<vccc::MatrixBase<Derived>>
+  : std::integral_constant<std::size_t, vccc::MatrixBase<Derived>::size> {};
+
+namespace std {
+
+template<std::size_t I, typename Derived>
+constexpr inline std::enable_if_t<(I < vccc::MatrixBase<Derived>::size), const typename vccc::MatrixBase<Derived>::value_type&>
+get(const vccc::MatrixBase<Derived>& m) {
+  return m[I];
 }
 
+} // namespace std
 
 #endif //VCCC_MATH_MAT_EXPRESSION_HPP

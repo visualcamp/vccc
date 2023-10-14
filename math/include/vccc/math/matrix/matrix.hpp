@@ -5,11 +5,11 @@
 # ifndef VCCC_MATH_MATRIX_MATRIX_HPP
 # define VCCC_MATH_MATRIX_MATRIX_HPP
 #
+# include <cstddef>
+# include <tuple>
 # include <utility>
 #
 # include "vccc/math/matrix/matrix_base.hpp"
-# include "vccc/math/matrix/matrix_assigner.hpp"
-# include "vccc/math/matrix/assert.hpp"
 
 namespace vccc {
 
@@ -29,17 +29,15 @@ struct traits<Matrix<T, m, n>> {
   using value_type = T;
 };
 
-}} // namespace internal::math
-
 struct matrix_ctor_all_t {};
 struct matrix_ctor_diag_t {};
-struct matrix_ctor_matmul_t {};
-struct matrix_ctor_array_t {};
+struct matrix_ctor_indexable_t {};
 
 constexpr matrix_ctor_all_t matrix_ctor_all;
 constexpr matrix_ctor_diag_t matrix_ctor_diag;
-constexpr matrix_ctor_matmul_t matrix_ctor_matmul;
-constexpr matrix_ctor_array_t matrix_ctor_array;
+constexpr matrix_ctor_indexable_t matrix_ctor_indexable;
+
+}} // namespace internal::math
 
 /// @addtogroup math_matrix
 /// @{
@@ -65,6 +63,9 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
   using base_type::size;
   using base_type::shortdim;
 
+  template<typename U, int p, int q>
+  friend class Matrix;
+
   /**
    * Create a zero matrix
    */
@@ -87,26 +88,70 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
   constexpr Matrix(T v0, T v1, T v2, T v3, T v4, T v5, T v6, T v7, T v8, T v9, T v10, T v11, T v12, T v13, T v14);
   constexpr Matrix(T v0, T v1, T v2, T v3, T v4, T v5, T v6, T v7, T v8, T v9, T v10, T v11, T v12, T v13, T v14, T v15);
 
-  constexpr explicit Matrix(const T(& arr)[size])
-    : Matrix(matrix_ctor_array, arr, std::make_index_sequence<size>{}) {}
+  /**
+   * Construct from an array.
+   *
+   * If the size of an array is smaller than the size of the matrix,
+   * remaining elements is initialized to 0
+   *
+   * This constructor does not participate in overload resolution if the
+   * size of an array is greater than the size of the matrix.
+   *
+   * @tparam N
+   * @param arr
+   */
+  template<std::size_t N, std::enable_if_t<(N <= m * n), int> = 0>
+  constexpr explicit Matrix(const T(& arr)[N])
+    : Matrix(internal::math::matrix_ctor_indexable, arr, std::make_index_sequence<N>{}, std::true_type{}) {}
 
-  template<std::size_t N, std::size_t... I>
-  constexpr Matrix(matrix_ctor_array_t, const T(& arr)[N], std::index_sequence<I...>)
-      : data{((void)I, arr[I])...} {}
+  /**
+   * Construct from matrix expression
+   *
+   * @tparam E
+   * @param expr
+   */
+  template<typename E, std::enable_if_t<
+      internal::math::is_same_size<matrix_type, E>::value &&
+      internal::math::is_same_type<matrix_type, E>::value, int> = 0>
+  constexpr Matrix(const MatrixBase<E>& expr)
+      : Matrix(internal::math::matrix_ctor_indexable, expr, std::make_index_sequence<size>{}, internal::math::is_alias_safe_t<E>{}) {}
 
-  constexpr Matrix(matrix_ctor_all_t, T value);
-  constexpr Matrix(matrix_ctor_diag_t, const diag_type& value);
-  constexpr Matrix(matrix_ctor_all_t, matrix_ctor_diag_t, T value);
-
-  template<typename E, std::enable_if_t<internal::math::is_same_size<matrix_type, E>::value, int> = 0>
-  constexpr Matrix(const MatrixBase<E>& expr) {
-    MatrixAssigner::assign(expr, *this);
+  /**
+   * Assign from matrix expression
+   *
+   * @tparam E
+   * @param expr
+   * @return *this
+   */
+  template<typename E, std::enable_if_t<
+      internal::math::is_same_size<matrix_type, E>::value &&
+      internal::math::is_same_type<matrix_type, E>::value, int> = 0>
+  constexpr Matrix& operator=(const MatrixBase<E>& expr) {
+    Assign(expr, internal::math::is_alias_safe<E>{});
+    return *this;
   }
 
-  template<typename E, std::enable_if_t<internal::math::is_same_size<matrix_type, E>::value, int> = 0>
-  constexpr Matrix& operator=(const MatrixBase<E>& expr) {
-    MatrixAssigner::assign(expr, *this);
-    return *this;
+  /**
+   * Create a matrix with a different type
+   *
+   * @tparam U New type
+   * @return Matrix<U, m, n>
+   */
+  template<typename U, std::enable_if_t<std::is_constructible<U, const value_type&>::value, int> = 0>
+  constexpr Matrix<U, m, n> AsType() const {
+    return Matrix<U, m, n>(internal::math::matrix_ctor_indexable, *this, std::make_index_sequence<m*n>{}, std::true_type{});
+  }
+
+  /**
+   * Create a matrix with a different shape but same size
+   *
+   * @tparam rows New rows
+   * @tparam cols New columns
+   * @return
+   */
+  template<int rows, int cols = (m * n) / rows, std::enable_if_t<m * n == rows * cols, int> = 0>
+  constexpr Matrix<T, rows, cols> Reshape() const {
+    return Matrix<T, rows, cols>(internal::math::matrix_ctor_indexable, *this, std::make_index_sequence<m*n>{}, std::true_type{});
   }
 
 //  inline MatrixProxyNocopy<matrix_type> noAlias() {
@@ -117,7 +162,7 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
    * Create all-value matrix
    */
   constexpr static Matrix all(T value) {
-    return Matrix<T, m, n>(matrix_ctor_all, value);
+    return Matrix(internal::math::matrix_ctor_all, value, std::make_index_sequence<size>{});
   }
 
   /**
@@ -138,7 +183,7 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
    * Create a diagonal matrix
    */
   constexpr static Matrix diag(const diag_type& value) {
-    return Matrix<T, m, n>(matrix_ctor_diag, value);
+    return Matrix(internal::math::matrix_ctor_diag, value);
   }
 
   /**
@@ -146,9 +191,9 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
    */
   template<typename Dummy = void, std::enable_if_t<
       std::is_void<Dummy>::value &&
-      (matrix_type::rows == matrix_type::cols), int> = 0>
+      (n == m), int> = 0>
   constexpr static Matrix eye() {
-    return Matrix<T, m, n>(matrix_ctor_all, matrix_ctor_diag, 1);
+    return Matrix(internal::math::matrix_ctor_all, internal::math::matrix_ctor_diag, 1);
   }
 
   constexpr       value_type& operator[](std::size_t i)       noexcept { return data[i]; }
@@ -160,18 +205,52 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
   constexpr       value_type& operator()(std::size_t i, std::size_t j)       noexcept { return data[i * matrix_type::cols + j]; }
   constexpr const value_type& operator()(std::size_t i, std::size_t j) const noexcept { return data[i * matrix_type::cols + j]; }
 
-  /**
-   * Create a matrix with a different type
-   *
-   * @tparam U New type
-   * @return Matrix<U, m, n>
-   */
-  template<typename U>
-  Matrix<U, m, n> AsType() const {
-    return Matrix<U, m, n>(*this);
+ private:
+  template<typename U, std::size_t... I>
+  constexpr Matrix(internal::math::matrix_ctor_indexable_t, const U& v, std::index_sequence<I...>, std::true_type)
+      : data{((void)I, static_cast<value_type>(v[I]))...} {}
+
+  // TODO: Optimize
+  template<typename U, std::size_t... I>
+  constexpr Matrix(internal::math::matrix_ctor_indexable_t, const U& v, std::index_sequence<I...>, std::false_type)
+      : data{} {
+    auto copy = this->derived();
+    for(int i=0; i<std::index_sequence<I...>::size(); ++i)
+      copy[i] = v[i];
+    for(int i=0; i<std::index_sequence<I...>::size(); ++i)
+      (*this)[i] = std::move(copy[i]);
   }
 
- private:
+  template<std::size_t... I>
+  constexpr Matrix(internal::math::matrix_ctor_all_t, const T& value, std::index_sequence<I...>)
+      : data{((void)I, value)...} {}
+
+  constexpr Matrix(internal::math::matrix_ctor_diag_t, const diag_type& value) : data{} {
+    for (int i = 0; i < shortdim; ++i)
+      data[i * rows + i] = value[i];
+  }
+
+  constexpr Matrix(internal::math::matrix_ctor_all_t, internal::math::matrix_ctor_diag_t, const T& value) : data{} {
+    for (int i = 0; i < shortdim; ++i)
+      data[i * rows + i] = value;
+  }
+
+  template<typename E>
+  constexpr void Assign(const MatrixBase<E>& expr, std::true_type) {
+    for(int i=0; i<size; ++i)
+      (*this)[i] = expr[i];
+  }
+
+  // TODO: Optimize
+  template<typename E>
+  constexpr void Assign(const MatrixBase<E>& expr, std::false_type) {
+    auto copy = this->derived();
+    for(int i=0; i<matrix_type::size; ++i)
+      copy[i] = expr[i];
+    for(int i=0; i<matrix_type::size; ++i)
+      (*this)[i] = std::move(copy[i]);
+  }
+
   T data[m * n];
 };
 
@@ -341,30 +420,6 @@ constexpr Matrix<T, m, n>::Matrix(
            std::move(v8),  std::move(v9),  std::move(v10), std::move(v11),
            std::move(v12), std::move(v13), std::move(v14), std::move(v15)} {}
 
-template<typename T, int m, int n>
-constexpr Matrix<T, m, n>::Matrix(matrix_ctor_all_t, value_type value)
-  : data{}
-{
-  for (int i = 0; i < size; ++i)
-    data[i] = value;
-}
-
-template<typename T, int m, int n>
-constexpr Matrix<T, m, n>::Matrix(matrix_ctor_all_t, matrix_ctor_diag_t, value_type value)
-  : data{}
-{
-  for (int i = 0; i < shortdim; ++i)
-    data[i * rows + i] = value;
-}
-
-template<typename T, int m, int n>
-constexpr Matrix<T, m, n>::Matrix(matrix_ctor_diag_t, const Matrix::diag_type& value)
-  : data{}
-{
-  for (int i = 0; i < shortdim; ++i)
-    data[i * cols + i] = value[i];
-}
-
 
 //! matrix out-of-class operations
 
@@ -372,8 +427,6 @@ template<typename T, int m, int n>
 static inline
 Matrix<T, m, n>&
 operator *= (Matrix<T, m, n>& mat, T val) {
-  // TODO: use MatrixAssigner or raw access?
-//  MatrixAssigner::assign(mat*val, mat);
   for(int i=0; i<mat.size; ++i)
     mat[i] *= val;
   return mat;
@@ -406,8 +459,38 @@ operator -= (Matrix<T, m, n>& mat, const MatrixBase<E>& expr) {
   return mat;
 }
 
+} // namespace vccc
 
+template<typename T, int m, int n>
+struct std::tuple_size<vccc::Matrix<T, m, n>>
+  : std::integral_constant<std::size_t, m * n> {};
 
+namespace std {
+
+template<std::size_t I, typename T, int m, int n>
+constexpr inline std::enable_if_t<(I < m * n), typename vccc::Matrix<T, m, n>::value_type&>
+get(vccc::Matrix<T, m, n>& matrix) {
+  return matrix[I];
 }
+
+template<std::size_t I, typename T, int m, int n>
+constexpr inline std::enable_if_t<(I < m * n), const typename vccc::Matrix<T, m, n>::value_type&>
+get(const vccc::Matrix<T, m, n>& matrix) {
+  return matrix[I];
+}
+
+template<std::size_t I, typename T, int m, int n>
+constexpr inline std::enable_if_t<(I < m * n), typename vccc::Matrix<T, m, n>::value_type&&>
+get(vccc::Matrix<T, m, n>&& matrix) {
+  return std::move(matrix[I]);
+}
+
+template<std::size_t I, typename T, int m, int n>
+constexpr inline std::enable_if_t<(I < m * n), const typename vccc::Matrix<T, m, n>::value_type&&>
+get(const vccc::Matrix<T, m, n>&& matrix) {
+  return std::move(matrix[I]);
+}
+
+} // namespace std
 
 # endif //VCCC_MATH_MATRIX_MATRIX_HPP

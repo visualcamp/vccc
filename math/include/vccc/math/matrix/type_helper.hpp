@@ -54,6 +54,12 @@ struct is_same_size_impl
 template<typename A, typename B>
 struct is_same_size : is_same_size_impl<traits<A>, traits<B>> {};
 
+template<typename TL, typename TR>
+struct is_same_type_impl : std::is_same<typename TL::value_type, typename TR::value_type> {};
+
+template<typename A, typename B>
+struct is_same_type : is_same_type_impl<traits<A>, traits<B>> {};
+
 }} // namespace internal::math
 } // namespace vccc
 
