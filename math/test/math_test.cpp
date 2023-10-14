@@ -84,6 +84,7 @@ int main() {
   TEST_ENSURES((vccc::Matrix<int, 3, 3>::all(3) == vccc::Matrix<int, 3, 3>(3,3,3, 3,3,3, 3,3,3)));
   TEST_ENSURES((vccc::Matrix<int, 3, 3>::diag({1,2,3}) == vccc::Matrix<int, 3, 3>(1,0,0, 0,2,0, 0,0,3)));
   TEST_ENSURES((vccc::Matrix<int, 3, 4>::diag({1,2,3}) == vccc::Matrix<int, 3, 4>(1,0,0,0, 0,2,0,0, 0,0,3,0)));
+  TEST_ENSURES((vccc::Matrix<int, 4, 3>::diag({1,2,3}) == vccc::Matrix<int, 4, 3>(1,0,0, 0,2,0, 0,0,3, 0,0,0)));
 
   auto M3 = M;
   M3 *= 2;

@@ -227,12 +227,12 @@ class Matrix : public MatrixBase<Matrix<T, m, n>> {
 
   constexpr Matrix(internal::math::matrix_ctor_diag_t, const diag_type& value) : data{} {
     for (int i = 0; i < shortdim; ++i)
-      data[i * rows + i] = value[i];
+      data[i * cols + i] = value[i];
   }
 
   constexpr Matrix(internal::math::matrix_ctor_all_t, internal::math::matrix_ctor_diag_t, const T& value) : data{} {
     for (int i = 0; i < shortdim; ++i)
-      data[i * rows + i] = value;
+      data[i * cols + i] = value;
   }
 
   template<typename E>
