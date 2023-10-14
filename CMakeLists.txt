@@ -62,18 +62,18 @@ endif()
 
 
 # add modules
-MACRO(SUBDIRLIST result curdir)
-    FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
+MACRO(SUBDIRLIST result dir)
+    FILE(GLOB children RELATIVE ${dir} ${dir}/*)
     SET(dirlist "")
     FOREACH(child ${children})
-        IF(IS_DIRECTORY ${curdir}/${child} AND EXISTS ${curdir}/${child}/CMakeLists.txt)
-            LIST(APPEND dirlist "${child}")
+        IF(IS_DIRECTORY ${dir}/${child} AND EXISTS ${dir}/${child}/CMakeLists.txt)
+            LIST(APPEND dirlist "${dir}/${child}")
         ENDIF()
     ENDFOREACH()
     SET(${result} ${dirlist})
 ENDMACRO()
 
-SUBDIRLIST(SUBDIRS ${CMAKE_CURRENT_SOURCE_DIR})
+SUBDIRLIST(SUBDIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 SET(libraries_list "")
 
