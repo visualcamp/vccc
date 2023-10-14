@@ -197,12 +197,12 @@ auto resize(const cv::Point_<T>& from) {
   return cv::Point3_<T>(from.x, from.y, 0);
 }
 
-template<int new_size, typename T, VCCC_ENABLE_IF(new_size==2)>
+template<int new_size, typename T, std::enable_if_t<new_size == 2, int> = 0>
 inline auto resize(const cv::Point3_<T>& from){
   return cv::Point_<T>(from.x, from.y);
 }
 
-template<int new_size, typename T, VCCC_ENABLE_IF(new_size==3)>
+template<int new_size, typename T, std::enable_if_t<new_size == 3, int> = 0>
 inline auto resize(const cv::Point3_<T>& from){
   return from;
 }
