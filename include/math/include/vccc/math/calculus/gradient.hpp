@@ -41,7 +41,7 @@ template<typename T, typename DifferentialCategory = differential_symmetric_t,
 inline auto gradient(Func f, std::tuple<Vars...> vars, Args&&... args) {
   static_assert(negation<disjunction<std::is_reference<Vars>...>>::value,
                 "tuple element of vars must not be a reference vccc::gradient<>");
-  static_assert(negation<disjunction<std::is_same<T, Vars>...>>::value,
+  static_assert(conjunction<std::is_same<T, Vars>...>::value,
                 "tuple element of vars type must be same with T vccc::gradient<>");
   return internal::math::gradientImpl<T, DifferentialCategory>(
       f,

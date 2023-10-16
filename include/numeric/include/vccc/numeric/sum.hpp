@@ -89,7 +89,7 @@ constexpr auto sum(InputIterator first, InputIterator last, UnaryOperation unary
 @param unary_op unary operator
 @return         sum
 */
-template<typename ...Args, std::enable_if_t<!is_iterable<Args...>::value, int> = 0>
+template<typename ...Args, std::enable_if_t<negation<disjunction<is_iterable<Args>...>>::value, int> = 0>
 constexpr inline auto sum(const Args&... args) {
   return impl::sumImpl(args...);
 }
