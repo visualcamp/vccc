@@ -29,7 +29,7 @@ jobs:
         git commit -a -m "Add changes"
 
     - name: Push changes
-      uses: ad-m/github-push-action@master
+      uses: ad-m/github-push-action@v0.7.0 # https://github.com/ad-m/github-push-action/issues/186
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: release
