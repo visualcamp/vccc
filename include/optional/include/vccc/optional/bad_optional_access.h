@@ -9,6 +9,12 @@
 
 namespace vccc {
 
+//! @addtogroup optional
+//! @{
+
+/**
+ * @brief exception indicating checked access to an optional that doesn't contain a value
+ */
 class bad_optional_access : public std::exception {
  public:
   bad_optional_access() noexcept = default;
@@ -20,6 +26,8 @@ class bad_optional_access : public std::exception {
   }
 };
 
-}
+//! @} optional
+
+} // namespace vccc
 
 # endif // VCCC_OPTIONAL_BAD_OPTIONAL_ACCESS_H_

@@ -3,9 +3,13 @@
 
 \tableofcontents
 
-\section version_1_0_1_0 v1.0.1.0 (2023.10.26)
+\section version_1_0_1_1 v1.0.1.1 (2023.10.26)
+- Documentation
+    - Fix typos
+
+\section version_1_0_1_0 v1.0.1 (2023.10.26)
 - \subpage numeric
-    - Add \ref float_equal and \ref float_equal_to
+    - Add \ref vccc::float_equal "float_equal" and \ref vccc::float_equal_to "float_equal_to"
 
 - Documentation
     - Add automatic deployment of documents to stage host on pull request
@@ -13,7 +17,7 @@
     - Documentation layout overhaul
         - Used <a href="https://github.com/jothepro/doxygen-awesome-css">jothepro/doxygen-awesome-css</a>
 
-\section version_1_0_0_0 v1.0.0.0 (2023.10.14)
+\section version_1_0_0_0 v1.0.0 (2023.10.14)
 - Common
     - All libraries are moved under directory \ref include
     - Applied consistent naming convention

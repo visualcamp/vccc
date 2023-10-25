@@ -15,6 +15,13 @@
 
 namespace std {
 
+//! @addtogroup optional
+//! @{
+
+/**
+ * @brief hash support for std::optional
+ * @tparam T
+ */
 template<typename T>
 struct hash<vccc::optional<T>> : vccc::internal::optional::hash_constructible<std::remove_const_t<T>> {
   using argument_type = vccc::optional<T>;
@@ -24,6 +31,8 @@ struct hash<vccc::optional<T>> : vccc::internal::optional::hash_constructible<st
     return key.has_value() ? ::std::hash<std::remove_const_t<T>>()(*key) : 0;
   }
 };
+
+//! @} optional
 
 } // namespace std
 

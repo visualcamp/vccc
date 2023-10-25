@@ -11,6 +11,9 @@
 
 namespace vccc {
 
+//! @addtogroup directory
+//! @{
+
 class directory {
  public:
   using iterator = std::filesystem::directory_iterator;
@@ -122,6 +125,8 @@ class directory {
   }
 
 };
+
+//! @} directory
 
 } // namespace vccc
 

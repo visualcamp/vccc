@@ -19,6 +19,17 @@
 
 namespace vccc {
 
+//! @addtogroup optional
+//! @{
+
+/**
+ * @brief a wrapper that may or may not hold an object
+ *
+ * See [std::optional](https://en.cppreference.com/w/cpp/utility/optional)
+ * for more information
+ *
+ * @tparam T
+ */
 template<typename T>
 class optional :
   private internal::optional::move_assign<T>,
@@ -525,6 +536,8 @@ template<typename T, typename U>
 constexpr inline bool operator>=(const T& value, const optional<U>& opt) {
   return bool(opt) ? value >= opt : true;
 }
+
+//! @} optional
 
 } // namespace vccc
 
