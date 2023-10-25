@@ -14,7 +14,7 @@
 
 /**
 @defgroup numeric numeric
-
+@brief Numerical algorithm libraries
 most functions support both iterator and variadics
 */
 

@@ -10,6 +10,7 @@
 
 /**
 @defgroup random random
+@brief Random algorithms
 */
 
 # endif // VCCC_RANDOM_HPP

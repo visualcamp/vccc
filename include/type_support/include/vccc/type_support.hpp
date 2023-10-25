@@ -16,6 +16,7 @@
 
 /**
 @defgroup type_support type support
+@brief Syntax sugar libraries
 */
 
 # endif // VCCC_TYPE_SUPPORT_HPP

@@ -11,6 +11,8 @@
 
 /**
 @defgroup utility utility
+@brief Utility libraries
+
 @{
     @defgroup utility_assert Runtime Assertion
     @defgroup utility_sequence Integer Sequence

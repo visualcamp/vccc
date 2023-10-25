@@ -3,8 +3,17 @@
 
 \tableofcontents
 
+\section Overview
+VCCC is a cross-platform header-only library consisting of several modules written C++14. <br>
+It provides various algorithms, implementing C++17 and C++20 feature in C++14.
+
+\section compiler_support Compiler Support
+- GCC 6.0 or above
+- Clang 8.0 or above
+- MSVC 15.0 or above
+- Emscripten 2.0.14 or above (below versions are not tested)
+
 \section Modules
-- \subpage signal. Implementation of `boost::signals2`
 - \subpage functional. Implementation of STL header `<functional>`
 - \subpage literal. Python-like `_format` library
 - \subpage log. Cross-platform logging library
@@ -13,7 +22,8 @@
 - \subpage optional. Implementation of STL header `<optional>`
 - \subpage random. Random algorithms
 - \subpage range. Python-like range class
-- \subpage tuple. Implementation of STL header `<functional>`
+- \subpage signal. Implementation of `boost::signals2`
+- \subpage tuple. Implementation of STL header `<tuple>`
 - \subpage type_support. Syntax sugar for C++
 - \subpage type_traits. Extra type_traits
 - \subpage utility. Utilities
@@ -22,35 +32,7 @@
 \subsection boost_predef Boost.Predef
 - Check OS/Compilers (<a href="https://www.boost.org/doc/libs/1_75_0/libs/predef/doc/index.html">docs</a>)
 
-\section version_history Version History
-\subsection version_1_0 1.0 (2023.10.14)
-- Common
-    - All libraries are moved under directory \ref include
-    - Applied consistent naming convention
-    - Add more comments
-
-- \subpage signal
-    - \subpage signal "Signal" library has moved from experimental to stable library
-    - Fix error while disconnecting an expired slot
-
-- \subpage math
-    - Rename namespace `math_constant` to \ref math_constants "math"
-    - Remove `VCCC_MATH_STATIC_ASSERT`
-    - Remove `VCCC_MATH_ASSERT_1D_MATRIX`
-    - Add \ref vccc::Matrix::AsType() "Matrix::AsType()"
-    - Add \ref vccc::Matrix::Reshape() "Matrix::Reshape()"
-    - Add aliases for `Matrix`
-    - Add overload `std::get` for \ref vccc::Matrix "Matrix"
-    - Add overload `tuple_size` for \ref vccc::Matrix "Matrix"
-    - Add overload `std::get` for \ref vccc::MatrixBase "MatrixBase"
-    - Add overload `tuple_size` for \ref vccc::MatrixBase "MatrixBase"
-    - Fix \ref vccc::Matrix "Matrix" creating from different type of \ref vccc::Matrix "Matrix"
-
-- \subpage type_traits
-    - Remove `VCCC_ENABLE_IF`
-    - Remove `vccc::are_`
-    - Remove `constexpr bool xxx_v`
-
+-----
 © 2023 VisualCamp All Rights Reserved
 
 */
