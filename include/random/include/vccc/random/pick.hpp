@@ -15,7 +15,7 @@ namespace vccc {
 //! @{
 
 /**
-@brief pick k in range [a, b] (not duplicate)
+@brief pick k from int range [a, b] (no duplicates)
 
 Time complexity is \f$O(n)\f$
 

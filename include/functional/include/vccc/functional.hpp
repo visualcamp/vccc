@@ -10,6 +10,9 @@
 /**
 @defgroup functional functional
 @brief Implementation of STL header `<functional>`
+
+See [functional](https://en.cppreference.com/w/cpp/header/functional)
+for more information.
 */
 
 # endif // VCCC_FUNCTIONAL_FUNCTIONAL_HPP

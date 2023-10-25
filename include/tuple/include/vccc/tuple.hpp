@@ -11,7 +11,8 @@
 @defgroup tuple tuple
 @brief Implementation of STL header `<tuple>`
 
-See <a href="https://en.cppreference.com/w/cpp/functional">`<tuple>`</a>
+See [tuple](https://en.cppreference.com/w/cpp/header/tuple)
+for more information.
 */
 
 # endif // VCCC_TUPLE_HPP

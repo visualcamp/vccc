@@ -11,4 +11,5 @@
 
 /**
 @defgroup directory directory
+@brief Abstract directory manager
 */
