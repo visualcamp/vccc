@@ -7,7 +7,11 @@
 - \subpage numeric
     - Add \ref float_equal and \ref float_equal_to
 
-- Automatic deployment of documents to stage host on pull request
+- Documentation
+    - Add automatic deployment of documents to stage host on pull request
+    - Add build timestamp
+    - Documentation layout overhaul
+        - Used <a href="https://github.com/jothepro/doxygen-awesome-css">jothepro/doxygen-awesome-css</a>
 
 \section version_1_0_0_0 v1.0.0.0 (2023.10.14)
 - Common
