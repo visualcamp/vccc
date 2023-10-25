@@ -9,6 +9,7 @@
 
 /**
 @defgroup functional functional
+@brief Implementation of STL header `<functional>`
 */
 
 # endif // VCCC_FUNCTIONAL_FUNCTIONAL_HPP

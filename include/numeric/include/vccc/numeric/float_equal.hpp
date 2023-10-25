@@ -14,6 +14,10 @@
 
 namespace vccc {
 
+//! @addtogroup numeric
+//! @{
+
+//! @cond IGNORED
 namespace detail {
 
 template<typename T, bool v = std::numeric_limits<T>::is_exact>
@@ -39,6 +43,8 @@ struct float_equal_to_impl<T, false> {
 };
 
 } // namespace detail
+
+//! @endcond IGNORED
 
 /**
  * @brief function object implementing approximately equal of x and y
@@ -68,11 +74,11 @@ struct float_equal_to<void> {
 /**
  * @brief Compare if two floating-points are approximately equal
  *
- * Default epsilon values are `4.92157e-03f` for `float` and `6.0554545e-06` for `double` type.
+ * Default epsilon values are `4.92157e-03f` for `float` and `6.0554545e-06` for `double` type. </br>
  * The values must be representable
  *
- * Return true if both values are smaller or same with `epsilon`.
- * Otherwise, return true if `diff <= std::min(std::abs(a), std::abs(b)) * epsilon`, false otherwise
+ * Return `true` if both values are smaller or same with `epsilon`. </br>
+ * Otherwise, return true if `diff <= std::min(std::abs(a), std::abs(b)) * epsilon`, false otherwise </br>
  * where `diff` is `std::abs(a - b)`.
  *
  * @tparam T
@@ -86,6 +92,8 @@ constexpr inline bool
 float_equal(const T& a, const U& b, const E& epsilon = vccc::epsilon<E>()) {
   return float_equal_to<std::common_type_t<T, U, E>>{}(a, b, epsilon);
 }
+
+//! @} numeric
 
 } // namespace vccc
 

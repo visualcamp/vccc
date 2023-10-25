@@ -9,6 +9,7 @@
 
 /**
 @defgroup literal literal
+@brief Python-like `_format` library
 */
 
 # endif // VCCC_LITERAL_HPP

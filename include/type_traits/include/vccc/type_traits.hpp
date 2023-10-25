@@ -29,6 +29,7 @@
 
 /**
 @defgroup type_traits type_traits
+@brief Implementation of `<type_traits>` with some extra features
 */
 
 # endif // VCCC_TYPE_TRAITS_HPP

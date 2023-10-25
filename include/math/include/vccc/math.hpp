@@ -11,6 +11,7 @@
 
 /**
 @defgroup math math
+@brief Mathematics libraries
 */
 
 # endif // VCCC_MATH_HPP

@@ -9,6 +9,7 @@
 
 /**
 @defgroup range range
+@brief Python-like range class (will be deprecated)
 */
 
 # endif // VCCC_RANGE_HPP

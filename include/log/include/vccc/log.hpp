@@ -12,8 +12,8 @@
 
 /**
 @defgroup log log
-
-Depends On: \ref type_traits, boost::predef
+@brief Cross-platform logging library
+Depends On: \ref type_traits, \ref boost_predef
 */
 
 # endif // VCCC_LOG_HPP

@@ -9,6 +9,9 @@
 
 /**
 @defgroup tuple tuple
+@brief Implementation of STL header `<tuple>`
+
+See <a href="https://en.cppreference.com/w/cpp/functional">`<tuple>`</a>
 */
 
 # endif // VCCC_TUPLE_HPP

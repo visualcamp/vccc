@@ -14,7 +14,9 @@
 
 /**
 @defgroup optional optional
-Implementation of <a href="https://en.cppreference.com/w/cpp/utility/optional">std::optional</a>
+@brief Implementation of STL header `<optional>`
+
+See <a href="https://en.cppreference.com/w/cpp/utility/optional">documentation</a> for `std::optional`
 */
 
 # endif // VCCC_OPTIONAL_HPP
