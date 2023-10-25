@@ -14,19 +14,19 @@ It provides various algorithms, implementing C++17 and C++20 feature in C++14.
 - Emscripten 2.0.14 or above (below versions are not tested)
 
 \section Modules
-- \subpage functional. Implementation of STL header [`<functional>`](https://en.cppreference.com/w/cpp/header/functional)
-- \subpage literal. Python-like `_format` library
-- \subpage log. Cross-platform logging library
-- \subpage math. Mathematics
-- \subpage numeric. Numerics
-- \subpage optional. Implementation of STL header [`<optional>`](https://en.cppreference.com/w/cpp/header/optional)
-- \subpage random. Random algorithms
-- \subpage range. Python-like range class
-- \subpage signal. Implementation of [Boost.Signals2](https://www.boost.org/doc/libs/1_83_0/doc/html/signals2.html)
-- \subpage tuple. Implementation of STL header [`<tuple>`](https://en.cppreference.com/w/cpp/header/tuple)
-- \subpage type_support. Syntax sugar for C++
-- \subpage type_traits. Extra type_traits
-- \subpage utility. Utilities
+- \subpage functional. \copybrief functional
+- \subpage literal. \copybrief literal
+- \subpage log. \copybrief log
+- \subpage math. \copybrief math
+- \subpage numeric. \copybrief numeric
+- \subpage optional. \copybrief optional
+- \subpage random. \copybrief random
+- \subpage range. \copybrief range
+- \subpage signal. \copybrief signal
+- \subpage tuple. \copybrief tuple
+- \subpage type_support. \copybrief type_support
+- \subpage type_traits. \copybrief type_traits
+- \subpage utility. \copybrief utility
 
 \section third_party_libraries Third Party Libraries
 \subsection boost_predef Boost.Predef

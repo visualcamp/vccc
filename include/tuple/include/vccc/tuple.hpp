@@ -9,7 +9,7 @@
 
 /**
 @defgroup tuple tuple
-@brief Implementation of STL header `<tuple>`
+@brief Implementation of STL header [`<tuple>`](https://en.cppreference.com/w/cpp/header/tuple)
 
 See [tuple](https://en.cppreference.com/w/cpp/header/tuple)
 for more information.

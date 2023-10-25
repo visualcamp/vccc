@@ -9,7 +9,7 @@
 
 /**
 @defgroup functional functional
-@brief Implementation of STL header `<functional>`
+@brief Implementation of STL header [`<functional>`](https://en.cppreference.com/w/cpp/header/functional)
 
 See [functional](https://en.cppreference.com/w/cpp/header/functional)
 for more information.
