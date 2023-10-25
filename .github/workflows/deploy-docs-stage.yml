@@ -18,6 +18,11 @@ jobs:
     - name: Delete unnecessary workflow files
       run: rm -rf ${{ github.workspace }}/.github/workflows
 
+    - name: Change hyperlinks
+      run: |
+        sed -i 's_vccc/html_${{ secrets.VCCC_DEPLOY_STAGE_GITHUB }}/html_g' README.md
+        sed -i 's_vccc/html_${{ secrets.VCCC_DEPLOY_STAGE_GITHUB }}/html_g' docs/index.html
+
     - name: Delete existing docs
       run: rm -rf ${{ github.workspace }}/docs/html
 
