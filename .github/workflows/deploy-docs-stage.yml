@@ -1,0 +1,48 @@
+name: Deploy-Stage
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: [ self-hosted, doxygen ]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Delete unnecessary workflow files
+      run: rm -rf ${{ github.workspace }}/.github/workflows
+
+    - name: Change hyperlinks
+      run: |
+        sed -i 's_visualcamp.github.io/vccc_${{ secrets.VCCC_DEPLOY_STAGE_HOST }}_g' README.md
+        sed -i 's_visualcamp.github.io/vccc_${{ secrets.VCCC_DEPLOY_STAGE_HOST }}_g' docs/index.html
+
+    - name: Change header
+      run: |
+        sed -i 's_<!--STAGE WARNING HERE-->_<div style="color: #ff0000">NOTE: This is not a stable document!</div>_g' docs/doxygen-awesome-css/doxygen-custom/header.html
+
+    - name: Delete existing docs
+      run: rm -rf ${{ github.workspace }}/docs/html
+
+    - name: Re-run doxygen
+      run: doxygen
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "noreply@visual.camp"
+        git config --local user.name "vccc-docs-generator"
+        git add docs/*
+        git commit -a -m "Add changes"
+
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.7.0 # https://github.com/ad-m/github-push-action/issues/186
+      with:
+        github_token: ${{ secrets.ACCESS_TOKEN }}
+        repository: ${{ secrets.VCCC_DEPLOY_STAGE_GITHUB }}
+        force: true
