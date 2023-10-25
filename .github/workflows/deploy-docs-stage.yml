@@ -23,6 +23,10 @@ jobs:
         sed -i 's_visualcamp.github.io/vccc_${{ secrets.VCCC_DEPLOY_STAGE_HOST }}_g' README.md
         sed -i 's_visualcamp.github.io/vccc_${{ secrets.VCCC_DEPLOY_STAGE_HOST }}_g' docs/index.html
 
+    - name: Change header
+      run: |
+        sed -i 's_<!--STAGE WARNING HERE-->_<div style="color: #ff0000">NOTE: This is not a stable document!</div>_g' docs/doxygen-awesome-css/doxygen-custom/header.html
+
     - name: Delete existing docs
       run: rm -rf ${{ github.workspace }}/docs/html
 
