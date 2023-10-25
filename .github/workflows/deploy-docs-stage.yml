@@ -1,0 +1,44 @@
+name: Deploy-Stage
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: [ self-hosted, doxygen ]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Clone stage document repository
+      run: git clone https://${{ secrets.ACCESS_TOKEN }}@${{ secrets.VCCC_DEPLOY_STAGE_GITHUB }} docs-stage
+
+    - name: Copy contents to new repository
+      run: |
+        rm -rf docs-stage/*
+        rsync -av --progress . docs-stage --exclude docs-stage
+
+    - name: Re-run doxygen
+      working-directory: docs-stage
+      run: doxygen
+
+    - name: Commit changes
+      working-directory: docs-stage
+      run: |
+        git config --local user.email "noreply@visual.camp"
+        git config --local user.name "vccc-docs-generator"
+        git add *
+        git commit -a -m "Add changes"
+
+    - name: Push changes
+      working-directory: docs-stage
+      uses: ad-m/github-push-action@v0.7.0 # https://github.com/ad-m/github-push-action/issues/186
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: release
+        force: true
