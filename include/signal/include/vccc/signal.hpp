@@ -10,7 +10,7 @@
 
 /**
 @defgroup signal signal
-@brief Implementation of `Boost.Signals2`
+@brief Implementation of [Boost.Signals](https://www.boost.org/doc/libs/1_83_0/doc/html/signals2.html)
 
 See [Boost.Signals](https://www.boost.org/doc/libs/1_83_0/doc/html/signals2.html)
 */

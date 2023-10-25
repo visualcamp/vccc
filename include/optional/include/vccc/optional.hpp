@@ -14,7 +14,7 @@
 
 /**
 @defgroup optional optional
-@brief Implementation of STL header `<optional>`
+@brief Implementation of STL header [`<optional>`](https://en.cppreference.com/w/cpp/header/optional)
 
 See [optional](https://en.cppreference.com/w/cpp/header/optional)
 for more information

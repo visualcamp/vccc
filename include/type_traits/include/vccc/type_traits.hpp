@@ -29,7 +29,8 @@
 
 /**
 @defgroup type_traits type_traits
-@brief Implementation of `<type_traits>` with some extra features
+@brief Implementation of STL header
+[`<type_traits>`](https://en.cppreference.com/w/cpp/header/type_traits) with some extra features
 */
 
 # endif // VCCC_TYPE_TRAITS_HPP
