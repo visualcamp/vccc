@@ -3,23 +3,43 @@
   <!-- Navigation index tabs for HTML output -->
   <navindex>
     <tab type="mainpage" visible="yes" title=""/>
-    <tab type="pages" visible="yes" title="" intro=""/>
-    <tab type="modules" visible="yes" title="" intro=""/>
-    <tab type="namespaces" visible="yes" title="">
-      <tab type="namespacelist" visible="yes" title="" intro=""/>
-      <tab type="namespacemembers" visible="yes" title="" intro=""/>
+
+    <tab type="usergroup" visible="yes" title="Modules" url="[none]">
+      <tab type="user" title="signal" url="@ref signal"/>
+      <tab type="user" title="functional" url="@ref functional"/>
+      <tab type="user" title="literal" url="@ref literal"/>
+      <tab type="user" title="log" url="@ref log"/>
+      <tab type="user" title="math" url="@ref math"/>
+      <tab type="user" title="numeric" url="@ref numeric"/>
+      <tab type="user" title="optional" url="@ref optional"/>
+      <tab type="user" title="random" url="@ref random"/>
+      <tab type="user" title="range" url="@ref range"/>
+      <tab type="user" title="tuple" url="@ref tuple"/>
+      <tab type="user" title="type_support" url="@ref type_support"/>
+      <tab type="user" title="type_traits" url="@ref type_traits"/>
+      <tab type="user" title="utility" url="@ref utility"/>
+      <tab type="group" visible="yes" title="">
+        <tab type="grouplist" visible="yes" title="" intro=""/>
+      </tab>
     </tab>
-    <tab type="classes" visible="yes" title="">
-      <tab type="classlist" visible="yes" title="" intro=""/>
-      <tab type="classindex" visible="$ALPHABETICAL_INDEX" title=""/>
-      <tab type="hierarchy" visible="yes" title="" intro=""/>
-      <tab type="classmembers" visible="yes" title="" intro=""/>
+
+    <tab type="usergroup" visible="yes" title="API" url="[none]">
+      <tab type="namespaces" visible="yes" title="">
+        <tab type="namespacelist" visible="yes" title="" intro=""/>
+        <tab type="namespacemembers" visible="yes" title="" intro=""/>
+      </tab>
+      <tab type="classes" visible="yes" title="">
+        <tab type="classlist" visible="yes" title="" intro=""/>
+        <tab type="classindex" visible="$ALPHABETICAL_INDEX" title=""/>
+        <tab type="hierarchy" visible="yes" title="" intro=""/>
+        <tab type="classmembers" visible="yes" title="" intro=""/>
+      </tab>
+      <tab type="files" visible="yes" title="">
+        <tab type="filelist" visible="yes" title="" intro=""/>
+        <tab type="globals" visible="yes" title="" intro=""/>
+      </tab>
+      <tab type="examples" visible="yes" title="" intro=""/>
     </tab>
-    <tab type="files" visible="yes" title="">
-      <tab type="filelist" visible="yes" title="" intro=""/>
-      <tab type="globals" visible="yes" title="" intro=""/>
-    </tab>
-    <tab type="examples" visible="yes" title="" intro=""/>
   </navindex>
 
   <!-- Layout definition for a class page -->

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/media/vc_logo.png"></img></br>
+  <img src="/docs/image/vc_logo_original.png"></img></br>
 </p>
 
 ![develop](https://github.com/visualcamp/vccc/actions/workflows/test-macos.yml/badge.svg?branch=main)

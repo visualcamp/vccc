@@ -1,6 +1,0 @@
-/**
-\page third_parties Third parties
-
-Lists:
-- <a href="https://www.boost.org/doc/libs/1_75_0/libs/predef/doc/index.html">boost::predef</a> For OS check
-*/
