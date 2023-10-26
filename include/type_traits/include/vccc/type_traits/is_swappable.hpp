@@ -8,6 +8,7 @@
 #include <utility>
 #include <type_traits>
 
+#include "vccc/type_traits/is_referenceable.hpp"
 #include "vccc/type_traits/void_t.hpp"
 
 namespace vccc {
@@ -29,12 +30,6 @@ struct is_swappable_with_impl<T, U, void_t<
 template<typename T, typename U>
 using is_swappable_with_impl = swappable_test::is_swappable_with_impl<T, U>;
 
-template<typename T, typename = void>
-struct is_referencable : std::false_type {};
-
-template<typename T>
-struct is_referencable<T, void_t<T&>> : std::true_type {};
-
 } // namespace internal
 
 template<typename T, typename U>
@@ -43,7 +38,7 @@ using is_swappable_with = internal::is_swappable_with_impl<T, U>;
 template<typename T>
 struct is_swappable :
     std::conditional_t<
-        !internal::is_referencable<T>::value,
+        !is_referencable<T>::value,
         std::false_type,
         is_swappable_with<std::add_lvalue_reference_t<T>, std::add_lvalue_reference_t<T>>>{};
 

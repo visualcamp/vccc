@@ -10,5 +10,3 @@ target_link_libraries(vccc_numeric INTERFACE VCCC::type_traits VCCC::math)
 if(VCCC_RUN_TEST)
     add_subdirectory(test)
 endif()
-
-target_link_libraries(vccc INTERFACE vccc_numeric)

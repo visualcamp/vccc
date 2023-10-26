@@ -60,21 +60,16 @@ if(VCCC_RUN_TEST)
 endif()
 
 
-
 # add modules
-MACRO(SUBDIRLIST result dir)
+MACRO(AddModules dir)
     FILE(GLOB children RELATIVE ${dir} ${dir}/*)
     SET(dirlist "")
     FOREACH(child ${children})
         IF(IS_DIRECTORY ${dir}/${child} AND EXISTS ${dir}/${child}/CMakeLists.txt)
-            LIST(APPEND dirlist "${dir}/${child}")
+            add_subdirectory("${dir}/${child}")
+            target_link_libraries(vccc INTERFACE VCCC::${child})
         ENDIF()
     ENDFOREACH()
-    SET(${result} ${dirlist})
 ENDMACRO()
 
-SUBDIRLIST(SUBDIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
-
-FOREACH(subdir ${SUBDIRS})
-    ADD_SUBDIRECTORY(${subdir})
-ENDFOREACH()
+AddModules("${CMAKE_CURRENT_SOURCE_DIR}/include")

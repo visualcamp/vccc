@@ -6,6 +6,9 @@
 # define VCCC_TUPLE_HPP
 #
 # include "vccc/tuple/apply.hpp"
+# include "vccc/tuple/common_type.hpp"
+# include "vccc/tuple/make_from_tuple.hpp"
+# include "vccc/tuple/tuple_like.hpp"
 
 /**
 @defgroup tuple tuple
