@@ -44,14 +44,39 @@ struct is_constructible_from_tuple
  *
  * Construct an object of type T, using the elements of the tuple `t` as the arguments to the constructor.
  *
- * @tparam T
- * @tparam Tuple
  * @param t tuple whose elements to be used as arguments to the constructor of T
  * @return The constructed T object or reference.
+ *
+ * @par Example
+@code{.cpp}
+#include <iostream>
+#include <tuple>
+
+#include "vccc/tuple.hpp"
+
+struct Foo
+{
+    Foo(int first, float second, int third)
+    {
+        std::cout << first << ", " << second << ", " << third << '\n';
+    }
+};
+
+int main()
+{
+    auto tuple = std::make_tuple(42, 3.14f, 0);
+    vccc::make_from_tuple<Foo>(std::move(tuple));
+}
+@endcode
+
+Output:
+@code
+42, 3.14, 0
+@endcode
+ *
  */
-template<typename T, typename Tuple>
-constexpr std::enable_if_t<internal::is_constructible_from_tuple<T, Tuple>::value, T>
-make_from_tuple(Tuple&& t) {
+template<typename T, typename Tuple, std::enable_if_t<internal::is_constructible_from_tuple<T, Tuple>::value, int> = 0>
+constexpr T make_from_tuple(Tuple&& t) {
   return internal::make_from_tuple_impl<T>(
       std::forward<Tuple>(t),
       std::make_index_sequence<std::tuple_size<std::remove_reference_t<Tuple>>::value>{});

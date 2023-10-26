@@ -13,6 +13,9 @@
 
 namespace vccc {
 
+/// @addtogroup tuple
+/// @{
+
 namespace internal {
 
 template<typename T, typename U,
@@ -26,9 +29,19 @@ struct common_type_impl<std::tuple<Ts...>, std::tuple<Us...>, true> {
 
 } // namespace internal
 
+/**
+ * @brief determines the common type of a tuple and a \ref is_tuple_like "\a tuple-like " type
+ *
+ * The common type of two \ref is_tuple_like "\a tuple-like " types is a std::tuple
+ * consists of the common types of all corresponding element type pairs of both types.
+ *
+ * @sa is_tuple_like: @copybrief is_tuple_like
+ */
 template<typename ...Ts, typename ...Us>
 struct common_type<std::tuple<Ts...>, std::tuple<Us...>>
     : internal::common_type_impl<std::tuple<Ts...>, std::tuple<Us...>> {};
+
+/// @}
 
 } // namespace vccc
 
