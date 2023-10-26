@@ -152,8 +152,8 @@
   <!-- Layout definition for a file page -->
   <file>
     <briefdescription visible="no"/>
-    <detaileddescription title=""/>
     <includes visible="$SHOW_INCLUDE_FILES"/>
+    <detaileddescription title=""/>
     <includegraph visible="yes"/>
     <includedbygraph visible="yes"/>
     <sourcelink visible="yes"/>
@@ -189,7 +189,7 @@
 
   <!-- Layout definition for a group page -->
   <group>
-    <briefdescription visible="yes"/>
+    <briefdescription visible="no"/>
     <detaileddescription title=""/>
     <groupgraph visible="no"/>
     <memberdecl>

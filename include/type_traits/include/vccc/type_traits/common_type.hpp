@@ -14,17 +14,102 @@
 namespace vccc {
 
 /**
+ * @addtogroup type_traits
+ * @{
+ * @defgroup group_common_type vccc::common_type
  * @brief determines the common type of a group of types
  *
+ * @code{.cpp}
+ * template< class... T >
+ * struct common_type;
+ * @endcode
  * Determines the common type among all types T..., that is the type all T...
  * can be implicitly converted to. If such a type exists (as determined
  * according to the rules below), the member type names that type. Otherwise,
  * there is no member type.
  *
+ * @par Specializations
+ * @parblock
+ * Users may specialize common_type for types T1 and T2 if
+ * at least one of T1 and T2 depends on a user-defined type, and
+ * std::decay is an identity transformation for both T1 and T2.
+ * If such a specialization has a member named type, it must be a public
+ * and unambiguous member that names a cv-unqualified non-reference type
+ * to which both T1 and T2 are explicitly convertible. Additionally,
+ * vccc::common_type<T1, T2>::type and vccc::common_type<T2, T1>::type must
+ * denote the same type.
  *
+ * A program that adds common_type specializations in violation of these
+ * rules has undefined behavior.
  *
- * @tparam T
+ * The following specializations are already provided by the library:
+ * - <strike>`vccc::common_type<std::pair>`</strike>
+ * - @ref group_common_type_tuple_like "vccc::common_type<\a tuple-like> " @copybrief group_common_type_tuple_like
+ *
+ * @endparblock
+ *
+ * @par Notes
+ * @parblock
+ * For arithmetic types not subject to promotion, the common type may be
+ * viewed as the type of the (possibly mixed-mode) arithmetic expression
+ * such as `T0() + T1() + ... + Tn()`.
+ * @endparblock
+ *
+ * @par Examples
+ * @parblock
+ * Demonstrates mixed-mode arithmetic on a user-defined class:
+ * @code
+#include <iostream>
+#include <type_traits>
+
+#include "vccc/type_traits"
+
+template<class T>
+struct Number { T n; };
+
+template<class T, class U>
+constexpr Number<vccc::common_type_t<T, U>>
+    operator+(const Number<T>& lhs,
+              const Number<U>& rhs)
+{
+    return {lhs.n + rhs.n};
+}
+
+void describe(const char* expr, const Number<int>& x)
+{
+    std::cout << expr << "  is  Number<int>{" << x.n << "}\n";
+}
+
+void describe(const char* expr, const Number<double>& x)
+{
+    std::cout << expr << "  is  Number<double>{" << x.n << "}\n";
+}
+
+int main()
+{
+    Number<int> i1 = {1}, i2 = {2};
+    Number<double> d1 = {2.3}, d2 = {3.5};
+    describe("i1 + i2", i1 + i2);
+    describe("i1 + d2", i1 + d2);
+    describe("d1 + i2", d1 + i2);
+    describe("d1 + d2", d1 + d2);
+}
+ * @endcode
+ * Output:
+ * @code
+i1 + i2  is  Number<int>{3}
+i1 + d2  is  Number<double>{4.5}
+d1 + i2  is  Number<double>{4.3}
+d1 + d2  is  Number<double>{5.8}
+ * @endcode
+ * @endparblock
+ *
+ * @}
  */
+
+/// @addtogroup group_common_type
+/// @{
+
 template<typename ...T>
 struct common_type;
 
@@ -98,6 +183,8 @@ struct common_type<T1, T2, Ts...>
 
 template<typename ...T>
 using common_type_t = typename common_type<T...>::type;
+
+/// @}
 
 } // namespace vccc
 
