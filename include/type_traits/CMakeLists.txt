@@ -9,5 +9,3 @@ target_include_directories(vccc_type_traits INTERFACE include)
 if(VCCC_RUN_TEST)
     add_subdirectory(test)
 endif()
-
-target_link_libraries(vccc INTERFACE vccc_type_traits)

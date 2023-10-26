@@ -5,5 +5,3 @@ add_library(vccc_utility INTERFACE)
 add_library(VCCC::utility ALIAS vccc_utility)
 
 target_include_directories(vccc_utility INTERFACE include)
-
-target_link_libraries(vccc INTERFACE vccc_utility)
