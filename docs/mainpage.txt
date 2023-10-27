@@ -13,7 +13,7 @@ It provides various algorithms, implementing C++17 and C++20 feature in C++14.
 - MSVC 15.0 or above
 - Emscripten 2.0.14 or above (below versions are not tested)
 
-\section Modules
+\section Libraries
 - \subpage functional. \copybrief functional
 - \subpage literal. \copybrief literal
 - \subpage log. \copybrief log
