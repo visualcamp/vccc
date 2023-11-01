@@ -1,6 +1,8 @@
 
 class RealignGroup {
 
+    static kUncategorized = "Uncategorized"
+
     static init() {
         $(function() {
             $(document).ready(function() {
@@ -13,8 +15,8 @@ class RealignGroup {
         document.querySelectorAll(`.memberdecls [id="groups"]`).forEach((node) => {
             node.closest(`tbody`).querySelectorAll(`tr[class*="memitem"]`).forEach((node) => {
                 let category = this.GetGroupCategory(node.getAttribute("class"));
-                let category_id;
 
+                let category_id;
                 switch (category) {
                     case "func":
                         category_id = "func-members"
@@ -24,28 +26,64 @@ class RealignGroup {
                         category_id = "nested-classes"
                         break
 
+                    case "typedef":
+                        category_id = "typedef-members"
+                        break
+
                     default:
                         category_id = category
                         break
                 }
 
-                let memdecl = this.getMemDecl(category_id)
-                if (!memdecl)
-                    memdecl = this.addMemDecl(category_id);
-
-                let next = node.nextSibling ? node.nextSibling.nextSibling : node.nextSibling
-                memdecl.appendChild(node)
-
-                while (next) {
-                    if (next.classList.contains("memitem"))
-                        break
-                    memdecl.appendChild(next)
-                    next = next.nextSibling ? next.nextSibling.nextSibling : next.nextSibling
-                }
+                this.MoveOneGroup(node, category_id)
             })
 
-            node.closest(`.memberdecls`).remove()
         })
+
+        let group = document.querySelector(`.memberdecls [id="groups"]`)
+        if (group) {
+            group.closest(`.memberdecls`).remove()
+        }
+
+        let uncategorized = this.GetMemberDecls(this.kUncategorized)
+        if (uncategorized) {
+            this.MoveDeclToLast(uncategorized)
+        }
+
+        let typedef = this.GetMemberDecls("typedef-members")
+        if (typedef) {
+            this.MoveDeclToLast(typedef)
+        }
+
+    }
+
+    static MoveOneGroup(node, category_id) {
+        let memdecl = this.getMemDecl(category_id)
+        if (!memdecl)
+            memdecl = this.addMemDecl(category_id);
+
+        let next = node.nextSibling ? node.nextSibling.nextSibling : node.nextSibling
+        memdecl.appendChild(node)
+
+        while (next) {
+            if (next.classList.contains("memitem"))
+                break
+            memdecl.appendChild(next)
+            next = next.nextSibling ? next.nextSibling.nextSibling : next.nextSibling
+        }
+    }
+
+    static GetMemberDecls(name) {
+        let header = document.querySelector(`.memberdecls [id="${name}"]`)
+        if (header) {
+            return  header.closest(`.memberdecls`)
+        }
+        return null
+    }
+
+    static MoveDeclToLast(node) {
+        let arr = document.querySelectorAll(`.memberdecls`)
+        arr[arr.length - 1].parentNode.insertBefore(node, arr[arr.length - 1].nextSibling)
     }
 
     static addMemSeparator(node) {
@@ -112,6 +150,6 @@ class RealignGroup {
         //     return arr[arr.length - 1]
         // }
 
-        return "Uncategorized"
+        return this.kUncategorized
     }
 }
