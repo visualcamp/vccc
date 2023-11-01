@@ -15,8 +15,8 @@ class RealignGroup {
         document.querySelectorAll(`.memberdecls [id="groups"]`).forEach((node) => {
             node.closest(`tbody`).querySelectorAll(`tr[class*="memitem"]`).forEach((node) => {
                 let category = this.GetGroupCategory(node.getAttribute("class"));
-                let category_id;
 
+                let category_id;
                 switch (category) {
                     case "func":
                         category_id = "func-members"
