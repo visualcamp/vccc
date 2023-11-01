@@ -65,7 +65,7 @@ class RealignGroup {
         h2.setAttribute("class", "groupheader")
         h2.textContent = name
 
-        this.addPermalinkTo(h2)
+        window.AddPermalink.addPermalinkTo(h2)
 
         let td = document.createElement("td")
         td.setAttribute("colspan", "2")
