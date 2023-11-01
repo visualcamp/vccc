@@ -49,3 +49,5 @@ class DoxygenAwesomeParagraphLink {
         })
     }
 }
+
+window.DoxygenAwesomeParagraphLink = DoxygenAwesomeParagraphLink;
