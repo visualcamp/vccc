@@ -44,11 +44,13 @@ inline T epsilon() {
  * @return
  */
 
-template<typename T, typename U = T>
+template<std::size_t i,
+    typename Tuple, typename T>
 constexpr inline auto
-addEpsilon(T x, U eps = epsilon<U>())
+addEpsilon(Tuple vars, T epsilon)
 {
-  return x + (x == 0 ? eps : x * eps);
+  std::get<i>(vars) += std::get<i>(vars) == 0 ? epsilon : std::get<i>(vars) * epsilon;
+  return vars;
 }
 
 //! @} math

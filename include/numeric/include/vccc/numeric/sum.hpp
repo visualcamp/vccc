@@ -53,9 +53,7 @@ constexpr inline std::decay_t<T> default_value() {
 @param last     ending iterator
 @return         sum
 */
-template<typename InputIterator, std::enable_if_t<conjunction<
-    is_iterable<InputIterator>,
-    std::is_default_constructible<decltype(*std::declval<InputIterator>())>>::value, int> = 0>
+template<typename InputIterator, std::enable_if_t<is_iterable<InputIterator>::value, int> = 0>
 constexpr auto sum(InputIterator first, InputIterator last) {
   auto s = impl::default_value<decltype(*first)>();
   for (; first != last; ++first) {
@@ -71,11 +69,9 @@ constexpr auto sum(InputIterator first, InputIterator last) {
 @param unary_op unary operator
 @return         sum
 */
-template<typename InputIterator, typename UnaryOperation, std::enable_if_t<conjunction<
-    is_iterable<InputIterator>,
-    std::is_default_constructible<decltype(*std::declval<InputIterator>())>>::value, int> = 0>
+template<typename InputIterator, typename UnaryOperation, std::enable_if_t<is_iterable<InputIterator>::value, int> = 0>
 constexpr auto sum(InputIterator first, InputIterator last, UnaryOperation unary_op) {
-  auto s = impl::default_value<decltype(*first)>();
+  auto s = impl::default_value<decltype(unary_op(*first))>();
   for (; first != last; ++first) {
     s += unary_op(*first);
   }

@@ -6,6 +6,7 @@
 # define VCCC_MATH_PARTIAL_DIFF_HPP
 #
 # include <limits>
+#
 # include "vccc/math/calculus/detail/apply.hpp"
 # include "vccc/math/epsilon.hpp"
 # include "vccc/math/matrix.hpp"
