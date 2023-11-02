@@ -72,22 +72,24 @@ class RealignGroup {
             memdecl = this.addMemDecl(categories[0][1], categories[0][0], "h2");
         }
 
+        let tbody = memdecl.querySelector(`tbody`)
+
         if (categories.length > 1) {
             let nested = this.getMemDecl(categories[1][0])
             if (!nested) {
                 let header = this.createHeader(categories[1][1], categories[1][0], "h3")
-                memdecl.querySelector(`tbody`).appendChild(header)
+                tbody.appendChild(header)
             }
         }
 
         let next = node.nextSibling ? node.nextSibling.nextSibling : node.nextSibling
-        memdecl.appendChild(node)
+        tbody.appendChild(node)
 
         // Copy memitem, sep, etc
         while (next) {
             if (next.classList.contains("memitem"))
                 break
-            memdecl.appendChild(next)
+            tbody.appendChild(next)
             next = next.nextSibling ? next.nextSibling.nextSibling : next.nextSibling
         }
     }
