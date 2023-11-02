@@ -13,6 +13,8 @@ namespace vccc {
 
 //! @addtogroup type_traits
 //! @{
+//! @addtogroup type_traits_negation__Operation_on_traits negation
+//! @{
 
 /**
  * negation
@@ -20,6 +22,7 @@ namespace vccc {
  */
 template<typename B> struct negation : bool_constant<!bool(B::value)> {};
 
+//! @}
 //! @} type_traits
 
 } // namespace vccc

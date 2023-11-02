@@ -37,35 +37,35 @@ namespace std {
 @addtogroup type_support
 @{
 
-@addtogroup type_support_tuple_size std::tuple_size
+@addtogroup type_support_tuple_size__class std::tuple_size
 @{
-@addtogroup type_support_tuple_size_cv_matx std::tuple_size<cv::Matx>
+@addtogroup type_support_tuple_size_cv_matx__class std::tuple_size<cv::Matx>
 @{
 */
 template<typename T, int m, int n>
 struct tuple_size<cv::Matx<T, m, n>> : std::integral_constant<size_t, m * n> {};
-//! @} type_support_tuple_size_cv_matx
-//! @} type_support_tuple_size
+//! @}
+//! @}
 
 /**
-@addtogroup type_support_tuple_element std::tuple_element
+@addtogroup type_support_tuple_element__class std::tuple_element
 @{
-@addtogroup type_support_tuple_element_cv_matx std::tuple_element<cv::Matx>
+@addtogroup type_support_tuple_element_cv_matx__class std::tuple_element<cv::Matx>
 @{
 */
 template<size_t I, typename T, int m, int n>
 struct tuple_element<I, cv::Matx<T, m, n>> :
     vccc::internal::tuple_element_impl<I, cv::Matx<T, m, n>, (I < m * n)> {};
-//! @} type_support_tuple_element_cv_matx
-//! @} type_support_tuple_element
+//! @}
+//! @}
 
 
 
 /**
-@addtogroup type_support_get std::get
+@addtogroup type_support_get__func
 @{
 
-@addtogroup type_support_get_cv_matx std::get(cv::Matx)
+@addtogroup type_support_get_cv_matx__func std::get(cv::Matx)
 @{
 */
 template<std::size_t i, typename T, int m, int n>
@@ -92,21 +92,21 @@ get(const cv::Matx<T, m, n>&& matx) noexcept {
   return std::move(matx(i));
 }
 
-//! @} type_support_get_cv_matx
-//! @} type_support_get
+//! @}
+//! @}
 //! @} type_support
 
 } // namespace std
 
 namespace vccc {
 /**
-@addtogroup type_support_at
+@addtogroup type_support_at__func
 @{
-    @defgroup type_support_at_cv_matx vccc::at(cv::Matx)
+    @defgroup type_support_at_cv_matx__func vccc::at(cv::Matx)
     Index-based value accessor
 @}
 
-@addtogroup type_support_at_cv_matx
+@addtogroup type_support_at_cv_matx__func
 @{
 */
 
@@ -142,7 +142,7 @@ at(const cv::Matx<T, m, n>&& matx) {
   return std::move(matx(i, j));
 }
 
-//! @} type_support_at_cv_matx
+//! @}
 
 /** add */
 

@@ -14,11 +14,8 @@ namespace vccc {
 /**
 @addtogroup numeric
 @{
-    @defgroup numeric_sum sum
+    @defgroup numeric_sum__func sum
     @brief calculate sum
-@}
-
-@addtogroup numeric_sum
 @{
 */
 
@@ -111,6 +108,7 @@ template<typename UnaryOperation, typename Arg, typename ...Args>
 constexpr inline auto sum_custom(const UnaryOperation& unary_op, const Arg& arg, const Args&... args) {
   return unary_op(arg) + sum_custom(unary_op, args...);
 }
+/// @}
 
 
 /**
@@ -124,6 +122,10 @@ constexpr T square(const T& val) {
 }
 
 
+/**
+ * @defgroup numeric_square_sum__func square_sum
+ * @{
+ */
 /**
 @brief square sum of iterator [first, last)
 @param first    beginning iterator
@@ -161,6 +163,7 @@ template<typename Arg, typename ...Args, std::enable_if_t<!is_iterable<Arg>::val
 constexpr auto square_sum(const Arg& arg, const Args&... args) {
   return square(arg) + square_sum(args...);
 }
+/// @}
 
 //! @} numeric_sum
 

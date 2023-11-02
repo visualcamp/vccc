@@ -7,6 +7,12 @@
 
 namespace vccc {
 
+/// @addtogroup type_traits
+/// @{
+/// @defgroup type_traits_type_identity__class__Miscellaneous_transformations type_identity
+/// @brief returns the type argument unchanged
+/// @{
+
 template<typename T>
 struct type_identity {
   using type = T;
@@ -14,6 +20,9 @@ struct type_identity {
 
 template<typename T>
 using type_identity_t = typename type_identity<T>::type;
+
+/// @}
+/// @} type_traits
 
 } // namespace vccc
 

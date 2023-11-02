@@ -17,19 +17,31 @@
 
 namespace vccc {
 
-//! @addtogroup type_support
-//! @{
+/**
+ * @addtogroup type_support
+ * @{
+ * @defgroup type_support_at__func at
+ * @brief extended version of std::get
+ * @defgroup type_support_get__func std::get
+ * @brief extended std::get
+ * @}
+ */
 
 /**
- * @name Return i-th element of tuple-like object
- *
- * @tparam I index
+ * @addtogroup type_support
+ * @{
+ * @addtogroup type_support_at__func
  * @{
  */
 
 /**
- * @brief returns `std::get<I>(t)`
+ * @brief Return i-th element of tuple-like object
+ *
+ * returns `std::get<I>(t)`
+ *
+ * @tparam I index
  */
+
 template<std::size_t I, typename T, std::enable_if_t<is_tuple_like<std::decay_t<T>>::value, int> = 0>
 constexpr decltype(auto) at(T&& t) noexcept {
   return std::get<I>(std::forward<T>(t));

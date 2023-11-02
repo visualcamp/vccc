@@ -15,7 +15,7 @@ namespace vccc {
 
 /// @addtogroup numeric
 /// @{
-///     @defgroup average_overloads average
+///     @defgroup numeric_average__func average
 ///     @brief calculate average
 /// @{
 
@@ -69,20 +69,6 @@ average(Numbers... numbers)
 
 
 /**
-@brief get average value of integers(result is floored)
-
-@param ...ints numbers
-*/
-template<typename ...Ints,
-         std::enable_if_t<conjunction<std::is_integral<Ints>...>::value, int> = 0>
-constexpr inline
-auto
-int_average(Ints... ints)
-{
-  return sum(ints...) / static_cast<signed_bigger_type_t<Ints...>>(sizeof...(Ints));
-}
-
-/**
 @brief get average value of custom types
 
 @param ...args arguments
@@ -101,7 +87,23 @@ average(const Args&... args)
   return sum(args...) / static_cast<double>(sizeof...(args));
 }
 
-/// @} average_overloads
+/// @}
+
+
+/**
+@brief get average value of integers(result is floored)
+
+@param ...ints numbers
+*/
+template<typename ...Ints,
+    std::enable_if_t<conjunction<std::is_integral<Ints>...>::value, int> = 0>
+constexpr inline
+auto
+int_average(Ints... ints)
+{
+  return sum(ints...) / static_cast<signed_bigger_type_t<Ints...>>(sizeof...(Ints));
+}
+
 /// @} numeric_average
 
 } // namespace vccc

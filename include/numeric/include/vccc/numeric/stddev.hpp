@@ -14,13 +14,10 @@ namespace vccc {
 /**
 @addtogroup numeric
 @{
-    @defgroup numeric_stddev stddev
+    @defgroup numeric_stddev__func stddev
     @brief calculate standard deviation
 
     \f$ {\large \sigma=\sqrt{\frac{\sum{(x_i - \mu)}}{N}}} \f$
-@}
-
-@addtogroup numeric_stddev
 @{
 */
 
@@ -72,6 +69,8 @@ stddev(Numbers... numbers)
           / static_cast<decay_if_float_t < Numbers... >> (sizeof...(Numbers))
   );
 }
+
+//! @}
 
 /**
  * @brief calculate standard deviation and average

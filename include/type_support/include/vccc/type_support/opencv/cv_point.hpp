@@ -60,56 +60,49 @@ namespace std {
 @addtogroup type_support
 @{
 
-@addtogroup type_support_tuple_size std::tuple_size
-@{
-@addtogroup type_support_tuple_size_cv_point std::tuple_size<cv::Point_>
+@addtogroup type_support_tuple_size__class std::tuple_size
 @{
 */
 template<typename T>
 struct tuple_size<cv::Point_<T>> : std::integral_constant<size_t, 2> {};
-//! @} type_support_tuple_size_cv_point
 
-/**
-@addtogroup type_support_tuple_size_cv_point3 std::tuple_size<cv::Point3_>
-@{
-*/
+
 template<typename T>
 struct tuple_size<cv::Point3_<T>> : std::integral_constant<size_t, 3> {};
-//! @} type_support_tuple_size_cv_point3
 
-//! @} type_support_tuple_size
+//! @}
 
 
 /**
-@addtogroup type_support_tuple_element std::tuple_element
+@addtogroup type_support_tuple_element__class std::tuple_element
 @{
 
-@addtogroup type_support_tuple_element_cv_point std::tuple_element<cv::Point_>
+@addtogroup type_support_tuple_element_cv_point__class std::tuple_element<cv::Point_>
 @{
 */
 template<typename T> struct tuple_element<0, cv::Point_<T>> { using type = T; };
 template<typename T> struct tuple_element<1, cv::Point_<T>> { using type = T; };
-//! @} type_support_tuple_element_cv_point
+//! @}
 
 
 /**
-@addtogroup type_support_tuple_element_cv_point3 std::tuple_element<cv::Point3_>
+@addtogroup type_support_tuple_element_cv_point3__class std::tuple_element<cv::Point3_>
 @{
 */
 template<typename T> struct tuple_element<0, cv::Point3_<T>> { using type = T; };
 template<typename T> struct tuple_element<1, cv::Point3_<T>> { using type = T; };
 template<typename T> struct tuple_element<2, cv::Point3_<T>> { using type = T; };
-//! @} type_support_tuple_element_cv_point3
-//! @} type_support_tuple_element
+//! @}
+//! @}
 
 
 
 
 /**
-@addtogroup type_support_get std::get
+@addtogroup type_support_get__func std::get
 @{
 
-@addtogroup type_support_at_cv_point std::get(cv::Point_)
+@addtogroup type_support_get_cv_point__func std::get(cv::Point_)
 @{
 */
 template<std::size_t i, typename T>
@@ -139,7 +132,7 @@ get(const cv::Point_<T>&& p) noexcept {
 
 
 /**
-@addtogroup type_support_at_cv_point3 std::get(cv::Point3_)
+@addtogroup type_support_get_cv_point3__func std::get(cv::Point3_)
 @{
 */
 template<std::size_t i, typename T>
@@ -165,7 +158,7 @@ constexpr inline const tuple_element_t<i, cv::Point3_<T>>&&
 get(const cv::Point3_<T>&& p) noexcept {
   return std::move(vccc::internal::get_cv_point<i>::get(std::move(p)));
 }
-//! @} type_support_at_cv_point3
+//! @}
 //! @} type_support_get
 //! @} type_support
 

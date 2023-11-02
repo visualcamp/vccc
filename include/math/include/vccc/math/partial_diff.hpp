@@ -2,8 +2,8 @@
 #  * Created by YongGyu Lee on 2020/12/08.
 #  */
 #
-# ifndef VCCC_MATH_CALCULUS_PARTIAL_DIFF_HPP
-# define VCCC_MATH_CALCULUS_PARTIAL_DIFF_HPP
+# ifndef VCCC_MATH_PARTIAL_DIFF_HPP
+# define VCCC_MATH_PARTIAL_DIFF_HPP
 #
 # include <limits>
 # include "vccc/math/calculus/detail/apply.hpp"
@@ -165,4 +165,4 @@ partialDiff(differential_five_point_stencil_t, Func f, VarTuple vars, Args&&... 
 
 } // namespace vccc
 
-# endif // VCCC_MATH_CALCULUS_PARTIAL_DIFF_HPP
+# endif // VCCC_MATH_PARTIAL_DIFF_HPP

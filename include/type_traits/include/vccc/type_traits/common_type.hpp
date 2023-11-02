@@ -16,7 +16,7 @@ namespace vccc {
 /**
  * @addtogroup type_traits
  * @{
- * @defgroup group_common_type vccc::common_type
+ * @defgroup type_traits_common_type__class__Miscellaneous_transformations vccc::common_type
  * @brief determines the common type of a group of types
  *
  * @code{.cpp}
@@ -107,7 +107,7 @@ d1 + d2  is  Number<double>{5.8}
  * @}
  */
 
-/// @addtogroup group_common_type
+/// @addtogroup type_traits_common_type__class__Miscellaneous_transformations
 /// @{
 
 template<typename ...T>

@@ -15,13 +15,10 @@ namespace vccc {
 /**
 @addtogroup numeric
 @{
-@defgroup numeric_norm norm
+@defgroup numeric_norm__func norm
 @brief calculate norm
 
 \f$ {\large \hat{x} = \sqrt{\sum{x_i ^2}} }\f$
-@}
-
-@addtogroup numeric_norm
 @{
 */
 
@@ -56,7 +53,7 @@ norm(Arg arg, Args... args)
   return std::sqrt(square_sum(arg, args...));
 }
 
-//! @} numeric_norm
+//! @}
 
 } // namespace vccc
 

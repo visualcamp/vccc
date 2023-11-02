@@ -14,13 +14,11 @@
 namespace vccc {
 
 /**
-@addtogroup type_support_at
+@addtogroup type_support_at__func
 @{
-
-@defgroup type_support_at_container vccc::at (container)
+@defgroup type_support_at_container__func vccc::at (container)
 Index-based value accessor
 
-@addtogroup type_support_at_container
 @{
 */
 template<std::size_t i, typename Container, std::enable_if_t<is_range<Container>::value, int> = 0>
@@ -55,8 +53,8 @@ at(const Container&& container)
   return std::move(*std::next(std::begin(container), i));
 }
 
-//! @} type_support_at_container
-//! @} type_support_at
+//! @}
+//! @} type_support
 
 }
 

@@ -17,13 +17,9 @@ namespace vccc {
 /**
  * @addtogroup numeric
  * @{
- *      @defgroup numeric_float_equal_to float_equal_to
- *      @defgroup numeric_float_equal float_equal
- * @}
+ * @defgroup numeric_float_equal_to__class float_equal_to
+ * @{
  */
-
-/// @defgroup numeric_float_equal_to
-/// @{
 
 namespace detail {
 
@@ -80,10 +76,7 @@ struct float_equal_to<void> {
   }
 };
 
-/// @} numeric_float_equal_to
-
-/// @addtogroup numeric_float_equal
-/// @{
+/// @}
 
 /**
  * @brief Compare if two floating-points are approximately equal
@@ -109,7 +102,7 @@ float_equal(const T& a, const U& b, const E& epsilon = vccc::epsilon<E>()) {
   return float_equal_to<std::common_type_t<T, U, E>>{}(a, b, epsilon);
 }
 
-/// @} numeric_float_equal
+/// @}
 
 } // namespace vccc
 

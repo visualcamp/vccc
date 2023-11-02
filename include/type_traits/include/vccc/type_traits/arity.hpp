@@ -10,13 +10,13 @@
 namespace vccc {
 
 /**
-@addtogroup type_traits
-@{
-    @defgroup arity arity
-    @brief get function arity
-@}
+ * @addtogroup type_traits
+ * @{
+ * @defgroup type_traits_arity__class arity
+ * @brief get function arity
+ * @}
 
-@addtogroup arity
+@addtogroup type_traits_arity__class
 @{
 */
 
@@ -57,7 +57,7 @@ struct arity<R(C::*)(Args...) const> :
 template<typename T>
 using arity_t = typename arity<T>::type;
 
-//! @} arity
+//! @}
 
 } // namespace vccc
 

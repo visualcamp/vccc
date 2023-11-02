@@ -61,6 +61,15 @@ class RealignGroup {
             case "using":
                 return ["typedef-members", "Typedefs"]
 
+            case "var":
+            case "variable":
+                return ["var-members", "Variables"]
+
+            case "def":
+            case "define":
+            case "macro":
+                return ["define-members", "Variables"]
+
             default:
                 return [window.AddPermalink.getValidID(name), name]
         }
@@ -73,24 +82,32 @@ class RealignGroup {
         }
 
         let tbody = memdecl.querySelector(`tbody`)
+        let pos = tbody.lastChild.nextSibling
 
         if (categories.length > 1) {
             let nested = this.getMemDecl(categories[1][0])
             if (!nested) {
                 let header = this.createHeader(categories[1][1], categories[1][0], "h3")
                 tbody.appendChild(header)
+                pos = tbody.lastChild.nextSibling
+            } else {
+                let heading = nested.querySelector(`a[name="${categories[1][0]}"]`).closest("tr.heading")
+                // TODO: Insert back
+                pos = heading.nextSibling
             }
         }
 
-        let next = node.nextSibling ? node.nextSibling.nextSibling : node.nextSibling
-        tbody.appendChild(node)
+        let next = node.nextSibling.nextSibling
+        tbody.insertBefore(node, pos)
 
         // Copy memitem, sep, etc
         while (next) {
-            if (next.classList.contains("memitem"))
+            if (next.getAttribute("class").includes("memitem"))
                 break
-            tbody.appendChild(next)
-            next = next.nextSibling ? next.nextSibling.nextSibling : next.nextSibling
+
+            let next2 = next.nextSibling.nextSibling
+            next = tbody.insertBefore(next, pos)
+            next = next2
         }
     }
 

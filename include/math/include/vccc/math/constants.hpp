@@ -11,11 +11,7 @@ namespace math {
 /**
 @addtogroup math
 @{
-    @defgroup math_constants constants
-    @brief Mathematical constants
-@}
-
-@addtogroup math_constants
+    @defgroup math_constants__var (constants)
 @{
 */
 //#define M_E         2.71828182845904523536028747135266250   /* e              */
@@ -54,7 +50,8 @@ template<typename T>
 constexpr T pi = static_cast<T>(3.14159265358979323846264338327950288);
 
 
-//! @} math_constants
+//! @}
+//! @}
 
 } // namespace math
 } // namespace vccc
