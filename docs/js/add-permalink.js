@@ -40,7 +40,11 @@ class AddPermalink {
     }
 
     static getValidID(text) {
-        return text.replace(/\W/g,'_');
+        text = text.replace("operator=", "operator_assignment")
+        text = text.replace("operator->", "operator_pointer")
+        text = text.replace("operator*", "operator_indirect")
+
+        return text.replace(/^[^a-z]+|[^\w:.-]+/gi, "_");
     }
 }
 

@@ -1394,8 +1394,10 @@ HTML_EXTRA_FILES       = docs/doxygen-awesome-css/doxygen-awesome-darkmode-toggl
                          docs/doxygen-awesome-css/doxygen-awesome-tabs.js \
                          docs/js/add-permalink.js \
                          docs/js/class-toc.js \
+                         docs/js/group-toc.js \
                          docs/js/header-link.js \
                          docs/js/realign-group.js
+                         docs/js/toc.js
 
 # The HTML_COLORSTYLE tag can be used to specify if the generated HTML output
 # should be rendered with a dark or light theme.

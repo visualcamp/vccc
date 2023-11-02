@@ -11,43 +11,17 @@ class RealignGroup {
         })
     }
 
+    // Move items in 'Groups' header under another header
     static MoveGroups() {
         document.querySelectorAll(`.memberdecls [id="groups"]`).forEach((node) => {
             node.closest(`tbody`).querySelectorAll(`tr[class*="memitem"]`).forEach((node) => {
                 let category = this.GetGroupCategory(node.getAttribute("class"));
-
-                let category_id;
-                switch (category) {
-                    case "func":
-                    case "function":
-                    case "functions":
-                        category = "Functions"
-                        category_id = "func-members"
-                        break
-
-                    case "class":
-                    case "classes":
-                        category = "Classes"
-                        category_id = "nested-classes"
-                        break
-
-                    case "alias":
-                    case "typedef":
-                    case "using":
-                        category = "Typedefs"
-                        category_id = "typedef-members"
-                        break
-
-                    default:
-                        category_id = window.AddPermalink.getValidID(category)
-                        break
-                }
-
-                this.MoveOneGroup(node, category, category_id)
+                this.MoveOneGroup(node, category.map((item) => this.GetCategoryPair(item)))
             })
 
         })
 
+        // Remove 'Groups' header
         let group = document.querySelector(`.memberdecls [id="groups"]`)
         if (group) {
             group.closest(`.memberdecls`).remove()
@@ -65,17 +39,51 @@ class RealignGroup {
 
     }
 
-    static MoveOneGroup(node, name, category_id) {
-        console.log("Getting category", name, "(", category_id, ")")
-        let memdecl = this.getMemDecl(category_id)
+    static GetCategoryPair(name) {
+        switch (name) {
+            case "func":
+            case "function":
+            case "Function":
+            case "functions":
+            case "Functions":
+                return ["func-members", "Functions"]
+
+            case "class":
+            case "Class":
+            case "classes":
+            case "Classes":
+                return ["nested-classes", "Classes"]
+
+            case "alias":
+            case "typedef":
+            case "Typedef":
+            case "Typedefs":
+            case "using":
+                return ["typedef-members", "Typedefs"]
+
+            default:
+                return [window.AddPermalink.getValidID(name), name]
+        }
+    }
+
+    static MoveOneGroup(node, categories) {
+        let memdecl = this.getMemDecl(categories[0][0])
         if (!memdecl) {
-            console.log("Category", name, "not found. Creating one")
-            memdecl = this.addMemDecl(name, category_id);
+            memdecl = this.addMemDecl(categories[0][1], categories[0][0], "h2");
+        }
+
+        if (categories.length > 1) {
+            let nested = this.getMemDecl(categories[1][0])
+            if (!nested) {
+                let header = this.createHeader(categories[1][1], categories[1][0], "h3")
+                memdecl.querySelector(`tbody`).appendChild(header)
+            }
         }
 
         let next = node.nextSibling ? node.nextSibling.nextSibling : node.nextSibling
         memdecl.appendChild(node)
 
+        // Copy memitem, sep, etc
         while (next) {
             if (next.classList.contains("memitem"))
                 break
@@ -109,8 +117,9 @@ class RealignGroup {
 
         node.appendChild(td)
     }
-    static addMemDecl(name, id) {
-        let h2 = document.createElement("h2")
+
+    static createHeader(name, id, heading) {
+        let h2 = document.createElement(heading)
         h2.setAttribute("class", "groupheader")
         h2.textContent = name
 
@@ -123,6 +132,12 @@ class RealignGroup {
         let tr = document.createElement("tr");
         tr.setAttribute("class", "heading");
         tr.appendChild(td)
+
+        return tr
+    }
+
+    static addMemDecl(name, id, heading) {
+        let tr = this.createHeader(name, id, heading)
 
         let tbody = document.createElement("tbody");
         tbody.appendChild(tr)
@@ -152,18 +167,23 @@ class RealignGroup {
         // Parse custom group category
         let arr = class_name.split("____")
         if (arr.length > 1) {
-            let name = arr[arr.length - 1]
-            // Parse space
-            let words = name.split("__")
-            for (let i = 0; i < words.length; ++i) {
-                // Parse upper case
-                if (words[i].includes("_")) {
-                    words[i] =  words[i].charAt(1).toUpperCase() + words[i].slice(2)
+            let categories = arr.slice(1)
+            let parsed_categories = []
+            categories.forEach((name) => {
+                // Parse space
+                let words = name.split("__")
+                for (let i = 0; i < words.length; ++i) {
+                    // Parse upper case
+                    if (words[i].includes("_")) {
+                        words[i] =  words[i].charAt(1).toUpperCase() + words[i].slice(2)
+                    }
                 }
-            }
-            return words.join(" ")
+                parsed_categories.push(words.join(" "))
+            })
+
+            return parsed_categories
         }
 
-        return this.kUncategorized
+        return [this.kUncategorized]
     }
 }

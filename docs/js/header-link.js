@@ -9,7 +9,6 @@ class HeaderLink {
 
     static updateMemberDecls() {
         document.querySelectorAll(".groupheader").forEach((node, node_index) => {
-            console.log(node_index, node)
             let has_child = node.querySelector(".anchor") != null;
             if (!has_child) {
                 window.AddPermalink.addPermalinkTo(node, node_index)

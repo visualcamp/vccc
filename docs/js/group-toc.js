@@ -1,22 +1,20 @@
-class ClassToc {
+class GroupToc {
     static init() {
         $(function() {
             $(document).ready(function() {
-                ClassToc.createToC()
+                GroupToc.createToC()
             })
         })
     }
 
-    static isClassPage() {
+    static isGroupPage() {
         let file = window.location.pathname.split("/").pop()
-        if (file.substring(0, 5) === "class" || file.substring(0, 6) === "struct") {
-            return true
-        }
-        return false
+        return file.substring(0, 7) === "group__";
+
     }
 
     static createToC() {
-        if (!this.isClassPage()) {
+        if (!this.isGroupPage()) {
             return
         }
 
@@ -24,17 +22,18 @@ class ClassToc {
             return
         }
 
+
         let toc = Toc.createEmptyToc()
         let ul = toc.querySelector("ul")
 
-        document.querySelectorAll("h2.groupheader .anchor").forEach((level1, node_index) => {
-            let item = Toc.createTocItem(1, level1.nextSibling.textContent, level1.getAttribute("id"))
+        document.querySelectorAll("h2.groupheader .anchor").forEach((node, node_index) => {
+            let item = Toc.createTocItem(1, node.nextSibling.textContent, node.getAttribute("id"))
             ul.appendChild(item)
 
-            let parent = level1.closest("tbody")
+            let parent = node.closest("tbody")
             if (parent) {
                 parent.querySelectorAll("h3.groupheader .anchor").forEach((level2) => {
-                    let item = Toc.createTocItem(2, level2.nextSibling.textContent, level2.getAttribute("id"))
+                    let item = Toc.createTocItem(2, level2.nextSibling.textContent, level2.id)
                     ul.appendChild(item)
                 })
             }
