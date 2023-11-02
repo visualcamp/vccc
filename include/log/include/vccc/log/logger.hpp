@@ -97,20 +97,23 @@ class Logger {
  */
 constexpr Logger Log;
 
+/// @defgroup log_log_macro__macro__Logging_macros LOGD, LOGI, LOGW, LOGE
+/// @{
+
+# ifdef NDEBUG
+# define LOGD(...)
+#else
 /**
+ *
 @brief Debug log wrapper for security. This won't print in release build.
 
 Below example applies to LOGI, LOGW, LOGE
 @code{.cpp}
-    LOGD("string ", 100, " ", 3.14);              // string 100 3.14
+    LOGD("string ", 100, " ", 3.14);        // string 100 3.14
     LOGD(std::vector<int>{1,2,3,4});        // { 1, 2, 3, 4 }
     LOGD(std::map<string, int>{{"one", 1}, {"two", 2}}); // { { one: 1 }, { two: 2 } }
 @endcode
-
-*/
-# ifdef NDEBUG
-# define LOGD(...)
-#else
+ */
 # define LOGD(...) ::vccc::Log.d(__VA_ARGS__)
 # endif
 
@@ -120,6 +123,7 @@ Below example applies to LOGI, LOGW, LOGE
 # define LOGW(...) ::vccc::Log.w(__VA_ARGS__)
 /** @brief Error log wrapper **/
 # define LOGE(...) ::vccc::Log.e(__VA_ARGS__)
+/// @}
 
 //! @} log
 

@@ -44,34 +44,31 @@ namespace std {
 @addtogroup type_support
 @{
 
-@addtogroup type_support_tuple_size std::tuple_size
+@addtogroup type_support_tuple_size__class std::tuple_size
 @{
-@addtogroup type_support_tuple_size_cv_size std::tuple_size<cv::Size_>
+@addtogroup type_support_tuple_size_cv_size__class std::tuple_size<cv::Size_>
 @{
 */
 template<typename T>
 struct tuple_size<cv::Size_<T>> : std::integral_constant<size_t, 2> {};
-//! @} type_support_tuple_size_cv_size
-//! @} type_support_tuple_size
+//! @}
+//! @}
 
 /**
-@addtogroup type_support_tuple_element std::tuple_element
+@addtogroup type_support_tuple_element__class std::tuple_element
 @{
- 
-@addtogroup type_support_tuple_element_cv_size std::tuple_element<cv::Size_>
+@addtogroup type_support_tuple_element_cv_size__class std::tuple_element<cv::Size_>
 @{
 */
-
 template<typename T> struct tuple_element<0, cv::Size_<T>> { using type = T; };
 template<typename T> struct tuple_element<1, cv::Size_<T>> { using type = T; };
-
-//! @} type_support_tuple_element_cv_size
-//! @} type_support_tuple_element
+//! @}
+//! @}
 
 /**
-@addtogroup type_support_get std::get
+@addtogroup type_support_get__func std::get
 @{
-@addtogroup type_support_get_cv_size std::get(cv::Size_)
+@addtogroup type_support_get_cv_size__func std::get(cv::Size_)
 @{
 */
 
@@ -99,8 +96,8 @@ get(const cv::Size_<T>&& size) noexcept {
   return std::move(vccc::internal::get_cv_size<i>::get(std::move(size)));
 }
 
-//! @} type_support_get_cv_size
-//! @} type_support_get
+//! @}
+//! @}
 //! @} type_support
 
 } // namespace std

@@ -9,12 +9,20 @@
 
 namespace vccc {
 
+//! @addtogroup type_traits
+//! @{
+//! @addtogroup type_traits_conjunction__class__Operation_on_traits conjunction
+//! @{
+
 /**
  * conjunction
  * @tparam ...B
  */
 template<typename ...B>
 struct conjunction;
+
+//! @}
+//! @} type_traits
 
 template<>
 struct conjunction<> : std::true_type {};

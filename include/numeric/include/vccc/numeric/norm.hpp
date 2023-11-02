@@ -15,13 +15,10 @@ namespace vccc {
 /**
 @addtogroup numeric
 @{
-@defgroup numeric_norm norm
+@defgroup numeric_norm__func norm
 @brief calculate norm
 
 \f$ {\large \hat{x} = \sqrt{\sum{x_i ^2}} }\f$
-@}
-
-@addtogroup numeric_norm
 @{
 */
 
@@ -39,13 +36,10 @@ norm(InputIterator first, InputIterator last)
   return std::sqrt(square_sum(first, last));
 }
 
-//! @cond ignored
 template<typename T, std::enable_if_t<std::is_arithmetic<T>::value, int> = 0>
 inline T norm(T arg) {
   return std::abs(arg);
 }
-//! @endcond
-
 
 /**
 @brief calculate norm of variadics
@@ -59,8 +53,7 @@ norm(Arg arg, Args... args)
   return std::sqrt(square_sum(arg, args...));
 }
 
-//! @} numeric_norm
-//! @} numeric
+//! @}
 
 } // namespace vccc
 

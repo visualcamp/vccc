@@ -2,18 +2,23 @@
 #  * Created by YongGyu Lee on 2020/12/08.
 #  */
 #
-# ifndef VCCC_MATH_CALCULUS_GRADIENT_HPP
-# define VCCC_MATH_CALCULUS_GRADIENT_HPP
+# ifndef VCCC_MATH_GRADIENT_HPP
+# define VCCC_MATH_GRADIENT_HPP
 #
-# include "vccc/math/calculus/partial_diff.hpp"
+# include "vccc/math/partial_diff.hpp"
 # include "vccc/type_traits.hpp"
 
 namespace vccc {
 
-//! @addtogroup calculus
-//! @{
+/**
+ * @addtogroup math
+ * @{
+ * @addtogroup math_gradient__func__calculus gradient
+ * @brief calculates gradient value of the given function and variables
+ * @sa partialDiff: \copybrief partialDiff
+ * @{
+ */
 
-//! @cond ignored
 namespace internal {
 namespace math {
 template<typename T, typename DifferentialCategory, typename Func, typename VarTuple, std::size_t ...I, typename ...Args>
@@ -23,11 +28,9 @@ inline auto gradientImpl(Func f, VarTuple vars, std::index_sequence<I...>, Args&
 }
 } // namespace math
 } // namespace internal
-//! @endcond
 
 
 /**
-@brief calculates gradient value of the given function and variables
  *
  * @tparam T                        calculating type
  * @tparam DifferentialCategory     differentiating method
@@ -50,8 +53,9 @@ inline auto gradient(Func f, std::tuple<Vars...> vars, Args&&... args) {
       std::forward<Args>(args)...);
 }
 
-//! @} calculus
+//! @}
+/// @}
 
 } // namespace vccc
 
-# endif // VCCC_MATH_CALCULUS_GRADIENT_HPP
+# endif // VCCC_MATH_GRADIENT_HPP

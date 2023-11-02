@@ -9,15 +9,17 @@
 
 namespace vccc {
 
-/**
-@addtogroup type_traits
-@{
-*/
+/// @addtogroup type_traits
+/// @{
+/// @addtogroup type_traits_void_t__class__Miscellaneous_transformations void_t
+/// @brief void variadic alias template
+/// @{
 
 template<typename ...>
 using void_t = void;
 
-//! @} type_traits
+/// @}
+/// @}
 
 } // namespace vccc
 

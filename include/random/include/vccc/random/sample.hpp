@@ -13,7 +13,7 @@
 
 namespace vccc {
 
-//! @addtogroup random{
+//! @addtogroup random
 //! @{
 
 /**

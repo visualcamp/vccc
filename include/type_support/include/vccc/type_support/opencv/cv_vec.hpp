@@ -13,6 +13,12 @@
 #
 # include "vccc/type_support/opencv/cv_mat.hpp"
 
+
+/**
+ * @addtogroup type_support
+ * @{
+ */
+
 namespace vccc {
 namespace internal {
 
@@ -38,12 +44,9 @@ struct tuple_element_impl<I, cv::Vec<T, n>, true> {
 namespace std {
 
 /**
-@addtogroup type_support
+@addtogroup type_support_tuple_size__class std::tuple_size
 @{
-
-@addtogroup type_support_tuple_size std::tuple_size
-@{
-@addtogroup type_support_tuple_size_cv_vec std::tuple_size<cv::Vec>
+@addtogroup type_support_tuple_size_cv_vec__class std::tuple_size<cv::Vec>
 @{
 */
 template<typename T, int cn>
@@ -52,9 +55,9 @@ struct tuple_size<cv::Vec<T, cn>> : std::integral_constant<size_t, cn> {};
 //! @} type_support_tuple_size
 
 /**
-@addtogroup type_support_tuple_element std::tuple_element
+@addtogroup type_support_tuple_element__class std::tuple_element
 @{
-@addtogroup type_support_tuple_element_cv_vec std::tuple_element<cv::Vec>
+@addtogroup type_support_tuple_element_cv_vec__class std::tuple_element<cv::Vec>
 @{
 */
 template<size_t I, typename T, int cn>
@@ -64,9 +67,9 @@ struct tuple_element<I, cv::Vec<T, cn>> : vccc::internal::tuple_element_impl<I, 
 
 
 /**
-@addtogroup type_support_get std::get
+@addtogroup type_support_get__func std::get
 @{
-@addtogroup type_support_at_cv_vec std::get(cv::Vec)
+@addtogroup type_support_at_cv_vec__func std::get(cv::Vec)
 @{
 */
 template<std::size_t i, typename T, int n>
@@ -93,8 +96,7 @@ get(const cv::Vec<T, n>&& vec) {
   return std::move(vec[i]);
 }
 
-//! @} type_support_at_cv_vec
-//! @} type_support
+//! @}
 
 } // namespace std
 
@@ -112,5 +114,7 @@ cv::Vec<T, cn> add(const cv::Vec<T, cn>& vec, N n)
 }
 
 } // namespace vccc
+
+//! @}
 
 # endif // VCCC_TYPE_SUPPORT_OPENCV_CV_VEC_HPP

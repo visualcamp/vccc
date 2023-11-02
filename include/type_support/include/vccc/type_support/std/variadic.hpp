@@ -10,15 +10,17 @@
 namespace vccc {
 
 /**
-@addtogroup type_support_at
-@{
-
-@defgroup type_support_at_variadic vccc::at (variadic)
-Index-based value accessor
-@addtogroup type_support_at_variadic
+@addtogroup type_support
 @{
 */
 
+/**
+ * @brief Index-based value accessor
+ * @tparam i
+ * @tparam Args
+ * @param args
+ * @return
+ */
 template<std::size_t i,
          typename ...Args,
          std::enable_if_t<(i < sizeof...(Args)), int> = 0>
@@ -28,8 +30,7 @@ variadic_at(Args&&... args){
   return std::get<i>(std::forward_as_tuple(std::forward<Args>(args)...));
 }
 
-//! @} type_support_at_variadic
-//! @} type_support_at
+//! @} type_support
 
 } // namespace vccc
 

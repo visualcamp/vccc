@@ -10,14 +10,17 @@
 #include <limits>
 #include <type_traits>
 
-#include "vccc/math/calculus/epsilon.hpp"
+#include "vccc/math/epsilon.hpp"
 
 namespace vccc {
 
-//! @addtogroup numeric
-//! @{
+/**
+ * @addtogroup numeric
+ * @{
+ * @defgroup numeric_float_equal_to__class float_equal_to
+ * @{
+ */
 
-//! @cond IGNORED
 namespace detail {
 
 template<typename T, bool v = std::numeric_limits<T>::is_exact>
@@ -44,11 +47,10 @@ struct float_equal_to_impl<T, false> {
 
 } // namespace detail
 
-//! @endcond IGNORED
-
 /**
  * @brief function object implementing approximately equal of x and y
- * @tparam T
+ * @sa float_equal_to<void>: \copybrief float_equal_to<void>
+ * @sa float_equal: \copybrief float_equal
  */
 template<typename T = void>
 struct float_equal_to {
@@ -59,7 +61,10 @@ struct float_equal_to {
 
 
 /**
- * A specialization of vccc::float_equal_to with parameter and return type deduced.
+ * float_equal_to<void>
+ * @brief A specialization of vccc::float_equal_to with parameter and return type deduced.
+ * @sa float_equal_to: \copybrief float_equal_to
+ * @sa float_equal: \copybrief float_equal
  */
 template<>
 struct float_equal_to<void> {
@@ -71,15 +76,19 @@ struct float_equal_to<void> {
   }
 };
 
+/// @}
+
 /**
  * @brief Compare if two floating-points are approximately equal
  *
- * Default epsilon values are `4.92157e-03f` for `float` and `6.0554545e-06` for `double` type. </br>
+ * Default epsilon values are `4.92157e-03f` for `float` and `6.0554545e-06` for `double` type. <br>
  * The values must be representable
  *
- * Return `true` if both values are smaller or same with `epsilon`. </br>
- * Otherwise, return true if `diff <= std::min(std::abs(a), std::abs(b)) * epsilon`, false otherwise </br>
+ * Return `true` if both values are smaller or same with `epsilon`. <br>
+ * Otherwise, return true if `diff <= std::min(std::abs(a), std::abs(b)) * epsilon`, false otherwise <br>
  * where `diff` is `std::abs(a - b)`.
+ *
+ * @sa float_equal_to: \copybrief float_equal_to
  *
  * @tparam T
  * @param a
@@ -93,7 +102,7 @@ float_equal(const T& a, const U& b, const E& epsilon = vccc::epsilon<E>()) {
   return float_equal_to<std::common_type_t<T, U, E>>{}(a, b, epsilon);
 }
 
-//! @} numeric
+/// @}
 
 } // namespace vccc
 

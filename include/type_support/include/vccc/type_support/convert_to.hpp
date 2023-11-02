@@ -13,42 +13,39 @@ namespace vccc {
 /**
 @addtogroup type_support
 @{
-    @defgroup type_support_cvtto vccc::convert_to
-    @brief converts to different type (usually for opencv types, but also supports container types)
+@defgroup type_support_convert_to__func convert_to
+@brief converts to different type (usually for opencv types, but also supports container types)
 @}
 
 */
 
 /**
-@addtogroup type_support_cvtto
+@addtogroup type_support_convert_to__func
 @{
 
-!Warning! If input container size is smaller then R's size, it's ub.
-!Warning! If OpenCV is enabled, arithmetic floating-to-integer will be rounded(e.g 3.6 -> 4)
+@warning If input container size is smaller then R's size, it's ub.
+@warning If OpenCV is enabled, arithmetic floating-to-integer will be rounded(e.g 3.6 -> 4)
 
-conversion rule:
-  * cv::saturate_cast is used in every element-wise conversion
-      1. converting tuple-like types to tuple-like types
-         a. tuple_size<To>::value == tuple_size<From>::value
-             convert all elements.
-         b. tuple_size<To>::value < tuple_size<From>::value
-             convert only tuple_size<To>::value amount of From's element. Remainders won't convert
-         c. tuple_size<To>::value > tuple_size<From>::value
-             convert all From's element, and fill rest with zeros
-      2. converting tuple-like types to container-types
-         creates a container that contains all From's elements
-      3. converting container-types to tuple-like types
-         a. tuple_size<To>::value == container.size()
-             converts every element
-         b. tuple_size<To>::value < container.size()
-             convert only tuple_size<To>::value amount of container's element. Remainders won't convert
-         c. tuple_size<To>::value > container.size()
-             !!- undefined behaviour -!!
-      4. converting container-types to container-types
-         * not supported
-@tparam To   to type
-@param from  original data
-@return      converted class
+Conversion rule: <br>
+`cv::saturate_cast` is used in every element-wise conversion
+  1. converting tuple-like types to tuple-like types <br>
+    a. `tuple_size<To>::value == tuple_size<From>::value` <br>
+        convert all elements. <br>
+    b. `tuple_size<To>::value < tuple_size<From>::value` <br>
+        convert only `tuple_size<To>::value` amount of From's element. Remainders won't convert <br>
+    c. `tuple_size<To>::value > tuple_size<From>::value` <br>
+        convert all From's element, and fill rest with zeros <br>
+  2. converting tuple-like types to container-types <br>
+    creates a container that contains all From's elements <br>
+  3. converting container-types to tuple-like types <br>
+    a. `tuple_size<To>::value == container.size()` <br>
+      converts every element <br>
+    b. `tuple_size<To>::value < container.size()` <br>
+      convert only `tuple_size<To>::value` amount of container's element. Remainders won't convert <br>
+    c. `tuple_size<To>::value > container.size()` <br>
+      Undefined behaviour <br>
+  4. converting container-types to container-types <br>
+    Not available
 
 @code
       cv::Vec3d v = {1.1, 2.4, 3.6};
@@ -59,6 +56,10 @@ conversion rule:
       point = convert_to<cv::Point2f>(vec);       // point = {1, 2}
       // v2 = convert_to<cv::Vec4d>(vec); undefined behaviour! vec.size() < tuple_size<Vec4d>::value
 @endcode
+
+@tparam To   to type
+@param from  original data
+@return      converted class
 */
 
 template<typename To, typename From, std::enable_if_t<!std::is_same<To, From>::value, int> = 0>
@@ -105,7 +106,7 @@ convert_to(const From& from)
 template<typename To> inline decltype(auto) convert_to(      To&& from) { return std::forward<To>(from); }
 template<typename To> inline To             convert_to(const To&  from) { return from; }
 
-//! @} type_support_cvtto
+//! @}
 
 } // namespace vccc
 

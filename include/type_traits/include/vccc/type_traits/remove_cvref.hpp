@@ -9,10 +9,11 @@
 
 namespace vccc {
 
-/**
-@addtogroup type_traits
-@{
-*/
+/// @addtogroup type_traits
+/// @{
+/// @defgroup type_traits_remove_cvref__class__Miscellaneous_transformations remove_cvref
+/// @brief combines std::remove_cv and std::remove_reference
+/// @{
 
 template<typename T>
 struct remove_cvref {
@@ -22,7 +23,8 @@ struct remove_cvref {
 template<typename T>
 using remove_cvref_t = typename remove_cvref<T>::type;
 
-//! @} type_traits
+/// @}
+/// @} type_traits
 
 } // namespace vccc
 
