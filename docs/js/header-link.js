@@ -2,16 +2,32 @@ class HeaderLink {
     static init() {
         $(function() {
             $(document).ready(function() {
-                HeaderLink.updateMemberDecls();
+                HeaderLink.updateMemberDecls()
             })
         })
     }
 
     static updateMemberDecls() {
-        document.querySelectorAll(".memberdecls .groupheader").forEach((node, node_index) => {
+        document.querySelectorAll(".groupheader").forEach((node, node_index) => {
+            console.log(node_index, node)
             let has_child = node.querySelector(".anchor") != null;
             if (!has_child) {
                 window.AddPermalink.addPermalinkTo(node, node_index)
+            }
+        })
+
+        // Unnamed group
+        document.querySelectorAll(".memberdecls .groupHeader").forEach((node, node_index) => {
+            let has_child = node.querySelector(".anchor") != null;
+            if (!has_child) {
+                let heading = document.createElement("h3")
+                heading.appendChild(node.firstChild)
+                heading.classList.add("groupheader")
+
+                let heading_id = window.AddPermalink.getValidID(heading.textContent.replaceAll(/[()]/g, ""))
+                window.AddPermalink.addPermalinkTo(heading, heading_id)
+
+                node.appendChild(heading)
             }
         })
     }

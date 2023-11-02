@@ -1393,6 +1393,7 @@ HTML_EXTRA_FILES       = docs/doxygen-awesome-css/doxygen-awesome-darkmode-toggl
                          docs/doxygen-awesome-css/doxygen-awesome-interactive-toc.js \
                          docs/doxygen-awesome-css/doxygen-awesome-tabs.js \
                          docs/js/add-permalink.js \
+                         docs/js/class-toc.js \
                          docs/js/header-link.js \
                          docs/js/realign-group.js
 

@@ -19,23 +19,31 @@ class RealignGroup {
                 let category_id;
                 switch (category) {
                     case "func":
+                    case "function":
+                    case "functions":
+                        category = "Functions"
                         category_id = "func-members"
                         break
 
                     case "class":
+                    case "classes":
+                        category = "Classes"
                         category_id = "nested-classes"
                         break
 
+                    case "alias":
                     case "typedef":
+                    case "using":
+                        category = "Typedefs"
                         category_id = "typedef-members"
                         break
 
                     default:
-                        category_id = category
+                        category_id = window.AddPermalink.getValidID(category)
                         break
                 }
 
-                this.MoveOneGroup(node, category_id)
+                this.MoveOneGroup(node, category, category_id)
             })
 
         })
@@ -57,10 +65,13 @@ class RealignGroup {
 
     }
 
-    static MoveOneGroup(node, category_id) {
+    static MoveOneGroup(node, name, category_id) {
+        console.log("Getting category", name, "(", category_id, ")")
         let memdecl = this.getMemDecl(category_id)
-        if (!memdecl)
-            memdecl = this.addMemDecl(category_id);
+        if (!memdecl) {
+            console.log("Category", name, "not found. Creating one")
+            memdecl = this.addMemDecl(name, category_id);
+        }
 
         let next = node.nextSibling ? node.nextSibling.nextSibling : node.nextSibling
         memdecl.appendChild(node)
@@ -98,12 +109,12 @@ class RealignGroup {
 
         node.appendChild(td)
     }
-    static addMemDecl(name) {
+    static addMemDecl(name, id) {
         let h2 = document.createElement("h2")
         h2.setAttribute("class", "groupheader")
         h2.textContent = name
 
-        window.AddPermalink.addPermalinkTo(h2)
+        window.AddPermalink.addPermalinkTo(h2, id)
 
         let td = document.createElement("td")
         td.setAttribute("colspan", "2")
@@ -141,14 +152,17 @@ class RealignGroup {
         // Parse custom group category
         let arr = class_name.split("____")
         if (arr.length > 1) {
-            return arr[arr.length - 1]
+            let name = arr[arr.length - 1]
+            // Parse space
+            let words = name.split("__")
+            for (let i = 0; i < words.length; ++i) {
+                // Parse upper case
+                if (words[i].includes("_")) {
+                    words[i] =  words[i].charAt(1).toUpperCase() + words[i].slice(2)
+                }
+            }
+            return words.join(" ")
         }
-
-        // Get default group category
-        // arr = class_name.split("__")
-        // if (arr.length > 1) {
-        //     return arr[arr.length - 1]
-        // }
 
         return this.kUncategorized
     }
