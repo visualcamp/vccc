@@ -34,7 +34,7 @@ namespace math {
 //
 //#define MAXFLOAT    0x1.fffffep+127f
 
-/** @brief natural constant
+/** @brief the mathematical constant \f$e\f$
  * @tparam T
  */
 template<typename T>
@@ -47,7 +47,7 @@ constexpr T e = static_cast<T>(2.71828182845904523536028747135266250);
 //constexpr auto log10e =
 
 
-/** @brief pi
+/** @brief the mathematical constant \f$\pi\f$
  * @tparam T
  */
 template<typename T>

@@ -17,24 +17,18 @@
 
 namespace vccc {
 
-/**
-@addtogroup type_support
-@{
-    @defgroup type_support_at vccc::at
-    @brief Index-based value accessor
-@}
-*/
-
-//! @addtogroup type_support_at
+//! @addtogroup type_support
 //! @{
 
 /**
- * @brief returns std::get<I>(t)
+ * @name Return i-th element of tuple-like object
  *
- * @tparam I
- * @tparam T
- * @param t
- * @return
+ * @tparam I index
+ * @{
+ */
+
+/**
+ * @brief returns `std::get<I>(t)`
  */
 template<std::size_t I, typename T, std::enable_if_t<is_tuple_like<std::decay_t<T>>::value, int> = 0>
 constexpr decltype(auto) at(T&& t) noexcept {
@@ -42,45 +36,26 @@ constexpr decltype(auto) at(T&& t) noexcept {
 }
 
 /**
-@brief returns cv::saturate_cast<C>(vccc::at<i>(t))
-
-@tparam i   index
-@tparam C   new type
-@param t    param
-@return     cv::saturate_cast<C>(at<i>(t))
+ * @brief returns `cv::saturate_cast<C>(vccc::at<i>(t))`
  */
-template<std::size_t i, typename C,
-         typename T>
-constexpr inline
-decltype(auto)
-at(T&& t)
-{
+template<std::size_t i, typename C, typename T>
+constexpr decltype(auto) at(T&& t) {
   return cast<C>(at<i>(std::forward<T>(t)));
 }
 
 
 /**
-@brief returns cv::saturate_cast<C>(vccc::at<i, j>(t))
-
-@tparam i   1D index
-@tparam j   2D index
-@tparam C   new type
-@param t    param
-@return     cv::saturate_cast<C>(at<i, j>(t))
+ * @brief returns cv::saturate_cast<C>(vccc::at<i, j>(t))
  */
-template<std::size_t i, std::size_t j, typename C,
-         typename T>
-constexpr inline
-decltype(auto)
-at(T&& t)
-{
+template<std::size_t i, std::size_t j, typename C, typename T>
+constexpr decltype(auto) at(T&& t) {
   return cast<C>(at<i, j>(std::forward<T>(t)));
 }
 
+//! @}
 
 
 namespace internal {
-
 
 //TODO: change tuple element to use reference_wrapper
 template<typename ...Ts>
@@ -130,7 +105,7 @@ constexpr inline internal::bind_obj<Args...> bind_at(Args&&... args) {
   return internal::bind_obj<Args...>(std::forward<Args>(args)...);
 }
 
-//! @} type_support_at
+//! @}
 
 } // namespace vccc
 

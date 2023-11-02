@@ -56,6 +56,8 @@ class optional :
 
   // constructors
 
+  /// @name (constructor)
+  /// @{
   constexpr optional() noexcept = default;
   constexpr optional(nullopt_t) noexcept {};
   constexpr optional(const optional& other) = default;
@@ -145,9 +147,12 @@ class optional :
     int> = 0>
   constexpr explicit optional(U&& value)
     : base(in_place, std::forward<U>(value)) {}
+  /// @}
 
   // assignment operators
 
+  /// @name operator=
+  /// @{
   optional& operator=(nullopt_t) noexcept {
     this->reset();
     return *this;
@@ -214,15 +219,22 @@ class optional :
     }
     return *this;
   }
+  /// @}
 
 
+  /// @name operator->
+  /// @{
   constexpr inline const value_type*  operator->() const noexcept { return this->pointer(); }
   constexpr inline       value_type*  operator->()       noexcept { return this->pointer(); }
+  /// @}
 
+  /// @name operator*
+  /// @{
   constexpr inline const value_type&  operator*() const&  noexcept { return this->ref(); }
   constexpr inline       value_type&  operator*()      &  noexcept { return this->ref(); }
   constexpr inline const value_type&& operator*() const&& noexcept { return std::move(this->ref()); }
   constexpr inline       value_type&& operator*()      && noexcept { return std::move(this->ref()); }
+  /// @}
 
   constexpr explicit inline operator bool() const noexcept {
     return this->valid;
@@ -231,6 +243,8 @@ class optional :
     return this->valid;
   }
 
+  /// @name value
+  /// @{
   constexpr inline value_type& value() & {
     if (!this->has_value())
       throw bad_optional_access{};
@@ -251,7 +265,10 @@ class optional :
       throw bad_optional_access{};
     return std::move(this->ref());
   }
+  /// @}
 
+  /// @name value_or
+  /// @{
   template<typename U>
   constexpr value_type value_or(U&& default_value) const & {
     static_assert(std::is_copy_constructible<value_type>::value,
@@ -271,6 +288,7 @@ class optional :
 
     return this->has_value() ? std::move(**this) : static_cast<value_type>(std::forward<U>(default_value));
   }
+  /// @}
 
   void swap(optional& other)
 #if __cplusplus >= 201703
@@ -297,6 +315,8 @@ class optional :
     }
   }
 
+  /// @name emplace
+  /// @{
   template<typename Dummy = void,
     std::enable_if_t<
       std::is_same<Dummy, void>::value &&
@@ -327,6 +347,7 @@ class optional :
     this->construct(ilist, std::forward<Args>(args)...);
     return **this;
   }
+  /// @}
 
   using base::reset;
 };
@@ -334,6 +355,9 @@ class optional :
 # if __cplusplus >= 201703
 template<class T> optional(T) -> optional<T>;
 # endif
+
+/// @defgroup optional_make_optional__func make_optional
+/// @{
 
 template<typename T>
 constexpr inline optional<std::decay_t<T>> make_optional(T&& value) {
@@ -355,7 +379,12 @@ constexpr inline optional<T> make_optional(std::initializer_list<U> ilist, Args&
   return optional<T>(in_place, ilist, std::forward<Args>(args)...);
 }
 
+/// @}
+
 // compare two optional objects
+
+/// @defgroup optional_operator_cmp__func operator<=>
+/// @{
 
 template<typename T, typename U >
 constexpr bool operator==(const optional<T>& lhs, const optional<U>& rhs) {
@@ -536,6 +565,8 @@ template<typename T, typename U>
 constexpr inline bool operator>=(const T& value, const optional<U>& opt) {
   return bool(opt) ? value >= opt : true;
 }
+
+/// @} optional_operator_cmp__func
 
 //! @} optional
 

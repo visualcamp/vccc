@@ -16,6 +16,7 @@
 @defgroup optional optional
 @brief Implementation of STL header [`<optional>`](https://en.cppreference.com/w/cpp/header/optional)
 
+C++14 implementation of `std::optional`. <br>
 See [optional](https://en.cppreference.com/w/cpp/header/optional)
 for more information
 */

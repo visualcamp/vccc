@@ -26,10 +26,14 @@ namespace vccc {
 
 
 /**
-@brief returns similar opencv type, but the value_type is different
-
-@tparam NewType     new value_type
-@param cv_type      any opencv template class
+ * @brief returns similar opencv type, but the value_type is different
+ *
+ * @tparam NewType
+ * @tparam CVType
+ * @tparam OldType
+ * @tparam CVParams
+ * @param cv_type
+ * @return
  */
 template<typename NewType, template<typename, int...> class CVType, typename OldType, int ...CVParams,
          std::enable_if_t<!std::is_same<NewType, OldType>::value, int> = 0>
@@ -55,10 +59,16 @@ inline decltype(auto) vtype_convert(CVType<NewType, CVParams...>&& cv_type)
 
 
 /**
-@brief vtype_convert on container types with custom unary operation
-
-@tparam NewType     new value_type
-@param cv_type      any template container class
+ * @brief vtype_convert on container types with custom unary operation
+ *
+ * @tparam NewType
+ * @tparam Func
+ * @tparam Container
+ * @tparam OldType
+ * @tparam Params
+ * @param container
+ * @param func
+ * @return
  */
 template<typename NewType, typename Func, template<typename...> class Container, typename OldType, typename ...Params,
     std::enable_if_t<is_range<Container<OldType, Params...>>::value, int> = 0>
@@ -78,10 +88,14 @@ inline decltype(auto) vtype_convert(const Container<NewType, Params...>& contain
 
 
 /**
-@brief returns similar container type, but the value_type is different
-
-@tparam NewType     new value_type
-@param cv_type      any template container class
+ * @brief returns similar container type, but the value_type is different
+ *
+ * @tparam NewType
+ * @tparam Container
+ * @tparam OldType
+ * @tparam Params
+ * @param container
+ * @return
  */
 template<typename NewType, template<typename...> class Container, typename OldType, typename ...Params,
     std::enable_if_t<is_range<Container<OldType, Params...>>::value, int> = 0>
@@ -106,8 +120,17 @@ inline decltype(auto) vtype_convert(Container<NewType, Params...>&& container)
 }
 
 
-/** std::array with custom unary operation specialization */
-
+/**
+ * std::array with custom unary operation specialization
+ *
+ * @tparam NewType
+ * @tparam OldType
+ * @tparam n
+ * @tparam UnaryOperation
+ * @param container
+ * @param func
+ * @return
+ */
 template<typename NewType, typename OldType, std::size_t n, typename UnaryOperation,
     std::enable_if_t<!std::is_same<NewType, OldType>::value, int> = 0>
 constexpr decltype(auto)

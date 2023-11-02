@@ -11,11 +11,16 @@
 
 namespace vccc {
 
+//! @addtogroup type_traits
+//! @{
+
 /**
  * negation
  * @tparam B
  */
 template<typename B> struct negation : bool_constant<!bool(B::value)> {};
+
+//! @} type_traits
 
 } // namespace vccc
 

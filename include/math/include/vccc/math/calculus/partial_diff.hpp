@@ -7,7 +7,7 @@
 #
 # include <limits>
 # include "vccc/math/calculus/detail/apply.hpp"
-# include "vccc/math/calculus/epsilon.hpp"
+# include "vccc/math/epsilon.hpp"
 # include "vccc/math/matrix.hpp"
 
 namespace vccc {
@@ -17,27 +17,10 @@ namespace vccc {
 //constexpr differential_newtonian_t differential_newtonian;
 //constexpr differential_symmetric_t differential_symmetric;
 
-//! @addtogroup calculus
+//! @addtogroup math_calculus
 //! @{
 
 
-/**
-@brief returns tuple that added \f$h\f$ at index \f$i\f$(\f$ h = \sqrt{x}\epsilon\f$)
- *
- * @tparam i        adding index of tuple
- * @param vars      tuple of vars
- * @param epsilon   epsilon
- * @return
- */
-
-template<std::size_t i,
-         typename Tuple, typename T>
-constexpr inline auto
-addEpsilon(Tuple vars, T epsilon)
-{
-  std::get<i>(vars) += std::get<i>(vars) == 0 ? epsilon : std::get<i>(vars) * epsilon;
-  return vars;
-}
 
 //template<std::size_t i, typename MatExpr, typename Epsilon>
 //inline constexpr decltype(auto)
@@ -53,22 +36,24 @@ addEpsilon(Tuple vars, T epsilon)
 //  return vars;
 //}
 
-//! @defgroup partial_differential partial differential
-//! @brief returns partial differential value of \f$i\f$-th parameter
-/**
-@code
-auto x = std::make_tuple(1.3, 4.12);
-auto f = [](double x, double y){ return x*x - x*y; };
-auto df1 = vccc::partialDiff<double, 0>(differential_symmetric_t, f, x);
-auto df2 = vccc::partialDiff<double, 1>(differential_symmetric_t, f, x);
-@endcode
- */
-//! @addtogroup partial_differential
-//! @{
-
 struct differential_newtonian_t {};
 struct differential_symmetric_t {};
 struct differential_five_point_stencil_t {};
+
+/**
+ * @defgroup math_calculus_partialDiff vccc::partialDiff
+ * @brief returns partial differential value of \f$i\f$-th parameter
+ *
+ * @code
+ * auto x = std::make_tuple(1.3, 4.12);
+ * auto f = [](double x, double y){ return x*x - x*y; };
+ * auto df1 = vccc::partialDiff<double, 0>(differential_symmetric_t, f, x);
+ * auto df2 = vccc::partialDiff<double, 1>(differential_symmetric_t, f, x);
+ * @endcode
+ * @sa epsilon: \copybrief epsilon
+ *
+ * @{
+ */
 
 /** @brief get partial differential value using symmetric method
 
@@ -154,9 +139,9 @@ partialDiff(differential_five_point_stencil_t, Func f, VarTuple vars, Args&&... 
   return fsum / (std::get<I>(vars) * (epsilon<T>() * 12));
 }
 
-//! @} partial_differential
+//! @} math_calculus_partialDiff
 
-//! @}
+//! @} math_calculus
 
 //template<typename T, std::size_t I,
 //    typename Func, typename VarTuple, typename ...Args>

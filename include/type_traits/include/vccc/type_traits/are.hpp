@@ -15,6 +15,7 @@ namespace vccc {
 @addtogroup type_traits
 @{
     @defgroup are are
+    @brief specialized \ref conjunction
 @}
 */
 

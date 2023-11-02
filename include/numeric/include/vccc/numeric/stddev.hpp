@@ -14,7 +14,7 @@ namespace vccc {
 /**
 @addtogroup numeric
 @{
-    @defgroup numeric_stddev standard deviation
+    @defgroup numeric_stddev stddev
     @brief calculate standard deviation
 
     \f$ {\large \sigma=\sqrt{\frac{\sum{(x_i - \mu)}}{N}}} \f$
@@ -74,10 +74,9 @@ stddev(Numbers... numbers)
 }
 
 /**
-@brief calculate standard deviation and average
-
-@param ...numbers   numbers
-@return pair of average and standard deviation
+ * @brief calculate standard deviation and average
+ *
+ * @return pair of average and standard deviation
  */
 template<typename InputIterator>
 auto

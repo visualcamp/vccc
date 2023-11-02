@@ -10,10 +10,9 @@
 
 namespace vccc {
 
-//! @addtogroup calculus
+//! @addtogroup math_calculus
 //! @{
 
-//! @cond ignored
 namespace internal {
 namespace math {
 template<typename T, typename DifferentialCategory, typename Func, typename VarTuple, std::size_t ...I, typename ...Args>
@@ -23,11 +22,11 @@ inline auto gradientImpl(Func f, VarTuple vars, std::index_sequence<I...>, Args&
 }
 } // namespace math
 } // namespace internal
-//! @endcond
 
 
 /**
-@brief calculates gradient value of the given function and variables
+ * @brief calculates gradient value of the given function and variables
+ * @sa partialDiff: \copybrief partialDiff
  *
  * @tparam T                        calculating type
  * @tparam DifferentialCategory     differentiating method
@@ -50,7 +49,7 @@ inline auto gradient(Func f, std::tuple<Vars...> vars, Args&&... args) {
       std::forward<Args>(args)...);
 }
 
-//! @} calculus
+//! @} math_calculus
 
 } // namespace vccc
 

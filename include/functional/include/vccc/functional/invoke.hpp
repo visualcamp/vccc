@@ -15,8 +15,8 @@ namespace vccc {
 //! @{
 
 /**
-@brief invokes the callable object f with the parameter args
- * @param f         callable object
+ * @brief invokes any \a Callable object with given arguments
+ * @param f         \a Callable object to be invoked
  * @param args      parameters
  * @return          result
  */

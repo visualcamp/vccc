@@ -10,7 +10,7 @@
 /**
 @addtogroup math
 @{
-    @defgroup calculus calculus
+    @defgroup math_calculus calculus
     @brief Mathematics for calculus
 @}
 */

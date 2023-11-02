@@ -5,8 +5,9 @@
 # ifndef VCCC_NUMERIC_SUM_HPP
 # define VCCC_NUMERIC_SUM_HPP
 #
-# include "vccc/type_traits.hpp"
 # include <numeric>
+#
+# include "vccc/type_traits.hpp"
 
 namespace vccc {
 
@@ -55,13 +56,14 @@ constexpr inline std::decay_t<T> default_value() {
 @param last     ending iterator
 @return         sum
 */
-template<typename InputIterator, std::enable_if_t<is_iterable<InputIterator>::value, int> = 0>
+template<typename InputIterator, std::enable_if_t<conjunction<
+    is_iterable<InputIterator>,
+    std::is_default_constructible<decltype(*std::declval<InputIterator>())>>::value, int> = 0>
 constexpr auto sum(InputIterator first, InputIterator last) {
-  if(first == last) return impl::default_value<decltype(*first)>();
-  auto s = *first;
-  ++first;
-  for(; first != last; ++first)
+  auto s = impl::default_value<decltype(*first)>();
+  for (; first != last; ++first) {
     s += *first;
+  }
   return s;
 }
 
@@ -72,22 +74,21 @@ constexpr auto sum(InputIterator first, InputIterator last) {
 @param unary_op unary operator
 @return         sum
 */
-template<typename InputIterator, typename UnaryOperation, std::enable_if_t<is_iterable<InputIterator>::value, int> = 0>
+template<typename InputIterator, typename UnaryOperation, std::enable_if_t<conjunction<
+    is_iterable<InputIterator>,
+    std::is_default_constructible<decltype(*std::declval<InputIterator>())>>::value, int> = 0>
 constexpr auto sum(InputIterator first, InputIterator last, UnaryOperation unary_op) {
-  if(first == last) return impl::default_value<decltype(unary_op(*first))>();
-  auto s = unary_op(*first);
-  ++first;
-  for(; first != last; ++first)
+  auto s = impl::default_value<decltype(*first)>();
+  for (; first != last; ++first) {
     s += unary_op(*first);
+  }
   return s;
 }
 
 /**
-@brief sum of variadic
-@param first    beginning iterator
-@param last     ending iterator
-@param unary_op unary operator
-@return         sum
+ * @brief sum of variadic
+ *
+ * @return args_0 + args_1 + ... + args_N-1
 */
 template<typename ...Args, std::enable_if_t<negation<disjunction<is_iterable<Args>...>>::value, int> = 0>
 constexpr inline auto sum(const Args&... args) {
@@ -95,9 +96,11 @@ constexpr inline auto sum(const Args&... args) {
 }
 
 /**
-@brief sum of variadic with custom operator
-@param unary_op unary operator
-@return         sum
+ * @brief sum of variadic with custom operator
+ *
+ * @param unary_op unary operator
+ * @param arg
+ * @return `unary_op(arg)`
 */
 template<typename UnaryOperation, typename Arg>
 constexpr inline auto sum_custom(const UnaryOperation& unary_op, const Arg& arg) {
@@ -111,9 +114,9 @@ constexpr inline auto sum_custom(const UnaryOperation& unary_op, const Arg& arg,
 
 
 /**
-@brief get square
-@param val  value
-@return     squared value
+@brief get squared value
+@param val
+@return     `val` * `val`
 */
 template<typename T>
 constexpr T square(const T& val) {

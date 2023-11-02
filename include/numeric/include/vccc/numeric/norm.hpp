@@ -39,13 +39,10 @@ norm(InputIterator first, InputIterator last)
   return std::sqrt(square_sum(first, last));
 }
 
-//! @cond ignored
 template<typename T, std::enable_if_t<std::is_arithmetic<T>::value, int> = 0>
 inline T norm(T arg) {
   return std::abs(arg);
 }
-//! @endcond
-
 
 /**
 @brief calculate norm of variadics
@@ -60,7 +57,6 @@ norm(Arg arg, Args... args)
 }
 
 //! @} numeric_norm
-//! @} numeric
 
 } // namespace vccc
 
