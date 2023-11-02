@@ -1,6 +1,6 @@
 class AddPermalink {
 
-    static addAnchorTo(node, node_index) {
+    static addAnchorTo(node, node_id) {
         let anchor = node.querySelector(":scope > a[id]")
         if (!anchor) {
             anchor = document.createElement("a")
@@ -9,9 +9,7 @@ class AddPermalink {
 
         let id = anchor.getAttribute(anchor, "id")
         if (!id) {
-            id = this.getValidID(node.textContent)
-            if (id.length === 0)
-                id = "_" + node_index
+            id = node_id;
             anchor.setAttribute("id", id)
         }
 
@@ -26,8 +24,8 @@ class AddPermalink {
         return id
     }
 
-    static addPermalinkTo(node, node_index) {
-        let id = this.addAnchorTo(node, node_index)
+    static addPermalinkTo(node, default_id) {
+        let id = this.addAnchorTo(node, default_id)
 
         let anchorlink = node.querySelector(`:scope > a[href]`)
         if (!anchorlink) {
