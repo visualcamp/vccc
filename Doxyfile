@@ -203,6 +203,7 @@ STRIP_FROM_INC_PATH    = include/directory/include \
                          include/random/include \
                          include/range/include \
                          include/signal/include \
+                         include/string_view/include \
                          include/tuple/include \
                          include/type_support/include \
                          include/type_traits/include \
