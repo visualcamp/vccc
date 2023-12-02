@@ -356,7 +356,12 @@ class basic_string_view {
    * \brief find characters in the view
    */
   constexpr size_type find(basic_string_view sv, size_type pos = 0) const noexcept {
-    // TODO: Implement
+    while (pos <= size() - sv.size()) {
+      if (traits_type::compare(data() + pos, sv.data(), sv.size()) == 0)
+        return pos;
+      ++pos;
+    }
+    return npos;
   }
 
   constexpr size_type find(value_type c, size_type pos = 0) const noexcept {
@@ -377,8 +382,14 @@ class basic_string_view {
    * \brief find the last occurrence of a substring
    * @{
    */
-  constexpr size_type rfind(basic_string_view v, size_type pos = npos) const noexcept {
-    // TODO: Implement
+  constexpr size_type rfind(basic_string_view sv, size_type pos = npos) const noexcept {
+    pos = (std::min)(size() - sv.size(), pos);
+    while (pos <= size() - sv.size()) {
+      if (traits_type::compare(data() + pos, sv.data(), sv.size()) == 0)
+        return pos;
+      --pos;
+    }
+    return npos;
   }
 
   constexpr size_type rfind(value_type c, size_type pos = npos) const noexcept {
@@ -399,8 +410,14 @@ class basic_string_view {
    * @{
    * \brief find first occurrence of characters
    */
-  constexpr size_type find_first_of(basic_string_view v, size_type pos = 0) const noexcept {
-    // TODO: Implement
+  constexpr size_type find_first_of(basic_string_view sv, size_type pos = 0) const noexcept {
+    while (pos < size()) {
+      if (traits_type::find(sv.data(), sv.size(), (*this)[pos])) {
+        return pos;
+      }
+      ++pos;
+    }
+    return npos;
   }
 
   constexpr size_type find_first_of(value_type c, size_type pos = 0) const noexcept {
@@ -421,8 +438,15 @@ class basic_string_view {
    * @{
    * \brief find last occurrence of characters
    */
-  constexpr size_type find_last_of(basic_string_view v, size_type pos = npos) const noexcept {
-    // TODO: Implement
+  constexpr size_type find_last_of(basic_string_view sv, size_type pos = npos) const noexcept {
+    pos = (std::min)(size() - 1, pos);
+    while (pos < size()) {
+      if (traits_type::find(sv.data(), sv.size(), (*this)[pos])) {
+        return pos;
+      }
+      --pos;
+    }
+    return npos;
   }
 
   constexpr size_type find_last_of(value_type c, size_type pos = npos) const noexcept {
@@ -443,8 +467,14 @@ class basic_string_view {
    * @{
    * \brief find first absence of characters
   */
-  constexpr size_type find_first_not_of(basic_string_view v, size_type pos = 0) const noexcept {
-    // TODO: Implement
+  constexpr size_type find_first_not_of(basic_string_view sv, size_type pos = 0) const noexcept {
+    while (pos < size()) {
+      if (!traits_type::find(sv.data(), sv.size(), (*this)[pos])) {
+        return pos;
+      }
+      ++pos;
+    }
+    return npos;
   }
 
   constexpr size_type find_first_not_of(value_type c, size_type pos = 0) const noexcept {
@@ -465,8 +495,15 @@ class basic_string_view {
    * @{
    * \brief find last absence of characters
    */
-  constexpr size_type find_last_not_of(basic_string_view v, size_type pos = npos) const noexcept {
-    // TODO: Implement
+  constexpr size_type find_last_not_of(basic_string_view sv, size_type pos = npos) const noexcept {
+    pos = (std::min)(size() - 1, pos);
+    while (pos < size()) {
+      if (!traits_type::find(sv.data(), sv.size(), (*this)[pos])) {
+        return pos;
+      }
+      --pos;
+    }
+    return npos;
   }
 
   constexpr size_type find_last_not_of(value_type c, size_type pos = npos) const noexcept {
