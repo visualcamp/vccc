@@ -20,7 +20,7 @@ template<typename T>
 struct has_to_address<T, void_t<decltype(std::pointer_traits<T>::to_address(std::declval<const T&>()))>> : std::true_type {};
 
 template<typename T, typename = void>
-struct has_arraw : std::false_type {};
+struct has_arrow : std::false_type {};
 
 template<typename T>
 struct has_arrow<T, void_t<decltype(std::declval<const T&>().operator->())>> : std::true_type {};
