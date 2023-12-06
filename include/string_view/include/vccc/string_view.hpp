@@ -12,9 +12,11 @@
 #include <iterator>
 #include <memory>
 #include <stdexcept>
+#include <string>
 #include <ostream>
 
 #include "vccc/functional/hash_array.hpp"
+#include "vccc/memory/to_address.hpp"
 #include "vccc/type_traits/type_identity.hpp"
 
 /**
@@ -79,8 +81,17 @@ class basic_string_view {
 
   // template<typename It, typename End>
   // constexpr basic_string_view(It first, End last);
+  // vvvv
+  template<typename It, std::enable_if_t<!std::is_convertible<It, size_type>::value, int> =0>
+  constexpr basic_string_view(It first, It last)
+      : data_(to_address(first)), size_(last - first) {}
 
   // template< class R > constexpr explicit basic_string_view( R&& r );
+  // vvvv
+  constexpr explicit basic_string_view(const std::basic_string<CharT, Traits>& s)
+      : data_(s.data()), size_(s.size()) {}
+
+  constexpr explicit basic_string_view(std::basic_string<CharT, Traits>&& s) = delete;
 
   constexpr basic_string_view(std::nullptr_t) = delete;
   /// @}
