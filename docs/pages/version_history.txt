@@ -3,6 +3,10 @@
 
 \tableofcontents
 
+\section version_1_0_3_0 v1.0.3 (2023.12.07)
+- \subpage string_view
+    - Add \ref string_view "string_view"
+
 \section version_1_0_2_1 v1.0.2.1 (2023.11.02)
 - \subpage type_traits
     - Add \ref group_common_type "common_type"

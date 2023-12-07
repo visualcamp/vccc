@@ -5,6 +5,7 @@
 # ifndef VCCC_FUNCTIONAL_FUNCTIONAL_HPP
 # define VCCC_FUNCTIONAL_FUNCTIONAL_HPP
 #
+# include "vccc/functional/hash_array.hpp"
 # include "vccc/functional/invoke.hpp"
 
 /**

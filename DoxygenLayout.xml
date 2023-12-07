@@ -188,7 +188,7 @@
 
   <!-- Layout definition for a group page -->
   <group>
-    <briefdescription visible="no"/>
+    <briefdescription visible="yes"/>
     <detaileddescription title=""/>
     <groupgraph visible="no"/>
     <memberdecl>
