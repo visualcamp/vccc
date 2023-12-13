@@ -3,6 +3,11 @@
 
 \tableofcontents
 
+\section version_1_0_4 v1.0.4 (2023.12.14)
+- \subpage functional
+    - Add FNV hash algorithms
+    - Add \ref vccc::hash_array
+
 \section version_1_0_3_1 v1.0.3.1 (2023.12.12)
 - \subpage string_view
     - Add \ref string_view "string_view"
