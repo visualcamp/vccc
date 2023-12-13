@@ -8,11 +8,48 @@
 #include <utility>
 
 #include "vccc/type_traits.hpp"
+#include "vccc/type_traits/common_reference.hpp"
 #include "vccc/test.hpp"
 
+template<typename T1, typename T2, typename = void>
+struct ter_impl {};
+
+template<typename T1, typename T2>
+struct ter_impl<T1, T2, vccc::void_t<decltype(false ? std::declval<T1>() : std::declval<T2>())>> {
+  using type = decltype(false ? std::declval<T1>() : std::declval<T2>());
+};
+
+template<typename T1, typename T2>
+struct ter : ter_impl<T1, T2> {};
+
+template<template<typename> class T>
+struct tc {};
+
+template<typename T>
+struct outer {
+  template<typename U>
+  struct inner {};
+};
+
+namespace my_swap_namespace {
+
+struct swappable_object {
+  swappable_object() = default;
+  swappable_object(swappable_object&&) = delete;
+  int x = 1;
+};
+
+void swap(swappable_object &a, swappable_object &b) {
+  a.x = 10;
+  b.x = 20;
+}
+
+} // namespace my_swap_namespace
 
 int main() {
   INIT_TEST("vccc::type_traits")
+
+  static_assert(std::is_same<std::add_rvalue_reference_t<std::remove_reference_t<int&>>, int&&>::value, " ");
 
   { // is_bounded_array
     TEST_ENSURES(vccc::is_bounded_array<int>{} == false);
@@ -54,6 +91,15 @@ int main() {
     TEST_ENSURES(vccc::is_swappable<no_move>{} == false);
     TEST_ENSURES((vccc::is_swappable<std::pair<no_move, no_move>>{} == false));
     TEST_ENSURES(vccc::is_swappable<my_swap>{} == true);
+
+
+    TEST_ENSURES(vccc::is_swappable<my_swap_namespace::swappable_object>{} == true);
+  }
+
+  {
+
+
+//    static_assert(std::is_same<decltype(k), int&>::value, " ");
   }
 
   return TEST_RETURN_RESULT;

@@ -9,6 +9,7 @@
 # include "type_traits/arity.hpp"
 # include "type_traits/bigger_type.hpp"
 # include "type_traits/bool_constant.hpp"
+# include "type_traits/common_reference.hpp"
 # include "type_traits/common_type.hpp"
 # include "type_traits/conjunction.hpp"
 # include "type_traits/disjunction.hpp"
