@@ -89,12 +89,19 @@ class basic_string_view {
   // TODO
   // template< class R > constexpr explicit basic_string_view( R&& r );
 
-  // std::basic_string::operator string_view
-  // vvvvv
+  // basic_string_view does not have a constructor that accepts std::basic_string.
+  // Rather, std::basic_string defines a operator string_view.
+  // But we cannot modify std::basic string so we implement two custom constructors
+  // It is the programmer's responsibility to ensure that the resulting string view does not outlive the string.
   constexpr basic_string_view(const std::basic_string<CharT, Traits>& s)
-      : data_(s.data()), size_(s.size()) {}
+  : data_(s.data()), size_(s.size()) {}
 
-  constexpr basic_string_view(std::basic_string<CharT, Traits>&& s) = delete;
+  constexpr basic_string_view(std::basic_string<CharT, Traits>&&)
+      : data_(nullptr), size_(0) {
+#ifndef NDEBUG
+    throw std::runtime_error("Cannot construct vccc::string_view from std::string&&");
+#endif
+  }
 
   constexpr basic_string_view(std::nullptr_t) = delete;
   /// @}

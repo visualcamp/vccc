@@ -19,6 +19,23 @@ int Test() {
 
   static_assert(std::is_trivially_copyable<string_view>::value, " ");
 
+  {
+    std::string s = "hello";
+    string_view sv = s;
+
+    static_assert(std::is_constructible<string_view, std::string>::value, " ");
+    static_assert(std::is_constructible<string_view, const std::string&>::value, " ");
+    static_assert(std::is_constructible<string_view, std::string&&>::value, " ");
+    static_assert(std::is_convertible<std::string, string_view>::value, " ");
+    static_assert(std::is_convertible<const std::string&, string_view>::value, " ");
+    static_assert(std::is_convertible<std::string&&, string_view>::value, " ");
+
+    static_assert(std::is_constructible<string_view, const char*>::value, " ");
+    static_assert(std::is_convertible<const char*, string_view>::value, " ");
+
+    // string_view sv2 = std::string();
+  }
+
   { // basic_string_view::find
     using namespace vccc::literals;
 
