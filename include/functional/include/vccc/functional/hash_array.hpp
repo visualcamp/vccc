@@ -11,23 +11,26 @@
 
 namespace vccc {
 
-template<std::size_t Bytes = sizeof(std::size_t) * CHAR_BIT> struct FNV_offset_basis;
-template<std::size_t Bytes = sizeof(std::size_t) * CHAR_BIT> struct FNV_prime;
+template<typename T, std::size_t Bytes = sizeof(T) * CHAR_BIT> struct basic_FNV_prime;
+template<typename T, std::size_t Bytes = sizeof(T) * CHAR_BIT> struct basic_FNV_offset_basis;
 
-template<> struct FNV_prime<32> : std::integral_constant<std::size_t, 16777619U> {};
-template<> struct FNV_offset_basis<32> : std::integral_constant<std::size_t, 2166136261U> {};
+template<typename T> struct basic_FNV_prime<T, 32> : std::integral_constant<T, 16777619U> {};
+template<typename T> struct basic_FNV_offset_basis<T, 32> : std::integral_constant<T, 2166136261U> {};
 
-template<> struct FNV_prime<64> : std::integral_constant<std::size_t, 1099511628211U> {};
-template<> struct FNV_offset_basis<64> : std::integral_constant<std::size_t, 14695981039346656037U> {};
+template<typename T> struct basic_FNV_prime<T, 64> : std::integral_constant<T, 1099511628211U> {};
+template<typename T> struct basic_FNV_offset_basis<T, 64> : std::integral_constant<T, 14695981039346656037U> {};
 
-//template<> struct FNV_prime<128> : integral_constant<std::size_t, 309485009821345068724781371U> {};
-//template<> struct FNV_offset_basis<128> : integral_constant<std::size_t, 144066263297769815596495629667062367629U> {};
+// template<typename T> struct basic_FNV_prime<T, 128> : std::integral_constant<T, 309485009821345068724781371U> {};
+// template<typename T> struct basic_FNV_offset_basis<T, 128> : std::integral_constant<T, 144066263297769815596495629667062367629U> {};
+
+using FNV_prime = basic_FNV_prime<std::size_t>;
+using FNV_offset_basis = basic_FNV_offset_basis<std::size_t>;
 
 template<typename T>
 std::size_t FNV_1a(std::size_t value, const T& byte) {
   static_assert(std::is_integral<T>::value, "T must integral type");
   value = value ^ static_cast<std::size_t>(byte);
-  value = value * FNV_prime<>::value;
+  value = value * FNV_prime::value;
   return value;
 }
 
@@ -40,7 +43,7 @@ inline std::size_t FNV_1a(std::size_t value, const unsigned char* const bytes, s
 
 template<typename T>
 std::size_t hash_array(const T* bytes, std::size_t size) {
-  return FNV_1a(FNV_offset_basis<>::value, reinterpret_cast<const unsigned char* const>(bytes), sizeof(T) * size);
+  return FNV_1a(FNV_offset_basis::value, reinterpret_cast<const unsigned char* const>(bytes), sizeof(T) * size);
 }
 
 template<typename T, std::size_t N>
