@@ -36,6 +36,20 @@ int Test() {
     // string_view sv2 = std::string();
   }
 
+  { // string_view::contains
+    // bool contains(basic_string_view x) const noexcept;
+    TEST_ENSURES(("https://cppreference.com"_sv.contains("cpp"_sv) == true));
+    TEST_ENSURES(("https://cppreference.com"_sv.contains("php"_sv) == false));
+
+    // bool contains(CharT x) const noexcept;
+    TEST_ENSURES(("C++23"_sv.contains('+') == true));
+    TEST_ENSURES(("C++23"_sv.contains('-') == false));
+
+    // bool contains(const CharT* x) const;
+    TEST_ENSURES((string_view("basic_string_view").contains("string") == true));
+    TEST_ENSURES((string_view("basic_string_view").contains("String") == false));
+  }
+
   { // basic_string_view::find
     using namespace vccc::literals;
 

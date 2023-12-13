@@ -5,7 +5,7 @@ add_library(vccc_string_view INTERFACE)
 add_library(VCCC::string_view ALIAS vccc_string_view)
 
 target_include_directories(vccc_string_view INTERFACE include)
-target_link_libraries(vccc_string_view INTERFACE VCCC::type_traits VCCC::functional VCCC::memory)
+target_link_libraries(vccc_string_view INTERFACE VCCC::type_traits VCCC::functional VCCC::memory VCCC::ranges)
 
 if(VCCC_RUN_TEST)
     add_subdirectory(test)
