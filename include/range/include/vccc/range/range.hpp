@@ -8,6 +8,7 @@
 # include <algorithm>
 # include <iterator>
 # include <numeric>
+# include <utility>
 # include <vector>
 
 namespace vccc {
@@ -15,6 +16,7 @@ namespace vccc {
 //! @addtogroup range
 //! @{
 
+// TODO(Tony): Replace with ranges::iota_view
 template<typename T, typename Container = std::vector<T>>
 class range {
  public:
@@ -29,7 +31,7 @@ class range {
     : container(b)
     { std::iota(begin(), end(), 0); }
   explicit range(value_type a, value_type b)
-    : container(std::max(b - a, 0))
+    : container((std::max)(b - a, 0))
     { std::iota(begin(), end(), a); }
   explicit range(value_type a, value_type b, value_type incr)
     : container((b-a) * incr > 0 ? (std::abs(b-a) - 1) / std::abs(incr) + 1 : 0)
