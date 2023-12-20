@@ -27,12 +27,12 @@ template<typename T, typename U>
 struct is_swappable_with_impl : conjunction<
     std::is_convertible<decltype(std::declval<U>()), decltype(std::declval<T>())>,
     std::is_convertible<decltype(std::declval<T>()), decltype(std::declval<U>())>,
-    std::is_move_constructible<T>, std::is_move_assignable<T>,
-    std::is_move_constructible<T>, std::is_move_assignable<T>
+    std::is_move_constructible<std::remove_reference_t<T>>, std::is_move_assignable<std::remove_reference_t<T>>,
+    std::is_move_constructible<std::remove_reference_t<U>>, std::is_move_assignable<std::remove_reference_t<U>>
     > {
   static constexpr bool nothrow =
-      std::is_nothrow_move_constructible<T>::value && std::is_nothrow_move_assignable<T>::value &&
-      std::is_nothrow_move_constructible<U>::value && std::is_nothrow_move_assignable<U>::value;
+      std::is_nothrow_move_constructible<std::remove_reference_t<T>>::value && std::is_nothrow_move_assignable<std::remove_reference_t<T>>::value &&
+      std::is_nothrow_move_constructible<std::remove_reference_t<U>>::value && std::is_nothrow_move_assignable<std::remove_reference_t<U>>::value;
 };
 
 template<typename T, std::size_t N>
