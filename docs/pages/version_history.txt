@@ -3,7 +3,7 @@
 
 \tableofcontents
 
-\section version_1_0_4 v1.0.4 (2023.12.14)
+\section version_1_0_4_1 v1.0.4.1 (2023.12.20)
 - \subpage functional
     - Add FNV hash algorithms
     - Add \ref vccc::hash_array
