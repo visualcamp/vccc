@@ -4,6 +4,10 @@ project(vccc)
 add_library(vccc INTERFACE)
 add_library(VCCC ALIAS vccc)
 
+if (MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:__cplusplus")
+endif()
+
 # Third party
 add_subdirectory(boost/predef)
 add_subdirectory(boost/pfr)
