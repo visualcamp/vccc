@@ -3,10 +3,12 @@
 
 \tableofcontents
 
-\section version_1_0_4_1 v1.0.4.1 (2023.12.20)
+\section version_1_0_4_2 v1.0.4.2 (2023.12.21)
 - \subpage functional
     - Add FNV hash algorithms
     - Add \ref vccc::hash_array
+    - Fix \ref vccc::is_swappable in C++14
+    - Add \ref vccc::is_nothrow_swappable
 
 \section version_1_0_3_1 v1.0.3.1 (2023.12.12)
 - \subpage string_view
