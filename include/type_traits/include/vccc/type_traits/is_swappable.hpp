@@ -9,6 +9,8 @@
 #include <type_traits>
 
 #include "vccc/type_traits/bool_constant.hpp"
+#include "vccc/type_traits/disjunction.hpp"
+#include "vccc/type_traits/conjunction.hpp"
 #include "vccc/type_traits/is_referenceable.hpp"
 #include "vccc/type_traits/void_t.hpp"
 
@@ -77,9 +79,9 @@ struct is_swappable_with_impl<T, U, void_t<
 } // namespace swappable_test_adl
 
 template<typename T, typename U>
-using is_swappable_with_impl =
+struct is_swappable_with_impl :
     disjunction<swappable_test_adl::is_swappable_with_impl<T, U>,
-                swappable_test_std::is_swappable_with_impl<T, U>>;
+                swappable_test_std::is_swappable_with_impl<T, U>> {};
 
 template<typename T, typename U, bool v = is_swappable_with_impl<T, U>::value>
 struct is_nothrow_swappable_with_impl : bool_constant<is_swappable_with_impl<T, U>::nothrow> {};
@@ -100,7 +102,8 @@ struct is_swappable :
     std::conditional_t<
         !is_referencable<T>::value,
         std::false_type,
-        is_swappable_with<std::add_lvalue_reference_t<T>, std::add_lvalue_reference_t<T>>>{};
+        is_swappable_with<std::add_lvalue_reference_t<T>, std::add_lvalue_reference_t<T>>
+    > {};
 
 template<typename T, typename U>
 struct is_nothrow_swappable_with : internal::is_nothrow_swappable_with_impl<T, U> {};
