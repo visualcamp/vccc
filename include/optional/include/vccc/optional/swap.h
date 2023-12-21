@@ -9,8 +9,9 @@
 # include <type_traits>
 # include <utility>
 #
-# include "vccc/optional/internal/is_swappable.h"
 # include "vccc/optional/forward_declare.h"
+# include "vccc/type_traits/conjunction.hpp"
+# include "vccc/type_traits/is_swappable.hpp"
 
 namespace std {
 
@@ -24,7 +25,7 @@ namespace std {
 
 template<typename T,
   ::std::enable_if_t<
-    ::std::is_move_constructible<T>::value && ::vccc::internal::optional::is_swappable<T>::value,
+    ::std::is_move_constructible<T>::value && ::vccc::is_swappable<T>::value,
   int> = 0>
 void swap(::vccc::optional<T>& lhs, ::vccc::optional<T>& rhs) noexcept(noexcept(lhs.swap(rhs))) {
   lhs.swap(rhs);

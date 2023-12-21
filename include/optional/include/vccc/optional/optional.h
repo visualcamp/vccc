@@ -16,6 +16,7 @@
 # include "vccc/optional/inplace_t.h"
 # include "vccc/optional/nullopt_t.h"
 # include "vccc/optional/swap.h"
+# include "vccc/type_traits/is_swappable.hpp"
 
 namespace vccc {
 
@@ -291,11 +292,7 @@ class optional :
   /// @}
 
   void swap(optional& other)
-#if __cplusplus >= 201703
-  noexcept(std::is_nothrow_move_constructible<value_type>::value && std::is_nothrow_swappable<value_type>::value)
-#else
-  noexcept(std::is_nothrow_move_constructible<value_type>::value)
-#endif
+  noexcept(std::is_nothrow_move_constructible<value_type>::value && vccc::is_nothrow_swappable<value_type>::value)
   {
     static_assert(std::is_move_constructible<value_type>::value,
                   "vccc::optional<T>::swap : T must be move constructible");
