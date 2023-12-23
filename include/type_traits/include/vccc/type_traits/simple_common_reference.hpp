@@ -29,7 +29,7 @@ template<typename T1, typename T2>
 struct simple_common_reference_lref<T1, T2, true>
     : std::conditional_t<
         std::is_reference< detail::test_ternary_t<T1, T2> >::value,
-        detail::test_ternary_t<T1, T2>,
+        type_identity<detail::test_ternary_t<T1, T2>>,
         no_simple_common_reference
       > {};
 

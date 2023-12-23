@@ -80,7 +80,7 @@ template<typename T1, typename T2, typename = void>
 struct common_reference_tag_4 : std::false_type {};
 
 template<typename T1, typename T2>
-struct common_reference_tag_4<T1, T2, void_t<std::common_type_t<T1, T2>>> {};
+struct common_reference_tag_4<T1, T2, void_t<std::common_type_t<T1, T2>>> : std::true_type {};
 
 template<typename T1, typename T2>
 struct common_reference_tag
