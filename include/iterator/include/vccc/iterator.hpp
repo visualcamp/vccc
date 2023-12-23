@@ -10,6 +10,7 @@
 #include "vccc/iterator/input_or_output_iterator.hpp"
 #include "vccc/iterator/iter_difference_t.hpp"
 #include "vccc/iterator/iter_reference_t.hpp"
+#include "vccc/iterator/iter_value_t.hpp"
 #include "vccc/iterator/unreachable_sentinel.hpp"
 #include "vccc/iterator/weakly_incrementable.hpp"
 
