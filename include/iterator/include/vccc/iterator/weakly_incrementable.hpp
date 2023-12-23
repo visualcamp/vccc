@@ -40,6 +40,9 @@ struct is_post_incrementable<T, void_t<decltype( std::declval<T&>()++ )>> : std:
 
 } // namespace detail
 
+/// @addtogroup iterator
+/// @{
+
 template<typename I>
 struct weakly_incrementable
     : conjunction<
@@ -48,6 +51,8 @@ struct weakly_incrementable
         detail::is_pre_incrementable<I>,
         detail::is_post_incrementable<I>
       > {};
+
+/// @}
 
 } // namespace concepts
 } // namespace vccc
