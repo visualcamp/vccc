@@ -16,6 +16,7 @@
 # include "type_traits/empty.hpp"
 # include "type_traits/has_typename_difference_type.hpp"
 # include "type_traits/has_typename_type.hpp"
+# include "type_traits/has_typename_value_type.hpp"
 # include "type_traits/is_bounded_array.hpp"
 # include "type_traits/is_complete.hpp"
 # include "type_traits/is_integer_like.hpp"
