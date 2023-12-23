@@ -23,7 +23,6 @@ struct is_default_initializable : std::false_type {};
 template<typename T>
 struct is_default_initializable<T, void_t<decltype(::new T)>> : std::true_type {};
 
-
 } // namespace detail
 
 /// @addtogroup concepts
