@@ -10,7 +10,7 @@
 #include "vccc/type_traits/conjunction.hpp"
 #include "vccc/concepts/assignable_from.hpp"
 #include "vccc/concepts/move_constructible.hpp"
-//#include "vccc/concepts/swappable.hpp"
+#include "vccc/type_traits/is_swappable.hpp"
 
 namespace vccc {
 namespace concepts {
