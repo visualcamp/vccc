@@ -10,17 +10,10 @@
 
 #include "vccc/concepts/subtractable.hpp"
 #include "vccc/type_traits/empty.hpp"
-#include "vccc/type_traits/type_identity.hpp"
-#include "vccc/type_traits/void_t.hpp"
+#include "vccc/type_traits/has_typename_difference_type.hpp"
 
 namespace vccc {
 namespace detail {
-
-template<typename T, typename = void>
-struct has_difference_type : std::false_type {};
-
-template<typename T>
-struct has_difference_type<T, void_t<typename T::difference_type>> {};
 
 template<typename T, bool = concepts::subtractable<T>::value>
 struct substract_check : std::false_type {};
@@ -50,7 +43,7 @@ struct incrementable_traits_yes_difference_type {
 template<typename T>
 struct incrementable_traits_impl
     : std::conditional_t<
-        has_difference_type<T>::value,
+        has_typename_difference_type<T>::value,
         incrementable_traits_yes_difference_type<T>,
         incrementable_traits_no_difference_type<T>
       > {};
