@@ -31,8 +31,20 @@ struct iter_difference<T, false> {
 
 } // namespace detail
 
+/// @addtogroup iterator
+/// @{
+
+/**
+ * @brief Computes the \a difference type of `T`
+ *
+ * Computes the \a difference type of `T`. If `std::iterator_traits<std::remove_cvref_t<T>>` is not specialized,
+ * then `iter_difference_t<T>` is `incrementable_traits<std::remove_cvref_t<T>>::difference_type`.
+ * Otherwise, it is `std::iterator_traits<std::remove_cvref_t<T>>::difference_type`
+ */
 template<typename T>
 using iter_difference_t = typename detail::iter_difference<T>::type;
+
+/// @}
 
 } // namespace vccc
 
