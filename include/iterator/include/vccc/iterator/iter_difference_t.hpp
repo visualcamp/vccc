@@ -7,7 +7,9 @@
 
 #include <iterator>
 
+#include "vccc/type_traits/disjunction.hpp"
 #include "vccc/type_traits/is_complete.hpp"
+#include "vccc/type_traits/has_typename_difference_type.hpp"
 #include "vccc/type_traits/remove_cvref.hpp"
 #include "vccc/iterator/incrementable_traits.hpp"
 
@@ -16,7 +18,8 @@ namespace detail {
 
 template<
     typename T,
-    bool = is_complete< std::iterator_traits< remove_cvref_t<T> > >::value>
+    bool = has_typename_difference_type< std::iterator_traits< remove_cvref_t<T> > >::value
+>
 struct iter_difference;
 
 template<typename T>
@@ -28,6 +31,13 @@ template<typename T>
 struct iter_difference<T, false> {
   using type = typename incrementable_traits<remove_cvref_t<T>>::difference_type;
 };
+
+template<typename T>
+struct test_iter_difference
+    : disjunction<
+        has_typename_difference_type< std::iterator_traits< remove_cvref_t<T> > >,
+        has_typename_difference_type< incrementable_traits<remove_cvref_t<T>> >
+      > {};
 
 } // namespace detail
 
