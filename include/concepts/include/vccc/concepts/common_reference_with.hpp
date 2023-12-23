@@ -15,12 +15,33 @@
 namespace vccc {
 namespace concepts {
 
+/// @addtogroup concepts
+/// @{
+
+/**
+@brief specifies that two types share a common reference type
+
+@code{.cpp}
 template<typename T, typename U>
-using common_reference_with = conjunction<
-    same_as< common_reference_t<T, U>, common_reference_t<U, T> >,
-    concepts::convertible_to<T, common_reference_t<T, U> >,
-    concepts::convertible_to<U, common_reference_t<T, U> >
->;
+struct common_reference_with
+    : conjunction<
+        same_as< common_reference_t<T, U>, common_reference_t<U, T> >,
+        convertible_to<T, common_reference_t<T, U> >,
+        convertible_to<U, common_reference_t<T, U> >
+      > {};
+@endcode
+
+See [`std::common_reference_with`](https://en.cppreference.com/w/cpp/concepts/common_reference_with) for more information
+*/
+template<typename T, typename U>
+struct common_reference_with
+    : conjunction<
+        same_as< common_reference_t<T, U>, common_reference_t<U, T> >,
+        convertible_to<T, common_reference_t<T, U> >,
+        convertible_to<U, common_reference_t<T, U> >
+      > {};
+
+/// @}
 
 } // namespace concepts
 } // namespace vccc

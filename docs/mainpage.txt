@@ -14,14 +14,17 @@ It provides various algorithms, implementing C++17 and C++20 feature in C++14.
 - Emscripten 2.0.14 or above (below versions are not tested)
 
 \section Libraries
+- \subpage concepts. \copybrief concepts
 - \subpage functional. \copybrief functional
+- \subpage iterator. \copybrief iterator
 - \subpage literal. \copybrief literal
 - \subpage log. \copybrief log
 - \subpage math. \copybrief math
 - \subpage numeric. \copybrief numeric
 - \subpage optional. \copybrief optional
 - \subpage random. \copybrief random
-- \subpage range. \copybrief range
+- \subpage range. \copybrief range (will be removed)
+- \subpage ranges. \copybrief ranges
 - \subpage signal. \copybrief signal
 - \subpage string_view. \copybrief string_view
 - \subpage tuple. \copybrief tuple

@@ -11,12 +11,24 @@
 
 namespace vccc {
 namespace concepts {
+namespace detail {
 
 template<typename T, typename = void>
-struct dereferenceable : std::false_type {};
+struct dereferenceable_impl : std::false_type {};
 
 template<typename T>
-struct dereferenceable<T, void_t<decltype(*std::declval<T&>())>> : std::true_type {};
+struct dereferenceable_impl<T, void_t<decltype(*std::declval<T&>())>> : std::true_type {};
+
+} // namespace detail
+
+
+/// @addtogroup concepts
+/// @{
+
+template<typename T>
+struct dereferenceable : detail::dereferenceable_impl<T> {};
+
+/// @}
 
 } // namespace concepts
 } // namespace vccc

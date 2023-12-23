@@ -10,9 +10,19 @@
 namespace vccc {
 namespace concepts {
 
-// Subsume is impossible without using actual concept
+/// @addtogroup concepts
+/// @{
+
+
+/**
+ * \brief 	specifies that a type is the same as another type
+ *
+ * Subsume is impossible without using actual concept
+ */
 template<typename T, typename U>
 struct same_as : std::is_same<T, U> {};
+
+/// @}
 
 } // namespace concepts
 } // namespace vccc

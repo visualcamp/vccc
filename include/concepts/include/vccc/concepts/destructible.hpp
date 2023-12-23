@@ -10,8 +10,13 @@
 namespace vccc {
 namespace concepts {
 
+/// @addtogroup concepts
+/// @{
+
 template<typename T>
-using destructible = std::is_nothrow_destructible<T>;
+struct destructible : std::is_nothrow_destructible<T> {};
+
+/// @}
 
 } // namespace concepts
 } // namespace vccc

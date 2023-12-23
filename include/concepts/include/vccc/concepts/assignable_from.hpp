@@ -20,8 +20,8 @@ template<
     typename LHS,
     typename RHS,
     bool = conjunction<
-        std::is_assignable<LHS, std::add_lvalue_reference_t<RHS> >,
-        std::is_assignable<LHS, std::add_rvalue_reference_t<RHS> >
+        std::is_assignable<LHS, std::add_lvalue_reference_t<std::remove_reference_t<RHS>> >,
+        std::is_assignable<LHS, std::add_rvalue_reference_t<std::remove_reference_t<RHS>> >
         >::value
     >
 struct assignable_from_requires;
@@ -29,8 +29,8 @@ struct assignable_from_requires;
 template<typename LHS, typename RHS>
 struct assignable_from_requires<LHS, RHS, true>
     : conjunction<
-        same_as<decltype( std::declval<LHS>() = std::declval< std::add_lvalue_reference_t<RHS> >() ), LHS>,
-        same_as<decltype( std::declval<LHS>() = std::declval< std::add_rvalue_reference_t<RHS> >() ), LHS>
+        same_as<decltype( std::declval<LHS>() = std::declval< std::add_lvalue_reference_t<std::remove_reference_t<RHS>> >() ), LHS>,
+        same_as<decltype( std::declval<LHS>() = std::declval< std::add_rvalue_reference_t<std::remove_reference_t<RHS>> >() ), LHS>
       > {};
 
 template<typename LHS, typename RHS>
@@ -47,6 +47,15 @@ struct assignable_from_impl
       > {};
 } // namespace impl
 
+/// @addtogroup concepts
+/// @{
+
+
+/**
+@brief specifies that a type is assignable from another type
+
+See [`std::assignable_from`](https://en.cppreference.com/w/cpp/concepts/assignable_from) for more information
+*/
 template<typename LHS, typename RHS>
 struct assignable_from
     : std::conditional_t<
@@ -57,6 +66,8 @@ struct assignable_from
         impl::assignable_from_impl<LHS, RHS>,
         std::false_type
     > {};
+
+/// @}
 
 } // namespace concepts
 } // namespace vccc

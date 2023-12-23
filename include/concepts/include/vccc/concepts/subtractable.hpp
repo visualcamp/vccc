@@ -27,8 +27,14 @@ struct is_subtractable_impl : std::false_type {};
 template<typename T>
 struct is_subtractable_impl<T, true> : implicit_expression_check<is_explicitly_subtractable, const T&, const T&> {};
 
+
+/// @addtogroup concepts
+/// @{
+
 template<typename T>
 struct subtractable : is_subtractable_impl<T> {};
+
+/// @}
 
 } // namespace concepts
 } // namespace vccc

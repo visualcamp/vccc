@@ -13,15 +13,16 @@
 #include "vccc/concepts/move_constructible.hpp"
 #include "vccc/concepts/same_as.hpp"
 #include "vccc/concepts/subtractable.hpp"
+#include "vccc/concepts/swappable.hpp"
 
 
 /**
 @defgroup concepts concepts
 @brief Concepts
 
-Implementation of concepts in below C++20 is impossible since it is
-a language features. `struct` based implementation (type_traits like)
-are defined under namespace `vccc::concepts`.
+Implementation of concepts is impossible without language features of C++20.
+`struct` based implementations (type_traits like) are defined under namespace `vccc::concepts`.
+
 Note: Subsume is impossible without using actual concept.
 
 */

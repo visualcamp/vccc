@@ -12,8 +12,13 @@
 namespace vccc {
 namespace concepts {
 
+/// @addtogroup concepts
+/// @{
+
 template<typename T>
-using move_constructible = conjunction<constructible_from<T, T>, convertible_to<T, T>>;
+struct move_constructible : conjunction<constructible_from<T, T>, convertible_to<T, T>> {};
+
+/// @}
 
 
 } // namespace concepts

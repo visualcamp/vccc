@@ -12,8 +12,32 @@
 namespace vccc {
 namespace concepts {
 
+/// @addtogroup concepts
+/// @{
+
+/**
+@brief specifies that a type is implicitly convertible to another type
+
+@code{.cpp}
 template<typename From, typename To>
-using convertible_to = conjunction<std::is_convertible<From, To>, std::is_constructible<To, From>>;
+struct convertible_to :
+    conjunction<
+      std::is_convertible<From, To>,
+      std::is_constructible<To, From>
+    > {};
+@endcode
+See [`std::convertible_to`](https://en.cppreference.com/w/cpp/concepts/convertible_to) for more information
+ */
+template<typename From, typename To>
+struct convertible_to :
+    conjunction<
+      std::is_convertible<From, To>,
+      std::is_constructible<To, From>
+    > {};
+
+/// @}
+
+
 
 } // namespace concepts
 } // namespace vccc
