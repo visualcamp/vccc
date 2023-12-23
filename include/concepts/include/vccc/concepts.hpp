@@ -12,6 +12,7 @@
 #include "vccc/concepts/movable.hpp"
 #include "vccc/concepts/move_constructible.hpp"
 #include "vccc/concepts/same_as.hpp"
+#include "vccc/concepts/subtractable.hpp"
 
 
 /**
