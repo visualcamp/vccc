@@ -7,10 +7,12 @@
 
 #include "vccc/iterator/indirectly_readable_traits.hpp"
 #include "vccc/concepts/dereferenceable.hpp"
+#include "vccc/type_traits/disjunction.hpp"
 #include "vccc/type_traits/has_typename_value_type.hpp"
 #include "vccc/type_traits/remove_cvref.hpp"
 
 namespace vccc {
+namespace detail {
 
 template<
     typename T,
@@ -29,7 +31,16 @@ struct iter_value<T, false> {
 };
 
 template<typename T>
-using iter_value_t = typename iter_reference<T>::type;
+struct test_iter_value
+    : disjunction<
+        has_typename_value_type< std::iterator_traits< remove_cvref_t<T> > >,
+        has_typename_value_type< indirectly_readable_traits<remove_cvref_t<T>> >
+      > {};
+
+} // namespace detail
+
+template<typename T>
+using iter_value_t = typename detail::iter_value<T>::type;
 
 } // namespace vccc
 
