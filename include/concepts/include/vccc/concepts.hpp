@@ -21,6 +21,7 @@
 #include "vccc/concepts/semiregular.hpp"
 #include "vccc/concepts/subtractable.hpp"
 #include "vccc/concepts/swappable.hpp"
+#include "vccc/concepts/weakly_equality_comparable_with.hpp"
 
 
 /**
