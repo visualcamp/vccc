@@ -45,8 +45,8 @@ struct ranges_swap_same : std::false_type {};
 
 template<typename V>
 struct ranges_swap_same<V&, V&> : conjunction<
-    concepts::move_constructible<V>,
-    concepts::assignable_from<V&, V>
+    vccc::concepts::move_constructible<V>,
+    vccc::concepts::assignable_from<V&, V>
   > {};
 
 template<typename T, typename U>
