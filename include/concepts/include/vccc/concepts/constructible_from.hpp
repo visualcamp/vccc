@@ -9,7 +9,6 @@
 #include "vccc/type_traits/conjunction.hpp"
 
 namespace vccc {
-namespace concepts {
 
 /// @addtogroup concepts
 /// @{
@@ -20,7 +19,7 @@ namespace concepts {
 ```
 template<typename T, typename... Args>
 struct constructible_from : conjunction<
-    concepts::destructible<T>,
+    destructible<T>,
     std::is_constructible<T, Args...>> {};
 ```
 
@@ -33,7 +32,6 @@ struct constructible_from : conjunction<
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_CONSTRUCTIBLE_FROM_HPP_

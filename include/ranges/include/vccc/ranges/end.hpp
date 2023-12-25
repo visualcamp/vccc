@@ -41,7 +41,7 @@ struct end_member_check : std::false_type {
 };
 template<typename T>
 struct end_member_check<T, void_t<decltype(vccc_decay_copy(std::declval<T>().end()))>>
-    : concepts::sentinel_for<decltype(vccc_decay_copy(std::declval<T>().end())), ranges::iterator_t<T>> {
+    : sentinel_for<decltype(vccc_decay_copy(std::declval<T>().end())), ranges::iterator_t<T>> {
   using category = return_category<2, decltype(vccc_decay_copy(std::declval<T>().end()))>;
 };
 
@@ -51,7 +51,7 @@ struct end_global_check : std::false_type {
 };
 template<typename T>
 struct end_global_check<T, void_t<decltype(vccc_decay_copy(end(std::declval<T>())))>>
-    : concepts::sentinel_for<decltype(vccc_decay_copy(end(std::declval<T>()))), ranges::iterator_t<T>> {
+    : sentinel_for<decltype(vccc_decay_copy(end(std::declval<T>()))), ranges::iterator_t<T>> {
   using category = return_category<3, decltype(vccc_decay_copy(end(std::declval<T>())))>;
 };
 

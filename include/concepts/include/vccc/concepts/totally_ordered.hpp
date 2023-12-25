@@ -12,7 +12,6 @@
 #include "vccc/type_traits/conjunction.hpp"
 
 namespace vccc {
-namespace concepts {
 
 /// @addtogroup concepts
 /// @{
@@ -34,7 +33,6 @@ struct totally_ordered
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_TOTALLY_ORDERED_HPP_

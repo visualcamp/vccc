@@ -17,7 +17,6 @@
 #include "vccc/type_traits/void_t.hpp"
 
 namespace vccc {
-namespace concepts {
 namespace detail {
 
 template<typename T, bool = vccc::detail::require<vccc::detail::iter_difference<T>>::value>
@@ -55,7 +54,6 @@ struct weakly_incrementable
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_ITERATOR_WEAKLY_INCREMENTABLE_HPP_

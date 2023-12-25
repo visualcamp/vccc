@@ -10,7 +10,6 @@
 #include "vccc/type_traits/conjunction.hpp"
 
 namespace vccc {
-namespace concepts {
 
 /// @addtogroup iterator
 /// @{
@@ -45,7 +44,6 @@ struct input_or_output_iterator
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_ITERATOR_INPUT_OR_OUTPUT_ITERATOR_HPP_

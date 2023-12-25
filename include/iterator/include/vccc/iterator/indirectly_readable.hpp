@@ -18,7 +18,6 @@
 #include "vccc/type_traits/remove_cvref.hpp"
 
 namespace vccc {
-namespace concepts {
 namespace detail {
 
 template<typename In, bool = is_referencable<In>::value>
@@ -27,15 +26,15 @@ struct indirectly_readable_impl : std::false_type {};
 template<typename In>
 struct indirectly_readable_impl<In, true>
     : conjunction<
-        concepts::common_reference_with<iter_reference_t<In>&&, iter_value_t<In>&>,
-        concepts::common_reference_with<iter_reference_t<In>&&, iter_rvalue_reference_t<In>&&>,
-        concepts::common_reference_with<iter_rvalue_reference_t<In>&&, const iter_value_t<In>&>
+        common_reference_with<iter_reference_t<In>&&, iter_value_t<In>&>,
+        common_reference_with<iter_reference_t<In>&&, iter_rvalue_reference_t<In>&&>,
+        common_reference_with<iter_rvalue_reference_t<In>&&, const iter_value_t<In>&>
       >{};
 
 template<
   typename In,
   bool = conjunction<
-        concepts::dereferenceable<In>,
+        dereferenceable<In>,
         vccc::detail::require<vccc::detail::iter_value<In>>,
         vccc::detail::require<iter_reference<In>>,
         vccc::detail::require<iter_rvalue_reference<In>>
@@ -46,8 +45,8 @@ struct indirectly_readable_requires : std::false_type {};
 template<typename In>
 struct indirectly_readable_requires<In, true>
     : conjunction<
-        concepts::same_as<decltype(*std::declval<const In&>()), iter_reference_t<In>>,
-        concepts::same_as<decltype(ranges::iter_move(std::declval<const In&>())), iter_rvalue_reference_t<In>>,
+        same_as<decltype(*std::declval<const In&>()), iter_reference_t<In>>,
+        same_as<decltype(ranges::iter_move(std::declval<const In&>())), iter_rvalue_reference_t<In>>,
         indirectly_readable_impl<In>
       > {};
 
@@ -56,7 +55,6 @@ struct indirectly_readable_requires<In, true>
 template<typename In>
 struct indirectly_readable : detail::indirectly_readable_requires<remove_cvref_t<In>> {};
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_ITERATOR_INDIRECTLY_READABLE_HPP_

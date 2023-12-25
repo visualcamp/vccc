@@ -9,7 +9,6 @@
 #include "vccc/iterator/weakly_incrementable.hpp"
 
 namespace vccc {
-namespace concepts {
 
 /// @addtogroup iterator
 /// @{
@@ -23,7 +22,6 @@ struct incrementable
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_ITERATOR_INCREMENTABLE_HPP_

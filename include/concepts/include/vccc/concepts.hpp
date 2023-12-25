@@ -34,7 +34,7 @@
 @brief Concepts
 
 Implementation of concepts is impossible without language features of C++20.
-`struct` based implementations (type_traits like) are defined under namespace `vccc::concepts`.
+`struct` based implementations (type_traits like) is conducted instead.
 
 Note: Subsume is impossible without using actual concept.
 

@@ -13,7 +13,6 @@
 #include "vccc/type_traits/is_referenceable.hpp"
 
 namespace vccc {
-namespace concepts {
 namespace impl {
 
 template<
@@ -40,7 +39,7 @@ struct assignable_from_requires<LHS, RHS, false> : std::false_type {};
 template<typename LHS, typename RHS>
 struct assignable_from_impl
     : conjunction<
-        concepts::common_reference_with<
+        common_reference_with<
             const std::remove_reference_t<LHS>&,
             const std::remove_reference_t<RHS>&>,
         assignable_from_requires<LHS, RHS>
@@ -69,7 +68,6 @@ struct assignable_from
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_ASSIGNABLE_FROM_HPP_

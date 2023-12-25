@@ -13,7 +13,6 @@
 #include "vccc/type_traits/is_referenceable.hpp"
 
 namespace vccc {
-namespace concepts {
 namespace detail {
 
 template<typename T, typename U, typename = void>
@@ -66,7 +65,6 @@ struct partially_ordered_with : detail::partially_ordered_with_impl<T, U> {};
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_PARTIALLY_ORDERED_WITH_HPP_

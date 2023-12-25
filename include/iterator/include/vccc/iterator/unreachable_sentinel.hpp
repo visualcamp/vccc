@@ -15,7 +15,7 @@ namespace vccc {
 /// @brief sentinel that always compares unequal to any \ref weakly_incrementable type
 struct unreachable_sentinel_t {
   template<typename I>
-  friend constexpr std::enable_if_t<concepts::weakly_incrementable<I>::value, bool>
+  friend constexpr std::enable_if_t<weakly_incrementable<I>::value, bool>
   operator==(unreachable_sentinel_t, const I&) noexcept {
     return false;
   }

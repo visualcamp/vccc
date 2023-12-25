@@ -10,7 +10,6 @@
 #include "vccc/type_traits/conjunction.hpp"
 
 namespace vccc {
-namespace concepts {
 
 /// @addtogroup concepts
 /// @{
@@ -24,7 +23,6 @@ struct derived_from
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_DERIVED_FROM_HPP_

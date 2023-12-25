@@ -10,7 +10,6 @@
 #include "vccc/type_traits/void_t.hpp"
 
 namespace vccc {
-namespace concepts {
 namespace detail {
 
 template<typename T, typename = void>
@@ -38,7 +37,6 @@ struct default_initializable
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_DEFAULT_INITIALIZABLE_HPP_

@@ -10,7 +10,6 @@
 #include "vccc/type_traits/conjunction.hpp"
 
 namespace vccc {
-namespace concepts {
 
 /// @addtogroup concepts
 /// @{
@@ -21,7 +20,6 @@ struct move_constructible : conjunction<constructible_from<T, T>, convertible_to
 /// @}
 
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_MOVE_CONSTRUCTIBLE_HPP_

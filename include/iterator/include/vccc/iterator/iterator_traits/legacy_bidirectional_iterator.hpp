@@ -24,24 +24,24 @@ struct is_pre_decrementable : std::false_type {};
 
 template<typename T>
 struct is_pre_decrementable<T, void_t<decltype( --std::declval<T&>() )>>
-    : concepts::same_as<decltype( --std::declval<T&>() ), T&> {};
+    : same_as<decltype( --std::declval<T&>() ), T&> {};
 
 template<typename T, typename = void>
 struct is_post_decrementable : std::false_type {};
 
 template<typename T>
 struct is_post_decrementable<T, void_t<decltype( std::declval<T&>()-- )>>
-      : concepts::convertible_to<decltype(std::declval<T&>()--), const T&> {};
+      : convertible_to<decltype(std::declval<T&>()--), const T&> {};
 
 template<
     typename It,
-    bool = concepts::dereferenceable<decltype(std::declval<It&>()--)>::value
+    bool = dereferenceable<decltype(std::declval<It&>()--)>::value
 >
 struct LegacyBidirectionalIteratorRequireStage2 : std::false_type {};
 
 template<typename It>
 struct LegacyBidirectionalIteratorRequireStage2<It, true> // vvvvvvvvvvvvv already satisfied
-    : concepts::same_as<decltype(*std::declval<It&>()--), iter_reference_t<It>> {};
+    : same_as<decltype(*std::declval<It&>()--), iter_reference_t<It>> {};
 // iter_reference_t<It> already satisfied in LegacyInputIterator ^^^^^^^^^
 
 template<

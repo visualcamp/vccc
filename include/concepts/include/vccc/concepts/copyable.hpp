@@ -14,7 +14,6 @@
 #include "vccc/type_traits/is_referenceable.hpp"
 
 namespace vccc {
-namespace concepts {
 namespace detail {
 
 template<typename T, bool = is_referencable<T>::value>
@@ -40,7 +39,6 @@ struct copyable : detail::copyable_impl<T> {};
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_COPYABLE_HPP_

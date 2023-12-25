@@ -12,7 +12,6 @@
 #include "vccc/type_traits/is_referenceable.hpp"
 
 namespace vccc {
-namespace concepts {
 namespace detail {
 
 template<typename B>
@@ -59,7 +58,6 @@ struct boolean_testable : detail::boolean_testable_stage_1<B> {};
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_BOOLEAN_TESTABLE_HPP_

@@ -15,7 +15,6 @@
 #include "vccc/type_traits/has_typename_type.hpp"
 
 namespace vccc {
-namespace concepts {
 namespace detail {
 
 template<
@@ -61,7 +60,6 @@ struct input_iterator : detail::input_iterator_impl<I> {};
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_ITERATOR_INPUT_ITERATOR_HPP_

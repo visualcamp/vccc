@@ -11,7 +11,6 @@
 #include "vccc/type_traits/conjunction.hpp"
 
 namespace vccc {
-namespace concepts {
 namespace detail {
 
 template<typename T, bool = is_referencable<T>::value>
@@ -36,7 +35,6 @@ struct copy_constructible : detail::copy_constructible_impl<T> {};
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_COPY_CONSTRUCTIBLE_HPP_

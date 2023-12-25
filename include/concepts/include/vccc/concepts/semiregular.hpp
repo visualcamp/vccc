@@ -10,7 +10,6 @@
 #include "vccc/type_traits/conjunction.hpp"
 
 namespace vccc {
-namespace concepts {
 
 /// @addtogroup concepts
 /// @{
@@ -24,7 +23,6 @@ struct semiregular
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_SEMIREGULAR_HPP_

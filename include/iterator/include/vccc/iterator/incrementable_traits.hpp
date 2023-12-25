@@ -15,7 +15,7 @@
 namespace vccc {
 namespace detail {
 
-template<typename T, bool = concepts::subtractable<T>::value>
+template<typename T, bool = subtractable<T>::value>
 struct substract_check : std::false_type {};
 
 template<typename T>

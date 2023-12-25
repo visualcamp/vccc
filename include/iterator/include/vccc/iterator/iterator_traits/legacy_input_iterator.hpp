@@ -26,7 +26,7 @@ template<
     typename I,
     bool = conjunction<
              LegacyIterator<I>,
-             concepts::equality_comparable<I>,
+             equality_comparable<I>,
              has_typename_difference_type<incrementable_traits<I>>,
              has_typename_value_type<indirectly_readable_traits<I>>,
              require<iter_reference<I>>
@@ -41,7 +41,7 @@ struct LegacyInputIteratorRequiresStage1<I, true>
                                            typename indirectly_readable_traits<I>::value_type&>>,
         has_typename_type<common_reference<decltype(*std::declval<I&>()++)&&, // *i++ satisfied in LegacyIterator<I>
                                            typename indirectly_readable_traits<I>::value_type&>>,
-        concepts::signed_integral<typename incrementable_traits<I>::difference_type>
+        signed_integral<typename incrementable_traits<I>::difference_type>
       > {};
 
 } // namespace detail

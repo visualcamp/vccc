@@ -10,7 +10,6 @@
 #include "vccc/type_traits/conjunction.hpp"
 
 namespace vccc {
-namespace concepts {
 
 /// @addtogroup concepts
 /// @{
@@ -39,7 +38,6 @@ struct convertible_to :
 
 
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_CONVERTIBLE_TO_HPP_

@@ -32,7 +32,7 @@ struct iter_move_check_adaptors<T, true, void_t<decltype(iter_move(std::declval<
   using category = return_category<1, decltype(iter_move(std::declval<T>()))>;
 };
 
-template<typename T, bool = conjunction<std::is_lvalue_reference<T>, concepts::dereferenceable<T>>::value, typename = void>
+template<typename T, bool = conjunction<std::is_lvalue_reference<T>, dereferenceable<T>>::value, typename = void>
 struct iter_move_lvalue_deref_check : std::false_type {
   using category = return_category<0>;
 };
@@ -41,7 +41,7 @@ struct iter_move_lvalue_deref_check<T, true, void_t<decltype(std::move(*std::dec
   using category = return_category<2, decltype(std::move(*std::declval<T>()))>;
 };
 
-template<typename T, bool = conjunction<std::is_rvalue_reference<T>, concepts::dereferenceable<T>>::value>
+template<typename T, bool = conjunction<std::is_rvalue_reference<T>, dereferenceable<T>>::value>
 struct iter_move_rvalue_deref_check : std::false_type {
   using category = return_category<0>;
 };

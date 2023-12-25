@@ -38,7 +38,7 @@ struct begin_member_check : std::false_type {
 };
 template<typename T>
 struct begin_member_check<T, void_t<decltype(vccc_decay_copy(std::declval<T>().begin()))>>
-    : concepts::input_or_output_iterator<decltype(vccc_decay_copy(std::declval<T>().begin()))> {
+    : input_or_output_iterator<decltype(vccc_decay_copy(std::declval<T>().begin()))> {
   using category = return_category<2, decltype(vccc_decay_copy(std::declval<T>().begin()))>;
 };
 
@@ -48,7 +48,7 @@ struct begin_global_check : std::false_type {
 };
 template<typename T>
 struct begin_global_check<T, void_t<decltype(vccc_decay_copy(begin(std::declval<T>())))>>
-    : concepts::input_or_output_iterator<decltype(vccc_decay_copy(begin(std::declval<T>())))> {
+    : input_or_output_iterator<decltype(vccc_decay_copy(begin(std::declval<T>())))> {
   using category = return_category<3, decltype(vccc_decay_copy(begin(std::declval<T>())))>;
 };
 

@@ -8,7 +8,6 @@
 #include "vccc/type_traits/conjunction.hpp"
 
 namespace vccc {
-namespace concepts {
 namespace detail {
 
 template<template<typename, typename, typename...> class Check, typename Left, typename Right>
@@ -54,7 +53,6 @@ struct implicit_expression_check<Check, const Left&, const Right&>
       > {};
 
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_IMPLICIT_EXPRESSION_CHECK_HPP_

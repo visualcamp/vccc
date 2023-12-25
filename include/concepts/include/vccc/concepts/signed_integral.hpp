@@ -10,7 +10,6 @@
 #include "vccc/type_traits/conjunction.hpp"
 
 namespace vccc {
-namespace concepts {
 
 /// @addtogroup concepts
 /// @{
@@ -20,7 +19,6 @@ struct signed_integral : conjunction<std::is_integral<T>, std::is_signed<T>> {};
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_SIGNED_INTEGRAL_HPP_

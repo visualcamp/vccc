@@ -11,7 +11,6 @@
 #include "vccc/type_traits/is_referenceable.hpp"
 
 namespace vccc {
-namespace concepts {
 namespace detail {
 
 template<typename T, typename U, typename = void>
@@ -59,6 +58,5 @@ struct weakly_equality_comparable_with
       > {};
 
 } // namespace vccc
-} // namespace concepts
 
 #endif // VCCC_CONCEPTS_WEAKLY_EQUALITY_COMPARABLE_WITH_HPP_

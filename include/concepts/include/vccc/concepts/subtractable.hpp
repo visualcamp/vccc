@@ -13,7 +13,6 @@
 #include "vccc/type_traits/void_t.hpp"
 
 namespace vccc {
-namespace concepts {
 
 template<typename T, typename U, typename = void>
 struct is_explicitly_subtractable : std::false_type {};
@@ -36,7 +35,6 @@ struct subtractable : is_subtractable_impl<T> {};
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_SUBTRACTABLE_HPP_

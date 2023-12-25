@@ -11,7 +11,7 @@
 
 namespace vccc {
 
-template<typename T, bool v = concepts::dereferenceable<T>::value, typename = void>
+template<typename T, bool v = dereferenceable<T>::value, typename = void>
 struct iter_rvalue_reference : detail::requires_fail {};
 
 template<typename T>

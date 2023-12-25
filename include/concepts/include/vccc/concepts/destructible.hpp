@@ -8,7 +8,6 @@
 #include <type_traits>
 
 namespace vccc {
-namespace concepts {
 
 /// @addtogroup concepts
 /// @{
@@ -18,7 +17,6 @@ struct destructible : std::is_nothrow_destructible<T> {};
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_DESTRUCTIBLE_HPP_

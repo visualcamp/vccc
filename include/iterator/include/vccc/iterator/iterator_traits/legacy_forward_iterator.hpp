@@ -22,13 +22,13 @@ template<
     typename It,
     bool =
         conjunction<
-          concepts::constructible_from<It>,
+          constructible_from<It>,
           std::is_reference<iter_reference_t<It>>, // iter_reference_t<It> satisfied in LegacyInputIterator,
-          concepts::same_as<
+          same_as<
               remove_cvref_t<iter_reference_t<It>>,
               typename indirectly_readable_traits<It>::value_type>, // indirectly_readable_traits<It>::value already satisfied
-          concepts::convertible_to<decltype(std::declval<It&>()++),  const It&>,
-          concepts::same_as<decltype(*std::declval<It&>()++), iter_reference_t<It>>
+          convertible_to<decltype(std::declval<It&>()++),  const It&>,
+          same_as<decltype(*std::declval<It&>()++), iter_reference_t<It>>
         >::value
 >
 struct LegacyForwardIteratorRequire : std::false_type {};

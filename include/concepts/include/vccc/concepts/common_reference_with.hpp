@@ -13,7 +13,6 @@
 #include "vccc/concepts/same_as.hpp"
 
 namespace vccc {
-namespace concepts {
 
 /// @addtogroup concepts
 /// @{
@@ -43,7 +42,6 @@ struct common_reference_with
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_COMMON_REFERENCE_WITH_HPP_

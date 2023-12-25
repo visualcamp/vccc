@@ -8,7 +8,6 @@
 #include <type_traits>
 
 namespace vccc {
-namespace concepts {
 
 /// @addtogroup concepts
 /// @{
@@ -24,7 +23,6 @@ struct same_as : std::is_same<T, U> {};
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_SAME_AS_HPP_

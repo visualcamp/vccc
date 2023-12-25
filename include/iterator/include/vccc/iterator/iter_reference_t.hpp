@@ -10,7 +10,7 @@
 
 namespace vccc {
 
-template<typename T, bool v = concepts::dereferenceable<T>::value>
+template<typename T, bool v = dereferenceable<T>::value>
 struct iter_reference : detail::requires_fail {};
 
 template<typename T>

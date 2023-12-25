@@ -11,7 +11,6 @@
 #include "vccc/type_traits/conjunction.hpp"
 
 namespace vccc {
-namespace concepts {
 
 template<typename S, typename I>
 struct sentinel_for
@@ -22,6 +21,5 @@ struct sentinel_for
       > {};
 
 } // namespace vccc
-} // namespace concepts
 
 #endif // VCCC_ITERATOR_SENTINEL_FOR_HPP_

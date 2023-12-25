@@ -12,7 +12,6 @@
 #include "vccc/type_traits/void_t.hpp"
 
 namespace vccc {
-namespace concepts {
 namespace detail {
 
 template<typename T, bool = is_referencable<T>::value, typename = void>
@@ -32,7 +31,6 @@ struct swappable : detail::swappable_impl<T> {};
 
 /// @}
 
-} // namespace concepts
 } // namespace vccc
 
 #endif // VCCC_CONCEPTS_SWAPPABLE_HPP_

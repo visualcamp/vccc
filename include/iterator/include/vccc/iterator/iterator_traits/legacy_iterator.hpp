@@ -16,28 +16,28 @@
 namespace vccc {
 namespace detail {
 
-template<typename I, bool = concepts::dereferenceable<decltype(std::declval<I&>()++)>::value>
+template<typename I, bool = dereferenceable<decltype(std::declval<I&>()++)>::value>
 struct LegacyIteratorCheckPostIncrement_2 : std::false_type {};
 template<typename I>
 struct LegacyIteratorCheckPostIncrement_2<I, true> : is_referencable<decltype(*std::declval<I&>()++)> {};
 
-template<typename I, bool = concepts::detail::is_post_incrementable<I>::value>
+template<typename I, bool = detail::is_post_incrementable<I>::value>
 struct LegacyIteratorCheckPostIncrement : std::false_type {};
 template<typename I>
 struct LegacyIteratorCheckPostIncrement<I, true> : LegacyIteratorCheckPostIncrement_2<I> {};
 
 } // namespace detail
 
-template<typename I, bool = concepts::dereferenceable<I>::value>
+template<typename I, bool = dereferenceable<I>::value>
 struct LegacyIterator : std::false_type {};
 
 template<typename I>
 struct LegacyIterator<I, true>
     : conjunction<
         is_referencable<decltype(*std::declval<I&>())>,
-        concepts::detail::is_post_incrementable<I>,
+        detail::is_post_incrementable<I>,
         detail::LegacyIteratorCheckPostIncrement<I>,
-        concepts::copyable<I>
+        copyable<I>
       > {};
 
 } // namespace vccc

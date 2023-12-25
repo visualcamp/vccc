@@ -21,13 +21,13 @@ template<typename I, typename D, typename = void>
 struct is_iter_add_assignmentable : std::false_type {};
 template<typename I, typename D>
 struct is_iter_add_assignmentable<I, D, void_t<decltype(std::declval<I&>() += std::declval<D&>())>>
-    : concepts::same_as<decltype(std::declval<I&>() += std::declval<D&>()), I&> {};
+    : same_as<decltype(std::declval<I&>() += std::declval<D&>()), I&> {};
 
 template<typename I, typename D, typename = void>
 struct is_iter_sub_assignmentable : std::false_type {};
 template<typename I, typename D>
 struct is_iter_sub_assignmentable<I, D, void_t<decltype(std::declval<I&>() -= std::declval<D&>())>>
-    : concepts::same_as<decltype(std::declval<I&>() -= std::declval<D&>()), I&> {};
+    : same_as<decltype(std::declval<I&>() -= std::declval<D&>()), I&> {};
 
 template<typename I, typename D, typename = void, typename = void>
 struct is_iter_addable : std::false_type {};
@@ -36,8 +36,8 @@ struct is_iter_addable<I, D,
                        void_t<decltype(std::declval<I&>() + std::declval<D&>())>,
                        void_t<decltype(std::declval<D&>() + std::declval<I&>())>>
     : conjunction<
-        concepts::same_as<decltype(std::declval<I&>() + std::declval<D&>()), I>,
-        concepts::same_as<decltype(std::declval<D&>() + std::declval<I&>()), I>
+        same_as<decltype(std::declval<I&>() + std::declval<D&>()), I>,
+        same_as<decltype(std::declval<D&>() + std::declval<I&>()), I>
       >{};
 
 template<typename I, typename D, typename = void, typename = void>
@@ -47,8 +47,8 @@ struct is_iter_subtractable<I, D,
                             void_t<decltype(std::declval<I&>() - std::declval<D&>())>,
                             void_t<decltype(std::declval<I&>() - std::declval<I&>())>>
     : conjunction<
-        concepts::same_as<decltype(std::declval<I&>() - std::declval<D&>()), I>,
-        concepts::same_as<decltype(std::declval<I&>() - std::declval<I&>()), D>
+        same_as<decltype(std::declval<I&>() - std::declval<D&>()), I>,
+        same_as<decltype(std::declval<I&>() - std::declval<I&>()), D>
       > {};
 
 template<typename I, typename D, typename = void>
@@ -56,7 +56,7 @@ struct is_iter_subscriptable : std::false_type {};
 
 template<typename I, typename D>
 struct is_iter_subscriptable<I, D, void_t<decltype( std::declval<I&>()[std::declval<D&>()] )>>
-    : concepts::convertible_to<decltype( std::declval<I&>()[std::declval<D&>()] ), iter_reference_t<I>> {};
+    : convertible_to<decltype( std::declval<I&>()[std::declval<D&>()] ), iter_reference_t<I>> {};
 
 template<typename I, typename D>
 struct LegacyRandomAccessIteratorStage2
@@ -76,7 +76,7 @@ struct LegacyRandomAccessIteratorStage1<I, D, true> : LegacyRandomAccessIterator
 
 } // namespace detail
 
-template<typename I, bool = conjunction<LegacyBidirectionalIterator<I>, concepts::totally_ordered<I>>::value>
+template<typename I, bool = conjunction<LegacyBidirectionalIterator<I>, totally_ordered<I>>::value>
 struct LegacyRandomAccessIterator : std::false_type {};
 
 template<typename I>
