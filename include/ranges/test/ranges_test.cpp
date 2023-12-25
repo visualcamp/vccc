@@ -34,6 +34,21 @@ std::array<T, 1 + sizeof...(U)> make_array(T arg, U... args) {
   return {arg, args...};
 }
 
+struct foo {
+
+  std::string get() & { return data; }
+  std::string get() && { return std::move(data); }
+
+  std::string data = "Hello";
+};
+
+int size(const foo&) { return 1; }
+
+int x;
+
+int* begin(const IntLike&) { return &x; }
+int* end(const IntLike&) { return &x + 1; }
+
 int main() {
   INIT_TEST("vccc::ranges")
 
@@ -70,7 +85,40 @@ int main() {
     vccc::ranges::swap(d1, d2);
   }
 
+  {
+    int array[] = {1, 2, 3};
+    std::vector<int> v = {4, 5, 6};
+    auto il = {7};
 
+    TEST_ENSURES((vccc::ranges::size(array) == 3));
+    TEST_ENSURES((vccc::ranges::size(v) == 3));
+    TEST_ENSURES((vccc::ranges::size(il) == 1));
+
+    foo f;
+    vccc::ranges::size(f);
+
+    IntLike i{};
+    vccc::ranges::size(i);
+
+    static_assert(std::is_signed<decltype(vccc::ranges::size(v))>::value == false, "");
+  }
+
+
+  {
+    int array[] = {1, 2, 3};
+    std::vector<int> v = {4, 5, 6};
+    auto il = {7};
+
+    TEST_ENSURES((vccc::ranges::empty(array) == false));
+    TEST_ENSURES((vccc::ranges::empty(v) == false));
+    TEST_ENSURES((vccc::ranges::empty(il) == false));
+
+    foo f;
+    vccc::ranges::empty(f);
+
+    IntLike i{};
+    vccc::ranges::empty(i);
+  }
 
   return TEST_RETURN_RESULT;
 }

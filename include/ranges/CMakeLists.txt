@@ -5,7 +5,7 @@ add_library(vccc_ranges INTERFACE)
 add_library(VCCC::ranges ALIAS vccc_ranges)
 
 target_include_directories(vccc_ranges INTERFACE include)
-target_link_libraries(vccc_ranges INTERFACE VCCC::iterator)
+target_link_libraries(vccc_ranges INTERFACE VCCC::iterator VCCC::type_traits VCCC::concepts VCCC::memory)
 
 if(VCCC_RUN_TEST)
     add_subdirectory(test)
