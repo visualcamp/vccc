@@ -17,6 +17,7 @@
 #include "vccc/ranges/forward_range.hpp"
 #include "vccc/ranges/input_range.hpp"
 #include "vccc/ranges/iterator_t.hpp"
+#include "vccc/ranges/random_access_range.hpp"
 #include "vccc/ranges/range.hpp"
 #include "vccc/ranges/size.hpp"
 #include "vccc/ranges/sized_range.hpp"
