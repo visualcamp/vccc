@@ -2,8 +2,8 @@
 // Created by yonggyulee on 2023/10/27.
 //
 
-#ifndef VCCC_TYPE_TRAITS_HAS_TYPENAME_TYPE_HPP
-#define VCCC_TYPE_TRAITS_HAS_TYPENAME_TYPE_HPP
+#ifndef VCCC_TYPE_TRAITS_HAS_TYPENAME_TYPE_HPP_
+#define VCCC_TYPE_TRAITS_HAS_TYPENAME_TYPE_HPP_
 
 #include <type_traits>
 
@@ -19,4 +19,4 @@ struct has_typename_type<T, void_t<typename T::type>> : std::true_type {};
 
 } // namespace vccc
 
-#endif // VCCC_TYPE_TRAITS_HAS_TYPENAME_TYPE_HPP
+#endif // VCCC_TYPE_TRAITS_HAS_TYPENAME_TYPE_HPP_

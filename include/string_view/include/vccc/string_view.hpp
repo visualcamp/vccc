@@ -17,6 +17,8 @@
 
 #include "vccc/functional/hash_array.hpp"
 #include "vccc/memory/to_address.hpp"
+#include "vccc/ranges/data.hpp"
+#include "vccc/ranges/borrowed_range.hpp"
 #include "vccc/type_traits/type_identity.hpp"
 
 /**
@@ -359,15 +361,15 @@ class basic_string_view {
    * \brief checks if the string view contains the given substring or character
    */
   constexpr bool contains(basic_string_view sv) const noexcept {
-    return find(sv);
+    return find(sv) != npos;
   }
 
   constexpr bool contains(value_type c) const noexcept {
-    return find(c);
+    return find(c) != npos;
   }
 
   constexpr bool contains(const value_type* str) const {
-    return find(str);
+    return find(str) != npos;
   }
   /// @}
 
@@ -745,10 +747,10 @@ constexpr wstring_view operator ""_sv(const wchar_t* str, std::size_t len) noexc
 } // namespace string_view_literals
 } // namespace literals
 
-// template<typename CharT, typename Traits>
-// inline constexpr bool
-// ranges::enable_borrowed_range<basic_string_view<CharT, Traits>> = true;
-//
+template<typename CharT, typename Traits>
+struct ranges::enable_borrowed_range<basic_string_view<CharT, Traits>>
+    : std::true_type {};
+
 // template<typename CharT, typename Traits >
 // inline constexpr bool
 // ranges::enable_view<basic_string_view<CharT, Traits>> = true;

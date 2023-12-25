@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "vccc/type_traits/conjunction.hpp"
+#include "vccc/type_traits/is_swappable.hpp"
 
 namespace vccc {
 namespace internal {
