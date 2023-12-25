@@ -3,6 +3,84 @@
 
 \tableofcontents
 
+\section version_1_1_0 v1.1.0 (2023.12.26)
+- \subpage concepts
+    - Add \ref vccc::assignable_from
+    - Add \ref vccc::boolean_testable
+    - Add \ref vccc::common_reference_with
+    - Add \ref vccc::constructible_from
+    - Add \ref vccc::convertible_to
+    - Add \ref vccc::copy_constructible
+    - Add \ref vccc::copyable
+    - Add \ref vccc::default_initializable
+    - Add \ref vccc::dereferenceable
+    - Add \ref vccc::derived_from
+    - Add \ref vccc::destructible
+    - Add \ref vccc::equality_comparable
+    - Add \ref vccc::implicit_expression_check
+    - Add \ref vccc::movable
+    - Add \ref vccc::move_constructible
+    - Add \ref vccc::partially_ordered_with
+    - Add \ref vccc::regular
+    - Add \ref vccc::same_as
+    - Add \ref vccc::semiregular
+    - Add \ref vccc::signed_integral
+    - Add \ref vccc::subtractable
+    - Add \ref vccc::swappable
+    - Add \ref vccc::totally_ordered
+    - Add \ref vccc::weakly_equality_comparable_with
+- \subpage iterator
+    -
+    - Add \ref vccc::ranges::advance
+    - Add \ref vccc::bidirectional_iterator
+    - Add \ref vccc::contiguous_iterator
+    - Add \ref vccc::forward_iterator
+    - Add \ref vccc::incrementable
+    - Add \ref vccc::incrementable_traits
+    - Add \ref vccc::indirectly_readable
+    - Add \ref vccc::indirectly_readable_traits
+    - Add \ref vccc::input_iterator
+    - Add \ref vccc::input_or_output_iterator
+    - Add \ref vccc::iter_difference_t
+    - Add \ref vccc::ranges::iter_move
+    - Add \ref vccc::iter_move
+    - Add \ref vccc::iter_reference_t
+    - Add \ref vccc::iter_rvalue_reference_t
+    - Add \ref vccc::iter_value_t
+    - Add \ref vccc::ranges::prev
+    - Add \ref vccc::random_access_iterator
+    - Add \ref vccc::sentinel_for
+    - Add \ref vccc::sized_sentinel_for
+    - Add \ref vccc::unreachable_sentinel_t
+    - Add \ref vccc::weakly_incrementable
+    - Add named requirements for `LegacyXXXIterator`
+    - Add alias for iterator_tags
+    - Add \ref vccc::cxx20_iterator_traits
+- \subpage ranges
+    - Add \ref vccc::ranges::begin
+    - Add \ref vccc::ranges::bidirectional_range
+    - Add \ref vccc::ranges::common_range
+    - Add \ref vccc_decay_copy
+    - Add \ref vccc::ranges::disabled_sized_range
+    - Add \ref vccc::ranges::empty
+    - Add \ref vccc::ranges::end
+    - Add \ref vccc::ranges::forward_range
+    - Add \ref vccc::ranges::input_range
+    - Add \ref vccc::ranges::iterator_t
+    - Add \ref vccc::ranges::random_access_range
+    - Add \ref vccc::ranges::range
+    - Add \ref vccc::ranges::range_difference_t
+    - Add \ref vccc::ranges::sentinel_t
+    - Add \ref vccc::ranges::size
+    - Add \ref vccc::ranges::sized_range
+    - Add \ref vccc::ranges::swap
+    - Add \ref vccc::ranges::swap_ranges
+    - Add \ref vccc::ranges::view_interface
+    - Add \ref vccc::ranges::iota_view
+    - Add \ref vccc::views::iota
+- Python-like range is removed
+    - Use \ref vccc::views::iota, \ref vccc::ranges::iota_view instead
+
 \section version_1_0_4_2 v1.0.4.2 (2023.12.21)
 - \subpage functional
     - Add FNV hash algorithms

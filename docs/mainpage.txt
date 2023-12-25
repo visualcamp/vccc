@@ -23,7 +23,6 @@ It provides various algorithms, implementing C++17 and C++20 feature in C++14.
 - \subpage numeric. \copybrief numeric
 - \subpage optional. \copybrief optional
 - \subpage random. \copybrief random
-- \subpage range. \copybrief range (will be removed)
 - \subpage ranges. \copybrief ranges
 - \subpage signal. \copybrief signal
 - \subpage string_view. \copybrief string_view

@@ -518,12 +518,11 @@ struct iota_niebloid {
 /// @addtogroup ranges
 /// @{
 /// @addtogroup ranges_iota__func__Range_factories views::iota
-/// @brief ranges::iota_view creator
+/// @brief `ranges::iota_view` creator
 /// @{
 
 
 /**
-
 `views::iota(e)` and `views::iota(e, f)` are expression-equivalent to `iota_view(e)` and `iota_view(e, f)`
 respectively for any suitable subexpressions `e` and `f`
  */
