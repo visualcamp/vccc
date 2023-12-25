@@ -14,6 +14,8 @@
 #include "vccc/iterator/iterator_traits/legacy_input_iterator.hpp"
 #include "vccc/iterator/iterator_traits/legacy_iterator.hpp"
 #include "vccc/iterator/iterator_traits/legacy_random_access_iterator.hpp"
+#include "vccc/iterator/bidirectional_iterator.hpp"
+#include "vccc/iterator/contiguous_iterator.hpp"
 #include "vccc/iterator/forward_iterator.hpp"
 #include "vccc/iterator/incrementable.hpp"
 #include "vccc/iterator/incrementable_traits.hpp"
@@ -27,10 +29,13 @@
 #include "vccc/iterator/iter_rvalue_reference_t.hpp"
 #include "vccc/iterator/iter_value_t.hpp"
 #include "vccc/iterator/iterator_tag.hpp"
+#include "vccc/iterator/random_access_iterator.hpp"
 #include "vccc/iterator/sentinel_for.hpp"
 #include "vccc/iterator/sized_sentinel_for.hpp"
 #include "vccc/iterator/unreachable_sentinel.hpp"
 #include "vccc/iterator/weakly_incrementable.hpp"
+
+#include "vccc/ranges/empty.hpp"
 
 /**
 @defgroup iterator iterator
