@@ -26,6 +26,8 @@
 #include "vccc/ranges/view.hpp"
 #include "vccc/ranges/view_interface.hpp"
 
+#include "vccc/ranges/views/views.hpp"
+
 /**
 @defgroup ranges ranges
 @brief Ranges library
