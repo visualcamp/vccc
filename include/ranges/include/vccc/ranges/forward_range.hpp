@@ -38,7 +38,9 @@ struct forward_range_impl<T, true>
 
 The `%forward_range` concept is a refinement of range for which `ranges::begin` returns a model of `forward_iterator`.
 
-@sa [std::ranges::input_range](https://en.cppreference.com/w/cpp/ranges/input_range)
+@sa [std::ranges::forward_range](https://en.cppreference.com/w/cpp/ranges/forward_range)
+@sa `ranges::input_range`
+@sa `ranges::bidirectional_range`
  */
 
 template<typename T>

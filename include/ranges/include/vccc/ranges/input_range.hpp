@@ -39,6 +39,7 @@ struct input_range_impl<T, true>
 The `%input_range` concept is a refinement of range for which `ranges::begin` returns a model of `input_iterator`.
 
 @sa [std::ranges::input_range](https://en.cppreference.com/w/cpp/ranges/input_range)
+@sa `ranges::range`
  */
 
 template<typename T>

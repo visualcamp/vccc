@@ -41,8 +41,9 @@ iterator and sentinel that denote the elements of the range.
 <H1>Notes</H1>
 A typical range class only needs to provide two functions:
 
-A member function `%begin()` whose return type models `input_or_output_iterator`.
-A member function `%end()` whose return type models `sentinel_for<It>`, where `It` is the return type of `%begin()`.
+-# A member function `%begin()` whose return type models `input_or_output_iterator`.
+-# A member function `%end()` whose return type models `sentinel_for<It>`, where `It` is the return type of `%begin()`.
+
 Alternatively, they can be non-member functions, to be found by argument-dependent lookup.
 
 @sa [std::ranges::range](https://en.cppreference.com/w/cpp/ranges/range)
