@@ -5,6 +5,7 @@
 #include "test_core.hpp"
 
 #include <cmath>
+#include <forward_list>
 #include <limits>
 #include <list>
 #include <string>
