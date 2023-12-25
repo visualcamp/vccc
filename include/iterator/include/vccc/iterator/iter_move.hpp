@@ -80,16 +80,17 @@ constexpr R iter_move_impl(T&& t, return_category<3, R>) {
 
 /// @addtogroup iterator
 /// @{
+/// @addtogroup iterator_iter_move__func__Customization_point_objects ranges::iter_move
+/// @brief casts the result of dereferencing an object to its associated rvalue reference type
+/// @{
 
-/**
- *  @brief casts the result of dereferencing an object to its associated rvalue reference type
- */
 template<typename T>
 constexpr typename detail::iter_move_category<T&&>::return_type
 iter_move(T&& t) {
   return detail::iter_move_impl(std::forward<T>(t), detail::iter_move_category<T&&>{});
 }
 
+/// @}
 /// @}
 
 } // namespace ranges
