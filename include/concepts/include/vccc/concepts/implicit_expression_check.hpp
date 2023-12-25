@@ -36,8 +36,11 @@ struct implicit_expression_check_impl
  * of the variations is unspecified.
 */
 
+template<template<typename, typename...> class Check, typename Operand, typename...>
+struct implicit_expression_check;
+
 template<template<typename, typename, typename...> class Check, typename Left, typename Right>
-struct implicit_expression_check : Check<Left, Right> {};
+struct implicit_expression_check<Check, Left, Right> : Check<Left, Right> {};
 
 template<template<typename, typename, typename...> class Check, typename Left, typename Right>
 struct implicit_expression_check<Check, Left, const Right&>
@@ -52,6 +55,16 @@ struct implicit_expression_check<Check, const Left&, const Right&>
         detail::implicit_expression_check_impl<Check, const Left&&, Right>
       > {};
 
+template<template<typename, typename...> class Check, typename Operand>
+struct implicit_expression_check<Check, Operand> : Check<Operand> {};
+
+template<template<typename, typename...> class Check, typename Operand>
+struct implicit_expression_check<Check, const Operand&> : conjunction<
+        Check<Operand&>,
+        Check<Operand&&>,
+        Check<const Operand&>,
+        Check<const Operand&&>
+      > {};
 
 } // namespace vccc
 
