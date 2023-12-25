@@ -5,8 +5,9 @@
 #ifndef VCCC_ITERATOR_ITER_VALUE_T_HPP_
 #define VCCC_ITERATOR_ITER_VALUE_T_HPP_
 
+#include "vccc/iterator/iterator_traits/cxx20_iterator_traits.hpp"
 #include "vccc/iterator/indirectly_readable_traits.hpp"
-#include "vccc/concepts/dereferenceable.hpp"
+#include "vccc/type_traits/detail/requires_helper.hpp"
 #include "vccc/type_traits/disjunction.hpp"
 #include "vccc/type_traits/has_typename_value_type.hpp"
 #include "vccc/type_traits/remove_cvref.hpp"
@@ -16,26 +17,20 @@ namespace detail {
 
 template<
     typename T,
-    bool = has_typename_value_type< std::iterator_traits< remove_cvref_t<T> > >::value
+    bool = is_specialized_iterator_traits< cxx20_iterator_traits< remove_cvref_t<T> > >::value,
+    bool = has_typename_value_type<indirectly_readable_traits<remove_cvref_t<T>>>::value
 >
-struct iter_value {};
+struct iter_value : requires_fail {};
 
-template<typename T>
-struct iter_value<T, true> {
-  using type = typename std::iterator_traits<remove_cvref_t<T>>::value_type;
+template<typename T, bool v>
+struct iter_value<T, true, v> : requires_pass {
+  using type = typename cxx20_iterator_traits<remove_cvref_t<T>>::value_type;
 };
 
 template<typename T>
-struct iter_value<T, false> {
+struct iter_value<T, false, true> : requires_pass {
   using type = typename indirectly_readable_traits<remove_cvref_t<T>>::value_type;
 };
-
-template<typename T>
-struct test_iter_value
-    : disjunction<
-        has_typename_value_type< std::iterator_traits< remove_cvref_t<T> > >,
-        has_typename_value_type< indirectly_readable_traits<remove_cvref_t<T>> >
-      > {};
 
 } // namespace detail
 
