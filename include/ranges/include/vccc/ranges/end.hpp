@@ -96,11 +96,24 @@ constexpr R end(T&& t, return_category<3, R>) {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
+/**
+@brief returns a sentinel indicating the end of a range
+
+Returns a sentinel indicating the end of a range.
+
+@sa [std::ranges::end](https://en.cppreference.com/w/cpp/ranges/end])
+ */
+
 template<typename T>
 constexpr typename detail::end_category<T>::return_type
 end(T&& t) {
   return detail::end(std::forward<T>(t), detail::end_category<T>{});
 }
+
+/// @}
 
 
 } // namespace ranges

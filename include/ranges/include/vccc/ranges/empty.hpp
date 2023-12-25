@@ -79,12 +79,22 @@ constexpr R empty_impl(T&& t, return_category<3, R>) {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
+/**
+@brief checks whether a range is empty
+
+Determines whether or not `t` has any elements.
+ */
 
 template<typename T>
 constexpr typename detail::empty_return_category<T&&>::return_type
 empty(T&& t) {
   return detail::empty_impl(std::forward<T>(t), detail::empty_return_category<T&&>{});
 }
+
+/// @}
 
 
 } // namespace ranges

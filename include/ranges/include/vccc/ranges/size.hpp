@@ -107,6 +107,14 @@ constexpr R size_impl(T&& t, return_category<4, R>) {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
+/**
+@brief returns the size of a container or array
+
+Calculates the number of elements in `t` in constant time.
+ */
 
 template<typename T>
 constexpr typename detail::size_return_category<T&&>::return_type
@@ -114,6 +122,7 @@ size(T&& t) {
   return detail::size_impl(std::forward<T>(t), detail::size_return_category<T&&>{});
 }
 
+/// @}
 
 } // namespace ranges
 } // namespace vccc

@@ -93,11 +93,24 @@ constexpr R begin(T&& t, return_category<3, R>) {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
+/**
+@brief returns an iterator to the beginning of a range
+
+Returns an iterator to the first element of the argument.
+
+@sa [std::ranges::begin](https://en.cppreference.com/w/cpp/ranges/begin)
+ */
+
 template<typename T>
 constexpr typename detail::begin_category<T>::return_type
 begin(T&& t) {
   return detail::begin(std::forward<T>(t), detail::begin_category<T>{});
 }
+
+/// @}
 
 
 } // namespace ranges
