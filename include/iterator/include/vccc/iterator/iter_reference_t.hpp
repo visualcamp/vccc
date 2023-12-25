@@ -6,14 +6,15 @@
 #define VCCC_ITERATOR_ITER_REFERENCE_T_HPP_
 
 #include "vccc/concepts/dereferenceable.hpp"
+#include "vccc/type_traits/detail/requires_helper.hpp"
 
 namespace vccc {
 
 template<typename T, bool v = concepts::dereferenceable<T>::value>
-struct iter_reference;
+struct iter_reference : detail::requires_fail {};
 
 template<typename T>
-struct iter_reference<T, true> {
+struct iter_reference<T, true> : detail::requires_pass {
   using type = decltype(*std::declval<T&>());
 };
 
