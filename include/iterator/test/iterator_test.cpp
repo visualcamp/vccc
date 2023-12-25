@@ -75,5 +75,26 @@ int main() {
     static_assert(vccc::contiguous_iterator<std::forward_list<int>::iterator>::value == false, "");
   }
 
+  {
+    int arr[] = {1, 2, 3};
+    std::vector<int> v = {4, 5, 6};
+    std::list<int> l = {7, 8, 9};
+
+    auto it1 = vccc::ranges::begin(arr);
+    vccc::ranges::advance(it1, 1);
+    TEST_ENSURES(*it1 == 2);
+
+    auto it2 = v.rbegin();
+    vccc::ranges::advance(it2, 2);
+    TEST_ENSURES(*it2 == 4);
+
+    auto it3 = l.begin();
+    vccc::ranges::advance(it3, 1);
+    TEST_ENSURES(*it3 == 8);
+
+    vccc::ranges::advance(it3, 2);
+    TEST_ENSURES(it3 == vccc::ranges::end(l));
+  }
+
   return TEST_RETURN_RESULT;
 }
