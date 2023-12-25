@@ -14,6 +14,7 @@
 #include "vccc/concepts/copyable.hpp"
 #include "vccc/concepts/default_initializable.hpp"
 #include "vccc/concepts/dereferenceable.hpp"
+#include "vccc/concepts/derived_from.hpp"
 #include "vccc/concepts/equality_comparable.hpp"
 #include "vccc/concepts/implicit_expression_check.hpp"
 #include "vccc/concepts/destructible.hpp"
