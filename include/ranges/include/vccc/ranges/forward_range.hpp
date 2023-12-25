@@ -42,7 +42,7 @@ The `%forward_range` concept is a refinement of range for which `ranges::begin` 
  */
 
 template<typename T>
-struct forward_range : detail::input_range_impl<T> {};
+struct forward_range : detail::forward_range_impl<T> {};
 
 /// @}
 
