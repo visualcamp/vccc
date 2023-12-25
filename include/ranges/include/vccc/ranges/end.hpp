@@ -108,9 +108,9 @@ Returns a sentinel indicating the end of a range.
  */
 
 template<typename T>
-constexpr typename detail::end_category<T>::return_type
+constexpr typename detail::end_category<T&&>::return_type
 end(T&& t) {
-  return detail::end(std::forward<T>(t), detail::end_category<T>{});
+  return detail::end(std::forward<T>(t), detail::end_category<T&&>{});
 }
 
 /// @}
