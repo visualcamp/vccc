@@ -18,6 +18,7 @@
 #include "vccc/functional/hash_array.hpp"
 #include "vccc/memory/to_address.hpp"
 #include "vccc/ranges/data.hpp"
+#include "vccc/ranges/borrowed_range.hpp"
 #include "vccc/type_traits/type_identity.hpp"
 
 /**
@@ -746,10 +747,10 @@ constexpr wstring_view operator ""_sv(const wchar_t* str, std::size_t len) noexc
 } // namespace string_view_literals
 } // namespace literals
 
-// template<typename CharT, typename Traits>
-// inline constexpr bool
-// ranges::enable_borrowed_range<basic_string_view<CharT, Traits>> = true;
-//
+template<typename CharT, typename Traits>
+struct ranges::enable_borrowed_range<basic_string_view<CharT, Traits>>
+    : std::true_type {};
+
 // template<typename CharT, typename Traits >
 // inline constexpr bool
 // ranges::enable_view<basic_string_view<CharT, Traits>> = true;
