@@ -28,8 +28,9 @@ struct has_arrow<T, void_t<decltype(std::declval<const T&>().operator->())>> : s
 } // namespace detail
 
 template<class T>
-constexpr T* to_address(T* p) noexcept {
-  static_assert(!std::is_function<T>::value, "T must not be a pointer to function");
+constexpr std::enable_if_t<!std::is_function<T>::value, T*>
+to_address(T* p) noexcept {
+  // static_assert(!std::is_function<T>::value, "T must not be a pointer to function");
   return p;
 }
 
@@ -38,7 +39,7 @@ constexpr auto to_address(const T& p) noexcept {
   return std::pointer_traits<T>::to_address(p);
 }
 
-template<class T, std::enable_if_t<!detail::has_to_address<T>::value, int> = 0>
+template<class T, std::enable_if_t<!detail::has_to_address<T>::value && detail::has_arrow<T>::value, int> = 0>
 constexpr auto to_address(const T& p) noexcept {
   return to_address(p.operator->());
 }
