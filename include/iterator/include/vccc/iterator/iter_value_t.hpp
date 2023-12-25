@@ -18,7 +18,7 @@ template<
     typename T,
     bool = has_typename_value_type< std::iterator_traits< remove_cvref_t<T> > >::value
 >
-struct iter_value;
+struct iter_value {};
 
 template<typename T>
 struct iter_value<T, true> {
