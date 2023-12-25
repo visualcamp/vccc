@@ -19,7 +19,7 @@
 namespace vccc {
 namespace detail {
 
-template<typename T, bool = vccc::detail::require<vccc::detail::iter_difference<T>>::value>
+template<typename T, bool = require<iter_difference<T>>::value>
 struct is_signed_integer_like_iter_difference : std::false_type {};
 
 template<typename T>

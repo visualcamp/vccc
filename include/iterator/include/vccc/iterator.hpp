@@ -14,6 +14,7 @@
 #include "vccc/iterator/iterator_traits/legacy_input_iterator.hpp"
 #include "vccc/iterator/iterator_traits/legacy_iterator.hpp"
 #include "vccc/iterator/iterator_traits/legacy_random_access_iterator.hpp"
+#include "vccc/iterator/forward_iterator.hpp"
 #include "vccc/iterator/incrementable.hpp"
 #include "vccc/iterator/incrementable_traits.hpp"
 #include "vccc/iterator/indirectly_readable.hpp"

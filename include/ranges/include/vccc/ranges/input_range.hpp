@@ -31,9 +31,22 @@ struct input_range_impl<T, true>
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
+
+/**
+@brief specifies a range whose iterator type satisfies `input_iterator`
+
+The `%input_range` concept is a refinement of range for which `ranges::begin` returns a model of `input_iterator`.
+
+@sa [std::ranges::input_range](https://en.cppreference.com/w/cpp/ranges/input_range)
+ */
+
 template<typename T>
 struct input_range : detail::input_range_impl<T> {};
 
+/// @}
 
 } // namespace ranges
 } // namespace vccc
