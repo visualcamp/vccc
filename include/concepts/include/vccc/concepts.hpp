@@ -6,6 +6,7 @@
 #define VCCC_CONCEPTS_HPP_
 
 #include "vccc/concepts/assignable_from.hpp"
+#include "vccc/concepts/boolean_testable.hpp"
 #include "vccc/concepts/common_reference_with.hpp"
 #include "vccc/concepts/constructible_from.hpp"
 #include "vccc/concepts/convertible_to.hpp"
@@ -13,14 +14,17 @@
 #include "vccc/concepts/copyable.hpp"
 #include "vccc/concepts/default_initializable.hpp"
 #include "vccc/concepts/dereferenceable.hpp"
+#include "vccc/concepts/equality_comparable.hpp"
 #include "vccc/concepts/implicit_expression_check.hpp"
 #include "vccc/concepts/destructible.hpp"
 #include "vccc/concepts/movable.hpp"
 #include "vccc/concepts/move_constructible.hpp"
 #include "vccc/concepts/same_as.hpp"
 #include "vccc/concepts/semiregular.hpp"
+#include "vccc/concepts/signed_integral.hpp"
 #include "vccc/concepts/subtractable.hpp"
 #include "vccc/concepts/swappable.hpp"
+#include "vccc/concepts/totally_ordered.hpp"
 #include "vccc/concepts/weakly_equality_comparable_with.hpp"
 
 
