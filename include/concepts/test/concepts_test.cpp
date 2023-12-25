@@ -24,10 +24,16 @@ int Test() {
     };
 
     static_assert(std::is_convertible<From&, To>::value, " ");
-    static_assert(not concepts::convertible_to<From&, To>::value, " ");
+    static_assert(not convertible_to<From&, To>::value, " ");
   }
 
-
+  {
+    static_assert(vccc::boolean_testable<bool>::value, "");
+    static_assert(vccc::boolean_testable<std::true_type>::value, "");
+    static_assert(vccc::boolean_testable<std::false_type>::value, "");
+    static_assert(vccc::boolean_testable<int*>::value, "");
+    static_assert(vccc::boolean_testable<void>::value == false, "");
+  }
 
   return TEST_RETURN_RESULT;
 }
