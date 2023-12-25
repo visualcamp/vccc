@@ -12,8 +12,8 @@
 #include "vccc/iterator/iter_reference_t.hpp"
 #include "vccc/iterator/iter_rvalue_reference_t.hpp"
 #include "vccc/iterator/iter_value_t.hpp"
-#include "vccc/type_traits/detail/requires_helper.hpp"
 #include "vccc/type_traits/conjunction.hpp"
+#include "vccc/type_traits/has_typename_type.hpp"
 #include "vccc/type_traits/is_referenceable.hpp"
 #include "vccc/type_traits/remove_cvref.hpp"
 
@@ -35,9 +35,9 @@ template<
   typename In,
   bool = conjunction<
         dereferenceable<In>,
-        vccc::detail::require<vccc::detail::iter_value<In>>,
-        vccc::detail::require<iter_reference<In>>,
-        vccc::detail::require<iter_rvalue_reference<In>>
+        has_typename_type<iter_value<In>>,
+        has_typename_type<iter_reference<In>>,
+        has_typename_type<iter_rvalue_reference<In>>
       >::value
 >
 struct indirectly_readable_requires : std::false_type {};

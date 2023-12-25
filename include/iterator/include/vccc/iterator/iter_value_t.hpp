@@ -7,35 +7,30 @@
 
 #include "vccc/iterator/iterator_traits/cxx20_iterator_traits.hpp"
 #include "vccc/iterator/indirectly_readable_traits.hpp"
-#include "vccc/type_traits/detail/requires_helper.hpp"
-#include "vccc/type_traits/disjunction.hpp"
 #include "vccc/type_traits/has_typename_value_type.hpp"
 #include "vccc/type_traits/remove_cvref.hpp"
 
 namespace vccc {
-namespace detail {
 
 template<
     typename T,
-    bool = is_specialized_iterator_traits< cxx20_iterator_traits< remove_cvref_t<T> > >::value,
+    bool = detail::is_specialized_iterator_traits< cxx20_iterator_traits< remove_cvref_t<T> > >::value,
     bool = has_typename_value_type<indirectly_readable_traits<remove_cvref_t<T>>>::value
 >
-struct iter_value : requires_fail {};
+struct iter_value {};
 
 template<typename T, bool v>
-struct iter_value<T, true, v> : requires_pass {
+struct iter_value<T, true, v> {
   using type = typename cxx20_iterator_traits<remove_cvref_t<T>>::value_type;
 };
 
 template<typename T>
-struct iter_value<T, false, true> : requires_pass {
+struct iter_value<T, false, true> {
   using type = typename indirectly_readable_traits<remove_cvref_t<T>>::value_type;
 };
 
-} // namespace detail
-
 template<typename T>
-using iter_value_t = typename detail::iter_value<T>::type;
+using iter_value_t = typename iter_value<T>::type;
 
 } // namespace vccc
 

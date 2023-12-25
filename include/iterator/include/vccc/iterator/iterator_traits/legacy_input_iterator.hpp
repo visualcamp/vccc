@@ -13,7 +13,6 @@
 #include "vccc/iterator/incrementable_traits.hpp"
 #include "vccc/iterator/indirectly_readable_traits.hpp"
 #include "vccc/iterator/iter_reference_t.hpp"
-#include "vccc/type_traits/detail/requires_helper.hpp"
 #include "vccc/type_traits/common_reference.hpp"
 #include "vccc/type_traits/conjunction.hpp"
 #include "vccc/type_traits/has_typename_value_type.hpp"
@@ -29,7 +28,7 @@ template<
              equality_comparable<I>,
              has_typename_difference_type<incrementable_traits<I>>,
              has_typename_value_type<indirectly_readable_traits<I>>,
-             require<iter_reference<I>>
+             has_typename_type<iter_reference<I>>
            >::value
 >
 struct LegacyInputIteratorRequiresStage1 : std::false_type {};

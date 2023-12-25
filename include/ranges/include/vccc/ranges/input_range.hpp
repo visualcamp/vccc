@@ -10,16 +10,14 @@
 #include "vccc/iterator/input_iterator.hpp"
 #include "vccc/ranges/range.hpp"
 #include "vccc/ranges/iterator_t.hpp"
-#include "vccc/type_traits/detail/requires_helper.hpp"
 #include "vccc/type_traits/conjunction.hpp"
+#include "vccc/type_traits/has_typename_type.hpp"
 
 namespace vccc {
 namespace ranges {
 namespace detail {
 
-using vccc::detail::require;
-
-template<typename T, bool = require<ranges::detail::iterator<T>>::value>
+template<typename T, bool = has_typename_type<ranges::iterator<T>>::value>
 struct input_range_impl : std::false_type {};
 
 template<typename T>

@@ -7,17 +7,14 @@
 
 #include "vccc/concepts/dereferenceable.hpp"
 #include "vccc/iterator/iter_move.hpp"
-#include "vccc/type_traits/detail/requires_helper.hpp"
 
 namespace vccc {
 
 template<typename T, bool v = dereferenceable<T>::value, typename = void>
-struct iter_rvalue_reference : detail::requires_fail {};
+struct iter_rvalue_reference {};
 
 template<typename T>
-struct iter_rvalue_reference<T, true, void_t<decltype(ranges::iter_move(std::declval<T&>()))>>
-    : detail::requires_pass
-{
+struct iter_rvalue_reference<T, true, void_t<decltype(ranges::iter_move(std::declval<T&>()))>> {
   using type = decltype(ranges::iter_move(std::declval<T&>()));
 };
 

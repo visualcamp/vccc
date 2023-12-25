@@ -11,15 +11,15 @@
 #include "vccc/concepts/same_as.hpp"
 #include "vccc/concepts/movable.hpp"
 #include "vccc/iterator/iter_difference_t.hpp"
-#include "vccc/type_traits/detail/requires_helper.hpp"
 #include "vccc/type_traits/conjunction.hpp"
+#include "vccc/type_traits/has_typename_type.hpp"
 #include "vccc/type_traits/is_integer_like.hpp"
 #include "vccc/type_traits/void_t.hpp"
 
 namespace vccc {
 namespace detail {
 
-template<typename T, bool = require<iter_difference<T>>::value>
+template<typename T, bool = has_typename_type<iter_difference<T>>::value>
 struct is_signed_integer_like_iter_difference : std::false_type {};
 
 template<typename T>
