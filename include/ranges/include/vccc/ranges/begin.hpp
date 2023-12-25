@@ -105,9 +105,9 @@ Returns an iterator to the first element of the argument.
  */
 
 template<typename T>
-constexpr typename detail::begin_category<T>::return_type
+constexpr typename detail::begin_category<T&&>::return_type
 begin(T&& t) {
-  return detail::begin(std::forward<T>(t), detail::begin_category<T>{});
+  return detail::begin(std::forward<T>(t), detail::begin_category<T&&>{});
 }
 
 /// @}
