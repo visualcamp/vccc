@@ -30,7 +30,7 @@ template<
 struct common_range_impl : std::false_type {};
 
 template<typename T>
-struct common_range_impl : same_as<ranges::iterator_t<T>, ranges::sentinel_t<T>> {};
+struct common_range_impl<T, true> : same_as<ranges::iterator_t<T>, ranges::sentinel_t<T>> {};
 
 } // namespace ranges
 

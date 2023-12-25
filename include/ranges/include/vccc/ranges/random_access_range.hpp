@@ -28,7 +28,7 @@ template<
 struct random_access_range_impl : std::false_type {};
 
 template<typename T>
-struct random_access_range_impl : random_access_iterator<ranges::iterator_t<T>> {};
+struct random_access_range_impl<T, true> : random_access_iterator<ranges::iterator_t<T>> {};
 
 } // namespace ranges
 

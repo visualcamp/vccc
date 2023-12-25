@@ -29,7 +29,7 @@ struct range_difference {};
 
 template<typename R>
 struct range_difference<R, true> {
-  using type = typename iter_difference_t<ranges::iterator_t<R>>;
+  using type = iter_difference_t<ranges::iterator_t<R>>;
 };
 
 
