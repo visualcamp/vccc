@@ -2,6 +2,7 @@
 // Created by YongGyu Lee on 2023/12/23.
 //
 
+#include <array>
 #include <iostream>
 #include <string>
 #include <type_traits>
