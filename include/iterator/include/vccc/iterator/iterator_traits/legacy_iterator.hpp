@@ -9,7 +9,6 @@
 
 #include "vccc/concepts/copyable.hpp"
 #include "vccc/concepts/dereferenceable.hpp"
-#include "vccc/concepts/same_as.hpp"
 #include "vccc/iterator/weakly_incrementable.hpp"
 #include "vccc/type_traits/conjunction.hpp"
 #include "vccc/type_traits/is_referenceable.hpp"

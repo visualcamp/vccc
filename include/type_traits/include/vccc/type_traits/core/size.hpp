@@ -3,7 +3,7 @@
 //
 
 #ifndef VCCC_TYPE_TRAITS_CORE_SIZE_HPP_
-#define VCCC_CORE_SIZE_H_
+#define VCCC_TYPE_TRAITS_CORE_SIZE_HPP_
 
 #include <cstddef>
 #include <type_traits>

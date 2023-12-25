@@ -9,6 +9,7 @@
 #include <type_traits>
 
 #include "vccc/iterator/iterator_tag.hpp"
+#include "vccc/iterator/iterator_traits/forward_declare.hpp"
 #include "vccc/iterator/iterator_traits/legacy_iterator.hpp"
 #include "vccc/iterator/iterator_traits/legacy_input_iterator.hpp"
 #include "vccc/iterator/iterator_traits/legacy_forward_iterator.hpp"
@@ -37,7 +38,7 @@ template<typename T>
 struct has_typename_iterator_category<T, void_t<typename T::iterator_category>> : std::false_type {};
 
 template<typename Iter, bool = LegacyForwardIterator<Iter>::value /* false */>
-struct cxx20_iterator_category_check_forward<Iter> {
+struct cxx20_iterator_category_check_forward {
   using type = random_access_iterator_tag;
 };
 
@@ -47,7 +48,7 @@ struct cxx20_iterator_category_check_forward<Iter, true> {
 };
 
 template<typename Iter, bool = LegacyBidirectionalIterator<Iter>::value /* false */>
-struct cxx20_iterator_category_check_bidirectional<Iter>
+struct cxx20_iterator_category_check_bidirectional
     : cxx20_iterator_category_check_forward<Iter> {};
 
 template<typename Iter>
@@ -56,7 +57,7 @@ struct cxx20_iterator_category_check_bidirectional<Iter, true> {
 };
 
 template<typename Iter, bool = LegacyRandomAccessIterator<Iter>::value /* false */>
-struct cxx20_iterator_category_check_random_access<Iter>
+struct cxx20_iterator_category_check_random_access
     : cxx20_iterator_category_check_bidirectional<Iter> {};
 
 template<typename Iter>
@@ -174,11 +175,6 @@ struct cxx20_iterator_traits_object_pointer<T, true> {
   using iterator_category = random_access_iterator_tag;
   using iterator_concept = contiguous_iterator_tag;
 };
-
-template<typename T, typename = void>
-struct is_specialized_iterator_traits : std::false_type {};
-template<typename T>
-struct is_specialized_iterator_traits<T, void_t<typename T::iterator_concept>> : std::true_type {};
 
 } // namespace detail
 

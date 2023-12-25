@@ -7,6 +7,13 @@
 
 #include "vccc/iterator/detail/iter_concept.hpp"
 #include "vccc/iterator/detail/iter_move_std.hpp"
+#include "vccc/iterator/iterator_traits/forward_declare.hpp"
+#include "vccc/iterator/iterator_traits/cxx20_iterator_traits.hpp"
+#include "vccc/iterator/iterator_traits/legacy_bidirectional_iterator.hpp"
+#include "vccc/iterator/iterator_traits/legacy_forward_iterator.hpp"
+#include "vccc/iterator/iterator_traits/legacy_input_iterator.hpp"
+#include "vccc/iterator/iterator_traits/legacy_iterator.hpp"
+#include "vccc/iterator/iterator_traits/legacy_random_access_iterator.hpp"
 #include "vccc/iterator/incrementable.hpp"
 #include "vccc/iterator/incrementable_traits.hpp"
 #include "vccc/iterator/indirectly_readable.hpp"

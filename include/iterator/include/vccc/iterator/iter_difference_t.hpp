@@ -5,12 +5,11 @@
 #ifndef VCCC_ITERATOR_ITER_DIFFERENCE_T_HPP_
 #define VCCC_ITERATOR_ITER_DIFFERENCE_T_HPP_
 
-#include "vccc/iterator/iterator_traits/cxx20_iterator_traits.hpp"
+#include "vccc/iterator/incrementable_traits.hpp"
+#include "vccc/iterator/iterator_traits/forward_declare.hpp"
 #include "vccc/type_traits/detail/requires_helper.hpp"
-#include "vccc/type_traits/disjunction.hpp"
 #include "vccc/type_traits/has_typename_difference_type.hpp"
 #include "vccc/type_traits/remove_cvref.hpp"
-#include "vccc/iterator/incrementable_traits.hpp"
 
 namespace vccc {
 namespace detail {
