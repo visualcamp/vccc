@@ -9,7 +9,6 @@
 
 #include "vccc/concepts/common_reference_with.hpp"
 #include "vccc/concepts/dereferenceable.hpp"
-#include "vccc/iterator/indirectly_readable_traits.hpp"
 #include "vccc/iterator/iter_reference_t.hpp"
 #include "vccc/iterator/iter_rvalue_reference_t.hpp"
 #include "vccc/iterator/iter_value_t.hpp"
@@ -37,7 +36,7 @@ template<
   typename In,
   bool = conjunction<
         concepts::dereferenceable<In>,
-        vccc::detail::test_iter_value<In>,
+        vccc::detail::require<vccc::detail::iter_value<In>>,
         vccc::detail::require<iter_reference<In>>,
         vccc::detail::require<iter_rvalue_reference<In>>
       >::value
