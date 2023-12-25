@@ -28,6 +28,7 @@
 #include "vccc/iterator/iter_value_t.hpp"
 #include "vccc/iterator/iterator_tag.hpp"
 #include "vccc/iterator/sentinel_for.hpp"
+#include "vccc/iterator/sized_sentinel_for.hpp"
 #include "vccc/iterator/unreachable_sentinel.hpp"
 #include "vccc/iterator/weakly_incrementable.hpp"
 
