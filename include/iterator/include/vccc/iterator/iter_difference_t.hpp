@@ -5,10 +5,9 @@
 #ifndef VCCC_ITERATOR_ITER_DIFFERENCE_T_HPP_
 #define VCCC_ITERATOR_ITER_DIFFERENCE_T_HPP_
 
-#include <iterator>
-
+#include "vccc/iterator/iterator_traits/cxx20_iterator_traits.hpp"
+#include "vccc/type_traits/detail/requires_helper.hpp"
 #include "vccc/type_traits/disjunction.hpp"
-#include "vccc/type_traits/is_complete.hpp"
 #include "vccc/type_traits/has_typename_difference_type.hpp"
 #include "vccc/type_traits/remove_cvref.hpp"
 #include "vccc/iterator/incrementable_traits.hpp"
@@ -18,26 +17,20 @@ namespace detail {
 
 template<
     typename T,
-    bool = has_typename_difference_type< std::iterator_traits< remove_cvref_t<T> > >::value
+    bool = is_specialized_iterator_traits< cxx20_iterator_traits< remove_cvref_t<T> > >::value,
+    bool = has_typename_difference_type<incrementable_traits<remove_cvref_t<T>>>::value
 >
-struct iter_difference;
+struct iter_difference : requires_fail {};
 
-template<typename T>
-struct iter_difference<T, true> {
-  using type = typename std::iterator_traits<remove_cvref_t<T>>::difference_type;
+template<typename T, bool v>
+struct iter_difference<T, true, v> : requires_pass {
+  using type = typename cxx20_iterator_traits<remove_cvref_t<T>>::difference_type;
 };
 
 template<typename T>
-struct iter_difference<T, false> {
+struct iter_difference<T, false, true> : requires_pass {
   using type = typename incrementable_traits<remove_cvref_t<T>>::difference_type;
 };
-
-template<typename T>
-struct test_iter_difference
-    : disjunction<
-        has_typename_difference_type< std::iterator_traits< remove_cvref_t<T> > >,
-        has_typename_difference_type< incrementable_traits<remove_cvref_t<T>> >
-      > {};
 
 } // namespace detail
 
@@ -47,9 +40,9 @@ struct test_iter_difference
 /**
  * @brief Computes the \a difference type of `T`
  *
- * Computes the \a difference type of `T`. If `std::iterator_traits<std::remove_cvref_t<T>>` is not specialized,
- * then `iter_difference_t<T>` is `incrementable_traits<std::remove_cvref_t<T>>::difference_type`.
- * Otherwise, it is `std::iterator_traits<std::remove_cvref_t<T>>::difference_type`
+ * Computes the \a difference type of `T`. If `cxx20_iterator_traits<remove_cvref_t<T>>` is not specialized,
+ * then `iter_difference_t<T>` is `incrementable_traits<remove_cvref_t<T>>::difference_type`.
+ * Otherwise, it is `cxx20_iterator_traits<remove_cvref_t<T>>::difference_type`
  */
 template<typename T>
 using iter_difference_t = typename detail::iter_difference<T>::type;
