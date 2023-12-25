@@ -25,17 +25,17 @@ namespace detail {
 template<typename T, typename = void>
 struct has_typename_pointer : std::false_type {};
 template<typename T>
-struct has_typename_pointer<T, void_t<typename T::pointer>> : std::false_type {};
+struct has_typename_pointer<T, void_t<typename T::pointer>> : std::true_type {};
 
 template<typename T, typename = void>
 struct has_typename_reference : std::false_type {};
 template<typename T>
-struct has_typename_reference<T, void_t<typename T::reference>> : std::false_type {};
+struct has_typename_reference<T, void_t<typename T::reference>> : std::true_type {};
 
 template<typename T, typename = void>
 struct has_typename_iterator_category : std::false_type {};
 template<typename T>
-struct has_typename_iterator_category<T, void_t<typename T::iterator_category>> : std::false_type {};
+struct has_typename_iterator_category<T, void_t<typename T::iterator_category>> : std::true_type {};
 
 template<typename Iter, bool = LegacyForwardIterator<Iter>::value /* false */>
 struct cxx20_iterator_category_check_forward {
