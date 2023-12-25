@@ -35,7 +35,7 @@ template<typename I>
 struct LegacyIterator<I, true>
     : conjunction<
         is_referencable<decltype(*std::declval<I&>())>,
-        detail::is_post_incrementable<I>,
+        detail::is_pre_incrementable<I>,
         detail::LegacyIteratorCheckPostIncrement<I>,
         copyable<I>
       > {};

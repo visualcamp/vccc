@@ -22,18 +22,14 @@ template<
     bool = conjunction<
              input_or_output_iterator<I>,
              indirectly_readable<I>,
-             has_typename_type<vccc::detail::ITER_CONCEPT_T<I>>
+             has_typename_type<ITER_CONCEPT_T<I>>
            >::value
 >
 struct input_iterator_impl : std::false_type {};
 
 template<typename I>
 struct input_iterator_impl<I, true>
-    : conjunction<
-        input_or_output_iterator<I>,
-        indirectly_readable<I>,
-        derived_from<vccc::detail::ITER_CONCEPT<I>, input_iterator_tag>
-      > {};
+    : derived_from<ITER_CONCEPT<I>, input_iterator_tag> {};
 
 } // namespace detail
 
