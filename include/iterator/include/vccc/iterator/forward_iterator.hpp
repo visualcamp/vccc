@@ -19,7 +19,7 @@
 namespace vccc {
 namespace detail {
 
-template<typename I, bool = has_typename_type<ITER_CONCEPT_T<I>>::vaue>
+template<typename I, bool = has_typename_type<ITER_CONCEPT_T<I>>::value>
 struct forward_iterator_impl : std::false_type {};
 
 template<typename I>
