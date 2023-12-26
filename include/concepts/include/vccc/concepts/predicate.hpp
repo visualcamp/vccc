@@ -31,7 +31,6 @@ value categories are encoded by `Args...`, i.e., it can be invoked with these ar
 
 Note that regular_invocable requires the invocation to not modify either the callable object or the arguments and be equality-preserving.
 
-
 @sa [std::predicate](https://en.cppreference.com/w/cpp/concepts/predicate)
  */
 template<typename F, typename... Args>
