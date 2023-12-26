@@ -3,7 +3,7 @@
 
 \tableofcontents
 
-\section version_1_1_0 v1.1.0 (2023.12.26)
+\section version_1_1_1 v1.1.1 (2023.12.26)
 - \subpage concepts
     - Add \ref vccc::assignable_from
     - Add \ref vccc::boolean_testable
@@ -30,7 +30,6 @@
     - Add \ref vccc::totally_ordered
     - Add \ref vccc::weakly_equality_comparable_with
 - \subpage iterator
-    -
     - Add \ref vccc::ranges::advance
     - Add \ref vccc::bidirectional_iterator
     - Add \ref vccc::contiguous_iterator
@@ -80,6 +79,8 @@
     - Add \ref vccc::views::iota
 - Python-like range is removed
     - Use \ref vccc::views::iota, \ref vccc::ranges::iota_view instead
+- \subpage utility
+    - Add \ref vccc::rel_ops::operator<=>
 
 \section version_1_0_4_2 v1.0.4.2 (2023.12.21)
 - \subpage functional
