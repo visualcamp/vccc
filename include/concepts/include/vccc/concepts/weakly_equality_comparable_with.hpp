@@ -10,9 +10,12 @@
 
 #include "vccc/type_traits/conjunction.hpp"
 #include "vccc/type_traits/is_referenceable.hpp"
+#include "vccc/utility/cxx20_rel_ops.hpp"
 
 namespace vccc {
 namespace detail {
+
+using namespace rel_ops;
 
 template<typename T, typename U, typename = void>
 struct is_explicitly_equality_comparable : std::false_type {};
@@ -55,8 +58,21 @@ struct weakly_equality_comparable_with_impl<T, U, true>
 
 } // namespace detail
 
+/// @addtogroup concepts
+/// @{
+
+/**
+@brief specifies that two different objects can be compared for equality with each other (in either order) using both `==` and `!=`
+
+`%weakly_equality_comparable_with` specifies that an object of type `T` and an object of type `U` can be compared for
+equality with each other (in either order) using both `==` and `!=`, and the results of the comparisons are consistent.
+
+@sa [__WeaklyEqualityComparableWith](https://en.cppreference.com/w/cpp/concepts/equality_comparable)
+ */
 template<typename T, typename U>
 struct weakly_equality_comparable_with : detail::weakly_equality_comparable_with_impl<T, U> {};
+
+/// @}
 
 } // namespace vccc
 
