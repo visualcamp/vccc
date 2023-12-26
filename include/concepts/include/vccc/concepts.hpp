@@ -18,6 +18,7 @@
 #include "vccc/concepts/dereferenceable.hpp"
 #include "vccc/concepts/derived_from.hpp"
 #include "vccc/concepts/equality_comparable.hpp"
+#include "vccc/concepts/floating_point.hpp"
 #include "vccc/concepts/implicit_expression_check.hpp"
 #include "vccc/concepts/destructible.hpp"
 #include "vccc/concepts/movable.hpp"

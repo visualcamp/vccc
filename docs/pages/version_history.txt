@@ -7,6 +7,7 @@
 - \subpage concepts
     - Add \ref vccc::common_with
     - Add \ref vccc::equality_comparable_with
+    - Add \ref vccc::floating_point
     - Add \ref vccc::totally_ordered_with
     - Add \ref vccc::unsigned_integral
 
