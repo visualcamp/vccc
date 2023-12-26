@@ -3,6 +3,10 @@
 
 \tableofcontents
 
+\section version_1_2_0 v1.2.0 (2023.12.27)
+- \subpage concepts
+    - Add \ref vccc::equality_comparable_with
+
 \section version_1_1_1 v1.1.1 (2023.12.26)
 - \subpage concepts
     - Add \ref vccc::assignable_from
