@@ -30,6 +30,7 @@
 #include "vccc/type_traits/remove_cvref.hpp"
 #include "vccc/type_traits/type_identity.hpp"
 #include "vccc/type_traits/void_t.hpp"
+#include "vccc/utility/cxx20_rel_ops.hpp"
 
 namespace vccc {
 namespace ranges {
@@ -208,7 +209,7 @@ class iota_view
     template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
       default_initializable<W>
     >::value, int> = 0>
-    iterator() : value_(W()) {}
+    constexpr iterator() : value_(W()) {}
 
     constexpr explicit iterator(W value) : value_(value) {}
 
@@ -373,13 +374,13 @@ class iota_view
 
   class sentinel {
    public:
-    sentinel() : bound_(Bound()) {}
+    constexpr sentinel() : bound_(Bound()) {}
 
     constexpr explicit sentinel(Bound bound) : bound_(bound) {}
 
     friend constexpr bool operator==(const iterator& x, const sentinel& y) {
       using namespace vccc::rel_ops;
-      return x.value_ == y.bound_;
+      return *x == y.bound_;
     }
     friend constexpr bool operator!=(const iterator& x, const sentinel& y) {
       using namespace vccc::rel_ops;
@@ -390,14 +391,14 @@ class iota_view
       sized_sentinel_for<Bound, W>
     >::value, int> = 0>
     friend constexpr iter_difference_t<W> operator-(const iterator& x, const sentinel& y) {
-      return x.value_ - y.bound_;
+      return *x - y.bound_;
     }
 
     template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
       sized_sentinel_for<Bound, W>
     >::value, int> = 0>
     friend constexpr iter_difference_t<W> operator-(const sentinel& x, const iterator& y) {
-      return -(y.value_ - x.bound_);
+      return -(*y - x.bound_);
     }
 
    private:
@@ -410,7 +411,7 @@ class iota_view
   template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
     default_initializable<W>
   >::value, int> = 0>
-  iota_view() : value_(W()), bound_(Bound()) {}
+  constexpr iota_view() : value_(W()), bound_(Bound()) {}
 
   constexpr explicit iota_view(W value) : value_(value), bound_(Bound()) {}
 
@@ -456,7 +457,7 @@ class iota_view
 
  private:
   template<typename T>
-  static auto to_unsigned_like(T x) {
+  static constexpr auto to_unsigned_like(T x) {
     using R = std::make_unsigned_t<T>;
     return static_cast<R>(x);
   }
