@@ -6,6 +6,7 @@
 # define VCCC_UTILITY_HPP
 #
 # include "vccc/utility/assert.hpp"
+# include "vccc/utility/cxx20_rel_ops.hpp"
 # include "vccc/utility/sequence.hpp"
 # include "vccc/utility/time.hpp"
 
