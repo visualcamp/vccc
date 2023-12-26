@@ -24,6 +24,8 @@
 #include "vccc/concepts/destructible.hpp"
 #include "vccc/concepts/movable.hpp"
 #include "vccc/concepts/move_constructible.hpp"
+#include "vccc/concepts/partially_ordered_with.hpp"
+#include "vccc/concepts/predicate.hpp"
 #include "vccc/concepts/same_as.hpp"
 #include "vccc/concepts/semiregular.hpp"
 #include "vccc/concepts/signed_integral.hpp"
