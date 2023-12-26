@@ -13,12 +13,14 @@
 #include "vccc/ranges/size.hpp"
 #include "vccc/type_traits/detail/return_category.hpp"
 #include "vccc/type_traits/void_t.hpp"
+#include "vccc/utility/cxx20_rel_ops.hpp"
 
 namespace vccc {
 namespace ranges {
 namespace detail {
 
 using vccc::detail::return_category;
+using namespace vccc::rel_ops;
 
 template<typename T, typename = void>
 struct empty_member_check : std::false_type {

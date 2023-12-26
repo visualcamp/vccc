@@ -11,29 +11,36 @@
 #include "vccc/concepts/implicit_expression_check.hpp"
 #include "vccc/type_traits/conjunction.hpp"
 #include "vccc/type_traits/is_referenceable.hpp"
+#include "vccc/utility/cxx20_rel_ops.hpp"
 
 namespace vccc {
 namespace detail {
 
+using namespace rel_ops;
+
 template<typename T, typename U, typename = void>
 struct explicit_less_than_comparable : std::false_type {};
 template<typename T, typename U>
-struct explicit_less_than_comparable<T, U, void_t<decltype(std::declval<T>() < std::declval<U>())>> : std::true_type {};
+struct explicit_less_than_comparable<T, U, void_t<decltype( std::declval<T>() < std::declval<U>() )>>
+    : boolean_testable<decltype( std::declval<T>() < std::declval<U>() )> {};
 
 template<typename T, typename U, typename = void>
 struct explicit_less_or_equal_than_comparable : std::false_type {};
 template<typename T, typename U>
-struct explicit_less_or_equal_than_comparable<T, U, void_t<decltype(std::declval<T>() <= std::declval<U>())>> : std::true_type {};
+struct explicit_less_or_equal_than_comparable<T, U, void_t<decltype( std::declval<T>() <= std::declval<U>() )>>
+    : boolean_testable<decltype( std::declval<T>() <= std::declval<U>() )> {};
 
 template<typename T, typename U, typename = void>
 struct explicit_greater_than_comparable : std::false_type {};
 template<typename T, typename U>
-struct explicit_greater_than_comparable<T, U, void_t<decltype(std::declval<T>() > std::declval<U>())>> : std::true_type {};
+struct explicit_greater_than_comparable<T, U, void_t<decltype( std::declval<T>() > std::declval<U>() )>>
+    : boolean_testable<decltype( std::declval<T>() > std::declval<U>() )> {};
 
 template<typename T, typename U, typename = void>
 struct explicit_greater_or_equal_than_comparable : std::false_type {};
 template<typename T, typename U>
-struct explicit_greater_or_equal_than_comparable<T, U, void_t<decltype(std::declval<T>() >= std::declval<U>())>> : std::true_type {};
+struct explicit_greater_or_equal_than_comparable<T, U, void_t<decltype( std::declval<T>() >= std::declval<U>() )>>
+    : boolean_testable<decltype( std::declval<T>() >= std::declval<U>() )> {};
 
 template<typename T, typename U, bool = conjunction<is_referencable<T>, is_referencable<U>>::value>
 struct partially_ordered_with_impl : std::false_type {};

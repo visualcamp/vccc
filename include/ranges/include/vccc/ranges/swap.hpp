@@ -11,6 +11,7 @@
 #include "vccc/type_traits/bool_constant.hpp"
 #include "vccc/type_traits/conjunction.hpp"
 #include "vccc/type_traits/negation.hpp"
+#include "vccc/utility/cxx20_rel_ops.hpp"
 
 namespace vccc {
 namespace ranges {
@@ -95,6 +96,8 @@ swap(T&& t, U&& u) noexcept(noexcept(detail::swap_impl(std::forward<T>(t), std::
 
 
 namespace detail {
+
+using namespace vccc::rel_ops;
 
 template<typename T, typename U, std::size_t N>
 struct ranges_swap_array<T(&)[N], U(&)[N], void_t<decltype(ranges::swap(*std::declval<T(&)[N]>(), *std::declval<U(&)[N]>()))>>

@@ -378,9 +378,11 @@ class iota_view
     constexpr explicit sentinel(Bound bound) : bound_(bound) {}
 
     friend constexpr bool operator==(const iterator& x, const sentinel& y) {
+      using namespace vccc::rel_ops;
       return x.value_ == y.bound_;
     }
     friend constexpr bool operator!=(const iterator& x, const sentinel& y) {
+      using namespace vccc::rel_ops;
       return !(x == y);
     }
 
@@ -437,6 +439,7 @@ class iota_view
   }
 
   constexpr bool empty() const {
+    using namespace vccc::rel_ops;
     return value_ == bound_;
   }
 

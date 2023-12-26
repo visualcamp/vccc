@@ -19,22 +19,6 @@ struct unreachable_sentinel_t {
   operator==(unreachable_sentinel_t, const I&) noexcept {
     return false;
   }
-  template<typename I>
-  friend constexpr std::enable_if_t<weakly_incrementable<I>::value, bool>
-  operator==(const I&, unreachable_sentinel_t) noexcept {
-    return false;
-  }
-
-  template<typename I>
-  friend constexpr std::enable_if_t<weakly_incrementable<I>::value, bool>
-  operator!=(unreachable_sentinel_t, const I&) noexcept {
-    return true;
-  }
-  template<typename I>
-  friend constexpr std::enable_if_t<weakly_incrementable<I>::value, bool>
-  operator!=(const I&, unreachable_sentinel_t) noexcept {
-    return true;
-  }
 };
 
 static constexpr unreachable_sentinel_t unreachable_sentinel{};

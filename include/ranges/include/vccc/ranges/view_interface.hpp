@@ -86,6 +86,7 @@ class view_interface {
       ranges::sized_range<Derived>
   >::value, int> = 0>
   constexpr bool empty() {
+    using namespace vccc::rel_ops;
     return ranges::size(derived()) == 0;
   }
   template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
@@ -93,6 +94,7 @@ class view_interface {
       ranges::forward_range<Derived>
   >::value, int> = 0>
   constexpr bool empty() {
+    using namespace vccc::rel_ops;
     return ranges::begin(derived()) == ranges::end(derived());
   }
 
@@ -100,6 +102,7 @@ class view_interface {
       ranges::sized_range<const Derived>
   >::value, int> = 0>
   constexpr bool empty() const {
+    using namespace vccc::rel_ops;
     return ranges::size(derived()) == 0;
   }
   template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
@@ -107,6 +110,7 @@ class view_interface {
       ranges::forward_range<const Derived>
   >::value, int> = 0>
   constexpr bool empty() const {
+    using namespace vccc::rel_ops;
     return ranges::begin(derived()) == ranges::end(derived());
   }
   /// @}

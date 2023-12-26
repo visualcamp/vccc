@@ -50,6 +50,12 @@ int x;
 int* begin(const IntLike&) { return &x; }
 int* end(const IntLike&) { return &x + 1; }
 
+struct Bound
+{
+  int bound;
+  bool operator==(int x) const { return x == bound; }
+};
+
 int main() {
   INIT_TEST("vccc::ranges")
 
@@ -119,6 +125,36 @@ int main() {
 
     IntLike i{};
     vccc::ranges::empty(i);
+  }
+
+  {
+
+    for (int i : vccc::ranges::iota_view<int, int>{1, 10})
+      std::cout << i << ' ';
+    std::cout << '\n';
+
+    for (int i : vccc::views::iota(1, 10))
+      std::cout << i << ' ';
+    std::cout << '\n';
+
+    {
+      auto&& r = vccc::views::iota(1, Bound{10});
+      auto first = r.begin();
+      for (; first != r.end(); ++first) {
+        std::cout << *first << ' ';
+      }
+      std::cout << '\n';
+    }
+
+    // for (int i : vccc::views::iota(1) | vccc::views::take(9))
+    //   std::cout << i << ' ';
+    // std::cout << '\n';
+
+    // vccc::ranges::for_each(vccc::views::iota(1, 10), [](int i)
+    // {
+    //     std::cout << i << ' ';
+    // });
+    // std::cout << '\n';
   }
 
   return TEST_RETURN_RESULT;

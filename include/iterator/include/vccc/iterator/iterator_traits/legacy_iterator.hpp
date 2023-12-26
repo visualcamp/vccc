@@ -21,7 +21,7 @@ struct LegacyIteratorCheckPostIncrement_2 : std::false_type {};
 template<typename I>
 struct LegacyIteratorCheckPostIncrement_2<I, true> : is_referencable<decltype(*std::declval<I&>()++)> {};
 
-template<typename I, bool = detail::is_post_incrementable<I>::value>
+template<typename I, bool = vccc::detail::is_post_incrementable<I>::value>
 struct LegacyIteratorCheckPostIncrement : std::false_type {};
 template<typename I>
 struct LegacyIteratorCheckPostIncrement<I, true> : LegacyIteratorCheckPostIncrement_2<I> {};
