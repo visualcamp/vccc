@@ -35,6 +35,17 @@ int Test() {
     static_assert(vccc::boolean_testable<void>::value == false, "");
   }
 
+  {
+    struct F {
+      void operator()(int&) const {}
+    };
+
+    static_assert(vccc::invocable<F, void>::value == false, "");
+    static_assert(vccc::invocable<F, int>::value == false, "");
+    static_assert(vccc::invocable<F, int&>::value, "");
+    static_assert(vccc::invocable<F, int&&>::value == false, "");
+  }
+
   return TEST_RETURN_RESULT;
 }
 
