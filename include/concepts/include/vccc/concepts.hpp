@@ -32,6 +32,7 @@
 #include "vccc/concepts/same_as.hpp"
 #include "vccc/concepts/semiregular.hpp"
 #include "vccc/concepts/signed_integral.hpp"
+#include "vccc/concepts/strict_weak_order.hpp"
 #include "vccc/concepts/subtractable.hpp"
 #include "vccc/concepts/swappable.hpp"
 #include "vccc/concepts/totally_ordered.hpp"
