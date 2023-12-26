@@ -61,6 +61,9 @@ Use the following `constexpr` functions to test if an operator can be found in u
 - `vccc::rel_ops::is_greater_than_comparable<T, U>()`
 - `vccc::rel_ops::is_greater_equal_than_comparable<T, U>()`
 
+<H1>Notes</H1>
+Since VCCC follows the latest conformance possible, `vccc::rel_ops` is used in every implementation context.
+
 <H1>Example</H1>
 ```.cpp
 #include "vccc/utility.hpp"
