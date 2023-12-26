@@ -8,11 +8,14 @@
 # include <type_traits>
 # include <utility>
 #
+# include "vccc/type_traits/conjunction.hpp"
+# include "vccc/type_traits/disjunction.hpp"
 # include "vccc/type_traits/empty.hpp"
 # include "vccc/type_traits/is_complete.hpp"
 # include "vccc/type_traits/is_specialization.hpp"
 # include "vccc/type_traits/is_unbounded_array.hpp"
 # include "vccc/type_traits/negation.hpp"
+# include "vccc/type_traits/remove_cvref.hpp"
 # include "vccc/type_traits/type_identity.hpp"
 
 namespace vccc {
@@ -238,7 +241,7 @@ constexpr invoke_result_t<F, Args...>
 invoke(F&& f, Args&&... args)
 noexcept(is_nothrow_invocable<F, Args...>::value)
 {
-  return INVOKE(std::forward<F>(f), std::forward<Args>(args)...);
+  return detail::INVOKE(std::forward<F>(f), std::forward<Args>(args)...);
 }
 
 /**
@@ -251,7 +254,7 @@ constexpr std::enable_if_t<is_invocable_r<R, F, Args...>::value, R>
 invoke_r(F&& f, Args&&... args)
 noexcept(is_nothrow_invocable_r<R, F, Args...>::value)
 {
-  return INVOKE<R>(std::forward<F>(f), std::forward<Args>(args)...);
+  return detail::INVOKE<R>(std::forward<F>(f), std::forward<Args>(args)...);
 }
 /// @}
 
