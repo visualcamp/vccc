@@ -137,14 +137,23 @@ int main() {
       std::cout << i << ' ';
     std::cout << '\n';
 
+    static_assert(vccc::views::iota(1, 10).size() == 9, "");
+
+    #if __cplusplus < 201703L
     {
       auto&& r = vccc::views::iota(1, Bound{10});
       auto first = r.begin();
-      for (; first != r.end(); ++first) {
+      auto last = r.end();
+      for (; first != last; ++first) {
         std::cout << *first << ' ';
       }
       std::cout << '\n';
     }
+    #else
+    for (auto x : vccc::views::iota(1, Bound{10}))
+      std::cout << x << ' ';
+    std::cout << '\n';
+    #endif
 
     // for (int i : vccc::views::iota(1) | vccc::views::take(9))
     //   std::cout << i << ' ';
