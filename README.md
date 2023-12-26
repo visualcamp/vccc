@@ -15,7 +15,7 @@
 #include "vccc/ranges.hpp"
 #include "vccc/log.hpp"
 
-for (auto x : vccc::views::iota(0, 10) {
+for (auto x : vccc::views::iota(0, 10)) {
   LOGI(x);
 }
 
