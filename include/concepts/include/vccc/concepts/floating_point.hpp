@@ -7,9 +7,6 @@
 
 #include <type_traits>
 
-#include "vccc/type_traits/conjunction.hpp"
-#include "vccc/type_traits/negation.hpp"
-
 namespace vccc {
 
 /// @addtogroup concepts
