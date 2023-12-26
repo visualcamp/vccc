@@ -57,7 +57,7 @@ template<
 struct common_with_impl_1 : common_with_impl_2<T, U> {};
 
 template<typename T, typename U>
-struct common_with_impl_1 : std::false_type {};
+struct common_with_impl_1<T, U, false> : std::false_type {};
 
 } // namespace detail
 
