@@ -52,10 +52,23 @@ struct boolean_testable_stage_1<B, true> : boolean_testable_stage_2<B> {};
 
 /// @addtogroup concepts
 /// @{
+/// @addtogroup concepts_boolean_testable__class__Comparison_concepts boolean_testable
+/// @brief specifies that a type can be used in Boolean contexts
+/// @{
+
+/**
+
+The exposition-only concept \a boolean-testable specifies the requirements for expressions that are convertible to
+`bool` and for which the logical operators have the usual behavior (including short-circuiting), even for two different
+\a boolean-testable types.
+
+@sa [std::boolean-testable](https://en.cppreference.com/w/cpp/concepts/boolean-testable)
+ */
 
 template<typename B>
 struct boolean_testable : detail::boolean_testable_stage_1<B> {};
 
+/// @}
 /// @}
 
 } // namespace vccc

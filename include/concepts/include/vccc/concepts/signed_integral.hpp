@@ -14,6 +14,18 @@ namespace vccc {
 /// @addtogroup concepts
 /// @{
 
+/**
+@brief specifies that a type is an integral type that is signed
+
+```.cpp
+template<typename T>
+struct signed_integral : conjunction<std::is_integral<T>, std::is_signed<T>> {};
+```
+
+The concept `%signed_integral<T>` is satisfied if and only if `T` is an integral type and std`::is_signed<T>::value` is `true`.
+
+@sa [std::signed_integral](https://en.cppreference.com/w/cpp/concepts/signed_integral)
+*/
 template<typename T>
 struct signed_integral : conjunction<std::is_integral<T>, std::is_signed<T>> {};
 

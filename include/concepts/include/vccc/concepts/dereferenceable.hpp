@@ -26,6 +26,7 @@ struct dereferenceable_impl<T, true, void_t<decltype(*std::declval<T&>())>>
 /// @addtogroup concepts
 /// @{
 
+/// @brief specifies that an object of a type can be dereferenced
 template<typename T>
 struct dereferenceable : detail::dereferenceable_impl<T> {};
 

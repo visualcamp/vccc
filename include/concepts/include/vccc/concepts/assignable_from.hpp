@@ -53,7 +53,7 @@ struct assignable_from_impl
 /**
 @brief specifies that a type is assignable from another type
 
-See [`std::assignable_from`](https://en.cppreference.com/w/cpp/concepts/assignable_from) for more information
+@sa [std::assignable_from](https://en.cppreference.com/w/cpp/concepts/assignable_from)
 */
 template<typename LHS, typename RHS>
 struct assignable_from
