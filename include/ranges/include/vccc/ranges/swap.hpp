@@ -10,7 +10,6 @@
 #include "vccc/ranges/swap_ranges.hpp"
 #include "vccc/type_traits/bool_constant.hpp"
 #include "vccc/type_traits/conjunction.hpp"
-#include "vccc/type_traits/negation.hpp"
 
 namespace vccc {
 namespace ranges {

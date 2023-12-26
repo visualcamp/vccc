@@ -13,6 +13,7 @@
 #include "vccc/ranges/size.hpp"
 #include "vccc/type_traits/detail/return_category.hpp"
 #include "vccc/type_traits/void_t.hpp"
+#include "vccc/utility/cxx20_rel_ops.hpp"
 
 namespace vccc {
 namespace ranges {
@@ -38,18 +39,30 @@ struct empty_size_check<T, void_t<decltype( ranges::size(std::declval<T>()) == 0
   using category = return_category<2, bool>;
 };
 
-template<typename T, typename = void>
+
+template<typename I, typename S, bool = rel_ops::is_equality_comparable<I, S>()>
+struct empty_range_check_2 : std::false_type {
+  using category = return_category<0>;
+};
+template<typename I, typename S>
+struct empty_range_check_2<I, S, true> : forward_iterator<I> {
+  using category = return_category<3, bool>;
+};
+
+template<typename R, typename I = void, typename S = void>
 struct empty_range_check : std::false_type {
   using category = return_category<0>;
 };
-template<typename T>
+template<typename R>
 struct empty_range_check<
-      T,
-      void_t<decltype( bool(ranges::begin(std::declval<T>()) == ranges::end(std::declval<T>())) )>
-    > : forward_iterator<decltype( ranges::begin(std::declval<T>()) )>
-{
-  using category = return_category<3, bool>;
-};
+      R,
+      void_t<decltype( ranges::begin(std::declval<R>()) )>,
+      void_t<decltype( ranges::end  (std::declval<R>()) )>
+    >
+    : empty_range_check_2<
+        /* I = */decltype( ranges::begin(std::declval<R>()) ),
+        /* S = */decltype( ranges::end  (std::declval<R>()) )
+      > {};
 
 template<typename T>
 struct empty_return_category
@@ -74,6 +87,7 @@ constexpr R empty_impl(T&& t, return_category<2, R>) {
 
 template<typename T, typename R>
 constexpr R empty_impl(T&& t, return_category<3, R>) {
+  using namespace vccc::rel_ops;
   return bool(ranges::begin(std::forward<T>(t)) == ranges::end(std::forward<T>(t)));
 }
 

@@ -7,33 +7,26 @@
 
 #include <type_traits>
 
-#include "vccc/concepts/boolean_testable.hpp"
 #include "vccc/concepts/implicit_expression_check.hpp"
+#include "vccc/type_traits/bool_constant.hpp"
 #include "vccc/type_traits/conjunction.hpp"
 #include "vccc/type_traits/is_referenceable.hpp"
+#include "vccc/utility/cxx20_rel_ops.hpp"
 
 namespace vccc {
 namespace detail {
 
-template<typename T, typename U, typename = void>
-struct explicit_less_than_comparable : std::false_type {};
 template<typename T, typename U>
-struct explicit_less_than_comparable<T, U, void_t<decltype(std::declval<T>() < std::declval<U>())>> : std::true_type {};
+struct explicit_less_than_comparable : bool_constant<rel_ops::is_less_than_comparable<T, U>()> {};
 
-template<typename T, typename U, typename = void>
-struct explicit_less_or_equal_than_comparable : std::false_type {};
 template<typename T, typename U>
-struct explicit_less_or_equal_than_comparable<T, U, void_t<decltype(std::declval<T>() <= std::declval<U>())>> : std::true_type {};
+struct explicit_less_equal_than_comparable : bool_constant<rel_ops::is_less_equal_than_comparable<T, U>()> {};
 
-template<typename T, typename U, typename = void>
-struct explicit_greater_than_comparable : std::false_type {};
 template<typename T, typename U>
-struct explicit_greater_than_comparable<T, U, void_t<decltype(std::declval<T>() > std::declval<U>())>> : std::true_type {};
+struct explicit_greater_than_comparable : bool_constant<rel_ops::is_greater_than_comparable<T, U>()> {};
 
-template<typename T, typename U, typename = void>
-struct explicit_greater_or_equal_than_comparable : std::false_type {};
 template<typename T, typename U>
-struct explicit_greater_or_equal_than_comparable<T, U, void_t<decltype(std::declval<T>() >= std::declval<U>())>> : std::true_type {};
+struct explicit_greater_equal_than_comparable : bool_constant<rel_ops::is_greater_equal_than_comparable<T, U>()> {};
 
 template<typename T, typename U, bool = conjunction<is_referencable<T>, is_referencable<U>>::value>
 struct partially_ordered_with_impl : std::false_type {};
@@ -41,13 +34,13 @@ template<typename T, typename U>
 struct partially_ordered_with_impl<T, U, true>
     : conjunction<
         implicit_expression_check<explicit_less_than_comparable,             const std::remove_reference_t<T>&, const std::remove_reference_t<U>& >,
-        implicit_expression_check<explicit_less_or_equal_than_comparable,    const std::remove_reference_t<T>&, const std::remove_reference_t<U>& >,
+        implicit_expression_check<explicit_less_equal_than_comparable,    const std::remove_reference_t<T>&, const std::remove_reference_t<U>& >,
         implicit_expression_check<explicit_greater_than_comparable,          const std::remove_reference_t<T>&, const std::remove_reference_t<U>& >,
-        implicit_expression_check<explicit_greater_or_equal_than_comparable, const std::remove_reference_t<T>&, const std::remove_reference_t<U>& >,
+        implicit_expression_check<explicit_greater_equal_than_comparable, const std::remove_reference_t<T>&, const std::remove_reference_t<U>& >,
         implicit_expression_check<explicit_less_than_comparable,             const std::remove_reference_t<U>&, const std::remove_reference_t<T>& >,
-        implicit_expression_check<explicit_less_or_equal_than_comparable,    const std::remove_reference_t<U>&, const std::remove_reference_t<T>& >,
+        implicit_expression_check<explicit_less_equal_than_comparable,    const std::remove_reference_t<U>&, const std::remove_reference_t<T>& >,
         implicit_expression_check<explicit_greater_than_comparable,          const std::remove_reference_t<U>&, const std::remove_reference_t<T>& >,
-        implicit_expression_check<explicit_greater_or_equal_than_comparable, const std::remove_reference_t<U>&, const std::remove_reference_t<T>& >
+        implicit_expression_check<explicit_greater_equal_than_comparable, const std::remove_reference_t<U>&, const std::remove_reference_t<T>& >
       > {};
 
 } // namespace detail
