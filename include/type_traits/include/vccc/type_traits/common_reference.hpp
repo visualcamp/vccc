@@ -8,12 +8,10 @@
 #include <type_traits>
 
 #include "vccc/type_traits/detail/test_ternary.hpp"
-#include "vccc/type_traits/conjunction.hpp"
 #include "vccc/type_traits/copy_cvref.hpp"
 #include "vccc/type_traits/has_typename_type.hpp"
 #include "vccc/type_traits/remove_cvref.hpp"
 #include "vccc/type_traits/simple_common_reference.hpp"
-#include "vccc/type_traits/type_identity.hpp"
 
 namespace vccc {
 
