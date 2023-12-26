@@ -8,6 +8,7 @@
 #include "vccc/concepts/assignable_from.hpp"
 #include "vccc/concepts/boolean_testable.hpp"
 #include "vccc/concepts/common_reference_with.hpp"
+#include "vccc/concepts/common_with.hpp"
 #include "vccc/concepts/comparison_common_type_with.hpp"
 #include "vccc/concepts/constructible_from.hpp"
 #include "vccc/concepts/convertible_to.hpp"

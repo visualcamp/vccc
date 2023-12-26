@@ -5,6 +5,7 @@
 
 \section version_1_2_0 v1.2.0 (2023.12.27)
 - \subpage concepts
+    - Add \ref vccc::common_with
     - Add \ref vccc::equality_comparable_with
     - Add \ref vccc::totally_ordered_with
 

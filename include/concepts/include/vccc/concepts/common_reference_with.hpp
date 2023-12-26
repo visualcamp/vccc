@@ -30,7 +30,13 @@ struct common_reference_with
       > {};
 @endcode
 
-See [`std::common_reference_with`](https://en.cppreference.com/w/cpp/concepts/common_reference_with) for more information
+The concept `%common_reference_with<T, U>` specifies that two types `T` and `U` share a common reference type
+(as computed by `vccc::common_reference_t`) to which both can be converted.
+
+@sa [std::common_reference_with](https://en.cppreference.com/w/cpp/concepts/common_reference_with)
+@sa type_traits_common_reference__class__Miscellaneous_transformations \copybrief type_traits_common_reference__class__Miscellaneous_transformations
+@sa common_with \copybrief common_with
+@sa type_traits_common_type__class__Miscellaneous_transformations \copybrief type_traits_common_type__class__Miscellaneous_transformations
 */
 template<typename T, typename U>
 struct common_reference_with
