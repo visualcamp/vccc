@@ -81,7 +81,6 @@
     - Add \ref vccc::ranges::size
     - Add \ref vccc::ranges::sized_range
     - Add \ref vccc::ranges::swap
-    - Add \ref vccc::ranges::swap_ranges
     - Add \ref vccc::ranges::view_interface
     - Add \ref vccc::ranges::iota_view
     - Add \ref vccc::views::iota
