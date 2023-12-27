@@ -7,7 +7,7 @@
 
 #include <type_traits>
 
-#include "vccc/ranges/swap.hpp"
+#include "vccc/concepts/swap.hpp"
 #include "vccc/type_traits/is_referenceable.hpp"
 #include "vccc/type_traits/void_t.hpp"
 

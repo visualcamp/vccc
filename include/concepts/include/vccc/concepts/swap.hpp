@@ -2,8 +2,11 @@
 // Created by yonggyulee on 2023/12/21.
 //
 
-#ifndef VCCC_RANGES_SWAP_HPP_
-#define VCCC_RANGES_SWAP_HPP_
+#ifndef VCCC_CONCEPTS_SWAP_HPP
+#define VCCC_CONCEPTS_SWAP_HPP
+
+#include <type_traits>
+#include <utility>
 
 #include "vccc/concepts/assignable_from.hpp"
 #include "vccc/concepts/move_constructible.hpp"
@@ -107,4 +110,4 @@ struct ranges_swap_array<T(&)[N], U(&)[N], void_t<decltype(ranges::swap(*std::de
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_RANGES_SWAP_HPP_
+#endif // VCCC_CONCEPTS_SWAP_HPP
