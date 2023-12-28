@@ -24,7 +24,7 @@ template<
 struct iter_common_reference_impl_2 {
   using type = common_reference_t<iter_reference_t<T>, iter_value_t<T>&>;
 };
-template<typename T, bool>
+template<typename T>
 struct iter_common_reference_impl_2<T, false> {};
 
 template<typename T, bool = indirectly_readable<T>::value /* true */>
