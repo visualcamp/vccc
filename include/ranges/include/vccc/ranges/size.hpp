@@ -7,6 +7,7 @@
 
 #include <type_traits>
 
+#include "vccc/core/inline_or_static.hpp"
 #include "vccc/ranges/decay_copy.hpp"
 #include "vccc/ranges/disabled_sized_range.hpp"
 #include "vccc/ranges/forward_range.hpp"
@@ -105,7 +106,17 @@ constexpr R size_impl(T&& t, return_category<4, R>) {
   return static_cast<R>(ranges::end(std::forward<T>(t)) - ranges::begin(std::forward<T>(t)));
 }
 
+struct size_niebloid {
+  template<typename T>
+  constexpr typename size_return_category<T&&>::return_type
+  operator()(T&& t) const {
+    return detail::size_impl(std::forward<T>(t), detail::size_return_category<T&&>{});
+  }
+};
+
 } // namespace detail
+
+inline namespace niebloid {
 
 /// @addtogroup ranges
 /// @{
@@ -116,13 +127,11 @@ constexpr R size_impl(T&& t, return_category<4, R>) {
 Calculates the number of elements in `t` in constant time.
  */
 
-template<typename T>
-constexpr typename detail::size_return_category<T&&>::return_type
-size(T&& t) {
-  return detail::size_impl(std::forward<T>(t), detail::size_return_category<T&&>{});
-}
+VCCC_INLINE_OR_STATIC constexpr detail::size_niebloid size{};
 
 /// @}
+
+} // inline namespace niebloid
 
 } // namespace ranges
 } // namespace vccc
