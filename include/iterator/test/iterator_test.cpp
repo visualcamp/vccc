@@ -83,6 +83,8 @@ int main() {
     auto it1 = vccc::ranges::begin(arr);
     vccc::ranges::advance(it1, 1);
     TEST_ENSURES(*it1 == 2);
+    vccc::ranges::advance(it1, (std::ptrdiff_t)1);
+
 
     auto it2 = v.rbegin();
     vccc::ranges::advance(it2, 2);
