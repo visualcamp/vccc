@@ -8,7 +8,7 @@
 #include <cstddef>
 #include <type_traits>
 
-#include "vccc/iterator/input_or_output_iterator.hpp"
+#include "vccc/core/inline_or_static.hpp"
 #include "vccc/iterator/sentinel_for.hpp"
 #include "vccc/type_traits/detail/return_category.hpp"
 #include "vccc/ranges/borrowed_range.hpp"
@@ -94,7 +94,17 @@ constexpr R end(T&& t, return_category<3, R>) {
   return vccc_decay_copy(end(std::forward<T>(t)));
 }
 
+struct end_niebloid {
+  template<typename T>
+  constexpr typename end_category<T&&>::return_type
+  operator()(T&& t) const {
+    return end(std::forward<T>(t), detail::end_category<T&&>{});
+  }
+};
+
 } // namespace detail
+
+inline namespace niebloid {
 
 /// @addtogroup ranges
 /// @{
@@ -107,14 +117,11 @@ Returns a sentinel indicating the end of a range.
 @sa [std::ranges::end](https://en.cppreference.com/w/cpp/ranges/end])
  */
 
-template<typename T>
-constexpr typename detail::end_category<T&&>::return_type
-end(T&& t) {
-  return detail::end(std::forward<T>(t), detail::end_category<T&&>{});
-}
+VCCC_INLINE_OR_STATIC constexpr detail::end_niebloid end{};
 
 /// @}
 
+} // inline namespace niebloid
 
 } // namespace ranges
 } // namespace vccc
