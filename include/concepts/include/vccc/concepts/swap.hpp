@@ -73,12 +73,7 @@ constexpr void swap_impl(T&& t, U&& u, tag_1)
 }
 
 template<typename T, typename U, std::size_t N>
-constexpr void swap_impl(T(&t)[N], U(&u)[N], tag_2)
-    noexcept(noexcept((void)ranges::swap_ranges(t, u)))
-{
-  static_assert(always_false<T>::value, "Not implemented yet");
-  (void)ranges::swap_ranges(t, u);
-}
+constexpr void swap_impl(T(&t)[N], U(&u)[N], tag_2) noexcept(noexcept((void)ranges::swap_ranges(t, u)));
 
 template<typename V>
 constexpr void swap_impl(V& t, V& u, tag_3)
@@ -99,8 +94,28 @@ struct swap_niebloid {
 
 } // namespace detail
 
+/// Niebloids
 inline namespace niebloid {
+
+/// @addtogroup concepts
+/// @{
+
+
+/**
+@brief swaps the values of two objects
+
+Exchanges the values referenced by `t` and `u`.
+
+`vccc::ranges::swap` is a \ref niebloid.
+
+@sa [std::ranges::swap](https://en.cppreference.com/w/cpp/utility/ranges/swap)
+@sa swappable
+@sa swappable_with
+ */
 VCCC_INLINE_OR_STATIC constexpr detail::swap_niebloid swap{};
+
+/// @}
+
 } // namespace niebloid
 
 namespace detail {
@@ -111,6 +126,14 @@ struct ranges_swap_array<T(&)[N], U(&)[N], void_t<decltype(ranges::swap(*std::de
         noexcept( (void) ranges::swap_ranges( std::declval<T(&)[N]>(), std::declval<U(&)[N]>() ) ) ==
         noexcept( ranges::swap( *std::declval<T(&)[N]>(), *std::declval<U(&)[N]>() ) )
       > {};
+
+
+template<typename T, typename U, std::size_t N>
+constexpr void swap_impl(T(&t)[N], U(&u)[N], tag_2) noexcept(noexcept((void)ranges::swap_ranges(t, u))) {
+  for (std::size_t i = 0; i < N; ++i) {
+    ranges::swap(t + i, u + i);
+  }
+}
 
 } // namespace detail
 
