@@ -8,6 +8,7 @@
 #include <cstddef>
 #include <type_traits>
 
+#include "vccc/core/inline_or_static.hpp"
 #include "vccc/iterator/input_or_output_iterator.hpp"
 #include "vccc/type_traits/detail/return_category.hpp"
 #include "vccc/ranges/borrowed_range.hpp"
@@ -76,22 +77,32 @@ struct begin_category
       > {};
 
 template<typename T, typename R>
-constexpr R begin(T&& t, return_category<1, R>) {
+constexpr R ranges_begin(T&& t, return_category<1, R>) {
   static_assert(is_complete<std::remove_all_extents_t<std::remove_reference_t<T>>>::value, "Array element must be complete type");
   return t + 0;
 }
 
 template<typename T, typename R>
-constexpr R begin(T&& t, return_category<2, R>) {
+constexpr R ranges_begin(T&& t, return_category<2, R>) {
   return vccc_decay_copy(std::forward<T>(t).begin());
 }
 
 template<typename T, typename R>
-constexpr R begin(T&& t, return_category<3, R>) {
+constexpr R ranges_begin(T&& t, return_category<3, R>) {
   return vccc_decay_copy(begin(std::forward<T>(t)));
 }
 
+struct begin_niebloid {
+  template<typename T>
+  constexpr typename detail::begin_category<T&&>::return_type
+  operator()(T&& t) const {
+    return ranges_begin(std::forward<T>(t), detail::begin_category<T&&>{});
+  }
+};
+
 } // namespace detail
+
+inline namespace niebloid {
 
 /// @addtogroup ranges
 /// @{
@@ -104,14 +115,10 @@ Returns an iterator to the first element of the argument.
 @sa [std::ranges::begin](https://en.cppreference.com/w/cpp/ranges/begin)
  */
 
-template<typename T>
-constexpr typename detail::begin_category<T&&>::return_type
-begin(T&& t) {
-  return detail::begin(std::forward<T>(t), detail::begin_category<T&&>{});
-}
-
+VCCC_INLINE_OR_STATIC constexpr detail::begin_niebloid begin{};
 /// @}
 
+} // inline namespace niebloid
 
 } // namespace ranges
 } // namespace vccc
