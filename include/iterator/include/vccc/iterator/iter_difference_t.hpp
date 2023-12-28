@@ -11,26 +11,32 @@
 #include "vccc/type_traits/remove_cvref.hpp"
 
 namespace vccc {
+namespace detail {
 
 template<
     typename T,
-    bool = detail::is_specialized_iterator_traits< cxx20_iterator_traits< remove_cvref_t<T> > >::value,
+    bool = is_specialized_iterator_traits< cxx20_iterator_traits< remove_cvref_t<T> > >::value,
     bool = has_typename_difference_type<incrementable_traits<remove_cvref_t<T>>>::value
 >
-struct iter_difference {};
+struct iter_difference_impl {};
 
 template<typename T, bool v>
-struct iter_difference<T, true, v> {
+struct iter_difference_impl<T, true, v> {
   using type = typename cxx20_iterator_traits<remove_cvref_t<T>>::difference_type;
 };
 
 template<typename T>
-struct iter_difference<T, false, true> {
+struct iter_difference_impl<T, false, true> {
   using type = typename incrementable_traits<remove_cvref_t<T>>::difference_type;
 };
 
+} // namespace detail
+
 /// @addtogroup iterator
 /// @{
+
+template<typename T>
+struct iter_difference : detail::iter_difference_impl<T> {};
 
 /**
  * @brief Computes the \a difference type of `T`

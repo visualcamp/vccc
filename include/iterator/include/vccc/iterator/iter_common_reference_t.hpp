@@ -34,11 +34,11 @@ struct iter_common_reference_impl_1<T, false> {};
 
 } // namespace detail
 
-template<typename T>
-struct iter_common_reference : detail::iter_common_reference_impl_1<T> {};
-
 /// @addtogroup iterator
 /// @{
+
+template<typename T>
+struct iter_common_reference : detail::iter_common_reference_impl_1<T> {};
 
 /// @brief Computes the <em>common reference type</em> of `T`.
 /// This is the common reference type between its reference type and an lvalue reference to its value type.

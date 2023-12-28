@@ -66,12 +66,11 @@ struct sized_sentinel_for_impl<S, I, true> : sized_sentinel_requires<S, I> {};
 The `%sized_sentinel_for` concept specifies that an object of the iterator type `I` and an object of the sentinel type `S`
 can be subtracted to compute the distance between them in constant time.
 
-
 @sa [std::sized_sentinel_for](https://en.cppreference.com/w/cpp/iterator/sized_sentinel_for)
 @sa ranges::sized_range
 @sa ranges::size
-
  */
+
 template<typename S, typename I>
 struct sized_sentinel_for : detail::sized_sentinel_for_impl<S, I> {};
 

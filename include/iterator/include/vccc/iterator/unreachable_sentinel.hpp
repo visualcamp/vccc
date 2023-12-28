@@ -5,6 +5,7 @@
 #ifndef VCCC_ITERATOR_UNREACHABLE_SENTINEL_HPP_
 #define VCCC_ITERATOR_UNREACHABLE_SENTINEL_HPP_
 
+#include "vccc/core/inline_or_static.hpp"
 #include "vccc/iterator/weakly_incrementable.hpp"
 
 namespace vccc {
@@ -21,7 +22,7 @@ struct unreachable_sentinel_t {
   }
 };
 
-static constexpr unreachable_sentinel_t unreachable_sentinel{};
+VCCC_INLINE_OR_STATIC constexpr unreachable_sentinel_t unreachable_sentinel{};
 
 /// @}
 

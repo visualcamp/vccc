@@ -20,9 +20,6 @@
 
 namespace vccc {
 
-//! @addtogroup functional
-//! @{
-
 namespace detail {
 
 enum class invoke_tag_1 {
@@ -177,6 +174,8 @@ struct is_invocable_r_impl {
 
 } // namespace detail
 
+//! @addtogroup functional
+//! @{
 
 /**
 @brief deduces the result type of invoking a callable object with a set of arguments

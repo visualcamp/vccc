@@ -12,6 +12,9 @@
 
 namespace vccc {
 
+/// @addtogroup iterator
+/// @{
+
 template<typename S, typename I>
 struct sentinel_for
     : conjunction<
@@ -19,6 +22,8 @@ struct sentinel_for
         input_or_output_iterator<I>,
         weakly_equality_comparable_with<S, I>
       > {};
+
+/// @}
 
 } // namespace vccc
 

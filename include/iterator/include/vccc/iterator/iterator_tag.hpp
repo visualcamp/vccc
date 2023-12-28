@@ -9,6 +9,9 @@
 
 namespace vccc {
 
+/// @addtogroup iterator
+/// @{
+
 using input_iterator_tag = std::input_iterator_tag;
 using output_iterator_tag = std::output_iterator_tag;
 using forward_iterator_tag = std::forward_iterator_tag;
@@ -20,6 +23,8 @@ struct contiguous_iterator_tag : public random_access_iterator_tag {};
 #else
 using contiguous_iterator_tag = std::contiguous_iterator_tag;
 #endif
+
+/// @}
 
 } // namespace vccc
 

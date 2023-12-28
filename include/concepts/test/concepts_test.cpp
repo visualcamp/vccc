@@ -14,6 +14,31 @@ namespace {
 int Test() {
   INIT_TEST("vccc::concepts")
 
+  {
+    struct A {
+      explicit A(int) {}
+      A& operator=(int&) { return *this; }
+      int data;
+    };
+    struct B {
+      B(int) {}
+      B& operator=(int&) { return *this; }
+      int data;
+    };
+
+    static_assert(assignable_from<A&, int>::value == false, "");
+    static_assert(assignable_from<B&, int>::value == true, "");
+
+    static_assert(assignable_from<int&, char>::value, "");
+    static_assert(assignable_from<int&, long>::value, "");
+    static_assert(assignable_from<int&, float>::value, "");
+    static_assert(assignable_from<int&, double>::value, "");
+    static_assert(assignable_from<int&, int&&>::value, "");
+    static_assert(assignable_from<int&, int*>::value == false, "");
+    static_assert(assignable_from<int&, void>::value == false, "");
+    static_assert(assignable_from<int&, void*>::value == false, "");
+  }
+
   { // convertible_to
     struct From;
     struct To {

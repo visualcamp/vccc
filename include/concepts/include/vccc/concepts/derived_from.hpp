@@ -11,10 +11,10 @@
 
 namespace vccc {
 
-/// @addtogroup concepts
-/// @{
-
 /**
+@addtogroup concepts
+@{
+@addtogroup concepts_derived_from__class__Core_language_concepts derived_from
 @brief specifies that a type is derived from another type
 
 @code{.cpp}
@@ -30,9 +30,10 @@ The concept `%derived_from<Derived, Base>` is satisfied if and only if `Base` is
 or a public and unambiguous base of `Derived`, ignoring cv-qualifiers.
 
 Note that this behavior is different to `std::is_base_of` when `Base` is a private or protected base of `Derived`.
-
-@sa [std::derived_from](https://en.cppreference.com/w/cpp/concepts/derived_from)
+@{
  */
+
+/// @brief Models [std::derived_from](https://en.cppreference.com/w/cpp/concepts/derived_from)
 template<typename Derived, typename Base>
 struct derived_from
     : conjunction<
@@ -40,6 +41,7 @@ struct derived_from
         std::is_convertible<const volatile Derived*, const volatile Base*>
       > {};
 
+/// @}
 /// @}
 
 } // namespace vccc

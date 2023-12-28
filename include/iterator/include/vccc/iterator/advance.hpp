@@ -145,7 +145,13 @@ struct advance_niebloid {
 } // namespace detail
 
 inline namespace niebloid {
+
+/// @addtogroup iterator
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::advance_niebloid advance{};
+
+/// @}
 } // inline namespace niebloid
 
 namespace detail {
