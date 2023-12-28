@@ -8,9 +8,11 @@
 #include <type_traits>
 #include <utility>
 
+#include "vccc/core.hpp"
 #include "vccc/algorithm/swap_ranges.hpp"
 #include "vccc/concepts/assignable_from.hpp"
 #include "vccc/concepts/move_constructible.hpp"
+#include "vccc/type_traits/detail/tag.hpp"
 #include "vccc/type_traits/bool_constant.hpp"
 #include "vccc/type_traits/conjunction.hpp"
 
@@ -18,17 +20,17 @@ namespace vccc {
 namespace ranges {
 namespace detail_ranges_swap {
 
-// Use std::swap ?
 using namespace vccc::ranges;
+using std::swap;
 
 template<typename T>
 static constexpr void swap(T&, T&) = delete;
 
-template<typename T, typename U, typename... R>
-static constexpr auto test(R&&...) -> decltype(swap(std::declval<T>(), std::declval<U>()), std::true_type{});
+template<typename T, typename U>
+static constexpr auto test_swap(int) -> decltype(swap(std::declval<T>(), std::declval<U>()), std::true_type{});
 
 template<typename T, typename U>
-static constexpr auto test(...) -> std::false_type;
+static constexpr auto test_swap(...) -> std::false_type;
 
 template<typename T, typename U, typename Dummy = void, std::enable_if_t<std::is_void<Dummy>::value, int> = 0>
 static constexpr void do_swap(T&& t, U&& u) noexcept(noexcept(swap(std::forward<T>(t), std::forward<U>(u)))) {
@@ -39,6 +41,11 @@ static constexpr void do_swap(T&& t, U&& u) noexcept(noexcept(swap(std::forward<
 
 namespace detail {
 
+using vccc::detail::tag_1;
+using vccc::detail::tag_2;
+using vccc::detail::tag_3;
+using vccc::detail::conditional_tag;
+
 template<typename T, typename U, typename = void>
 struct ranges_swap_array : std::false_type {};
 
@@ -46,31 +53,27 @@ template<typename T, typename U>
 struct ranges_swap_same : std::false_type {};
 
 template<typename V>
-struct ranges_swap_same<V&, V&> : conjunction<
-    move_constructible<V>,
-    assignable_from<V&, V>
-  > {};
+struct ranges_swap_same<V&, V&>
+    : conjunction<
+        move_constructible<V>,
+        assignable_from<V&, V>
+      > {};
 
 template<typename T, typename U>
-struct swap_category
-    : std::conditional_t<
-        decltype(detail_ranges_swap::test<T, U>(0))::value, std::integral_constant<int, 1>,
-      std::conditional_t<
-        ranges_swap_array<T, U>::value, std::integral_constant<int, 2>,
-      std::conditional_t<
-        ranges_swap_same<T, U>::value, std::integral_constant<int, 3>,
-        std::integral_constant<int, 0>
-      >>> {};
+using swap_category_tag = conditional_tag<
+    decltype(detail_ranges_swap::test_swap<T, U>(0)),
+    ranges_swap_array<T, U>,
+    ranges_swap_same<T, U>>;
 
 template<typename T, typename U>
-constexpr void swap_impl(T&& t, U&& u, std::integral_constant<int, 1>)
+constexpr void swap_impl(T&& t, U&& u, tag_1)
     noexcept(noexcept(detail_ranges_swap::do_swap(std::forward<T>(t), std::forward<U>(u))))
 {
   detail_ranges_swap::do_swap(std::forward<T>(t), std::forward<U>(u));
 }
 
 template<typename T, typename U, std::size_t N>
-constexpr void swap_impl(T(&t)[N], U(&u)[N], std::integral_constant<int, 2>)
+constexpr void swap_impl(T(&t)[N], U(&u)[N], tag_2)
     noexcept(noexcept((void)ranges::swap_ranges(t, u)))
 {
   static_assert(always_false<T>::value, "Not implemented yet");
@@ -78,23 +81,27 @@ constexpr void swap_impl(T(&t)[N], U(&u)[N], std::integral_constant<int, 2>)
 }
 
 template<typename V>
-constexpr void swap_impl(V& t, V& u, std::integral_constant<int, 3>)
+constexpr void swap_impl(V& t, V& u, tag_3)
     noexcept(std::is_nothrow_move_constructible<V>::value && std::is_nothrow_move_assignable<V>::value)
 {
   V temp(std::move(t));
-  (void)(t = std::move(u));
-  (void)(u = std::move(temp));
+  t = std::move(u);
+  u = std::move(temp);
 }
+
+struct swap_niebloid {
+  template<typename T, typename U>
+  constexpr std::enable_if_t<(swap_category_tag<T&&, U&&>::value > 0)>
+  operator()(T&& t, U&& u) const {
+    swap_impl(std::forward<T>(t), std::forward<U>(u), swap_category_tag<T&&, U&&>{});
+  }
+};
 
 } // namespace detail
 
-
-template<typename T, typename U>
-constexpr std::enable_if_t<(detail::swap_category<T&&, U&&>::value > 0)>
-swap(T&& t, U&& u) noexcept(noexcept(detail::swap_impl(std::forward<T>(t), std::forward<U>(u), detail::swap_category<T&&, U&&>{}))) {
-  detail::swap_impl(std::forward<T>(t), std::forward<U>(u), detail::swap_category<T&&, U&&>{});
-}
-
+inline namespace niebloid {
+VCCC_INLINE_OR_STATIC constexpr detail::swap_niebloid swap{};
+} // namespace niebloid
 
 namespace detail {
 
