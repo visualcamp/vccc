@@ -48,8 +48,9 @@ struct prev_niebloid {
 /// @brief decrement an iterator by a given distance or to a bound
 /// @{
 
-
+inline namespace niebloid {
 VCCC_INLINE_OR_STATIC constexpr detail::prev_niebloid prev{};
+} // inline namespace niebloid
 
 /// @}
 /// @}
