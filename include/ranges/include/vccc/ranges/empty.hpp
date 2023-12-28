@@ -7,6 +7,7 @@
 
 #include <type_traits>
 
+#include "vccc/core/inline_or_static.hpp"
 #include "vccc/iterator/forward_iterator.hpp"
 #include "vccc/ranges/begin.hpp"
 #include "vccc/ranges/end.hpp"
@@ -91,7 +92,17 @@ constexpr R empty_impl(T&& t, return_category<3, R>) {
   return bool(ranges::begin(std::forward<T>(t)) == ranges::end(std::forward<T>(t)));
 }
 
+struct empty_niebloid {
+  template<typename T>
+  constexpr typename empty_return_category<T&&>::return_type
+  operator()(T&& t) const {
+    return detail::empty_impl(std::forward<T>(t), detail::empty_return_category<T&&>{});
+  }
+};
+
 } // namespace detail
+
+inline namespace niebloid {
 
 /// @addtogroup ranges
 /// @{
@@ -102,14 +113,11 @@ constexpr R empty_impl(T&& t, return_category<3, R>) {
 Determines whether or not `t` has any elements.
  */
 
-template<typename T>
-constexpr typename detail::empty_return_category<T&&>::return_type
-empty(T&& t) {
-  return detail::empty_impl(std::forward<T>(t), detail::empty_return_category<T&&>{});
-}
+VCCC_INLINE_OR_STATIC constexpr detail::empty_niebloid empty{};
 
 /// @}
 
+} // inline namespace niebloid
 
 } // namespace ranges
 } // namespace vccc
