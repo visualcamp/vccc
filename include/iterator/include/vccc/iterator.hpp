@@ -22,6 +22,7 @@
 #include "vccc/iterator/forward_iterator.hpp"
 #include "vccc/iterator/incrementable.hpp"
 #include "vccc/iterator/incrementable_traits.hpp"
+#include "vccc/iterator/indirect_strict_weak_order.hpp"
 #include "vccc/iterator/indirectly_readable.hpp"
 #include "vccc/iterator/indirectly_readable_traits.hpp"
 #include "vccc/iterator/input_iterator.hpp"
