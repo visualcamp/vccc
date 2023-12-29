@@ -15,6 +15,7 @@
 #include "vccc/type_traits/detail/tag.hpp"
 #include "vccc/type_traits/bool_constant.hpp"
 #include "vccc/type_traits/conjunction.hpp"
+#include "vccc/type_traits/disjunction.hpp"
 
 namespace vccc {
 namespace ranges {
@@ -24,18 +25,26 @@ using namespace vccc::ranges;
 using std::swap;
 
 template<typename T>
-static constexpr void swap(T&, T&) = delete;
+constexpr void swap(T&, T&) = delete;
 
 template<typename T, typename U>
-static constexpr auto test_swap(int) -> decltype(swap(std::declval<T>(), std::declval<U>()), std::true_type{});
+constexpr auto test_swap(int) -> decltype(swap(std::declval<T>(), std::declval<U>()), std::true_type{});
 
 template<typename T, typename U>
-static constexpr auto test_swap(...) -> std::false_type;
+constexpr auto test_swap(...) -> std::false_type;
 
 template<typename T, typename U, typename Dummy = void, std::enable_if_t<std::is_void<Dummy>::value, int> = 0>
-static constexpr void do_swap(T&& t, U&& u) noexcept(noexcept(swap(std::forward<T>(t), std::forward<U>(u)))) {
+constexpr void do_swap(T&& t, U&& u) noexcept(noexcept(swap(std::forward<T>(t), std::forward<U>(u)))) {
   swap(std::forward<T>(t), std::forward<U>(u));
 }
+
+template<typename T, typename U, bool = disjunction<
+    std::is_class<T>, std::is_enum<T>,
+    std::is_class<U>, std::is_enum<U> >::value>
+struct adl_swap : std::false_type {};
+
+template<typename T, typename U>
+struct adl_swap<T, U, true> : decltype(test_swap<T, U>(0)) {};
 
 } // namespace detail_ranges_swap
 
@@ -61,7 +70,7 @@ struct ranges_swap_same<V&, V&>
 
 template<typename T, typename U>
 using swap_category_tag = conditional_tag<
-    decltype(detail_ranges_swap::test_swap<T, U>(0)),
+    detail_ranges_swap::adl_swap<T, U>,
     ranges_swap_array<T, U>,
     ranges_swap_same<T, U>>;
 

@@ -160,8 +160,8 @@ struct is_invocable_r_impl {
  private:
   template<typename F2, typename ...Args2>
   static auto test(int)
-  noexcept(noexcept(INVOKE(std::declval<F2>(), std::declval<Args2>()...)))
-        -> decltype(INVOKE(std::declval<F2>(), std::declval<Args2>()...));
+  noexcept(noexcept(detail::INVOKE(std::declval<F2>(), std::declval<Args2>()...)))
+        -> decltype(detail::INVOKE(std::declval<F2>(), std::declval<Args2>()...));
   template<typename F2, typename ...Args2>
   static auto test(...) -> empty;
 
