@@ -39,8 +39,8 @@ constexpr void do_swap(T&& t, U&& u) noexcept(noexcept(swap(std::forward<T>(t), 
 }
 
 template<typename T, typename U, bool = disjunction<
-    std::is_class<T>, std::is_enum<T>,
-    std::is_class<U>, std::is_enum<U> >::value>
+    std::is_class<std::remove_reference_t<T>>, std::is_enum<std::remove_reference_t<T>>,
+    std::is_class<std::remove_reference_t<U>>, std::is_enum<std::remove_reference_t<U>> >::value>
 struct adl_swap : std::false_type {};
 
 template<typename T, typename U>
