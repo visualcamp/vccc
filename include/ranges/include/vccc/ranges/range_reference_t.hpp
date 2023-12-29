@@ -5,8 +5,6 @@
 #ifndef VCCC_RANGES_RANGE_REFERENCE_T_HPP
 #define VCCC_RANGES_RANGE_REFERENCE_T_HPP
 
-#include <type_traits>
-
 #include "vccc/iterator/iter_reference_t.hpp"
 #include "vccc/ranges/iterator_t.hpp"
 #include "vccc/type_traits/has_typename_type.hpp"
