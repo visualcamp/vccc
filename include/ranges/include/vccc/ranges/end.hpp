@@ -81,7 +81,7 @@ struct end_category
 template<typename T, typename R>
 constexpr R end(T&& t, return_category<1, R>) {
   static_assert(is_complete<std::remove_all_extents_t<std::remove_reference_t<T>>>::value, "Array element must be complete type");
-  return t + std::extent<T>::value;
+  return t + std::extent<remove_cvref_t<T>>::value;
 }
 
 template<typename T, typename R>
