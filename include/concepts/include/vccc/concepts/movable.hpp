@@ -17,11 +17,8 @@
 namespace vccc {
 namespace detail {
 
-template<typename T, bool = is_referencable<T>::value>
-struct movable_impl : std::false_type {};
-
-template<typename T>
-struct movable_impl<T, true>
+template<typename T, bool = is_referencable<T>::value /* true */>
+struct movable_impl
     : conjunction<
         std::is_object<T>,
         move_constructible<T>,
@@ -29,11 +26,34 @@ struct movable_impl<T, true>
         swappable<T>
       > {};
 
+template<typename T>
+struct movable_impl<T, false> : std::false_type {};
+
 } // namespace detail
 
 /// @addtogroup concepts
 /// @{
 
+/**
+@brief specifies that an object of a type can be moved and swapped
+
+@code{.cpp}
+template<typename T, bool = is_referencable<T>::value>
+struct movable_impl
+    : conjunction<
+        std::is_object<T>,
+        move_constructible<T>,
+        assignable_from<T&, T>,
+        swappable<T>
+      > {};
+@endcode
+
+The concept `%movable<T>` specifies that `T` is an object type that can be moved (that is, it can be move constructed,
+move assigned, and lvalues of type `T` can be swapped).
+
+@sa [std::movable](https://en.cppreference.com/w/cpp/concepts/movable)
+@sa copyable
+ */
 template<typename T>
 struct movable : detail::movable_impl<T> {};
 

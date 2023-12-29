@@ -102,5 +102,15 @@ int main() {
 //    static_assert(std::is_same<decltype(k), int&>::value, " ");
   }
 
+  {
+    auto il = {1, 2, 3, 4};
+    static_assert(vccc::is_initializer_list<decltype(il)>::value, "");
+
+    static_assert(vccc::is_initializer_list<std::initializer_list<int>>::value, "");
+    static_assert(vccc::is_initializer_list<std::initializer_list<int&>>::value, "");
+    static_assert(vccc::is_initializer_list<std::initializer_list<int>&>::value, "");
+    static_assert(vccc::is_initializer_list<const volatile std::initializer_list<int>&&>::value, "");
+  }
+
   return TEST_RETURN_RESULT;
 }

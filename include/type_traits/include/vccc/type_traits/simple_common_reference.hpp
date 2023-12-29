@@ -8,6 +8,7 @@
 #include <type_traits>
 
 #include "vccc/type_traits/detail/test_ternary.hpp"
+#include "vccc/type_traits/conjunction.hpp"
 #include "vccc/type_traits/has_typename_type.hpp"
 #include "vccc/type_traits/type_identity.hpp"
 

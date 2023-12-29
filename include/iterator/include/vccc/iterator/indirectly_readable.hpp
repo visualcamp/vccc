@@ -52,8 +52,13 @@ struct indirectly_readable_requires<In, true>
 
 } // namespace detail
 
+/// @addtogroup iterator
+/// @{
+
 template<typename In>
 struct indirectly_readable : detail::indirectly_readable_requires<remove_cvref_t<In>> {};
+
+/// @}
 
 } // namespace vccc
 

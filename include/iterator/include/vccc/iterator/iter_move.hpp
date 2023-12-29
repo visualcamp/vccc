@@ -8,6 +8,7 @@
 #include <type_traits>
 #include <utility>
 
+#include "vccc/core/inline_or_static.hpp"
 #include "vccc/concepts/dereferenceable.hpp"
 #include "vccc/type_traits/detail/return_category.hpp"
 #include "vccc/type_traits/conjunction.hpp"
@@ -76,7 +77,17 @@ constexpr R iter_move_impl(T&& t, return_category<3, R>) {
   return std::move(*t);
 }
 
+struct iter_move_niebloid {
+  template<typename T>
+  constexpr typename iter_move_category<T&&>::return_type
+  operator()(T&& t) const {
+    return iter_move_impl(std::forward<T>(t), detail::iter_move_category<T&&>{});
+  }
+};
+
 } // namespace detail
+
+inline namespace niebloid {
 
 /// @addtogroup iterator
 /// @{
@@ -84,14 +95,15 @@ constexpr R iter_move_impl(T&& t, return_category<3, R>) {
 /// @brief casts the result of dereferencing an object to its associated rvalue reference type
 /// @{
 
-template<typename T>
-constexpr typename detail::iter_move_category<T&&>::return_type
-iter_move(T&& t) {
-  return detail::iter_move_impl(std::forward<T>(t), detail::iter_move_category<T&&>{});
-}
+/**
+`vccc::ranges::iter_move` is a \ref niebloid
+ */
+VCCC_INLINE_OR_STATIC constexpr detail::iter_move_niebloid iter_move{};
 
 /// @}
 /// @}
+
+} // inline namespace niebloid
 
 } // namespace ranges
 } // namespace vccc

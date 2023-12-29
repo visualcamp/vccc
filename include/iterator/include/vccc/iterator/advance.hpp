@@ -17,6 +17,7 @@
 #include "vccc/iterator/sized_sentinel_for.hpp"
 #include "vccc/type_traits/detail/tag.hpp"
 #include "vccc/type_traits/conjunction.hpp"
+#include "vccc/type_traits/negation.hpp"
 
 namespace vccc {
 namespace ranges {
@@ -58,6 +59,14 @@ constexpr void advance_n(I& i, iter_difference_t<I> n, tag_else) {
   }
 }
 
+template<typename I, typename S>
+struct advance_bound_check_impl : conjunction<input_or_output_iterator<I>, sentinel_for<S, I>> {};
+
+template<typename I, typename S, bool = has_typename_type<iter_difference<I>>::value /* true */>
+struct advance_bound_check : conjunction< negation<std::is_same<iter_difference_t<I>, S>>,
+                                          advance_bound_check_impl<I, S>                  > {};
+template<typename I, typename S>
+struct advance_bound_check<I, S, false> : advance_bound_check_impl<I, S> {};
 
 template<typename I, typename S>
 using advance_bound_tag = conditional_tag<assignable_from<I&, S>, sized_sentinel_for<S, I>>;
@@ -119,8 +128,9 @@ struct advance_niebloid {
   }
 
 
+  // Subsumes above
   template<typename I, typename S>
-  constexpr std::enable_if_t<conjunction<input_or_output_iterator<I>, sentinel_for<S, I>>::value>
+  constexpr std::enable_if_t<advance_bound_check<I, S>::value>
   operator()(I i, S bound) const {
     advance_bound(i, bound, advance_bound_tag<I, S>{});
   }
@@ -134,7 +144,20 @@ struct advance_niebloid {
 };
 } // namespace detail
 
+inline namespace niebloid {
+
+/// @addtogroup iterator
+/// @{
+/// @addtogroup iterator_ranges_advance__func__operations ranges::advance
+/// @brief advances an iterator by given distance or to a given bound
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::advance_niebloid advance{};
+
+/// @}
+/// @}
+
+} // inline namespace niebloid
 
 namespace detail {
 

@@ -7,7 +7,7 @@
 
 #include <type_traits>
 
-#include "vccc/core.hpp"
+#include "vccc/core/inline_or_static.hpp"
 #include "vccc/iterator/bidirectional_iterator.hpp"
 #include "vccc/iterator/iter_difference_t.hpp"
 #include "vccc/iterator/advance.hpp"
@@ -42,17 +42,20 @@ struct prev_niebloid {
 
 } // namespace detail
 
+inline namespace niebloid {
+
 /// @addtogroup iterator
 /// @{
 /// @addtogroup iterator_ranges_prev__func__operations ranges::prev
 /// @brief decrement an iterator by a given distance or to a bound
 /// @{
 
-
 VCCC_INLINE_OR_STATIC constexpr detail::prev_niebloid prev{};
 
 /// @}
 /// @}
+
+} // inline namespace niebloid
 
 } // namespace ranges
 } // namespace vccc

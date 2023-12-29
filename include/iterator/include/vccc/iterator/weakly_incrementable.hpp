@@ -5,7 +5,6 @@
 #ifndef VCCC_ITERATOR_WEAKLY_INCREMENTABLE_HPP_
 #define VCCC_ITERATOR_WEAKLY_INCREMENTABLE_HPP_
 
-#include <limits>
 #include <type_traits>
 
 #include "vccc/concepts/same_as.hpp"

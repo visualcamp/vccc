@@ -11,10 +11,11 @@
 
 namespace vccc {
 
-/// @addtogroup concepts
-/// @{
-
 /**
+@addtogroup concepts
+@{
+@addtogroup concepts_convertible_to__class__Core_language_concepts convertible_to
+@{
 @brief specifies that a type is implicitly convertible to another type
 
 @code{.cpp}
@@ -25,8 +26,9 @@ struct convertible_to :
       std::is_constructible<To, From>
     > {};
 @endcode
-See [`std::convertible_to`](https://en.cppreference.com/w/cpp/concepts/convertible_to) for more information
  */
+
+/// @brief Models [std::convertible_to](https://en.cppreference.com/w/cpp/concepts/convertible_to)
 template<typename From, typename To>
 struct convertible_to :
     conjunction<
@@ -34,6 +36,7 @@ struct convertible_to :
       std::is_constructible<To, From>
     > {};
 
+/// @}
 /// @}
 
 

@@ -5,8 +5,8 @@
 # ifndef VCCC_FUNCTIONAL_DETAIL_INVOKE_HPP
 # define VCCC_FUNCTIONAL_DETAIL_INVOKE_HPP
 #
-# include <utility>
 # include <type_traits>
+# include <utility>
 
 namespace vccc {
 namespace internal {

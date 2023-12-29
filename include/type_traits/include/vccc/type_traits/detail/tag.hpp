@@ -13,9 +13,8 @@ namespace detail {
 template<int v>
 using tag_v = std::integral_constant<int, v>;
 
-// tag_0 is used for ELSE, which indicates false. All valid tags should start from 1
-using tag_0 = tag_v<0>;
-using tag_else = tag_0;
+// 0 is used for ELSE, which indicates false. All valid tags should start from 1
+using tag_else = tag_v<0>;
 
 using tag_1 = tag_v<1>;
 using tag_2 = tag_v<2>;
@@ -31,7 +30,7 @@ template<int v, typename If, typename... ElseIf>
 struct conditional_tag_impl : std::conditional_t<bool(If::value), tag_v<v>, conditional_tag_impl<v + 1, ElseIf...>> {};
 
 template<int v, typename If>
-struct conditional_tag_impl<v, If> : std::conditional_t<bool(If::value), tag_v<v>, tag_v<0>> {};
+struct conditional_tag_impl<v, If> : std::conditional_t<bool(If::value), tag_v<v>, tag_else> {};
 
 template<typename If, typename... ElseIf>
 struct conditional_tag : conditional_tag_impl<1, If, ElseIf...> {};

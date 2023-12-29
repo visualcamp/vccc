@@ -51,10 +51,15 @@ struct assignable_from_impl
 
 
 /**
+@addtogroup concepts_assignable_from__class__Core_language_concepts assignable_from
 @brief specifies that a type is assignable from another type
 
-See [`std::assignable_from`](https://en.cppreference.com/w/cpp/concepts/assignable_from) for more information
+The concept `%assignable_from<LHS, RHS>` specifies that an expression of the type and value category specified by `RHS`
+can be assigned to an lvalue expression whose type is specified by `LHS`.
+@{
 */
+
+/// @brief Models [std::assignable_from](https://en.cppreference.com/w/cpp/concepts/assignable_from)
 template<typename LHS, typename RHS>
 struct assignable_from
     : std::conditional_t<
@@ -66,6 +71,7 @@ struct assignable_from
         std::false_type
     > {};
 
+/// @}
 /// @}
 
 } // namespace vccc

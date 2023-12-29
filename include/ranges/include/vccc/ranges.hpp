@@ -9,6 +9,7 @@
 #include "vccc/ranges/bidirectional_range.hpp"
 #include "vccc/ranges/borrowed_range.hpp"
 #include "vccc/ranges/common_range.hpp"
+#include "vccc/ranges/dangling.hpp"
 #include "vccc/ranges/data.hpp"
 #include "vccc/ranges/decay_copy.hpp"
 #include "vccc/ranges/disabled_sized_range.hpp"
@@ -21,8 +22,6 @@
 #include "vccc/ranges/range.hpp"
 #include "vccc/ranges/size.hpp"
 #include "vccc/ranges/sized_range.hpp"
-#include "vccc/ranges/swap.hpp"
-#include "vccc/ranges/swap_ranges.hpp"
 #include "vccc/ranges/view.hpp"
 #include "vccc/ranges/view_interface.hpp"
 

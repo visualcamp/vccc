@@ -14,6 +14,15 @@ namespace vccc {
 /// @addtogroup concepts
 /// @{
 
+/**
+@brief specifies that an object of a type can be copied, moved, swapped, and default constructed
+
+The `%semiregular% concept specifies that a type is both copyable and default constructible. It is satisfied by types
+that behave similarly to built-in types like `int`, except that they need not support comparison with `==`.
+
+@sa [std::semiregular](https://en.cppreference.com/w/cpp/concepts/semiregular)
+@sa regular
+ */
 template<typename T>
 struct semiregular
     : conjunction<
