@@ -16,21 +16,24 @@
 
 namespace vccc {
 namespace ranges {
+namespace detail {
 
-template<
-    typename R,
-    bool =
-        conjunction<
-          has_typename_type<iter_difference<R>>,
-          has_typename_type<ranges::iterator<R>>
-        >::value
->
-struct range_difference {};
+template<typename I, bool = has_typename_type<iter_difference<I>>::value /* true */>
+struct range_difference_impl_2 {
+  using type = iter_difference_t<I>;
+};
+template<typename I>
+struct range_difference_impl_2<I, false> {};
+
+template<typename R, bool = has_typename_type<ranges::iterator<R>>::value /* true */>
+struct range_difference_impl_1 : range_difference_impl_2<ranges::iterator_t<R>> {};
+template<typename R>
+struct range_difference_impl_1<R, false> {};
+
+} // namespace ranges
 
 template<typename R>
-struct range_difference<R, true> {
-  using type = iter_difference_t<ranges::iterator_t<R>>;
-};
+struct range_difference : detail::range_difference_impl_1<R> {};
 
 
 /// @addtogroup ranges
