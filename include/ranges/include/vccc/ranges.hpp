@@ -24,6 +24,7 @@
 #include "vccc/ranges/sized_range.hpp"
 #include "vccc/ranges/view.hpp"
 #include "vccc/ranges/view_interface.hpp"
+#include "vccc/ranges/view_base.hpp"
 
 #include "vccc/ranges/views/views.hpp"
 

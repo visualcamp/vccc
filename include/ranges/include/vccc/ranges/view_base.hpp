@@ -8,7 +8,15 @@
 namespace vccc {
 namespace ranges {
 
+/// @addtogroup ranges
+/// @{
+
+/**
+@brief Deriving from `%view_base` enables \ref ranges::range "range" types to model <b>view</b>.
+*/
 struct view_base {};
+
+/// @}
 
 } // namespace vccc
 } // namespace ranges
