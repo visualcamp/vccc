@@ -57,7 +57,7 @@ struct indirect_binary_predicate_impl_1<F, I1, I2, false> : std::false_type {};
 
 } // namespace detail
 
-/// @addtogroup iterator≤
+/// @addtogroup iterator
 /// @{
 
 

@@ -36,7 +36,7 @@ struct indirect_result_impl_1<false, F, Is...> {};
 
 } // namespace detail
 
-/// @addtogroup iterator≤
+/// @addtogroup iterator
 /// @{
 
 template<typename F, typename... Is>

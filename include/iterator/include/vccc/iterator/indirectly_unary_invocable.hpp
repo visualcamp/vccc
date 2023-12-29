@@ -56,8 +56,18 @@ struct indirectly_unary_invocable_impl_1<F, I, false> : std::false_type {};
 
 } // namespace detail
 
-/// @addtogroup iterator≤
+/// @addtogroup iterator
 /// @{
+
+/**
+@brief specifies that a callable type can be invoked with the result of dereferencing an `indirectly_readable` type
+
+The concepts `%indirectly_unary_invocable` and `%indirectly_regular_unary_invocable` specify requirements for algorithms
+that call (regular) unary invocables as their arguments. The key difference between these concepts and `vccc::invocable`
+is that they are applied to the type the `I` references, rather than `I` itself.
+
+@sa [std::indirectly_unary_invocable, std::indirectly_regular_unary_invocable](https://en.cppreference.com/w/cpp/iterator/indirectly_unary_invocable)
+ */
 
 template<typename F, typename I>
 struct indirectly_unary_invocable : detail::indirectly_unary_invocable_impl_1<F, I> {};
