@@ -57,13 +57,11 @@ struct projected_impl<I, Proj, false> {};
 
 } // namespace detail
 
-/// @addtogroup iterator
-/// @{
-
 /**
-@class projected
+@addtogroup iterator
+@{
+@addtogroup iterator_projected__class__projected projected
 @brief helper template for specifying the constraints on algorithms that accept projections
-
 `%projected` is used only to constrain algorithms that accept callable objects and projections,
 and hence its `operator*()` is not defined.
 
@@ -71,10 +69,14 @@ and hence its `operator*()` is not defined.
 `vccc::projected` meets the requirements of C++ 26
 
 @sa [std::projected](https://en.cppreference.com/w/cpp/iterator/projected)
+
+@{
  */
+
 template<typename I, typename Proj>
 using projected = typename detail::projected_impl_2<I, Proj>::type;
 
+/// @}
 /// @}
 
 } // namespace vccc

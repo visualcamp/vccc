@@ -148,10 +148,15 @@ inline namespace niebloid {
 
 /// @addtogroup iterator
 /// @{
+/// @addtogroup iterator_ranges_advance__func__operations ranges::advance
+/// @brief advances an iterator by given distance or to a given bound
+/// @{
 
 VCCC_INLINE_OR_STATIC constexpr detail::advance_niebloid advance{};
 
 /// @}
+/// @}
+
 } // inline namespace niebloid
 
 namespace detail {

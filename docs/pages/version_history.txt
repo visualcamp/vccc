@@ -6,10 +6,41 @@
 \section version_1_2_0 v1.2.0 (2023.12.27)
 - \subpage concepts
     - Add \ref vccc::common_with
+    - Add \ref vccc::comparison_common_type_with
+    - Add \ref vccc::equality_comparable
     - Add \ref vccc::equality_comparable_with
+    - Add \ref vccc::equivalence_relation
     - Add \ref vccc::floating_point
+    - Add \ref vccc::invocable
+    - Add \ref vccc::predicate
+    - Add \ref vccc::relation
+    - Add \ref vccc::strict_weak_order
     - Add \ref vccc::totally_ordered_with
     - Add \ref vccc::unsigned_integral
+    - Fix \ref vccc::ranges::swap to be \ref vccc::ranges::niebloid "niebloid"
+- \subpage functional
+    - Add extra layer to \ref vccc::invoke to prevent ADL to meet the requirements of C++26
+      - See \ref iterator_projected__class__projected "vccc::projected"
+- \subpage iterator
+    - Add \ref vccc::indirect_binary_predicate
+    - Add \ref vccc::indirect_result_t
+    - Add \ref vccc::indirect_strict_weak_order
+    - Add \ref vccc::indirectly_comparable
+    - Add \ref vccc::indirectly_regular_unary_invocable
+    - Add \ref vccc::indirectly_unary_invocable
+    - Add \ref vccc::iter_common_reference_t
+    - Add \ref vccc::iter_difference_t
+    - Fix \ref vccc::ranges::advance to be \ref vccc::ranges::niebloid "niebloid"
+    - Fix \ref vccc::ranges::iter_move to be \ref vccc::ranges::niebloid "niebloid"
+    - Fix \ref vccc::ranges::prev to be \ref vccc::ranges::niebloid "niebloid"
+- \subpage ranges
+    - Add \ref vccc::ranges::dangling
+    - Fix \ref vccc::ranges::begin to be \ref vccc::ranges::niebloid "niebloid"
+    - Fix \ref vccc::ranges::end to be \ref vccc::ranges::niebloid "niebloid"
+    - Fix \ref vccc::ranges::empty to be \ref vccc::ranges::niebloid "niebloid"
+    - Fix \ref vccc::ranges::size to be \ref vccc::ranges::niebloid "niebloid"
+- \subpage type_traits
+    - Add \ref vccc::is_initializer_list
 
 \section version_1_1_1 v1.1.1 (2023.12.26)
 - \subpage concepts
@@ -80,7 +111,6 @@
     - Add \ref vccc::ranges::sentinel_t
     - Add \ref vccc::ranges::size
     - Add \ref vccc::ranges::sized_range
-    - Add \ref vccc::ranges::swap
     - Add \ref vccc::ranges::view_interface
     - Add \ref vccc::ranges::iota_view
     - Add \ref vccc::views::iota
