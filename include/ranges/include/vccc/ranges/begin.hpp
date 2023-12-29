@@ -12,7 +12,7 @@
 #include "vccc/iterator/input_or_output_iterator.hpp"
 #include "vccc/type_traits/detail/return_category.hpp"
 #include "vccc/ranges/borrowed_range.hpp"
-#include "vccc/ranges/decay_copy.hpp"
+#include "vccc/core/decay_copy.hpp"
 #include "vccc/type_traits/disjunction.hpp"
 #include "vccc/type_traits/is_complete.hpp"
 #include "vccc/type_traits/remove_cvref.hpp"

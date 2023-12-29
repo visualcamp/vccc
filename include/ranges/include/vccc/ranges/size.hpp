@@ -8,7 +8,7 @@
 #include <type_traits>
 
 #include "vccc/core/inline_or_static.hpp"
-#include "vccc/ranges/decay_copy.hpp"
+#include "vccc/core/decay_copy.hpp"
 #include "vccc/ranges/disabled_sized_range.hpp"
 #include "vccc/ranges/forward_range.hpp"
 #include "vccc/ranges/sentinel_t.hpp"

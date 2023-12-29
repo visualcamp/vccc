@@ -5,6 +5,7 @@
 #ifndef VCCC_CORE_HPP_
 #define VCCC_CORE_HPP_
 
+#include "vccc/core/decay_copy.hpp"
 #include "vccc/core/inline_or_static.hpp"
 
 #endif // VCCC_CORE_HPP_

@@ -12,7 +12,7 @@
 #include "vccc/iterator/sentinel_for.hpp"
 #include "vccc/type_traits/detail/return_category.hpp"
 #include "vccc/ranges/borrowed_range.hpp"
-#include "vccc/ranges/decay_copy.hpp"
+#include "vccc/core/decay_copy.hpp"
 #include "vccc/ranges/iterator_t.hpp"
 #include "vccc/type_traits/disjunction.hpp"
 #include "vccc/type_traits/is_bounded_array.hpp"

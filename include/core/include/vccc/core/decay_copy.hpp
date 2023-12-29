@@ -2,8 +2,8 @@
 // Created by yonggyulee on 2023/12/24.
 //
 
-#ifndef VCCC_RANGES_DECAY_COPY_HPP_
-#define VCCC_RANGES_DECAY_COPY_HPP_
+#ifndef VCCC_CORE_DECAY_COPY_HPP
+#define VCCC_CORE_DECAY_COPY_HPP
 
 #include <type_traits>
 
@@ -12,4 +12,4 @@
 #define vccc_decay_copy(x) std::decay_t<decltype(x)>(x)
 
 
-#endif // VCCC_RANGES_DECAY_COPY_HPP_
+#endif // VCCC_CORE_DECAY_COPY_HPP
