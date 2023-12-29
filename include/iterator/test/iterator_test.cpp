@@ -4,6 +4,7 @@
 
 #include "test_core.hpp"
 
+#include <algorithm>
 #include <cmath>
 #include <forward_list>
 #include <limits>
@@ -13,6 +14,15 @@
 #include <vector>
 
 #include "vccc/iterator.hpp"
+
+template<class T>
+struct Holder {
+  T t;
+};
+
+struct Incomplete;
+
+using P = Holder<Incomplete>*;
 
 int main() {
   INIT_TEST("vccc::iterator")
@@ -96,6 +106,15 @@ int main() {
 
     vccc::ranges::advance(it3, 2);
     TEST_ENSURES(it3 == vccc::ranges::end(l));
+  }
+
+  {
+    static_assert(vccc::indirectly_comparable<P*, P*, std::equal_to<>>::value, "");
+
+    P a[10] = {}; // ten null pointers
+    TEST_ENSURES(std::count(a, a + 10, nullptr) == 10); // OK
+    // TODO: Implement ranges::count
+    // TEST_ENSURES(std::ranges::count(a, a + 10, nullptr) == 10); // Error before C++26
   }
 
   return TEST_RETURN_RESULT;
