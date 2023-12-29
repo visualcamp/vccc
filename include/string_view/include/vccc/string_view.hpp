@@ -16,10 +16,22 @@
 #include <ostream>
 
 #include "vccc/functional/hash_array.hpp"
+#include "vccc/iterator/contiguous_iterator.hpp"
+#include "vccc/iterator/sized_sentinel_for.hpp"
+#include "vccc/iterator/iter_value_t.hpp"
 #include "vccc/memory/to_address.hpp"
-#include "vccc/ranges/data.hpp"
 #include "vccc/ranges/borrowed_range.hpp"
+#include "vccc/ranges/contiguous_range.hpp"
+#include "vccc/ranges/data.hpp"
+#include "vccc/ranges/enable_view.hpp"
+#include "vccc/ranges/range_value_t.hpp"
+#include "vccc/ranges/size.hpp"
+#include "vccc/ranges/sized_range.hpp"
+#include "vccc/type_traits/conjunction.hpp"
+#include "vccc/type_traits/has_typename_type.hpp"
+#include "vccc/type_traits/negation.hpp"
 #include "vccc/type_traits/type_identity.hpp"
+#include "vccc/type_traits/remove_cvref.hpp"
 
 /**
 @defgroup string_view string_view
@@ -27,6 +39,56 @@
 */
 
 namespace vccc {
+
+namespace detail {
+
+template<
+    typename It,
+    typename End,
+    typename CharT,
+    typename SizeType,
+    bool = conjunction<
+               contiguous_iterator<It>,
+               sized_sentinel_for<End, It>,
+               has_typename_type<iter_value<It>>,
+               negation<std::is_convertible<It, SizeType>>
+           >::value /* true */
+>
+struct string_view_iter_ctor : std::is_same<iter_value_t<It>, CharT> {};
+
+template<typename It, typename End, typename CharT, typename SizeType>
+struct string_view_iter_ctor<It, End, CharT, SizeType, false> : std::false_type {};
+
+template<typename D, typename SV, typename = void>
+struct has_operator_string_view
+#if __cplusplus < 202002L
+  : std::is_same<D, std::string> {};
+#else
+  : std::false_type {};
+#endif
+template<typename D, typename SV>
+struct has_operator_string_view<D, SV, void_t<decltype( std::declval<D&>().operator SV() )>> : std::true_type {};
+
+template<
+    typename R,
+    typename SV,
+    bool = conjunction<
+               negation< std::is_same<remove_cvref_t<R>, SV> >,
+               ranges::contiguous_range<R>,
+               ranges::sized_range<R>,
+               has_typename_type<ranges::range_value<R>>
+           >::value /* true */
+>
+struct string_view_range_ctor
+    : conjunction<
+          std::is_same<ranges::range_value_t<R>, typename SV::value_type>,
+          negation< std::is_convertible<R, typename SV::const_pointer> >,
+          negation< has_operator_string_view<remove_cvref_t<R>, SV> >
+      >{};
+template<typename R, typename SV>
+struct string_view_range_ctor<R, SV, false> : std::false_type {};
+
+} // namespace detail
 
 //! @addtogroup string_view
 //! @{
@@ -81,19 +143,20 @@ class basic_string_view {
   constexpr basic_string_view( const CharT* s )
       : data_(s), size_(traits_type::length(s)) {}
 
-  // template<typename It, typename End>
-  // constexpr basic_string_view(It first, End last);
-  // vvvv
-  template<typename It, std::enable_if_t<!std::is_convertible<It, size_type>::value, int> =0>
-  constexpr basic_string_view(It first, It last)
+  template<typename It, typename End, std::enable_if_t<
+      detail::string_view_iter_ctor<It, End, CharT, size_type>::value, int> =0>
+  constexpr basic_string_view(It first, End last)
       : data_(to_address(first)), size_(last - first) {}
 
-  // TODO
-  // template< class R > constexpr explicit basic_string_view( R&& r );
+  template<typename  R, std::enable_if_t<detail::string_view_range_ctor<R, basic_string_view>::value, int> = 0>
+  constexpr explicit basic_string_view(R&& r)
+      : data_(ranges::data(r)), size_(ranges::size(r)) {}
 
+
+#if __cplusplus < 202002L
   // basic_string_view does not have a constructor that accepts std::basic_string.
   // Rather, std::basic_string defines a operator string_view.
-  // But we cannot modify std::basic string so we implement two custom constructors
+  // Add two custom constructors since std::basic_string cannot be modified
   // It is the programmer's responsibility to ensure that the resulting string view does not outlive the string.
   constexpr basic_string_view(const std::basic_string<CharT, Traits>& s)
   : data_(s.data()), size_(s.size()) {}
@@ -104,6 +167,7 @@ class basic_string_view {
     throw std::runtime_error("Cannot construct vccc::string_view from std::string&&");
 #endif
   }
+#endif
 
   constexpr basic_string_view(std::nullptr_t) = delete;
   /// @}
@@ -717,7 +781,9 @@ std::basic_ostream<CharT, Traits>& operator<<(std::basic_ostream<CharT, Traits>&
 
 using string_view = basic_string_view<char>;
 using wstring_view = basic_string_view<wchar_t>;
+#if __cplusplus >= 202002L
 // using u8string_view = basic_string_view<char8_t>;
+#endif
 using u16string_view = basic_string_view<char16_t>;
 using u32string_view = basic_string_view<char32_t>;
 
@@ -728,9 +794,11 @@ constexpr string_view operator ""_sv(const char* str, std::size_t len) noexcept 
   return string_view{str, len};
 }
 
-// constexpr u8string_view operator ""_sv(const char8_t* str, std::size_t len) noexcept {
-//   return u8string_view{str, len};
-// }
+#if __cplusplus >= 202002L
+constexpr u8string_view operator ""_sv(const char8_t* str, std::size_t len) noexcept {
+  return u8string_view{str, len};
+}
+#endif
 
 constexpr u16string_view operator ""_sv(const char16_t* str, std::size_t len) noexcept {
   return u16string_view{str, len};
@@ -751,15 +819,17 @@ template<typename CharT, typename Traits>
 struct ranges::enable_borrowed_range<basic_string_view<CharT, Traits>>
     : std::true_type {};
 
-// template<typename CharT, typename Traits >
-// inline constexpr bool
-// ranges::enable_view<basic_string_view<CharT, Traits>> = true;
-//
-// template< class It, class End >
-// basic_string_view( It, End ) -> basic_string_view<std::iter_value_t<It>>;
-//
-// template< class R >
-// basic_string_view( R&& ) -> basic_string_view<ranges::range_value_t<R>>;
+template<typename CharT, typename Traits >
+struct ranges::enable_view<basic_string_view<CharT, Traits>> : std::true_type {};
+
+#if __cplusplus >= 201703L
+template<typename It, typename End>
+basic_string_view(It, End) -> basic_string_view<iter_value_t<It>>;
+
+template<typename R>
+basic_string_view(R&&) -> basic_string_view<ranges::range_value_t<R>>;
+
+#endif
 
 /// @} string_view
 
@@ -780,26 +850,30 @@ struct hash<vccc::string_view> {
 
 template<>
 struct hash<vccc::wstring_view> {
-  std::size_t operator()(const vccc::string_view& sv) const noexcept {
+  std::size_t operator()(const vccc::wstring_view& sv) const noexcept {
     return vccc::hash_array(sv.data(), sv.size());
   }
 };
 
-// template<>
-// struct hash<vccc::u8string_view> {
-//
-// };
+#if __cplusplus >= 202002L
+template<>
+struct hash<vccc::u8string_view> {
+  std::size_t operator()(const vccc::u8string_view& sv) const noexcept {
+    return vccc::hash_array(sv.data(), sv.size());
+  }
+};
+#endif
 
 template<>
 struct hash<vccc::u16string_view> {
-  std::size_t operator()(const vccc::string_view& sv) const noexcept {
+  std::size_t operator()(const vccc::u16string_view& sv) const noexcept {
     return vccc::hash_array(sv.data(), sv.size());
   }
 };
 
 template<>
 struct hash<vccc::u32string_view> {
-  std::size_t operator()(const vccc::string_view& sv) const noexcept {
+  std::size_t operator()(const vccc::u32string_view& sv) const noexcept {
     return vccc::hash_array(sv.data(), sv.size());
   }
 };

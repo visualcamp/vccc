@@ -36,6 +36,15 @@ int Test() {
     // string_view sv2 = std::string();
   }
 
+  {
+    std::string s = "hello";
+    std::vector<char> v(s.begin(), s.end());
+
+    string_view sv(v);
+
+    TEST_ENSURES(sv == s);
+  }
+
   { // string_view::contains
     // bool contains(basic_string_view x) const noexcept;
     TEST_ENSURES(("https://cppreference.com"_sv.contains("cpp"_sv) == true));
@@ -161,6 +170,20 @@ int Test() {
     TEST_ENSURES((1 == "ABBA"_sv.find_last_not_of('A', 1)));
                     //    ^
   }
+
+#if __cplusplus >= 201703L
+  {
+    std::string s = "hello, world!";
+    std::vector v(s.begin(), s.end());
+
+    vccc::basic_string_view sv(s.begin(), s.end());
+    vccc::basic_string_view sv2(s.data(), s.data() + s.size());
+    vccc::basic_string_view sv3(v.begin(), v.end());
+
+    vccc::basic_string_view sv4(s);
+    vccc::basic_string_view sv5(v);
+  }
+#endif
 
   return TEST_RETURN_RESULT;
 }
