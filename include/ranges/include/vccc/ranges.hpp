@@ -14,6 +14,7 @@
 #include "vccc/ranges/decay_copy.hpp"
 #include "vccc/ranges/disabled_sized_range.hpp"
 #include "vccc/ranges/empty.hpp"
+#include "vccc/ranges/enable_view.hpp"
 #include "vccc/ranges/end.hpp"
 #include "vccc/ranges/forward_range.hpp"
 #include "vccc/ranges/input_range.hpp"
