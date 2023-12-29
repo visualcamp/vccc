@@ -13,6 +13,7 @@
 #include "vccc/iterator/sized_sentinel_for.hpp"
 #include "vccc/ranges/begin.hpp"
 #include "vccc/ranges/bidirectional_range.hpp"
+#include "vccc/ranges/common_range.hpp"
 #include "vccc/ranges/empty.hpp"
 #include "vccc/ranges/end.hpp"
 #include "vccc/ranges/forward_range.hpp"
@@ -253,11 +254,11 @@ class view_interface {
   /// @}
 
  private:
-  const Derived& derived() const {
+  constexpr const Derived& derived() const {
     return static_cast<const Derived&>(*this);
   }
 
-  Derived& derived() {
+  constexpr Derived& derived() {
     return static_cast<Derived&>(*this);
   }
 };
