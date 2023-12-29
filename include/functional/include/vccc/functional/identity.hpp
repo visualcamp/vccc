@@ -26,6 +26,8 @@ struct identity {
   constexpr T&& operator()(T&& t) const noexcept {
     return std::forward<T>(t);
   }
+
+  static constexpr bool is_transparent = true;
 };
 
 /// @}
