@@ -23,13 +23,9 @@ template<
     typename I1,
     typename I2,
     bool = conjunction<
-               has_typename_type<iter_value<I1>>,
-               has_typename_type<iter_value<I2>>,
-               has_typename_type<iter_reference<I1>>,
-               has_typename_type<iter_reference<I2>>,
                has_typename_type<iter_common_reference<I1>>,
                has_typename_type<iter_common_reference<I2>>
-           >::value
+           >::value /* true */
 >
 struct indirect_binary_predicate_impl_2
     : conjunction<
@@ -52,7 +48,7 @@ template<
                indirectly_readable<I1>,
                indirectly_readable<I2>,
                copy_constructible<F>
-           >::value
+           >::value /* true */
 >
 struct indirect_binary_predicate_impl_1 : indirect_binary_predicate_impl_2<F, I1, I2> {};
 
@@ -64,6 +60,17 @@ struct indirect_binary_predicate_impl_1<F, I1, I2, false> : std::false_type {};
 /// @addtogroup iterator≤
 /// @{
 
+
+/**
+@brief specifies that a callable type, when invoked with the result of dereferencing two `indirectly_readable` types,
+satisfies `predicate`
+
+The concept `%indirect_binary_predicate` specifies requirements for algorithms that call binary predicates as their
+arguments. The key difference between this concept and `vccc::predicate` is that it is applied to the types that `I1`
+and `I2` references, rather than `I1` and `I2` themselves.
+
+@sa [std::indirect_binary_predicate](https://en.cppreference.com/w/cpp/iterator/indirect_binary_predicate)
+ */
 template<typename F, typename I1, typename I2>
 struct indirect_binary_predicate : detail::indirect_binary_predicate_impl_1<F, I1, I2> {};
 
