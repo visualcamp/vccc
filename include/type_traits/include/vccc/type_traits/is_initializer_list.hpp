@@ -5,6 +5,7 @@
 #ifndef VCCC_TYPE_TRAITS_IS_INITIALIZER_LIST_HPP
 #define VCCC_TYPE_TRAITS_IS_INITIALIZER_LIST_HPP
 
+#include <initializer_list>
 #include <type_traits>
 
 #include "vccc/type_traits/is_specialization.hpp"
