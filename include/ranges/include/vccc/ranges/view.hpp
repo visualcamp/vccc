@@ -5,8 +5,6 @@
 #ifndef VCCC_RANGES_VIEW_HPP_
 #define VCCC_RANGES_VIEW_HPP_
 
-#include <type_traits>
-
 #include "vccc/concepts/movable.hpp"
 #include "vccc/ranges/enable_view.hpp"
 #include "vccc/ranges/range.hpp"
@@ -14,12 +12,6 @@
 
 namespace vccc {
 namespace ranges {
-namespace detail {
-
-// template<typename T>
-
-
-} // namespace detail
 
 /**
 @brief specifies that a range is a view, that is, it has constant time copy/move/assignment
