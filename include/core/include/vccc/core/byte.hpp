@@ -44,7 +44,7 @@ class byte {
 template<typename IntegerType>
 constexpr std::enable_if_t<std::is_integral<IntegerType>::value, IntegerType>
 to_integer(byte b) noexcept {
-  return IntegerType(b);
+  return IntegerType(b.operator unsigned char());
 }
 
 template <class IntegerType>
@@ -129,6 +129,13 @@ constexpr byte& operator^=(byte& l, byte r) noexcept {
 }
 #else
 using byte = std::byte;
+
+template<typename IntegerType>
+constexpr std::enable_if_t<std::is_integral<IntegerType>::value, IntegerType>
+to_integer(byte b) noexcept {
+  return IntegerType(b);
+}
+
 #endif
 
 } // namespace vccc

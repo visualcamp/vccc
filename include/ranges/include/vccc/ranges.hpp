@@ -29,6 +29,7 @@
 #include "vccc/ranges/range_value_t.hpp"
 #include "vccc/ranges/size.hpp"
 #include "vccc/ranges/sized_range.hpp"
+#include "vccc/ranges/ssize.hpp"
 #include "vccc/ranges/view.hpp"
 #include "vccc/ranges/view_interface.hpp"
 #include "vccc/ranges/view_base.hpp"

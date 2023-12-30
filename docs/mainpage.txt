@@ -25,6 +25,7 @@ It provides various algorithms, implementing C++17 and C++20 feature in C++14.
 - \subpage random. \copybrief random
 - \subpage ranges. \copybrief ranges
 - \subpage signal. \copybrief signal
+- \subpage span. \copybrief span
 - \subpage string_view. \copybrief string_view
 - \subpage tuple. \copybrief tuple
 - \subpage type_support. \copybrief type_support
