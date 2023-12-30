@@ -7,11 +7,31 @@
 
 #include <type_traits>
 
+#include "vccc/ranges/range.hpp"
+#include "vccc/type_traits/conjunction.hpp"
+#include "vccc/type_traits/disjunction.hpp"
+#include "vccc/type_traits/remove_cvref.hpp"
+
 namespace vccc {
 namespace ranges {
 
-template<typename T>
+/// @addtogroup ranges
+/// @{
+
+template<typename R>
 struct enable_borrowed_range : std::false_type {};
+
+template<typename R>
+struct borrowed_range
+    : conjunction<
+        ranges::range<R>,
+        disjunction<
+          std::is_lvalue_reference<R>,
+          ranges::enable_borrowed_range<remove_cvref_t<R>>
+        >
+      > {};
+
+/// @}
 
 } // namespace vccc
 } // namespace ranges
