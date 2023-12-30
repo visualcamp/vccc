@@ -38,11 +38,21 @@ struct LegacyForwardIteratorRequire<It, true> : std::true_type {};
 
 } // namespace detail
 
+/**
+@addtogroup iterator
+@{
+@addtogroup iterator_LegacyForwardIterator__Named_Requirements LegacyForwardIterator
+@{
+ */
+
 template<typename It, bool = LegacyInputIterator<It>::value>
 struct LegacyForwardIterator : std::false_type {};
 
 template<typename It>
 struct LegacyForwardIterator<It, true> : detail::LegacyForwardIteratorRequire<It> {};
+
+/// @}
+/// @}
 
 } // namespace vccc
 

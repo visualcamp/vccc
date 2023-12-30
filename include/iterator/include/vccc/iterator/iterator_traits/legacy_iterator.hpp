@@ -28,6 +28,13 @@ struct LegacyIteratorCheckPostIncrement<I, true> : LegacyIteratorCheckPostIncrem
 
 } // namespace detail
 
+/**
+@addtogroup iterator
+@{
+@addtogroup iterator_LegacyIterator__Named_Requirements LegacyIterator
+@{
+ */
+
 template<typename I, bool = dereferenceable<I>::value>
 struct LegacyIterator : std::false_type {};
 
@@ -38,7 +45,10 @@ struct LegacyIterator<I, true>
         detail::is_pre_incrementable<I>,
         detail::LegacyIteratorCheckPostIncrement<I>,
         copyable<I>
-      > {};
+> {};
+
+/// @}
+/// @}
 
 } // namespace vccc
 

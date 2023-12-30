@@ -45,11 +45,21 @@ struct LegacyInputIteratorRequiresStage1<I, true>
 
 } // namespace detail
 
+/**
+@addtogroup iterator
+@{
+@addtogroup iterator_LegacyInputIterator__Named_Requirements LegacyInputIterator
+@{
+ */
+
 template<typename I, bool = is_referencable<I>::value>
 struct LegacyInputIterator : std::false_type {};
 
 template<typename I>
 struct LegacyInputIterator<I, true> : detail::LegacyInputIteratorRequiresStage1<I> {};
+
+/// @}
+/// @}
 
 } // namespace vccc
 

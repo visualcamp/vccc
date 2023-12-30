@@ -59,11 +59,21 @@ struct LegacyBidirectionalIteratorRequireStage1<It, true> : LegacyBidirectionalI
 
 } // namespace detail
 
+/**
+@addtogroup iterator
+@{
+@addtogroup iterator_LegacyBidirectionalIterator__Named_Requirements LegacyBidirectionalIterator
+@{
+ */
+
 template<typename It, bool = LegacyForwardIterator<It>::value>
 struct LegacyBidirectionalIterator : std::false_type {};
 
 template<typename It>
 struct LegacyBidirectionalIterator<It, true> : detail::LegacyBidirectionalIteratorRequireStage1<It> {};
+
+/// @}
+/// @}
 
 } // namespace vccc
 

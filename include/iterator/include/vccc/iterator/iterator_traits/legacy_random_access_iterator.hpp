@@ -76,12 +76,22 @@ struct LegacyRandomAccessIteratorStage1<I, D, true> : LegacyRandomAccessIterator
 
 } // namespace detail
 
+/**
+@addtogroup iterator
+@{
+@addtogroup iterator_LegacyRandomAccessIterator__Named_Requirements LegacyRandomAccessIterator
+@{
+ */
+
 template<typename I, bool = conjunction<LegacyBidirectionalIterator<I>, totally_ordered<I>>::value>
 struct LegacyRandomAccessIterator : std::false_type {};
 
 template<typename I>
 struct LegacyRandomAccessIterator<I, true>
     : detail::LegacyRandomAccessIteratorStage1<I, typename incrementable_traits<I>::difference_type> {};
+
+/// @}
+/// @}
 
 } // namespace vccc
 
