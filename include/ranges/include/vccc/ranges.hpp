@@ -9,6 +9,7 @@
 #include "vccc/ranges/bidirectional_range.hpp"
 #include "vccc/ranges/borrowed_range.hpp"
 #include "vccc/ranges/common_range.hpp"
+#include "vccc/ranges/constant_range.hpp"
 #include "vccc/ranges/contiguous_range.hpp"
 #include "vccc/ranges/dangling.hpp"
 #include "vccc/ranges/data.hpp"
