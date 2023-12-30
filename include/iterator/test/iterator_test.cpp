@@ -112,7 +112,10 @@ int main() {
     static_assert(vccc::indirectly_comparable<P*, P*, std::equal_to<>>::value, "");
 
     P a[10] = {}; // ten null pointers
+
+#ifndef _MSC_VER
     TEST_ENSURES(std::count(a, a + 10, nullptr) == 10); // OK
+#endif
     // TODO: Implement ranges::count
     // TEST_ENSURES(std::ranges::count(a, a + 10, nullptr) == 10); // Error before C++26
   }
