@@ -11,3 +11,7 @@ if (MSVC)
     target_compile_options(vccc_core INTERFACE /Zc:ternary)
     target_compile_options(vccc_core INTERFACE /permissive-)
 endif ()
+
+if(VCCC_RUN_TEST)
+    add_subdirectory(test)
+endif()
