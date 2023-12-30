@@ -60,11 +60,11 @@ int main() {
   }
 
   {
-    vccc::random_access_iterator<void> a;
     static_assert(vccc::random_access_iterator<int*>::value, "");
     static_assert(vccc::contiguous_iterator<int*>::value, "");
     static_assert(vccc::random_access_iterator<int**>::value, "");
     static_assert(vccc::random_access_iterator<void*>::value == false, "");
+    static_assert(vccc::random_access_iterator<void>::value == false, "");
 
     static_assert(vccc::input_or_output_iterator<std::vector<int>::iterator>::value, "");
     static_assert(vccc::input_iterator<std::vector<int>::iterator>::value, "");

@@ -51,7 +51,7 @@ using FNV_offset_basis = basic_FNV_offset_basis<std::size_t>;
 /// @addtogroup functional_fnv1__func__fnv1 FNV_1, FNV_1a
 /// @brief FNV hash algorithm
 ///
-/// [Fowler–Noll–Vo hash function](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function)
+/// [Fowler-Noll-Vo hash function](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function)
 /// @{
 template<typename T>
 std::size_t FNV_1(std::size_t value, const T& byte) {

@@ -20,6 +20,11 @@
 #include "vccc/type_traits/is_referenceable.hpp"
 #include "vccc/type_traits/remove_cvref.hpp"
 
+#ifdef _MSC_VER
+#pragma warning( push )
+#pragma warning( disable : 4244)
+#endif
+
 namespace vccc {
 namespace detail {
 namespace detail_random_access_iterator {
@@ -117,5 +122,9 @@ struct random_access_iterator : detail::random_access_iterator_impl<I> {};
 /// @}
 
 } // namespace vccc
+
+#ifdef _MSC_VER
+#pragma warning( pop )
+#endif
 
 #endif // VCCC_ITERATOR_RANDOM_ACCESS_ITERATOR_HPP_
