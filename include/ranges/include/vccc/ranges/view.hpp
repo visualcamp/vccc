@@ -13,6 +13,9 @@
 namespace vccc {
 namespace ranges {
 
+/// @addtogroup ranges
+/// @{
+
 /**
 @brief specifies that a range is a view, that is, it has constant time copy/move/assignment
 
@@ -26,6 +29,8 @@ struct view
           movable<T>,
           ranges::enable_view<T>
       > {};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc
