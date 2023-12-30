@@ -7,7 +7,8 @@
 
 #include <type_traits>
 
-#include "vccc/ranges/range.hpp"
+#include "vccc/ranges/__forward_declare.hpp"
+#include "vccc/ranges/enable_borrowed_range.hpp"
 #include "vccc/type_traits/conjunction.hpp"
 #include "vccc/type_traits/disjunction.hpp"
 #include "vccc/type_traits/remove_cvref.hpp"
@@ -17,9 +18,6 @@ namespace ranges {
 
 /// @addtogroup ranges
 /// @{
-
-template<typename R>
-struct enable_borrowed_range : std::false_type {};
 
 template<typename R>
 struct borrowed_range
