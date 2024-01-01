@@ -26,7 +26,6 @@ int main() {
   std::cout << vccc::sum(v1.begin(), v1.end()) << std::endl;
 //  std::cout << vccc::average(v0.begin(), v0.end()) << std::endl;  // Assert
   std::cout << vccc::average(v1.begin(), v1.end()) << std::endl;
-  std::cout << vccc::average(&(*v1.begin()), &(*v1.end())) << std::endl;
   std::cout << vccc::average(v2.begin(), v2.end(), [](const auto& t){ return t.x;}) << std::endl;
 
 
