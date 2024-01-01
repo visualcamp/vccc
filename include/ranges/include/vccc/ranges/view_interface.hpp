@@ -78,6 +78,8 @@ class view_interface {
                 "Constraints not satisfied");
 
 
+  using _$vccc_derived = Derived;
+
   /**
    * @name empty
    * @brief returns whether the derived view is empty. Provided if it satisfies `sized_range` or `forward_range`.

@@ -8,10 +8,15 @@
 
 #include "vccc/concepts.hpp"
 
+#include <vccc/type_traits/has_typename_value_type.hpp>
+
 namespace {
 
 template<typename D>
-struct crtp_base {};
+struct crtp_base {
+  // _$vccc_derived is defined in view_interface, etc
+  using _$vccc_derived = D;
+};
 
 int Test() {
   INIT_TEST("vccc::concepts")
@@ -80,10 +85,7 @@ int Test() {
     static_assert(vccc::derived_from_single_crtp<void, crtp_base>::value == false, "");
     static_assert(vccc::derived_from_single_crtp<int, crtp_base>::value == false, "");
     static_assert(vccc::derived_from_single_crtp<A, crtp_base>::value, "");
-
-#if defined(_MSC_VER) && _MSC_VER >= 1930 // false positive until Visutal Studio 2022
     static_assert(vccc::derived_from_single_crtp<B, crtp_base>::value == false, "");
-#endif
   }
 
   return TEST_RETURN_RESULT;
