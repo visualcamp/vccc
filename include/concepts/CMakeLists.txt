@@ -8,7 +8,6 @@ target_include_directories(vccc_concepts INTERFACE include)
 target_link_libraries(vccc_concepts INTERFACE
     VCCC::algorithm
     VCCC::functional
-    VCCC::ranges
     VCCC::type_traits
     VCCC::utility)
 
