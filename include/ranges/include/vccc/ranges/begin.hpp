@@ -94,7 +94,7 @@ constexpr R ranges_begin(T&& t, return_category<3, R>) {
 
 struct begin_niebloid {
   template<typename T>
-  constexpr typename detail::begin_category<T&&>::return_type
+  constexpr typename begin_category<T&&>::return_type
   operator()(T&& t) const {
     return ranges_begin(std::forward<T>(t), detail::begin_category<T&&>{});
   }

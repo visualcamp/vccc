@@ -83,32 +83,32 @@ class view_interface {
    * @brief returns whether the derived view is empty. Provided if it satisfies `sized_range` or `forward_range`.
    * @{
    */
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      ranges::sized_range<Derived>
-  >::value, int> = 0>
+  template<typename D = Derived, std::enable_if_t<
+      ranges::sized_range<D>::value,
+  int> = 0>
   constexpr bool empty() {
     using namespace vccc::rel_ops;
     return ranges::size(derived()) == 0;
   }
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      negation<ranges::sized_range<Derived>>,
-      ranges::forward_range<Derived>
+  template<typename D = Derived, std::enable_if_t<conjunction<
+      negation<ranges::sized_range<D>>,
+      ranges::forward_range<D>
   >::value, int> = 0>
   constexpr bool empty() {
     using namespace vccc::rel_ops;
     return ranges::begin(derived()) == ranges::end(derived());
   }
 
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      ranges::sized_range<const Derived>
-  >::value, int> = 0>
+  template<typename D = Derived, std::enable_if_t<
+      ranges::sized_range<const D>::value,
+  int> = 0>
   constexpr bool empty() const {
     using namespace vccc::rel_ops;
     return ranges::size(derived()) == 0;
   }
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      negation<ranges::sized_range<const Derived>>,
-      ranges::forward_range<const Derived>
+  template<typename D = Derived, std::enable_if_t<conjunction<
+      negation<ranges::sized_range<const D>>,
+      ranges::forward_range<const D>
   >::value, int> = 0>
   constexpr bool empty() const {
     using namespace vccc::rel_ops;
@@ -123,16 +123,16 @@ class view_interface {
    * @brief returns whether the derived view is not empty. Provided if `ranges::empty` is applicable to it.
    * @{
    */
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      detail::is_empty_callable<Derived&>
-  >::value, int> = 0>
+  template<typename D = Derived, std::enable_if_t<
+    detail::is_empty_callable<D&>::value,
+  int> = 0>
   constexpr explicit operator bool() {
     return !ranges::empty(derived());
   }
 
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-    detail::is_empty_callable<const Derived&>
-  >::value, int> = 0>
+  template<typename D = Derived, std::enable_if_t<
+    detail::is_empty_callable<const D&>::value,
+  int> = 0>
   constexpr explicit operator bool() const {
     return !ranges::empty(derived());
   }
@@ -144,15 +144,15 @@ class view_interface {
    * @brief gets the address of derived view's data. Provided if its iterator type satisfies `contiguous_iterator`.
    * @{
    */
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      detail::check_vi_data<Derived>
-  >::value, int> = 0>
+  template<typename D = Derived, std::enable_if_t<
+      detail::check_vi_data<D>::value,
+  int> = 0>
   constexpr auto data() {
     return vccc::to_address(ranges::begin(derived()));
   }
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      detail::check_vi_data<const Derived>
-  >::value, int> = 0>
+  template<typename D = Derived, std::enable_if_t<
+      detail::check_vi_data<const D>::value,
+  int> = 0>
   constexpr auto data() const {
     return vccc::to_address(ranges::begin(derived()));
   }
@@ -166,16 +166,16 @@ class view_interface {
    *
    * @{
    */
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      detail::check_vi_size<Derived>
-  >::value, int> = 0>
+  template<typename D = Derived, std::enable_if_t<
+      detail::check_vi_size<D>::value,
+  int> = 0>
   constexpr auto size() {
     using T = decltype(ranges::end(derived()) - ranges::begin(derived()));
     return static_cast<T>(ranges::end(derived()) - ranges::begin(derived()));
   }
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      detail::check_vi_size<const Derived>
-  >::value, int> = 0>
+  template<typename D = Derived, std::enable_if_t<
+      detail::check_vi_size<const D>::value,
+  int> = 0>
   constexpr auto size() const {
     using T = decltype(ranges::end(derived()) - ranges::begin(derived()));
     return static_cast<T>(ranges::end(derived()) - ranges::begin(derived()));
@@ -190,15 +190,15 @@ class view_interface {
    *
    * @{
    */
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      ranges::forward_range<Derived>
-  >::value, int> = 0>
+  template<typename D = Derived, std::enable_if_t<
+      ranges::forward_range<D>::value,
+  int> = 0>
   constexpr decltype(auto) front() {
     return *ranges::begin(derived());
   }
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      ranges::forward_range<const Derived>
-  >::value, int> = 0>
+  template<typename D = Derived, std::enable_if_t<
+      ranges::forward_range<const D>::value,
+  int> = 0>
   constexpr decltype(auto) front() const {
     return *ranges::begin(derived());
   }
@@ -214,16 +214,16 @@ class view_interface {
    * Whether the element is returned by value or by reference depends on the `operator*` of the iterator type.
    * @{
    */
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      ranges::bidirectional_range<Derived>,
-      ranges::common_range<Derived>
+  template<typename D = Derived, std::enable_if_t<conjunction<
+      ranges::bidirectional_range<D>,
+      ranges::common_range<D>
   >::value, int> = 0>
   constexpr decltype(auto) back() {
     return *ranges::prev(ranges::end(derived()));
   }
-  template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      ranges::bidirectional_range<const Derived>,
-      ranges::common_range<const Derived>
+  template<typename D = Derived, std::enable_if_t<conjunction<
+      ranges::bidirectional_range<const D>,
+      ranges::common_range<const D>
   >::value, int> = 0>
   constexpr decltype(auto) back() const {
     return *ranges::prev(ranges::end(derived()));
@@ -239,15 +239,15 @@ class view_interface {
    * to the beginning iterator, reusing the `%operator[]` of the iterator type.
    * @{
    */
-  template<typename R = Derived, typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      ranges::random_access_range<R>
-  >::value, int> = 0>
+  template<typename R = Derived, std::enable_if_t<
+      ranges::random_access_range<R>::value,
+  int> = 0>
   constexpr decltype(auto) operator[](ranges::range_difference_t<R> n) {
     ranges::begin(derived())[n];
   }
-  template<typename R = const Derived, typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
-      ranges::random_access_range<R>
-  >::value, int> = 0>
+  template<typename R = const Derived, std::enable_if_t<
+      ranges::random_access_range<R>::value,
+  int> = 0>
   constexpr decltype(auto) operator[](ranges::range_difference_t<R> n) const {
     ranges::begin(derived())[n];
   }
