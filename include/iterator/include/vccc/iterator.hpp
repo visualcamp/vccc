@@ -41,6 +41,7 @@
 #include "vccc/iterator/iter_rvalue_reference_t.hpp"
 #include "vccc/iterator/iter_value_t.hpp"
 #include "vccc/iterator/iterator_tag.hpp"
+#include "vccc/iterator/output_iterator.hpp"
 #include "vccc/iterator/prev.hpp"
 #include "vccc/iterator/projected.hpp"
 #include "vccc/iterator/random_access_iterator.hpp"
