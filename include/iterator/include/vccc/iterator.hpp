@@ -30,6 +30,7 @@
 #include "vccc/iterator/indirectly_readable_traits.hpp"
 #include "vccc/iterator/indirectly_regular_unary_invocable.hpp"
 #include "vccc/iterator/indirectly_unary_invocable.hpp"
+#include "vccc/iterator/indirectly_writable.hpp"
 #include "vccc/iterator/input_iterator.hpp"
 #include "vccc/iterator/input_or_output_iterator.hpp"
 #include "vccc/iterator/iter_common_reference_t.hpp"
