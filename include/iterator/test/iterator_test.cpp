@@ -24,6 +24,22 @@ struct Incomplete;
 
 using P = Holder<Incomplete>*;
 
+struct A {
+  void operator()(int &) {}
+  void operator()(int &&) = delete;
+};
+
+template<typename T>
+void run(T&& x) {
+  A{}(std::forward<T>(x));
+}
+
+template<typename T>
+concept a_callable =
+    requires(T&& x) {
+      A{}(std::forward<T>(x));
+    };
+
 int main() {
   INIT_TEST("vccc::iterator")
 
@@ -57,6 +73,19 @@ int main() {
     static_assert(vccc::indirectly_readable<std::vector<std::vector<int>>::const_iterator>::value == true, "");
     static_assert(vccc::indirectly_readable<std::vector<std::vector<int>>::reverse_iterator>::value == true, "");
     static_assert(vccc::indirectly_readable<std::move_iterator<std::vector<int>::iterator>>::value == true, "");
+  }
+
+  {
+    static_assert(vccc::indirectly_writable<int*, int>::value, "");
+    static_assert(vccc::indirectly_writable<int*, float>::value, "");
+    static_assert(vccc::indirectly_writable<int*, double>::value, "");
+    static_assert(vccc::indirectly_writable<const int*, int>::value == false, "");
+    static_assert(vccc::indirectly_writable<const int*, float>::value == false, "");
+    static_assert(vccc::indirectly_writable<const int*, double>::value == false, "");
+    static_assert(vccc::indirectly_writable<void*, void>::value == false, "");
+
+    static_assert(vccc::indirectly_writable<std::vector<int>::iterator, int>::value, "");
+    static_assert(vccc::indirectly_writable<std::vector<int>::const_iterator, int>::value == false, "");
   }
 
   {
