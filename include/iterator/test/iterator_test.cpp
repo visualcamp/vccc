@@ -24,22 +24,6 @@ struct Incomplete;
 
 using P = Holder<Incomplete>*;
 
-struct A {
-  void operator()(int &) {}
-  void operator()(int &&) = delete;
-};
-
-template<typename T>
-void run(T&& x) {
-  A{}(std::forward<T>(x));
-}
-
-template<typename T>
-concept a_callable =
-    requires(T&& x) {
-      A{}(std::forward<T>(x));
-    };
-
 int main() {
   INIT_TEST("vccc::iterator")
 
