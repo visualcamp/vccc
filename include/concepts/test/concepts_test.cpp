@@ -14,8 +14,10 @@ namespace {
 
 template<typename D>
 struct crtp_base {
+#if defined(_MSC_VER) && _MSC_VER < 1930 // Ambigious casting is allowed until Visutal Studio 2022
   // _$vccc_derived is defined in view_interface, etc
   using _$vccc_derived = D;
+#endif
 };
 
 int Test() {
