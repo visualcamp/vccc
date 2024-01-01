@@ -8,8 +8,10 @@
 
 #include "vccc/concepts.hpp"
 
-namespace vccc {
 namespace {
+
+template<typename D>
+struct crtp_base {};
 
 int Test() {
   INIT_TEST("vccc::concepts")
@@ -26,17 +28,17 @@ int Test() {
       int data;
     };
 
-    static_assert(assignable_from<A&, int>::value == false, "");
-    static_assert(assignable_from<B&, int>::value == true, "");
+    static_assert(vccc::assignable_from<A&, int>::value == false, "");
+    static_assert(vccc::assignable_from<B&, int>::value == true, "");
 
-    static_assert(assignable_from<int&, char>::value, "");
-    static_assert(assignable_from<int&, long>::value, "");
-    static_assert(assignable_from<int&, float>::value, "");
-    static_assert(assignable_from<int&, double>::value, "");
-    static_assert(assignable_from<int&, int&&>::value, "");
-    static_assert(assignable_from<int&, int*>::value == false, "");
-    static_assert(assignable_from<int&, void>::value == false, "");
-    static_assert(assignable_from<int&, void*>::value == false, "");
+    static_assert(vccc::assignable_from<int&, char>::value, "");
+    static_assert(vccc::assignable_from<int&, long>::value, "");
+    static_assert(vccc::assignable_from<int&, float>::value, "");
+    static_assert(vccc::assignable_from<int&, double>::value, "");
+    static_assert(vccc::assignable_from<int&, int&&>::value, "");
+    static_assert(vccc::assignable_from<int&, int*>::value == false, "");
+    static_assert(vccc::assignable_from<int&, void>::value == false, "");
+    static_assert(vccc::assignable_from<int&, void*>::value == false, "");
   }
 
   { // convertible_to
@@ -49,7 +51,7 @@ int Test() {
     };
 
     static_assert(std::is_convertible<From&, To>::value, " ");
-    static_assert(not convertible_to<From&, To>::value, " ");
+    static_assert(not vccc::convertible_to<From&, To>::value, " ");
   }
 
   {
@@ -71,12 +73,21 @@ int Test() {
     static_assert(vccc::invocable<F, int&&>::value == false, "");
   }
 
+  {
+    struct A : crtp_base<int> {};
+    struct B : crtp_base<int>, crtp_base<double> {};
+
+    static_assert(vccc::derived_from_single_crtp<void, crtp_base>::value == false, "");
+    static_assert(vccc::derived_from_single_crtp<int, crtp_base>::value == false, "");
+    static_assert(vccc::derived_from_single_crtp<A, crtp_base>::value, "");
+    static_assert(vccc::derived_from_single_crtp<B, crtp_base>::value == false, "");
+  }
+
   return TEST_RETURN_RESULT;
 }
 
 } // namespace
-} // namespace vccc
 
 int main() {
-  return ::vccc::Test();
+  return ::Test();
 }

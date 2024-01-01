@@ -17,6 +17,7 @@
 #include "vccc/concepts/default_initializable.hpp"
 #include "vccc/concepts/dereferenceable.hpp"
 #include "vccc/concepts/derived_from.hpp"
+#include "vccc/concepts/derived_from_single_crtp.hpp"
 #include "vccc/concepts/equality_comparable.hpp"
 #include "vccc/concepts/equivalence_relation.hpp"
 #include "vccc/concepts/floating_point.hpp"
