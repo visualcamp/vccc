@@ -43,7 +43,7 @@ template<
     bool = conjunction<
                dereferenceable<Out>,
                is_referencable<T>,
-               has_typename_type<iter_reference<T>>
+               has_typename_type<iter_reference<Out>>
            >::value /* true */
 >
 struct indirectly_writable_impl : indirectly_writable_impl_2<Out, T> {};
