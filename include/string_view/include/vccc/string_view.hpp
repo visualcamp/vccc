@@ -146,14 +146,13 @@ class basic_string_view {
   template<typename It, typename End, std::enable_if_t<
       detail::string_view_iter_ctor<It, End, CharT, size_type>::value, int> =0>
   constexpr basic_string_view(It first, End last)
-      : data_(to_address(first)), size_(last - first) {}
+      : data_(vccc::to_address(first)), size_(last - first) {}
 
   template<typename  R, std::enable_if_t<detail::string_view_range_ctor<R, basic_string_view>::value, int> = 0>
   constexpr explicit basic_string_view(R&& r)
       : data_(ranges::data(r)), size_(ranges::size(r)) {}
 
 
-#if __cplusplus < 202002L
   // basic_string_view does not have a constructor that accepts std::basic_string.
   // Rather, std::basic_string defines a operator string_view.
   // Add two custom constructors since std::basic_string cannot be modified
@@ -167,7 +166,6 @@ class basic_string_view {
     throw std::runtime_error("Cannot construct vccc::string_view from std::string&&");
 #endif
   }
-#endif
 
   constexpr basic_string_view(std::nullptr_t) = delete;
   /// @}
@@ -782,7 +780,7 @@ std::basic_ostream<CharT, Traits>& operator<<(std::basic_ostream<CharT, Traits>&
 using string_view = basic_string_view<char>;
 using wstring_view = basic_string_view<wchar_t>;
 #if __cplusplus >= 202002L
-// using u8string_view = basic_string_view<char8_t>;
+using u8string_view = basic_string_view<char8_t>;
 #endif
 using u16string_view = basic_string_view<char16_t>;
 using u32string_view = basic_string_view<char32_t>;
