@@ -203,9 +203,9 @@ int main() {
     constexpr vccc::ranges::single_view<double> sv1{3.1415};
     static_assert(sv1, "");
     static_assert(not sv1.empty(), "");
-    static_assert(*sv1.data() == 3.1415, "");
-    static_assert(*sv1.begin() == 3.1415, "");
-    static_assert(sv1.size() == 1, "");
+    TEST_ENSURES(*sv1.data() == 3.1415, "");
+    TEST_ENSURES(*sv1.begin() == 3.1415, "");
+    TEST_ENSURES(sv1.size() == 1, "");
 
     TEST_ENSURES(std::distance(sv1.begin(), sv1.end()) == 1);
 
