@@ -5,22 +5,36 @@
 #ifndef VCCC_ITERATOR_ITERATOR_TRAITS_FORWARD_DECLARE_HPP_
 #define VCCC_ITERATOR_ITERATOR_TRAITS_FORWARD_DECLARE_HPP_
 
+#if __cplusplus >= 202002L
+#include <iterator>
+#endif
 #include <type_traits>
 
 #include "vccc/type_traits/void_t.hpp"
 
 namespace vccc {
-namespace detail {
-
-template<typename T, typename = void>
-struct is_specialized_iterator_traits : std::false_type {};
-template<typename T>
-struct is_specialized_iterator_traits<T, void_t<typename T::iterator_concept>> : std::true_type {};
-
-} // namespace detail
 
 template<typename Iter>
 struct cxx20_iterator_traits;
+
+namespace detail {
+
+template<typename T>
+struct is_primary_iterator_traits;
+
+template<typename T> struct is_primary_iterator_traits<std::iterator_traits<T>> : std::true_type {};
+template<typename T> struct is_primary_iterator_traits<std::iterator_traits<T*>> : std::false_type {};
+#if __cplusplus >= 202002L
+template<typename I>
+struct is_primary_iterator_traits<std::counted_iterator<I>> : is_primary_iterator_traits<I> {};
+template<typename I, typename S>
+struct is_primary_iterator_traits<std::common_iterator<I, S>> : std::false_type {};
+#endif
+
+template<typename T> struct is_primary_iterator_traits<cxx20_iterator_traits<T>> : std::true_type {};
+template<typename T> struct is_primary_iterator_traits<cxx20_iterator_traits<T*>> : std::false_type {};
+
+} // namespace detail
 
 } // namespace vccc
 

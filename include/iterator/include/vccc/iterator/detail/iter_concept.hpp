@@ -14,19 +14,19 @@ namespace detail {
 template<typename I>
 struct ITER_TRAITS_T {
   using type = std::conditional_t<
-      is_specialized_iterator_traits< cxx20_iterator_traits<I> >::value,
-      cxx20_iterator_traits<I>,
-      I>;
+      is_primary_iterator_traits< cxx20_iterator_traits<I> >::value,
+      I,
+      cxx20_iterator_traits<I>>;
 };
 
 template<typename I>
 using ITER_TRAITS = typename ITER_TRAITS_T<I>::type;
 
 
-template<typename I, bool = is_specialized_iterator_traits< cxx20_iterator_traits<I> >::value /* true */>
+template<typename I, bool = is_primary_iterator_traits< cxx20_iterator_traits<I> >::value /* false */>
 struct ITER_CONCEPT_IMPL_3 {};
 template<typename I>
-struct ITER_CONCEPT_IMPL_3<I, false> {
+struct ITER_CONCEPT_IMPL_3<I, true> {
   using type = random_access_iterator_tag;
 };
 
