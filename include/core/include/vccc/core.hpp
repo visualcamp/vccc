@@ -6,6 +6,7 @@
 #define VCCC_CORE_HPP_
 
 #include "vccc/core/byte.hpp"
+#include "vccc/core/constexpr.hpp"
 #include "vccc/core/decay_copy.hpp"
 #include "vccc/core/inline_or_static.hpp"
 
