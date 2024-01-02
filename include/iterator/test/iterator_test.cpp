@@ -133,5 +133,19 @@ int main() {
     // TEST_ENSURES(std::ranges::count(a, a + 10, nullptr) == 10); // Error before C++26
   }
 
+  { // counted_iterator
+    std::vector<int> v{1, 2, 3, 4};
+    std::list<int> l{1, 2, 3, 4};
+    vccc::counted_iterator<std::vector<int>::iterator> iv{v.begin(), 3};
+    vccc::counted_iterator<std::list<int>::iterator> il{l.begin(), 3};
+
+    static_assert(vccc::detail::is_primary_iterator_traits<vccc::cxx20_iterator_traits<decltype(iv)>>::value == true, "");
+    static_assert(vccc::detail::is_primary_iterator_traits<vccc::cxx20_iterator_traits<decltype(il)>>::value == true, "");
+
+    static_assert(std::is_same<int*, vccc::cxx20_iterator_traits<decltype(iv)>::pointer>(), "");
+    static_assert(std::is_same<void, vccc::cxx20_iterator_traits<decltype(il)>::pointer>(), "");
+
+  }
+
   return TEST_RETURN_RESULT;
 }
