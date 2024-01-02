@@ -340,7 +340,7 @@ class basic_string_view {
     if (pos > size()) {
       throw std::out_of_range("vccc::string_view::substr : out of range");
     }
-    return basic_string_view(pos, (std::min)(count, size() - pos));
+    return basic_string_view(data() + pos, (std::min)(count, size() - pos));
   }
   /// @}
 
