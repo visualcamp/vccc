@@ -30,6 +30,7 @@
 #include "vccc/ranges/range_difference_t.hpp"
 #include "vccc/ranges/range_reference_t.hpp"
 #include "vccc/ranges/range_value_t.hpp"
+#include "vccc/ranges/ref_view.hpp"
 #include "vccc/ranges/size.hpp"
 #include "vccc/ranges/sized_range.hpp"
 #include "vccc/ranges/ssize.hpp"
