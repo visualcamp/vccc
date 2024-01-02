@@ -13,10 +13,10 @@
 # include "vccc/optional/internal/move_assignment.h"
 # include "vccc/optional/internal/traits.h"
 # include "vccc/optional/bad_optional_access.h"
-# include "vccc/optional/inplace_t.h"
 # include "vccc/optional/nullopt_t.h"
 # include "vccc/optional/swap.h"
 # include "vccc/type_traits/is_swappable.hpp"
+# include "vccc/utility/in_place.hpp"
 
 namespace vccc {
 
