@@ -49,8 +49,8 @@ namespace views {
 template<typename T>
 VCCC_INLINE_OR_STATIC constexpr empty_view<T> empty{};
 
-} // namespace vccc
-} // namespace ranges
 } // namespace views
+} // namespace ranges
+} // namespace vccc
 
 #endif // VCCC_RANGES_VIEWS_EMPTY_VIEW_HPP

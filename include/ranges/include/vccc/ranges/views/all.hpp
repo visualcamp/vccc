@@ -105,8 +105,8 @@ using all_t = typename detail::all_t_impl<R>::type;
 
 /// @}
 
-} // namespace vccc
-} // namespace ranges
 } // namespace views
+} // namespace ranges
+} // namespace vccc
 
 #endif // VCCC_RANGES_VIEWS_ALL_HPP
