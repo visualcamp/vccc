@@ -192,7 +192,7 @@ int Test() {
     // Define Slice as a range adaptor closure
     struct Slice : vccc::ranges::range_adaptor_closure<Slice> {
       std::size_t start = 0;
-      std::size_t end = std::string_view::npos;
+      std::size_t end = vccc::string_view::npos;
 
       constexpr vccc::string_view operator()(vccc::string_view sv) const
       {
