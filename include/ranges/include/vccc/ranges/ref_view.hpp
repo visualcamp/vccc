@@ -70,7 +70,7 @@ class ref_view : public view_interface<ref_view<R>> {
 
   template<typename T = R, std::enable_if_t<
       ranges::sized_range<R>::value, int> = 0>
-  constexpr bool size() const {
+  constexpr auto size() const {
     return ranges::size(*r_);
   }
 

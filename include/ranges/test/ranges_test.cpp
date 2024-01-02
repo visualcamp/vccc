@@ -184,5 +184,17 @@ int main() {
     TEST_ENSURES(vccc::ranges::data(arr) + 3 == vccc::ranges::end(arr));
   }
 
+  { // ranges::all_view
+    std::vector<int> v = {0, 1, 2, 3, 4, 5};
+    for (auto x : vccc::views::all(v)) {
+      std::cout << x << ' ';
+    }
+    std::cout << '\n';
+    TEST_ENSURES(vccc::views::all(v).size() == v.size());
+    TEST_ENSURES(vccc::views::all(v).data() == v.data());
+    TEST_ENSURES(vccc::views::all(v).end() == v.end());
+    TEST_ENSURES(vccc::views::all(v).empty() == v.empty());
+  }
+
   return TEST_RETURN_RESULT;
 }
