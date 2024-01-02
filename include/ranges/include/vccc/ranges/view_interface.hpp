@@ -245,13 +245,13 @@ class view_interface {
       ranges::random_access_range<R>::value,
   int> = 0>
   constexpr decltype(auto) operator[](ranges::range_difference_t<R> n) {
-    ranges::begin(derived())[n];
+    return ranges::begin(derived())[n];
   }
   template<typename R = const Derived, std::enable_if_t<
       ranges::random_access_range<R>::value,
   int> = 0>
   constexpr decltype(auto) operator[](ranges::range_difference_t<R> n) const {
-    ranges::begin(derived())[n];
+    return ranges::begin(derived())[n];
   }
   /// @}
 
