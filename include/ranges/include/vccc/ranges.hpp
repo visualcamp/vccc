@@ -17,6 +17,7 @@
 #include "vccc/ranges/dangling.hpp"
 #include "vccc/ranges/data.hpp"
 #include "vccc/ranges/disabled_sized_range.hpp"
+#include "vccc/ranges/distance.hpp"
 #include "vccc/ranges/empty.hpp"
 #include "vccc/ranges/enable_borrowed_range.hpp"
 #include "vccc/ranges/enable_view.hpp"
