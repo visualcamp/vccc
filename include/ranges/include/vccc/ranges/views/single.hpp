@@ -27,6 +27,7 @@ namespace ranges {
 Produces a \ref ranges::view "view" that contains exactly one element of a specified value.
 
 The lifetime of the element is bound to the parent `%single_view`. Copying `%single_view` makes a copy of the element.
+@sa [std::ranges::single_view](https://en.cppreference.com/w/cpp/ranges/single_view)
 @}
 */
 

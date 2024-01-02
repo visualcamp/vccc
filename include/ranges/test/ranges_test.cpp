@@ -224,5 +224,14 @@ int main() {
     TEST_ENSURES(std::get<2>(sv3[0]) == "Hello");
   }
 
+  {
+    vccc::ranges::empty_view<long> e;
+    static_assert(vccc::ranges::empty(e), "");
+    static_assert(0 == e.size(), "");
+    static_assert(nullptr == e.data(), "");
+    static_assert(nullptr == e.begin(), "");
+    static_assert(nullptr == e.end(), "");
+  }
+
   return TEST_RETURN_RESULT;
 }

@@ -6,6 +6,7 @@
 #define VCCC_RANGES_VIEWS_VIEWS_HPP_
 
 #include "vccc/ranges/views/all.hpp"
+#include "vccc/ranges/views/empty_view.hpp"
 #include "vccc/ranges/views/iota.hpp"
 #include "vccc/ranges/views/single.hpp"
 
