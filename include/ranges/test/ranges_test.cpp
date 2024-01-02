@@ -10,7 +10,6 @@
 #include <vector>
 
 #include "vccc/ranges.hpp"
-#include "vccc/type_traits/type_identity.hpp"
 #include "vccc/test.hpp"
 
 struct IntLike {
@@ -164,6 +163,25 @@ int main() {
     //     std::cout << i << ' ';
     // });
     // std::cout << '\n';
+  }
+
+  { // ranges::enable_view
+    struct A : vccc::ranges::view_base {};
+    struct B : vccc::ranges::view_interface<B> {};
+    struct C : vccc::ranges::view_interface<C>, vccc::ranges::view_interface<B> {};
+
+    static_assert(vccc::ranges::enable_view<A>::value, "");
+    static_assert(vccc::ranges::enable_view<B>::value, "");
+    static_assert(vccc::ranges::enable_view<C>::value == false, "");
+    static_assert(vccc::ranges::enable_view<int>::value == false, "");
+    static_assert(vccc::ranges::enable_view<void>::value == false, "");
+  }
+
+  { // ranges::data
+    int arr[] = {1, 2, 3};
+    TEST_ENSURES(vccc::ranges::data(arr) == arr);
+    auto last = vccc::ranges::end(arr);
+    TEST_ENSURES(vccc::ranges::data(arr) + 3 == vccc::ranges::end(arr));
   }
 
   return TEST_RETURN_RESULT;
