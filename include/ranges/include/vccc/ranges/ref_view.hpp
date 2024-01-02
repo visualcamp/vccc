@@ -10,6 +10,10 @@
 
 #include "vccc/ranges/contiguous_range.hpp"
 #include "vccc/ranges/enable_borrowed_range.hpp"
+#include "vccc/ranges/begin.hpp"
+#include "vccc/ranges/data.hpp"
+#include "vccc/ranges/empty.hpp"
+#include "vccc/ranges/end.hpp"
 #include "vccc/ranges/iterator_t.hpp"
 #include "vccc/ranges/sized_range.hpp"
 #include "vccc/ranges/view_interface.hpp"
