@@ -19,6 +19,7 @@
 #include "vccc/iterator/advance.hpp"
 #include "vccc/iterator/bidirectional_iterator.hpp"
 #include "vccc/iterator/contiguous_iterator.hpp"
+#include "vccc/iterator/default_sentinel_t.hpp"
 #include "vccc/iterator/forward_iterator.hpp"
 #include "vccc/iterator/incrementable.hpp"
 #include "vccc/iterator/incrementable_traits.hpp"
