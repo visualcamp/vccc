@@ -23,6 +23,10 @@ namespace ranges {
 @{
 @defgroup ranges_single_view__class__Factories ranges::single_view, views::single
 @brief a \ref ranges::view "view" that contains a single element of a specified value
+
+Produces a \ref ranges::view "view" that contains exactly one element of a specified value.
+
+The lifetime of the element is bound to the parent `%single_view`. Copying `%single_view` makes a copy of the element.
 @}
 */
 
