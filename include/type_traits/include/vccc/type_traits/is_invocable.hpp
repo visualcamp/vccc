@@ -45,9 +45,26 @@ struct is_invocable_r_impl {
 };
 
 } // namespace detail
+
+/// @addtogroup type_traits
+/// @{
+
 /**
-@addtogroup type_traits
-@{
+@brief deduces the result type of invoking a callable object with a set of arguments
+
+Deduces the return type of an `INVOKE` expression at compile time.
+ */
+template<typename F, typename ...Args>
+struct invoke_result
+    : std::conditional_t<
+          detail::is_invocable_r_impl<void, F, Args...>::invocable::value,
+              type_identity<typename detail::is_invocable_r_impl<void, F, Args...>::test_return_type>,
+          empty> {};
+
+template<typename F, typename ...Args>
+using invoke_result_t = typename invoke_result<F, Args...>::type;
+
+/**
 @addtogroup type_traits_is_invocable__class__Type_relationships is_invocable, is_invocable_r, is_nothrow_invocable, is_nothrow_invocable_r
 @brief checks if a type can be invoked (as if by `vccc::invoke`) with the given argument types
 @{

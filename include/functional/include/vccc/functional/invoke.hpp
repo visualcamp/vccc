@@ -9,9 +9,7 @@
 # include <utility>
 #
 # include "vccc/type_traits/core/INVOKE.hpp"
-# include "vccc/type_traits/empty.hpp"
 # include "vccc/type_traits/is_invocable.hpp"
-# include "vccc/type_traits/type_identity.hpp"
 
 namespace vccc {
 
@@ -20,19 +18,6 @@ namespace vccc {
 //! @{
 
 /**
-@brief deduces the result type of invoking a callable object with a set of arguments
-
-Deduces the return type of an `INVOKE` expression at compile time.
- */
-template<typename F, typename ...Args>
-struct invoke_result
-    : std::conditional_t<
-          detail::is_invocable_r_impl<void, F, Args...>::invocable::value,
-              type_identity<typename detail::is_invocable_r_impl<void, F, Args...>::test_return_type>,
-          empty> {};
-
-template<typename F, typename ...Args>
-using invoke_result_t = typename invoke_result<F, Args...>::type;
 
 /// @addtogroup functional_invoke__func__invoke invoke, inivoke_r
 /// @brief invokes any [Callable](https://en.cppreference.com/w/cpp/named_req/Callable) object with given arguments
