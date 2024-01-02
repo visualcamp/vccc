@@ -37,7 +37,7 @@ struct ITER_CONCEPT_IMPL_2<I, true> {
   using type = typename ITER_TRAITS<I>::iterator_category;
 };
 
-template<typename I, bool = is_specialized_iterator_traits<ITER_TRAITS<I>>::value /* false */>
+template<typename I, bool = has_typename_iterator_concept<ITER_TRAITS<I>>::value /* false */>
 struct ITER_CONCEPT_IMPL_1 : ITER_CONCEPT_IMPL_2<I> {};
 template<typename I>
 struct ITER_CONCEPT_IMPL_1<I, true> {
