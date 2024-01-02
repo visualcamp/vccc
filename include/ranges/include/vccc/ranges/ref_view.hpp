@@ -87,7 +87,7 @@ class ref_view : public view_interface<ref_view<R>> {
 #if __cplusplus >= 201703L
 
 template<typename R>
-rev_view(R&) -> ref_view<R>;
+ref_view(R&) -> ref_view<R>;
 
 #endif
 

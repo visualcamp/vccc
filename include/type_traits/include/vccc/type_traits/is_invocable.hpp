@@ -15,6 +15,7 @@
 #include "vccc/type_traits/is_complete.hpp"
 #include "vccc/type_traits/is_unbounded_array.hpp"
 #include "vccc/type_traits/negation.hpp"
+#include "vccc/type_traits/type_identity.hpp"
 
 namespace vccc {
 namespace detail {
