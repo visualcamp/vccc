@@ -26,6 +26,7 @@
 #include "vccc/ranges/iterator_t.hpp"
 #include "vccc/ranges/random_access_range.hpp"
 #include "vccc/ranges/range.hpp"
+#include "vccc/ranges/range_adaptor_closure.hpp"
 #include "vccc/ranges/range_difference_t.hpp"
 #include "vccc/ranges/range_reference_t.hpp"
 #include "vccc/ranges/range_value_t.hpp"
