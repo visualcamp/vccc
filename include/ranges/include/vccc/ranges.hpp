@@ -24,6 +24,7 @@
 #include "vccc/ranges/forward_range.hpp"
 #include "vccc/ranges/input_range.hpp"
 #include "vccc/ranges/iterator_t.hpp"
+#include "vccc/ranges/movable_box.hpp"
 #include "vccc/ranges/owning_view.hpp"
 #include "vccc/ranges/random_access_range.hpp"
 #include "vccc/ranges/range.hpp"

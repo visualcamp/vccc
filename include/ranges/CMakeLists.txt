@@ -9,6 +9,7 @@ target_link_libraries(vccc_ranges INTERFACE
     VCCC::concepts
     VCCC::iterator
     VCCC::memory
+    VCCC::optional
     VCCC::type_traits
 )
 
