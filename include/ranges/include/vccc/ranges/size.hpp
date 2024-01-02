@@ -9,6 +9,7 @@
 
 #include "vccc/core/inline_or_static.hpp"
 #include "vccc/core/decay_copy.hpp"
+#include "vccc/concepts/subtractable.hpp"
 #include "vccc/ranges/disabled_sized_range.hpp"
 #include "vccc/ranges/forward_range.hpp"
 #include "vccc/ranges/sentinel_t.hpp"
@@ -54,23 +55,35 @@ struct size_adl_check<T, false, void_t<decltype( size(std::declval<T>()) )>> : i
 template<
     typename T,
     bool = conjunction<
-      ranges::forward_range<T>,
-      has_typename_type<ranges::sentinel<T>>,
-      has_typename_type<ranges::iterator<T>>
-    >::value
+               sized_sentinel_for<ranges::sentinel_t<T>, ranges::iterator_t<T>>,
+               is_explicitly_subtractable<
+                   decltype(ranges::end(std::declval<T>())),
+                   decltype(ranges::begin(std::declval<T>()))
+               >
+           >::value /* true */
 >
-struct size_range_check : std::false_type {
-  using category = return_category<0>;
+struct size_range_check_2 : std::true_type {
+  using category = return_category<4, std::make_unsigned_t<decltype(ranges::end(std::declval<T>()) - ranges::begin(std::declval<T>()))>>;
 };
 
 template<typename T>
-struct size_range_check<T, true>
-    : conjunction<
-        ranges::forward_range<T>,
-        sized_sentinel_for<ranges::sentinel_t<T>, ranges::iterator_t<T>>
-      >
-{
-  using category = return_category<4, std::make_unsigned_t<decltype(ranges::end(std::declval<T>()) - ranges::begin(std::declval<T>()))>>;
+struct size_range_check_2<T, false> : std::false_type {
+  using category = return_category<0>;
+};
+
+template<
+    typename T,
+    bool = conjunction<
+      ranges::forward_range<T>,
+      has_typename_type<ranges::sentinel<T>>,
+      has_typename_type<ranges::iterator<T>>
+    >::value /* true */
+>
+struct size_range_check : size_range_check_2<T> {};
+
+template<typename T>
+struct size_range_check<T, false> : std::false_type {
+  using category = return_category<0>;
 };
 
 template<typename T>

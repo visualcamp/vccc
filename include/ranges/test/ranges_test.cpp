@@ -5,6 +5,7 @@
 #include <array>
 #include <iostream>
 #include <iterator>
+#include <list>
 #include <string>
 #include <tuple>
 #include <type_traits>
@@ -231,6 +232,19 @@ int main() {
     static_assert(nullptr == e.data(), "");
     static_assert(nullptr == e.begin(), "");
     static_assert(nullptr == e.end(), "");
+  }
+
+  {
+    std::vector<int> v{3, 1, 4};
+    TEST_ENSURES((vccc::ranges::distance(v.begin(), v.end()) == 3));
+    TEST_ENSURES((vccc::ranges::distance(v.end(), v.begin()) == -3));
+    TEST_ENSURES((vccc::ranges::distance(v) == 3));
+
+    std::forward_list<int> l{2, 7, 1};
+    // auto size = vccc::ranges::size(l); // error: not a sizable range
+
+    auto size = vccc::ranges::distance(l); // OK, but aware O(N) complexity
+    TEST_ENSURES(size == 3);
   }
 
   return TEST_RETURN_RESULT;
