@@ -7,5 +7,6 @@
 
 #include "vccc/ranges/views/all.hpp"
 #include "vccc/ranges/views/iota.hpp"
+#include "vccc/ranges/views/single.hpp"
 
 #endif // VCCC_RANGES_VIEWS_VIEWS_HPP_

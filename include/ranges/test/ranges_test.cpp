@@ -4,7 +4,9 @@
 
 #include <array>
 #include <iostream>
+#include <iterator>
 #include <string>
+#include <tuple>
 #include <type_traits>
 #include <utility>
 #include <vector>
@@ -194,6 +196,32 @@ int main() {
     TEST_ENSURES(vccc::views::all(v).data() == v.data());
     TEST_ENSURES(vccc::views::all(v).end() == v.end());
     TEST_ENSURES(vccc::views::all(v).empty() == v.empty());
+  }
+
+  { // ranges::single_view
+    // Examples got from https://en.cppreference.com/w/cpp/ranges/single_view
+    constexpr vccc::ranges::single_view<double> sv1{3.1415};
+    static_assert(sv1, "");
+    static_assert(not sv1.empty(), "");
+    static_assert(*sv1.data() == 3.1415, "");
+    static_assert(*sv1.begin() == 3.1415, "");
+    static_assert(sv1.size() == 1, "");
+
+    TEST_ENSURES(std::distance(sv1.begin(), sv1.end()) == 1);
+
+    std::string str{"C++20"};
+    auto sv2 = vccc::views::single(std::move(str));
+
+    TEST_ENSURES(sv2.data() != nullptr);
+    TEST_ENSURES(*sv2.data() == "C++20");
+    TEST_ENSURES(str.empty());
+
+    vccc::ranges::single_view<std::tuple<int, double, std::string>>
+        sv3{vccc::in_place, 42, 3.14, "Hello"};
+
+    TEST_ENSURES(std::get<0>(sv3[0]) == 42);
+    TEST_ENSURES(std::get<1>(sv3[0]) == 3.14);
+    TEST_ENSURES(std::get<2>(sv3[0]) == "Hello");
   }
 
   return TEST_RETURN_RESULT;
