@@ -37,11 +37,7 @@ struct contiguous_requires : implicit_expression_check<explicit_contiguous_requi
 
 template<
     typename I,
-    bool =
-        conjunction<
-          random_access_iterator<I>,
-          has_typename_type<iter_value<I>>
-        >::value
+    bool = random_access_iterator<I>::value /* false */
 >
 struct contiguous_iterator_impl : std::false_type {};
 

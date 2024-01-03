@@ -4,6 +4,7 @@
 
 #include "test_core.hpp"
 
+#include <algorithm>
 #include <cmath>
 #include <forward_list>
 #include <limits>
@@ -13,6 +14,15 @@
 #include <vector>
 
 #include "vccc/iterator.hpp"
+
+template<class T>
+struct Holder {
+  T t;
+};
+
+struct Incomplete;
+
+using P = Holder<Incomplete>*;
 
 int main() {
   INIT_TEST("vccc::iterator")
@@ -50,11 +60,24 @@ int main() {
   }
 
   {
-    vccc::random_access_iterator<void> a;
+    static_assert(vccc::indirectly_writable<int*, int>::value, "");
+    static_assert(vccc::indirectly_writable<int*, float>::value, "");
+    static_assert(vccc::indirectly_writable<int*, double>::value, "");
+    static_assert(vccc::indirectly_writable<const int*, int>::value == false, "");
+    static_assert(vccc::indirectly_writable<const int*, float>::value == false, "");
+    static_assert(vccc::indirectly_writable<const int*, double>::value == false, "");
+    static_assert(vccc::indirectly_writable<void*, void>::value == false, "");
+
+    static_assert(vccc::indirectly_writable<std::vector<int>::iterator, int>::value, "");
+    static_assert(vccc::indirectly_writable<std::vector<int>::const_iterator, int>::value == false, "");
+  }
+
+  {
     static_assert(vccc::random_access_iterator<int*>::value, "");
     static_assert(vccc::contiguous_iterator<int*>::value, "");
     static_assert(vccc::random_access_iterator<int**>::value, "");
     static_assert(vccc::random_access_iterator<void*>::value == false, "");
+    static_assert(vccc::random_access_iterator<void>::value == false, "");
 
     static_assert(vccc::input_or_output_iterator<std::vector<int>::iterator>::value, "");
     static_assert(vccc::input_iterator<std::vector<int>::iterator>::value, "");
@@ -96,6 +119,32 @@ int main() {
 
     vccc::ranges::advance(it3, 2);
     TEST_ENSURES(it3 == vccc::ranges::end(l));
+  }
+
+  {
+    static_assert(vccc::indirectly_comparable<P*, P*, std::equal_to<>>::value, "");
+
+    P a[10] = {}; // ten null pointers
+
+#ifndef _MSC_VER
+    TEST_ENSURES(std::count(a, a + 10, nullptr) == 10); // OK
+#endif
+    // TODO: Implement ranges::count
+    // TEST_ENSURES(std::ranges::count(a, a + 10, nullptr) == 10); // Error before C++26
+  }
+
+  { // counted_iterator
+    std::vector<int> v{1, 2, 3, 4};
+    std::list<int> l{1, 2, 3, 4};
+    vccc::counted_iterator<std::vector<int>::iterator> iv{v.begin(), 3};
+    vccc::counted_iterator<std::list<int>::iterator> il{l.begin(), 3};
+
+    static_assert(vccc::detail::is_primary_iterator_traits<vccc::cxx20_iterator_traits<decltype(iv)>>::value == true, "");
+    static_assert(vccc::detail::is_primary_iterator_traits<vccc::cxx20_iterator_traits<decltype(il)>>::value == true, "");
+
+    static_assert(std::is_same<int*, vccc::cxx20_iterator_traits<decltype(iv)>::pointer>(), "");
+    static_assert(std::is_same<void, vccc::cxx20_iterator_traits<decltype(il)>::pointer>(), "");
+
   }
 
   return TEST_RETURN_RESULT;

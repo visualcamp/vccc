@@ -5,10 +5,11 @@
 # ifndef VCCC_OPTIONAL_INTERNAL_DTOR_H_
 # define VCCC_OPTIONAL_INTERNAL_DTOR_H_
 #
+# include <memory>
 # include <type_traits>
 # include <utility>
 #
-# include "vccc/optional/inplace_t.h"
+# include "vccc/utility/in_place.hpp"
 
 namespace vccc {
 namespace internal {

@@ -37,6 +37,11 @@ struct has_typename_iterator_category : std::false_type {};
 template<typename T>
 struct has_typename_iterator_category<T, void_t<typename T::iterator_category>> : std::true_type {};
 
+template<typename T, typename = void>
+struct has_typename_iterator_concept : std::false_type {};
+template<typename T>
+struct has_typename_iterator_concept<T, void_t<typename T::iterator_concept>> : std::true_type {};
+
 template<typename Iter, bool = LegacyForwardIterator<Iter>::value /* false */>
 struct cxx20_iterator_category_check_forward {
   using type = random_access_iterator_tag;

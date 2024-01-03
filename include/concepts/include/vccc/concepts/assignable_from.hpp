@@ -12,6 +12,11 @@
 #include "vccc/type_traits/conjunction.hpp"
 #include "vccc/type_traits/is_referenceable.hpp"
 
+#ifdef _MSC_VER
+#pragma warning( push )
+#pragma warning( disable : 4244)
+#endif
+
 namespace vccc {
 namespace impl {
 
@@ -75,5 +80,9 @@ struct assignable_from
 /// @}
 
 } // namespace vccc
+
+#ifdef _MSC_VER
+#pragma warning( pop )
+#endif
 
 #endif // VCCC_CONCEPTS_ASSIGNABLE_FROM_HPP_

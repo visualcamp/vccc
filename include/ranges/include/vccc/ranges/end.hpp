@@ -11,8 +11,8 @@
 #include "vccc/core/inline_or_static.hpp"
 #include "vccc/iterator/sentinel_for.hpp"
 #include "vccc/type_traits/detail/return_category.hpp"
+#include "vccc/core/decay_copy.hpp"
 #include "vccc/ranges/borrowed_range.hpp"
-#include "vccc/ranges/decay_copy.hpp"
 #include "vccc/ranges/iterator_t.hpp"
 #include "vccc/type_traits/disjunction.hpp"
 #include "vccc/type_traits/is_bounded_array.hpp"
@@ -81,7 +81,7 @@ struct end_category
 template<typename T, typename R>
 constexpr R end(T&& t, return_category<1, R>) {
   static_assert(is_complete<std::remove_all_extents_t<std::remove_reference_t<T>>>::value, "Array element must be complete type");
-  return t + std::extent<T>::value;
+  return t + std::extent<remove_cvref_t<T>>::value;
 }
 
 template<typename T, typename R>

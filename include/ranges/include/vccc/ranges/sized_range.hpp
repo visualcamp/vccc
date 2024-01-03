@@ -9,20 +9,18 @@
 
 #include "vccc/ranges/range.hpp"
 #include "vccc/ranges/size.hpp"
+#include "vccc/type_traits/is_invocable.hpp"
 #include "vccc/type_traits/void_t.hpp"
 
 namespace vccc {
 namespace ranges {
 namespace detail {
 
-template<typename T, bool = range<T>::value, typename = void>
+template<typename T, bool = range<T>::value>
 struct sized_range_impl : std::false_type {};
 
 template<typename T>
-struct sized_range_impl<
-        T, true,
-        void_t<decltype( ranges::size( std::declval<std::add_lvalue_reference_t<std::remove_reference_t<T>>>() ) )>>
-    : std::true_type {};
+struct sized_range_impl<T, true> : is_invocable<decltype(ranges::size), T&> {};
 
 } // namespace detail
 

@@ -3,14 +3,17 @@
 //
 
 #include <array>
+#include <forward_list>
 #include <iostream>
+#include <iterator>
+#include <list>
 #include <string>
+#include <tuple>
 #include <type_traits>
 #include <utility>
 #include <vector>
 
 #include "vccc/ranges.hpp"
-#include "vccc/type_traits/type_identity.hpp"
 #include "vccc/test.hpp"
 
 struct IntLike {
@@ -164,6 +167,85 @@ int main() {
     //     std::cout << i << ' ';
     // });
     // std::cout << '\n';
+  }
+
+  { // ranges::enable_view
+    struct A : vccc::ranges::view_base {};
+    struct B : vccc::ranges::view_interface<B> {};
+    struct C : vccc::ranges::view_interface<C>, vccc::ranges::view_interface<B> {};
+
+    static_assert(vccc::ranges::enable_view<A>::value, "");
+    static_assert(vccc::ranges::enable_view<B>::value, "");
+    static_assert(vccc::ranges::enable_view<C>::value == false, "");
+    static_assert(vccc::ranges::enable_view<int>::value == false, "");
+    static_assert(vccc::ranges::enable_view<void>::value == false, "");
+  }
+
+  { // ranges::data
+    int arr[] = {1, 2, 3};
+    TEST_ENSURES(vccc::ranges::data(arr) == arr);
+    auto last = vccc::ranges::end(arr);
+    TEST_ENSURES(vccc::ranges::data(arr) + 3 == vccc::ranges::end(arr));
+  }
+
+  { // ranges::all_view
+    std::vector<int> v = {0, 1, 2, 3, 4, 5};
+    for (auto x : vccc::views::all(v)) {
+      std::cout << x << ' ';
+    }
+    std::cout << '\n';
+    TEST_ENSURES(vccc::views::all(v).size() == v.size());
+    TEST_ENSURES(vccc::views::all(v).data() == v.data());
+    TEST_ENSURES(vccc::views::all(v).end() == v.end());
+    TEST_ENSURES(vccc::views::all(v).empty() == v.empty());
+  }
+
+  { // ranges::single_view
+    // Examples got from https://en.cppreference.com/w/cpp/ranges/single_view
+    constexpr vccc::ranges::single_view<double> sv1{3.1415};
+    static_assert(sv1, "");
+    static_assert(not sv1.empty(), "");
+    TEST_ENSURES(*sv1.data() == 3.1415);
+    TEST_ENSURES(*sv1.begin() == 3.1415);
+    TEST_ENSURES(sv1.size() == 1);
+
+    TEST_ENSURES(std::distance(sv1.begin(), sv1.end()) == 1);
+
+    std::string str{"C++20"};
+    auto sv2 = vccc::views::single(std::move(str));
+
+    TEST_ENSURES(sv2.data() != nullptr);
+    TEST_ENSURES(*sv2.data() == "C++20");
+    TEST_ENSURES(str.empty());
+
+    vccc::ranges::single_view<std::tuple<int, double, std::string>>
+        sv3{vccc::in_place, 42, 3.14, "Hello"};
+
+    TEST_ENSURES(std::get<0>(sv3[0]) == 42);
+    TEST_ENSURES(std::get<1>(sv3[0]) == 3.14);
+    TEST_ENSURES(std::get<2>(sv3[0]) == "Hello");
+  }
+
+  {
+    vccc::ranges::empty_view<long> e;
+    static_assert(vccc::ranges::empty(e), "");
+    static_assert(0 == e.size(), "");
+    static_assert(nullptr == e.data(), "");
+    static_assert(nullptr == e.begin(), "");
+    static_assert(nullptr == e.end(), "");
+  }
+
+  {
+    std::vector<int> v{3, 1, 4};
+    TEST_ENSURES((vccc::ranges::distance(v.begin(), v.end()) == 3));
+    TEST_ENSURES((vccc::ranges::distance(v.end(), v.begin()) == -3));
+    TEST_ENSURES((vccc::ranges::distance(v) == 3));
+
+    std::forward_list<int> l{2, 7, 1};
+    // auto size = vccc::ranges::size(l); // error: not a sizable range
+
+    auto size = vccc::ranges::distance(l); // OK, but aware O(N) complexity
+    TEST_ENSURES(size == 3);
   }
 
   return TEST_RETURN_RESULT;

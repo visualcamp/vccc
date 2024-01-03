@@ -37,8 +37,6 @@ int Test() {
   static_assert(is_pair_like<std::array<int, 2>>::value == true, " ");
   static_assert(is_pair_like<std::array<int, 3>>::value == false, " ");
 
-  common_type_t<char, short, float> t;
-
   return TEST_RETURN_RESULT;
 }
 

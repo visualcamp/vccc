@@ -11,8 +11,8 @@
 #include "vccc/core/inline_or_static.hpp"
 #include "vccc/iterator/input_or_output_iterator.hpp"
 #include "vccc/type_traits/detail/return_category.hpp"
-#include "vccc/ranges/borrowed_range.hpp"
-#include "vccc/ranges/decay_copy.hpp"
+#include "vccc/ranges/enable_borrowed_range.hpp"
+#include "vccc/core/decay_copy.hpp"
 #include "vccc/type_traits/disjunction.hpp"
 #include "vccc/type_traits/is_complete.hpp"
 #include "vccc/type_traits/remove_cvref.hpp"
@@ -94,7 +94,7 @@ constexpr R ranges_begin(T&& t, return_category<3, R>) {
 
 struct begin_niebloid {
   template<typename T>
-  constexpr typename detail::begin_category<T&&>::return_type
+  constexpr typename begin_category<T&&>::return_type
   operator()(T&& t) const {
     return ranges_begin(std::forward<T>(t), detail::begin_category<T&&>{});
   }

@@ -8,6 +8,7 @@
 #include <type_traits>
 #include <utility>
 
+#include "vccc/ranges.hpp"
 #include "vccc/string_view.hpp"
 #include "vccc/test.hpp"
 
@@ -34,6 +35,15 @@ int Test() {
     static_assert(std::is_convertible<const char*, string_view>::value, " ");
 
     // string_view sv2 = std::string();
+  }
+
+  {
+    std::string s = "hello";
+    std::vector<char> v(s.begin(), s.end());
+
+    string_view sv(v);
+
+    TEST_ENSURES(sv == s);
   }
 
   { // string_view::contains
@@ -160,6 +170,50 @@ int Test() {
                     //    ^
     TEST_ENSURES((1 == "ABBA"_sv.find_last_not_of('A', 1)));
                     //    ^
+  }
+
+#if __cplusplus >= 201703L
+  {
+    std::string s = "hello, world!";
+    std::vector v(s.begin(), s.end());
+
+    vccc::basic_string_view sv(s.begin(), s.end());
+    vccc::basic_string_view sv2(s.data(), s.data() + s.size());
+    vccc::basic_string_view sv3(v.begin(), v.end());
+
+    vccc::basic_string_view sv4(s);
+    vccc::basic_string_view sv5(v);
+  }
+#endif
+
+  {
+    // Example taken from https://en.cppreference.com/w/cpp/ranges/range_adaptor_closure
+
+    // Define Slice as a range adaptor closure
+    struct Slice : vccc::ranges::range_adaptor_closure<Slice> {
+      std::size_t start = 0;
+      std::size_t end = vccc::string_view::npos;
+
+      constexpr vccc::string_view operator()(vccc::string_view sv) const
+      {
+        return sv.substr(start, end - start);
+      }
+    };
+
+    vccc::string_view str = "01234567";
+
+    Slice slicer;
+    slicer.start = 1;
+    slicer.end = 6;
+
+    auto sv1 = slicer(str); // use slicer as a normal function object
+    auto sv2 = str | slicer; // use slicer as a range adaptor closure object
+
+    static_assert(std::is_same<vccc::string_view, decltype(sv1)>::value, "");
+    static_assert(std::is_same<vccc::string_view, decltype(sv2)>::value, "");
+
+    TEST_ENSURES(sv1 == "12345");
+    TEST_ENSURES(sv2 == "12345");
   }
 
   return TEST_RETURN_RESULT;

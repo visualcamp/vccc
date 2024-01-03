@@ -30,6 +30,7 @@
 # include "type_traits/is_complete.hpp"
 # include "type_traits/is_initializer_list.hpp"
 # include "type_traits/is_integer_like.hpp"
+# include "type_traits/is_invocable.hpp"
 # include "type_traits/is_printable.hpp"
 # include "type_traits/is_range.hpp"
 # include "type_traits/is_referenceable.hpp"
