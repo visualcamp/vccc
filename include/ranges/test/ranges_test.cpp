@@ -3,6 +3,7 @@
 //
 
 #include <array>
+#include <forward_list>
 #include <iostream>
 #include <iterator>
 #include <list>
