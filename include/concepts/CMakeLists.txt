@@ -6,7 +6,6 @@ add_library(VCCC::concepts ALIAS vccc_concepts)
 
 target_include_directories(vccc_concepts INTERFACE include)
 target_link_libraries(vccc_concepts INTERFACE
-    VCCC::algorithm
     VCCC::functional
     VCCC::type_traits
     VCCC::utility)
