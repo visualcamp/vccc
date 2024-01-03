@@ -10,7 +10,6 @@ target_link_libraries(vccc_iterator INTERFACE
     VCCC::type_traits
     VCCC::concepts
     VCCC::memory
-    VCCC::ranges # TODO: Remove circular dependency
     )
 
 if(VCCC_RUN_TEST)
