@@ -9,5 +9,6 @@
 #include "vccc/core/constexpr.hpp"
 #include "vccc/core/decay_copy.hpp"
 #include "vccc/core/inline_or_static.hpp"
+#include "vccc/core/nodiscard.hpp"
 
 #endif // VCCC_CORE_HPP_
