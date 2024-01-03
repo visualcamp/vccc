@@ -9,7 +9,7 @@
 #include <utility>
 
 #include "vccc/core.hpp"
-#include "vccc/algorithm/swap_ranges.hpp"
+// #include "vccc/algorithm/swap_ranges.hpp"
 #include "vccc/concepts/assignable_from.hpp"
 #include "vccc/concepts/move_constructible.hpp"
 #include "vccc/type_traits/detail/tag.hpp"
