@@ -14,6 +14,7 @@
 #include <vector>
 
 #include "vccc/iterator.hpp"
+#include "vccc/ranges.hpp"
 
 template<class T>
 struct Holder {
