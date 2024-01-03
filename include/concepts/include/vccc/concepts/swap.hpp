@@ -81,9 +81,6 @@ constexpr void swap_impl(T&& t, U&& u, tag_1)
   detail_ranges_swap::do_swap(std::forward<T>(t), std::forward<U>(u));
 }
 
-template<typename T, typename U, std::size_t N>
-constexpr void swap_impl(T(&t)[N], U(&u)[N], tag_2) noexcept(noexcept((void)ranges::swap_ranges(t, u)));
-
 template<typename V>
 constexpr void swap_impl(V& t, V& u, tag_3)
     noexcept(std::is_nothrow_move_constructible<V>::value && std::is_nothrow_move_assignable<V>::value)
@@ -92,6 +89,9 @@ constexpr void swap_impl(V& t, V& u, tag_3)
   t = std::move(u);
   u = std::move(temp);
 }
+
+template<typename T, typename U, std::size_t N>
+constexpr void swap_impl(T(&t)[N], U(&u)[N], tag_2) noexcept(noexcept((void)swap_impl(*t, *u, swap_category_tag<decltype(*t), decltype(*u)>{})));
 
 struct swap_niebloid {
   template<typename T, typename U>
@@ -132,13 +132,13 @@ namespace detail {
 template<typename T, typename U, std::size_t N>
 struct ranges_swap_array<T(&)[N], U(&)[N], void_t<decltype(ranges::swap(*std::declval<T(&)[N]>(), *std::declval<U(&)[N]>()))>>
     : bool_constant<
-        noexcept( (void) ranges::swap_ranges( std::declval<T(&)[N]>(), std::declval<U(&)[N]>() ) ) ==
+        // noexcept( (void) ranges::swap_ranges( std::declval<T(&)[N]>(), std::declval<U(&)[N]>() ) ) ==
         noexcept( ranges::swap( *std::declval<T(&)[N]>(), *std::declval<U(&)[N]>() ) )
       > {};
 
 
 template<typename T, typename U, std::size_t N>
-constexpr void swap_impl(T(&t)[N], U(&u)[N], tag_2) noexcept(noexcept((void)ranges::swap_ranges(t, u))) {
+constexpr void swap_impl(T(&t)[N], U(&u)[N], tag_2) noexcept(noexcept((void)swap_impl(*t, *u, swap_category_tag<decltype(*t), decltype(*u)>{}))) {
   for (std::size_t i = 0; i < N; ++i) {
     ranges::swap(t + i, u + i);
   }
