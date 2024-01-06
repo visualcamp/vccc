@@ -254,7 +254,7 @@ take_view(R&&, ranges::range_difference_t<R>) -> take_view<views::all_t<R>>;
 #endif
 
 template<typename T>
-struct ranges::enable_borrowed_range<take_view<T>> : ranges::enable_borrowed_range<T> {};
+struct enable_borrowed_range<take_view<T>> : ranges::enable_borrowed_range<T> {};
 
 } // namespace ranges
 } // namespace vccc
