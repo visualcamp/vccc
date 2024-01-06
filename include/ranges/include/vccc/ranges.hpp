@@ -23,6 +23,7 @@
 #include "vccc/ranges/enable_view.hpp"
 #include "vccc/ranges/end.hpp"
 #include "vccc/ranges/forward_range.hpp"
+#include "vccc/ranges/from_range.hpp"
 #include "vccc/ranges/input_range.hpp"
 #include "vccc/ranges/iterator_t.hpp"
 #include "vccc/ranges/movable_box.hpp"

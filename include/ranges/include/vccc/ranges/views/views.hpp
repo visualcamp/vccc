@@ -9,5 +9,7 @@
 #include "vccc/ranges/views/empty_view.hpp"
 #include "vccc/ranges/views/iota_view.hpp"
 #include "vccc/ranges/views/single.hpp"
+#include "vccc/ranges/views/take.hpp"
+#include "vccc/ranges/views/take_view.hpp"
 
 #endif // VCCC_RANGES_VIEWS_VIEWS_HPP_
