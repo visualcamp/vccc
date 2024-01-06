@@ -7,6 +7,7 @@
 #include <iostream>
 #include <iterator>
 #include <list>
+#include <map>
 #include <string>
 #include <tuple>
 #include <type_traits>
@@ -246,6 +247,47 @@ int main() {
 
     auto size = vccc::ranges::distance(l); // OK, but aware O(N) complexity
     TEST_ENSURES(size == 3);
+  }
+
+  {
+    std::multimap<int, char> mm{{4, 'a'}, {3, '-'}, {4, 'b'}, {5, '-'}, {4, 'c'}};
+    auto mutate = [](auto& v) {
+      v += 'A' - 'a';
+    };
+
+#if __cplusplus < 201703L
+    auto print = [](const auto& rem, const auto& mm) {
+      std::cout << rem << "{ ";
+      for (const auto& kv : mm)
+        std::cout << '{' << kv.first << ",'" << kv.second << "'} ";
+      std::cout << "}\n";
+    };
+
+    print("Before: ", mm);
+    auto r = mm.equal_range(4);
+    for (auto& p : vccc::ranges::make_subrange(r.first, r.second)) {
+      mutate(p.second);
+    }
+    print("After:  ", mm);
+#else
+    auto print = [](const auto& rem, const auto& mm) {
+      std::cout << rem << "{ ";
+      for (const auto& [k, v] : mm)
+        std::cout << '{' << k << ",'" << v << "'} ";
+      std::cout << "}\n";
+    };
+
+    print("Before: ", mm);
+    auto [first, last] = mm.equal_range(4);
+    for (auto& [_, v] : vccc::ranges::make_subrange(first, last)) {
+      mutate(v);
+    }
+    std::cout << "After:  " << "{ ";
+    for (const auto& [k, v] : vccc::ranges::subrange(mm))
+        std::cout << '{' << k << ",'" << v << "'} ";
+    std::cout << "}\n";
+#endif
+
   }
 
   return TEST_RETURN_RESULT;
