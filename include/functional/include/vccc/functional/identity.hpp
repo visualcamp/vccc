@@ -5,6 +5,7 @@
 #ifndef VCCC_FUNCTIONAL_IDENTITY_HPP
 #define VCCC_FUNCTIONAL_IDENTITY_HPP
 
+#include <type_traits>
 #include <utility>
 
 namespace vccc {
@@ -27,7 +28,7 @@ struct identity {
     return std::forward<T>(t);
   }
 
-  static constexpr bool is_transparent = true;
+  using is_transparent = std::true_type;
 };
 
 /// @}
