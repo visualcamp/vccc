@@ -9,6 +9,7 @@
 #include <utility>
 
 #include "vccc/concepts/totally_ordered.hpp"
+#include "vccc/utility/cxx20_rel_ops.hpp"
 
 namespace vccc {
 namespace ranges {
@@ -23,6 +24,7 @@ struct less {
   constexpr bool operator()(T&& t, U&& u) const
       noexcept(noexcept(bool(std::forward<T>(t) < std::forward<U>(u))))
   {
+    using namespace vccc::rel_ops;
     return std::forward<T>(t) < std::forward<U>(u);
   }
 };
