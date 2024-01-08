@@ -272,7 +272,7 @@ class iota_view
       negation<is_unsigned_integer_like<W>>
     >::value, int> = 0>
     constexpr iterator& operator+=(difference_type n) {
-      value_ += n;
+      value_ += static_cast<W>(n);
       return *this;
     }
 
