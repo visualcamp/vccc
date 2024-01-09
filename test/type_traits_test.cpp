@@ -112,5 +112,11 @@ int main() {
     static_assert(vccc::is_initializer_list<const volatile std::initializer_list<int>&&>::value, "");
   }
 
+  {
+    static_assert(vccc::is_implicitly_convertible<void, void>::value, "");
+    static_assert(vccc::is_implicitly_convertible<void, const void>::value, "");
+    static_assert(vccc::is_implicitly_convertible<void, int>::value == false, "");
+  }
+
   return TEST_RETURN_RESULT;
 }

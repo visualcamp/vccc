@@ -28,6 +28,7 @@
 # include "vccc/__type_traits/has_typename_value_type.hpp"
 # include "vccc/__type_traits/is_bounded_array.hpp"
 # include "vccc/__type_traits/is_complete.hpp"
+# include "vccc/__type_traits/is_explicitly_convertible.hpp"
 # include "vccc/__type_traits/is_initializer_list.hpp"
 # include "vccc/__type_traits/is_integer_like.hpp"
 # include "vccc/__type_traits/is_invocable.hpp"
