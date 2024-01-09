@@ -35,6 +35,7 @@
 #include "vccc/__iterator/indirectly_readable.hpp"
 #include "vccc/__iterator/indirectly_readable_traits.hpp"
 #include "vccc/__iterator/indirectly_regular_unary_invocable.hpp"
+#include "vccc/__iterator/indirectly_swappable.hpp"
 #include "vccc/__iterator/indirectly_unary_invocable.hpp"
 #include "vccc/__iterator/indirectly_writable.hpp"
 #include "vccc/__iterator/input_iterator.hpp"
