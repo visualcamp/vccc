@@ -8,6 +8,7 @@
 #include <type_traits>
 
 #include "vccc/__type_traits/conjunction.hpp"
+#include "vccc/__type_traits/is_explicitly_convertible.hpp"
 
 namespace vccc {
 
@@ -33,7 +34,7 @@ template<typename From, typename To>
 struct convertible_to :
     conjunction<
       std::is_convertible<From, To>,
-      std::is_constructible<To, From>
+      is_explicitly_convertible<From, To>
     > {};
 
 /// @}
