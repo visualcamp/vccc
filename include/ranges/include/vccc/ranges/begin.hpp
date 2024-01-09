@@ -70,7 +70,7 @@ struct begin_category
     : std::conditional_t<
         disjunction<
           std::is_lvalue_reference<T>,
-          enable_borrowed_range<std::remove_cv_t<T>>
+          enable_borrowed_range<remove_cvref_t<T>>
         >::value,
         begin_category_impl<T>,
         return_category<0>

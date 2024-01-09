@@ -28,6 +28,8 @@
 #include "vccc/iterator/indirect_result_t.hpp"
 #include "vccc/iterator/indirect_strict_weak_order.hpp"
 #include "vccc/iterator/indirectly_comparable.hpp"
+#include "vccc/iterator/indirectly_copyable.hpp"
+#include "vccc/iterator/indirectly_copyable_storable.hpp"
 #include "vccc/iterator/indirectly_readable.hpp"
 #include "vccc/iterator/indirectly_readable_traits.hpp"
 #include "vccc/iterator/indirectly_regular_unary_invocable.hpp"

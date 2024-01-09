@@ -10,8 +10,17 @@ target_link_libraries(vccc_ranges INTERFACE
     VCCC::iterator
     VCCC::memory
     VCCC::optional
+    VCCC::span
+    VCCC::string_view
+    VCCC::tuple
     VCCC::type_traits
 )
+
+if (MSVC)
+    target_compile_options(vccc_ranges INTERFACE /Zc:__cplusplus)
+    target_compile_options(vccc_ranges INTERFACE /Zc:ternary)
+    target_compile_options(vccc_ranges INTERFACE /permissive-)
+endif ()
 
 if(VCCC_RUN_TEST)
     add_subdirectory(test)

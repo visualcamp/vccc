@@ -7,6 +7,7 @@
 #include <iostream>
 #include <iterator>
 #include <list>
+#include <map>
 #include <string>
 #include <tuple>
 #include <type_traits>
@@ -14,6 +15,7 @@
 #include <vector>
 
 #include "vccc/ranges.hpp"
+#include "vccc/span.hpp"
 #include "vccc/test.hpp"
 
 struct IntLike {
@@ -246,6 +248,80 @@ int main() {
 
     auto size = vccc::ranges::distance(l); // OK, but aware O(N) complexity
     TEST_ENSURES(size == 3);
+  }
+
+  {
+    std::multimap<int, char> mm{{4, 'a'}, {3, '-'}, {4, 'b'}, {5, '-'}, {4, 'c'}};
+    auto mutate = [](auto& v) {
+      v += 'A' - 'a';
+    };
+
+#if __cplusplus < 201703L
+    auto print = [](const auto& rem, const auto& mm) {
+      std::cout << rem << "{ ";
+      for (const auto& kv : mm)
+        std::cout << '{' << kv.first << ",'" << kv.second << "'} ";
+      std::cout << "}\n";
+    };
+
+    print("Before: ", mm);
+    auto r = mm.equal_range(4);
+    for (auto& p : vccc::ranges::make_subrange(r.first, r.second)) {
+      mutate(p.second);
+    }
+    print("After:  ", mm);
+#else
+    auto print = [](const auto& rem, const auto& mm) {
+      std::cout << rem << "{ ";
+      for (const auto& [k, v] : mm)
+        std::cout << '{' << k << ",'" << v << "'} ";
+      std::cout << "}\n";
+    };
+
+    print("Before: ", mm);
+    auto [first, last] = mm.equal_range(4);
+    for (auto& [_, v] : vccc::ranges::make_subrange(first, last)) {
+      mutate(v);
+    }
+    std::cout << "After:  " << "{ ";
+    for (const auto& [k, v] : vccc::ranges::subrange(mm))
+        std::cout << '{' << k << ",'" << v << "'} ";
+    std::cout << "}\n";
+#endif
+  }
+
+  {
+    std::vector<int> v = {1, 2, 3};
+
+    for (auto x : vccc::views::take(v, 2)) {
+      std::cout << x << ' ';
+    }
+    std::cout << '\n';
+
+    for (auto x : vccc::views::take(v, 982)) {
+      std::cout << x << ' ';
+    }
+    std::cout << '\n';
+
+    std::cout << __FILE__ << ", " << __LINE__ << ": ";
+    for (auto x : vccc::views::iota(10, 20) | vccc::views::take(7)) {
+      std::cout << x << ' ';
+    }
+    std::cout << '\n';
+
+    std::cout << __FILE__ << ", " << __LINE__ << ": ";
+    vccc::span<int> s = v;
+    auto r = vccc::views::take(s, 4) | vccc::views::take(2) | vccc::views::take(2) | vccc::views::take(999);
+    for (auto x : r) {
+      std::cout << x << ' ';
+    }
+    std::cout << '\n';
+
+    std::cout << __FILE__ << ", " << __LINE__ << ": ";
+    for (const auto& x : vccc::views::take(vccc::ranges::make_subrange(s.begin() + 1, s.end()), 10)) {
+      std::cout << x << ' ';
+    }
+    std::cout << '\n';
   }
 
   return TEST_RETURN_RESULT;

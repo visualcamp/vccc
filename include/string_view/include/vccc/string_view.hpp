@@ -15,6 +15,10 @@
 #include <string>
 #include <ostream>
 
+#if __cplusplus >= 201703L
+#include <string_view>
+#endif
+
 #include "vccc/functional/hash_array.hpp"
 #include "vccc/iterator/contiguous_iterator.hpp"
 #include "vccc/iterator/sized_sentinel_for.hpp"
@@ -166,6 +170,17 @@ class basic_string_view {
     throw std::runtime_error("Cannot construct vccc::string_view from std::string&&");
 #endif
   }
+
+#if __cplusplus < 201703L
+  // Substitutaion for std::basic_string::basic_string(StringViewLike, ...)
+  explicit operator std::basic_string<CharT, Traits>() const {
+    return std::basic_string<CharT, Traits>(data(), size());
+  }
+#else
+  operator std::basic_string_view<CharT, Traits>() const {
+    return std::basic_string_view<CharT, Traits>(data(), size());
+  }
+#endif
 
   constexpr basic_string_view(std::nullptr_t) = delete;
   /// @}
