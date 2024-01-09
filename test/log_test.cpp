@@ -11,8 +11,8 @@
 #include <map>
 #include <tuple>
 #include <utility>
-#include <vccc/log.hpp>
-#include <vccc/test.hpp>
+#include "vccc/log.hpp"
+#include "test_core.hpp"
 
 
 struct foo {};

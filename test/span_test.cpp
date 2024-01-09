@@ -13,7 +13,7 @@
 #include <vector>
 
 #include "vccc/span.hpp"
-#include "vccc/test.hpp"
+#include "test_core.hpp"
 
 namespace {
 

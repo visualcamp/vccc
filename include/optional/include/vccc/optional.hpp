@@ -5,11 +5,11 @@
 # ifndef VCCC_OPTIONAL_HPP
 # define VCCC_OPTIONAL_HPP
 #
-# include "vccc/optional/bad_optional_access.h"
-# include "vccc/optional/hash.h"
-# include "vccc/optional/nullopt_t.h"
-# include "vccc/optional/optional.h"
-# include "vccc/optional/swap.h"
+# include "vccc/__optional/bad_optional_access.h"
+# include "vccc/__optional/hash.h"
+# include "vccc/__optional/nullopt_t.h"
+# include "vccc/__optional/optional.h"
+# include "vccc/__optional/swap.h"
 
 /**
 @defgroup optional optional

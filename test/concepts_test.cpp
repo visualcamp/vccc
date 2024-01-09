@@ -8,7 +8,7 @@
 
 #include "vccc/concepts.hpp"
 
-#include <vccc/type_traits/has_typename_value_type.hpp>
+#include <vccc/__type_traits/has_typename_value_type.hpp>
 
 namespace {
 

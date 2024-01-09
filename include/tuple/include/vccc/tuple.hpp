@@ -5,10 +5,10 @@
 # ifndef VCCC_TUPLE_HPP
 # define VCCC_TUPLE_HPP
 #
-# include "vccc/tuple/apply.hpp"
-# include "vccc/tuple/common_type.hpp"
-# include "vccc/tuple/make_from_tuple.hpp"
-# include "vccc/tuple/tuple_like.hpp"
+# include "vccc/__tuple/apply.hpp"
+# include "vccc/__tuple/common_type.hpp"
+# include "vccc/__tuple/make_from_tuple.hpp"
+# include "vccc/__tuple/tuple_like.hpp"
 
 /**
 @defgroup tuple tuple

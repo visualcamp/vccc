@@ -5,12 +5,12 @@
 # ifndef VCCC_VCCC_NUMERIC_HPP
 # define VCCC_VCCC_NUMERIC_HPP
 #
-# include "numeric/average.hpp"
-# include "numeric/float_equal.hpp"
-# include "numeric/lossless_div.hpp"
-# include "numeric/sum.hpp"
-# include "numeric/stddev.hpp"
-# include "numeric/norm.hpp"
+# include "vccc/__numeric/average.hpp"
+# include "vccc/__numeric/float_equal.hpp"
+# include "vccc/__numeric/lossless_div.hpp"
+# include "vccc/__numeric/sum.hpp"
+# include "vccc/__numeric/stddev.hpp"
+# include "vccc/__numeric/norm.hpp"
 
 /**
 @defgroup numeric numeric

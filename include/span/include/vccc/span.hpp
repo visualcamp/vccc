@@ -5,10 +5,10 @@
 #ifndef VCCC_SPAN_H
 #define VCCC_SPAN_H
 
-#include "vccc/span/as_bytes.hpp"
-#include "vccc/span/dynamic_extent.hpp"
-#include "vccc/span/span.hpp"
-#include "vccc/type_traits/core/size.hpp"
+#include "vccc/__span/as_bytes.hpp"
+#include "vccc/__span/dynamic_extent.hpp"
+#include "vccc/__span/span.hpp"
+#include "vccc/__type_traits/core/size.hpp"
 
 /**
 @defgroup span span

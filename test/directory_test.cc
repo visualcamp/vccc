@@ -6,7 +6,7 @@
 #include <filesystem>
 
 #include "vccc/directory.hpp"
-#include "vccc/test.hpp"
+#include "test_core.hpp"
 
 namespace fs = std::filesystem;
 

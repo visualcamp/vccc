@@ -5,10 +5,10 @@
 # ifndef VCCC_FUNCTIONAL_FUNCTIONAL_HPP
 # define VCCC_FUNCTIONAL_FUNCTIONAL_HPP
 #
-# include "vccc/functional/hash_array.hpp"
-# include "vccc/functional/identity.hpp"
-# include "vccc/functional/invoke.hpp"
-# include "vccc/functional/less.hpp"
+# include "vccc/__functional/hash_array.hpp"
+# include "vccc/__functional/identity.hpp"
+# include "vccc/__functional/invoke.hpp"
+# include "vccc/__functional/less.hpp"
 
 /**
 @defgroup functional functional

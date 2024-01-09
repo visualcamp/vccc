@@ -10,7 +10,7 @@
 #include <functional>
 
 #include "vccc/signal.hpp"
-#include "vccc/test.hpp"
+#include "test_core.hpp"
 #include "vccc/log.hpp"
 
 using namespace std::chrono_literals;

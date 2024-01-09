@@ -16,7 +16,7 @@
 
 #include "vccc/ranges.hpp"
 #include "vccc/span.hpp"
-#include "vccc/test.hpp"
+#include "test_core.hpp"
 
 struct IntLike {
   int v;

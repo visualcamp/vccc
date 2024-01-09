@@ -8,8 +8,8 @@
 #include <type_traits>
 #include <utility>
 
-#include "vccc/t.hpp"
-#include "vccc/test.hpp"
+#include "vccc/tuple.hpp"
+#include "test_core.hpp"
 
 namespace vccc {
 namespace {

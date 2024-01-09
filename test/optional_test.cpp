@@ -3,8 +3,8 @@
 //
 
 #include <iostream>
-#include <vccc/optional.hpp>
-#include <vccc/test.hpp>
+#include "vccc/optional.hpp"
+#include "test_core.hpp"
 
 struct CopyConstructableTrivially {
   CopyConstructableTrivially() = default;

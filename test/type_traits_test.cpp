@@ -8,8 +8,8 @@
 #include <utility>
 
 #include "vccc/type_traits.hpp"
-#include "vccc/type_traits/common_reference.hpp"
-#include "vccc/test.hpp"
+#include "vccc/__type_traits/common_reference.hpp"
+#include "test_core.hpp"
 
 template<typename T1, typename T2, typename = void>
 struct ter_impl {};

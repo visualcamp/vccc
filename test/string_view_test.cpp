@@ -10,7 +10,7 @@
 
 #include "vccc/ranges.hpp"
 #include "vccc/string_view.hpp"
-#include "vccc/test.hpp"
+#include "test_core.hpp"
 
 namespace vccc {
 namespace {
