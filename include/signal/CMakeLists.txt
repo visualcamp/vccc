@@ -6,8 +6,7 @@ add_library(VCCC::signal ALIAS vccc_signal)
 
 target_include_directories(vccc_signal INTERFACE include)
 
-if (UNIX AND NOT APPLE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
-endif()
-
 target_link_libraries(vccc_signal INTERFACE VCCC)
+if (UNIX AND NOT APPLE)
+    target_compile_options(vccc_signal INTERFACE -fopenmp)
+endif()
