@@ -5,6 +5,8 @@
 #ifndef VCCC_ITERATOR_INDIRECTLY_MOVABLE_HPP
 #define VCCC_ITERATOR_INDIRECTLY_MOVABLE_HPP
 
+#include <type_traits>
+
 #include "vccc/__iterator/indirectly_readable.hpp"
 #include "vccc/__iterator/indirectly_writable.hpp"
 #include "vccc/__iterator/iter_rvalue_reference_t.hpp"
