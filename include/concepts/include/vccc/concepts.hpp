@@ -37,6 +37,7 @@
 #include "vccc/__concepts/subtractable.hpp"
 #include "vccc/__concepts/swap.hpp"
 #include "vccc/__concepts/swappable.hpp"
+#include "vccc/__concepts/swappable_with.hpp"
 #include "vccc/__concepts/totally_ordered.hpp"
 #include "vccc/__concepts/unsigned_integral.hpp"
 #include "vccc/__concepts/weakly_equality_comparable_with.hpp"
