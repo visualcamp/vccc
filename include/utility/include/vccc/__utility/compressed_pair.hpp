@@ -24,10 +24,10 @@ struct compressed_slot {
   template<typename U, std::enable_if_t<std::is_same<std::decay_t<U>, compressed_slot>::value == false, int> = 0>
   constexpr compressed_slot(U&& u) : value_(std::forward<U>(u)) {}
 
-  constexpr T&        get() & noexcept { return value_; }
-  constexpr T&&       get() && noexcept { return std::move(value_); }
-  constexpr const T&  get() const & noexcept { return value_; }
-  constexpr const T&& get() const && noexcept { return std::move(value_); }
+  template<std::size_t I> constexpr std::enable_if_t<(I == index), T&>        get() & noexcept { return value_; }
+  template<std::size_t I> constexpr std::enable_if_t<(I == index), T&&>       get() && noexcept { return std::move(value_); }
+  template<std::size_t I> constexpr std::enable_if_t<(I == index), const T&>  get() const & noexcept { return value_; }
+  template<std::size_t I> constexpr std::enable_if_t<(I == index), const T&&> get() const && noexcept { return std::move(value_); }
 
  private:
   T value_;
@@ -40,10 +40,10 @@ struct compressed_slot<T, index, true> : public T {
   template<typename U, std::enable_if_t<std::is_same<std::decay_t<U>, compressed_slot>::value == false, int> = 0>
   constexpr compressed_slot(U&& u) : T(std::forward<U>(u)) {}
 
-  constexpr T& get() & noexcept { return static_cast<T&>(*this); }
-  constexpr T&& get() && noexcept { return static_cast<T&&>(*this); }
-  constexpr const T& get() const & noexcept { return static_cast<const T&>(*this); }
-  constexpr const T&& get() const && noexcept { return static_cast<const T&&>(*this); }
+  template<std::size_t I> constexpr std::enable_if_t<(I == index), T&> get() & noexcept { return static_cast<T&>(*this); }
+  template<std::size_t I> constexpr std::enable_if_t<(I == index), T&&> get() && noexcept { return static_cast<T&&>(*this); }
+  template<std::size_t I> constexpr std::enable_if_t<(I == index), const T&> get() const & noexcept { return static_cast<const T&>(*this); }
+  template<std::size_t I> constexpr std::enable_if_t<(I == index), const T&&> get() const && noexcept { return static_cast<const T&&>(*this); }
 };
 
 } // namespace detail
@@ -68,6 +68,8 @@ class compressed_pair : private detail::compressed_slot<T, 0>, private detail::c
  public:
   using first_type = T;
   using second_type = U;
+  using first_base::get;
+  using second_base::get;
 
   constexpr compressed_pair() = default;
 
@@ -83,15 +85,15 @@ class compressed_pair : private detail::compressed_slot<T, 0>, private detail::c
   >::value, int> = 0>
   constexpr compressed_pair(T2&& t, U2&& u) : first_base(std::forward<T2>(t)), second_base(std::forward<U2>(u)) {}
 
-  constexpr T& first() & noexcept { return first_base::get(); }
-  constexpr T&& first() && noexcept { return std::move(first_base::get()); }
-  constexpr const T& first() const & noexcept { return first_base::get(); }
-  constexpr const T&& first() const && noexcept { return std::move(first_base::get()); }
+  constexpr T& first() & noexcept { return get<0>(); }
+  constexpr T&& first() && noexcept { return std::move(get<0>()); }
+  constexpr const T& first() const & noexcept { return get<0>(); }
+  constexpr const T&& first() const && noexcept { return std::move(get<0>()); }
 
-  constexpr U& second() & noexcept { return second_base::get(); }
-  constexpr U&& second() && noexcept { return std::move(second_base::get()); }
-  constexpr const U& second() const & noexcept { return second_base::get(); }
-  constexpr const U&& second() const && noexcept { return std::move(second_base::get()); }
+  constexpr U& second() & noexcept { return get<1>(); }
+  constexpr U&& second() && noexcept { return std::move(get<1>()); }
+  constexpr const U& second() const & noexcept { return get<1>(); }
+  constexpr const U&& second() const && noexcept { return std::move(get<1>()); }
 
   constexpr std::enable_if_t<conjunction<is_swappable<T>, is_swappable<U>>::value>
   swap(compressed_pair& other)
