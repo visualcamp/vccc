@@ -131,8 +131,8 @@ struct invoke_concrete : invoke_impl<invoke_tag_1::function_object, invoke_tag_2
 
 template<typename F, typename T1, typename ...Ts>
 struct invoke_concrete<F, T1, Ts...> : invoke_impl<
-    get_invoke_tag_1<F>::value,
-    get_invoke_tag_2<typename get_class_type_or<remove_cvref_t<F>>::type, T1>::value> {};
+    get_invoke_tag_1<std::decay_t<F>>::value,
+    get_invoke_tag_2<typename get_class_type_or<std::decay_t<F>>::type, std::decay_t<T1>>::value> {};
 
 
 template<typename F, typename ...Args>
