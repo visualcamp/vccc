@@ -30,6 +30,7 @@
 #include "vccc/__iterator/indirectly_comparable.hpp"
 #include "vccc/__iterator/indirectly_copyable.hpp"
 #include "vccc/__iterator/indirectly_copyable_storable.hpp"
+#include "vccc/__iterator/indirectly_movable.hpp"
 #include "vccc/__iterator/indirectly_readable.hpp"
 #include "vccc/__iterator/indirectly_readable_traits.hpp"
 #include "vccc/__iterator/indirectly_regular_unary_invocable.hpp"
