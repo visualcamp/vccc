@@ -50,7 +50,7 @@ struct min_element_niebloid {
 
     auto it = first;
     for (++first; first != last; ++first) {
-      if (!vccc::invoke(comp, vccc::invoke(proj, *it), vccc::invoke(proj, *first)))
+      if (vccc::invoke(comp, vccc::invoke(proj, *first), vccc::invoke(proj, *it)))
         it = first;
     }
     return it;
@@ -66,7 +66,12 @@ struct min_element_niebloid {
 
 } // namespace detail
 
+/// @addtogroup algorithm
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::min_element_niebloid min_element{};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc
