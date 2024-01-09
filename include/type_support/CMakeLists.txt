@@ -11,7 +11,3 @@ if(VCCC_USE_OPENCV_FEATURES)
 else()
     target_compile_definitions(vccc_type_support INTERFACE VCCC_USE_OPENCV_FEATURES=0)
 endif()
-
-if(VCCC_RUN_TEST)
-    add_subdirectory(test)
-endif()

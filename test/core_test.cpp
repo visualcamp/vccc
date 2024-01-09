@@ -7,6 +7,7 @@
 #include <array>
 
 #include "vccc/core.hpp"
+
 extern int bar(const char *a, int b);
 void foo(int x);
 #define BAR(a, b) ({ static_assert((b), "failed"); bar((a), (b));})

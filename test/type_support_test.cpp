@@ -2,9 +2,9 @@
 // Created by YongGyu Lee on 2021/02/03.
 //
 
-#include "test_core.hpp"
+#include "../include/type_support/test/test_core.hpp"
 #include <cmath>
-#include <vccc/type_support.hpp>
+#include <../include/type_support/include/vccc/type_support.hpp>
 #include <array>
 #include <vector>
 

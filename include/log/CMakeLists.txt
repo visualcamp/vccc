@@ -12,7 +12,3 @@ if(ANDROID)
 else()
     target_link_libraries(vccc_log INTERFACE VCCC Boost::predef Boost::pfr)
 endif()
-
-if(VCCC_RUN_TEST)
-    add_subdirectory(test)
-endif()

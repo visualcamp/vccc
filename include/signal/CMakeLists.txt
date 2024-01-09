@@ -11,7 +11,3 @@ if (UNIX AND NOT APPLE)
 endif()
 
 target_link_libraries(vccc_signal INTERFACE VCCC)
-
-if(VCCC_RUN_TEST)
-    add_subdirectory(test)
-endif()

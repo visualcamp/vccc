@@ -71,22 +71,22 @@ endif ()
 
 
 target_include_directories(vccc INTERFACE
-    "${CMAKE_CURRENT_LIST_DIR}/algorithm/include"
-    "${CMAKE_CURRENT_LIST_DIR}/concepts/include"
-    "${CMAKE_CURRENT_LIST_DIR}/core/include"
-    "${CMAKE_CURRENT_LIST_DIR}/functional/include"
-    "${CMAKE_CURRENT_LIST_DIR}/iterator/include"
-    "${CMAKE_CURRENT_LIST_DIR}/literal/include"
-    "${CMAKE_CURRENT_LIST_DIR}/memory/include"
-    "${CMAKE_CURRENT_LIST_DIR}/numeric/include"
-    "${CMAKE_CURRENT_LIST_DIR}/optional/include"
-    "${CMAKE_CURRENT_LIST_DIR}/ranges/include"
-    "${CMAKE_CURRENT_LIST_DIR}/signal/include"
-    "${CMAKE_CURRENT_LIST_DIR}/span/include"
-    "${CMAKE_CURRENT_LIST_DIR}/string_view/include"
-    "${CMAKE_CURRENT_LIST_DIR}/tuple/include"
-    "${CMAKE_CURRENT_LIST_DIR}/type_traits/include"
-    "${CMAKE_CURRENT_LIST_DIR}/utility/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/algorithm/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/concepts/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/core/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/functional/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/iterator/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/literal/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/memory/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/numeric/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/optional/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/ranges/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/signal/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/span/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/string_view/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/tuple/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/type_traits/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include/utility/include"
 )
 
 add_subdirectory(include/directory)
@@ -104,3 +104,7 @@ target_link_libraries(vccc INTERFACE
     VCCC::signal
     VCCC::type_support
 )
+
+if(VCCC_RUN_TEST)
+    add_subdirectory(test)
+endif()
