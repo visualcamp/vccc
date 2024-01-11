@@ -26,9 +26,9 @@ template<typename T> struct is_primary_iterator_traits<std::iterator_traits<T>> 
 template<typename T> struct is_primary_iterator_traits<std::iterator_traits<T*>> : std::false_type {};
 #if __cplusplus >= 202002L
 template<typename I>
-struct is_primary_iterator_traits<std::counted_iterator<I>> : is_primary_iterator_traits<I> {};
+struct is_primary_iterator_traits<cxx20_iterator_traits<std::counted_iterator<I>>> : is_primary_iterator_traits<I> {};
 template<typename I, typename S>
-struct is_primary_iterator_traits<std::common_iterator<I, S>> : std::false_type {};
+struct is_primary_iterator_traits<cxx20_iterator_traits<std::common_iterator<I, S>>> : std::false_type {};
 #endif
 
 template<typename T> struct is_primary_iterator_traits<cxx20_iterator_traits<T>> : std::true_type {};

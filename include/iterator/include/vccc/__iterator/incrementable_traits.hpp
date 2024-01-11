@@ -6,6 +6,7 @@
 #define VCCC_ITERATOR_INCREMENTABLE_TRAITS_HPP_
 
 #include <cstddef>
+#include <iterator>
 #include <type_traits>
 
 #include "vccc/__concepts/subtractable.hpp"
@@ -61,7 +62,32 @@ struct incrementable_traits_impl<T*>
         empty
       > {};
 
+#if __cplusplus < 202002L
+template<typename T>
+struct incrementable_traits_impl<std::back_insert_iterator<T>> {
+  using difference_type = std::ptrdiff_t;
+};
 
+template<typename T>
+struct incrementable_traits_impl<std::front_insert_iterator<T>> {
+  using difference_type = std::ptrdiff_t;
+};
+
+template<typename T>
+struct incrementable_traits_impl<std::insert_iterator<T>> {
+  using difference_type = std::ptrdiff_t;
+};
+
+template<typename T>
+struct incrementable_traits_impl<std::ostream_iterator<T>> {
+  using difference_type = std::ptrdiff_t;
+};
+
+template<typename T>
+struct incrementable_traits_impl<std::ostreambuf_iterator<T>> {
+  using difference_type = std::ptrdiff_t;
+};
+#endif
 
 } // namespace detail
 
