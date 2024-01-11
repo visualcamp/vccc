@@ -85,15 +85,15 @@ class compressed_pair : private detail::compressed_slot<T, 0>, private detail::c
   >::value, int> = 0>
   constexpr compressed_pair(T2&& t, U2&& u) : first_base(std::forward<T2>(t)), second_base(std::forward<U2>(u)) {}
 
-  constexpr T& first() & noexcept { return get<0>(); }
-  constexpr T&& first() && noexcept { return std::move(get<0>()); }
-  constexpr const T& first() const & noexcept { return get<0>(); }
-  constexpr const T&& first() const && noexcept { return std::move(get<0>()); }
+  constexpr T& first() & noexcept { return first_base::template get<0>(); }
+  constexpr T&& first() && noexcept { return std::move(first_base::template get<0>()); }
+  constexpr const T& first() const & noexcept { return first_base::template get<0>(); }
+  constexpr const T&& first() const && noexcept { return std::move(first_base::template get<0>()); }
 
   constexpr U& second() & noexcept { return get<1>(); }
-  constexpr U&& second() && noexcept { return std::move(get<1>()); }
-  constexpr const U& second() const & noexcept { return get<1>(); }
-  constexpr const U&& second() const && noexcept { return std::move(get<1>()); }
+  constexpr U&& second() && noexcept { return std::move(second_base::template get<1>()); }
+  constexpr const U& second() const & noexcept { return second_base::template get<1>(); }
+  constexpr const U&& second() const && noexcept { return std::move(second_base::template get<1>()); }
 
   constexpr std::enable_if_t<conjunction<is_swappable<T>, is_swappable<U>>::value>
   swap(compressed_pair& other)
