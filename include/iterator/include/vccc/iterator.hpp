@@ -27,6 +27,7 @@
 #include "vccc/__iterator/indirect_binary_predicate.hpp"
 #include "vccc/__iterator/indirect_result_t.hpp"
 #include "vccc/__iterator/indirect_strict_weak_order.hpp"
+#include "vccc/__iterator/indirect_unary_predicate.hpp"
 #include "vccc/__iterator/indirectly_comparable.hpp"
 #include "vccc/__iterator/indirectly_copyable.hpp"
 #include "vccc/__iterator/indirectly_copyable_storable.hpp"
