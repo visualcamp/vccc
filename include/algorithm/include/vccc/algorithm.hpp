@@ -5,6 +5,7 @@
 #ifndef VCCC_ALGORITHM_HPP
 #define VCCC_ALGORITHM_HPP
 
+#include "vccc/__algorithm/equal.hpp"
 #include "vccc/__algorithm/for_each.hpp"
 #include "vccc/__algorithm/in_fun_result.hpp"
 #include "vccc/__algorithm/min.hpp"
