@@ -3,6 +3,7 @@
 //
 
 #include <array>
+#include <cctype>
 #include <forward_list>
 #include <iostream>
 #include <iterator>
@@ -61,6 +62,22 @@ struct Bound
   int bound;
   bool operator==(int x) const { return x == bound; }
 };
+
+char rot13a(const char x, const char a)
+{
+  return a + (x - a + 13) % 26;
+}
+
+char rot13(const char x)
+{
+  if ('Z' >= x and x >= 'A')
+    return rot13a(x, 'A');
+
+  if ('z' >= x and x >= 'a')
+    return rot13a(x, 'a');
+
+  return x;
+}
 
 int main() {
   INIT_TEST("vccc::ranges")
@@ -339,6 +356,49 @@ int main() {
       std::cout << x << ' ';
     }
     std::cout << '\n';
+  }
+
+  { // transform_view
+    std::string s = "The length of this string is 42 characters";
+    auto tv = vccc::ranges::make_transform_view(s, [](char c) -> char {
+      return std::toupper(c);
+    });
+
+    TEST_ENSURES(vccc::ranges::equal(tv, std::string("THE LENGTH OF THIS STRING IS 42 CHARACTERS")));
+    TEST_ENSURES(tv.size() == 42);
+
+    std::cout << __FILE__ << ", " << __LINE__ << ": ";
+    for (auto x : tv)
+      std::cout << x;
+    std::cout << "\nsize = " << tv.size() << '\n';
+
+    auto show = [](const unsigned char x) { std::putchar(x); };
+
+    std::string in{"cppreference.com\n"};
+    vccc::ranges::for_each(in, show);
+
+    vccc::ranges::for_each(in | vccc::views::transform(rot13), show);
+    TEST_ENSURES(vccc::ranges::equal(in | vccc::views::transform(rot13), std::string("pccersrerapr.pbz\n")));
+
+
+    std::string out;
+    vccc::ranges::copy(vccc::views::transform(in, rot13), std::back_inserter(out));
+    vccc::ranges::for_each(out, show);
+    TEST_ENSURES(out == "pccersrerapr.pbz\n");
+    vccc::ranges::for_each(out | vccc::views::transform(rot13), show);
+    TEST_ENSURES(vccc::ranges::equal(out | vccc::views::transform(rot13), std::string("cppreference.com\n")));
+  }
+  {
+    const auto v = { 0, 1, 2, 3, 4 };
+    auto x2 = [](int x) { return x << 1; };
+    auto tv = vccc::ranges::make_transform_view(v, x2);
+    std::ostream_iterator<int> ostr{ std::cout, " " };
+
+    TEST_ENSURES(vccc::ranges::equal(tv.base(), v));
+    TEST_ENSURES(vccc::ranges::equal(tv, std::vector<int>{0, 2, 4, 6, 8}));
+    vccc::ranges::copy(v, ostr), std::cout << '\n';
+    vccc::ranges::copy(tv.base(), ostr), std::cout << '\n';
+    vccc::ranges::copy(tv, ostr), std::cout << '\n';
   }
 
   return TEST_RETURN_RESULT;

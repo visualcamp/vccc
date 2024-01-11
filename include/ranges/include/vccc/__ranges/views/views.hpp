@@ -11,5 +11,7 @@
 #include "vccc/__ranges/views/single.hpp"
 #include "vccc/__ranges/views/take.hpp"
 #include "vccc/__ranges/views/take_view.hpp"
+#include "vccc/__ranges/views/transform.hpp"
+#include "vccc/__ranges/views/transform_view.hpp"
 
 #endif // VCCC_RANGES_VIEWS_VIEWS_HPP_
