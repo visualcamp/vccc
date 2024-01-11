@@ -17,6 +17,7 @@
 #include "vccc/__type_traits/has_typename_type.hpp"
 #include "vccc/__type_traits/is_bounded_array.hpp"
 #include "vccc/__type_traits/is_integer_like.hpp"
+#include "vccc/__type_traits/is_invocable.hpp"
 #include "vccc/__type_traits/void_t.hpp"
 
 namespace vccc {
@@ -56,13 +57,14 @@ template<
     typename T,
     bool = conjunction<
                sized_sentinel_for<ranges::sentinel_t<T>, ranges::iterator_t<T>>,
-               is_explicitly_subtractable<
-                   decltype(ranges::end(std::declval<T>())),
-                   decltype(ranges::begin(std::declval<T>()))
-               >
+               is_invocable<decltype(ranges::end), T>,
+               is_invocable<decltype(ranges::begin), T>
            >::value /* true */
 >
-struct size_range_check_2 : std::true_type {
+struct size_range_check_2
+    : is_explicitly_subtractable<
+          decltype(ranges::end(std::declval<T>())),
+          decltype(ranges::begin(std::declval<T>()))> {
   using category = return_category<4, std::make_unsigned_t<decltype(ranges::end(std::declval<T>()) - ranges::begin(std::declval<T>()))>>;
 };
 
