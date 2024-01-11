@@ -58,6 +58,8 @@
 #include "vccc/__iterator/unreachable_sentinel.hpp"
 #include "vccc/__iterator/weakly_incrementable.hpp"
 
+#include "vccc/__ranges/empty.hpp"
+
 /**
 @defgroup iterator iterator
 @brief Iterators
