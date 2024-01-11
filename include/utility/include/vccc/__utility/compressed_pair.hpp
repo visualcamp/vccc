@@ -90,7 +90,7 @@ class compressed_pair : private detail::compressed_slot<T, 0>, private detail::c
   constexpr const T& first() const & noexcept { return first_base::template get<0>(); }
   constexpr const T&& first() const && noexcept { return std::move(first_base::template get<0>()); }
 
-  constexpr U& second() & noexcept { return get<1>(); }
+  constexpr U& second() & noexcept { return second_base::template get<1>(); }
   constexpr U&& second() && noexcept { return std::move(second_base::template get<1>()); }
   constexpr const U& second() const & noexcept { return second_base::template get<1>(); }
   constexpr const U&& second() const && noexcept { return std::move(second_base::template get<1>()); }
