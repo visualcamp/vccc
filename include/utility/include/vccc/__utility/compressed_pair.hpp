@@ -62,9 +62,6 @@ class compressed_pair : private detail::compressed_slot<T, 0>, private detail::c
   using first_base = detail::compressed_slot<T, 0>;
   using second_base = detail::compressed_slot<U, 1>;
 
-  using first_base::first_base;
-  using second_base::second_base;
-
  public:
   using first_type = T;
   using second_type = U;
