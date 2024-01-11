@@ -9,6 +9,7 @@
 #include <type_traits>
 
 #include "vccc/__core/inline_or_static.hpp"
+#include "vccc/__core/nodiscard.hpp"
 #include "vccc/__iterator/indirectly_comparable.hpp"
 #include "vccc/__iterator/input_iterator.hpp"
 #include "vccc/__iterator/sentinel_for.hpp"
@@ -57,7 +58,8 @@ struct equal_niebloid {
           indirectly_comparable<I1, I2, Pred, Proj1, Proj2>
       >::value, int> = 0
   >
-  constexpr bool operator()(I1 first1, S1 last1, I2 first2, S2 last2, Pred pred = {}, Proj1 proj1 = {}, Proj2 proj2 = {}) const {
+  VCCC_NODISCARD constexpr bool
+  operator()(I1 first1, S1 last1, I2 first2, S2 last2, Pred pred = {}, Proj1 proj1 = {}, Proj2 proj2 = {}) const {
     if (!compare_size(first1, last1, first2, last2, conjunction<sized_sentinel_for<S1, I1>, sized_sentinel_for<S2, I2>>{}))
       return false;
 
@@ -75,7 +77,8 @@ struct equal_niebloid {
       typename Proj1 = vccc::identity, typename Proj2 = vccc::identity,
       std::enable_if_t<check_range<R1, R2, Pred, Proj1, Proj2>::value, int> = 0
   >
-  constexpr bool operator()(R1&& r1, R2&& r2, Pred pred = {}, Proj1 proj1 = {}, Proj2 proj2 = {}) const {
+  VCCC_NODISCARD constexpr bool
+  operator()(R1&& r1, R2&& r2, Pred pred = {}, Proj1 proj1 = {}, Proj2 proj2 = {}) const {
     return (*this)(ranges::begin(r1), ranges::end(r1), ranges::begin(r2), ranges::end(r2),
                    std::ref(pred), std::ref(proj1), std::ref(proj2));
   }
