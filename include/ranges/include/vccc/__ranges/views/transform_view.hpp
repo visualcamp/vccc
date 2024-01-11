@@ -21,6 +21,7 @@
 #include "vccc/__ranges/forward_range.hpp"
 #include "vccc/__ranges/input_range.hpp"
 #include "vccc/__ranges/iterator_t.hpp"
+#include "vccc/__ranges/movable_box.hpp"
 #include "vccc/__ranges/random_access_range.hpp"
 #include "vccc/__ranges/range.hpp"
 #include "vccc/__ranges/range_difference_t.hpp"
@@ -335,7 +336,7 @@ class transform_view : public ranges::view_interface<transform_view<V, F>> {
 
  private:
   V base_;
-  F func_;
+  movable_box<F> func_;
 };
 
 template<typename R, typename F, std::enable_if_t<conjunction<
