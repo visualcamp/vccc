@@ -63,19 +63,19 @@ class ref_view : public view_interface<ref_view<R>> {
   }
 
   template<typename T = R, std::enable_if_t<
-      is_invocable<decltype(ranges::empty), R&>::value, int> = 0>
+      is_invocable<decltype(ranges::empty), T&>::value, int> = 0>
   constexpr bool empty() const {
     return ranges::empty(*r_);
   }
 
   template<typename T = R, std::enable_if_t<
-      ranges::sized_range<R>::value, int> = 0>
+      ranges::sized_range<T>::value, int> = 0>
   constexpr auto size() const {
     return ranges::size(*r_);
   }
 
   template<typename T = R, std::enable_if_t<
-      ranges::contiguous_range<R>::value, int> = 0>
+      ranges::contiguous_range<T>::value, int> = 0>
   constexpr auto data() const {
     return ranges::data(*r_);
   }
