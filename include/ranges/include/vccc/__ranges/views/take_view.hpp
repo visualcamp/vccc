@@ -246,6 +246,11 @@ class take_view : public ranges::view_interface<take_view<V>> {
   range_difference_t<V> count_ = 0;
 };
 
+template<typename R>
+constexpr take_view<views::all_t<R>> make_take_view(R&& r, ranges::range_difference_t<R> count) {
+  return take_view<views::all_t<R>>(std::forward<R>(r), count);
+}
+
 #if __cplusplus >= 201703L
 
 template<typename R>

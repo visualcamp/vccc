@@ -14,6 +14,7 @@
 #include <utility>
 #include <vector>
 
+#include "vccc/algorithm.hpp"
 #include "vccc/ranges.hpp"
 #include "vccc/span.hpp"
 #include "test_core.hpp"
@@ -290,7 +291,23 @@ int main() {
 #endif
   }
 
-  {
+  { // ranges::take
+    namespace views = vccc::views;
+    namespace ranges = vccc::ranges;
+
+    constexpr char pi[]{'3', '.', '1', '4', '1', '5', '9', '2', '6', '5'};
+
+    vccc::ranges::for_each(pi | views::take(6), [](char x){ std::cout << x; });
+    std::cout << '\n';
+
+    vccc::ranges::for_each(ranges::make_take_view(pi, 42), [](char x){ std::cout << x; });
+    std::cout << '\n';
+
+#if __cplusplus >= 201703L
+    vccc::ranges::for_each(ranges::take_view(pi, 42), [](char x){ std::cout << x; });
+    std::cout << '\n';
+#endif
+
     std::vector<int> v = {1, 2, 3};
 
     for (auto x : vccc::views::take(v, 2)) {
