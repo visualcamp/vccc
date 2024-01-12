@@ -72,7 +72,8 @@ struct float_equal_to<void> {
   constexpr inline auto operator()(const T& a, const U& b, const E& e = vccc::epsilon<E>()) const
       -> decltype(std::declval<float_equal_to<std::common_type_t<T, U, E>>&>()(std::declval<const T&>(), std::declval<const U&>(), std::declval<const E&>()))
   {
-    return float_equal_to<std::common_type_t<T, U, E>>{}(a, b, e);
+    using C = std::common_type_t<T, U, E>;
+    return float_equal_to<C>{}(static_cast<C>(a), static_cast<C>(b), static_cast<C>(e));
   }
 };
 
