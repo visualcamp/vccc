@@ -191,22 +191,22 @@ template<typename C, typename R, typename... Args>
 using ranges_to_1_tag = typename ranges_to_1<C, R, Args...>::tag;
 
 template<typename C, typename R, typename... Args>
-constexpr C to_1(R&& r, Args&&... args, tag_1) {
+constexpr C to_1(tag_1, R&& r, Args&&... args) {
     return C(std::forward<R>(r), std::forward<Args>(args)...);
 }
 
 template<typename C, typename R, typename... Args>
-constexpr C to_1(R&& r, Args&&... args, tag_2) {
+constexpr C to_1(tag_2, R&& r, Args&&... args) {
     return C(from_range, std::forward<R>(r), std::forward<Args>(args)...);
 }
 
 template<typename C, typename R, typename... Args>
-constexpr C to_1(R&& r, Args&&... args, tag_3) {
+constexpr C to_1(tag_3, R&& r, Args&&... args) {
     return C(ranges::begin(r), ranges::end(r), std::forward<Args>(args)...);
 }
 
 template<typename C, typename R, typename... Args>
-constexpr C to_1(R&& r, Args&&... args, tag_4) {
+constexpr C to_1(tag_4, R&& r, Args&&... args) {
     C c(std::forward<Args>(args)...);
     detail::try_reserve(c, std::forward<R>(r));
     ranges::copy(std::forward<R>(r), detail::container_inserter<range_reference_t<R>>(c));
@@ -214,7 +214,7 @@ constexpr C to_1(R&& r, Args&&... args, tag_4) {
 }
 
 template<typename C, typename R, typename... Args>
-constexpr C to_1(R&& r, Args&&... args, tag_5);
+constexpr C to_1(tag_5, R&& r, Args&&... args);
 
 
 // ranges::to< template<typename...> >
@@ -390,7 +390,7 @@ template<typename C, typename R, typename... Args, std::enable_if_t<conjunction<
 >::value, int> = 0>
 constexpr std::enable_if_t<(detail::ranges_to_1_tag<C, R, Args...>::value > 0), C>
 to(R&& r, Args&&... args) {
-    return detail::to_1<C>(std::forward<R>(r), std::forward<Args>(args)..., detail::ranges_to_1_tag<C, R, Args...>{});
+    return detail::to_1<C>(detail::ranges_to_1_tag<C, R, Args...>{}, std::forward<R>(r), std::forward<Args>(args)...);
 }
 
 template<template<typename...> class C, typename R, typename... Args, std::enable_if_t<
@@ -406,7 +406,7 @@ to(R&& r, Args&&... args) {
 namespace detail {
 
 template<typename C, typename R, typename... Args>
-constexpr C to_1(R&& r, Args&&... args, tag_5) {
+constexpr C to_1(tag_5, R&& r, Args&&... args) {
   return vccc::ranges::to<C>(r | views::transform([](auto&& elem) {
       return to<range_value_t<C>>(std::forward<decltype(elem)>(elem));
   }), std::forward<Args>(args)...);

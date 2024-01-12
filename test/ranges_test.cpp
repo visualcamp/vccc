@@ -455,11 +455,12 @@ int main() {
     TEST_ENSURES(pv[0].second == "one");
     TEST_ENSURES(pv[1].second == "two");
 
-    auto m = vccc::ranges::to<std::map>(parr);
-    static_assert(std::is_same<std::map<int, std::string>, decltype(m)>::value, "");
+    auto m = vccc::ranges::to<std::map>(parr, std::greater<>{});
+    static_assert(std::is_same<std::map<int, std::string, std::greater<>>, decltype(m)>::value, "");
     TEST_ENSURES(m.size() == 2);
     TEST_ENSURES(m[1] == "one");
     TEST_ENSURES(m[2] == "two");
+    TEST_ENSURES(m.begin()->second == "two");
   }
 
   return TEST_RETURN_RESULT;
