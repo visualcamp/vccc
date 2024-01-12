@@ -44,6 +44,7 @@
 #include "vccc/__iterator/iter_common_reference_t.hpp"
 #include "vccc/__iterator/iter_const_reference_t.hpp"
 #include "vccc/__iterator/iter_difference_t.hpp"
+#include "vccc/__iterator/iter_key_t.hpp"
 #include "vccc/__iterator/iter_move.hpp"
 #include "vccc/__iterator/iter_reference_t.hpp"
 #include "vccc/__iterator/iter_rvalue_reference_t.hpp"
