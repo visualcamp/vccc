@@ -10,19 +10,17 @@
 
 #include "vccc/__functional/invoke.hpp"
 #include "vccc/__type_traits/void_t.hpp"
+#include "vccc/__utility/type_sequence.hpp"
 
 namespace vccc {
 namespace detail {
 
-template<typename...>
-struct type_tuple;
-
-template<typename F, typename Tup, typename = void>
+template<typename F, typename Seq, typename = void>
 struct explicit_invocable : std::false_type {};
 
 template<typename F, typename... Args>
 struct explicit_invocable<
-      F, type_tuple<Args...>,
+      F, type_sequence<Args...>,
       void_t<decltype(
           vccc::invoke(
               std::declval<decltype( std::forward<F>   (std::declval<F&&>   ()) )>(),
@@ -31,11 +29,11 @@ struct explicit_invocable<
       )>
     > : std::true_type {};
 
-template<typename F, typename ArgsTuple>
+template<typename F, typename Seq>
 struct invocable_impl : std::false_type {};
 
 template<typename F, typename... Args>
-struct invocable_impl<F, type_tuple<Args...>> : explicit_invocable<F, type_tuple<Args...>> {};
+struct invocable_impl<F, type_sequence<Args...>> : explicit_invocable<F, type_sequence<Args...>> {};
 
 } // namespace detail
 
@@ -51,7 +49,7 @@ function template `vccc::invoke`.
 @sa [std::invocable](https://en.cppreference.com/w/cpp/concepts/invocable)
  */
 template<typename F, typename... Args>
-struct invocable : detail::invocable_impl<F, detail::type_tuple<Args...>> {};
+struct invocable : detail::invocable_impl<F, type_sequence<Args...>> {};
 
 /**
 @brief \copybrief invocable
