@@ -401,5 +401,66 @@ int main() {
     vccc::ranges::copy(tv, ostr), std::cout << '\n';
   }
 
+  { // ranges::to < C >
+    int arr[] = {1, 2, 3, 4, 5};
+
+    auto v = vccc::ranges::to<std::vector<int>>(arr);
+    static_assert(std::is_same<std::vector<int>, decltype(v)>::value, "");
+    TEST_ENSURES(vccc::ranges::equal(v, arr));
+    TEST_ENSURES(v.size() == 5);
+
+    auto li = vccc::ranges::to<std::list<int>>(arr);
+    auto li2 = vccc::ranges::to<std::list<int>>(v);
+    auto li3 = vccc::ranges::to<std::list<int>>(li2);
+
+    TEST_ENSURES(vccc::ranges::equal(li, arr));
+    TEST_ENSURES(vccc::ranges::equal(li2, arr));
+    TEST_ENSURES(vccc::ranges::equal(li3, arr));
+
+    auto chain = vccc::views::iota(0, 10)
+               | vccc::views::take(4)
+               | vccc::views::transform([](auto x) { return -x; });
+    auto v2 = vccc::ranges::to<std::vector<int>>(chain);
+    TEST_ENSURES(vccc::ranges::equal(v2, std::vector<int>{0, -1, -2, -3}));
+
+  }
+
+  { // ranges::to< template<typename...> C >
+    int arr[] = {1, 2, 3, 4, 5};
+
+    auto v = vccc::ranges::to<std::vector>(arr);
+    static_assert(std::is_same<std::vector<int>, decltype(v)>::value, "");
+    TEST_ENSURES(vccc::ranges::equal(v, arr));
+    TEST_ENSURES(v.size() == 5);
+
+    auto li = vccc::ranges::to<std::list>(arr);
+    auto li2 = vccc::ranges::to<std::list>(v);
+    auto li3 = vccc::ranges::to<std::list>(li2);
+
+    TEST_ENSURES(vccc::ranges::equal(li, arr));
+    TEST_ENSURES(vccc::ranges::equal(li2, arr));
+    TEST_ENSURES(vccc::ranges::equal(li3, arr));
+
+    auto chain = vccc::views::iota(0, 10)
+               | vccc::views::take(4)
+               | vccc::views::transform([](auto x) { return -x; });
+    auto v2 = vccc::ranges::to<std::vector>(chain);
+    TEST_ENSURES(vccc::ranges::equal(v2, std::vector<int>{0, -1, -2, -3}));
+
+
+    std::pair<int, std::string> parr[] = {{1, "one"}, {2, "two"}};
+    auto pv = vccc::ranges::to<std::vector>(parr);
+    static_assert(std::is_same<std::vector<std::pair<int, std::string>>, decltype(pv)>::value, "");
+    TEST_ENSURES(pv.size() == 2);
+    TEST_ENSURES(pv[0].second == "one");
+    TEST_ENSURES(pv[1].second == "two");
+
+    auto m = vccc::ranges::to<std::map>(parr);
+    static_assert(std::is_same<std::map<int, std::string>, decltype(m)>::value, "");
+    TEST_ENSURES(m.size() == 2);
+    TEST_ENSURES(m[1] == "one");
+    TEST_ENSURES(m[2] == "two");
+  }
+
   return TEST_RETURN_RESULT;
 }
