@@ -48,6 +48,7 @@
 #include "vccc/__iterator/iter_reference_t.hpp"
 #include "vccc/__iterator/iter_rvalue_reference_t.hpp"
 #include "vccc/__iterator/iter_swap.hpp"
+#include "vccc/__iterator/iter_val_t.hpp"
 #include "vccc/__iterator/iter_value_t.hpp"
 #include "vccc/__iterator/iterator_tag.hpp"
 #include "vccc/__iterator/output_iterator.hpp"
