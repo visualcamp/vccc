@@ -16,6 +16,7 @@
 #include <vector>
 
 #include "vccc/algorithm.hpp"
+#include "vccc/iterator.hpp"
 #include "vccc/ranges.hpp"
 #include "vccc/span.hpp"
 #include "test_core.hpp"
@@ -461,6 +462,26 @@ int main() {
     TEST_ENSURES(m[1] == "one");
     TEST_ENSURES(m[2] == "two");
     TEST_ENSURES(m.begin()->second == "two");
+  }
+
+  { // ranges::to (range adaptor closure)
+    auto vec = vccc::views::iota(1, 5)
+             | vccc::views::transform([](auto const v) { return v * 2; })
+             | vccc::ranges::to<std::vector>();
+
+    static_assert(std::is_same<std::vector<int>, decltype(vec)>::value, "");
+    TEST_ENSURES(vec.size() == 4);
+    TEST_ENSURES(vec[0] == 2);
+    TEST_ENSURES(vec[1] == 4);
+    TEST_ENSURES(vec[2] == 6);
+    TEST_ENSURES(vec[3] == 8);
+
+    auto lst = vec | vccc::views::take(3) | vccc::ranges::to<std::list<double>>();
+    static_assert(std::is_same<std::list<double>, decltype(lst)>::value, "");
+    TEST_ENSURES(lst.size() == 3);
+    TEST_ENSURES(*vccc::ranges::next(lst.begin(), 0) == 2);
+    TEST_ENSURES(*vccc::ranges::next(lst.begin(), 1) == 4);
+    TEST_ENSURES(*vccc::ranges::next(lst.begin(), 2) == 6);
   }
 
   return TEST_RETURN_RESULT;

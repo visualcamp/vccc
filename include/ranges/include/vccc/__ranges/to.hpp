@@ -24,12 +24,14 @@
 #include "vccc/__ranges/from_range.hpp"
 #include "vccc/__ranges/input_range.hpp"
 #include "vccc/__ranges/iterator_t.hpp"
+#include "vccc/__ranges/range_adaptor_closure.hpp"
 #include "vccc/__ranges/range_key_t.hpp"
 #include "vccc/__ranges/range_mapped_t.hpp"
 #include "vccc/__ranges/range_size_t.hpp"
 #include "vccc/__ranges/sentinel_t.hpp"
 #include "vccc/__ranges/size.hpp"
 #include "vccc/__ranges/sized_range.hpp"
+#include "vccc/__ranges/view.hpp"
 #include "vccc/__ranges/views/transform.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/detail/tag.hpp"
@@ -40,6 +42,7 @@
 #include "vccc/__type_traits/negation.hpp"
 #include "vccc/__type_traits/template_arity.hpp"
 #include "vccc/__type_traits/void_t.hpp"
+#include "vccc/__utility/in_place.hpp"
 #include "vccc/__utility/type_sequence.hpp"
 
 
@@ -381,18 +384,44 @@ using DEDUCE_EXPR_CATEGORY = typename DEDUCE_EXPR_IMPL<C, R, type_sequence<Args.
 
 } // namespace detail
 
-/// @addtogroup ranges
+/**
+@addtogroup ranges
+@{
+@defgroup ranges_to__Range_conversions ranges::to
+@brief constructs a new non-view object from an input range
+
+The overloads of the range conversion function construct a new non-view object from a source range as its first
+argument by calling a constructor taking a `range`, a `vccc::from_range_t` tagged ranged constructor,a constructor
+taking an iterator-sentinel pair, or by back inserting each element of the source range into the
+arguments-constructed object.
+
+<H1>Example</H1>
+@code{.cpp}
+auto vec = vccc::views::iota(1, 5)
+         | vccc::views::transform([](auto const v) { return v * 2; })
+         | vccc::ranges::to<std::vector>();
+
+auto lst = vec | vccc::views::take(3) | vccc::ranges::to<std::list<double>>();
+@endcode
+
+@sa [std::ranges::to](https://en.cppreference.com/w/cpp/ranges/to)
+@}
+*/
+
+/// @addtogroup ranges_to__Range_conversions
 /// @{
 
+/// @brief Constructs an object of type `C` from the elements of `r`
 template<typename C, typename R, typename... Args, std::enable_if_t<conjunction<
     ranges::input_range<R>,
     negation< ranges::view<C> >
 >::value, int> = 0>
 constexpr std::enable_if_t<(detail::ranges_to_1_tag<C, R, Args...>::value > 0), C>
 to(R&& r, Args&&... args) {
-    return detail::to_1<C>(detail::ranges_to_1_tag<C, R, Args...>{}, std::forward<R>(r), std::forward<Args>(args)...);
+  return detail::to_1<C>(detail::ranges_to_1_tag<C, R, Args...>{}, std::forward<R>(r), std::forward<Args>(args)...);
 }
 
+/// @brief Constructs an object of deduced type from the elements of `r`
 template<template<typename...> class C, typename R, typename... Args, std::enable_if_t<
     ranges::input_range<R>::value, int> = 0>
 constexpr typename detail::DEDUCE_EXPR_CATEGORY<C, R, Args...>::return_type
@@ -400,8 +429,6 @@ to(R&& r, Args&&... args) {
   using DEDUCE_EXPR = typename detail::DEDUCE_EXPR_CATEGORY<C, R, Args...>::return_type;
   return vccc::ranges::to<DEDUCE_EXPR>(std::forward<R>(r), std::forward<Args>(args)...);
 }
-
-/// @}
 
 namespace detail {
 
@@ -412,7 +439,79 @@ constexpr C to_1(tag_5, R&& r, Args&&... args) {
   }), std::forward<Args>(args)...);
 }
 
+template<typename C, typename... Args>
+class to_adaptor_closure : public range_adaptor_closure<to_adaptor_closure<C, Args...>> {
+ public:
+  template<typename... T>
+  constexpr explicit to_adaptor_closure(in_place_t, T&&... arg)
+      : tup_(std::forward<T>(arg)...) {}
+
+  template<typename R, std::enable_if_t<input_range<R>::value, int> = 0>
+  constexpr auto operator()(R&& r) {
+    return call(std::forward<R>(r), std::index_sequence_for<Args...>{});
+  }
+
+ private:
+  template<typename R, std::size_t... I>
+  constexpr auto call(R&& r, std::index_sequence<I...>) const& {
+    return vccc::ranges::to<C>(std::forward<R>(r), std::get<I>(tup_)...);
+  }
+  template<typename R, std::size_t... I>
+  constexpr auto call(R&& r, std::index_sequence<I...>) && {
+    return vccc::ranges::to<C>(std::forward<R>(r), std::get<I>(std::move(tup_))...);
+  }
+
+  std::tuple<Args...> tup_;
+};
+
+template<template<typename...> class>
+struct template_type_holder;
+
+template<template<typename...> class C, typename... Args>
+class to_adaptor_closure<template_type_holder<C>, Args...>
+    : public range_adaptor_closure<to_adaptor_closure<template_type_holder<C>, Args...>>
+{
+ public:
+  template<typename... T>
+  constexpr explicit to_adaptor_closure(in_place_t, T&&... arg)
+      : tup_(std::forward<T>(arg)...) {}
+
+  template<typename R, std::enable_if_t<input_range<R>::value, int> = 0>
+  constexpr auto operator()(R&& r) {
+    return call(std::forward<R>(r), std::index_sequence_for<Args...>{});
+  }
+
+ private:
+  template<typename R, std::size_t... I>
+  constexpr auto call(R&& r, std::index_sequence<I...>) const& {
+    return vccc::ranges::to<C>(std::forward<R>(r), std::get<I>(tup_)...);
+  }
+  template<typename R, std::size_t... I>
+  constexpr auto call(R&& r, std::index_sequence<I...>) && {
+    return vccc::ranges::to<C>(std::forward<R>(r), std::get<I>(std::move(tup_))...);
+  }
+
+  std::tuple<Args...> tup_;
+};
+
 } // namespace detail
+
+/// @brief Returns a perfect forwarding call wrapper that is also a
+/// [RangeAdaptorClosureObject](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject)
+template<typename C, typename... Args, std::enable_if_t<view<C>::value == false, int> = 0>
+constexpr detail::to_adaptor_closure<C, std::decay_t<Args>...> to(Args&&... args) {
+  return detail::to_adaptor_closure<C, std::decay_t<Args>...>(in_place, std::forward<Args>(args)...);
+}
+
+/// @brief Returns a perfect forwarding call wrapper with deduced return type that is also a
+/// [RangeAdaptorClosureObject](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject)
+template<template<typename...> class C, typename... Args>
+constexpr detail::to_adaptor_closure<detail::template_type_holder<C>, std::decay_t<Args>...>
+to(Args&&... args) {
+  return detail::to_adaptor_closure<detail::template_type_holder<C>, std::decay_t<Args>...>(in_place, std::forward<Args>(args)...);
+}
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc
