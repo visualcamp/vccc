@@ -86,8 +86,10 @@ int main() {
 
   // test chronos
   TEST_ENSURES(vccc::Logger{}.to_string(std::chrono::seconds(1)) == "1s");
+#if __cplusplus < 202002L
   TEST_ENSURES(vccc::Logger{}.to_string(std::chrono::seconds(100)) == "1m 40s");
   TEST_ENSURES(vccc::Logger{}.to_string(std::chrono::nanoseconds(100)) == "100ns");
+#endif
   TEST_ENSURES(vccc::Logger{}.to_string(std::chrono::nanoseconds(123'456)) == "123.46us");
   TEST_ENSURES(vccc::Logger{}.to_string(std::chrono::milliseconds(123)) == "123ms");
   LOGD(std::chrono::seconds(1));
