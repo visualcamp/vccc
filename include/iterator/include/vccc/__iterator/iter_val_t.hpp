@@ -15,6 +15,8 @@ template<typename I, bool = has_typename_value_type< cxx20_iterator_traits<I> >:
 struct iter_val_impl {
   using type = typename cxx20_iterator_traits<I>::value_type;
 };
+template<typename I>
+struct iter_val_impl<I, false> {};
 
 } // namespace detail
 
