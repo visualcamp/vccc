@@ -8,7 +8,6 @@
 #include <tuple>
 #include <type_traits>
 
-#include "vccc/__iterator/iterator_traits/cxx20_iterator_traits.hpp"
 #include "vccc/__iterator/iter_val_t.hpp"
 #include "vccc/__type_traits/has_typename_type.hpp"
 #include "vccc/__type_traits/is_complete.hpp"
@@ -36,7 +35,7 @@ struct iter_key_impl<I, false> {};
 template<typename T>
 struct iter_key : detail::iter_key_impl<T> {};
 
-/// @sa [std::iter_val_t](https://en.cppreference.com/w/cpp/container/map/deduction_guides)
+/// @sa [std::iter_key_t](https://en.cppreference.com/w/cpp/container/map/deduction_guides)
 template<typename T>
 using iter_key_t = typename iter_key<T>::type;
 
