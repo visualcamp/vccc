@@ -36,7 +36,8 @@ template<typename T> struct make_type_sequence_impl<T, 1> { using type = type_se
 template<typename T> struct make_type_sequence_impl<T, 2> { using type = type_sequence<T, T>; };
 template<typename T, std::size_t N>
 struct make_type_sequence_impl {
-  using type = detail::type_sequence_cat_t<typename type_sequence_impl<T, (N / 2)>::type, typename type_sequence_impl<T, N - (N / 2)>::type>;
+  using type = type_sequence_cat_t<typename make_type_sequence_impl<T, (N / 2)>::type,
+                                   typename make_type_sequence_impl<T, N - (N / 2)>::type>;
 };
 
 } // namespace detail
