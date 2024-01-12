@@ -794,7 +794,7 @@ std::basic_ostream<CharT, Traits>& operator<<(std::basic_ostream<CharT, Traits>&
 
 using string_view = basic_string_view<char>;
 using wstring_view = basic_string_view<wchar_t>;
-#if __cplusplus >= 202002L
+#if __cplusplus >= 202002L && VCCC_HAS_TYPE_CHAR8_T_CXX20
 using u8string_view = basic_string_view<char8_t>;
 #endif
 using u16string_view = basic_string_view<char16_t>;
@@ -807,7 +807,7 @@ constexpr string_view operator ""_sv(const char* str, std::size_t len) noexcept 
   return string_view{str, len};
 }
 
-#if __cplusplus >= 202002L
+#if __cplusplus >= 202002L && VCCC_HAS_TYPE_CHAR8_T_CXX20
 constexpr u8string_view operator ""_sv(const char8_t* str, std::size_t len) noexcept {
   return u8string_view{str, len};
 }

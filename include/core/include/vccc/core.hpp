@@ -5,6 +5,7 @@
 #ifndef VCCC_CORE_HPP_
 #define VCCC_CORE_HPP_
 
+#include "vccc/__config.h"
 #include "vccc/__core/byte.hpp"
 #include "vccc/__core/constexpr.hpp"
 #include "vccc/__core/decay_copy.hpp"
