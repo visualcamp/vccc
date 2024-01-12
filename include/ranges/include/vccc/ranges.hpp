@@ -35,6 +35,7 @@
 #include "vccc/__ranges/range_adaptor_closure.hpp"
 #include "vccc/__ranges/range_difference_t.hpp"
 #include "vccc/__ranges/range_key_t.hpp"
+#include "vccc/__ranges/range_mapped_t.hpp"
 #include "vccc/__ranges/range_reference_t.hpp"
 #include "vccc/__ranges/range_size_t.hpp"
 #include "vccc/__ranges/range_value_t.hpp"
