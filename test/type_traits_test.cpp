@@ -3,9 +3,12 @@
 //
 
 #include <iostream>
+#include <functional>
+#include <map>
 #include <string>
 #include <type_traits>
 #include <utility>
+#include <vector>
 
 #include "vccc/type_traits.hpp"
 #include "vccc/__type_traits/common_reference.hpp"
@@ -116,6 +119,25 @@ int main() {
     static_assert(vccc::is_explicitly_convertible<void, void>::value, "");
     static_assert(vccc::is_explicitly_convertible<void, const void>::value, "");
     static_assert(vccc::is_explicitly_convertible<void, int>::value == false, "");
+  }
+
+  { // template_arity
+    static_assert(vccc::template_arity<std::vector>::value == 2, "");
+    static_assert(vccc::mandatory_template_arity<std::vector>::value == 1, "");
+    static_assert(vccc::default_template_arity<std::vector>::value == 1, "");
+
+    static_assert(vccc::template_arity<std::map>::value == 4, "");
+    static_assert(vccc::mandatory_template_arity<std::map>::value == 2, "");
+    static_assert(vccc::default_template_arity<std::map>::value == 2, "");
+
+    static_assert(vccc::template_arity<std::less>::value == 1, "");
+    #if __cplusplus < 201402L
+    static_assert(vccc::default_template_arity<std::less>::value == 1, "");
+    static_assert(vccc::default_template_arity<std::less>::value == 0, "");
+    #else
+    static_assert(vccc::mandatory_template_arity<std::less>::value == 0, "");
+    static_assert(vccc::default_template_arity<std::less>::value == 1, "");
+    #endif
   }
 
   return TEST_RETURN_RESULT;

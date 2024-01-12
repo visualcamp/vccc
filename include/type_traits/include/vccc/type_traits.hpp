@@ -46,6 +46,7 @@
 # include "vccc/__type_traits/negation.hpp"
 # include "vccc/__type_traits/numeric.hpp"
 # include "vccc/__type_traits/remove_cvref.hpp"
+# include "vccc/__type_traits/template_arity.hpp"
 # include "vccc/__type_traits/type_identity.hpp"
 # include "vccc/__type_traits/void_t.hpp"
 
