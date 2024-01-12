@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 project(vccc)
 add_library(vccc INTERFACE)
@@ -7,6 +8,8 @@ add_library(VCCC ALIAS vccc)
 if (MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:__cplusplus")
 endif()
+
+include(Configuration)
 
 # Third party
 add_subdirectory(boost/predef)
@@ -32,27 +35,22 @@ MACRO(VCCC_TEST_ONE_CXX name target cxx)
 ENDMACRO()
 
 MACRO(VCCC_TEST_ALL_CXX name target)
-    #    VCCC_TEST_ONE_CXX(${name}_cxx11 ${target} 11 ${ARGN})
-    VCCC_TEST_ONE_CXX(${name}_cxx14 ${target} 14 ${ARGN})
-    VCCC_TEST_ONE_CXX(${name}_cxx17 ${target} 17 ${ARGN})
-    #    VCCC_TEST_ONE_CXX(${name}_cxx20 ${target} 20 ${ARGN}) compiler not ready on our machines
+    if (VCCC_COMPILER_SUPPORT_STD_14)
+        VCCC_TEST_ONE_CXX(${name}_cxx14 ${target} 14 ${ARGN})
+    endif ()
+    if (VCCC_COMPILER_SUPPORT_STD_17)
+        VCCC_TEST_ONE_CXX(${name}_cxx17 ${target} 17 ${ARGN})
+    endif ()
+    if (VCCC_COMPILER_SUPPORT_STD_20)
+        VCCC_TEST_ONE_CXX(${name}_cxx20 ${target} 20 ${ARGN})
+    endif ()
+    if (VCCC_COMPILER_SUPPORT_STD_23)
+        VCCC_TEST_ONE_CXX(${name}_cxx23 ${target} 23 ${ARGN})
+    endif ()
 ENDMACRO()
 
 MACRO(VCCC_TEST name target)
-    if(VCCC_TEST_MATRIX)
-        VCCC_TEST_ONE(${name} ${target} ${ARGN})
-    else()
-        VCCC_TEST_ALL_CXX(${name} ${target} ${ARGN})
-    endif()
-ENDMACRO()
-
-MACRO(VCCC_TEST_INCLUDE name type)
-    if(VCCC_TEST_MATRIX)
-        target_include_directories(${name} ${type} ${ARGN})
-    else()
-        target_include_directories(${name}_cxx14 ${type} ${ARGN})
-        target_include_directories(${name}_cxx17 ${type} ${ARGN})
-    endif()
+    VCCC_TEST_ALL_CXX(${name} ${target} ${ARGN})
 ENDMACRO()
 
 if(VCCC_RUN_TEST)
@@ -87,6 +85,7 @@ target_include_directories(vccc INTERFACE
     "${CMAKE_CURRENT_LIST_DIR}/include/tuple/include"
     "${CMAKE_CURRENT_LIST_DIR}/include/type_traits/include"
     "${CMAKE_CURRENT_LIST_DIR}/include/utility/include"
+    "${VCCC_GENERATED_INCLUDE_DIR}"
 )
 
 add_subdirectory(include/directory)
