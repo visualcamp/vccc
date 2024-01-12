@@ -447,8 +447,13 @@ class to_adaptor_closure : public range_adaptor_closure<to_adaptor_closure<C, Ar
       : tup_(std::forward<T>(arg)...) {}
 
   template<typename R, std::enable_if_t<input_range<R>::value, int> = 0>
-  constexpr auto operator()(R&& r) {
+  constexpr auto operator()(R&& r) const& {
     return call(std::forward<R>(r), std::index_sequence_for<Args...>{});
+  }
+
+  template<typename R, std::enable_if_t<input_range<R>::value, int> = 0>
+  constexpr auto operator()(R&& r) && {
+    return std::move(*this).call(std::forward<R>(r), std::index_sequence_for<Args...>{});
   }
 
  private:
@@ -477,8 +482,13 @@ class to_adaptor_closure<template_type_holder<C>, Args...>
       : tup_(std::forward<T>(arg)...) {}
 
   template<typename R, std::enable_if_t<input_range<R>::value, int> = 0>
-  constexpr auto operator()(R&& r) {
+  constexpr auto operator()(R&& r) const& {
     return call(std::forward<R>(r), std::index_sequence_for<Args...>{});
+  }
+
+  template<typename R, std::enable_if_t<input_range<R>::value, int> = 0>
+  constexpr auto operator()(R&& r) && {
+    return std::move(*this).call(std::forward<R>(r), std::index_sequence_for<Args...>{});
   }
 
  private:
