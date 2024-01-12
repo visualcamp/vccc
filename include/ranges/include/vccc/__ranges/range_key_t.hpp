@@ -9,6 +9,7 @@
 
 #include "vccc/__ranges/input_range.hpp"
 #include "vccc/__ranges/range_value_t.hpp"
+#include "vccc/__type_traits/void_t.hpp"
 
 namespace vccc {
 namespace ranges {
