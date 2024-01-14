@@ -32,6 +32,7 @@
 # include "vccc/__type_traits/is_initializer_list.hpp"
 # include "vccc/__type_traits/is_integer_like.hpp"
 # include "vccc/__type_traits/is_invocable.hpp"
+# include "vccc/__type_traits/is_nothrow_convertible.hpp"
 # include "vccc/__type_traits/is_printable.hpp"
 # include "vccc/__type_traits/is_range.hpp"
 # include "vccc/__type_traits/is_referenceable.hpp"
