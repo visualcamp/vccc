@@ -7,6 +7,7 @@
 
 #include "vccc/__algorithm/copy.hpp"
 #include "vccc/__algorithm/equal.hpp"
+#include "vccc/__algorithm/find.hpp"
 #include "vccc/__algorithm/for_each.hpp"
 #include "vccc/__algorithm/in_fun_result.hpp"
 #include "vccc/__algorithm/in_out_result.hpp"
