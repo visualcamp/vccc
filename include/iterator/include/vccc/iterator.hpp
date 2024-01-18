@@ -66,6 +66,7 @@
 
 #include "vccc/__ranges/begin.hpp"
 #include "vccc/__ranges/cbegin.hpp"
+#include "vccc/__ranges/cend.hpp"
 #include "vccc/__ranges/data.hpp"
 #include "vccc/__ranges/empty.hpp"
 #include "vccc/__ranges/end.hpp"
