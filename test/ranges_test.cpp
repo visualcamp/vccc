@@ -484,5 +484,26 @@ int main() {
     TEST_ENSURES(*vccc::ranges::next(lst.begin(), 2) == 6);
   }
 
+  { // ranges::cbegin
+    std::vector<int> v{3, 1, 4};
+    auto vi = vccc::ranges::cbegin(v);
+    TEST_ENSURES(3 == *vi);
+    ++vi; // OK, constant-iterator object is mutable
+    TEST_ENSURES(1 == *vi);
+    // *vi = 13; // Error: constant-iterator points to an immutable element
+
+    int a[]{3, 1, 4};
+    auto ai = vccc::ranges::cbegin(a); // cbegin works with C-arrays as well
+    TEST_ENSURES(3 == *ai and *(ai + 1) == 1);
+  }
+
+  { // ranges::cend
+    std::vector<int> vec = {3, 1, 4};
+    int arr[] = {5, 10, 15};
+
+    TEST_ENSURES(vccc::ranges::find(vec, 5) == vccc::ranges::cend(vec));
+    TEST_ENSURES(vccc::ranges::find(arr, 5) != vccc::ranges::cend(arr));
+  }
+
   return TEST_RETURN_RESULT;
 }
