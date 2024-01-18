@@ -17,6 +17,7 @@
 #include "vccc/__iterator/iterator_traits/legacy_random_access_iterator.hpp"
 
 #include "vccc/__iterator/advance.hpp"
+#include "vccc/__iterator/basic_const_iterator.hpp"
 #include "vccc/__iterator/bidirectional_iterator.hpp"
 #include "vccc/__iterator/contiguous_iterator.hpp"
 #include "vccc/__iterator/counted_iterator.hpp"
