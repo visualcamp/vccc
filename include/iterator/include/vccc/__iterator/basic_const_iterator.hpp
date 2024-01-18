@@ -64,12 +64,11 @@ struct basic_const_iterator_concept {
     >>>>;
 };
 
+template<typename I, bool = input_iterator<I>::value /* false */>
+struct constant_iterator : std::false_type {};
 template<typename I>
-struct constant_iterator
-    : conjunction<
-          input_iterator<I>,
-          same_as<iter_const_reference_t<I>, iter_reference_t<I>>
-      > {};
+struct constant_iterator<I, true>
+    : same_as<iter_const_reference_t<I>, iter_reference_t<I>> {};
 
 }
 
@@ -190,6 +189,12 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
   constexpr bool operator==(const S& s) const {
     using namespace vccc::rel_ops;
     return base() == s;
+  }
+
+  template<typename S, std::enable_if_t<sentinel_for<S, Iter>::value, int> = 0>
+  friend constexpr bool operator==(const S& s, basic_const_iterator i) {
+    using namespace vccc::rel_ops;
+    return i == s;
   }
 
   template<typename S, std::enable_if_t<sentinel_for<S, Iter>::value, int> = 0>

@@ -1,17 +1,17 @@
 //
-// Created by yonggyulee on 2023/12/24.
+// Created by yonggyulee on 2024/01/16.
 //
 
-#ifndef VCCC_RANGES_CBEGIN_HPP_
-#define VCCC_RANGES_CBEGIN_HPP_
+#ifndef VCCC_RANGES_CEND_HPP_
+#define VCCC_RANGES_CEND_HPP_
 
 #include <type_traits>
 
 #include "vccc/__core/inline_or_static.hpp"
 #include "vccc/__iterator/basic_const_iterator.hpp"
-#include "vccc/__ranges/begin.hpp"
 #include "vccc/__ranges/constant_range.hpp"
 #include "vccc/__ranges/enable_borrowed_range.hpp"
+#include "vccc/__ranges/end.hpp"
 #include "vccc/__type_traits/detail/tag.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__utility/as_const.hpp"
@@ -20,7 +20,7 @@ namespace vccc {
 namespace ranges {
 namespace detail {
 
-struct cbegin_niebloid {
+struct cend_niebloid {
  public:
   template<typename T, std::enable_if_t<disjunction<
       std::is_lvalue_reference<T>,
@@ -34,15 +34,15 @@ struct cbegin_niebloid {
  private:
   template<typename T>
   constexpr auto call(T&& t, vccc::detail::tag_1) const {
-    return ranges::begin(std::forward<T>(t));
+    return ranges::end(std::forward<T>(t));
   }
   template<typename T>
   constexpr auto call(T&& t, vccc::detail::tag_2) const {
-    return ranges::begin(vccc::as_const(std::forward<T>(t)));
+    return ranges::end(vccc::as_const(std::forward<T>(t)));
   }
   template<typename T>
   constexpr auto call(T&& t, vccc::detail::tag_else) const {
-    return make_const_iterator(ranges::begin(std::forward<T>(t)));
+    return make_const_sentinel(ranges::end(std::forward<T>(t)));
   }
 
 };
@@ -55,14 +55,14 @@ inline namespace niebloid {
 /// @{
 
 /**
-@brief returns an iterator to the beginning of a read-only range
+@brief returns a sentinel indicating the end of a read-only range
 
-Returns an iterator to the first element of the argument.
+Returns a sentinel for the constant iterator indicating the end of a range.
 
-@sa [std::ranges::cbegin](https://en.cppreference.com/w/cpp/ranges/cbegin)
+@sa [std::ranges::cend](https://en.cppreference.com/w/cpp/ranges/cend)
  */
 
-VCCC_INLINE_OR_STATIC constexpr detail::cbegin_niebloid cbegin{};
+VCCC_INLINE_OR_STATIC constexpr detail::cend_niebloid cend{};
 
 /// @}
 
@@ -71,4 +71,4 @@ VCCC_INLINE_OR_STATIC constexpr detail::cbegin_niebloid cbegin{};
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_RANGES_CBEGIN_HPP_
+#endif // VCCC_RANGES_CEND_HPP_
