@@ -196,7 +196,6 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
       sentinel_for<S, Iter>
   >::value, int> = 0>
   friend constexpr bool operator==(const S& s, const basic_const_iterator& i) {
-    using namespace vccc::rel_ops;
     return i == s;
   }
 
