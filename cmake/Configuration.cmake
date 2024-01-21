@@ -38,3 +38,5 @@ configure_file(
     "${CMAKE_CURRENT_LIST_DIR}/__config.cmake.in"
     "${VCCC_GENERATED_INCLUDE_DIR}/vccc/__config.h"
 )
+
+list(APPEND vccc_generated_headers "${VCCC_GENERATED_INCLUDE_DIR}/vccc/__config.h")

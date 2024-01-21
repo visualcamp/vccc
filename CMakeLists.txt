@@ -84,22 +84,7 @@ endif ()
 
 
 target_include_directories(vccc INTERFACE
-    "${CMAKE_CURRENT_LIST_DIR}/include/algorithm/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/concepts/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/core/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/functional/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/iterator/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/literal/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/memory/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/numeric/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/optional/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/ranges/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/signal/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/span/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/string_view/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/tuple/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/type_traits/include"
-    "${CMAKE_CURRENT_LIST_DIR}/include/utility/include"
+    "${CMAKE_CURRENT_LIST_DIR}/include"
     "${VCCC_GENERATED_INCLUDE_DIR}"
 )
 
@@ -119,6 +104,29 @@ target_link_libraries(vccc INTERFACE
     VCCC::type_support
 )
 
+set_target_properties(vccc PROPERTIES PUBLIC_HEADER "${vccc_generated_headers}")
+
 if(VCCC_RUN_TEST)
     add_subdirectory(test)
+endif()
+
+
+include(GNUInstallDirs)
+install(TARGETS vccc PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/vccc")
+install(DIRECTORY include/vccc DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+    FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp")
+
+install(DIRECTORY include/directory/include/vccc DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+install(DIRECTORY include/literal/include/vccc DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+install(DIRECTORY include/log/include/vccc DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+install(DIRECTORY include/math/include/vccc DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+install(DIRECTORY include/random/include/vccc DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+install(DIRECTORY include/signal/include/vccc DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+install(DIRECTORY include/type_support/include/vccc DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+
+option(VCCC_INSTALL_BOOST "Install Boost.pfr and Boost.predef" ON)
+
+if (VCCC_INSTALL_BOOST)
+    install(DIRECTORY boost/pfr/include/boost DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+    install(DIRECTORY boost/predef/include/boost DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 endif()

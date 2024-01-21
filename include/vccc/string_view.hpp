@@ -19,6 +19,7 @@
 #include <string_view>
 #endif
 
+#include "vccc/__config.h"
 #include "vccc/__functional/hash_array.hpp"
 #include "vccc/__iterator/contiguous_iterator.hpp"
 #include "vccc/__iterator/sized_sentinel_for.hpp"
