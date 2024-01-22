@@ -22,6 +22,9 @@ template<typename R> struct common_range;
 template<typename R> struct viewable_range;
 template<typename R> struct constant_range;
 
+template<typename Derived>
+class view_interface;
+
 namespace views {
 
 
