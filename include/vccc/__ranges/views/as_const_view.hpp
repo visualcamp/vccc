@@ -10,6 +10,7 @@
 #include "vccc/__concepts/copy_constructible.hpp"
 #include "vccc/__ranges/cbegin.hpp"
 #include "vccc/__ranges/detail/simple_view.hpp"
+#include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__ranges/input_range.hpp"
 #include "vccc/__ranges/range.hpp"
 #include "vccc/__ranges/view_interface.hpp"
@@ -41,21 +42,50 @@ class as_const_view : public view_interface<as_const_view<V>> {
 
   template<typename V2 = V, std::enable_if_t<ranges::detail::simple_view<V2>::value == false, int> = 0>
   constexpr auto begin() {
-    return ranges::cbegin(base_);
+    return vccc::ranges::cbegin(base_);
   }
 
   template<typename V2 = const V, std::enable_if_t<ranges::range<V2>::value, int> = 0>
   constexpr auto begin() const {
-    return ranges::cbegin(base_);
+    return vccc::ranges::cbegin(base_);
   }
 
+  template<typename V2 = V, std::enable_if_t<ranges::detail::simple_view<V2>::value == false, int> = 0>
+  constexpr auto end() {
+    return vccc::ranges::cend(base_);
+  }
+
+  template<typename V2 = const V, std::enable_if_t<ranges::range<V2>::value, int> = 0>
+  constexpr auto end() const {
+    return vccc::ranges::cend(base_);
+  }
+
+  template<typename V2 = V, std::enable_if_t<sized_range<V2>::value, int> = 0>
+  constexpr auto size() {
+    return vccc::ranges::size(base_);
+  }
+
+  template<typename V2 = const V, std::enable_if_t<sized_range<V2>::value, int> = 0>
+  constexpr auto size() const {
+    return vccc::ranges::size(base_);
+  }
 
  private:
   V base_;
 };
 
+#if __cplusplus >= 201703L
+
+template<typename R>
+as_const_view(R&&) -> as_const_view<views::all_t<R>>;
+
+#endif
 
 } // namespace views
+
+template<typename T>
+struct enable_borrowed_range<views::as_const_view<T>> : enable_borrowed_range<T> {};
+
 } // namespace ranges
 } // namespace vccc
 
