@@ -18,7 +18,6 @@
 
 namespace vccc {
 namespace ranges {
-namespace views {
 
 template<typename V>
 class as_const_view : public view_interface<as_const_view<V>> {
@@ -81,10 +80,8 @@ as_const_view(R&&) -> as_const_view<views::all_t<R>>;
 
 #endif
 
-} // namespace views
-
 template<typename T>
-struct enable_borrowed_range<views::as_const_view<T>> : enable_borrowed_range<T> {};
+struct enable_borrowed_range<as_const_view<T>> : enable_borrowed_range<T> {};
 
 } // namespace ranges
 } // namespace vccc

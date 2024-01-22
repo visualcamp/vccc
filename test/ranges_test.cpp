@@ -505,5 +505,17 @@ int main() {
     TEST_ENSURES(vccc::ranges::find(arr, 5) != vccc::ranges::cend(arr));
   }
 
+  {
+    int x[] = {1, 2, 3, 4, 5};
+    auto v1 = x | vccc::views::take(2);
+    TEST_ENSURES(v1.back() == 2);
+    static_assert(vccc::detail::is_post_incrementable<decltype(v1[0])>::value, "");
+
+    auto v2 = x | vccc::views::take(2) | vccc::views::as_const;
+
+    TEST_ENSURES(v2.back() == 2);
+    static_assert(vccc::detail::is_post_incrementable<decltype(v2[0])>::value == false, "");
+  }
+
   return TEST_RETURN_RESULT;
 }
