@@ -8,6 +8,8 @@
 #include <memory>
 #include <type_traits>
 
+#include "vccc/__concepts/convertible_to.hpp"
+#include "vccc/__concepts/different_from.hpp"
 #include "vccc/__ranges/contiguous_range.hpp"
 #include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__ranges/begin.hpp"
@@ -44,7 +46,8 @@ class ref_view : public view_interface<ref_view<R>> {
   static_assert(std::is_object<R>::value, "Constraints not satisfied");
 
   template<typename T, std::enable_if_t<conjunction<
-      negation< std::is_same<ref_view, remove_cvref_t<T>> >,
+      different_from<T, ref_view>,
+      convertible_to<T, R&>,
       std::is_lvalue_reference<T&&>
   >::value, int> = 0>
   constexpr ref_view(T&& t) noexcept

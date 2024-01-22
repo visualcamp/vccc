@@ -11,6 +11,7 @@
 #include "vccc/__core/inline_or_static.hpp"
 #include "vccc/__ranges/owning_view.hpp"
 #include "vccc/__ranges/range.hpp"
+#include "vccc/__ranges/range_adaptor_closure.hpp"
 #include "vccc/__ranges/ref_view.hpp"
 #include "vccc/__ranges/view.hpp"
 #include "vccc/__ranges/viewable_range.hpp"
@@ -24,8 +25,7 @@ namespace detail {
 
 using vccc::detail::return_category;
 
-struct all_niebloid {
- private:
+class all_adaptor_closure : public range_adaptor_closure<all_adaptor_closure> {
   template<typename T>
   using return_category_type =
       std::conditional_t<
@@ -56,6 +56,8 @@ struct all_niebloid {
   }
 
  public:
+  all_adaptor_closure() = default;
+
   template<typename R>
   constexpr typename return_category_type<R&&>::return_type
   operator()(R&& r) const {
@@ -77,7 +79,7 @@ A [RangeAdaptorObject](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorO
 [RangeAdaptorClosureObject](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject)) that returns a
 \ref ranges::view "view" that includes all elements of its \ref ranges::range "range" argument.
  */
-VCCC_INLINE_OR_STATIC constexpr detail::all_niebloid all{};
+VCCC_INLINE_OR_STATIC constexpr detail::all_adaptor_closure all{};
 
 /// @}
 

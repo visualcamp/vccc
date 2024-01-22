@@ -15,7 +15,7 @@ namespace vccc {
 /// @{
 
 template<typename Test, typename From>
-struct different_from : negation< same_as<remove_cvref_t<Test>, From> > {};
+struct different_from : negation< same_as<remove_cvref_t<Test>, remove_cvref_t<From>> > {};
 
 /// @}
 

@@ -505,7 +505,7 @@ int main() {
     TEST_ENSURES(vccc::ranges::find(arr, 5) != vccc::ranges::cend(arr));
   }
 
-  {
+  { // views::as_const
     int x[] = {1, 2, 3, 4, 5};
     auto v1 = x | vccc::views::take(2);
     TEST_ENSURES(v1.back() == 2);
@@ -515,6 +515,14 @@ int main() {
 
     TEST_ENSURES(v2.back() == 2);
     static_assert(vccc::detail::is_post_incrementable<decltype(v2[0])>::value == false, "");
+  }
+
+  { // views::enumerate
+    constexpr static auto v = {'A', 'B', 'C', 'D'};
+
+    for (const auto p : vccc::views::enumerate(v))
+      std::cout << '(' << std::get<0>(p) << ':' << std::get<1>(p) << ") ";
+    std::cout << std::endl;
   }
 
   return TEST_RETURN_RESULT;
