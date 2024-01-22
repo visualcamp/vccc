@@ -22,7 +22,7 @@
 #include "vccc/__ranges/data.hpp"
 #include "vccc/__ranges/sized_range.hpp"
 #include "vccc/__ranges/range_reference_t.hpp"
-#include "vccc/__span/dynamic_extent.hpp"
+#include "vccc/__span/__forward_declare.hpp"
 #include "vccc/__type_traits/bool_constant.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/negation.hpp"
@@ -30,9 +30,6 @@
 #include "vccc/__type_traits/type_identity.hpp"
 
 namespace vccc {
-
-template<typename T, std::size_t Extent = dynamic_extent>
-class span;
 
 namespace detail {
 
