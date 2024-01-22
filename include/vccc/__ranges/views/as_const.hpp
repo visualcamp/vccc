@@ -15,7 +15,7 @@
 #include "vccc/__ranges/viewable_range.hpp"
 #include "vccc/__ranges/views/all.hpp"
 #include "vccc/__ranges/views/as_const_view.hpp"
-#include "vccc/span.hpp"
+#include "vccc/__span/__forward_declare.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/detail/return_category.hpp"
 #include "vccc/__type_traits/is_invocable.hpp"
