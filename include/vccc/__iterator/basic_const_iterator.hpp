@@ -22,7 +22,6 @@
 #include "vccc/__iterator/iter_const_reference_t.hpp"
 #include "vccc/__iterator/iterator_traits/cxx20_iterator_traits.hpp"
 #include "vccc/__iterator/iterator_tag.hpp"
-#include "vccc/__iterator/iter_common_reference_t.hpp"
 #include "vccc/__iterator/iter_difference_t.hpp"
 #include "vccc/__iterator/iter_move.hpp"
 #include "vccc/__iterator/iter_reference_t.hpp"
@@ -69,6 +68,21 @@ struct constant_iterator : std::false_type {};
 template<typename I>
 struct constant_iterator<I, true>
     : same_as<iter_const_reference_t<I>, iter_reference_t<I>> {};
+
+template<
+    template<typename> class Class,
+    typename Other,
+    typename Iter,
+    bool = negation< is_specialization<Other, Class> >::value /* false */
+>
+struct const_iterator_implicit_conversion_check : std::false_type {};
+template<template<typename> class Class, typename Other, typename Iter>
+struct const_iterator_implicit_conversion_check<Class, Other, Iter, true>
+    : conjunction<
+          constant_iterator<Other>,
+          convertible_to<Iter, Other>
+      > {};
+
 
 }
 
@@ -121,8 +135,8 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
   }
 
   template<typename I = Iter, std::enable_if_t<random_access_iterator<I>::value, int> = 0>
-  constexpr iter_common_reference_t<I> operator[](difference_type n) const {
-    return static_cast<iter_common_reference_t<Iter>>(base()[n]);
+  constexpr iter_const_reference_t<I> operator[](difference_type n) const {
+    return static_cast<iter_const_reference_t<Iter>>(base()[n]);
   }
 
   constexpr basic_const_iterator& operator++() {
@@ -167,20 +181,14 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
     return *this;
   }
 
-  template<typename Other, std::enable_if_t<conjunction<
-      negation< is_specialization<Other, basic_const_iterator> >,
-      detail::constant_iterator<Other>,
-      convertible_to<const Iter&, Other>
-  >::value, int> = 0>
+  template<typename Other, std::enable_if_t<
+      detail::const_iterator_implicit_conversion_check<basic_const_iterator, Other, const Iter&>::value, int> = 0>
   constexpr operator Other() const& noexcept(is_nothrow_convertible<const Iter&, Other>::value) {
     return current_;
   }
 
-  template<typename Other, std::enable_if_t<conjunction<
-      negation< is_specialization<Other, basic_const_iterator> >,
-      detail::constant_iterator<Other>,
-      convertible_to<Iter, Other>
-  >::value, int> = 0>
+  template<typename Other, std::enable_if_t<
+      detail::const_iterator_implicit_conversion_check<basic_const_iterator, Other, Iter>::value, int> = 0>
   constexpr operator Other() && noexcept(is_nothrow_convertible<Iter, Other>::value) {
     return std::move(current_);
   }
@@ -213,81 +221,81 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
   }
 
   template<typename I = Iter, std::enable_if_t<random_access_iterator<I>::value, int> = 0>
-  constexpr bool operator<(basic_const_iterator& y) const {
+  constexpr bool operator<(const basic_const_iterator& y) const {
     return base() < y;
   }
 
   template<typename I = Iter, std::enable_if_t<random_access_iterator<I>::value, int> = 0>
-  constexpr bool operator>(basic_const_iterator& y) const {
+  constexpr bool operator>(const basic_const_iterator& y) const {
     using namespace vccc::rel_ops;
     return base() > y;
   }
 
   template<typename I = Iter, std::enable_if_t<random_access_iterator<I>::value, int> = 0>
-  constexpr bool operator<=(basic_const_iterator& y) const {
+  constexpr bool operator<=(const basic_const_iterator& y) const {
     using namespace vccc::rel_ops;
     return base() <= y;
   }
 
   template<typename I = Iter, std::enable_if_t<random_access_iterator<I>::value, int> = 0>
-  constexpr bool operator>=(basic_const_iterator& y) const {
+  constexpr bool operator>=(const basic_const_iterator& y) const {
     using namespace vccc::rel_ops;
     return base() >= y;
   }
 
-  template<typename I, typename I2 = Iter, std::enable_if_t<conjunction<
+  template<typename I, std::enable_if_t<conjunction<
       different_from<I, basic_const_iterator>,
-      random_access_iterator<I2>,
-      totally_ordered_with<I2, I>
+      random_access_iterator<Iter>,
+      totally_ordered_with<Iter, I>
   >::value, int> = 0>
-  constexpr bool operator<(I& y) const {
+  constexpr bool operator<(const I& y) const {
     using namespace vccc::rel_ops;
     return base() < y;
   }
 
-  template<typename I, typename I2 = Iter, std::enable_if_t<conjunction<
+  template<typename I, std::enable_if_t<conjunction<
       different_from<I, basic_const_iterator>,
-      random_access_iterator<I2>,
-      totally_ordered_with<I2, I>
+      random_access_iterator<Iter>,
+      totally_ordered_with<Iter, I>
   >::value, int> = 0>
-  constexpr bool operator>(I& y) const {
+  constexpr bool operator>(const I& y) const {
     using namespace vccc::rel_ops;
     return base() > y;
   }
 
-  template<typename I, typename I2 = Iter, std::enable_if_t<conjunction<
+  template<typename I, std::enable_if_t<conjunction<
       different_from<I, basic_const_iterator>,
-      random_access_iterator<I2>,
-      totally_ordered_with<I2, I>
+      random_access_iterator<Iter>,
+      totally_ordered_with<Iter, I>
   >::value, int> = 0>
-  constexpr bool operator<=(I& y) const {
+  constexpr bool operator<=(const I& y) const {
     using namespace vccc::rel_ops;
     return base() <= y;
   }
 
-  template<typename I, typename I2 = Iter, std::enable_if_t<conjunction<
+  template<typename I, std::enable_if_t<conjunction<
       different_from<I, basic_const_iterator>,
-      random_access_iterator<I2>,
-      totally_ordered_with<I2, I>
+      random_access_iterator<Iter>,
+      totally_ordered_with<Iter, I>
   >::value, int> = 0>
-  constexpr bool operator>=(I& y) const {
+  constexpr bool operator>=(const I& y) const {
     using namespace vccc::rel_ops;
     return base() >= y;
   }
 
   template<typename I = Iter, std::enable_if_t<random_access_iterator<I>::value, int> = 0>
   friend constexpr basic_const_iterator operator+(const basic_const_iterator& i, difference_type n) {
-    return basic_const_iterator<I>(i.base() + n);
+    return basic_const_iterator(i.base() + n);
   }
 
   template<typename I = Iter, std::enable_if_t<random_access_iterator<I>::value, int> = 0>
   friend constexpr basic_const_iterator operator+(difference_type n, const basic_const_iterator& i) {
-    return basic_const_iterator<I>(i.base() + n);
+    return basic_const_iterator(i.base() + n);
   }
 
   template<typename I = Iter, std::enable_if_t<random_access_iterator<I>::value, int> = 0>
   friend constexpr basic_const_iterator operator-(const basic_const_iterator& i, difference_type n) {
-    return basic_const_iterator<I>(i.base() - n);
+    return basic_const_iterator(i.base() - n);
   }
 
   template<typename S, std::enable_if_t<sized_sentinel_for<S, Iter>::value, int> = 0>
