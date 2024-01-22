@@ -501,6 +501,8 @@ int main() {
 
     TEST_ENSURES(vccc::ranges::find(vec, 5) == vccc::ranges::cend(vec));
     TEST_ENSURES(vccc::ranges::find(arr, 5) != vccc::ranges::cend(arr));
+    TEST_ENSURES(vccc::ranges::cend(vec) == vccc::ranges::find(vec, 5) );
+    TEST_ENSURES(vccc::ranges::cend(arr) != vccc::ranges::find(arr, 5) );
   }
 
   { // views::as_const

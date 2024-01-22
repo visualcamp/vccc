@@ -193,7 +193,22 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
     return std::move(current_);
   }
 
-  template<typename S, std::enable_if_t<sentinel_for<S, Iter>::value, int> = 0>
+  // TODO: Reduce comparison operators
+
+  template<typename I = Iter, std::enable_if_t<sentinel_for<I, I>::value, int> = 0>
+  constexpr bool operator==(const basic_const_iterator& other) const {
+    return current_ == other.current_;
+  }
+
+  template<typename I = Iter, std::enable_if_t<sentinel_for<I, I>::value, int> = 0>
+  constexpr bool operator!=(const basic_const_iterator& other) const {
+    return !(current_ == other.current_);
+  }
+
+  template<typename S, std::enable_if_t<conjunction<
+      different_from<S, basic_const_iterator>,
+      sentinel_for<S, Iter>
+  >::value, int> = 0>
   constexpr bool operator==(const S& s) const {
     using namespace vccc::rel_ops;
     return base() == s;
@@ -207,7 +222,10 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
     return i == s;
   }
 
-  template<typename S, std::enable_if_t<sentinel_for<S, Iter>::value, int> = 0>
+  template<typename S, std::enable_if_t<conjunction<
+      different_from<S, basic_const_iterator>,
+      sentinel_for<S, Iter>
+  >::value, int> = 0>
   constexpr bool operator!=(const S& s) const {
     return !(*this == s);
   }
@@ -298,7 +316,15 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
     return basic_const_iterator(i.base() - n);
   }
 
-  template<typename S, std::enable_if_t<sized_sentinel_for<S, Iter>::value, int> = 0>
+  template<typename I = Iter, std::enable_if_t<sized_sentinel_for<I, I>::value, int> = 0>
+  constexpr difference_type operator-(const basic_const_iterator& i) const {
+    return current_ - i.current_;
+  }
+
+  template<typename S, std::enable_if_t<conjunction<
+      different_from<S, basic_const_iterator>,
+      sized_sentinel_for<S, Iter>
+  >::value, int> = 0>
   constexpr difference_type operator-(const S& s) const {
     return current_ - s;
   }
