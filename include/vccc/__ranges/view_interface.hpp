@@ -13,6 +13,7 @@
 #include "vccc/__iterator/sized_sentinel_for.hpp"
 #include "vccc/__ranges/begin.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
+#include "vccc/__ranges/cbegin.hpp"
 #include "vccc/__ranges/common_range.hpp"
 #include "vccc/__ranges/empty.hpp"
 #include "vccc/__ranges/end.hpp"
@@ -118,7 +119,36 @@ class view_interface {
   }
   /// @}
 
+  /**
+   * @name cbegin
+   * @brief returns a constant iterator to the beginning of the range.
+   * @{
+   */
+  constexpr auto cbegin() {
+    return ranges::cbegin(derived());
+  }
 
+  template<typename D = Derived, std::enable_if_t<range<const D>::value, int> = 0>
+  constexpr auto cbegin() const {
+    return ranges::cbegin(derived());
+  }
+  /// @}
+
+
+  /**
+   * @name cend
+   * @brief returns a sentinel for the constant iterator of the range.
+   * @{
+   */
+  constexpr auto cend() {
+    return ranges::cend(derived());
+  }
+
+  template<typename D = Derived, std::enable_if_t<range<const D>::value, int> = 0>
+  constexpr auto cend() const {
+    return ranges::cend(derived());
+  }
+  /// @}
 
   /**
    * @name operator bool

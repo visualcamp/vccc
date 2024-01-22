@@ -8,11 +8,13 @@
 #include "vccc/__concepts/derived_from.hpp"
 #include "vccc/__concepts/derived_from_single_crtp.hpp"
 #include "vccc/__ranges/view_base.hpp"
-#include "vccc/__ranges/view_interface.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
 
 namespace vccc {
 namespace ranges {
+
+template<typename Derived>
+class view_interface;
 
 /// @addtogroup ranges
 /// @{

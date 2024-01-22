@@ -310,19 +310,17 @@ int main() {
   }
 
   { // ranges::take
-    namespace views = vccc::views;
-    namespace ranges = vccc::ranges;
 
     constexpr char pi[]{'3', '.', '1', '4', '1', '5', '9', '2', '6', '5'};
 
-    vccc::ranges::for_each(pi | views::take(6), [](char x){ std::cout << x; });
+    vccc::ranges::for_each(pi | vccc::views::take(6), [](char x){ std::cout << x; });
     std::cout << '\n';
 
-    vccc::ranges::for_each(ranges::make_take_view(pi, 42), [](char x){ std::cout << x; });
+    vccc::ranges::for_each(vccc::ranges::make_take_view(pi, 42), [](char x){ std::cout << x; });
     std::cout << '\n';
 
 #if __cplusplus >= 201703L
-    vccc::ranges::for_each(ranges::take_view(pi, 42), [](char x){ std::cout << x; });
+    vccc::ranges::for_each(vccc::ranges::take_view(pi, 42), [](char x){ std::cout << x; });
     std::cout << '\n';
 #endif
 

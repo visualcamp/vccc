@@ -12,7 +12,7 @@
 #include "vccc/__iterator/sentinel_for.hpp"
 #include "vccc/__type_traits/detail/return_category.hpp"
 #include "vccc/__core/decay_copy.hpp"
-#include "vccc/__ranges/borrowed_range.hpp"
+#include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__ranges/iterator_t.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
 #include "vccc/__type_traits/is_bounded_array.hpp"
@@ -41,7 +41,7 @@ struct end_member_check : std::false_type {
 };
 template<typename T>
 struct end_member_check<T, void_t<decltype(vccc_decay_copy(std::declval<T>().end()))>>
-    : sentinel_for<decltype(vccc_decay_copy(std::declval<T>().end())), ranges::iterator_t<T>> {
+    : sentinel_for<decltype(vccc_decay_copy(std::declval<T>().end())), iterator_t<T>> {
   using category = return_category<2, decltype(vccc_decay_copy(std::declval<T>().end()))>;
 };
 

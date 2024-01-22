@@ -13,7 +13,7 @@
 #include "vccc/__ranges/constant_range.hpp"
 #include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__type_traits/detail/tag.hpp"
-#include "vccc/__type_traits/conjunction.hpp"
+#include "vccc/__type_traits/disjunction.hpp"
 #include "vccc/__utility/as_const.hpp"
 
 namespace vccc {
