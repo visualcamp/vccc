@@ -39,6 +39,7 @@
 #include "vccc/__type_traits/disjunction.hpp"
 #include "vccc/__type_traits/has_typename_type.hpp"
 #include "vccc/__type_traits/is_referenceable.hpp"
+#include "vccc/__type_traits/is_specialization.hpp"
 #include "vccc/__type_traits/negation.hpp"
 #include "vccc/__type_traits/template_arity.hpp"
 #include "vccc/__type_traits/void_t.hpp"
@@ -179,12 +180,21 @@ struct ranges_to_1_b<C, true> {
     using tag = std::conditional_t<input_range<range_reference_t<C>>::value, tag_5, tag_else>;
 };
 
+// std::tuple is convertible to std::pair since C++23
+template<typename T, typename U>
+struct tuple_convertible_to : convertible_to<T, U> {};
+#if __cplusplus < 202302L
+template<typename T1, typename T2, typename U1, typename U2>
+struct tuple_convertible_to<std::tuple<T1, T2>, std::pair<U1, U2>>
+    : conjunction<convertible_to<T1, U1>, convertible_to<T2, U2>> {};
+#endif
+
 template<typename C, typename R, typename... Args>
 struct ranges_to_1
     : std::conditional_t<
           disjunction<
               negation<input_range<C>>,
-              convertible_to<range_reference_t<R>, range_value_t<C>>
+              tuple_convertible_to<range_reference_t<R>, range_value_t<C>>
           >::value,
           ranges_to_1_a<C, R, Args...>,
           ranges_to_1_b<C>
@@ -204,8 +214,24 @@ constexpr C to_1(tag_2, R&& r, Args&&... args) {
 }
 
 template<typename C, typename R, typename... Args>
-constexpr C to_1(tag_3, R&& r, Args&&... args) {
+constexpr C to_1_kv(std::false_type, R&& r, Args&&... args) {
     return C(ranges::begin(r), ranges::end(r), std::forward<Args>(args)...);
+}
+
+template<typename C, typename R, typename... Args>
+constexpr C to_1_kv(std::true_type, R&& r, Args&&... args) {
+    return to_1_kv<C>(std::false_type{}, std::forward<R>(r) | views::transform([](auto&& tup) {
+        return range_value_t<C>(std::get<0>(std::forward<decltype(tup)>(tup)), std::get<1>(std::forward<decltype(tup)>(tup)));
+    }), std::forward<Args>(args)...);
+}
+
+template<typename C, typename R, typename... Args>
+constexpr C to_1(tag_3, R&& r, Args&&... args) {
+#if __cplusplus < 202302L
+    return to_1_kv<C>(is_specialization<range_reference_t<R>, std::tuple>{}, std::forward<R>(r), std::forward<Args>(args)...);
+#else
+    return C(ranges::begin(r), ranges::end(r), std::forward<Args>(args)...);
+#endif
 }
 
 template<typename C, typename R, typename... Args>
@@ -504,18 +530,29 @@ class to_adaptor_closure<template_type_holder<C>, Args...>
   std::tuple<Args...> tup_;
 };
 
+template<typename...>
+struct to_check_arg;
+template<>
+struct to_check_arg<> : std::true_type {};
+template<typename T, typename... U>
+struct to_check_arg<T, U...> : negation<input_range<T>> {};
+
 } // namespace detail
 
 /// @brief Returns a perfect forwarding call wrapper that is also a
 /// [RangeAdaptorClosureObject](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject)
-template<typename C, typename... Args, std::enable_if_t<view<C>::value == false, int> = 0>
+template<typename C, typename... Args, std::enable_if_t<conjunction<
+    detail::to_check_arg<Args...>,
+    view<C>
+>::value == false, int> = 0>
 constexpr detail::to_adaptor_closure<C, std::decay_t<Args>...> to(Args&&... args) {
   return detail::to_adaptor_closure<C, std::decay_t<Args>...>(in_place, std::forward<Args>(args)...);
 }
 
 /// @brief Returns a perfect forwarding call wrapper with deduced return type that is also a
 /// [RangeAdaptorClosureObject](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject)
-template<template<typename...> class C, typename... Args>
+template<template<typename...> class C, typename... Args, std::enable_if_t<
+    detail::to_check_arg<Args...>::value, int> = 0>
 constexpr detail::to_adaptor_closure<detail::template_type_holder<C>, std::decay_t<Args>...>
 to(Args&&... args) {
   return detail::to_adaptor_closure<detail::template_type_holder<C>, std::decay_t<Args>...>(in_place, std::forward<Args>(args)...);
