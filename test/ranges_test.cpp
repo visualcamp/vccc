@@ -524,7 +524,7 @@ int main() {
     for (const auto p : vccc::views::enumerate(v))
       std::cout << '(' << std::get<0>(p) << ':' << std::get<1>(p) << ") ";
 #else
-    for (auto const [index, letter] : std::views::enumerate(v))
+    for (auto const [index, letter] : vccc::views::enumerate(v))
       std::cout << '(' << index << ':' << letter << ") ";
 #endif
     std::cout << std::endl;
