@@ -520,22 +520,41 @@ int main() {
   { // views::enumerate
     constexpr static auto v = {'A', 'B', 'C', 'D'};
 
+#if __cplusplus < 201703L
     for (const auto p : vccc::views::enumerate(v))
       std::cout << '(' << std::get<0>(p) << ':' << std::get<1>(p) << ") ";
+#else
+    for (auto const [index, letter] : std::views::enumerate(v))
+      std::cout << '(' << index << ':' << letter << ") ";
+#endif
     std::cout << std::endl;
 
-    auto ev = v | vccc::views::enumerate;
-    using R = decltype(ev);
+    auto m = v | vccc::views::enumerate | vccc::ranges::to<std::map>();
 
-    static_assert(vccc::ranges::detail::maybe_key_value_container<std::map>::value, "");
-    static_assert(vccc::ranges::input_range<R>::value, "");
+#if __cplusplus < 201703L
+    for (const auto kv : m)
+      std::cout << '[' << std::get<0>(kv) << "]:" << std::get<1>(kv) << ' ';
+#else
+    for (auto const [key, value] : m)
+      std::cout << '[' << key << "]:" << value << ' ';
+#endif
+    std::cout << '\n';
 
-    static_assert(vccc::has_typename_type<vccc::ranges::range_key<R>>::value, "");
-    static_assert(vccc::has_typename_type<vccc::ranges::range_mapped<R>>::value, "");
-    static_assert(vccc::ranges::detail::is_key_value_range<R>::value, "");
-    // vccc::ranges::to<std::map>()(ev);/**/
 
+    std::vector<int> numbers{1, 3, 5, 7};
 
+#if __cplusplus < 201703L
+    for (const auto i_n : vccc::views::enumerate(numbers)) {
+      ++std::get<1>(i_n);
+      std::cout << numbers[std::get<0>(i_n)] << ' ';
+    }
+#else
+    for (auto const [index, num] : vccc::views::enumerate(numbers)) {
+      ++num; // the type is int&
+      std::cout << numbers[index] << ' ';
+    }
+#endif
+    std::cout << '\n';
   }
 
   return TEST_RETURN_RESULT;
