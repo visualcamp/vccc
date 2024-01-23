@@ -523,6 +523,19 @@ int main() {
     for (const auto p : vccc::views::enumerate(v))
       std::cout << '(' << std::get<0>(p) << ':' << std::get<1>(p) << ") ";
     std::cout << std::endl;
+
+    auto ev = v | vccc::views::enumerate;
+    using R = decltype(ev);
+
+    static_assert(vccc::ranges::detail::maybe_key_value_container<std::map>::value, "");
+    static_assert(vccc::ranges::input_range<R>::value, "");
+
+    static_assert(vccc::has_typename_type<vccc::ranges::range_key<R>>::value, "");
+    static_assert(vccc::has_typename_type<vccc::ranges::range_mapped<R>>::value, "");
+    static_assert(vccc::ranges::detail::is_key_value_range<R>::value, "");
+    // vccc::ranges::to<std::map>()(ev);/**/
+
+
   }
 
   return TEST_RETURN_RESULT;
