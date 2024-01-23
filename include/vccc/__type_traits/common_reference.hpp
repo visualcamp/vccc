@@ -5,19 +5,24 @@
 #ifndef VCCC_TYPE_TRAITS_COMMON_REFERENCE_HPP_
 #define VCCC_TYPE_TRAITS_COMMON_REFERENCE_HPP_
 
+#include <functional>
 #include <type_traits>
 #include <tuple>
 #include <utility>
 
+#include "vccc/__concepts/convertible_to.hpp"
 #include "vccc/__tuple/tuple_like.hpp"
 #include "vccc/__type_traits/bool_constant.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/copy_cvref.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
+#include "vccc/__type_traits/empty.hpp"
 #include "vccc/__type_traits/has_typename_type.hpp"
 #include "vccc/__type_traits/is_specialization.hpp"
+#include "vccc/__type_traits/negation.hpp"
 #include "vccc/__type_traits/remove_cvref.hpp"
 #include "vccc/__type_traits/simple_common_reference.hpp"
+#include "vccc/__type_traits/type_identity.hpp"
 
 namespace vccc {
 namespace detail {
@@ -226,7 +231,7 @@ struct basic_common_reference_tuple_like<TTuple, UTuple, TQual, UQual, true>
 template<typename T, typename U,
          template<typename> class TQual, template<typename> class UQual,
          bool /* false */>
-struct basic_common_reference_pair : no_common_reference {};
+struct basic_common_reference_pair {};
 
 template<typename T1, typename T2, typename U1, typename U2,
          template<typename> class TQual, template<typename> class UQual>
@@ -234,6 +239,26 @@ struct basic_common_reference_pair<std::pair<T1, T2>, std::pair<U1, U2>, TQual, 
   using type = std::pair< common_reference_t<TQual<T1>, UQual<U1>>,
                           common_reference_t<TQual<T2>, UQual<U2>> >;
 };
+
+template<
+    typename R, typename T, typename RQ, typename TQ,
+    bool =
+        conjunction<
+            negation< is_specialization<T, std::reference_wrapper> >,
+            has_typename_type< common_reference<R&, TQ> >
+        >::value /* false */
+>
+struct basic_common_reference_ref_wrap {};
+
+template<
+    typename R, typename T, typename RQ, typename TQ
+>
+struct basic_common_reference_ref_wrap<R, T, RQ, TQ, true>
+    : std::conditional_t<
+          convertible_to<RQ, common_reference_t<R&, TQ>>::value,
+          type_identity<common_reference_t<R&, TQ>>,
+          empty
+      > {};
 
 } // namespace detail
 
@@ -248,6 +273,15 @@ struct basic_common_reference<std::pair<T1, T2>, std::pair<U1, U2>, TQual, UQual
               has_typename_type< common_reference< TQual<T2>, UQual<U2> > >
           >::value
       > {};
+
+template<typename R, typename T, template<typename> class RQual, template<typename> class TQual>
+struct basic_common_reference<std::reference_wrapper<R>, T, RQual, TQual>
+    : detail::basic_common_reference_ref_wrap<R, T, RQual<R>, TQual<T>> {};
+
+template<typename R, typename T, template<typename> class RQual, template<typename> class TQual>
+struct basic_common_reference<T, std::reference_wrapper<R>, TQual, RQual>
+    : detail::basic_common_reference_ref_wrap<R, T, RQual<R>, TQual<T>> {};
+
 
 } // namespace vccc
 
