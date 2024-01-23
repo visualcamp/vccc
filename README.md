@@ -9,47 +9,32 @@
 [![Deploy](https://github.com/visualcamp/vccc/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/visualcamp/vccc/actions/workflows/deploy-docs.yml)
 
 # VisualCamp Common C++ library
-## A header-only cross-platform library that implements C++17, C++20, C++23 STL using C++14
-#### Example, 1
-```.cpp
+## Use C++17, C++20 and C++23 STL with C++14
+
+```c++
+// All features available in C++14
+
 #include "vccc/ranges.hpp"
-#include "vccc/log.hpp"
 
-for (auto x : vccc::views::iota(0, 10)) {
-  LOGI(x);
-}
+// Deduced as std::vector<int>
+auto v = vccc::views::iota(10)
+       | vccc::views::take(4)
+       | vccc::ranges::to<std::vector>();
 
-// Constraints are implemented
-// vccc::views::iota(0, 10U) <- compile failes on the immediate context
-```
-#### Output
-* Outputs are consistent on every platform(PC, web browser, Android and iOS)
-```.cpp
-0
-1
-2
-...
-9
+std::pair<int, std::string> parr[] = {{1: "one"}, {2: "two"}};
+
+// Deduced as std::map<int, std::string>
+auto m = vccc::ranges::to<std::map>(parr); 
+
+// Deduced to std::vector<std::pair<int, std::string>>
+auto pv = vccc::ranges::to<std::vector>(parr);
 ```
 
-#### Example, 2
-```.cpp
-#include "vccc/log.hpp"
-
-std::vector<int> v = {1, 2, 3, 4};
-std::map<int, std::string> map = {{1, "one"}, {2, "two"}};
-auto t = std::make_tuple(1, "hello", v);
-
-LOGI(v);
-LOGI(map);
-LOGI(t);
-```
-#### Output
-```.cpp
-{1, 2, 3, 4}
-{{1: "one"}, {2: "two"}}
-{1, "hello", {1, 2, 3, 4}}
-```
+## Requirements
+* CMake
+* C++ 14
+* Boost.predef, Boost.pfr
+* This is header-only. No further requirements
 
 ## Compiler Support
 * GCC 6.0 or later
@@ -58,10 +43,6 @@ LOGI(t);
 * Emscripten 2.0.14 or later (pervious versions may work but not tested)
 * Android NDK 21.1.6352462 or later (pervious versions may work but not tested)
 * iOS
-
-## Requirements
-* C++14 or above
-* Boost.predef, Boost.pfr
 
 
 ## [Go to document](https://visualcamp.github.io/vccc/html/index.html)

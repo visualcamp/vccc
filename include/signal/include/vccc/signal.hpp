@@ -5,8 +5,8 @@
 # ifndef VCCC_SIGNAL_HPP
 # define VCCC_SIGNAL_HPP
 #
-# include "vccc/signal/connection.h"
-# include "vccc/signal/signal.h"
+# include "vccc/__signal/connection.h"
+# include "vccc/__signal/signal.h"
 
 /**
 @defgroup signal signal

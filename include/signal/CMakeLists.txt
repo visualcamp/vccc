@@ -7,11 +7,9 @@ add_library(VCCC::signal ALIAS vccc_signal)
 target_include_directories(vccc_signal INTERFACE include)
 
 if (UNIX AND NOT APPLE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
-endif()
-
-target_link_libraries(vccc_signal INTERFACE VCCC::optional)
-
-if(VCCC_RUN_TEST)
-    add_subdirectory(test)
+    set(THREADS_PREFER_PTHREAD_FLAG ON)
+    find_package(Threads REQUIRED)
+    target_link_libraries(vccc_signal INTERFACE Threads::Threads)
+else()
+    target_link_libraries(vccc_signal INTERFACE VCCC)
 endif()

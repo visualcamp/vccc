@@ -13,11 +13,6 @@ jobs:
   build:
     runs-on: [ self-hosted, windows ]
 
-    strategy:
-      matrix:
-        cxx: [ 14, 17 ]
-      fail-fast: false
-
     steps:
     - uses: actions/checkout@v2
 
@@ -25,10 +20,8 @@ jobs:
       run: >
         cmake -B ${{github.workspace}}/build
         -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-        -DCMAKE_CXX_STANDARD=${{matrix.cxx}}
         -DVCCC_USE_OPENCV_FEATURES=OFF
         -DVCCC_RUN_TEST=ON
-        -DVCCC_TEST_MATRIX=ON
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} # -G "Ninja" -m

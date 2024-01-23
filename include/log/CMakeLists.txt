@@ -8,11 +8,7 @@ target_include_directories(vccc_log INTERFACE include)
 
 if(ANDROID)
     find_library(log-lib log REQUIRED)
-    target_link_libraries(vccc_log INTERFACE VCCC::type_traits VCCC::optional Boost::predef Boost::pfr ${log-lib})
+    target_link_libraries(vccc_log INTERFACE VCCC Boost::predef Boost::pfr ${log-lib})
 else()
-    target_link_libraries(vccc_log INTERFACE VCCC::type_traits VCCC::optional Boost::predef Boost::pfr)
-endif()
-
-if(VCCC_RUN_TEST)
-    add_subdirectory(test)
+    target_link_libraries(vccc_log INTERFACE VCCC Boost::predef Boost::pfr)
 endif()

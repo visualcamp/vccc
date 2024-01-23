@@ -5,7 +5,7 @@
 # ifndef VCCC_DIRECTORY_HPP
 # define VCCC_DIRECTORY_HPP
 #
-# include "vccc/directory/directory.h"
+# include "vccc/__directory/directory.h"
 # 
 # endif // VCCC_DIRECTORY_HPP
 
