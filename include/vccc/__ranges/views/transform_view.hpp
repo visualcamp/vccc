@@ -63,7 +63,11 @@ class transform_view : public ranges::view_interface<transform_view<V, F>> {
  private:
 
   template<typename Base, bool v = forward_range<Base>::value /* false */>
-  struct transform_view_iterator_category {};
+  struct transform_view_iterator_category {
+#if __cplusplus < 202002L
+    using iterator_category = iterator_ignore;
+#endif
+  };
   template<typename Base>
   struct transform_view_iterator_category<Base, true> {
     using iterator_category =
@@ -79,7 +83,7 @@ class transform_view : public ranges::view_interface<transform_view<V, F>> {
   template<bool Const> class sentinel;
 
   template<bool Const>
-  class iterator : transform_view_iterator_category<std::conditional_t<Const, const V, V>> {
+  class iterator : public transform_view_iterator_category<std::conditional_t<Const, const V, V>> {
     using Parent = std::conditional_t<Const, const transform_view, transform_view>;
     using Base = std::conditional_t<Const, const V, V>;
    public:
@@ -94,6 +98,10 @@ class transform_view : public ranges::view_interface<transform_view<V, F>> {
       >>>;
     using value_type = remove_cvref_t<invoke_result_t<F&, ranges::range_reference_t<Base>>>;
     using difference_type = ranges::range_difference_t<Base>;
+#if __cplusplus < 202002L
+    using pointer = void;
+    using reference = void;
+#endif
 
     iterator() = default;
 
