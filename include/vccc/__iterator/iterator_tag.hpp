@@ -24,6 +24,9 @@ struct contiguous_iterator_tag : public random_access_iterator_tag {};
 using contiguous_iterator_tag = std::contiguous_iterator_tag;
 #endif
 
+// placeholder for ignoring typedefs
+struct iterator_ignore : input_iterator_tag {};
+
 /// @}
 
 } // namespace vccc
