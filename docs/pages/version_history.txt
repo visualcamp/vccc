@@ -3,6 +3,59 @@
 
 \tableofcontents
 
+\section version 1_3_0 v1.3.0
+- \subpage algorithm
+    - Add \ref vccc::ranges::copy
+    - Add \ref vccc::ranges::equal
+    - Add \ref vccc::ranges::for_each
+    - Add \ref vccc::ranges::in_fun_result
+    - Add \ref vccc::ranges::in_out_result
+    - Add \ref vccc::ranges::min
+    - Fix \ref vccc::ranges::min_element
+- \subpage concepts
+    - Add \ref vccc::different_from
+    - Add \ref vccc::swappable_with
+    - Fix \ref vccc::convertible_to
+- \subpage functional
+    - Add \ref vccc::ranges::equal_to
+- \subpage iterator
+    - Add \ref vccc::basic_const_iterator
+    - Add \ref vccc::indirectly_movable
+    - Add \ref vccc::indirectly_movable_storable
+    - Add \ref vccc::indirect_unary_predicate
+    - Add \ref vccc::iter_swap
+    - Add \ref vccc::iter_key_t
+    - Add \ref vccc::iter_mapped_t
+    - Add \ref vccc::iter_val_t
+- \subpage ranges
+    - Add \ref vccc::ranges::as_const_view
+    - Add \ref vccc::ranges::cbegin
+    - Add \ref vccc::ranges::cend
+    - Add \ref vccc::ranges::find
+    - Add \ref vccc::ranges::find_if
+    - Add \ref vccc::ranges::find_if_not
+    - Add \ref vccc::ranges::next
+    - Add \ref vccc::ranges::range_key_t
+    - Add \ref vccc::ranges::range_mapped_t
+    - Add \ref vccc::ranges::to
+    - Add \ref vccc::ranges::transform_view
+    - Add \ref vccc::views::as_const
+    - Add \ref vccc::views::transform
+    - Update \ref vccc::ranges::view_interface
+    - Fix \ref vccc::ranges::ref_view
+- \subpage tuple
+    - Rename `vccc::is_tuple_like` -> \ref vccc::tuple_like
+    - Rename `vccc::is_pair_like` -> \ref vccc::pair_like
+- \subpage type_traits
+    - Add \ref vccc::is_explicitly_convertible
+    - Add \ref vccc::template_arity
+    - Fix \ref vccc::common_reference
+    - Fix \ref vccc::is_invocable
+- \subpage utility
+    - Add \ref vccc::is_nothrow_convertible
+    - Add \ref vccc::type_sequence
+    - Fix \ref vccc::compressed_pair
+
 \section version_1_2_0 v1.2.0
 - \subpage concepts
     - Add \ref vccc::common_with

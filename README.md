@@ -9,8 +9,12 @@
 [![Deploy](https://github.com/visualcamp/vccc/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/visualcamp/vccc/actions/workflows/deploy-docs.yml)
 
 # VisualCamp Common C++ library
-## Use C++17, C++20 and C++23 STL with C++14
+## Features
+* C++14 concepts library (up to C++23 standard)
+* C++14 ranges library (up to C++23 standard)
+* Compatible with existing STL
 
+## Examples
 ```c++
 // All features available in C++14
 
@@ -28,6 +32,18 @@ auto m = vccc::ranges::to<std::map>(parr);
 
 // Deduced to std::vector<std::pair<int, std::string>>
 auto pv = vccc::ranges::to<std::vector>(parr);
+
+
+auto arr = {'A', 'B', 'C', 'D'};
+auto m = v | vccc::views::enumerate | vccc::ranges::to<std::map>();
+
+#if __cplusplus < 201703L
+    for (const auto kv : m)
+      std::cout << '[' << std::get<0>(kv) << "]:" << std::get<1>(kv) << ' ';
+#else
+    for (auto const [key, value] : m)
+      std::cout << '[' << key << "]:" << value << ' ';
+#endif
 ```
 
 ## Requirements
