@@ -6,14 +6,30 @@
 #define VCCC_TYPE_TRAITS_COMMON_REFERENCE_HPP_
 
 #include <type_traits>
+#include <tuple>
+#include <utility>
 
-#include "vccc/__type_traits/detail/test_ternary.hpp"
+#include "vccc/__tuple/tuple_like.hpp"
+#include "vccc/__type_traits/bool_constant.hpp"
+#include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/copy_cvref.hpp"
+#include "vccc/__type_traits/disjunction.hpp"
 #include "vccc/__type_traits/has_typename_type.hpp"
+#include "vccc/__type_traits/is_specialization.hpp"
 #include "vccc/__type_traits/remove_cvref.hpp"
 #include "vccc/__type_traits/simple_common_reference.hpp"
 
 namespace vccc {
+namespace detail {
+
+struct no_common_reference {};
+
+template<typename T, typename U,
+         template<typename> class TQual, template<typename> class UQual,
+         bool = conjunction<tuple_like<T>, tuple_like<U>>::value /* false */>
+struct basic_common_reference_tuple_like : no_common_reference {};
+
+}
 
 /// @addtogroup type_traits
 /// @{
@@ -33,7 +49,7 @@ template<typename... T>
 using common_reference_t = typename common_reference<T...>::type;
 
 template<typename T, typename U, template<typename> class TQual, template<typename> class UQual>
-struct basic_common_reference {};
+struct basic_common_reference : detail::basic_common_reference_tuple_like<T, U, TQual, UQual> {};
 
 /// @}
 /// @} type_traits
@@ -43,9 +59,7 @@ namespace impl {
 template<typename T>
 struct basic_common_reference_qual_gen {
   template<typename U>
-  struct qual {
-    using type = copy_cvref_t<T, U>;
-  };
+  using qual = copy_cvref_t<T, U>;
 };
 
 template<typename T1, typename T2>
@@ -150,6 +164,89 @@ struct common_reference<T1, T2, R...>
         T1,
         T2,
         R...
+      > {};
+
+// specializations of basic_common_reference
+
+namespace detail {
+
+template<typename TTuple, typename UTuple, template<typename> class TQual, template<typename> class UQual, typename Index>
+struct basic_common_reference_tuple_like_impl_2;
+
+template<
+    typename TTuple, typename UTuple,
+    template<typename> class TQual, template<typename> class UQual,
+    std::size_t... I
+>
+struct basic_common_reference_tuple_like_impl_2<TTuple, UTuple, TQual, UQual, std::index_sequence<I...>> {
+  using type = std::tuple<
+      common_reference_t<
+          TQual< std::tuple_element_t<I, TTuple> >,
+          UQual< std::tuple_element_t<I, UTuple> >
+      >... >;
+};
+
+
+template<
+    typename TTuple, typename UTuple,
+    template<typename> class TQual, template<typename> class UQual,
+    typename Index
+>
+struct basic_common_reference_tuple_like_impl_1;
+
+template<
+    typename TTuple, typename UTuple,
+    template<typename> class TQual, template<typename> class UQual,
+    std::size_t... I
+>
+struct basic_common_reference_tuple_like_impl_1<TTuple, UTuple, TQual, UQual, std::index_sequence<I...>>
+    : std::conditional_t<
+          conjunction<
+              has_typename_type< common_reference<TQual<std::tuple_element_t<I, TTuple>>,
+                                                  UQual<std::tuple_element_t<I, UTuple>>> >...
+          >::value,
+          basic_common_reference_tuple_like_impl_2<TTuple, UTuple, TQual, UQual, std::index_sequence<I...>>,
+          no_common_reference
+      >{};
+
+
+template<typename TTuple, typename UTuple, template<typename> class TQual, template<typename> class UQual>
+struct basic_common_reference_tuple_like<TTuple, UTuple, TQual, UQual, true>
+    : std::conditional_t<
+          conjunction<
+              disjunction< is_specialization<TTuple, std::tuple>, is_specialization<UTuple, std::tuple> >,
+              std::is_same<TTuple, std::decay_t<TTuple>>,
+              std::is_same<UTuple, std::decay_t<UTuple>>,
+              bool_constant<(std::tuple_size<remove_cvref_t<TTuple>>::value == std::tuple_size<remove_cvref_t<UTuple>>::value)>
+          >::value,
+          basic_common_reference_tuple_like_impl_1<TTuple, UTuple, TQual, UQual, std::make_index_sequence<std::tuple_size<remove_cvref_t<TTuple>>::value>>,
+          no_common_reference
+      >{};
+
+template<typename T, typename U,
+         template<typename> class TQual, template<typename> class UQual,
+         bool /* false */>
+struct basic_common_reference_pair : no_common_reference {};
+
+template<typename T1, typename T2, typename U1, typename U2,
+         template<typename> class TQual, template<typename> class UQual>
+struct basic_common_reference_pair<std::pair<T1, T2>, std::pair<U1, U2>, TQual, UQual, true> {
+  using type = std::pair< common_reference_t<TQual<T1>, UQual<U1>>,
+                          common_reference_t<TQual<T2>, UQual<U2>> >;
+};
+
+} // namespace detail
+
+template<typename T1, typename T2, typename U1, typename U2,
+         template<typename> class TQual, template<typename> class UQual>
+struct basic_common_reference<std::pair<T1, T2>, std::pair<U1, U2>, TQual, UQual>
+    : detail::basic_common_reference_pair<
+          std::pair<T1, T2>, std::pair<U1, U2>,
+          TQual, UQual,
+          conjunction<
+              has_typename_type< common_reference< TQual<T1>, UQual<U1> > >,
+              has_typename_type< common_reference< TQual<T2>, UQual<U2> > >
+          >::value
       > {};
 
 } // namespace vccc
