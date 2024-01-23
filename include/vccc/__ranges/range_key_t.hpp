@@ -5,6 +5,7 @@
 #ifndef VCCC_RANGES_RANGE_KEY_T_HPP
 #define VCCC_RANGES_RANGE_KEY_T_HPP
 
+#include <tuple>
 #include <type_traits>
 
 #include "vccc/__ranges/input_range.hpp"
@@ -15,12 +16,31 @@ namespace vccc {
 namespace ranges {
 namespace detail {
 
-template<typename R, bool = input_range<R>::value /* false */, typename = void>
+template<typename T, typename = void>
+struct has_first_type : std::false_type {};
+template<typename T>
+struct has_first_type<T, void_t<typename T::first_type>> : std::true_type {};
+
+template<typename T, typename = void>
+struct has_first_tuple_element : std::false_type {};
+template<typename T>
+struct has_first_tuple_element<T, void_t<std::tuple_element_t<0, T>>> : std::true_type {};
+
+template<typename RV, bool = has_first_type<RV>::value, bool = has_first_tuple_element<RV>::value>
+struct guide_key {};
+template<typename RV, bool v>
+struct guide_key<RV, true, v> {
+  using type = std::remove_const_t< typename RV::first_type >;
+};
+template<typename RV>
+struct guide_key<RV, false, true> {
+  using type = std::remove_const_t< std::tuple_element_t<0, RV> >;
+};
+
+template<typename R, bool = input_range<R>::value /* false */>
 struct range_key_impl {};
 template<typename R>
-struct range_key_impl<R, true, void_t<typename range_value_t<R>::first_type>> {
- using type = std::remove_const_t< typename range_value_t<R>::first_type >;
-};
+struct range_key_impl<R, true> : guide_key<range_value_t<R>> {};
 
 } // namespace ranges
 
