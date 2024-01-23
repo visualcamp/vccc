@@ -33,17 +33,17 @@ template<typename T, std::size_t X>
 struct tuple_size_equal_to<T, X, false> : std::false_type {};
 
 template<typename T>
-struct is_tuple_like_uncvref : std::false_type {};
+struct tuple_like_uncvref : std::false_type {};
 
 
 template<typename T, std::size_t N>
-struct is_tuple_like_uncvref<std::array<T, N>> : std::true_type {};
+struct tuple_like_uncvref<std::array<T, N>> : std::true_type {};
 
 template<typename T, typename U>
-struct is_tuple_like_uncvref<std::pair<T, U>> : std::true_type {};
+struct tuple_like_uncvref<std::pair<T, U>> : std::true_type {};
 
 template<typename ...T>
-struct is_tuple_like_uncvref<std::tuple<T...>> : std::true_type {};
+struct tuple_like_uncvref<std::tuple<T...>> : std::true_type {};
 
 } // namespace internal
 
@@ -55,7 +55,7 @@ struct is_tuple_like_uncvref<std::tuple<T...>> : std::true_type {};
  *
  * @code
 template<typename T>
-struct vccc::is_pair_like< T >
+struct vccc::pair_like< T >
  * @endcode
  *
  * 1) A type T models and satisfies the concept tuple-like if std::remove_cvref_t<T> is a specialization of
@@ -74,21 +74,21 @@ struct vccc::is_pair_like< T >
  * Elements of tuple-like types can be bound with structured binding.
  * @endparblock
  *
- * @sa is_pair_like: @copybrief is_pair_like
+ * @sa pair_like: @copybrief pair_like
  */
 template<typename T>
-struct is_tuple_like : internal::is_tuple_like_uncvref<remove_cvref_t<T>> {};
+struct tuple_like : internal::tuple_like_uncvref<remove_cvref_t<T>> {};
 
 
 /**
  * @brief pair-like objects are tuple-like objects with exactly 2 elements.
  *
  * @par See Also
- * @ref is_tuple_like "\a tuple-like ": @copybrief is_tuple_like
+ * @ref tuple_like "\a tuple-like ": @copybrief tuple_like
  */
 template<typename T>
-struct is_pair_like
-    : conjunction<is_tuple_like<T>,
+struct pair_like
+    : conjunction<tuple_like<T>,
                   internal::tuple_size_equal_to<T, 2>> {};
 
 /// @}

@@ -72,7 +72,7 @@ struct make_unsigned_like<T, true> {
 template<typename T>
 using make_unsigned_like_t = typename make_unsigned_like<T>::type;
 
-template<typename T, typename U, typename V, bool = is_pair_like<T>::value /* true */>
+template<typename T, typename U, typename V, bool = pair_like<T>::value /* true */>
 struct pair_like_convertible_from
     : conjunction<
           negation< ranges::range<T> >,
@@ -368,6 +368,14 @@ template<typename I, typename S, vccc::ranges::subrange_kind K>
 struct enable_borrowed_range<ranges::subrange<I, S, K>> : std::true_type {};
 
 } // namespace ranges
+
+namespace internal {
+
+template<typename I, typename S, ranges::subrange_kind K>
+struct tuple_like_uncvref<ranges::subrange<I, S, K>> : std::true_type {};
+
+} // namespace internal
+
 } // namespace vccc
 
 template<typename I, typename S, vccc::ranges::subrange_kind K>

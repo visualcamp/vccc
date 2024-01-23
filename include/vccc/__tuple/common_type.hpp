@@ -17,16 +17,16 @@ namespace vccc {
  * @addtogroup tuple
  * @{
  * @defgroup group_common_type_tuple_like vccc::common_type<tuple-like>
- * @brief determines the common type of a tuple and a \ref is_tuple_like "\a tuple-like " type
+ * @brief determines the common type of a tuple and a \ref tuple_like "\a tuple-like " type
  *
  * @code
  * template< tuple-like TTuple, tuple-like UTuple >
  * struct common_type<TTuple, UTuple>;
  * @endcode
- * The common type of two \ref is_tuple_like "\a tuple-like " types is a `std::tuple`
+ * The common type of two \ref tuple_like "\a tuple-like " types is a `std::tuple`
  * consists of the common types of all corresponding element type pairs of both types.
  *
- * @sa is_tuple_like: @copybrief is_tuple_like
+ * @sa tuple_like: @copybrief tuple_like
  * @sa group_common_type: @copybrief group_common_type
  * @}
  */
