@@ -528,6 +528,9 @@ int main() {
       std::cout << '(' << index << ':' << letter << ") ";
 #endif
     std::cout << std::endl;
+    TEST_ENSURES(vccc::views::enumerate(v).size() == 4);
+    TEST_ENSURES(vccc::views::enumerate(v).begin().index() == 0);
+    TEST_ENSURES((vccc::views::enumerate(v).end() - 1).index() == 3);
 
     auto m = v | vccc::views::enumerate | vccc::ranges::to<std::map>();
 
@@ -539,6 +542,11 @@ int main() {
       std::cout << '[' << key << "]:" << value << ' ';
 #endif
     std::cout << '\n';
+    TEST_ENSURES(m.size() == 4);
+    TEST_ENSURES(m[0] == 'A');
+    TEST_ENSURES(m[1] == 'B');
+    TEST_ENSURES(m[2] == 'C');
+    TEST_ENSURES(m[3] == 'D');
 
 
     std::vector<int> numbers{1, 3, 5, 7};

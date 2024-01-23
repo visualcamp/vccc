@@ -17,7 +17,6 @@
 #include "vccc/__ranges/views/all.hpp"
 #include "vccc/__ranges/views/transform_view.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
-#include "vccc/__type_traits/is_invocable.hpp"
 
 namespace vccc {
 namespace ranges {
