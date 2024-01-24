@@ -4,6 +4,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 project(vccc)
 add_library(vccc INTERFACE)
 add_library(VCCC ALIAS vccc)
+add_library(vccc_stl INTERFACE)
 
 if (MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:__cplusplus")
@@ -77,13 +78,13 @@ if(VCCC_RUN_TEST)
 endif()
 
 if (MSVC)
-    target_compile_options(vccc INTERFACE /Zc:__cplusplus)
-    target_compile_options(vccc INTERFACE /Zc:ternary)
-    target_compile_options(vccc INTERFACE /permissive-)
+    target_compile_options(vccc_stl INTERFACE /Zc:__cplusplus)
+    target_compile_options(vccc_stl INTERFACE /Zc:ternary)
+    target_compile_options(vccc_stl INTERFACE /permissive-)
 endif ()
 
 
-target_include_directories(vccc INTERFACE
+target_include_directories(vccc_stl INTERFACE
     "${CMAKE_CURRENT_LIST_DIR}/include"
     "${VCCC_GENERATED_INCLUDE_DIR}"
 )
@@ -96,6 +97,7 @@ add_subdirectory(include/signal)
 add_subdirectory(include/type_support)
 
 target_link_libraries(vccc INTERFACE
+    vccc_stl
     VCCC::directory
     VCCC::log
     VCCC::math
