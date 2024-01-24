@@ -90,6 +90,7 @@ target_include_directories(vccc_stl INTERFACE
 )
 
 add_subdirectory(include/directory)
+add_subdirectory(include/literal)
 add_subdirectory(include/log)
 add_subdirectory(include/math)
 add_subdirectory(include/random)
@@ -99,6 +100,7 @@ add_subdirectory(include/type_support)
 target_link_libraries(vccc INTERFACE
     vccc_stl
     VCCC::directory
+    VCCC::literal
     VCCC::log
     VCCC::math
     VCCC::random
