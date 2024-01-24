@@ -3,7 +3,7 @@
 
 \tableofcontents
 
-\section version 1_3_0 v1.3.0
+\section version_1_3_1 v1.3.1
 - \subpage algorithm
     - Add \ref vccc::ranges::copy
     - Add \ref vccc::ranges::equal

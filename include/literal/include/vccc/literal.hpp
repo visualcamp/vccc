@@ -5,7 +5,7 @@
 # ifndef VCCC_LITERAL_HPP
 # define VCCC_LITERAL_HPP
 #
-# include "literal/formatter.hpp"
+# include "vccc/__literal/formatter.hpp"
 
 /**
 @defgroup literal literal
