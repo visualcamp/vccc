@@ -11,6 +11,8 @@
 #include "vccc/__ranges/views/empty_view.hpp"
 #include "vccc/__ranges/views/enumerate.hpp"
 #include "vccc/__ranges/views/enumerate_view.hpp"
+#include "vccc/__ranges/views/filter.hpp"
+#include "vccc/__ranges/views/filter_view.hpp"
 #include "vccc/__ranges/views/iota_view.hpp"
 #include "vccc/__ranges/views/single.hpp"
 #include "vccc/__ranges/views/take.hpp"
