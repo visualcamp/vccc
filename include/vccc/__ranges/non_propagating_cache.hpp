@@ -42,7 +42,6 @@ class non_propagating_cache : public optional<T> {
   using base::or_else;
   using base::swap;
   using base::reset;
-  using base::emplace;
 
   non_propagating_cache() = default;
 
