@@ -9,6 +9,10 @@
 # include <new>
 # include <utility>
 #
+# include "vccc/__concepts/copy_constructible.hpp"
+# include "vccc/__concepts/invocable.hpp"
+# include "vccc/__concepts/move_constructible.hpp"
+# include "vccc/__functional/invoke.hpp"
 # include "vccc/__optional/internal/check_overload.h"
 # include "vccc/__optional/internal/move_assignment.h"
 # include "vccc/__optional/internal/traits.h"
@@ -16,6 +20,8 @@
 # include "vccc/__optional/nullopt_t.h"
 # include "vccc/__optional/swap.h"
 # include "vccc/__type_traits/is_swappable.hpp"
+# include "vccc/__type_traits/is_invocable.hpp"
+# include "vccc/__type_traits/remove_cvref.hpp"
 # include "vccc/__utility/in_place.hpp"
 
 namespace vccc {
@@ -288,6 +294,99 @@ class optional :
                   "vccc::optional<T>::value_or : U&& must be convertible to T");
 
     return this->has_value() ? std::move(**this) : static_cast<value_type>(std::forward<U>(default_value));
+  }
+  /// @}
+
+
+  /// @name and_then
+  /// @{
+  template<typename F, std::enable_if_t<
+      is_specialization<invoke_result_t<F, value_type&>, optional>::value, int> = 0>
+  constexpr auto and_then(F&& f) & {
+    if (*this)
+      return vccc::invoke(std::forward<F>(f), **this);
+    return remove_cvref_t<invoke_result_t<F, value_type&>>{};
+  }
+
+  template<typename F, std::enable_if_t<
+      is_specialization<invoke_result_t<F, const value_type&>, optional>::value, int> = 0>
+  constexpr auto and_then(F&& f) const & {
+    if (*this)
+      return vccc::invoke(std::forward<F>(f), **this);
+    return remove_cvref_t<invoke_result_t<F, const value_type&>>{};
+  }
+
+  template<typename F, std::enable_if_t<
+      is_specialization<invoke_result_t<F, value_type&&>, optional>::value, int> = 0>
+  constexpr auto and_then(F&& f) && {
+    if (*this)
+      return vccc::invoke(std::forward<F>(f), std::move(**this));
+    return remove_cvref_t<invoke_result_t<F, value_type>>{};
+  }
+
+  template<typename F, std::enable_if_t<
+      is_specialization<invoke_result_t<F, const value_type&&>, optional>::value, int> = 0>
+  constexpr auto and_then(F&& f) const && {
+    if (*this)
+      return vccc::invoke(std::forward<F>(f), std::move(**this));
+    return remove_cvref_t<invoke_result_t<F, const value_type>>{};
+  }
+  /// @}
+
+
+  /// @name transform
+  /// @{
+  template<typename F, std::enable_if_t<is_invocable<F, value_type&>::value, int> = 0>
+  constexpr auto transform(F&& f) & {
+    using U = std::remove_cv_t<invoke_result_t<F, T&>>;
+    if (*this)
+      return optional<U>(vccc::invoke(std::forward<F>(f), **this));
+    return optional<U>{};
+  }
+
+  template<typename F, std::enable_if_t<is_invocable<F, const value_type&>::value, int> = 0>
+  constexpr auto transform(F&& f) const & {
+    using U = std::remove_cv_t<invoke_result_t<F, const T&>>;
+    if (*this)
+      return optional<U>(vccc::invoke(std::forward<F>(f), **this));
+    return optional<U>{};
+  }
+
+  template<typename F, std::enable_if_t<is_invocable<F, value_type&>::value, int> = 0>
+  constexpr auto transform(F&& f) && {
+    using U = std::remove_cv_t<invoke_result_t<F, T>>;
+    if (*this)
+      return optional<U>(vccc::invoke(std::forward<F>(f), std::move(**this)));
+    return optional<U>{};
+  }
+
+  template<typename F, std::enable_if_t<is_invocable<F, value_type&>::value, int> = 0>
+  constexpr auto transform(F&& f) const && {
+    using U = std::remove_cv_t<invoke_result_t<F, const T>>;
+    if (*this)
+      return optional<U>(vccc::invoke(std::forward<F>(f), std::move(**this)));
+    return optional<U>{};
+  }
+  /// @}
+
+
+  /// @name or_else
+  /// @{
+  template<typename F, std::enable_if_t<conjunction<
+      copy_constructible<T>,
+      invocable<F>
+  >::value, int> = 0>
+  constexpr optional or_else(F&& f) const& {
+    static_assert(std::is_same<remove_cvref_t<invoke_result_t<F>>, optional>::value, "Invalid return type from f");
+    return *this ? *this : std::forward<F>(f)();
+  }
+  template<typename F, std::enable_if_t<conjunction<
+      move_constructible<T>,
+      invocable<F>
+  >::value, int> = 0>
+  constexpr optional or_else(F&& f) && {
+    static_assert(std::is_same<remove_cvref_t<invoke_result_t<F>>, optional>::value, "Invalid return type from f");
+    return *this ? std::move(*this) : std::forward<F>(f)();
   }
   /// @}
 
