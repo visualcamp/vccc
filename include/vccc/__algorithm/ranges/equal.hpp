@@ -2,8 +2,8 @@
 // Created by yonggyulee on 1/12/24.
 //
 
-#ifndef VCCC_ALGORITHM_EQUAL_HPP
-#define VCCC_ALGORITHM_EQUAL_HPP
+#ifndef VCCC_ALGORITHM_RANGES_EQUAL_HPP
+#define VCCC_ALGORITHM_RANGES_EQUAL_HPP
 
 #include <functional>
 #include <type_traits>
@@ -96,4 +96,4 @@ VCCC_INLINE_OR_STATIC constexpr detail::equal_niebloid equal{};
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_ALGORITHM_EQUAL_HPP
+#endif // VCCC_ALGORITHM_RANGES_EQUAL_HPP

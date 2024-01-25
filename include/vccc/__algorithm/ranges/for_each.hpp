@@ -2,15 +2,15 @@
 // Created by yonggyulee on 1/10/24.
 //
 
-#ifndef VCCC_ALGORITHM_IN_FOR_EACH_HPP
-#define VCCC_ALGORITHM_IN_FOR_EACH_HPP
+#ifndef VCCC_ALGORITHM_RANGES_IN_FOR_EACH_HPP
+#define VCCC_ALGORITHM_RANGES_IN_FOR_EACH_HPP
 
 #include <functional>
 #include <type_traits>
 #include <utility>
 
 #include "vccc/__core/inline_or_static.hpp"
-#include "vccc/__algorithm/in_fun_result.hpp"
+#include "vccc/__algorithm/ranges/in_fun_result.hpp"
 #include "vccc/__functional/identity.hpp"
 #include "vccc/__functional/invoke.hpp"
 #include "vccc/__iterator/indirectly_unary_invocable.hpp"
@@ -67,4 +67,4 @@ VCCC_INLINE_OR_STATIC constexpr detail::for_each_niebloid for_each{};
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_ALGORITHM_IN_FOR_EACH_HPP
+#endif // VCCC_ALGORITHM_RANGES_IN_FOR_EACH_HPP

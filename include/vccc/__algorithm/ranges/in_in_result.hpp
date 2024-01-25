@@ -45,4 +45,4 @@ struct in_in_result {
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_ALGORITHM_IN_IN_RESULT_HPP
+#endif // VCCC_ALGORITHM_RANGES_IN_IN_RESULT_HPP

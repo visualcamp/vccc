@@ -2,8 +2,8 @@
 // Created by yonggyulee on 1/18/24.
 //
 
-#ifndef VCCC_ALGORITHM_FIND_IF_HPP
-#define VCCC_ALGORITHM_FIND_IF_HPP
+#ifndef VCCC_ALGORITHM_RANGES_FIND_IF_HPP
+#define VCCC_ALGORITHM_RANGES_FIND_IF_HPP
 
 #include <functional>
 #include <type_traits>
@@ -71,4 +71,4 @@ VCCC_INLINE_OR_STATIC constexpr detail::find_if_niebloid find_if{};
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_ALGORITHM_FIND_IF_HPP
+#endif // VCCC_ALGORITHM_RANGES_FIND_IF_HPP

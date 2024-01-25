@@ -2,8 +2,8 @@
 // Created by YongGyu Lee on 01/08/24.
 //
 
-#ifndef VCCC_ALGORITHM_MIN_ELEMENT_HPP
-#define VCCC_ALGORITHM_MIN_ELEMENT_HPP
+#ifndef VCCC_ALGORITHM_RANGES_MIN_ELEMENT_HPP
+#define VCCC_ALGORITHM_RANGES_MIN_ELEMENT_HPP
 
 #include "vccc/__core/inline_or_static.hpp"
 #include "vccc/__functional/identity.hpp"
@@ -76,4 +76,4 @@ VCCC_INLINE_OR_STATIC constexpr detail::min_element_niebloid min_element{};
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_ALGORITHM_MIN_ELEMENT_HPP
+#endif // VCCC_ALGORITHM_RANGES_MIN_ELEMENT_HPP

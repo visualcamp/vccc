@@ -2,8 +2,8 @@
 // Created by yonggyulee on 1/25/24.
 //
 
-#ifndef VCCC_ALGORITHM_IN_IN_OUT_RESULT_HPP
-#define VCCC_ALGORITHM_IN_IN_OUT_RESULT_HPP
+#ifndef VCCC_ALGORITHM_RANGES_IN_IN_OUT_RESULT_HPP
+#define VCCC_ALGORITHM_RANGES_IN_IN_OUT_RESULT_HPP
 
 #include <type_traits>
 #include <utility>
@@ -48,4 +48,4 @@ struct in_in_out_result {
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_ALGORITHM_IN_IN_OUT_RESULT_HPP
+#endif // VCCC_ALGORITHM_RANGES_IN_IN_OUT_RESULT_HPP

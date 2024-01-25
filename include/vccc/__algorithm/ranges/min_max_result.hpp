@@ -2,8 +2,8 @@
 // Created by yonggyulee on 1/25/24.
 //
 
-#ifndef VCCC_ALGORITHM_MIN_MAX_RESULT_HPP
-#define VCCC_ALGORITHM_MIN_MAX_RESULT_HPP
+#ifndef VCCC_ALGORITHM_RANGES_MIN_MAX_RESULT_HPP
+#define VCCC_ALGORITHM_RANGES_MIN_MAX_RESULT_HPP
 
 #include <type_traits>
 #include <utility>
@@ -40,4 +40,4 @@ struct min_max_result {
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_ALGORITHM_MIN_MAX_RESULT_HPP
+#endif // VCCC_ALGORITHM_RANGES_MIN_MAX_RESULT_HPP

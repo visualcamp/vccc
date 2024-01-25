@@ -2,8 +2,8 @@
 // Created by YongGyu Lee on 12/28/23.
 //
 
-#ifndef VCCC_ALGORITHM_MIN_HPP
-#define VCCC_ALGORITHM_MIN_HPP
+#ifndef VCCC_ALGORITHM_RANGES_MIN_HPP
+#define VCCC_ALGORITHM_RANGES_MIN_HPP
 
 #include <functional>
 #include <initializer_list>
@@ -94,4 +94,4 @@ VCCC_INLINE_OR_STATIC constexpr detail::min_niebloid min{};
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_ALGORITHM_MIN_HPP
+#endif // VCCC_ALGORITHM_RANGES_MIN_HPP

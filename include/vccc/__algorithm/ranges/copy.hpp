@@ -2,13 +2,13 @@
 // Created by yonggyulee on 1/12/24.
 //
 
-#ifndef VCCC_ALGORITHM_COPY_HPP
-#define VCCC_ALGORITHM_COPY_HPP
+#ifndef VCCC_ALGORITHM_RANGES_COPY_HPP
+#define VCCC_ALGORITHM_RANGES_COPY_HPP
 
 #include <type_traits>
 #include <utility>
 
-#include "vccc/__algorithm/in_out_result.hpp"
+#include "vccc/__algorithm/ranges/in_out_result.hpp"
 #include "vccc/__core/inline_or_static.hpp"
 #include "vccc/__functional/identity.hpp"
 #include "vccc/__iterator/indirectly_copyable.hpp"
@@ -73,4 +73,4 @@ VCCC_INLINE_OR_STATIC constexpr detail::copy_niebloid copy{};
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_ALGORITHM_COPY_HPP
+#endif // VCCC_ALGORITHM_RANGES_COPY_HPP
