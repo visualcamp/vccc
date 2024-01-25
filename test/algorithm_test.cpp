@@ -64,6 +64,21 @@ int Test() {
     print('\n');
   }
 
+  {
+    std::vector<std::string> v = {"a", "b", "c", "d", "e", "f", "g"};
+    const std::vector<std::string> v1 = {"d", "e", "f", "g", "", "", ""};
+    const std::vector<std::string> v2 = {"", "", "d", "e", "f", "g", ""};
+
+    vccc::shift_left(begin(v), end(v), 3);
+    TEST_ENSURES((vccc::ranges::equal(v, v1)));
+
+    vccc::shift_right(begin(v), end(v), 2);
+    TEST_ENSURES((vccc::ranges::equal(v, v2)));
+
+    vccc::shift_left(begin(v), end(v), 8);
+    TEST_ENSURES((vccc::ranges::equal(v, v2)));
+  }
+
   return TEST_RETURN_RESULT;
 }
 

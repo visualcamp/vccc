@@ -6,6 +6,7 @@
 #define VCCC_ALGORITHM_HPP
 
 #include "vccc/__algorithm/for_each_n.hpp"
+#include "vccc/__algorithm/shift.hpp"
 #include "vccc/__algorithm/ranges/copy.hpp"
 #include "vccc/__algorithm/ranges/equal.hpp"
 #include "vccc/__algorithm/ranges/find.hpp"
