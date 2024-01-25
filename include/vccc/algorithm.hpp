@@ -8,6 +8,7 @@
 #include "vccc/__algorithm/clamp.hpp"
 #include "vccc/__algorithm/for_each_n.hpp"
 #include "vccc/__algorithm/shift.hpp"
+#include "vccc/__algorithm/ranges/all_of.hpp"
 #include "vccc/__algorithm/ranges/copy.hpp"
 #include "vccc/__algorithm/ranges/equal.hpp"
 #include "vccc/__algorithm/ranges/find.hpp"
