@@ -29,6 +29,9 @@ constexpr void move_nocheck(It first, It last, It dest) {
 
 } // namespace detail
 
+/// @addtogroup algorithm
+/// @{
+
 template<typename ForwardIt>
 constexpr ForwardIt shift_left(
     ForwardIt first, ForwardIt last, typename cxx20_iterator_traits<ForwardIt>::difference_type n)
@@ -147,6 +150,8 @@ constexpr ForwardIt shift_right(
 
   return detail::shift_right_impl(first, last, n, LegacyBidirectionalIterator<ForwardIt>{});
 }
+
+/// @}
 
 } // namespace vccc
 

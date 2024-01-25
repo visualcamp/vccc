@@ -11,6 +11,9 @@
 
 namespace vccc {
 
+/// @addtogroup algorithm
+/// @{
+
 template<typename InputIt, typename Size, typename UnaryFunction>
 constexpr InputIt for_each_n(InputIt first, Size n, UnaryFunction f) {
   static_assert(LegacyInputIterator<InputIt>::value, "Constraints not satisfied");
@@ -22,6 +25,8 @@ constexpr InputIt for_each_n(InputIt first, Size n, UnaryFunction f) {
 
   return first;
 }
+
+/// @}
 
 } // namespace vccc
 
