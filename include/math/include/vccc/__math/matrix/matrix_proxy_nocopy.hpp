@@ -15,13 +15,13 @@ namespace math {
 
 template<typename ExprType>
 struct traits<MatrixProxyNocopy<ExprType>> {
-  enum {
+  enum : int {
     rows = traits<ExprType>::rows,
     cols = traits<ExprType>::cols,
     size = rows * cols,
   };
 
-  enum {
+  enum : int {
     option = Flag::kDefault | Flag::kReferenceUnsafe
   };
   using value_type = typename traits<ExprType>::value_type;

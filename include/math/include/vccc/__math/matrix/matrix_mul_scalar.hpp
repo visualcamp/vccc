@@ -17,14 +17,14 @@ namespace math {
 
 template<typename LhsType, typename RhsType>
 struct traits<MatrixMulScalar<LhsType, RhsType>> {
-  enum {
+  enum : int {
     rows = traits<LhsType>::rows,
     cols = traits<LhsType>::cols,
     size = rows * cols,
   };
 
-  enum {
-    option = traits<LhsType>::option | Flag::kReferenceUnsafe
+  enum : int {
+    option = static_cast<int>(traits<LhsType>::option) | static_cast<int>(Flag::kReferenceUnsafe)
   };
   using value_type = typename LhsType::value_type;
 };

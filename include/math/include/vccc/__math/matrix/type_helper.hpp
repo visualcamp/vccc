@@ -16,11 +16,11 @@ namespace math {
 template<typename T>
 struct hold_type_selector {
   using type =
-      std::conditional_t<bool(traits<T>::option & Flag::kReferenceUnsafe),
+      std::conditional_t<bool(static_cast<int>(traits<T>::option) & static_cast<int>(Flag::kReferenceUnsafe)),
                          const std::remove_reference_t<T>,
                          const T&>;
   using non_const_type =
-      std::conditional_t<bool(traits<T>::option & Flag::kReferenceUnsafe),
+      std::conditional_t<bool(static_cast<int>(traits<T>::option) & static_cast<int>(Flag::kReferenceUnsafe)),
                          std::remove_reference_t<T>,
                          T&>;
 };
@@ -29,7 +29,7 @@ template<typename T>
 using hold_type_selector_t = typename hold_type_selector<T>::type;
 
 template<typename T>
-struct is_alias_safe : std::integral_constant<bool, !(traits<T>::option & Flag::kAliasUnsafe)> {};
+struct is_alias_safe : std::integral_constant<bool, !(static_cast<int>(traits<T>::option) & static_cast<int>(Flag::kAliasUnsafe))> {};
 
 template<typename T> using is_alias_safe_t = typename is_alias_safe<T>::type;
 
@@ -45,7 +45,7 @@ using is_concrete_matrix_t = typename is_concrete_matrix<T>::type;
 
 template<typename TL, typename TR>
 struct is_same_size_impl
-    : std::integral_constant<bool, ((TL::rows == TR::rows) && (TL::cols == TR::cols))> {};
+    : std::integral_constant<bool, ((static_cast<int>(TL::rows) == static_cast<int>(TR::rows)) && (static_cast<int>(TL::cols) == static_cast<int>(TR::cols)))> {};
 
 template<typename A, typename B>
 struct is_same_size : is_same_size_impl<traits<A>, traits<B>> {};
