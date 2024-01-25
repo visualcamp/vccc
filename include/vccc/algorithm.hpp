@@ -11,10 +11,17 @@
 #include "vccc/__algorithm/find_if.hpp"
 #include "vccc/__algorithm/find_if_not.hpp"
 #include "vccc/__algorithm/for_each.hpp"
+#include "vccc/__algorithm/in_found_result.hpp"
 #include "vccc/__algorithm/in_fun_result.hpp"
+#include "vccc/__algorithm/in_in_out_result.hpp"
+#include "vccc/__algorithm/in_in_result.hpp"
+#include "vccc/__algorithm/in_out_out_result.hpp"
 #include "vccc/__algorithm/in_out_result.hpp"
+#include "vccc/__algorithm/in_value_result.hpp"
 #include "vccc/__algorithm/min.hpp"
 #include "vccc/__algorithm/min_element.hpp"
+#include "vccc/__algorithm/min_max_result.hpp"
+#include "vccc/__algorithm/out_value_result.hpp"
 #include "vccc/__algorithm/swap_ranges.hpp"
 
 /// @defgroup algorithm

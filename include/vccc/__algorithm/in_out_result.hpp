@@ -27,7 +27,7 @@ struct in_out_result {
       convertible_to<const I&, I2>,
       convertible_to<const O&, O2>
   >::value, int> = 0>
-  operator in_out_result<I2, O2>() const & {
+  constexpr operator in_out_result<I2, O2>() const & {
     return {in, out};
   }
 
@@ -35,7 +35,7 @@ struct in_out_result {
       convertible_to<I, I2>,
       convertible_to<O, O2>
   >::value, int> = 0>
-  operator in_out_result<I2, O2>() && {
+  constexpr operator in_out_result<I2, O2>() && {
     return {std::move(in), std::move(out)};
   }
 };
