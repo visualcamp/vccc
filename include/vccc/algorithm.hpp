@@ -11,6 +11,7 @@
 #include "vccc/__algorithm/ranges/all_of.hpp"
 #include "vccc/__algorithm/ranges/any_of.hpp"
 #include "vccc/__algorithm/ranges/copy.hpp"
+#include "vccc/__algorithm/ranges/count.hpp"
 #include "vccc/__algorithm/ranges/equal.hpp"
 #include "vccc/__algorithm/ranges/find.hpp"
 #include "vccc/__algorithm/ranges/find_if.hpp"
