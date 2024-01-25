@@ -57,7 +57,7 @@ VCCC_INLINE_OR_STATIC constexpr compressed_pair_empty_t compressed_pair_empty;
 
 /// @brief An size-optimized pair using empty base optimization
 template<typename T, typename U>
-class compressed_pair : private detail::compressed_slot<T, 0>, private detail::compressed_slot<U, 1> {
+class compressed_pair : public detail::compressed_slot<T, 0>, public detail::compressed_slot<U, 1> {
  private:
   using first_base = detail::compressed_slot<T, 0>;
   using second_base = detail::compressed_slot<U, 1>;
