@@ -26,6 +26,7 @@
 #include "vccc/__algorithm/ranges/min.hpp"
 #include "vccc/__algorithm/ranges/min_element.hpp"
 #include "vccc/__algorithm/ranges/min_max_result.hpp"
+#include "vccc/__algorithm/ranges/none_of.hpp"
 #include "vccc/__algorithm/ranges/out_value_result.hpp"
 #include "vccc/__algorithm/ranges/swap_ranges.hpp"
 
