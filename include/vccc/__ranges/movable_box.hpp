@@ -141,7 +141,7 @@ struct movable_box_storage_base<T, false> : private optional<T> {
   using base::emplace;
 };
 
-template<typename T, bool = copyable<T>::value /* true */>
+template<typename T, bool = conjunction<copyable<T>, copy_constructible<T>>::value /* true */>
 struct movable_box_storage_copy_assign : movable_box_storage_base<T> {
   using base = movable_box_storage_base<T>;
   using base::base;
@@ -156,11 +156,7 @@ struct movable_box_storage_copy_assign<T, false> : movable_box_storage_base<T> {
   movable_box_storage_copy_assign(const movable_box_storage_copy_assign&) = default;
   movable_box_storage_copy_assign(movable_box_storage_copy_assign&&) = default;
 
-  template<typename U, std::enable_if_t<conjunction<
-      std::is_same<U, movable_box_storage_copy_assign>,
-      copy_constructible<T>
-  >::value, int> = 0>
-  movable_box_storage_copy_assign& operator=(const U& other)
+  movable_box_storage_copy_assign& operator=(const movable_box_storage_copy_assign& other)
       noexcept(std::is_nothrow_copy_constructible<T>::value)
   {
     if (this != std::addressof(other)) {
