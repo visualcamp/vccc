@@ -27,6 +27,8 @@
     - Add \ref vccc::iter_key_t
     - Add \ref vccc::iter_mapped_t
     - Add \ref vccc::iter_val_t
+- \subpage optional
+    - Update \ref vccc::optional
 - \subpage ranges
     - Fix \ref vccc::movable_box
     - Add \ref vccc::ranges::as_const_view
