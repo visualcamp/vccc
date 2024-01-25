@@ -43,18 +43,19 @@ struct is_swappable_with_impl<T(&)[N], T(&)[N]> : is_swappable<T> {
 };
 
 # else
+using std::swap;
 template<typename T, typename U, typename = void>
 struct is_swappable_with_impl : std::false_type {};
 
 template<typename T, typename U>
 struct is_swappable_with_impl<T, U, void_t<
-    decltype((std::swap(std::declval<T>(), std::declval<U>()),
-              std::swap(std::declval<U>(), std::declval<T>()))
+    decltype((swap(std::declval<T>(), std::declval<U>()),
+              swap(std::declval<U>(), std::declval<T>()))
             )>
     > : std::true_type {
   static constexpr bool nothrow
-      = noexcept(std::swap(std::declval<T>(), std::declval<U>())) &&
-        noexcept(std::swap(std::declval<U>(), std::declval<T>()));
+      = noexcept(swap(std::declval<T>(), std::declval<U>())) &&
+        noexcept(swap(std::declval<U>(), std::declval<T>()));
 
 };
 
