@@ -16,6 +16,7 @@
 #include "vccc/__algorithm/ranges/find_if.hpp"
 #include "vccc/__algorithm/ranges/find_if_not.hpp"
 #include "vccc/__algorithm/ranges/for_each.hpp"
+#include "vccc/__algorithm/ranges/for_each_n.hpp"
 #include "vccc/__algorithm/ranges/in_found_result.hpp"
 #include "vccc/__algorithm/ranges/in_fun_result.hpp"
 #include "vccc/__algorithm/ranges/in_in_out_result.hpp"
