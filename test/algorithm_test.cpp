@@ -9,6 +9,7 @@
 
 #include "vccc/algorithm.hpp"
 #include "vccc/string_view.hpp"
+#include "vccc/ranges.hpp"
 #include "vccc/utility.hpp"
 
 namespace {
@@ -77,6 +78,28 @@ int Test() {
 
     vccc::shift_left(begin(v), end(v), 8);
     TEST_ENSURES((vccc::ranges::equal(v, v2)));
+  }
+
+  { // fold_left
+    std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8};
+
+    int sum = ranges::fold_left(v.begin(), v.end(), 0, std::plus<>{});
+    TEST_ENSURES(sum == 36);
+
+    int mul = ranges::fold_left(v, 1, std::multiplies<>{});
+    TEST_ENSURES(mul == 1*2*3*4*5*6*7*8);
+
+    // std::vector<std::pair<char, float>> data {{'A', 2.f}, {'B', 3.f}, {'C', 3.5f}};
+    // float sec = ranges::fold_left
+    // (
+    //     data | ranges::views::values, 2.0f, std::multiplies<>()
+    // );
+
+    std::string str = ranges::fold_left
+    (
+        v, "A", [](std::string s, int x) { return s + ':' + std::to_string(x); }
+    );
+    std::cout << "str: " << str << '\n';
   }
 
   return TEST_RETURN_RESULT;
