@@ -27,11 +27,15 @@
     - Add \ref vccc::iter_key_t
     - Add \ref vccc::iter_mapped_t
     - Add \ref vccc::iter_val_t
+- \subpage optional
+    - Update \ref vccc::optional
 - \subpage ranges
+    - Fix \ref vccc::movable_box
     - Add \ref vccc::ranges::as_const_view
     - Add \ref vccc::ranges::cbegin
     - Add \ref vccc::ranges::cend
     - Add \ref vccc::ranges::find
+    - Add \ref vccc::ranges::filter_view
     - Add \ref vccc::ranges::find_if
     - Add \ref vccc::ranges::find_if_not
     - Add \ref vccc::ranges::next
@@ -40,6 +44,7 @@
     - Add \ref vccc::ranges::to
     - Add \ref vccc::ranges::transform_view
     - Add \ref vccc::views::as_const
+    - Add \ref vccc::views::filter
     - Add \ref vccc::views::transform
     - Update \ref vccc::ranges::view_interface
     - Fix \ref vccc::ranges::ref_view

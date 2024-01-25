@@ -565,5 +565,22 @@ int main() {
     std::cout << '\n';
   }
 
+  { // filter_view
+    auto even = [](int i) { return 0 == i % 2; };
+    auto square = [](int i) { return i * i; };
+
+    for (int i : vccc::views::iota(0, 6)
+               | vccc::views::filter(even)
+               | vccc::views::transform(square))
+      std::cout << i << ' ';
+    std::cout << '\n';
+
+    auto v = vccc::views::iota(0, 6)
+           | vccc::views::filter(even)
+           | vccc::views::transform(square)
+           | vccc::ranges::to<std::vector>();
+    TEST_ENSURES((vccc::ranges::equal(v , std::vector<int>{0, 4, 16})));
+  }
+
   return TEST_RETURN_RESULT;
 }

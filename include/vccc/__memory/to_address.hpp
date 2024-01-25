@@ -8,6 +8,7 @@
 #include <memory>
 #include <type_traits>
 
+#include "vccc/__type_traits/has_operator_arrow.hpp"
 #include "vccc/__type_traits/void_t.hpp"
 
 namespace vccc {
@@ -18,12 +19,6 @@ struct has_to_address : std::false_type {};
 
 template<typename T>
 struct has_to_address<T, void_t<decltype(std::pointer_traits<T>::to_address(std::declval<const T&>()))>> : std::true_type {};
-
-template<typename T, typename = void>
-struct has_arrow : std::false_type {};
-
-template<typename T>
-struct has_arrow<T, void_t<decltype(std::declval<const T&>().operator->())>> : std::true_type {};
 
 } // namespace detail
 
@@ -39,7 +34,7 @@ constexpr auto to_address(const T& p) noexcept {
   return std::pointer_traits<T>::to_address(p);
 }
 
-template<class T, std::enable_if_t<!detail::has_to_address<T>::value && detail::has_arrow<T>::value, int> = 0>
+template<class T, std::enable_if_t<!detail::has_to_address<T>::value && has_operator_arrow<const T&>::value, int> = 0>
 constexpr auto to_address(const T& p) noexcept {
   return to_address(p.operator->());
 }

@@ -22,6 +22,7 @@
 # include "vccc/__type_traits/conjunction.hpp"
 # include "vccc/__type_traits/disjunction.hpp"
 # include "vccc/__type_traits/empty.hpp"
+# include "vccc/__type_traits/has_operator_arrow.hpp"
 # include "vccc/__type_traits/has_typename_difference_type.hpp"
 # include "vccc/__type_traits/has_typename_element_type.hpp"
 # include "vccc/__type_traits/has_typename_type.hpp"

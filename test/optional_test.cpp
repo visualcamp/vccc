@@ -129,5 +129,14 @@ int main() {
   TEST_ENSURES(std::is_default_constructible<std::hash<vccc::optional<foo>>>::value == false);
   TEST_ENSURES(std::is_default_constructible<std::hash<vccc::optional<int>>>::value == true);
 
+  {
+    TEST_ENSURES((vccc::optional<int>{3}.and_then([](auto x) { return vccc::optional<int>(x * 10); }) == 30));
+    TEST_ENSURES((vccc::optional<int>{}.and_then([](auto x) { return vccc::optional<int>(x * 10); }) == vccc::nullopt));
+    TEST_ENSURES((vccc::optional<int>{3}.transform([](auto x) { return x * 10; }) == 30));
+    TEST_ENSURES((vccc::optional<int>{}.transform([](auto x) { return x * 10; }) == vccc::nullopt));
+    TEST_ENSURES((vccc::optional<int>{3}.or_else([]() { return vccc::optional<int>(0); }) == 3));
+    TEST_ENSURES((vccc::optional<int>{}.or_else([]() { return vccc::optional<int>(10); }) == 10));
+  }
+
   return TEST_RETURN_RESULT;
 }

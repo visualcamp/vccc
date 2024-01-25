@@ -28,6 +28,7 @@
 #include "vccc/__ranges/input_range.hpp"
 #include "vccc/__ranges/iterator_t.hpp"
 #include "vccc/__ranges/movable_box.hpp"
+#include "vccc/__ranges/non_propagating_cache.hpp"
 #include "vccc/__ranges/owning_view.hpp"
 #include "vccc/__ranges/random_access_range.hpp"
 #include "vccc/__ranges/range.hpp"

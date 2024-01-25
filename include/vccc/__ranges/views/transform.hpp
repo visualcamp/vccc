@@ -12,6 +12,7 @@
 #include "vccc/__concepts/copy_constructible.hpp"
 #include "vccc/__concepts/invocable.hpp"
 #include "vccc/__ranges/input_range.hpp"
+#include "vccc/__ranges/movable_box.hpp"
 #include "vccc/__ranges/range_adaptor_closure.hpp"
 #include "vccc/__ranges/viewable_range.hpp"
 #include "vccc/__ranges/views/all.hpp"
@@ -31,11 +32,11 @@ class transform_adaptor_closure : public range_adaptor_closure<transform_adaptor
   template<typename R, std::enable_if_t<ranges::range<R>::value, int> = 0>
   constexpr transform_view<views::all_t<R>, F>
   operator()(R&& r) const {
-    return transform_view<views::all_t<R>, F>(std::forward<R>(r), func_);
+    return transform_view<views::all_t<R>, F>(std::forward<R>(r), *func_);
   }
 
  private:
-  F func_;
+  movable_box<F> func_;
 };
 
 struct transform_niebloid {
