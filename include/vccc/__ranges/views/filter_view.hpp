@@ -11,7 +11,7 @@
 #include <type_traits>
 #include <utility>
 
-#include "vccc/__algorithm/find_if.hpp"
+#include "vccc/__algorithm/ranges/find_if.hpp"
 #include "vccc/__concepts/derived_from.hpp"
 #include "vccc/__concepts/equality_comparable.hpp"
 #include "vccc/__functional/invoke.hpp"

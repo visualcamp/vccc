@@ -9,7 +9,7 @@
 #include <initializer_list>
 
 #include "vccc/__core/inline_or_static.hpp"
-#include "vccc/__algorithm/min_element.hpp"
+#include "vccc/__algorithm/ranges/min_element.hpp"
 #include "vccc/__concepts/copyable.hpp"
 #include "vccc/__functional/identity.hpp"
 #include "vccc/__functional/invoke.hpp"
