@@ -27,6 +27,8 @@
 #include "vccc/__algorithm/ranges/in_out_out_result.hpp"
 #include "vccc/__algorithm/ranges/in_out_result.hpp"
 #include "vccc/__algorithm/ranges/in_value_result.hpp"
+#include "vccc/__algorithm/ranges/max.hpp"
+#include "vccc/__algorithm/ranges/max_element.hpp"
 #include "vccc/__algorithm/ranges/min.hpp"
 #include "vccc/__algorithm/ranges/min_element.hpp"
 #include "vccc/__algorithm/ranges/min_max_result.hpp"

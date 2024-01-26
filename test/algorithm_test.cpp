@@ -4,6 +4,7 @@
 
 #include "test_core.hpp"
 
+#include <algorithm>
 #include <string>
 #include <vector>
 
@@ -18,6 +19,7 @@ int Test() {
   INIT_TEST("vccc::algorithm")
 
   namespace ranges = vccc::ranges;
+  namespace views = vccc::views;
   using namespace vccc::string_view_literals;
   {
     TEST_ENSURES((ranges::min(1, 9999) == 1));
@@ -102,6 +104,23 @@ int Test() {
     );
     std::cout << "str: " << str << '\n';
     TEST_ENSURES(str == "A:1:2:3:4:5:6:7:8");
+  }
+
+  { // ranges::max_element
+    const auto v = {3, 1, -14, 1, 5, 9, -14, 9};
+
+    auto result = ranges::max_element(v.begin(), v.end());
+    TEST_ENSURES(ranges::distance(v.begin(), result) == 5);
+
+    auto abs_compare = [](int a, int b) { return std::abs(a) < std::abs(b); };
+    TEST_ENSURES(ranges::max_element(v, abs_compare) == ranges::begin(v) + 2);
+  }
+
+  { // ranges::max
+    TEST_ENSURES(ranges::max({0B10, 0X10, 010, 10}) == 16);
+    TEST_ENSURES(ranges::max(1, 9999) == 9999);
+    TEST_ENSURES(ranges::max('a', 'b') == 'b');
+    TEST_ENSURES(ranges::max({"foo"_sv, "bar"_sv, "hello"_sv}, {}, &vccc::string_view::size) == "hello"_sv);
   }
 
   return TEST_RETURN_RESULT;
