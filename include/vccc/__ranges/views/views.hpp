@@ -22,5 +22,6 @@
 #include "vccc/__ranges/views/take_view.hpp"
 #include "vccc/__ranges/views/transform.hpp"
 #include "vccc/__ranges/views/transform_view.hpp"
+#include "vccc/__ranges/views/values_view.hpp"
 
 #endif // VCCC_RANGES_VIEWS_VIEWS_HPP_

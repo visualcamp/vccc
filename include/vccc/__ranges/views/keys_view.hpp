@@ -19,8 +19,8 @@ namespace ranges {
 \ref ranges::view "view" of the first elements of each pair
 
 Takes a \ref ranges::view "view" of tuple-like values (e.g. [std::tuple](https://en.cppreference.com/w/cpp/utility/tuple)
-or [std::pair]((https://en.cppreference.com/w/cpp/utility/tuple))), and produces a view with a value-type of the first
-element of the adapted view's value-type.
+or [std::pair]((https://en.cppreference.com/w/cpp/utility/tuple))), and produces a view with a \a value-type of the
+\a first element of the adapted view's value-type.
 
 @sa [std::views::keys_view](https://en.cppreference.com/w/cpp/ranges/keys_view)
 @}
