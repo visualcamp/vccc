@@ -15,12 +15,6 @@
 namespace vccc {
 namespace detail {
 
-template<typename T, typename U>
-struct is_equality_comparable : bool_constant<rel_ops::is_equality_comparable<T, U>()> {};
-
-template<typename T, typename U>
-struct is_non_equality_comparable : bool_constant<rel_ops::is_non_equality_comparable<T, U>()> {};
-
 template<
     typename T,
     typename U,
@@ -34,14 +28,10 @@ struct weakly_equality_comparable_with_impl : std::false_type {};
 template<typename T, typename U>
 struct weakly_equality_comparable_with_impl<T, U, true>
     : conjunction<
-        is_equality_comparable<std::add_lvalue_reference_t<const std::remove_reference_t<T>>,
-                               std::add_lvalue_reference_t<const std::remove_reference_t<U>> >,
-        is_equality_comparable<std::add_lvalue_reference_t<const std::remove_reference_t<U>>,
-                               std::add_lvalue_reference_t<const std::remove_reference_t<T>> >,
-        is_non_equality_comparable<std::add_lvalue_reference_t<const std::remove_reference_t<T>>,
-                                   std::add_lvalue_reference_t<const std::remove_reference_t<U>> >,
-        is_non_equality_comparable<std::add_lvalue_reference_t<const std::remove_reference_t<U>>,
-                                   std::add_lvalue_reference_t<const std::remove_reference_t<T>> >
+        rel_ops::is_equality_comparable<const std::remove_reference_t<T>&, const std::remove_reference_t<U>& >,
+        rel_ops::is_equality_comparable<const std::remove_reference_t<U>&, const std::remove_reference_t<T>& >,
+        rel_ops::is_non_equality_comparable<const std::remove_reference_t<T>&, const std::remove_reference_t<U>& >,
+        rel_ops::is_non_equality_comparable<const std::remove_reference_t<U>&, const std::remove_reference_t<T>& >
       > {};
 
 } // namespace detail

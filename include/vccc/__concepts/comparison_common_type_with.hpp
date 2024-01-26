@@ -7,7 +7,6 @@
 
 #include "vccc/__concepts/convertible_to.hpp"
 #include "vccc/__concepts/same_as.hpp"
-#include "vccc/__concepts/weakly_equality_comparable_with.hpp"
 #include "vccc/__type_traits/common_reference.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/has_typename_type.hpp"
