@@ -35,6 +35,7 @@
 #include "vccc/__ranges/random_access_range.hpp"
 #include "vccc/__ranges/range.hpp"
 #include "vccc/__ranges/range_adaptor_closure.hpp"
+#include "vccc/__ranges/range_const_reference_t.hpp"
 #include "vccc/__ranges/range_difference_t.hpp"
 #include "vccc/__ranges/range_key_t.hpp"
 #include "vccc/__ranges/range_mapped_t.hpp"
