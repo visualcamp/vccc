@@ -55,6 +55,7 @@
 #include "vccc/__iterator/iter_val_t.hpp"
 #include "vccc/__iterator/iter_value_t.hpp"
 #include "vccc/__iterator/iterator_tag.hpp"
+#include "vccc/__iterator/mergeable.hpp"
 #include "vccc/__iterator/next.hpp"
 #include "vccc/__iterator/output_iterator.hpp"
 #include "vccc/__iterator/permutable.hpp"
