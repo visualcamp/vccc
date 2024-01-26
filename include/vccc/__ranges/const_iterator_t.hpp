@@ -8,6 +8,7 @@
 #include <type_traits>
 
 #include "vccc/__ranges/cbegin.hpp"
+#include "vccc/__ranges/range.hpp"
 #include "vccc/__type_traits/is_referenceable.hpp"
 #include "vccc/__type_traits/void_t.hpp"
 
@@ -15,7 +16,7 @@ namespace vccc {
 namespace ranges {
 namespace detail {
 
-template<typename T, bool = is_referencable<T>::value, typename = void>
+template<typename T, bool = range<T>::value, typename = void>
 struct const_iterator_impl {};
 
 template<typename T>
