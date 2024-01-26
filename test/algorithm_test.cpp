@@ -81,6 +81,8 @@ int Test() {
   }
 
   { // fold_left
+    std::cout << "Line " << __LINE__ << ", fold_left:\n";
+
     std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8};
 
     int sum = ranges::fold_left(v.begin(), v.end(), 0, std::plus<>{});
@@ -89,17 +91,17 @@ int Test() {
     int mul = ranges::fold_left(v, 1, std::multiplies<>{});
     TEST_ENSURES(mul == 1*2*3*4*5*6*7*8);
 
-    // std::vector<std::pair<char, float>> data {{'A', 2.f}, {'B', 3.f}, {'C', 3.5f}};
-    // float sec = ranges::fold_left
-    // (
-    //     data | ranges::views::values, 2.0f, std::multiplies<>()
-    // );
+    std::vector<std::pair<char, int>> data {{'A', 2}, {'B', 3}, {'C', 4}};
+    auto sec = ranges::fold_left(
+        data | ranges::views::values, 2, std::multiplies<>()
+    );
+    TEST_ENSURES(sec == 48);
 
-    std::string str = ranges::fold_left
-    (
+    std::string str = ranges::fold_left(
         v, "A", [](std::string s, int x) { return s + ':' + std::to_string(x); }
     );
     std::cout << "str: " << str << '\n';
+    TEST_ENSURES(str == "A:1:2:3:4:5:6:7:8");
   }
 
   return TEST_RETURN_RESULT;
