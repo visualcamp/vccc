@@ -131,14 +131,17 @@ struct advance_niebloid {
   // Subsumes above
   template<typename I, typename S>
   constexpr std::enable_if_t<advance_bound_check<I, S>::value>
-  operator()(I i, S bound) const {
+  operator()(I& i, S bound) const {
     advance_bound(i, bound, advance_bound_tag<I, S>{});
   }
 
 
-  template<typename I, typename S>
-  constexpr std::enable_if_t<conjunction<input_or_output_iterator<I>, sentinel_for<S, I>>::value, iter_difference_t<I>>
-  operator()(I i, iter_difference_t<I> n, I bound) const {
+  template<typename I, typename S, std::enable_if_t<conjunction<
+      input_or_output_iterator<I>,
+      sentinel_for<S, I>
+  >::value, int> = 0>
+  constexpr iter_difference_t<I>
+  operator()(I& i, iter_difference_t<I> n, S bound) const {
     return advance_mixed(i, n, bound, advance_mixed_tag<I, S>{});
   }
 };
@@ -163,22 +166,19 @@ namespace detail {
 
 template<typename I, typename S>
 constexpr void advance_bound(I& i, S bound, tag_2 /* sized_sentinel_for */) {
-  advance(i, bound - i);
+  ranges::advance(i, bound - i);
 }
 
 template<typename I, typename S>
 constexpr iter_difference_t<I>
 advance_mixed(I& i, iter_difference_t<I> n, S bound, tag_1 /* sized_sentinel_for */) {
-  // std::abs is not constexpr until C++23
-  auto abs = [](const auto x) { return x < 0 ? -x : x; };
-
-  const auto dist = abs(n) - abs(bound - i);
-  if (dist < 0) {
-    advance(i, bound);
-    return -dist;
+  const iter_difference_t<I> d = bound - i;
+  if ((n < 0 && n <= d) || (n > 0 && n >= d)) {
+    ranges::advance(i, d);
+    return n - d;
   }
 
-  advance(i, n);
+  ranges::advance(i, n);
   return 0;
 }
 
