@@ -200,17 +200,17 @@ class transform_view : public ranges::view_interface<transform_view<V, F>> {
     }
 
     template<typename B = Base, std::enable_if_t<random_access_range<B>::value, int> = 0>
-    friend constexpr bool operator+(iterator i, difference_type n) {
+    friend constexpr iterator operator+(iterator i, difference_type n) {
       return iterator{*i.parent_, i.current_ + n};
     }
 
     template<typename B = Base, std::enable_if_t<random_access_range<B>::value, int> = 0>
-    friend constexpr bool operator+(difference_type n, iterator i) {
+    friend constexpr iterator operator+(difference_type n, iterator i) {
       return iterator{*i.parent_, i.current_ + n};
     }
 
     template<typename B = Base, std::enable_if_t<random_access_range<B>::value, int> = 0>
-    friend constexpr bool operator-(iterator i, difference_type n) {
+    friend constexpr iterator operator-(iterator i, difference_type n) {
       return iterator{*i.parent_, i.current_ - n};
     }
 
