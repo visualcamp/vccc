@@ -582,5 +582,39 @@ int main() {
     TEST_ENSURES((vccc::ranges::equal(v , std::vector<int>{0, 4, 16})));
   }
 
+  { // enumerate_view
+    std::cout << "Line " << __LINE__ << ", enumerate_view: \n";
+
+    const std::vector<std::tuple<int, char, std::string>> vt
+    {
+          {1, 'A', "a"},
+          {2, 'B', "b"},
+          {3, 'C', "c"},
+          {4, 'D', "d"},
+          {5, 'E', "e"},
+    };
+
+    // 1 2 3 4 5
+    for (int const e : vccc::views::elements<0>(vt))
+      std::cout << e << ' ';
+    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(vccc::views::elements<0>(vt), vccc::views::iota(1, 6))));
+
+    // A B C D E
+    for (char const e : vt | vccc::views::elements<1>)
+      std::cout << e << ' ';
+    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(vt | vccc::views::elements<1>, vccc::views::iota('A', 'F'))));
+
+    // a b c d e
+    for (std::string const& e : vccc::views::elements<2>(vt))
+      std::cout << e << ' ';
+    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(
+        vccc::views::elements<2>(vt),
+        vccc::views::iota('a', 'f') | vccc::views::transform([](char c) { return std::string(1, c); })
+    )));
+  }
+
   return TEST_RETURN_RESULT;
 }

@@ -51,14 +51,15 @@ struct has_tuple_element : std::false_type {};
 template<typename T, std::size_t N>
 struct has_tuple_element<T, N, true> : bool_constant<(N < std::tuple_size<T>::value)> {};
 
-template<typename T, std::size_t N, bool = has_typename_type<std::tuple_element<N, T>>::value /* false */>
+template<typename T, std::size_t N,
+    bool = std::is_reference<T>::value,
+    bool = has_typename_type<std::tuple_element<N, T>>::value>
 struct returnable_element : std::false_type {};
+template<typename T, std::size_t N, bool v>
+struct returnable_element<T, N, true, v> : std::true_type {};
 template<typename T, std::size_t N>
-struct returnable_element<T, N, true>
-    : disjunction<
-          std::is_reference<T>,
-          move_constructible<std::tuple_element_t<N, T>>
-      > {};
+struct returnable_element<T, N, false, true>
+    : move_constructible<std::tuple_element_t<N, T>> {};
 
 template<
     typename Base,
