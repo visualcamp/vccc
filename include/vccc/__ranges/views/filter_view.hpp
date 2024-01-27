@@ -207,6 +207,7 @@ class filter_view : public view_interface<filter_view<V, Pred>>, detail::filter_
     }
 
     // TODO: Solve "redefinition of 'iter_swap' as different kind of symbol"
+    // TODO: Solve "const_cast from rvalue to reference type" in AppleClang 14.0.3.14030022
 #if __cplusplus >= 202002L
     // friend constexpr void iter_swap(const iterator& x, const iterator& y)
     //     noexcept(noexcept(ranges::iter_swap(x.current_, y.current_)))

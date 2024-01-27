@@ -161,6 +161,9 @@ constexpr auto cartesian_tuple_transform_end(F func, const Tuple& t, std::index_
 
 } // namespace detail
 
+/// @addtogroup cartesian_product_view__class__Factories
+/// @{
+
 template<typename First, typename... Vs>
 class cartesian_product_view : public view_interface<cartesian_product_view<First, Vs...>> {
   std::tuple<First, Vs...> bases_;
@@ -532,6 +535,18 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
     return default_sentinel;
   }
 
+  template<typename First2 = First, std::enable_if_t<
+      detail::cartesian_product_is_sized<First2, Vs...>::value, int> = 0>
+  constexpr std::size_t size() {
+    return size_impl(std::index_sequence_for<Vs...>{});
+  }
+
+  template<typename First2 = First, std::enable_if_t<
+      detail::cartesian_product_is_sized<const First2, const Vs...>::value, int> = 0>
+  constexpr std::size_t size() const {
+    return size_impl(std::index_sequence_for<First, Vs...>{});
+  }
+
  private:
   template<std::size_t N>
   constexpr bool is_empty_impl(std::integral_constant<std::size_t, N>) const {
@@ -578,6 +593,25 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
         std::make_index_sequence<std::tuple_size<remove_cvref_t<Tuple>>::value>{});
   }
 
+  template<std::size_t... I>
+  constexpr std::size_t size_impl(std::index_sequence<I...>) {
+    std::size_t prod = 1;
+    int dummy[] = {
+        ((void)(prod *= static_cast<std::size_t>(ranges::size(std::get<I>(bases_)))), 0)...
+    };
+    (void)dummy;
+    return prod;
+  }
+
+  template<std::size_t... I>
+  constexpr std::size_t size_impl(std::index_sequence<I...>) const {
+    std::size_t prod = 1;
+    int dummy[] = {
+        ((void)(prod *= static_cast<std::size_t>(ranges::size(std::get<I>(bases_)))), 0)...
+    };
+    (void)dummy;
+    return prod;
+  }
 };
 
 #if __cplusplus >= 201703L
@@ -586,6 +620,8 @@ template<typename... Rs>
 cartesian_product_view(Rs&&...) -> cartesian_product_view<views::all_t<Rs>...>;
 
 #endif
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

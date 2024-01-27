@@ -618,6 +618,8 @@ int main() {
   }
 
   { // ranges::cartesian_product
+    std::cout << "Line " << __LINE__ << ", cartesian_product, cartesian_product_view: \n";
+
     const auto x = std::array<char, 2>{'A', 'B'};
     const auto y = std::array<int, 3>{1, 2, 3};
     const auto z = std::array<std::string, 4>{"a", "b", "c", "d"};
@@ -625,23 +627,38 @@ int main() {
     namespace ranges = vccc::ranges;
     namespace views = vccc::views;
 
-    using XAT = views::all_t<decltype(views::all(x))>;
-    using YAT = views::all_t<decltype(views::all(y))>;
-    using ZAT = views::all_t<decltype(views::all(z))>;
-    ranges::cartesian_product_view<XAT, YAT, ZAT> cpv(views::all(x), views::all(y), views::all(z));
+    using XAT = views::all_t<decltype((x))>;
+    using YAT = views::all_t<decltype((y))>;
+    using ZAT = views::all_t<decltype((z))>;
+    ranges::cartesian_product_view<XAT, YAT, ZAT> cpv(x, y, z);
 
     auto first = cpv.begin();
     auto last = cpv.end();
     TEST_ENSURES((last - first) == 24);
 
-    for (const auto& t : cpv) {
+#if __cplusplus < 201703L
+    for (const auto& t : views::cartesian_product(x, y, z)) {
       std::cout << std::get<0>(t) << ' ' << std::get<1>(t) << ' ' << std::get<2>(t) << '\n';
     }
+#else
+    for (const auto& [a, b, c] : views::cartesian_product(x, y, z)) {
+      std::cout << a << ' ' << b << ' ' << c << '\n';
+    }
+#endif
     auto a = first + 10;
     auto b = first + 9;
     TEST_ENSURES((a - b) == 1);
     TEST_ENSURES((b - a) == -1);
 
+    { // cartesian_product_view::size
+      constexpr static auto w = {1};
+      constexpr static auto x = {2, 3};
+      constexpr static auto y = {4, 5, 6};
+      constexpr static auto z = {7, 8, 9, 10, 11, 12, 13};
+      constexpr auto v = views::cartesian_product(w, x, y, z);
+      static_assert(v.size() == w.size() * x.size() * y.size() * z.size(), "");
+      static_assert(v.size() == 42, "");
+    }
   }
 
   return TEST_RETURN_RESULT;

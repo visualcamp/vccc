@@ -8,6 +8,7 @@
 #include "vccc/__ranges/views/all.hpp"
 #include "vccc/__ranges/views/as_const.hpp"
 #include "vccc/__ranges/views/as_const_view.hpp"
+#include "vccc/__ranges/views/cartesian_product.hpp"
 #include "vccc/__ranges/views/cartesian_product_view.hpp"
 #include "vccc/__ranges/views/elements.hpp"
 #include "vccc/__ranges/views/elements_view.hpp"
