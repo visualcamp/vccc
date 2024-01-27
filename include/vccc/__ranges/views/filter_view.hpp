@@ -206,13 +206,15 @@ class filter_view : public view_interface<filter_view<V, Pred>>, detail::filter_
       return ranges::iter_move(i.current_);
     }
 
-    // TODO: Implement iter_swap
-    // template<typename V2 = V, std::enable_if_t<indirectly_swappable<iterator_t<V2>>::value, int> = 0>
-    // friend constexpr void iter_swap(const iterator& x, const iterator& y)
-    //     noexcept(noexcept(ranges::iter_swap(x.current_, y.current_)))
-    // {
-    //   ranges::iter_swap(x.current_, y.current_);
-    // }
+    // TODO: Solve "redefinition of 'iter_swap' as different kind of symbol"
+#if __cplusplus >= 202002L
+    friend constexpr void iter_swap(const iterator& x, const iterator& y)
+        noexcept(noexcept(ranges::iter_swap(x.current_, y.current_)))
+        requires(indirectly_swappable<iterator_t<V>>::value)
+    {
+      ranges::iter_swap(x.current_, y.current_);
+    }
+#endif
 
    private:
     iterator_t<V> current_;
