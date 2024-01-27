@@ -208,12 +208,12 @@ class filter_view : public view_interface<filter_view<V, Pred>>, detail::filter_
 
     // TODO: Solve "redefinition of 'iter_swap' as different kind of symbol"
 #if __cplusplus >= 202002L
-    friend constexpr void iter_swap(const iterator& x, const iterator& y)
-        noexcept(noexcept(ranges::iter_swap(x.current_, y.current_)))
-        requires(indirectly_swappable<iterator_t<V>>::value)
-    {
-      ranges::iter_swap(x.current_, y.current_);
-    }
+    // friend constexpr void iter_swap(const iterator& x, const iterator& y)
+    //     noexcept(noexcept(ranges::iter_swap(x.current_, y.current_)))
+    //     requires(indirectly_swappable<iterator_t<V>>::value)
+    // {
+    //   ranges::iter_swap(x.current_, y.current_);
+    // }
 #endif
 
    private:
