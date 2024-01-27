@@ -30,8 +30,8 @@ struct indirectly_writable_impl_2
     : conjunction<
           std::is_assignable<decltype(*std::declval<Out&&>()), decltype(std::forward<T>(std::declval<T&&>()))>,
           std::is_assignable<decltype(*std::forward<Out>(std::declval<Out&&>())), decltype(std::forward<T>(std::declval<T&&>()))>,
-          std::is_assignable<decltype(const_cast<const iter_reference_t<Out>&&>(*std::declval<Out&&>())), decltype(std::forward<T>(std::declval<T&&>()))>,
-          std::is_assignable<decltype(const_cast<const iter_reference_t<Out>&&>(*std::forward<Out>(std::declval<Out&&>()))), decltype(std::forward<T>(std::declval<T&&>()))>
+          std::is_assignable<decltype(const_cast<const iter_reference_t<Out>&&>(*std::declval<Out>())), decltype(std::forward<T>(std::declval<T&&>()))>,
+          std::is_assignable<decltype(const_cast<const iter_reference_t<Out>&&>(*std::forward<Out>(std::declval<Out>()))), decltype(std::forward<T>(std::declval<T&&>()))>
       >{};
 
 template<typename Out, typename T>
