@@ -19,6 +19,7 @@
 #include "vccc/iterator.hpp"
 #include "vccc/ranges.hpp"
 #include "vccc/span.hpp"
+#include "vccc/type_traits.hpp"
 #include "test_core.hpp"
 
 struct IntLike {
@@ -614,6 +615,33 @@ int main() {
         vccc::views::elements<2>(vt),
         vccc::views::iota('a', 'f') | vccc::views::transform([](char c) { return std::string(1, c); })
     )));
+  }
+
+  { // ranges::cartesian_product
+    const auto x = std::array<char, 2>{'A', 'B'};
+    const auto y = std::array<int, 3>{1, 2, 3};
+    const auto z = std::array<std::string, 4>{"a", "b", "c", "d"};
+
+    namespace ranges = vccc::ranges;
+    namespace views = vccc::views;
+
+    using XAT = views::all_t<decltype(views::all(x))>;
+    using YAT = views::all_t<decltype(views::all(y))>;
+    using ZAT = views::all_t<decltype(views::all(z))>;
+    ranges::cartesian_product_view<XAT, YAT, ZAT> cpv(views::all(x), views::all(y), views::all(z));
+
+    auto first = cpv.begin();
+    auto last = cpv.end();
+    TEST_ENSURES((last - first) == 24);
+
+    for (const auto& t : cpv) {
+      std::cout << std::get<0>(t) << ' ' << std::get<1>(t) << ' ' << std::get<2>(t) << '\n';
+    }
+    auto a = first + 10;
+    auto b = first + 9;
+    TEST_ENSURES((a - b) == 1);
+    TEST_ENSURES((b - a) == -1);
+
   }
 
   return TEST_RETURN_RESULT;
