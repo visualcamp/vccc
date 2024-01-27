@@ -470,7 +470,7 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
     constexpr void iter_swap_impl(const iterator& other, std::index_sequence<I...>) const
         noexcept(
             conjunction<bool_constant<
-                noexcept(ranges::iter_swap(std::get<I>(current_), std::get<I>(other.current_)))
+                noexcept(ranges::iter_swap(std::get<I>(this->current_), std::get<I>(other.current_)))
             >...>::value
         )
     {
