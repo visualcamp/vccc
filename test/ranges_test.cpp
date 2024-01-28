@@ -663,5 +663,13 @@ int main() {
     }
   }
 
+  { // views::counted
+    const int a[]{1, 2, 3, 4, 5, 6, 7};
+    TEST_ENSURES((vccc::ranges::equal(vccc::views::counted(a, 3), vccc::views::iota(1) | vccc::views::take(3))));
+
+    const auto il = {1, 2, 3, 4, 5};
+    TEST_ENSURES((vccc::ranges::equal( vccc::views::counted(il.begin() + 1, 3), vccc::views::iota(2) | vccc::views::take(3))));
+  }
+
   return TEST_RETURN_RESULT;
 }
