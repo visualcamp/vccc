@@ -31,11 +31,16 @@ namespace detail {
 
 struct count_niebloid {
  private:
-  template<typename R, typename T, typename Proj, bool = input_range<R>::value>
-  struct check_range : std::false_type {};
+  template<typename I, typename T, typename Proj, bool = projectable<I, Proj>::value>
+  struct check_range_2 : std::false_type {};
+  template<typename I, typename T, typename Proj>
+  struct check_range_2<I, T, Proj, true>
+      : indirect_binary_predicate<ranges::equal_to, projected<I, Proj>, const T*> {};
+
+  template<typename R, typename T, typename Proj, bool = input_range<R>::value /* true */>
+  struct check_range : check_range_2<iterator_t<R>, T, Proj> {};
   template<typename R, typename T, typename Proj>
-  struct check_range<R, T, Proj, true>
-      : indirect_binary_predicate<equal_to, projected<iterator_t<R>, Proj>, const T*> {};
+  struct check_range<R, T, Proj, false> : std::false_type {};
 
  public:
   template<typename I, typename S, typename T, typename Proj = identity, std::enable_if_t<conjunction<
