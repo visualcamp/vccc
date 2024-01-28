@@ -19,9 +19,16 @@
 namespace vccc {
 namespace detail {
 
-template<typename I1, typename I2, typename Out, typename Comp, typename Proj1, typename Proj2,
-    bool = conjunction<input_iterator<I1>, input_iterator<I2>>::value /* false */>
+template<
+    typename I1, typename I2, typename Out,
+    typename Comp, typename Proj1, typename Proj2,
+    bool = conjunction<
+        input_iterator<I1>, input_iterator<I2>,
+        projectable<I1, Proj1>, projectable<I2, Proj2>
+    >::value /* false */
+>
 struct mergeable_impl_1 : std::false_type {};
+
 template<typename I1, typename I2, typename Out, typename Comp, typename Proj1, typename Proj2>
 struct mergeable_impl_1<I1, I2, Out, Comp, Proj1, Proj2, true>
     : conjunction<
