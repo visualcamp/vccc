@@ -538,7 +538,7 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
   template<typename First2 = First, std::enable_if_t<
       detail::cartesian_product_is_sized<First2, Vs...>::value, int> = 0>
   constexpr std::size_t size() {
-    return size_impl(std::index_sequence_for<Vs...>{});
+    return size_impl(std::index_sequence_for<First, Vs...>{});
   }
 
   template<typename First2 = First, std::enable_if_t<
