@@ -9,6 +9,7 @@
 #include <cassert>
 #include <cstddef>
 #include <iterator>
+#include <stdexcept>
 #include <type_traits>
 
 #include "vccc/__iterator/contiguous_iterator.hpp"
@@ -238,6 +239,19 @@ class span : private detail::span_storage_t<T, Extent> {
   // (8) (C++ 26)
   // explicit(extent != std::dynamic_extent)
   // constexpr span( std::initializer_list<value_type> il ) noexcept;
+  template<typename E = element_type, std::enable_if_t<conjunction<
+      bool_constant<Extent == dynamic_extent>,
+      std::is_const<E>
+  >::value, int> = 0>
+  constexpr span(std::initializer_list<value_type> il) noexcept
+      : base(il.begin(), il.size()) {}
+
+  template<typename E = element_type, std::enable_if_t<conjunction<
+      bool_constant<Extent != dynamic_extent>,
+      std::is_const<E>
+  >::value, int> = 0>
+  constexpr explicit span(std::initializer_list<value_type> il) noexcept
+      : base(il.begin(), il.size()) {}
 
   // (9)
   // template< class U, std::size_t N >
@@ -276,6 +290,13 @@ class span : private detail::span_storage_t<T, Extent> {
 
   constexpr reference front() const { return *begin(); }
   constexpr reference back() const { return *(end() - 1); }
+
+  constexpr reference at(size_type pos) const {
+    if (pos >= size()) {
+      throw std::out_of_range("vccc::span: out of range");
+    }
+    return *(data() + pos);
+  }
 
   constexpr reference operator[](size_type idx) const { return data()[idx]; }
 
