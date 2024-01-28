@@ -17,17 +17,16 @@
 namespace vccc {
 namespace detail {
 
-template<typename I1, typename I2, typename Out, typename Comp, typename Proj1, typename Proj2,
-    bool = conjunction<input_iterator<I1>, input_iterator<I2>>::value /* false */>
+template<typename I, typename Comp, typename Proj,
+    bool = conjunction<
+        permutable<I>,
+        projectable<I, Proj>
+    >::value /* false */>
 struct sortable_impl : std::false_type {};
-template<typename I1, typename I2, typename Out, typename Comp, typename Proj1, typename Proj2>
-struct sortable_impl<I1, I2, Out, Comp, Proj1, Proj2, true>
-    : conjunction<
-          weakly_incrementable<Out>,
-          indirectly_copyable<I1, Out>,
-          indirectly_copyable<I2, Out>,
-          indirect_strict_weak_order<Comp, projected<I1, Proj1>, projected<I2, Proj2>>
-      > {};
+
+template<typename I, typename Comp, typename Proj>
+struct sortable_impl<I, Comp, Proj, true>
+    : indirect_strict_weak_order<Comp, projected<I, Proj>> {};
 
 } // namespace detail
 
@@ -35,11 +34,7 @@ struct sortable_impl<I1, I2, Out, Comp, Proj1, Proj2, true>
 /// @{
 
 template<typename I, typename Comp = ranges::less, typename Proj = identity>
-struct sortable
-    : conjunction<
-          permutable<I>,
-          indirect_strict_weak_order<Comp, projected<I, Proj>>
-      > {};
+struct sortable : detail::sortable_impl<I, Comp, Proj> {};
 
 /// @}
 
