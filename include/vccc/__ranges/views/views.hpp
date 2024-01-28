@@ -11,6 +11,7 @@
 #include "vccc/__ranges/views/cartesian_product.hpp"
 #include "vccc/__ranges/views/cartesian_product_view.hpp"
 #include "vccc/__ranges/views/counted.hpp"
+#include "vccc/__ranges/views/drop_view.hpp"
 #include "vccc/__ranges/views/elements.hpp"
 #include "vccc/__ranges/views/elements_view.hpp"
 #include "vccc/__ranges/views/empty_view.hpp"

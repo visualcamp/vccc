@@ -671,5 +671,13 @@ int main() {
     TEST_ENSURES((vccc::ranges::equal( vccc::views::counted(il.begin() + 1, 3), vccc::views::iota(2) | vccc::views::take(3))));
   }
 
+  { // ranges::drop_view, views::drop
+    std::cout << "Line " << __LINE__ << ", ranges::drop_view, views::drop: \n";
+
+    const auto nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    TEST_ENSURES((vccc::ranges::equal(vccc::ranges::make_drop_view(nums, 2), vccc::views::iota(3, 10))));
+
+  }
+
   return TEST_RETURN_RESULT;
 }
