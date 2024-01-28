@@ -22,15 +22,25 @@
 namespace vccc {
 namespace ranges {
 
+/// @addtogroup algorithm
+/// @{
+
 template<typename I, typename F>
 using for_each_n_result = ranges::in_fun_result<I, F>;
 
 namespace detail {
 
 struct for_each_n_niebloid {
+ private:
+  template<typename I, typename Proj, typename Fun, bool = projectable<I, Proj>::value /* false */>
+  struct check : std::false_type {};
+  template<typename I, typename Proj, typename Fun>
+  struct check<I, Proj, Fun, true> : indirectly_unary_invocable<Fun, projected<I, Proj>> {};
+
+ public:
   template<typename I, typename Proj = identity, typename Fun, std::enable_if_t<conjunction<
       input_iterator<I>,
-      indirectly_unary_invocable<Fun, projected<I, Proj>>
+      check<I, Proj, Fun>
   >::value, int> = 0>
   constexpr for_each_n_result<I, Fun>
   operator()(I first, iter_difference_t<I> n, Fun f, Proj proj = {}) const {
@@ -44,6 +54,8 @@ struct for_each_n_niebloid {
 } // namespace detail
 
 VCCC_INLINE_OR_STATIC constexpr detail::for_each_n_niebloid for_each_n{};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

@@ -8,6 +8,7 @@
 #include <functional>
 #include <type_traits>
 
+#include "vccc/__algorithm/ranges/detail/check_input.hpp"
 #include "vccc/__core/inline_or_static.hpp"
 #include "vccc/__functional/identity.hpp"
 #include "vccc/__functional/invoke.hpp"
@@ -28,25 +29,9 @@ namespace ranges {
 namespace detail {
 
 struct max_element_niebloid {
- private:
-  template<typename R, typename Proj, typename Comp, bool = forward_range<R>::value /* false */>
-  struct check_range : std::false_type {};
-  template<typename R, typename Proj, typename Comp>
-  struct check_range<R, Proj, Comp, true>
-      : indirect_strict_weak_order<Comp, projected<iterator_t<R>, Proj> > {};
-
- public:
-  template<
-    typename I,
-    typename S,
-    typename Proj = identity,
-    typename Comp = ranges::less,
-    std::enable_if_t<conjunction<
-        forward_iterator<I>,
-        sentinel_for<S, I>,
-        indirect_strict_weak_order<Comp, projected<I, Proj>>
-    >::value, int> = 0
-  >
+  template<typename I, typename S, typename Proj = identity, typename Comp = ranges::less, std::enable_if_t<
+      algo_check_unary_forward_iterator<indirect_strict_weak_order, I, S, Proj, Comp>
+  ::value, int> = 0>
   constexpr I operator()(I first, S last, Comp comp = {}, Proj proj = {}) const {
     if (first == last)
       return last;
@@ -60,7 +45,8 @@ struct max_element_niebloid {
   }
 
   template<typename R, typename Proj = identity, typename Comp = less, std::enable_if_t<
-      check_range<R, Proj, Comp>::value, int> = 0>
+      algo_check_unary_forward_range<indirect_strict_weak_order, R, Proj, Comp>
+  ::value, int> = 0>
   constexpr borrowed_iterator_t<R>
   operator()(R&& r, Comp comp = {}, Proj proj = {}) const {
     return (*this)(ranges::begin(r), ranges::end(r), std::ref(comp), std::ref(proj));

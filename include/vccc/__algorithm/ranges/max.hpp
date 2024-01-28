@@ -29,14 +29,19 @@ namespace detail {
 
 struct max_niebloid {
  private:
-  template<typename R, typename Proj, typename Comp, bool = input_range<R>::value /* false */>
-  struct check_range : std::false_type {};
+  template<typename R, typename Proj, typename Comp, bool = projectable<iterator_t<R>, Proj>::value /* false */>
+  struct check_range_2 : std::false_type {};
   template<typename R, typename Proj, typename Comp>
-  struct check_range<R, Proj, Comp, true>
+  struct check_range_2<R, Proj, Comp, true>
       : conjunction<
             indirect_strict_weak_order<Comp, projected<iterator_t<R>, Proj>>,
             indirectly_copyable_storable<iterator_t<R>, range_value_t<R>*>
         > {};
+
+  template<typename R, typename Proj, typename Comp, bool = input_range<R>::value /* false */>
+  struct check_range : std::false_type {};
+  template<typename R, typename Proj, typename Comp>
+  struct check_range<R, Proj, Comp, true> : check_range_2<R, Proj, Comp> {};
 
   template<typename R, typename Proj, typename Comp>
   constexpr range_value_t<R>
