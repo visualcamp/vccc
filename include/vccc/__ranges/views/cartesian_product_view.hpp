@@ -17,6 +17,7 @@
 #include "vccc/__iterator/iter_move.hpp"
 #include "vccc/__iterator/iter_swap.hpp"
 #include "vccc/__iterator/sized_sentinel_for.hpp"
+#include "vccc/__memory/addressof.hpp"
 #include "vccc/__ranges/begin.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
 #include "vccc/__ranges/common_range.hpp"
@@ -484,7 +485,7 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
     }
 
     constexpr iterator(Parent& parent, iterator_current<Const> current)
-        : parent_(std::addressof(parent)), current_(std::move(current)) {}
+        : parent_(vccc::addressof(parent)), current_(std::move(current)) {}
 
     Parent* parent_ = nullptr;
     iterator_current<Const> current_;

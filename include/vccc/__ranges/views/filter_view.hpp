@@ -22,6 +22,7 @@
 #include "vccc/__iterator/iter_swap.hpp"
 #include "vccc/__iterator/iterator_tag.hpp"
 #include "vccc/__iterator/iterator_traits/cxx20_iterator_traits.hpp"
+#include "vccc/__memory/addressof.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
 #include "vccc/__ranges/common_range.hpp"
 #include "vccc/__ranges/end.hpp"
@@ -136,7 +137,7 @@ class filter_view : public view_interface<filter_view<V, Pred>>, detail::filter_
     iterator() = default;
 
     constexpr iterator(filter_view& parent, iterator_t<V> current)
-        : current_(std::move(current)), parent_(std::addressof(parent)) {}
+        : current_(std::move(current)), parent_(vccc::addressof(parent)) {}
 
     constexpr const iterator_t<V>& base() const& noexcept {
       return current_;

@@ -9,6 +9,7 @@
 # include <type_traits>
 # include <utility>
 #
+# include "vccc/__memory/addressof.hpp"
 # include "vccc/__utility/in_place.hpp"
 
 namespace vccc {
@@ -34,8 +35,8 @@ struct dtor {
     }
   }
 
-  constexpr inline const value_type* pointer() const noexcept { return std::addressof(val); }
-  constexpr inline       value_type* pointer()       noexcept { return std::addressof(val); }
+  constexpr inline const value_type* pointer() const noexcept { return vccc::addressof(val); }
+  constexpr inline       value_type* pointer()       noexcept { return vccc::addressof(val); }
 
   constexpr inline const value_type& ref() const&  noexcept { return val;             }
   constexpr inline       value_type& ref()      &  noexcept { return val;             }
@@ -44,7 +45,7 @@ struct dtor {
 
   template<typename ...Args>
   void construct(Args&&... args) {
-    ::new((void*)std::addressof(val)) value_type(std::forward<Args>(args)...);
+    ::new((void*)vccc::addressof(val)) value_type(std::forward<Args>(args)...);
     valid = true;
   }
 
@@ -82,8 +83,8 @@ struct dtor<T, false> {
     }
   }
 
-  constexpr inline const value_type* pointer() const noexcept { return std::addressof(val); }
-  constexpr inline       value_type* pointer()       noexcept { return std::addressof(val); }
+  constexpr inline const value_type* pointer() const noexcept { return vccc::addressof(val); }
+  constexpr inline       value_type* pointer()       noexcept { return vccc::addressof(val); }
 
   constexpr inline const value_type& ref() const&  noexcept { return val;             }
   constexpr inline       value_type& ref()      &  noexcept { return val;             }
@@ -92,7 +93,7 @@ struct dtor<T, false> {
 
   template<typename ...Args>
   void construct(Args&&... args) {
-    ::new((void*)std::addressof(val)) value_type(std::forward<Args>(args)...);
+    ::new((void*)vccc::addressof(val)) value_type(std::forward<Args>(args)...);
     valid = true;
   }
 

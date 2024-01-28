@@ -16,6 +16,7 @@
 #include "vccc/__iterator/iterator_tag.hpp"
 #include "vccc/__iterator/sized_sentinel_for.hpp"
 #include "vccc/__functional/invoke.hpp"
+#include "vccc/__memory/addressof.hpp"
 #include "vccc/__ranges/begin.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
 #include "vccc/__ranges/forward_range.hpp"
@@ -106,7 +107,7 @@ class transform_view : public ranges::view_interface<transform_view<V, F>> {
     iterator() = default;
 
     constexpr iterator(Parent& parent, ranges::iterator_t<Base> current)
-        : current_(std::move(current)), parent_(std::addressof(parent)) {}
+        : current_(std::move(current)), parent_(vccc::addressof(parent)) {}
 
     template<bool AntiConst, std::enable_if_t<conjunction<
         bool_constant<((Const != AntiConst) && Const)>,

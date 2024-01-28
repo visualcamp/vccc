@@ -1,5 +1,6 @@
 include(CheckCXXStandardSupport)
 include(CheckCXX_TypeExists)
+include(CheckConstexprAddressof)
 
 if ("${CMAKE_CXX_STANDARD}" STREQUAL "")
     CheckCXXStandardSupport(14 VCCC_COMPILER_SUPPORT_STD_14)
