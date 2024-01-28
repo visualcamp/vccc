@@ -658,8 +658,8 @@ int main() {
       constexpr static auto y = {4, 5, 6};
       constexpr static auto z = {7, 8, 9, 10, 11, 12, 13};
       auto v = views::cartesian_product(w, x, y, z);
-      TEST_ENSURES((v.size() == w.size() * x.size() * y.size() * z.size(), ""));
-      TEST_ENSURES((v.size() == 42, ""));
+      TEST_ENSURES(v.size() == w.size() * x.size() * y.size() * z.size());
+      TEST_ENSURES(v.size() == 42);
     }
   }
 
