@@ -8,6 +8,7 @@
 #include <memory>
 #include <type_traits>
 
+#include "vccc/__core/constexpr.hpp"
 #include "vccc/__concepts/convertible_to.hpp"
 #include "vccc/__concepts/different_from.hpp"
 #include "vccc/__ranges/contiguous_range.hpp"
@@ -50,7 +51,7 @@ class ref_view : public view_interface<ref_view<R>> {
       convertible_to<T, R&>,
       std::is_lvalue_reference<T&&>
   >::value, int> = 0>
-  constexpr ref_view(T&& t) noexcept
+  VCCC_CONSTEXPR_AFTER_CXX17 ref_view(T&& t) noexcept
       : r_(std::addressof(static_cast<R&>(std::forward<T>(t)))) {}
 
   constexpr R& base() const {
