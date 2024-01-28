@@ -108,7 +108,9 @@ int main() {
     int d1[] = {21, 22, 23};
     int d2[] = {24, 25, 26};
     // TODO: Implement swap_ranges
-    // vccc::ranges::swap(d1, d2);
+    vccc::ranges::swap(d1, d2);
+    TEST_ENSURES(vccc::ranges::equal(d1, vccc::span<const int>({24, 25, 26})));
+    TEST_ENSURES(vccc::ranges::equal(d2, vccc::span<const int>({21, 22, 23})));
   }
 
   {
@@ -655,9 +657,9 @@ int main() {
       constexpr static auto x = {2, 3};
       constexpr static auto y = {4, 5, 6};
       constexpr static auto z = {7, 8, 9, 10, 11, 12, 13};
-      constexpr auto v = views::cartesian_product(w, x, y, z);
-      static_assert(v.size() == w.size() * x.size() * y.size() * z.size(), "");
-      static_assert(v.size() == 42, "");
+      auto v = views::cartesian_product(w, x, y, z);
+      TEST_ENSURES((v.size() == w.size() * x.size() * y.size() * z.size(), ""));
+      TEST_ENSURES((v.size() == 42, ""));
     }
   }
 
