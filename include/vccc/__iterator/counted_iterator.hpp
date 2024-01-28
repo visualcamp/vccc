@@ -5,6 +5,7 @@
 #ifndef VCCC_ITERATOR_COUNTED_ITERATOR_HPP
 #define VCCC_ITERATOR_COUNTED_ITERATOR_HPP
 
+#include <iterator>
 #include <type_traits>
 #include <utility>
 
@@ -270,7 +271,10 @@ struct counted_iterator_iterator_traits<I, false> : cxx20_iterator_traits<I> {
 };
 
 template<typename I>
-struct is_primary_iterator_traits<counted_iterator<I>> : is_primary_iterator_traits<I> {};
+struct is_primary_iterator_traits<std::iterator_traits<counted_iterator<I>>> : is_primary_iterator_traits<I> {};
+
+template<typename I>
+struct is_primary_iterator_traits<cxx20_iterator_traits<counted_iterator<I>>> : is_primary_iterator_traits<I> {};
 
 } // namespace detail
 
@@ -285,5 +289,21 @@ struct cxx20_iterator_traits<counted_iterator<I>> : detail::counted_iterator_ite
 /// @}
 
 } // namespace vccc
+
+#if __cplusplus >= 202002L
+
+namespace std {
+
+// TODO: Use base class of std::iterator_traits<T>
+
+template<::std::input_iterator I>
+requires(vccc::detail::is_primary_iterator_traits<I>::value == false)
+struct iterator_traits<vccc::counted_iterator<I>> : iterator_traits<I> {
+  using pointer = typename vccc::cxx20_iterator_traits<vccc::counted_iterator<I>>::pointer;
+};
+
+} // namespace std
+
+#endif
 
 #endif // VCCC_ITERATOR_COUNTED_ITERATOR_HPP
