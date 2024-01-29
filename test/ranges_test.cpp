@@ -678,6 +678,9 @@ int main() {
     const auto nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     TEST_ENSURES((vccc::ranges::equal(vccc::ranges::make_drop_view(nums, 2), vccc::views::iota(3, 10))));
 
+    TEST_ENSURES((vccc::ranges::equal(nums | vccc::views::drop(2), vccc::views::iota(3, 10))));
+
+    TEST_ENSURES((vccc::ranges::equal(vccc::views::iota(1, 10) | vccc::views::drop(2), vccc::views::iota(3, 10))));
   }
 
   { // ranges::repeat_view, views::drop

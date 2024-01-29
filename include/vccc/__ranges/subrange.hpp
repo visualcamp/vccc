@@ -325,6 +325,13 @@ subrange(R&&) ->
 
 namespace detail {
 
+template<typename R>
+struct is_size_storing_subrange;
+
+template<typename I, typename S, subrange_kind K>
+struct is_size_storing_subrange<subrange<I, S, K>>
+    : bool_constant<(K == subrange_kind::sized && sized_sentinel_for<S, I>::value == false)> {};
+
 template<std::size_t N>
 struct get_subrange;
 
