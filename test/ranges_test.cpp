@@ -19,6 +19,7 @@
 #include "vccc/iterator.hpp"
 #include "vccc/ranges.hpp"
 #include "vccc/span.hpp"
+#include "vccc/string_view.hpp"
 #include "vccc/type_traits.hpp"
 #include "test_core.hpp"
 
@@ -677,6 +678,21 @@ int main() {
     const auto nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     TEST_ENSURES((vccc::ranges::equal(vccc::ranges::make_drop_view(nums, 2), vccc::views::iota(3, 10))));
 
+  }
+
+  { // ranges::repeat_view, views::drop
+    std::cout << "Line " << __LINE__ << ", ranges::repeat_view, views::drop: \n";
+
+    using namespace vccc::string_view_literals;
+    TEST_ENSURES((vccc::ranges::equal(
+        vccc::views::repeat("C++"_sv, 3),
+        vccc::span<const vccc::string_view>{"C++"_sv, "C++"_sv, "C++"_sv}
+        )));
+
+    TEST_ENSURES((vccc::ranges::equal(
+        vccc::views::repeat("C++"_sv) | vccc::views::take(3),
+        vccc::span<const vccc::string_view>{"C++"_sv, "C++"_sv, "C++"_sv}
+        )));
   }
 
   return TEST_RETURN_RESULT;

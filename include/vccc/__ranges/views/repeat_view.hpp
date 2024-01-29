@@ -10,7 +10,6 @@
 #include <type_traits>
 #include <utility>
 
-#include "vccc/__concepts/copy_constructible.hpp"
 #include "vccc/__concepts/constructible_from.hpp"
 #include "vccc/__concepts/move_constructible.hpp"
 #include "vccc/__concepts/same_as.hpp"
@@ -18,28 +17,18 @@
 #include "vccc/__iterator/iterator_tag.hpp"
 #include "vccc/__iterator/unreachable_sentinel.hpp"
 #include "vccc/__memory/addressof.hpp"
-#include "vccc/__ranges/detail/simple_view.hpp"
-#include "vccc/__ranges/begin.hpp"
-#include "vccc/__ranges/enable_borrowed_range.hpp"
-#include "vccc/__ranges/end.hpp"
-#include "vccc/__ranges/iterator_t.hpp"
 #include "vccc/__ranges/movable_box.hpp"
-#include "vccc/__ranges/range.hpp"
-#include "vccc/__ranges/sentinel_t.hpp"
-#include "vccc/__ranges/size.hpp"
 #include "vccc/__ranges/view_interface.hpp"
-#include "vccc/__ranges/view.hpp"
-#include "vccc/__ranges/views/all.hpp"
 #include "vccc/__ranges/views/iota_view.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
 #include "vccc/__type_traits/is_integer_like.hpp"
-#include "vccc/__type_traits/remove_cvref.hpp"
 
 namespace vccc {
 namespace ranges {
-namespace detail {
-} // namespace detail
+
+/// @addtogroup ranges
+/// @{
 
 template<typename W, typename Bound = unreachable_sentinel_t>
 class repeat_view : public view_interface<repeat_view<W, Bound>> {
@@ -223,6 +212,7 @@ repeat_view(W, Bound) -> repeat_view<W, Bound>;
 
 #endif
 
+/// @}
 
 } // namespace ranges
 } // namespace vccc
