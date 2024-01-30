@@ -154,8 +154,8 @@ struct movable_box_storage_copy_assign<T, false> : movable_box_storage_base<T> {
   using base::base;
 
   constexpr movable_box_storage_copy_assign() = default;
-  movable_box_storage_copy_assign(const movable_box_storage_copy_assign&) = default;
-  movable_box_storage_copy_assign(movable_box_storage_copy_assign&&) = default;
+  constexpr movable_box_storage_copy_assign(const movable_box_storage_copy_assign&) = default;
+  constexpr movable_box_storage_copy_assign(movable_box_storage_copy_assign&&) = default;
 
   movable_box_storage_copy_assign& operator=(const movable_box_storage_copy_assign& other)
       noexcept(std::is_nothrow_copy_constructible<T>::value)
@@ -168,13 +168,19 @@ struct movable_box_storage_copy_assign<T, false> : movable_box_storage_base<T> {
     }
     return *this;
   }
-  movable_box_storage_copy_assign& operator=(movable_box_storage_copy_assign&&) = default;
+  constexpr movable_box_storage_copy_assign& operator=(movable_box_storage_copy_assign&&) = default;
 };
 
 template<typename T, bool = movable<T>::value /* true */>
 struct movable_box_storage_move_assign : movable_box_storage_copy_assign<T> {
   using base = movable_box_storage_copy_assign<T>;
   using base::base;
+
+  constexpr movable_box_storage_move_assign() = default;
+  constexpr movable_box_storage_move_assign(const movable_box_storage_move_assign&) = default;
+  constexpr movable_box_storage_move_assign(movable_box_storage_move_assign&&) = default;
+  constexpr movable_box_storage_move_assign& operator=(const movable_box_storage_move_assign&) = default;
+  constexpr movable_box_storage_move_assign& operator=(movable_box_storage_move_assign&& other) = default;
 };
 
 template<typename T>
@@ -183,9 +189,9 @@ struct movable_box_storage_move_assign<T, false> : movable_box_storage_copy_assi
   using base::base;
 
   constexpr movable_box_storage_move_assign() = default;
-  movable_box_storage_move_assign(const movable_box_storage_move_assign&) = default;
-  movable_box_storage_move_assign(movable_box_storage_move_assign&&) = default;
-  movable_box_storage_move_assign& operator=(const movable_box_storage_move_assign&) = default;
+  constexpr movable_box_storage_move_assign(const movable_box_storage_move_assign&) = default;
+  constexpr movable_box_storage_move_assign(movable_box_storage_move_assign&&) = default;
+  constexpr movable_box_storage_move_assign& operator=(const movable_box_storage_move_assign&) = default;
   constexpr movable_box_storage_move_assign& operator=(movable_box_storage_move_assign&& other)
       noexcept(std::is_nothrow_move_constructible<T>::value)
   {
@@ -203,21 +209,13 @@ struct movable_box_storage_move_assign<T, false> : movable_box_storage_copy_assi
 
 
 template<typename T>
-class movable_box : private detail::movable_box_storage_move_assign<T> {
+class movable_box : public detail::movable_box_storage_move_assign<T> {
+  using base = detail::movable_box_storage_move_assign<T>;
+  using base::base;
+
  public:
   static_assert(move_constructible<T>::value, "Constraints not satisfied");
   static_assert(std::is_object<T>::value, "Constraints not satisfied");
-
-  using base = detail::movable_box_storage_move_assign<T>;
-
-  using base::base;
-  using base::operator=;
-  using base::operator->;
-  using base::operator*;
-  using base::operator bool;
-  using base::has_value;
-  using base::reset;
-  using base::emplace;
 
   constexpr movable_box() = default;
   constexpr movable_box(const movable_box&) = default;
