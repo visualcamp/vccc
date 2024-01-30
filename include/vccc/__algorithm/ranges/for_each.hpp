@@ -26,7 +26,7 @@ namespace ranges {
 /// @{
 
 template<typename I, typename F>
-using for_each_result = ranges::in_fun_result<I, F>;
+using for_each_result = in_fun_result<I, F>;
 
 namespace detail {
 

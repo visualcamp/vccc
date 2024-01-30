@@ -51,7 +51,7 @@ struct equal_niebloid {
       typename I1, typename S1,
       typename I2, typename S2,
       typename Pred = ranges::equal_to,
-      typename Proj1 = vccc::identity, typename Proj2 = vccc::identity,
+      typename Proj1 = identity, typename Proj2 = identity,
       std::enable_if_t<conjunction<
           input_iterator<I1>, sentinel_for<S1, I1>,
           input_iterator<I2>, sentinel_for<S2, I2>,
