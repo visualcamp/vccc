@@ -25,9 +25,9 @@ properties for use in constructing range adaptor pipelines.
 template<typename T>
 struct view
     : conjunction<
-          ranges::range<T>,
+          range<T>,
           movable<T>,
-          ranges::enable_view<T>
+          enable_view<T>
       > {};
 
 /// @}

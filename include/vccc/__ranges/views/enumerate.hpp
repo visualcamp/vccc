@@ -30,7 +30,12 @@ class enumerate_adaptor_closure : public range_adaptor_closure<enumerate_adaptor
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::enumerate_adaptor_closure enumerate{};
+
+/// @}
 
 } // namespace views
 } // namespace ranges

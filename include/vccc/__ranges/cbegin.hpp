@@ -21,7 +21,6 @@ namespace ranges {
 namespace detail {
 
 struct cbegin_niebloid {
- public:
   template<typename T, std::enable_if_t<disjunction<
       std::is_lvalue_reference<T>,
       enable_borrowed_range<std::remove_cv_t<T>>
@@ -44,7 +43,6 @@ struct cbegin_niebloid {
   constexpr auto call(T&& t, vccc::detail::tag_else) const {
     return make_const_iterator(ranges::begin(std::forward<T>(t)));
   }
-
 };
 
 } // namespace detail

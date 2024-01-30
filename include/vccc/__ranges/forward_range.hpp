@@ -23,8 +23,8 @@ struct forward_range_impl : std::false_type {};
 template<typename T>
 struct forward_range_impl<T, true>
     : conjunction<
-        ranges::input_range<T>,
-        forward_iterator<ranges::iterator_t<T>>
+        input_range<T>,
+        forward_iterator<iterator_t<T>>
       > {};
 
 } // namespace detail

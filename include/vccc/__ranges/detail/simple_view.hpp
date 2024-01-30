@@ -18,11 +18,11 @@ namespace vccc {
 namespace ranges {
 namespace detail {
 
-template<typename R, bool = conjunction<ranges::view<R>, ranges::range<const R>>::value /* true */>
+template<typename R, bool = conjunction<view<R>, range<const R>>::value /* true */>
 struct simple_view
     : conjunction<
-          same_as<ranges::iterator_t<R>, ranges::iterator_t<const R>>,
-          same_as<ranges::sentinel_t<R>, ranges::sentinel_t<const R>>
+          same_as<iterator_t<R>, iterator_t<const R>>,
+          same_as<sentinel_t<R>, sentinel_t<const R>>
       > {};
 
 template<typename R>

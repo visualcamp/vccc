@@ -22,20 +22,25 @@ template<
     typename T,
     bool =
         conjunction<
-          ranges::range<T>,
-          has_typename_type<ranges::iterator<T>>,
-          has_typename_type<ranges::sentinel<T>>
+          range<T>,
+          has_typename_type<iterator<T>>,
+          has_typename_type<sentinel<T>>
         >::value
 >
 struct common_range_impl : std::false_type {};
 
 template<typename T>
-struct common_range_impl<T, true> : same_as<ranges::iterator_t<T>, ranges::sentinel_t<T>> {};
+struct common_range_impl<T, true> : same_as<iterator_t<T>, sentinel_t<T>> {};
 
 } // namespace ranges
 
+/// @addtogroup ranges
+/// @{
+
 template<typename T>
 struct common_range : detail::common_range_impl<T> {};
+
+/// @}
 
 } // namespace vccc
 } // namespace ranges

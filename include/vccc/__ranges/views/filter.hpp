@@ -56,7 +56,12 @@ struct filter_adaptor {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::filter_adaptor filter{};
+
+/// @}
 
 } // namespace views
 } // namespace ranges

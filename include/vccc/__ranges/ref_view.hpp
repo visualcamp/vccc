@@ -53,11 +53,11 @@ class ref_view : public view_interface<ref_view<R>> {
     return *r_;
   }
 
-  constexpr ranges::iterator_t<R> begin() const {
+  constexpr iterator_t<R> begin() const {
     return ranges::begin(*r_);
   }
 
-  constexpr ranges::sentinel_t<R> end() const {
+  constexpr sentinel_t<R> end() const {
     return ranges::end(*r_);
   }
 
@@ -68,13 +68,13 @@ class ref_view : public view_interface<ref_view<R>> {
   }
 
   template<typename T = R, std::enable_if_t<
-      ranges::sized_range<T>::value, int> = 0>
+      sized_range<T>::value, int> = 0>
   constexpr auto size() const {
     return ranges::size(*r_);
   }
 
   template<typename T = R, std::enable_if_t<
-      ranges::contiguous_range<T>::value, int> = 0>
+      contiguous_range<T>::value, int> = 0>
   constexpr auto data() const {
     return ranges::data(*r_);
   }
@@ -91,7 +91,7 @@ ref_view(R&) -> ref_view<R>;
 #endif
 
 template<typename T>
-struct enable_borrowed_range<ranges::ref_view<T>> : std::true_type {};
+struct enable_borrowed_range<ref_view<T>> : std::true_type {};
 
 /// @}
 

@@ -6,13 +6,11 @@
 #define VCCC_RANGES_MOVABLE_BOX_HPP
 
 #include <initializer_list>
-#include <memory>
 #include <type_traits>
 #include <utility>
 
 #include "vccc/__concepts/copyable.hpp"
 #include "vccc/__concepts/copy_constructible.hpp"
-#include "vccc/__concepts/default_initializable.hpp"
 #include "vccc/__concepts/movable.hpp"
 #include "vccc/__memory/addressof.hpp"
 #include "vccc/optional.hpp"
@@ -207,6 +205,8 @@ struct movable_box_storage_move_assign<T, false> : movable_box_storage_copy_assi
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
 
 template<typename T>
 class movable_box : public detail::movable_box_storage_move_assign<T> {
@@ -223,6 +223,8 @@ class movable_box : public detail::movable_box_storage_move_assign<T> {
   constexpr movable_box& operator=(const movable_box&) = default;
   constexpr movable_box& operator=(movable_box&&) = default;
 };
+
+/// @}
 
 } // namespace vccc
 

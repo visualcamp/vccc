@@ -44,7 +44,6 @@
 
 namespace vccc {
 namespace ranges {
-
 namespace detail {
 
 template<typename From, typename To>
@@ -75,7 +74,7 @@ using make_unsigned_like_t = typename make_unsigned_like<T>::type;
 template<typename T, typename U, typename V, bool = pair_like<T>::value /* true */>
 struct pair_like_convertible_from
     : conjunction<
-          negation< ranges::range<T> >,
+          negation< range<T> >,
           negation< std::is_reference<T> >,
           constructible_from<T, U, V>,
           convertible_to_non_slicing<U, std::tuple_element_t<0, T>>,
@@ -85,9 +84,9 @@ struct pair_like_convertible_from
 template<typename T, typename U, typename V>
 struct pair_like_convertible_from<T, U, V, false> : std::false_type {};
 
-template<typename R, bool = ranges::borrowed_range<R>::value /* true */>
+template<typename R, bool = borrowed_range<R>::value /* true */>
 struct borrowed_range_difference {
-  using type = ranges::range_difference_t<R>;
+  using type = range_difference_t<R>;
 };
 template<typename R>
 struct borrowed_range_difference<R, false> {};
@@ -97,14 +96,14 @@ using borrowed_range_difference_t = typename borrowed_range_difference<R>::type;
 template<
     typename I,
     typename S = I,
-    ranges::subrange_kind K = sized_sentinel_for<S, I>::value ? ranges::subrange_kind::sized : ranges::subrange_kind::unsized
+    subrange_kind K = sized_sentinel_for<S, I>::value ? subrange_kind::sized : subrange_kind::unsized
 >
 struct is_subrange_constructible
     : conjunction<
           input_or_output_iterator<I>,
           sentinel_for<S, I>,
           disjunction<
-            bool_constant<(K == ranges::subrange_kind::sized)>,
+            bool_constant<(K == subrange_kind::sized)>,
             negation< sized_sentinel_for<S, I> >
           >
       > {};
@@ -125,11 +124,11 @@ struct subrange_size<I, S, true> {
   std::make_unsigned_t<iter_difference_t<I>> size_ = 0;
 };
 
-template<typename I, typename S, typename R, bool = ranges::borrowed_range<R>::value /* true */>
+template<typename I, typename S, typename R, bool = borrowed_range<R>::value /* true */>
 struct subrange_ctor_range
     : conjunction<
-          convertible_to_non_slicing<ranges::iterator_t<R>, I>,
-          convertible_to<ranges::sentinel_t<R>, S>
+          convertible_to_non_slicing<iterator_t<R>, I>,
+          convertible_to<sentinel_t<R>, S>
       > {};
 
 template<typename I, typename S, typename R>
@@ -141,18 +140,18 @@ struct subrange_ctor_range<I, S, R, false> : std::false_type {};
 template<
     typename I,
     typename S = I,
-    ranges::subrange_kind K = sized_sentinel_for<S, I>::value ? ranges::subrange_kind::sized : ranges::subrange_kind::unsized
+    subrange_kind K = sized_sentinel_for<S, I>::value ? subrange_kind::sized : subrange_kind::unsized
 >
 class subrange
-    : public ranges::view_interface<subrange<I, S, K>>
-    , detail::subrange_size<I, S, (K == ranges::subrange_kind::sized && sized_sentinel_for<S, I>::value == false)>
+    : public view_interface<subrange<I, S, K>>
+    , detail::subrange_size<I, S, (K == subrange_kind::sized && sized_sentinel_for<S, I>::value == false)>
 {
-  using store_size = bool_constant<(K == ranges::subrange_kind::sized && sized_sentinel_for<S, I>::value == false)>;
+  using store_size = bool_constant<(K == subrange_kind::sized && sized_sentinel_for<S, I>::value == false)>;
   using size_base = detail::subrange_size<I, S, store_size::value>;
  public:
   static_assert(input_or_output_iterator<I>::value, "Constraints not satisfied");
   static_assert(sentinel_for<S, I>::value, "Constraints not satisfied");
-  static_assert(K == ranges::subrange_kind::sized || !sized_sentinel_for<S, I>::value, "Constraints not satisfied");
+  static_assert(K == subrange_kind::sized || !sized_sentinel_for<S, I>::value, "Constraints not satisfied");
 
   subrange() = default;
 
@@ -165,7 +164,7 @@ class subrange
 
   template<typename I2, std::enable_if_t<conjunction<
       detail::convertible_to_non_slicing<I2, I>,
-      bool_constant< K == ranges::subrange_kind::sized >
+      bool_constant< K == subrange_kind::sized >
   >::value, int> = 0>
   constexpr subrange(I2 i, S s, detail::make_unsigned_like_t<iter_difference_t<I>> n)
       : iterator_(std::move(i)), sentinel_(std::move(s)), size_base(in_place, n) {}
@@ -175,7 +174,7 @@ class subrange
       detail::subrange_ctor_range<I, S, R>,
       disjunction<
           negation<store_size>,
-          ranges::sized_range<R>
+          sized_range<R>
       >
   >::value, int> = 0>
   constexpr subrange(R&& r)
@@ -183,7 +182,7 @@ class subrange
 
   template<typename R, std::enable_if_t<conjunction<
       detail::subrange_ctor_range<I, S, R>,
-      bool_constant< K == ranges::subrange_kind::sized >
+      bool_constant< K == subrange_kind::sized >
   >::value, int> = 0>
   constexpr subrange(R&& r, detail::make_unsigned_like_t<iter_difference_t<I>> n)
       : subrange(ranges::begin(r), ranges::end(r), n) {}
@@ -217,16 +216,16 @@ class subrange
     return iterator_ == sentinel_;
   }
 
-  template<ranges::subrange_kind K2 = K, std::enable_if_t<conjunction<
-      bool_constant<K2 == ranges::subrange_kind::sized>,
+  template<subrange_kind K2 = K, std::enable_if_t<conjunction<
+      bool_constant<K2 == subrange_kind::sized>,
       sized_sentinel_for<S, I>
   >::value, int> = 0>
   constexpr detail::make_unsigned_like_t<iter_difference_t<I>> size() const {
     return static_cast<detail::make_unsigned_like_t<iter_difference_t<I>>>(sentinel_ - iterator_);
   }
 
-  template<ranges::subrange_kind K2 = K, std::enable_if_t<conjunction<
-      bool_constant<K2 == ranges::subrange_kind::sized>,
+  template<subrange_kind K2 = K, std::enable_if_t<conjunction<
+      bool_constant<K2 == subrange_kind::sized>,
       negation< sized_sentinel_for<S, I> >
   >::value, int> = 0>
   constexpr detail::make_unsigned_like_t<iter_difference_t<I>> size() const {
@@ -278,23 +277,23 @@ template<typename I, typename S, std::enable_if_t<conjunction<
     input_or_output_iterator<I>,
     sentinel_for<S, I>
 >::value, int> = 0>
-constexpr subrange<I, S, ranges::subrange_kind::sized>
+constexpr subrange<I, S, subrange_kind::sized>
 make_subrange(I i, S s, detail::make_unsigned_like_t<iter_difference_t<I>> n) {
-  return subrange<I, S, ranges::subrange_kind::sized>(std::move(i), std::move(s), n);
+  return subrange<I, S, subrange_kind::sized>(std::move(i), std::move(s), n);
 }
 
-template<typename R, std::enable_if_t<ranges::borrowed_range<R>::value, int> = 0>
-constexpr subrange<ranges::iterator_t<R>, ranges::sentinel_t<R>,
-             (ranges::sized_range<R>::value ||
-              sized_sentinel_for<ranges::sentinel_t<R>, ranges::iterator_t<R>>::value) ?
-                ranges::subrange_kind::sized : ranges::subrange_kind::unsized>
+template<typename R, std::enable_if_t<borrowed_range<R>::value, int> = 0>
+constexpr subrange<iterator_t<R>, sentinel_t<R>,
+             (sized_range<R>::value ||
+              sized_sentinel_for<sentinel_t<R>, iterator_t<R>>::value) ?
+                subrange_kind::sized : subrange_kind::unsized>
 make_subrange(R&& r) {
   return {std::forward<R>(r)};
 }
 
-template<typename R, std::enable_if_t<ranges::borrowed_range<R>::value, int> = 0>
-constexpr subrange<ranges::iterator_t<R>, ranges::sentinel_t<R>, ranges::subrange_kind::sized>
-make_subrange(R&& r, detail::make_unsigned_like_t<ranges::range_difference_t<R>> n) {
+template<typename R, std::enable_if_t<borrowed_range<R>::value, int> = 0>
+constexpr subrange<iterator_t<R>, sentinel_t<R>, subrange_kind::sized>
+make_subrange(R&& r, detail::make_unsigned_like_t<range_difference_t<R>> n) {
   return {std::forward<R>(r), n};
 }
 
@@ -336,43 +335,43 @@ template<std::size_t N>
 struct get_subrange;
 
 template<> struct get_subrange<0> {
-  template<typename I, typename S, ranges::subrange_kind K>
-  static constexpr auto get(const ranges::subrange<I, S, K>& r) {
+  template<typename I, typename S, subrange_kind K>
+  static constexpr auto get(const subrange<I, S, K>& r) {
     return r.begin();
   }
-  template<typename I, typename S, ranges::subrange_kind K>
-  static constexpr auto get(ranges::subrange<I, S, K>&& r) {
+  template<typename I, typename S, subrange_kind K>
+  static constexpr auto get(subrange<I, S, K>&& r) {
     return std::move(r.begin());
   }
 };
 
 template<> struct get_subrange<1> {
-  template<typename I, typename S, ranges::subrange_kind K>
-  auto get(const ranges::subrange<I, S, K>& r) {
+  template<typename I, typename S, subrange_kind K>
+  auto get(const subrange<I, S, K>& r) {
     return r.end();
   }
-  template<typename I, typename S, ranges::subrange_kind K>
-  auto get(ranges::subrange<I, S, K>&& r) {
+  template<typename I, typename S, subrange_kind K>
+  auto get(subrange<I, S, K>&& r) {
     return std::move(r.end());
   }
 };
 
 } // namespace detail
 
-template<std::size_t N, typename I, typename S, ranges::subrange_kind K,
+template<std::size_t N, typename I, typename S, subrange_kind K,
     std::enable_if_t<((N == 0 && copyable<I>::value) || N == 1), int> = 0>
-constexpr auto get(const ranges::subrange<I, S, K>& r) {
+constexpr auto get(const subrange<I, S, K>& r) {
   return detail::get_subrange<N>::get(r);
 }
 
-template<std::size_t N, typename I, typename S, ranges::subrange_kind K,
+template<std::size_t N, typename I, typename S, subrange_kind K,
     std::enable_if_t<(N < 2), int> = 0>
-constexpr auto get(ranges::subrange<I, S, K>&& r) {
+constexpr auto get(subrange<I, S, K>&& r) {
   return detail::get_subrange<N>::get(std::move(r));
 }
 
-template<typename I, typename S, vccc::ranges::subrange_kind K>
-struct enable_borrowed_range<ranges::subrange<I, S, K>> : std::true_type {};
+template<typename I, typename S, subrange_kind K>
+struct enable_borrowed_range<subrange<I, S, K>> : std::true_type {};
 
 } // namespace ranges
 

@@ -25,14 +25,14 @@ template<
     typename T,
     bool =
         conjunction<
-            contiguous_iterator< ranges::iterator_t<T> >,
+            contiguous_iterator< iterator_t<T> >,
             is_invocable<decltype(ranges::data), T&>
         >::value /* true */
 >
 struct contiguous_range_impl_2
     : same_as<
           decltype( ranges::data(std::declval<T&>()) ),
-          std::add_pointer_t<ranges::range_reference_t<T>>
+          std::add_pointer_t<range_reference_t<T>>
       > {};
 template<typename T>
 struct contiguous_range_impl_2<T, false> : std::false_type {};
@@ -42,8 +42,8 @@ template<
     bool =
         conjunction<
             random_access_range<T>,
-            has_typename_type< ranges::iterator<T> >,
-            has_typename_type< ranges::range_reference<T> >
+            has_typename_type< iterator<T> >,
+            has_typename_type< range_reference<T> >
         >::value /* true */
 >
 struct contiguous_range_impl_1 : contiguous_range_impl_2<T> {};

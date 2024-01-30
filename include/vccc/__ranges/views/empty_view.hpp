@@ -25,6 +25,9 @@ namespace ranges {
 @}
 */
 
+/// @addtogroup ranges_empty_view__class__Factories
+/// @{
+
 template<typename T>
 class empty_view : public ranges::view_interface<empty_view<T>> {
  public:
@@ -50,6 +53,9 @@ template<typename T>
 VCCC_INLINE_OR_STATIC constexpr empty_view<T> empty{};
 
 } // namespace views
+
+/// @}
+
 } // namespace ranges
 } // namespace vccc
 

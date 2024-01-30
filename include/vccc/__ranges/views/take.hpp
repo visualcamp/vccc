@@ -39,10 +39,10 @@ struct take_adaptor_closure : public range_adaptor_closure<take_adaptor_closure<
   >::value, int> = 0>
   constexpr explicit take_adaptor_closure(U&& count) : count_(std::forward<U>(count)) {}
 
-  template<typename R, std::enable_if_t<ranges::range<R>::value, int> = 0>
-  constexpr take_view<views::all_t<R>>
+  template<typename R, std::enable_if_t<range<R>::value, int> = 0>
+  constexpr take_view<all_t<R>>
   operator()(R&& r) const {
-    return take_view<views::all_t<R>>(std::forward<R>(r), count_);
+    return take_view<all_t<R>>(std::forward<R>(r), count_);
   }
 
  private:
@@ -53,7 +53,7 @@ using vccc::detail::return_category;
 
 struct take_niebloid {
  private:
-  template<typename R, typename T, typename D, bool = is_specialization<T, ranges::empty_view>::value /* true */>
+  template<typename R, typename T, typename D, bool = is_specialization<T, empty_view>::value /* true */>
   struct return_category_empty_view : std::true_type {
     using category = return_category<1, decltype(vccc_decay_copy(std::declval<R>()))>;
   };
@@ -62,7 +62,7 @@ struct take_niebloid {
     using category = return_category<0>;
   };
   template<typename R, typename RT>
-  constexpr RT operator()(R&& r, ranges::range_difference_t<R> count, return_category<1, RT>) const {
+  constexpr RT operator()(R&& r, range_difference_t<R> count, return_category<1, RT>) const {
     return ((void)count, vccc_decay_copy(std::forward<R>(r)));
   }
 
@@ -92,11 +92,11 @@ struct take_niebloid {
   template<typename T>
   struct is_subrange : std::false_type {};
   template<typename I, typename S, subrange_kind K>
-  struct is_subrange<ranges::subrange<I, S, K>> : std::true_type {};
+  struct is_subrange<subrange<I, S, K>> : std::true_type {};
 
   template<typename T, bool = is_subrange<T>::value /* true */>
   struct return_category_subrange : std::true_type {
-    using category = return_category<2, ranges::subrange<ranges::iterator_t<T>>>;
+    using category = return_category<2, subrange<iterator_t<T>>>;
   };
   template<typename T>
   struct return_category_subrange<T, false> : std::false_type {
@@ -104,8 +104,8 @@ struct take_niebloid {
   };
 
   template<typename R, typename U>
-  constexpr U operator()(R&& e, ranges::range_difference_t<R> f, return_category<2, U>) const {
-    using D = ranges::range_difference_t<decltype((e))>;
+  constexpr U operator()(R&& e, range_difference_t<R> f, return_category<2, U>) const {
+    using D = range_difference_t<decltype((e))>;
     return U(
         ranges::begin(std::forward<R>(e)),
         ranges::begin(std::forward<R>(e))
@@ -113,7 +113,7 @@ struct take_niebloid {
     );
   }
 
-  template< typename T, bool = is_specialization<T, ranges::iota_view>::value /* true */>
+  template< typename T, bool = is_specialization<T, iota_view>::value /* true */>
   struct return_category_iota_view : std::true_type {
     using category = return_category<3, T>;
   };
@@ -173,7 +173,12 @@ struct take_niebloid {
 };
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::take_niebloid take{};
+
+/// @}
 
 } // namespace views
 } // namespace ranges

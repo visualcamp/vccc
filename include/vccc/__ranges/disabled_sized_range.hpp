@@ -10,8 +10,13 @@
 namespace vccc {
 namespace ranges {
 
+/// @addtogroup ranges
+/// @{
+
 template<typename T>
 struct disabled_sized_range : std::false_type {};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

@@ -67,12 +67,12 @@ template<typename T, typename N>
 struct has_mf_max_size<T, N, void_t<decltype( std::declval<T&>().max_size() )>>
     : same_as<decltype(std::declval<T&>().max_size()), N> {};
 
-template<typename Container, bool = ranges::sized_range<Container>::value /* true */>
+template<typename Container, bool = sized_range<Container>::value /* true */>
 struct reservable_container
     : conjunction<
-          has_mf_reserve<Container, ranges::range_size_t<Container>>,
-          has_mf_reserve<Container, ranges::range_size_t<Container>>,
-          has_mf_reserve<Container, ranges::range_size_t<Container>>
+          has_mf_reserve<Container, range_size_t<Container>>,
+          has_mf_reserve<Container, range_size_t<Container>>,
+          has_mf_reserve<Container, range_size_t<Container>>
       >{};
 template<typename Container>
 struct reservable_container<Container, false> : std::false_type {};
@@ -439,8 +439,8 @@ auto lst = vec | vccc::views::take(3) | vccc::ranges::to<std::list<double>>();
 
 /// @brief Constructs an object of type `C` from the elements of `r`
 template<typename C, typename R, typename... Args, std::enable_if_t<conjunction<
-    ranges::input_range<R>,
-    negation< ranges::view<C> >
+    input_range<R>,
+    negation< view<C> >
 >::value, int> = 0>
 constexpr std::enable_if_t<(detail::ranges_to_1_tag<C, R, Args...>::value > 0), C>
 to(R&& r, Args&&... args) {
@@ -449,7 +449,7 @@ to(R&& r, Args&&... args) {
 
 /// @brief Constructs an object of deduced type from the elements of `r`
 template<template<typename...> class C, typename R, typename... Args, std::enable_if_t<
-    ranges::input_range<R>::value, int> = 0>
+    input_range<R>::value, int> = 0>
 constexpr typename detail::DEDUCE_EXPR_CATEGORY<C, R, Args...>::return_type
 to(R&& r, Args&&... args) {
   using DEDUCE_EXPR = typename detail::DEDUCE_EXPR_CATEGORY<C, R, Args...>::return_type;

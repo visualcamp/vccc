@@ -13,6 +13,8 @@
 namespace vccc {
 namespace ranges {
 
+/// @cond ignored
+
 template<typename T, bool = is_referencable<T>::value, typename = void>
 struct iterator {};
 
@@ -21,8 +23,15 @@ struct iterator<T, true, void_t<decltype( ranges::begin(std::declval<T&>()) )>> 
   using type = decltype(ranges::begin(std::declval<T&>()));
 };
 
+/// @endcond
+
+/// @addtogroup ranges
+/// @{
+
 template<typename T>
 using iterator_t = typename ranges::iterator<T>::type;
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

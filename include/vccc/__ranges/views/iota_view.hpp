@@ -194,8 +194,7 @@ int main()
  */
 template<typename W,
          typename Bound = unreachable_sentinel_t>
-class iota_view
-    : public ranges::view_interface<iota_view<W, Bound>> {
+class iota_view : public view_interface<iota_view<W, Bound>> {
  public:
   static_assert(weakly_incrementable<W>::value, "Constraint not satisfied");
   static_assert(semiregular<Bound>::value, "Constraint not satisfied");
@@ -505,7 +504,7 @@ namespace detail {
 
 struct iota_niebloid {
   template<typename W>
-  constexpr ranges::iota_view<std::remove_reference_t<W>> operator()(W&& value) const {
+  constexpr iota_view<std::remove_reference_t<W>> operator()(W&& value) const {
     return ranges::iota_view<std::remove_reference_t<W>>(std::forward<W>(value));
   }
 

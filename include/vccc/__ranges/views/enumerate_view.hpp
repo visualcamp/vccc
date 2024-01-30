@@ -56,6 +56,9 @@ struct range_with_movable_reference<R, true>
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 template<typename V>
 class enumerate_view : public view_interface<enumerate_view<V>> {
  public:
@@ -376,6 +379,8 @@ enumerate_view(R&&) -> enumerate_view<views::all_t<R>>;
 
 template<typename View>
 struct enable_borrowed_range<enumerate_view<View>> : enable_borrowed_range<View> {};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

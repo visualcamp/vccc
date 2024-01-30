@@ -18,7 +18,7 @@ namespace detail {
 
 template<typename R, bool v = range<R>::value /* true */>
 struct borrowed_iterator_impl {
-  using type = std::conditional_t<borrowed_range<R>::value, ranges::iterator_t<R>, ranges::dangling>;
+  using type = std::conditional_t<borrowed_range<R>::value, iterator_t<R>, dangling>;
 };
 
 template<typename R>

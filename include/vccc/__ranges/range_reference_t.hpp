@@ -20,8 +20,8 @@ struct range_reference_impl_2 {
 template<typename I>
 struct range_reference_impl_2<I, false> {};
 
-template<typename R, bool = has_typename_type<ranges::iterator<R>>::value /* true */>
-struct range_reference_impl_1 : range_reference_impl_2<ranges::iterator_t<R>> {};
+template<typename R, bool = has_typename_type<iterator<R>>::value /* true */>
+struct range_reference_impl_1 : range_reference_impl_2<iterator_t<R>> {};
 template<typename R>
 struct range_reference_impl_1<R, false> {};
 

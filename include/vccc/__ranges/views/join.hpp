@@ -28,7 +28,12 @@ class join_adaptor_object : public range_adaptor_closure<join_adaptor_object> {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::join_adaptor_object join{};
+
+/// @}
 
 } // namespace views
 } // namespace ranges

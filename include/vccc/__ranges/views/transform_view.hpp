@@ -52,14 +52,17 @@ struct transform_view_iterator_category_2<contiguous_iterator_tag> {
 
 }
 
+/// @addtogroup ranges
+/// @{
+
 template<typename V, typename F>
-class transform_view : public ranges::view_interface<transform_view<V, F>> {
+class transform_view : public view_interface<transform_view<V, F>> {
  public:
-  static_assert(ranges::input_range<V>::value, "Constraints not satisfied");
+  static_assert(input_range<V>::value, "Constraints not satisfied");
   static_assert(copy_constructible<F>::value, "Constraints not satisfied");
-  static_assert(ranges::view<V>::value, "Constraints not satisfied");
+  static_assert(view<V>::value, "Constraints not satisfied");
   static_assert(std::is_object<F>::value, "Constraints not satisfied");
-  static_assert(regular_invocable<F&, ranges::range_reference_t<V>>::value, "Constraints not satisfied");
+  static_assert(regular_invocable<F&, range_reference_t<V>>::value, "Constraints not satisfied");
 
  private:
 
@@ -73,8 +76,8 @@ class transform_view : public ranges::view_interface<transform_view<V, F>> {
   struct transform_view_iterator_category<Base, true> {
     using iterator_category =
       std::conditional_t<
-        std::is_reference<invoke_result_t<F&, ranges::range_reference_t<Base>>>::value,
-          detail::transform_view_iterator_category_2<typename cxx20_iterator_traits<ranges::iterator_t<Base>>::iterator_category>,
+        std::is_reference<invoke_result_t<F&, range_reference_t<Base>>>::value,
+          detail::transform_view_iterator_category_2<typename cxx20_iterator_traits<iterator_t<Base>>::iterator_category>,
           input_iterator_tag
       >;
   };
@@ -97,8 +100,8 @@ class transform_view : public ranges::view_interface<transform_view<V, F>> {
         forward_range<Base>::value, forward_iterator_tag,
         input_iterator_tag
       >>>;
-    using value_type = remove_cvref_t<invoke_result_t<F&, ranges::range_reference_t<Base>>>;
-    using difference_type = ranges::range_difference_t<Base>;
+    using value_type = remove_cvref_t<invoke_result_t<F&, range_reference_t<Base>>>;
+    using difference_type = range_difference_t<Base>;
 #if __cplusplus < 202002L
     using pointer = void;
     using reference = void;
@@ -106,18 +109,18 @@ class transform_view : public ranges::view_interface<transform_view<V, F>> {
 
     iterator() = default;
 
-    constexpr iterator(Parent& parent, ranges::iterator_t<Base> current)
+    constexpr iterator(Parent& parent, iterator_t<Base> current)
         : current_(std::move(current)), parent_(vccc::addressof(parent)) {}
 
     template<bool AntiConst, std::enable_if_t<conjunction<
         bool_constant<((Const != AntiConst) && Const)>,
-        convertible_to<ranges::iterator_t<V>, ranges::iterator_t<Base>>
+        convertible_to<iterator_t<V>, iterator_t<Base>>
     >::value, int> = 0>
     constexpr iterator(iterator<AntiConst> i)
         : current_(std::move(i.current_)), parent_(i.praent_) {}
 
-    constexpr const ranges::iterator_t<Base>& base() const & noexcept { return current_; }
-    constexpr ranges::iterator_t<Base> base() && { return std::move(current_); }
+    constexpr const iterator_t<Base>& base() const & noexcept { return current_; }
+    constexpr iterator_t<Base> base() && { return std::move(current_); }
 
     constexpr decltype(auto) operator*() const {
       return vccc::invoke(*parent_->func_, *current_);
@@ -365,6 +368,8 @@ template<typename R, typename F>
 transform_view(R&&, F) -> transform_view<views::all_t<R>, F>;
 
 #endif
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc
