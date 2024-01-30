@@ -20,12 +20,13 @@
 #include "vccc/__ranges/detail/simple_view.hpp"
 #include "vccc/__ranges/forward_range.hpp"
 #include "vccc/__ranges/input_range.hpp"
-#include "vccc/__ranges/non_propagating_cache.hpp"
+#include "vccc/__ranges/movable_box.hpp"
 #include "vccc/__ranges/range_difference_t.hpp"
 #include "vccc/__ranges/range_reference_t.hpp"
 #include "vccc/__ranges/sentinel_t.hpp"
 #include "vccc/__ranges/view.hpp"
 #include "vccc/__ranges/view_interface.hpp"
+#include "vccc/__ranges/views/all.hpp"
 #include "vccc/__ranges/views/maybe_const.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/common_type.hpp"
@@ -154,7 +155,7 @@ class join_view : public view_interface<join_view<V>> {
         : outer_(std::move(i.outer_)), inner_(std::move(i.inner_)), parent_(i.parent_) {}
 
     constexpr decltype(auto) operator*() const {
-      return *inner_;
+      return **inner_;
     }
 
     template<typename II = InnerIter, std::enable_if_t<conjunction<
@@ -162,13 +163,13 @@ class join_view : public view_interface<join_view<V>> {
         copyable<II>
     >::value, int> = 0>
     constexpr decltype(auto) operator->() const {
-      return inner_;
+      return *inner_;
     }
 
     template<bool B = ref_is_glvalue, std::enable_if_t<B, int> = 0>
     constexpr iterator& operator++() {
       auto&& inner_rng = *outer_;
-      if (++inner_ == ranges::end(inner_rng)) {
+      if (++*inner_ == ranges::end(inner_rng)) {
         ++outer_;
         satisfy();
       }
@@ -178,7 +179,7 @@ class join_view : public view_interface<join_view<V>> {
     template<bool B = ref_is_glvalue, std::enable_if_t<B == false, int> = 0>
     constexpr iterator& operator++() {
       auto&& inner_rng = *parent_->inner_;
-      if (++inner_ == ranges::end(inner_rng)) {
+      if (++*inner_ == ranges::end(inner_rng)) {
         ++outer_;
         satisfy();
       }
@@ -190,7 +191,7 @@ class join_view : public view_interface<join_view<V>> {
         forward_range<Base>,
         forward_range<range_reference_t<Base>>
     >::value == false, int> = 0>
-    constexpr void operator++() {
+    constexpr void operator++(int) {
       ++*this;
     }
 
@@ -199,7 +200,7 @@ class join_view : public view_interface<join_view<V>> {
         forward_range<Base>,
         forward_range<range_reference_t<Base>>
     >::value, int> = 0>
-    constexpr iterator operator++() {
+    constexpr iterator operator++(int) {
       auto tmp = *this;
       ++*this;
       return tmp;
@@ -214,9 +215,9 @@ class join_view : public view_interface<join_view<V>> {
     constexpr iterator& operator--() {
       if (outer_ == ranges::end(parent_->base_))
         inner_ = ranges::end(*--outer_);
-      while (inner_ == ranges::begin(*outer_))
+      while (*inner_ == ranges::begin(*outer_))
         inner_ = ranges::end(*--outer_);
-      --inner_;
+      --*inner_;
       return *this;
     }
 
@@ -242,7 +243,7 @@ class join_view : public view_interface<join_view<V>> {
         equality_comparable<iterator_t<range_reference_t<Base>>>
     >::value, int> = 0>
     friend constexpr bool operator==(const iterator& x, const iterator& y) {
-      return (x.outer_ == y.outer_) && (x.inner_ == y.inner_);
+      return (x.outer_ == y.outer_) && (*x.inner_ == *y.inner_);
     }
 
     template<bool B = ref_is_glvalue, std::enable_if_t<conjunction<
@@ -282,11 +283,22 @@ class join_view : public view_interface<join_view<V>> {
         return *parent_->outer_;
     }
 
+    constexpr decltype(auto) update_inner_impl(const iterator_t<Base>& x, std::true_type /* ref_is_glvalue */) {
+      return *x;
+    }
+    constexpr decltype(auto) update_inner_impl(const iterator_t<Base>& x, std::false_type /* ref_is_glvalue */) {
+      return parent_->inner_.emplace(x);
+    }
+
+    constexpr decltype(auto) update_inner(const iterator_t<Base>& x) {
+      return update_inner_impl(x, bool_constant<ref_is_glvalue>{});
+    }
+
     constexpr void satisfy_impl(std::true_type /* ref_is_glvalue */) {
       for (; outer_ != ranges::end(parent_->base_); ++outer_) {
-        auto&& inner = *vccc::as_const(outer_);
+        auto&& inner = update_inner(outer_);
         inner_ = ranges::begin(inner);
-        if (inner_ != ranges::end(inner))
+        if (*inner_ != ranges::end(inner))
           return;
       }
 
@@ -294,7 +306,7 @@ class join_view : public view_interface<join_view<V>> {
     }
     constexpr void satisfy_impl(std::false_type /* ref_is_glvalue */) {
       for (; outer_ != ranges::end(parent_->base_); ++outer_) {
-        auto&& inner = parent_->inner_.emplace_deref(outer_);
+        auto&& inner = update_inner(outer_);;
         inner_ = ranges::begin(inner);
         if (inner_ != ranges::end(inner))
           return;
@@ -302,7 +314,7 @@ class join_view : public view_interface<join_view<V>> {
     }
 
     OuterIter outer_;
-    non_propagating_cache<InnerIter> inner_;
+    movable_box<InnerIter> inner_;
     Parent* parent_;
   };
 
@@ -405,6 +417,13 @@ class join_view : public view_interface<join_view<V>> {
 
   V base_;
 };
+
+#if __cplusplus >= 201703L
+
+template<typename R>
+explicit join_view(R&&) -> join_view<views::all_t<R>>;
+
+#endif
 
 /// @}
 
