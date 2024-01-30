@@ -59,7 +59,7 @@ using join_view_iterator_concept =
 
 template<typename ThisC, typename OuterC, typename InnerC>
 struct join_view_iterator_category_impl {
-#if __cplusplus
+#if __cplusplus < 202002L
   using iterator_category = iterator_ignore;
 #endif
 };
