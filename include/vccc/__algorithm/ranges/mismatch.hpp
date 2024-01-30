@@ -26,6 +26,9 @@
 namespace vccc {
 namespace ranges {
 
+/// @addtogroup algorithm
+/// @{
+
 template<typename I1, typename I2>
 using mismatch_result = in_in_result<I1, I2>;
 
@@ -63,9 +66,6 @@ struct mismatch_niebloid {
 };
 
 } // namespace detail
-
-/// @addtogroup algorithm
-/// @{
 
 VCCC_INLINE_OR_STATIC constexpr detail::mismatch_niebloid mismatch{};
 
