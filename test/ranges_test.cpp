@@ -698,5 +698,27 @@ int main() {
         )));
   }
 
+  { // ranges::join_view, views::join
+    std::cout << "Line " << __LINE__ << ", ranges::join_view, views::join: \n";
+
+    using namespace vccc::string_view_literals;
+
+    const auto bits = {"https:"_sv, "//"_sv, "cppreference"_sv, "."_sv, "com"_sv};
+    TEST_ENSURES((vccc::ranges::equal(bits | vccc::views::join, "https://cppreference.com"_sv)));
+
+    const std::vector<std::vector<int>> v{{1, 2}, {3, 4, 5}, {6}, {7, 8, 9}};
+    TEST_ENSURES((vccc::ranges::equal(vccc::views::join(v), vccc::span<const int>{1, 2, 3, 4, 5, 6, 7, 8, 9})));
+
+    struct Person { int age; std::string name; };
+
+    auto f = [](std::vector<Person>& v){
+      return v | vccc::views::transform([](auto& p) -> std::string& { return p.name; })
+               | vccc::views::join; // OK
+    };
+
+    std::vector<Person> pv = {{10, "john"}, {20, "james"}};
+    TEST_ENSURES((vccc::ranges::equal(f(pv), "johnjames"_sv)));
+  }
+
   return TEST_RETURN_RESULT;
 }

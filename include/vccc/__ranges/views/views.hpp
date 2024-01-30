@@ -21,6 +21,7 @@
 #include "vccc/__ranges/views/filter.hpp"
 #include "vccc/__ranges/views/filter_view.hpp"
 #include "vccc/__ranges/views/iota_view.hpp"
+#include "vccc/__ranges/views/join.hpp"
 #include "vccc/__ranges/views/join_view.hpp"
 #include "vccc/__ranges/views/keys_view.hpp"
 #include "vccc/__ranges/views/repeat.hpp"
