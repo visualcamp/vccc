@@ -21,14 +21,14 @@ template<
     typename T,
     bool =
         conjunction<
-          ranges::forward_range<T>,
-          has_typename_type<ranges::iterator<T>>
+          forward_range<T>,
+          has_typename_type<iterator<T>>
         >::value
 >
 struct bidirectional_range_impl : std::false_type {};
 
 template<typename T>
-struct bidirectional_range_impl<T, true> : bidirectional_iterator<ranges::iterator_t<T>> {};
+struct bidirectional_range_impl<T, true> : bidirectional_iterator<iterator_t<T>> {};
 
 } // namespace ranges
 

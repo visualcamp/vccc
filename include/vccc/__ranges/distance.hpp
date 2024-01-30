@@ -68,7 +68,6 @@ inline namespace niebloid {
 /// @addtogroup ranges
 /// @{
 
-
 VCCC_INLINE_OR_STATIC constexpr detail::distance_niebloid distance{};
 
 /// @}

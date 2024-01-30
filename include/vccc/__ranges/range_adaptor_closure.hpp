@@ -78,9 +78,9 @@ using range_adaptor_closure_object_t = range_adaptor_closure_object<std::remove_
 template<typename T>
 struct is_range_adaptor_closure
     : conjunction<
-          derived_from_single_crtp<T, ranges::range_adaptor_closure>,
+          derived_from_single_crtp<T, range_adaptor_closure>,
           is_invocable<T, detail::basic_range>,
-          negation< ranges::range<T> >
+          negation< range<T> >
       > {};
 
 /**
@@ -99,7 +99,7 @@ struct range_adaptor_closure {
 
   template<typename Range, typename This, std::enable_if_t<conjunction<
       same_as<Derived, remove_cvref_t<This>>,
-      ranges::range<remove_cvref_t<Range>>
+      range<remove_cvref_t<Range>>
   >::value, int> = 0>
   friend constexpr invoke_result_t<This, Range>
   operator|(Range&& r, This&& c)
@@ -121,7 +121,6 @@ struct range_adaptor_closure {
     return detail::range_adaptor_closure_object_t<This, Closure>(std::forward<This>(c1), std::forward<Closure>(c2));
   }
 };
-
 
 /// @}
 

@@ -20,17 +20,17 @@ namespace vccc {
 namespace ranges {
 namespace detail {
 
-template<typename T, bool = ranges::range<T>::value /* false */>
+template<typename T, bool = range<T>::value /* false */>
 struct viewable_range_impl : std::false_type {};
 
 template<typename T>
 struct viewable_range_impl<T, true>
     : disjunction<
           conjunction<
-              ranges::view<remove_cvref_t<T>>,
+              view<remove_cvref_t<T>>,
               constructible_from<remove_cvref_t<T>, T> >,
           conjunction<
-              negation< ranges::view<remove_cvref_t<T>> >,
+              negation< view<remove_cvref_t<T>> >,
               disjunction<
                   std::is_lvalue_reference<T>,
                   conjunction<

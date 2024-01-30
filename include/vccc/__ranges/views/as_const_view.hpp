@@ -19,11 +19,14 @@
 namespace vccc {
 namespace ranges {
 
+/// @addtogroup ranges
+/// @{
+
 template<typename V>
 class as_const_view : public view_interface<as_const_view<V>> {
  public:
-  static_assert(ranges::view<V>::value, "Constraints not satisfied");
-  static_assert(ranges::input_range<V>::value, "Constraints not satisfied");
+  static_assert(view<V>::value, "Constraints not satisfied");
+  static_assert(input_range<V>::value, "Constraints not satisfied");
 
   as_const_view() = default;
 
@@ -39,22 +42,22 @@ class as_const_view : public view_interface<as_const_view<V>> {
     return std::move(base_);
   }
 
-  template<typename V2 = V, std::enable_if_t<ranges::detail::simple_view<V2>::value == false, int> = 0>
+  template<typename V2 = V, std::enable_if_t<detail::simple_view<V2>::value == false, int> = 0>
   constexpr auto begin() {
     return vccc::ranges::cbegin(base_);
   }
 
-  template<typename V2 = const V, std::enable_if_t<ranges::range<V2>::value, int> = 0>
+  template<typename V2 = const V, std::enable_if_t<range<V2>::value, int> = 0>
   constexpr auto begin() const {
     return vccc::ranges::cbegin(base_);
   }
 
-  template<typename V2 = V, std::enable_if_t<ranges::detail::simple_view<V2>::value == false, int> = 0>
+  template<typename V2 = V, std::enable_if_t<detail::simple_view<V2>::value == false, int> = 0>
   constexpr auto end() {
     return vccc::ranges::cend(base_);
   }
 
-  template<typename V2 = const V, std::enable_if_t<ranges::range<V2>::value, int> = 0>
+  template<typename V2 = const V, std::enable_if_t<range<V2>::value, int> = 0>
   constexpr auto end() const {
     return vccc::ranges::cend(base_);
   }
@@ -82,6 +85,8 @@ as_const_view(R&&) -> as_const_view<views::all_t<R>>;
 
 template<typename T>
 struct enable_borrowed_range<as_const_view<T>> : enable_borrowed_range<T> {};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

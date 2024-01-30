@@ -22,10 +22,10 @@ namespace ranges {
 template<typename R>
 struct borrowed_range
     : conjunction<
-        ranges::range<R>,
+        range<R>,
         disjunction<
           std::is_lvalue_reference<R>,
-          ranges::enable_borrowed_range<remove_cvref_t<R>>
+          enable_borrowed_range<remove_cvref_t<R>>
         >
       > {};
 

@@ -39,24 +39,24 @@ struct is_empty_callable : std::false_type {};
 template<typename T>
 struct is_empty_callable<T, void_t<decltype( ranges::empty(std::declval<T>()) )>> : std::true_type {};
 
-template<typename T, bool = has_typename_type<ranges::iterator<T>>::value>
+template<typename T, bool = has_typename_type<iterator<T>>::value>
 struct check_vi_data : std::false_type {};
 template<typename T>
-struct check_vi_data<T, true> : contiguous_iterator<ranges::iterator_t<T>> {};
+struct check_vi_data<T, true> : contiguous_iterator<iterator_t<T>> {};
 
 template<
     typename T,
     bool =
       conjunction<
-        ranges::forward_range<T>,
-        has_typename_type<ranges::iterator<T>>,
-        has_typename_type<ranges::sentinel<T>>
+        forward_range<T>,
+        has_typename_type<iterator<T>>,
+        has_typename_type<sentinel<T>>
     >::value
 >
 struct check_vi_size : std::false_type {};
 
 template<typename T>
-struct check_vi_size<T, true> : sized_sentinel_for<ranges::sentinel_t<T>, ranges::iterator_t<T>> {};
+struct check_vi_size<T, true> : sized_sentinel_for<sentinel_t<T>, iterator_t<T>> {};
 
 } // namespace detail
 
@@ -89,15 +89,15 @@ class view_interface {
    * @{
    */
   template<typename D = Derived, std::enable_if_t<
-      ranges::sized_range<D>::value,
+      sized_range<D>::value,
   int> = 0>
   constexpr bool empty() {
     using namespace vccc::rel_ops;
     return ranges::size(derived()) == 0;
   }
   template<typename D = Derived, std::enable_if_t<conjunction<
-      negation<ranges::sized_range<D>>,
-      ranges::forward_range<D>
+      negation<sized_range<D>>,
+      forward_range<D>
   >::value, int> = 0>
   constexpr bool empty() {
     using namespace vccc::rel_ops;
@@ -105,15 +105,15 @@ class view_interface {
   }
 
   template<typename D = Derived, std::enable_if_t<
-      ranges::sized_range<const D>::value,
+      sized_range<const D>::value,
   int> = 0>
   constexpr bool empty() const {
     using namespace vccc::rel_ops;
     return ranges::size(derived()) == 0;
   }
   template<typename D = Derived, std::enable_if_t<conjunction<
-      negation<ranges::sized_range<const D>>,
-      ranges::forward_range<const D>
+      negation<sized_range<const D>>,
+      forward_range<const D>
   >::value, int> = 0>
   constexpr bool empty() const {
     using namespace vccc::rel_ops;
@@ -225,13 +225,13 @@ class view_interface {
    * @{
    */
   template<typename D = Derived, std::enable_if_t<
-      ranges::forward_range<D>::value,
+      forward_range<D>::value,
   int> = 0>
   constexpr decltype(auto) front() {
     return *ranges::begin(derived());
   }
   template<typename D = Derived, std::enable_if_t<
-      ranges::forward_range<const D>::value,
+      forward_range<const D>::value,
   int> = 0>
   constexpr decltype(auto) front() const {
     return *ranges::begin(derived());
@@ -249,15 +249,15 @@ class view_interface {
    * @{
    */
   template<typename D = Derived, std::enable_if_t<conjunction<
-      ranges::bidirectional_range<D>,
-      ranges::common_range<D>
+      bidirectional_range<D>,
+      common_range<D>
   >::value, int> = 0>
   constexpr decltype(auto) back() {
     return *ranges::prev(ranges::end(derived()));
   }
   template<typename D = Derived, std::enable_if_t<conjunction<
-      ranges::bidirectional_range<const D>,
-      ranges::common_range<const D>
+      bidirectional_range<const D>,
+      common_range<const D>
   >::value, int> = 0>
   constexpr decltype(auto) back() const {
     return *ranges::prev(ranges::end(derived()));
@@ -274,15 +274,15 @@ class view_interface {
    * @{
    */
   template<typename R = Derived, std::enable_if_t<
-      ranges::random_access_range<R>::value,
+      random_access_range<R>::value,
   int> = 0>
-  constexpr decltype(auto) operator[](ranges::range_difference_t<R> n) {
+  constexpr decltype(auto) operator[](range_difference_t<R> n) {
     return ranges::begin(derived())[n];
   }
   template<typename R = const Derived, std::enable_if_t<
-      ranges::random_access_range<R>::value,
+      random_access_range<R>::value,
   int> = 0>
-  constexpr decltype(auto) operator[](ranges::range_difference_t<R> n) const {
+  constexpr decltype(auto) operator[](range_difference_t<R> n) const {
     return ranges::begin(derived())[n];
   }
   /// @}

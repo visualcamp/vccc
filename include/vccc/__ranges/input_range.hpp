@@ -17,14 +17,14 @@ namespace vccc {
 namespace ranges {
 namespace detail {
 
-template<typename T, bool = has_typename_type<ranges::iterator<T>>::value>
+template<typename T, bool = has_typename_type<iterator<T>>::value>
 struct input_range_impl : std::false_type {};
 
 template<typename T>
 struct input_range_impl<T, true>
     : conjunction<
-        ranges::range<T>,
-        input_iterator<ranges::iterator_t<T>>
+        range<T>,
+        input_iterator<iterator_t<T>>
       > {};
 
 } // namespace detail

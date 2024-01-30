@@ -83,7 +83,12 @@ struct counted_niebloid {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::counted_niebloid counted{};
+
+/// @}
 
 } // namespace views
 } // namespace ranges

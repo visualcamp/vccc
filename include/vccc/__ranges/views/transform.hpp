@@ -72,7 +72,12 @@ struct transform_niebloid {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::transform_niebloid transform{};
+
+/// @}
 
 } // namespace views
 } // namespace ranges

@@ -34,15 +34,12 @@
 
 namespace vccc {
 namespace ranges {
-namespace detail {
 
-template<bool C, typename T>
-using add_const_if = std::conditional_t<C, const T, T>;
-
-} // namespace detail
+/// @addtogroup ranges
+/// @{
 
 template<typename V>
-class take_view : public ranges::view_interface<take_view<V>> {
+class take_view : public view_interface<take_view<V>> {
  public:
   static_assert(view<V>::value, "Constraints not satisfied");
 
@@ -52,50 +49,50 @@ class take_view : public ranges::view_interface<take_view<V>> {
    public:
     sentinel() = default;
 
-    constexpr explicit sentinel(ranges::sentinel_t<Base> end)
+    constexpr explicit sentinel(sentinel_t<Base> end)
         : end_(std::move(end)) {}
 
     template<bool NoConst, std::enable_if_t<conjunction<
         bool_constant<Const>,
         bool_constant<Const != NoConst>,
-        convertible_to<ranges::sentinel_t<V>, ranges::sentinel_t<Base>>
+        convertible_to<sentinel_t<V>, sentinel_t<Base>>
     >::value, int> = 0>
     constexpr sentinel(sentinel<NoConst> s)
         : end_(std::move(s.end_)) {}
 
-    constexpr ranges::sentinel_t<Base> base() const {
+    constexpr sentinel_t<Base> base() const {
       return end_;
     }
 
     friend constexpr bool
-    operator==(const counted_iterator<ranges::iterator_t<Base>>& y, const sentinel& x) {
+    operator==(const counted_iterator<iterator_t<Base>>& y, const sentinel& x) {
       using namespace vccc::rel_ops;
       return y.count() == 0 || y.base() == x.end_;
     }
 
     friend constexpr bool
-    operator!=(const counted_iterator<ranges::iterator_t<Base>>& y, const sentinel& x) {
+    operator!=(const counted_iterator<iterator_t<Base>>& y, const sentinel& x) {
       return !(y == x);
     }
 
     template<bool AntiConst, std::enable_if_t<conjunction<
         bool_constant<Const != AntiConst>,
-        sentinel_for< ranges::sentinel_t<Base>,
-                      ranges::iterator_t<detail::add_const_if<AntiConst, V>> >
+        sentinel_for< sentinel_t<Base>,
+                      iterator_t<detail::maybe_const<AntiConst, V>> >
     >::value, int> = 0>
     friend constexpr bool
-    operator==(const counted_iterator<ranges::iterator_t<detail::add_const_if<AntiConst, V>>>& y, const sentinel& x) {
+    operator==(const counted_iterator<iterator_t<detail::maybe_const<AntiConst, V>>>& y, const sentinel& x) {
       using namespace vccc::rel_ops;
       return y.count() == 0 || y.base() == x.end_;
     }
 
     template<bool AntiConst, std::enable_if_t<conjunction<
         bool_constant<Const != AntiConst>,
-        sentinel_for< ranges::sentinel_t<Base>,
-                      ranges::iterator_t<detail::add_const_if<AntiConst, V>> >
+        sentinel_for< sentinel_t<Base>,
+                      iterator_t<detail::maybe_const<AntiConst, V>> >
     >::value, int> = 0>
     friend constexpr bool
-    operator!=(const counted_iterator<ranges::iterator_t<detail::add_const_if<AntiConst, V>>>& y, const sentinel& x) {
+    operator!=(const counted_iterator<iterator_t<detail::maybe_const<AntiConst, V>>>& y, const sentinel& x) {
       using namespace vccc::rel_ops;
       return !(y == x);
     }
@@ -149,7 +146,7 @@ class take_view : public ranges::view_interface<take_view<V>> {
   }
 
   template<typename T = const V, std::enable_if_t<conjunction<
-      ranges::range<T>,
+      range<T>,
       sized_range<T>,
       random_access_range<T>
   >::value, int> = 0>
@@ -158,7 +155,7 @@ class take_view : public ranges::view_interface<take_view<V>> {
   }
 
   template<typename T = const V, std::enable_if_t<conjunction<
-      ranges::range<T>,
+      range<T>,
       sized_range<T>,
       negation< random_access_range<T> >
   >::value, int> = 0>
@@ -168,7 +165,7 @@ class take_view : public ranges::view_interface<take_view<V>> {
   }
 
   template<typename T = const V, std::enable_if_t<conjunction<
-      ranges::range<T>,
+      range<T>,
       negation< sized_range<T> >
   >::value, int> = 0>
   constexpr auto begin() const {
@@ -204,7 +201,7 @@ class take_view : public ranges::view_interface<take_view<V>> {
   }
 
   template<typename T = const V, std::enable_if_t<conjunction<
-      ranges::range<T>,
+      range<T>,
       sized_range<T>,
       random_access_range<T>
   >::value, int> = 0>
@@ -213,7 +210,7 @@ class take_view : public ranges::view_interface<take_view<V>> {
   }
 
   template<typename T = V, std::enable_if_t<conjunction<
-      ranges::range<T>,
+      range<T>,
       sized_range<T>,
       negation< random_access_range<T> >
   >::value, int> = 0>
@@ -222,7 +219,7 @@ class take_view : public ranges::view_interface<take_view<V>> {
   }
 
   template<typename T = V, std::enable_if_t<conjunction<
-      ranges::range<T>,
+      range<T>,
       negation< sized_range<T> >
   >::value, int> = 0>
   constexpr sentinel<true> end() const {
@@ -247,7 +244,7 @@ class take_view : public ranges::view_interface<take_view<V>> {
 };
 
 template<typename R>
-constexpr take_view<views::all_t<R>> make_take_view(R&& r, ranges::range_difference_t<R> count) {
+constexpr take_view<views::all_t<R>> make_take_view(R&& r, range_difference_t<R> count) {
   return take_view<views::all_t<R>>(std::forward<R>(r), count);
 }
 
@@ -259,7 +256,9 @@ take_view(R&&, ranges::range_difference_t<R>) -> take_view<views::all_t<R>>;
 #endif
 
 template<typename T>
-struct enable_borrowed_range<take_view<T>> : ranges::enable_borrowed_range<T> {};
+struct enable_borrowed_range<take_view<T>> : enable_borrowed_range<T> {};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

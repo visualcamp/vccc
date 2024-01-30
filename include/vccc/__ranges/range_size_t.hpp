@@ -14,7 +14,7 @@ namespace vccc {
 namespace ranges {
 namespace detail {
 
-template<typename R, bool = ranges::sized_range<R>::value /* true */>
+template<typename R, bool = sized_range<R>::value /* true */>
 struct range_size_impl {
   using type = decltype(ranges::size(std::declval<R&>()));
 };

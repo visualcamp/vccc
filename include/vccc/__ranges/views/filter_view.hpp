@@ -106,6 +106,9 @@ struct has_arrow<I, true>
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 template<typename V, typename Pred>
 class filter_view : public view_interface<filter_view<V, Pred>>, detail::filter_view_cache<V> {
     V base_;
@@ -298,6 +301,8 @@ template<typename R, typename Pred>
 filter_view(R&&, Pred) -> filter_view<views::all_t<R>, Pred>;
 
 #endif
+
+/// @}
 
 
 } // namespace ranges

@@ -79,7 +79,7 @@ struct min_niebloid {
       check_range<R, Proj, Comp>
   ::value, int> = 0>
   constexpr range_value_t<R> operator()(R&& r, Comp comp = {}, Proj proj = {}) const {
-    return this->min_range(std::forward<R>(r), std::ref(comp), std::ref(proj), ranges::forward_range<R>{});
+    return this->min_range(std::forward<R>(r), std::ref(comp), std::ref(proj), forward_range<R>{});
   }
 };
 } // namespace detail

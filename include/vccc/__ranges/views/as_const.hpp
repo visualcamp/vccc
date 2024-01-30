@@ -112,7 +112,12 @@ struct as_const_adaptor_closure : public range_adaptor_closure<as_const_adaptor_
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::as_const_adaptor_closure as_const{};
+
+/// @}
 
 } // namespace views
 } // namespace ranges

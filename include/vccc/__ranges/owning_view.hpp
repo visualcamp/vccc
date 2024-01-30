@@ -37,7 +37,7 @@ and stores that range within it.
 template<typename R>
 class owning_view : public view_interface<owning_view<R>> {
  public:
-  static_assert(ranges::range<R>::value, "Constraints not satisfied");
+  static_assert(range<R>::value, "Constraints not satisfied");
   static_assert(movable<R>::value, "Constraints not satisfied");
   static_assert(is_initializer_list<R>::value == false, "Constraints not satisfied");
 
@@ -58,20 +58,20 @@ class owning_view : public view_interface<owning_view<R>> {
 
 
   template<typename T = R>
-  constexpr ranges::iterator_t<T> begin() {
+  constexpr iterator_t<T> begin() {
     return ranges::begin(r_);
   }
-  template<typename T = R, std::enable_if_t<ranges::range<const T>::value, int> = 0>
+  template<typename T = R, std::enable_if_t<range<const T>::value, int> = 0>
   constexpr auto begin() const {
     return ranges::begin(r_);
   }
 
 
   template<typename T = R>
-  constexpr ranges::sentinel_t<T> end() {
+  constexpr sentinel_t<T> end() {
     return ranges::end(r_);
   }
-  template<typename T = R, std::enable_if_t<ranges::range<const T>::value, int> = 0>
+  template<typename T = R, std::enable_if_t<range<const T>::value, int> = 0>
   constexpr auto end() const {
     return ranges::end(r_);
   }

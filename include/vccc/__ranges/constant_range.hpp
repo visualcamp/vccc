@@ -30,8 +30,8 @@ struct constant_range_constant_iterator : same_as<iter_const_reference_t<T>, ite
 template<typename T>
 struct constant_range_constant_iterator<T, false> : std::false_type {};
 
-template<typename T, bool = ranges::input_range<T>::value /* true */>
-struct constant_range_impl : constant_range_constant_iterator<ranges::iterator_t<T>> {};
+template<typename T, bool = input_range<T>::value /* true */>
+struct constant_range_impl : constant_range_constant_iterator<iterator_t<T>> {};
 template<typename T>
 struct constant_range_impl<T, false> : std::false_type {};
 

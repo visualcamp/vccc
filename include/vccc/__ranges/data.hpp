@@ -14,7 +14,6 @@
 #include "vccc/__ranges/begin.hpp"
 #include "vccc/__type_traits/detail/return_category.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
-#include "vccc/__type_traits/is_complete.hpp"
 #include "vccc/__type_traits/void_t.hpp"
 
 namespace vccc {
