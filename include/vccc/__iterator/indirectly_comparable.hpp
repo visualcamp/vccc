@@ -22,10 +22,7 @@ template<
     typename Comp,
     typename Proj1,
     typename Proj2,
-    bool = conjunction<
-               has_typename_type< projected_impl<I1, Proj1> >,
-               has_typename_type< projected_impl<I2, Proj2> >
-           >::value /* true */
+    bool = conjunction<projectable<I1, Proj1>, projectable<I2, Proj2>>::value /* true */
 >
 struct indirectly_comparable_impl
     : indirect_binary_predicate<Comp, projected<I1, Proj1>, projected<I2, Proj2>> {};

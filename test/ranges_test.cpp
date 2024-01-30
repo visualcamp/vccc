@@ -19,6 +19,8 @@
 #include "vccc/iterator.hpp"
 #include "vccc/ranges.hpp"
 #include "vccc/span.hpp"
+#include "vccc/string_view.hpp"
+#include "vccc/type_traits.hpp"
 #include "test_core.hpp"
 
 struct IntLike {
@@ -107,7 +109,9 @@ int main() {
     int d1[] = {21, 22, 23};
     int d2[] = {24, 25, 26};
     // TODO: Implement swap_ranges
-    // vccc::ranges::swap(d1, d2);
+    vccc::ranges::swap(d1, d2);
+    TEST_ENSURES(vccc::ranges::equal(d1, vccc::span<const int>({24, 25, 26})));
+    TEST_ENSURES(vccc::ranges::equal(d2, vccc::span<const int>({21, 22, 23})));
   }
 
   {
@@ -580,6 +584,118 @@ int main() {
            | vccc::views::transform(square)
            | vccc::ranges::to<std::vector>();
     TEST_ENSURES((vccc::ranges::equal(v , std::vector<int>{0, 4, 16})));
+  }
+
+  { // enumerate_view
+    std::cout << "Line " << __LINE__ << ", enumerate_view: \n";
+
+    const std::vector<std::tuple<int, char, std::string>> vt
+    {
+          {1, 'A', "a"},
+          {2, 'B', "b"},
+          {3, 'C', "c"},
+          {4, 'D', "d"},
+          {5, 'E', "e"},
+    };
+
+    // 1 2 3 4 5
+    for (int const e : vccc::views::elements<0>(vt))
+      std::cout << e << ' ';
+    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(vccc::views::elements<0>(vt), vccc::views::iota(1, 6))));
+
+    // A B C D E
+    for (char const e : vt | vccc::views::elements<1>)
+      std::cout << e << ' ';
+    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(vt | vccc::views::elements<1>, vccc::views::iota('A', 'F'))));
+
+    // a b c d e
+    for (std::string const& e : vccc::views::elements<2>(vt))
+      std::cout << e << ' ';
+    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(
+        vccc::views::elements<2>(vt),
+        vccc::views::iota('a', 'f') | vccc::views::transform([](char c) { return std::string(1, c); })
+    )));
+  }
+
+  { // ranges::cartesian_product
+    std::cout << "Line " << __LINE__ << ", cartesian_product, cartesian_product_view: \n";
+
+    const auto x = std::array<char, 2>{'A', 'B'};
+    const auto y = std::array<int, 3>{1, 2, 3};
+    const auto z = std::array<std::string, 4>{"a", "b", "c", "d"};
+
+    namespace ranges = vccc::ranges;
+    namespace views = vccc::views;
+
+    using XAT = views::all_t<decltype((x))>;
+    using YAT = views::all_t<decltype((y))>;
+    using ZAT = views::all_t<decltype((z))>;
+    ranges::cartesian_product_view<XAT, YAT, ZAT> cpv(x, y, z);
+
+    auto first = cpv.begin();
+    auto last = cpv.end();
+    TEST_ENSURES((last - first) == 24);
+
+#if __cplusplus < 201703L
+    for (const auto& t : views::cartesian_product(x, y, z)) {
+      std::cout << std::get<0>(t) << ' ' << std::get<1>(t) << ' ' << std::get<2>(t) << '\n';
+    }
+#else
+    for (const auto& [a, b, c] : views::cartesian_product(x, y, z)) {
+      std::cout << a << ' ' << b << ' ' << c << '\n';
+    }
+#endif
+    auto a = first + 10;
+    auto b = first + 9;
+    TEST_ENSURES((a - b) == 1);
+    TEST_ENSURES((b - a) == -1);
+
+    { // cartesian_product_view::size
+      constexpr static auto w = {1};
+      constexpr static auto x = {2, 3};
+      constexpr static auto y = {4, 5, 6};
+      constexpr static auto z = {7, 8, 9, 10, 11, 12, 13};
+      auto v = views::cartesian_product(w, x, y, z);
+      TEST_ENSURES(v.size() == w.size() * x.size() * y.size() * z.size());
+      TEST_ENSURES(v.size() == 42);
+    }
+  }
+
+  { // views::counted
+    const int a[]{1, 2, 3, 4, 5, 6, 7};
+    TEST_ENSURES((vccc::ranges::equal(vccc::views::counted(a, 3), vccc::views::iota(1) | vccc::views::take(3))));
+
+    const auto il = {1, 2, 3, 4, 5};
+    TEST_ENSURES((vccc::ranges::equal( vccc::views::counted(il.begin() + 1, 3), vccc::views::iota(2) | vccc::views::take(3))));
+  }
+
+  { // ranges::drop_view, views::drop
+    std::cout << "Line " << __LINE__ << ", ranges::drop_view, views::drop: \n";
+
+    const auto nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    TEST_ENSURES((vccc::ranges::equal(vccc::ranges::make_drop_view(nums, 2), vccc::views::iota(3, 10))));
+
+    TEST_ENSURES((vccc::ranges::equal(nums | vccc::views::drop(2), vccc::views::iota(3, 10))));
+
+    TEST_ENSURES((vccc::ranges::equal(vccc::views::iota(1, 10) | vccc::views::drop(2), vccc::views::iota(3, 10))));
+  }
+
+  { // ranges::repeat_view, views::drop
+    std::cout << "Line " << __LINE__ << ", ranges::repeat_view, views::drop: \n";
+
+    using namespace vccc::string_view_literals;
+    TEST_ENSURES((vccc::ranges::equal(
+        vccc::views::repeat("C++"_sv, 3),
+        vccc::span<const vccc::string_view>{"C++"_sv, "C++"_sv, "C++"_sv}
+        )));
+
+    TEST_ENSURES((vccc::ranges::equal(
+        vccc::views::repeat("C++"_sv) | vccc::views::take(3),
+        vccc::span<const vccc::string_view>{"C++"_sv, "C++"_sv, "C++"_sv}
+        )));
   }
 
   return TEST_RETURN_RESULT;

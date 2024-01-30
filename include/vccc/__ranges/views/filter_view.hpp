@@ -11,7 +11,7 @@
 #include <type_traits>
 #include <utility>
 
-#include "vccc/__algorithm/find_if.hpp"
+#include "vccc/__algorithm/ranges/find_if.hpp"
 #include "vccc/__concepts/derived_from.hpp"
 #include "vccc/__concepts/equality_comparable.hpp"
 #include "vccc/__functional/invoke.hpp"
@@ -22,6 +22,7 @@
 #include "vccc/__iterator/iter_swap.hpp"
 #include "vccc/__iterator/iterator_tag.hpp"
 #include "vccc/__iterator/iterator_traits/cxx20_iterator_traits.hpp"
+#include "vccc/__memory/addressof.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
 #include "vccc/__ranges/common_range.hpp"
 #include "vccc/__ranges/end.hpp"
@@ -136,7 +137,7 @@ class filter_view : public view_interface<filter_view<V, Pred>>, detail::filter_
     iterator() = default;
 
     constexpr iterator(filter_view& parent, iterator_t<V> current)
-        : current_(std::move(current)), parent_(std::addressof(parent)) {}
+        : current_(std::move(current)), parent_(vccc::addressof(parent)) {}
 
     constexpr const iterator_t<V>& base() const& noexcept {
       return current_;
@@ -206,13 +207,16 @@ class filter_view : public view_interface<filter_view<V, Pred>>, detail::filter_
       return ranges::iter_move(i.current_);
     }
 
-    // TODO: Implement iter_swap
-    // template<typename V2 = V, std::enable_if_t<indirectly_swappable<iterator_t<V2>>::value, int> = 0>
+    // TODO: Solve "redefinition of 'iter_swap' as different kind of symbol"
+    // TODO: Solve "const_cast from rvalue to reference type" in AppleClang 14.0.3.14030022
+#if __cplusplus >= 202002L
     // friend constexpr void iter_swap(const iterator& x, const iterator& y)
     //     noexcept(noexcept(ranges::iter_swap(x.current_, y.current_)))
+    //     requires(indirectly_swappable<iterator_t<V>>::value)
     // {
     //   ranges::iter_swap(x.current_, y.current_);
     // }
+#endif
 
    private:
     iterator_t<V> current_;

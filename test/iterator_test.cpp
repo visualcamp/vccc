@@ -13,6 +13,7 @@
 #include <map>
 #include <vector>
 
+#include "vccc/algorithm.hpp"
 #include "vccc/iterator.hpp"
 #include "vccc/ranges.hpp"
 
@@ -125,13 +126,18 @@ int main() {
   {
     static_assert(vccc::indirectly_comparable<P*, P*, std::equal_to<>>::value, "");
 
-    P a[10] = {}; // ten null pointers
+    int x = 1;
+    P a[10] = {reinterpret_cast<P>(&x), }; // ten null pointers
+    P b[10] = {};
+    TEST_ENSURES(a[0] != nullptr && b[0] == nullptr);
+    vccc::ranges::swap(a, b);
+    TEST_ENSURES(a[0] == nullptr && b[0] != nullptr);
+
 
 #ifndef _MSC_VER
     TEST_ENSURES(std::count(a, a + 10, nullptr) == 10); // OK
 #endif
-    // TODO: Implement ranges::count
-    // TEST_ENSURES(std::ranges::count(a, a + 10, nullptr) == 10); // Error before C++26
+    TEST_ENSURES(vccc::ranges::count(a, a + 10, nullptr) == 10);
   }
 
   { // counted_iterator

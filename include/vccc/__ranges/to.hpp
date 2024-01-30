@@ -10,7 +10,7 @@
 #include <type_traits>
 #include <utility>
 
-#include "vccc/__algorithm/copy.hpp"
+#include "vccc/__algorithm/ranges/copy.hpp"
 #include "vccc/__core/inline_or_static.hpp"
 #include "vccc/__concepts/constructible_from.hpp"
 #include "vccc/__concepts/derived_from.hpp"

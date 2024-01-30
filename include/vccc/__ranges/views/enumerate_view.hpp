@@ -33,6 +33,7 @@
 #include "vccc/__ranges/sized_range.hpp"
 #include "vccc/__ranges/view.hpp"
 #include "vccc/__ranges/view_interface.hpp"
+#include "vccc/__ranges/views/maybe_const.hpp"
 #if __cplusplus >= 201703L
 #include "vccc/__ranges/views/all.hpp"
 #endif
@@ -52,9 +53,6 @@ struct range_with_movable_reference<R, true>
           move_constructible<range_reference_t<R>>,
           move_constructible<range_rvalue_reference_t<R>>
       > {};
-
-template<bool Const, typename V>
-using maybe_const = std::conditional_t<Const, const V, V>;
 
 } // namespace detail
 

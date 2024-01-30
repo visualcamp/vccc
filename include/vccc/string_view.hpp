@@ -24,6 +24,7 @@
 #include "vccc/__iterator/contiguous_iterator.hpp"
 #include "vccc/__iterator/sized_sentinel_for.hpp"
 #include "vccc/__iterator/iter_value_t.hpp"
+#include "vccc/__memory/addressof.hpp"
 #include "vccc/__memory/to_address.hpp"
 #include "vccc/__ranges/borrowed_range.hpp"
 #include "vccc/__ranges/contiguous_range.hpp"
@@ -466,7 +467,7 @@ class basic_string_view {
   }
 
   constexpr size_type find(value_type c, size_type pos = 0) const noexcept {
-    return find(basic_string_view(std::addressof(c), 1), pos);
+    return find(basic_string_view(vccc::addressof(c), 1), pos);
   }
 
   constexpr size_type find(const value_type* str, size_type pos, size_type count) const {
@@ -494,7 +495,7 @@ class basic_string_view {
   }
 
   constexpr size_type rfind(value_type c, size_type pos = npos) const noexcept {
-    return rfind(basic_string_view(std::addressof(c), 1), pos);
+    return rfind(basic_string_view(vccc::addressof(c), 1), pos);
   }
 
   constexpr size_type rfind(const value_type* str, size_type pos, size_type count) const {
@@ -522,7 +523,7 @@ class basic_string_view {
   }
 
   constexpr size_type find_first_of(value_type c, size_type pos = 0) const noexcept {
-    return find_first_of(basic_string_view(std::addressof(c), 1), pos);
+    return find_first_of(basic_string_view(vccc::addressof(c), 1), pos);
   }
 
   constexpr size_type find_first_of(const value_type* s, size_type pos, size_type count) const {
@@ -551,7 +552,7 @@ class basic_string_view {
   }
 
   constexpr size_type find_last_of(value_type c, size_type pos = npos) const noexcept {
-    return find_last_of(basic_string_view(std::addressof(c), 1), pos);
+    return find_last_of(basic_string_view(vccc::addressof(c), 1), pos);
   }
 
   constexpr size_type find_last_of(const value_type* s, size_type pos, size_type count) const {
@@ -579,7 +580,7 @@ class basic_string_view {
   }
 
   constexpr size_type find_first_not_of(value_type c, size_type pos = 0) const noexcept {
-    return find_first_not_of(basic_string_view(std::addressof(c), 1), pos);
+    return find_first_not_of(basic_string_view(vccc::addressof(c), 1), pos);
   }
 
   constexpr size_type find_first_not_of(const value_type* s, size_type pos, size_type count) const {
@@ -608,7 +609,7 @@ class basic_string_view {
   }
 
   constexpr size_type find_last_not_of(value_type c, size_type pos = npos) const noexcept {
-    return find_last_not_of(basic_string_view(std::addressof(c), 1), pos);
+    return find_last_not_of(basic_string_view(vccc::addressof(c), 1), pos);
   }
 
   constexpr size_type find_last_not_of(const value_type* s, size_type pos, size_type count) const {

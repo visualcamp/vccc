@@ -15,13 +15,13 @@ namespace math {
 
 template<typename E>
 struct traits<MatrixMinus<E>> {
-  enum {
+  enum : int {
     rows = traits<E>::rows,
     cols = traits<E>::cols,
     size = rows * cols,
   };
 
-  enum {
+  enum : int {
     option = traits<E>::option | Flag::kReferenceUnsafe
   };
   using value_type = typename E::value_type;

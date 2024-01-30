@@ -23,7 +23,7 @@ class MatrixBase {
   using derived_traits = internal::math::traits<derived_type>;
   using value_type = typename derived_traits::value_type;
 
-  enum {
+  enum : int {
     rows = derived_traits::rows,
     cols = derived_traits::cols,
     size = rows * cols,

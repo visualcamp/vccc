@@ -2,8 +2,8 @@
 // Created by cosge on 2023-12-03.
 //
 
-#ifndef VCCC_ALGORITHM_SWAP_RANGES_HPP
-#define VCCC_ALGORITHM_SWAP_RANGES_HPP
+#ifndef VCCC_ALGORITHM_RANGES_SWAP_RANGES_HPP
+#define VCCC_ALGORITHM_RANGES_SWAP_RANGES_HPP
 
 namespace vccc {
 namespace ranges {
@@ -22,4 +22,4 @@ constexpr void swap_ranges(R1&& r1, R2&& r2) {
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_ALGORITHM_SWAP_RANGES_HPP
+#endif // VCCC_ALGORITHM_RANGES_SWAP_RANGES_HPP

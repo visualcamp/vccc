@@ -27,7 +27,7 @@ namespace detail {
 using vccc::detail::return_category;
 
 struct end_niebloid {
- // private:
+ private:
   template<typename T, bool = is_bounded_array<remove_cvref_t<T>>::value>
   struct end_array_check : std::false_type {
     using category = return_category<0>;
@@ -57,17 +57,15 @@ struct end_niebloid {
     using category = return_category<3, decltype(vccc_decay_copy(end(std::declval<T>())))>;
   };
 
+  template<typename T, bool = end_member_check<T>::value /* false */>
+  struct end_category_impl_2 : end_global_check<T> {};
   template<typename T>
-  struct end_category_impl
-      : std::conditional_t<
-          end_array_check<T>::value, typename end_array_check<T>::category,
-        std::conditional_t<
-          end_member_check<T>::value, typename end_member_check<T>::category,
-        std::conditional_t<
-          end_global_check<T>::value, typename end_global_check<T>::category,
-          return_category<0>
-        >>> {};
+  struct end_category_impl_2<T, true> : end_member_check<T> {};
 
+  template<typename T, bool = end_array_check<T>::value /* false */>
+  struct end_category_impl : end_category_impl_2<T> {};
+  template<typename T>
+  struct end_category_impl<T, true> : end_array_check<T> {};
 
   template<typename T>
   struct end_category
@@ -76,7 +74,7 @@ struct end_niebloid {
             std::is_lvalue_reference<T>,
             enable_borrowed_range<remove_cvref_t<T>>
           >::value,
-          end_category_impl<T>,
+          typename end_category_impl<T>::category,
           return_category<0>
         > {};
 

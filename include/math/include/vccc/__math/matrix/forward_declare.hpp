@@ -13,7 +13,7 @@ namespace math{
 template<typename T> struct traits;
 template<typename T> struct traits<const T> : traits<T> {};
 
-enum Flag {
+enum Flag : int {
   kDefault = 0b1,
   kAliasUnsafe = 0b10,
   kReferenceUnsafe = 0b100

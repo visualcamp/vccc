@@ -53,17 +53,15 @@ struct begin_global_check<T, void_t<decltype(vccc_decay_copy(begin(std::declval<
   using category = return_category<3, decltype(vccc_decay_copy(begin(std::declval<T>())))>;
 };
 
+template<typename T, bool = begin_member_check<T>::value /* false */>
+struct begin_category_impl_2 : begin_global_check<T> {};
 template<typename T>
-struct begin_category_impl
-    : std::conditional_t<
-        begin_array_check<T>::value, typename begin_array_check<T>::category,
-      std::conditional_t<
-        begin_member_check<T>::value, typename begin_member_check<T>::category,
-      std::conditional_t<
-        begin_global_check<T>::value, typename begin_global_check<T>::category,
-        return_category<0>
-      >>> {};
+struct begin_category_impl_2<T, true> : begin_member_check<T> {};
 
+template<typename T, bool = begin_array_check<T>::value /* false */>
+struct begin_category_impl : begin_category_impl_2<T> {};
+template<typename T>
+struct begin_category_impl<T, true> : begin_array_check<T> {};
 
 template<typename T>
 struct begin_category
@@ -72,7 +70,7 @@ struct begin_category
           std::is_lvalue_reference<T>,
           enable_borrowed_range<remove_cvref_t<T>>
         >::value,
-        begin_category_impl<T>,
+        typename begin_category_impl<T>::category,
         return_category<0>
       > {};
 

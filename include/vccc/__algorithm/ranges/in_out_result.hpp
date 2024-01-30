@@ -2,8 +2,8 @@
 // Created by yonggyulee on 1/12/24.
 //
 
-#ifndef VCCC_ALGORITHM_IN_OUT_RESULT_HPP
-#define VCCC_ALGORITHM_IN_OUT_RESULT_HPP
+#ifndef VCCC_ALGORITHM_RANGES_IN_OUT_RESULT_HPP
+#define VCCC_ALGORITHM_RANGES_IN_OUT_RESULT_HPP
 
 #include <type_traits>
 #include <utility>
@@ -27,7 +27,7 @@ struct in_out_result {
       convertible_to<const I&, I2>,
       convertible_to<const O&, O2>
   >::value, int> = 0>
-  operator in_out_result<I2, O2>() const & {
+  constexpr operator in_out_result<I2, O2>() const & {
     return {in, out};
   }
 
@@ -35,7 +35,7 @@ struct in_out_result {
       convertible_to<I, I2>,
       convertible_to<O, O2>
   >::value, int> = 0>
-  operator in_out_result<I2, O2>() && {
+  constexpr operator in_out_result<I2, O2>() && {
     return {std::move(in), std::move(out)};
   }
 };
@@ -45,4 +45,4 @@ struct in_out_result {
 } // namespace ranges
 } // namespace vccc
 
-#endif // VCCC_ALGORITHM_IN_OUT_RESULT_HPP
+#endif // VCCC_ALGORITHM_RANGES_IN_OUT_RESULT_HPP

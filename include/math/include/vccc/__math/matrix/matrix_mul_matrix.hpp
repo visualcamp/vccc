@@ -15,13 +15,13 @@ namespace math {
 
 template<typename LhsType, typename RhsType>
 struct traits<MatrixMulMatrix<LhsType, RhsType>> {
-  enum {
+  enum : int {
     rows = traits<LhsType>::rows,
     cols = traits<RhsType>::cols,
     size = rows * cols,
   };
 
-  enum {
+  enum : int {
     option = traits<LhsType>::option | traits<RhsType>::option | Flag::kAliasUnsafe | Flag::kReferenceUnsafe
   };
   using value_type = typename LhsType::value_type;

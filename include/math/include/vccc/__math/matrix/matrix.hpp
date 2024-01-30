@@ -18,14 +18,14 @@ namespace math {
 
 template<typename T, int m, int n>
 struct traits<Matrix<T, m, n>> {
-  enum {
+  enum : int {
     rows = m,
     cols = n,
     size = rows * cols,
   };
 
-  enum {
-    option = Flag::kDefault
+  enum : int {
+    option = static_cast<int>(Flag::kDefault)
   };
   using value_type = T;
 };

@@ -10,23 +10,19 @@
 
 #include "vccc/__concepts/convertible_to.hpp"
 #include "vccc/__concepts/different_from.hpp"
+#include "vccc/__memory/addressof.hpp"
 #include "vccc/__ranges/contiguous_range.hpp"
 #include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__ranges/begin.hpp"
-#include "vccc/__ranges/contiguous_range.hpp"
 #include "vccc/__ranges/data.hpp"
 #include "vccc/__ranges/empty.hpp"
-#include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__ranges/end.hpp"
 #include "vccc/__ranges/iterator_t.hpp"
-#include "vccc/__ranges/range.hpp"
 #include "vccc/__ranges/size.hpp"
 #include "vccc/__ranges/sized_range.hpp"
 #include "vccc/__ranges/view_interface.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/is_invocable.hpp"
-#include "vccc/__type_traits/negation.hpp"
-#include "vccc/__type_traits/remove_cvref.hpp"
 
 namespace vccc {
 namespace ranges {
@@ -50,8 +46,8 @@ class ref_view : public view_interface<ref_view<R>> {
       convertible_to<T, R&>,
       std::is_lvalue_reference<T&&>
   >::value, int> = 0>
-  constexpr ref_view(T&& t) noexcept
-      : r_(std::addressof(static_cast<R&>(std::forward<T>(t)))) {}
+  VCCC_ADDRESSOF_CONSTEXPR ref_view(T&& t) noexcept
+      : r_(vccc::addressof(static_cast<R&>(std::forward<T>(t)))) {}
 
   constexpr R& base() const {
     return *r_;

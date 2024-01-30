@@ -10,6 +10,7 @@
 
 #include "vccc/__concepts/constructible_from.hpp"
 #include "vccc/__concepts/dereferenceable.hpp"
+#include "vccc/__memory/addressof.hpp"
 #include "vccc/optional.hpp"
 
 namespace vccc {
@@ -51,7 +52,7 @@ class non_propagating_cache : public optional<T> {
   }
 
   constexpr non_propagating_cache& operator=(const non_propagating_cache& other) noexcept {
-    if (std::addressof(other) != this) {
+    if (vccc::addressof(other) != this) {
       reset();
     }
     return *this;

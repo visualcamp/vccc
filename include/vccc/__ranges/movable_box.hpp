@@ -14,6 +14,7 @@
 #include "vccc/__concepts/copy_constructible.hpp"
 #include "vccc/__concepts/default_initializable.hpp"
 #include "vccc/__concepts/movable.hpp"
+#include "vccc/__memory/addressof.hpp"
 #include "vccc/optional.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
@@ -94,8 +95,8 @@ struct movable_box_storage_base<T, true> {
   constexpr explicit operator bool() const noexcept { return true; }
   constexpr bool has_value() const noexcept { return true; }
 
-  constexpr const T* operator->() const noexcept { return std::addressof(value_); }
-  constexpr T* operator->() noexcept { return std::addressof(value_); }
+  constexpr const T* operator->() const noexcept { return vccc::addressof(value_); }
+  constexpr T* operator->() noexcept { return vccc::addressof(value_); }
   constexpr const T& operator*() const& noexcept { return value_; }
   constexpr T& operator*() & noexcept { return value_; }
   constexpr const T&& operator*() const&& noexcept { return std::move(value_); }
@@ -159,7 +160,7 @@ struct movable_box_storage_copy_assign<T, false> : movable_box_storage_base<T> {
   movable_box_storage_copy_assign& operator=(const movable_box_storage_copy_assign& other)
       noexcept(std::is_nothrow_copy_constructible<T>::value)
   {
-    if (this != std::addressof(other)) {
+    if (this != vccc::addressof(other)) {
       if (other)
         this->emplace(*other);
       else
@@ -188,7 +189,7 @@ struct movable_box_storage_move_assign<T, false> : movable_box_storage_copy_assi
   constexpr movable_box_storage_move_assign& operator=(movable_box_storage_move_assign&& other)
       noexcept(std::is_nothrow_move_constructible<T>::value)
   {
-    if (this != std::addressof(other)) {
+    if (this != vccc::addressof(other)) {
       if (other)
         this->emplace(std::move(*other));
       else

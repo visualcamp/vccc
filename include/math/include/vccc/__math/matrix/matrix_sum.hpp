@@ -15,14 +15,14 @@ namespace math {
 
 template<typename LhsType, typename RhsType>
 struct traits<MatrixSum<LhsType, RhsType>> {
-  enum {
+  enum : int {
     rows = traits<LhsType>::rows,
     cols = traits<LhsType>::cols,
     size = rows * cols,
   };
 
-  enum {
-    option = traits<LhsType>::option | traits<RhsType>::option | Flag::kReferenceUnsafe
+  enum : int {
+    option = static_cast<int>(traits<LhsType>::option) | static_cast<int>(traits<RhsType>::option) | static_cast<int>(Flag::kReferenceUnsafe)
   };
   using value_type = typename LhsType::value_type;
 };

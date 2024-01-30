@@ -27,6 +27,7 @@
 #include "vccc/__iterator/iterator_tag.hpp"
 #include "vccc/__iterator/iterator_traits/cxx20_iterator_traits.hpp"
 #include "vccc/__iterator/random_access_iterator.hpp"
+#include "vccc/__memory/addressof.hpp"
 #include "vccc/__memory/to_address.hpp"
 #include "vccc/__type_traits/common_reference.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
@@ -206,7 +207,9 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
   }
 
   template<typename S, std::enable_if_t<conjunction<
+#if __cplusplus < 202002L
       different_from<S, basic_const_iterator>,
+#endif
       sentinel_for<S, Iter>
   >::value, int> = 0>
   constexpr bool operator==(const S& s) const {
@@ -214,6 +217,7 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
     return base() == s;
   }
 
+#if __cplusplus < 202002L
   template<typename S, std::enable_if_t<conjunction<
       different_from<S, basic_const_iterator>,
       sentinel_for<S, Iter>
@@ -221,6 +225,7 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
   friend constexpr bool operator==(const S& s, const basic_const_iterator& i) {
     return i == s;
   }
+#endif
 
   template<typename S, std::enable_if_t<conjunction<
       different_from<S, basic_const_iterator>,
@@ -349,7 +354,7 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
     return vccc::to_address(base());
   }
   constexpr const auto* arrow(std::false_type /* contiguous_iterator */) const {
-    return std::addressof(*base());
+    return vccc::addressof(*base());
   }
 
   Iter current_;
