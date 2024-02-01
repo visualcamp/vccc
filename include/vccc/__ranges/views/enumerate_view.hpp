@@ -299,7 +299,7 @@ class enumerate_view : public view_interface<enumerate_view<V>> {
 
 
    private:
-    Base end_;
+    sentinel_t<Base> end_;
   };
 
   enumerate_view() = default;
