@@ -223,10 +223,11 @@ class transform_view : public view_interface<transform_view<V, F>> {
       return x.current_ - y.current_;
     }
 
-    friend constexpr decltype(auto) iter_move(const iterator& i)
-        noexcept(noexcept(*i)) {
-      return std::is_lvalue_reference<decltype(*i)>::value ? std::move(*i) : *i;
-    }
+    // TODO: Solve "redefinition of 'iter_move' as different kind of symbol" in Android NDK 21.1.6352462
+    // friend constexpr decltype(auto) iter_move(const iterator& i)
+    //     noexcept(noexcept(*i)) {
+    //   return std::is_lvalue_reference<decltype(*i)>::value ? std::move(*i) : *i;
+    // }
 
    private:
     template<bool B>
