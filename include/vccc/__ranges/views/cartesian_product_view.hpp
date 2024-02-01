@@ -379,17 +379,18 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
       return -(i - s);
     }
 
-    friend constexpr auto iter_move(const iterator& i)
-        noexcept(
-            noexcept(detail::cartesian_tuple_transform(ranges::iter_move, i.current_)) &&
-            conjunction<
-                std::is_nothrow_move_constructible<range_rvalue_reference_t< detail::maybe_const<Const, First> >>,
-                std::is_nothrow_move_constructible<range_rvalue_reference_t< detail::maybe_const<Const, Vs>    >>...
-            >::value
-        )
-    {
-      return detail::cartesian_tuple_transform(ranges::iter_move, i.current_);
-    }
+    // TODO: Solve "redefinition of 'iter_move' as different kind of symbol" in Android NDK 21.1.6352462
+    // friend constexpr auto iter_move(const iterator& i)
+    //     noexcept(
+    //         noexcept(detail::cartesian_tuple_transform(ranges::iter_move, i.current_)) &&
+    //         conjunction<
+    //             std::is_nothrow_move_constructible<range_rvalue_reference_t< detail::maybe_const<Const, First> >>,
+    //             std::is_nothrow_move_constructible<range_rvalue_reference_t< detail::maybe_const<Const, Vs>    >>...
+    //         >::value
+    //     )
+    // {
+    //   return detail::cartesian_tuple_transform(ranges::iter_move, i.current_);
+    // }
 
     // TODO: Solve "redefinition of 'iter_swap' as different kind of symbol"
 #if __cplusplus >= 202002L

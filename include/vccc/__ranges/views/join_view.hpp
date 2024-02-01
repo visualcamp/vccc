@@ -255,11 +255,12 @@ class join_view : public view_interface<join_view<V>> {
       return !(x == y);
     }
 
-    friend constexpr decltype(auto) iter_move(const iterator& i)
-        noexcept(noexcept(ranges::iter_move(*i.inner_)))
-    {
-      return ranges::iter_move(*i.inner_);
-    }
+    // TODO: Solve "redefinition of 'iter_move' as different kind of symbol" in Android NDK 21.1.6352462
+    // friend constexpr decltype(auto) iter_move(const iterator& i)
+    //     noexcept(noexcept(ranges::iter_move(*i.inner_)))
+    // {
+    //   return ranges::iter_move(*i.inner_);
+    // }
 
     // TODO: Implement iter_swap
 

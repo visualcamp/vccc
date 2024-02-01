@@ -219,15 +219,16 @@ class enumerate_view : public view_interface<enumerate_view<V>> {
       return i.pos_ - j.pos_;
     }
 
-    friend constexpr auto iter_move(const iterator& i)
-        noexcept(
-            noexcept(ranges::iter_move(i.current_)) &&
-            std::is_nothrow_move_constructible<
-                range_rvalue_reference_t<Base>>::value
-        )
-    {
-      return std::tuple<difference_type, range_rvalue_reference_t<Base>>(i.pos_, ranges::iter_move(i.current_));
-    }
+    // TODO: Solve "redefinition of 'iter_move' as different kind of symbol" in Android NDK 21.1.6352462
+    // friend constexpr auto iter_move(const iterator& i)
+    //     noexcept(
+    //         noexcept(ranges::iter_move(i.current_)) &&
+    //         std::is_nothrow_move_constructible<
+    //             range_rvalue_reference_t<Base>>::value
+    //     )
+    // {
+    //   return std::tuple<difference_type, range_rvalue_reference_t<Base>>(i.pos_, ranges::iter_move(i.current_));
+    // }
 
    private:
     iterator_t<Base> current_;
