@@ -21,21 +21,10 @@ namespace vccc {
 namespace impl {
 
 template<
-    typename LHS,
-    typename RHS,
-    bool = conjunction<
-        std::is_assignable<LHS, std::add_lvalue_reference_t<std::remove_reference_t<RHS>> >,
-        std::is_assignable<LHS, std::add_rvalue_reference_t<std::remove_reference_t<RHS>> >
-        >::value
-    >
-struct assignable_from_requires;
-
-template<typename LHS, typename RHS>
-struct assignable_from_requires<LHS, RHS, true>
-    : conjunction<
-        same_as<decltype( std::declval<LHS>() = std::declval< std::add_lvalue_reference_t<std::remove_reference_t<RHS>> >() ), LHS>,
-        same_as<decltype( std::declval<LHS>() = std::declval< std::add_rvalue_reference_t<std::remove_reference_t<RHS>> >() ), LHS>
-      > {};
+    typename LHS, typename RHS,
+    bool = std::is_assignable<LHS, RHS&& >::value /* true */>
+struct assignable_from_requires
+    : same_as<decltype( std::declval<LHS>() = std::declval<RHS>() ), LHS> {};
 
 template<typename LHS, typename RHS>
 struct assignable_from_requires<LHS, RHS, false> : std::false_type {};
