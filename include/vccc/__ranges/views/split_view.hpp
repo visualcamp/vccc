@@ -39,6 +39,10 @@ namespace ranges {
 /// @addtogroup ranges
 /// @{
 
+/// @brief `%split_view` takes a \ref ranges::view "view" and a delimiter, and splits the view into subranges on the
+/// delimiter.
+///
+/// @sa [std::ranges::split_view](https://en.cppreference.com/w/cpp/ranges/split_view)
 template<typename V, typename Pattern>
 class split_view : public view_interface<split_view<V, Pattern>> {
   template<typename R, bool = forward_range<R>::value /* false */>

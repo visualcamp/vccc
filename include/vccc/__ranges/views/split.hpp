@@ -69,6 +69,10 @@ struct split_niebloid {
 /// @addtogroup ranges
 /// @{
 
+/// @brief [RangeAdaptorObject](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorObject). The expression
+/// `views::split(e, p)` is expression-equivalent to `split_view(e, p)` for any suitable subexpressions `e` and `p`
+///
+/// @sa [std::views::split](https://en.cppreference.com/w/cpp/ranges/split_view)
 VCCC_INLINE_OR_STATIC constexpr detail::split_niebloid split{};
 
 /// @}
