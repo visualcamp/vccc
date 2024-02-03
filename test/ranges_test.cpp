@@ -800,7 +800,8 @@ int main() {
           return std::isupper(str[0]);
       });
 
-      auto it = (moons_extractor | is_moon).begin();
+      auto splitted = moons_extractor | is_moon;
+      auto it = splitted.begin();
       TEST_ENSURES(vccc::ranges::equal(*it++, "Callisto"_sv));
       TEST_ENSURES(vccc::ranges::equal(*it++, "Europa"_sv));
       TEST_ENSURES(vccc::ranges::equal(*it++, "Ganymede"_sv));
@@ -817,7 +818,8 @@ int main() {
       constexpr auto words{"Hello^_^C++^_^20^_^!"_sv};
       constexpr auto delim{"^_^"_sv};
 
-      auto it = vccc::views::split(words, delim).begin();
+      auto splitted = vccc::views::split(words, delim);
+      auto it = splitted.begin();
       TEST_ENSURES(vccc::ranges::equal(*it++, "Hello"_sv));
       TEST_ENSURES(vccc::ranges::equal(*it++, "C++"_sv));
       TEST_ENSURES(vccc::ranges::equal(*it++, "20"_sv));
