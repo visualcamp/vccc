@@ -6,6 +6,7 @@
 #include <cctype>
 #include <forward_list>
 #include <iostream>
+#include <iomanip>
 #include <iterator>
 #include <list>
 #include <map>
@@ -718,6 +719,21 @@ int main() {
 
     std::vector<Person> pv = {{10, "john"}, {20, "james"}};
     TEST_ENSURES((vccc::ranges::equal(f(pv), "johnjames"_sv)));
+  }
+
+  {
+    auto words = std::istringstream{"today is yesterday’s tomorrow"};
+    for (const auto& s : vccc::views::istream<std::string>(words))
+      std::cout << std::quoted(s, '/') << ' ';
+    std::cout << '\n';
+
+    auto floats = std::istringstream{"1.1  2.2\t3.3\v4.4\f55\n66\r7.7  8.8"};
+    vccc::ranges::copy(
+        vccc::views::istream<float>(floats),
+        std::ostream_iterator<float>{std::cout, ", "}
+    );
+    std::cout << '\n';
+
   }
 
   return TEST_RETURN_RESULT;

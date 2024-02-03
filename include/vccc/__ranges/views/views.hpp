@@ -8,6 +8,8 @@
 #include "vccc/__ranges/views/all.hpp"
 #include "vccc/__ranges/views/as_const.hpp"
 #include "vccc/__ranges/views/as_const_view.hpp"
+#include "vccc/__ranges/views/basic_istream.hpp"
+#include "vccc/__ranges/views/basic_istream_view.hpp"
 #include "vccc/__ranges/views/cartesian_product.hpp"
 #include "vccc/__ranges/views/cartesian_product_view.hpp"
 #include "vccc/__ranges/views/counted.hpp"
