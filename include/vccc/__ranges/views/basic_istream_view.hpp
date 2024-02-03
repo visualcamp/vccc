@@ -83,7 +83,7 @@ class basic_istream_view : public view_interface<basic_istream_view<Val, CharT, 
     }
 
     friend bool operator==(const iterator& x, default_sentinel_t) {
-      return x.parent_ == nullptr || x.parent_->stream_->fail();
+      return x.parent_ == nullptr || x.fail();
     }
 
     friend bool operator!=(const iterator& x, default_sentinel_t) {
@@ -99,6 +99,10 @@ class basic_istream_view : public view_interface<basic_istream_view<Val, CharT, 
     }
 
    private:
+    bool fail() const {
+      return parent_->stream_->fail();
+    }
+
     basic_istream_view* parent_;
   };
   friend struct iterator;
