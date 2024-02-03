@@ -723,8 +723,10 @@ int main() {
 
   {
     auto words = std::istringstream{"today is yesterday’s tomorrow"};
-    for (const auto& s : vccc::views::istream<std::string>(words))
-      std::cout << std::quoted(s, '/') << ' ';
+    auto s = vccc::views::istream<std::string>(words);
+
+    for (auto it = s.begin(); it != s.end(); ++it)
+      std::cout << std::quoted(*it, '/') << ' ';
     std::cout << '\n';
 
     auto floats = std::istringstream{"1.1  2.2\t3.3\v4.4\f55\n66\r7.7  8.8"};
