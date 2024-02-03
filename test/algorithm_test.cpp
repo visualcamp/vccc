@@ -123,6 +123,37 @@ int Test() {
     TEST_ENSURES(ranges::max({"foo"_sv, "bar"_sv, "hello"_sv}, {}, &vccc::string_view::size) == "hello"_sv);
   }
 
+  { // ranges::search
+    std::cout << "Line " << __LINE__ << ", ranges::search:\n";
+
+    constexpr auto haystack {"abcd abcd"_sv};
+    constexpr auto needle {"bcd"_sv};
+
+    // the search uses iterator pairs begin()/end():
+    constexpr auto found1 = vccc::ranges::search(
+        haystack.begin(), haystack.end(),
+        needle.begin(), needle.end());
+    TEST_ENSURES(found1 && vccc::ranges::distance(haystack.begin(), found1.begin()) == 1);
+
+    constexpr auto found2 = vccc::ranges::search(haystack, needle);
+    TEST_ENSURES(found2 && vccc::ranges::distance(haystack.begin(), found1.begin()) == 1);
+
+    constexpr auto none {""_sv};
+    constexpr auto found3 = vccc::ranges::search(haystack, none);
+    TEST_ENSURES(found3.empty());
+
+    constexpr auto awl {"efg"_sv};
+    constexpr auto found4 = vccc::ranges::search(haystack, awl);
+    TEST_ENSURES(found4.empty());
+
+    constexpr auto bodkin {"234"_sv};
+    auto found5 = vccc::ranges::search(haystack, bodkin,
+        [](const int x, const int y) { return x == y; }, // pred
+        [](const int x) { return std::toupper(x); }, // proj1
+        [](const int y) { return y + 'A' - '1'; }); // proj2
+    TEST_ENSURES(found5 && vccc::ranges::distance(haystack.begin(), found5.begin()) == 1);
+  }
+
   return TEST_RETURN_RESULT;
 }
 
