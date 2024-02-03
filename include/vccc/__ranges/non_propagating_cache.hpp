@@ -66,7 +66,6 @@ class non_propagating_cache : public optional<T> {
 
   template<typename I, std::enable_if_t<detail::constructible_from_deref<T, const I&>::value, int> = 0>
   constexpr T& emplace_deref(const I& i) {
-    reset();
     return emplace(*i);
   }
 };
