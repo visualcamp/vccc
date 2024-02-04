@@ -131,7 +131,7 @@ template<typename T, typename U, std::enable_if_t<conjunction<
     negation<std::is_same<T, U>>,
     detail::has_operator_equal_2<const U&, const T&>
 >::value, int> = 0>
-constexpr bool operator==(const T& a, const U& b) {
+constexpr bool operator==(const T& a, const U& b) noexcept(noexcept(b == a)) {
   return b == a;
 }
 
@@ -158,9 +158,10 @@ struct is_equality_comparable : detail::is_equality_comparable_impl::type<T, U> 
 template<typename T, typename U, std::enable_if_t<conjunction<
     negation<std::is_same<T, U>>,
     is_equality_comparable<T, U>,
+    negation< detail::has_operator_less_2<const T&, const U&> >,
     detail::has_operator_less_2<const U&, const T&>
   >::value, int> = 0>
-constexpr bool operator<(const T& a, const U& b) {
+constexpr bool operator<(const T& a, const U& b) noexcept(noexcept(!( (b < a) || (a == b)))) {
   // (a < b) -> !(a >= b) -> !( a > b || a == b) -> !( b < a || a == b)
   return !( (b < a) || (a == b));
 }
@@ -185,25 +186,25 @@ struct is_less_than_comparable : detail::is_less_than_comparable_impl::type<T, U
 
 /// @brief return `!(a == b)`. Synthesized from `T == U`
 template<typename T, typename U, std::enable_if_t<is_equality_comparable<T, U>::value, int> = 0>
-constexpr bool operator!=(const T& a, const U& b) {
+constexpr bool operator!=(const T& a, const U& b) noexcept(noexcept(!(a == b))) {
   return !(a == b);
 }
 
 /// @brief return `b < a`. Synthesized from `U < T`
 template<typename T, typename U, std::enable_if_t<is_less_than_comparable<U, T>::value, int> = 0>
-constexpr bool operator>(const T& a, const U& b) {
+constexpr bool operator>(const T& a, const U& b) noexcept(noexcept(b < a)) {
   return b < a; // (a > b) -> (b < a)
 }
 
 /// @brief return `!(b < a)`. Synthesized from `U < T`
 template<typename T, typename U, std::enable_if_t<is_less_than_comparable<U, T>::value, int> = 0>
-constexpr bool operator<=(const T& a, const U& b) {
+constexpr bool operator<=(const T& a, const U& b) noexcept(noexcept(!(b < a))) {
   return !(b < a); // (a <= b) -> !(a > b) -> !(b < a)
 }
 
 /// @brief return `!(a < b)`. Synthesized from `T < U`
 template<typename T, typename U, std::enable_if_t<is_less_than_comparable<T, U>::value, int> = 0>
-constexpr bool operator>=(const T& a, const U& b) {
+constexpr bool operator>=(const T& a, const U& b) noexcept(noexcept(!(a < b))) {
   return !(a < b); // (a >= b) -> !(a < b)
 }
 
