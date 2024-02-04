@@ -723,7 +723,7 @@ int main() {
   { // ranges::istream_view, views::istream
     std::cout << "Line " << __LINE__ << ", ranges::istream_view, views::istream: \n";
 
-    auto words = std::istringstream{"today is yesterday’s tomorrow"};
+    auto words = std::istringstream{"today is yesterday's tomorrow"};
     auto s = vccc::views::istream<std::string>(words);
 
     for (auto it = s.begin(); it != s.end(); ++it)
