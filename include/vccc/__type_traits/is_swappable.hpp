@@ -79,6 +79,8 @@ struct is_swappable_with_impl<T, U, void_t<
 
 } // namespace swappable_test_adl
 
+#if __cplusplus < 201703L
+
 template<typename T, typename U>
 struct is_swappable_with_impl :
     disjunction<swappable_test_adl::is_swappable_with_impl<T, U>,
@@ -90,10 +92,17 @@ struct is_nothrow_swappable_with_impl : bool_constant<is_swappable_with_impl<T, 
 template<typename T, typename U>
 struct is_nothrow_swappable_with_impl<T, U, false> : std::false_type {};
 
-} // namespace internal
+#else
 
 template<typename T, typename U>
-struct is_swappable_with;
+struct is_swappable_with_impl : std::is_swappable_with<T, U> {};
+
+template<typename T, typename U>
+struct is_nothrow_swappable_with_impl : std::is_nothrow_swappable_with<T, U> {};
+
+#endif
+
+} // namespace internal
 
 template<typename T, typename U>
 struct is_swappable_with : internal::is_swappable_with_impl<T, U> {};
