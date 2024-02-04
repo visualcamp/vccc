@@ -5,6 +5,7 @@
 # ifndef VCCC_TYPE_TRAITS_HPP
 # define VCCC_TYPE_TRAITS_HPP
 #
+# include "vccc/__type_traits/core/control_special.hpp"
 # include "vccc/__type_traits/core/size.hpp"
 
 # include "vccc/__type_traits/detail/is_swappable_cxx14.hpp"
@@ -20,6 +21,7 @@
 # include "vccc/__type_traits/common_reference.hpp"
 # include "vccc/__type_traits/common_type.hpp"
 # include "vccc/__type_traits/conjunction.hpp"
+# include "vccc/__type_traits/copy_cvref.hpp"
 # include "vccc/__type_traits/disjunction.hpp"
 # include "vccc/__type_traits/empty.hpp"
 # include "vccc/__type_traits/has_operator_arrow.hpp"
@@ -29,15 +31,17 @@
 # include "vccc/__type_traits/has_typename_value_type.hpp"
 # include "vccc/__type_traits/is_bounded_array.hpp"
 # include "vccc/__type_traits/is_complete.hpp"
+# include "vccc/__type_traits/is_explicitly_constructible.hpp"
 # include "vccc/__type_traits/is_explicitly_convertible.hpp"
+# include "vccc/__type_traits/is_implicitly_constructible.hpp"
 # include "vccc/__type_traits/is_initializer_list.hpp"
 # include "vccc/__type_traits/is_integer_like.hpp"
 # include "vccc/__type_traits/is_invocable.hpp"
+# include "vccc/__type_traits/is_list_initializable.hpp"
 # include "vccc/__type_traits/is_nothrow_convertible.hpp"
 # include "vccc/__type_traits/is_printable.hpp"
 # include "vccc/__type_traits/is_range.hpp"
 # include "vccc/__type_traits/is_referenceable.hpp"
-# include "vccc/__type_traits/is_printable.hpp"
 # include "vccc/__type_traits/is_specialization.hpp"
 # include "vccc/__type_traits/is_string_like.hpp"
 # include "vccc/__type_traits/is_swappable.hpp"
@@ -48,6 +52,7 @@
 # include "vccc/__type_traits/negation.hpp"
 # include "vccc/__type_traits/numeric.hpp"
 # include "vccc/__type_traits/remove_cvref.hpp"
+# include "vccc/__type_traits/simple_common_reference.hpp"
 # include "vccc/__type_traits/template_arity.hpp"
 # include "vccc/__type_traits/type_identity.hpp"
 # include "vccc/__type_traits/void_t.hpp"
