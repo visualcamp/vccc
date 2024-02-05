@@ -413,14 +413,14 @@ struct variant_base {
     template<typename T, std::size_t J, std::enable_if_t<(J != variant_npos && J == I), int> = 0>
     void operator()(T& y, in_place_index_t<J>) {
       using std::swap;
-      T& x = variant_raw_get(thiz.union_, in_place_index<I>);
+      T& x = variant_raw_get(thiz.storage(), in_place_index<I>);
       swap(x, y);
     }
 
     // I <-> J
     template<typename U, std::size_t J, std::enable_if_t<(J != variant_npos && J != I && I != variant_npos), int> = 0>
     void operator()(U& y, in_place_index_t<J>) {
-      auto x = std::move(variant_raw_get(thiz.union_, in_place_index<I>));
+      auto x = std::move(variant_raw_get(thiz.storage(), in_place_index<I>));
       thiz.reset(in_place_index<I>);
       thiz.template emplace_valueless<J>(std::move(y));
       other.reset(in_place_index<J>);
@@ -437,7 +437,7 @@ struct variant_base {
     // I <-> valueless
     template<typename U, std::size_t J, std::enable_if_t<(J == variant_npos && J != I), int> = 0>
     void operator()(U&, in_place_index_t<J>) {
-      auto& x = variant_raw_get(thiz.union_, in_place_index<I>);
+      auto& x = variant_raw_get(thiz.storage(), in_place_index<I>);
       other.template emplace_valueless<I>(std::move(x));
       thiz.reset(in_place_index<I>);
     }
@@ -455,7 +455,7 @@ struct variant_base {
   void swap_base_impl(variant_base& rhs, std::false_type /* trivial */) {
     variant_raw_visit(index_, union_, [this, &rhs](auto& x, auto i) {
       constexpr std::size_t I = index_value<decltype(i)>::value;
-      variant_raw_visit(rhs.index_, rhs.union_, swapper_inner<I>{*this, rhs});
+      variant_raw_visit(rhs.index_, rhs.storage(), swapper_inner<I>{*this, rhs});
     });
   }
 
@@ -476,6 +476,11 @@ struct variant_base {
     using T = remove_cvref_t<decltype(x)>;
     x.~T();
   }
+
+  union_wrapper<Types...>& storage() & { return union_; }
+  const union_wrapper<Types...>& storage() const & { return union_; }
+  union_wrapper<Types...>&& storage() && { return std::move(union_); }
+  const union_wrapper<Types...>&& storage() const && { return std::move(union_); }
 
   union_wrapper<Types...> union_;
   std::size_t index_;
@@ -568,6 +573,12 @@ struct variant_assign_check<T, TypeSeq, true> :
     > {};
 
 /// @}
+
+template<typename Visitor, typename Variant>
+constexpr decltype(auto) visit_single(Visitor&& vis, Variant&& var);
+
+template<typename R, typename Visitor, typename Variant>
+constexpr R visit_single(Visitor&& vis, Variant&& var);
 
 } // namespace detail
 
@@ -685,13 +696,43 @@ class variant : private detail::variant_control_smf<Types...> {
   }
 
   template<typename Visitor>
-  constexpr decltype(auto) visit(Visitor&& vis) {
-    return visit_impl(std::forward<Visitor>(vis));
+  constexpr decltype(auto) visit(Visitor&& vis) & {
+    return detail::visit_single(std::forward<Visitor>(vis), *this);
+  }
+
+  template<typename Visitor>
+  constexpr decltype(auto) visit(Visitor&& vis) const & {
+    return detail::visit_single(std::forward<Visitor>(vis), *this);
+  }
+
+  template<typename Visitor>
+  constexpr decltype(auto) visit(Visitor&& vis) && {
+    return detail::visit_single(std::forward<Visitor>(vis), std::move(*this));
+  }
+
+  template<typename Visitor>
+  constexpr decltype(auto) visit(Visitor&& vis) const && {
+    return detail::visit_single(std::forward<Visitor>(vis), std::move(*this));
   }
 
   template<typename R, typename Visitor>
-  constexpr R visit(Visitor&& vis) {
-    return visit_r<R>(std::forward<Visitor>(vis), std::is_void<R>{});
+  constexpr R visit(Visitor&& vis) & {
+    return detail::visit_single<R>(std::forward<Visitor>(vis), *this);
+  }
+
+  template<typename R, typename Visitor>
+  constexpr R visit(Visitor&& vis) const & {
+    return detail::visit_single<R>(std::forward<Visitor>(vis), *this);
+  }
+
+  template<typename R, typename Visitor>
+  constexpr R visit(Visitor&& vis) && {
+    return detail::visit_single<R>(std::forward<Visitor>(vis), std::move(*this));
+  }
+
+  template<typename R, typename Visitor>
+  constexpr R visit(Visitor&& vis) const && {
+    return detail::visit_single<R>(std::forward<Visitor>(vis), std::move(*this));
   }
 
   detail::variant_base<Types...>& _base() & { return static_cast<detail::variant_base<Types...>&>(*this); }
@@ -712,21 +753,6 @@ class variant : private detail::variant_control_smf<Types...> {
       return vccc::invoke(std::forward<Visitor>(vis), std::forward<Union>(u).get());
     }
   };
-
-  template<typename Visitor>
-  constexpr decltype(auto) visit_impl(Visitor&& vis) {
-    return detail::variant_raw_visit(index(), base::union_, visitor_self{}, std::forward<Visitor>(vis));
-  }
-
-  template<typename R, typename Visitor>
-  constexpr void visit_r(Visitor&& vis, std::true_type /* is_void */) {
-    visit_impl(std::forward<Visitor>(vis));
-  }
-
-  template<typename R, typename Visitor>
-  constexpr R visit_r(Visitor&& vis, std::false_type /* is_void */) {
-    return static_cast<R>(visit_impl(std::forward<Visitor>(vis)));
-  }
 };
 
 template<std::size_t I, typename... Types>
@@ -734,7 +760,7 @@ constexpr variant_alternative_t<I, variant<Types...>>&
 get(variant<Types...>& v) {
   if (v.index() != I)
     throw bad_variant_access{};
-  return detail::variant_raw_get(v._base().union_, in_place_index<I>);
+  return detail::variant_raw_get(v._base().storage(), in_place_index<I>);
 }
 
 template<std::size_t I, typename... Types>
@@ -742,7 +768,7 @@ constexpr variant_alternative_t<I, variant<Types...>>&&
 get(variant<Types...>&& v) {
   if (v.index() != I)
     throw bad_variant_access{};
-  return std::move(detail::variant_raw_get(v._base().union_, in_place_index<I>));
+  return std::move(detail::variant_raw_get(v._base().storage(), in_place_index<I>));
 }
 
 template<std::size_t I, typename... Types>
@@ -750,7 +776,7 @@ constexpr const variant_alternative_t<I, variant<Types...>>&
 get(const variant<Types...>& v) {
   if (v.index() != I)
     throw bad_variant_access{};
-  return detail::variant_raw_get(v._base().union_, in_place_index<I>);
+  return detail::variant_raw_get(v._base().storage(), in_place_index<I>);
 }
 
 template<std::size_t I, typename... Types>
@@ -758,7 +784,7 @@ constexpr const variant_alternative_t<I, variant<Types...>>&&
 get(const variant<Types...>&& v) {
   if (v.index() != I)
     throw bad_variant_access{};
-  return std::move(detail::variant_raw_get(v._base().union_, in_place_index<I>));
+  return std::move(detail::variant_raw_get(v._base().storage(), in_place_index<I>));
 }
 
 template<typename T, typename... Types, std::enable_if_t<
@@ -790,7 +816,7 @@ constexpr std::add_pointer_t<variant_alternative_t<I, variant<Types...>>>
 get_if(variant<Types...>* pv) noexcept {
   if (pv->index() != I)
     return nullptr;
-  return vccc::addressof(detail::variant_raw_get(pv->_base().union_, in_place_index<I>));
+  return vccc::addressof(detail::variant_raw_get(pv->_base().storage(), in_place_index<I>));
 }
 
 template<std::size_t I, typename... Types>
@@ -798,7 +824,7 @@ constexpr std::add_pointer_t<const variant_alternative_t<I, variant<Types...>>>
 get_if(const variant<Types...>* pv) noexcept {
   if (pv->index() != I)
     return nullptr;
-  return vccc::addressof(detail::variant_raw_get(pv->_base().union_, in_place_index<I>));
+  return vccc::addressof(detail::variant_raw_get(pv->_base().storage(), in_place_index<I>));
 }
 
 template<typename T, typename... Types, std::enable_if_t<
@@ -808,7 +834,7 @@ get_if(variant<Types...>* pv) noexcept {
   constexpr std::size_t I = type_sequence_type_index<T, type_sequence<Types...>>::value;
   if (pv->index() != I)
     return nullptr;
-  return vccc::addressof(detail::variant_raw_get(pv->_base().union_, in_place_index<I>));
+  return vccc::addressof(detail::variant_raw_get(pv->_base().storage(), in_place_index<I>));
 }
 
 template<typename T, typename... Types, std::enable_if_t<
@@ -818,7 +844,7 @@ get_if(const variant<Types...>* pv) noexcept {
   constexpr std::size_t I = type_sequence_type_index<T, type_sequence<Types...>>::value;
   if (pv->index() != I)
     return nullptr;
-  return vccc::addressof(detail::variant_raw_get(pv->_base().union_, in_place_index<I>));
+  return vccc::addressof(detail::variant_raw_get(pv->_base().storage(), in_place_index<I>));
 }
 
 template<typename... Types, std::enable_if_t<conjunction<equality_comparable<Types>...>::value, int> = 0>
@@ -828,7 +854,7 @@ constexpr bool operator==(const variant<Types...>& v, const variant<Types...>& w
   if (v.valueless_by_exception())
     return true;
   using visitor = detail::variant_op_visitor<ranges::equal_to, true, Types...>;
-  return detail::variant_raw_visit(w.index(), w._base().union_, visitor{v._base()});
+  return detail::variant_raw_visit(w.index(), w._base().storage(), visitor{v._base()});
 }
 
 template<typename... Types, std::enable_if_t<conjunction<equality_comparable<Types>...>::value, int> = 0>
@@ -838,7 +864,7 @@ constexpr bool operator!=(const variant<Types...>& v, const variant<Types...>& w
   if (v.valueless_by_exception())
     return false;
   using visitor = detail::variant_op_visitor<ranges::not_equal_to, true, Types...>;
-  return detail::variant_raw_visit(w.index(), w._base().union_, visitor{v._base()});
+  return detail::variant_raw_visit(w.index(), w._base().storage(), visitor{v._base()});
 }
 
 template<typename... Types, std::enable_if_t<conjunction<totally_ordered<Types>...>::value, int> = 0>
@@ -852,7 +878,7 @@ constexpr bool operator<(const variant<Types...>& v, const variant<Types...>& w)
   }
 
   using visitor = detail::variant_op_visitor<ranges::less, true, Types...>;
-  return detail::variant_raw_visit(w.index(), w._base().union_, visitor{v._base()});
+  return detail::variant_raw_visit(w.index(), w._base().storage(), visitor{v._base()});
 }
 
 template<typename... Types, std::enable_if_t<conjunction<totally_ordered<Types>...>::value, int> = 0>
@@ -866,7 +892,7 @@ constexpr bool operator>(const variant<Types...>& v, const variant<Types...>& w)
   }
 
   using visitor = detail::variant_op_visitor<ranges::greater, true, Types...>;
-  return detail::variant_raw_visit(w.index(), w._base().union_, visitor{v._base()});
+  return detail::variant_raw_visit(w.index(), w._base().storage(), visitor{v._base()});
 }
 
 template<typename... Types, std::enable_if_t<conjunction<totally_ordered<Types>...>::value, int> = 0>
@@ -880,7 +906,7 @@ constexpr bool operator<=(const variant<Types...>& v, const variant<Types...>& w
   }
 
   using visitor = detail::variant_op_visitor<ranges::less_equal, true, Types...>;
-  return detail::variant_raw_visit(w.index(), w._base().union_, visitor{v._base()});
+  return detail::variant_raw_visit(w.index(), w._base().storage(), visitor{v._base()});
 }
 
 template<typename... Types, std::enable_if_t<conjunction<totally_ordered<Types>...>::value, int> = 0>
@@ -894,7 +920,7 @@ constexpr bool operator>=(const variant<Types...>& v, const variant<Types...>& w
   }
 
   using visitor = detail::variant_op_visitor<ranges::greater_equal, true, Types...>;
-  return detail::variant_raw_visit(w.index(), w._base().union_, visitor{v._base()});
+  return detail::variant_raw_visit(w.index(), w._base().storage(), visitor{v._base()});
 }
 
 template <typename... Types>

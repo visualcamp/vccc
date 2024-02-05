@@ -38,7 +38,7 @@ struct visitor_global {
   constexpr R visit(Vis&& vis, std::index_sequence<I...>, Variants&&... vars) const {
     auto&& var = std::get<Cursor - 1>(std::forward_as_tuple(std::forward<Variants>(vars)...));
     return variant_raw_visit(
-        var.index(), std::forward<decltype(var._base().union_)>(var._base().union_), *this,
+        var.index(), std::forward<decltype(var._base().storage())>(var._base().storage()), *this,
         std::forward<Vis>(vis), std::index_sequence<I...>{}, std::forward<Variants>(vars)...);
   }
 };
@@ -49,8 +49,8 @@ struct visitor_global<0, R> {
   constexpr R visit(Vis&& vis, std::index_sequence<I...>,  Variants&&... vars) const {
     return vccc::invoke_r<R>(
         std::forward<Vis>(vis),
-        std::forward<decltype(variant_raw_get(vars._base().union_, in_place_index<I>))>(
-            variant_raw_get(vars._base().union_, in_place_index<I>))...
+        std::forward<decltype(variant_raw_get(vars._base().storage(), in_place_index<I>))>(
+            variant_raw_get(vars._base().storage(), in_place_index<I>))...
     );
   }
 };
@@ -106,6 +106,21 @@ visit(Visitor&& vis, Variants&&... vars) {
   using R = detail::variant_visit_result_t<Visitor, detail::as_variant_t<Variants>...>;
   return visit<R>(std::forward<Visitor>(vis), std::forward<Variants>(vars)...);
 }
+
+namespace detail {
+
+
+template<typename Visitor, typename Variant>
+constexpr decltype(auto) visit_single(Visitor&& vis, Variant&& var) {
+  return vccc::visit(std::forward<Visitor>(vis), std::forward<Variant>(var));
+}
+
+template<typename R, typename Visitor, typename Variant>
+constexpr R visit_single(Visitor&& vis, Variant&& var) {
+  return vccc::visit<R>(std::forward<Visitor>(vis), std::forward<Variant>(var));
+}
+
+} // namespace detail
 
 /// @}
 

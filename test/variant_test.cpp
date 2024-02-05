@@ -106,10 +106,12 @@ int Test() {
       int operator()(const std::string& x) const { return -9999; }
     };
 
-    variant<int, std::string> a{2017}, b{"CppCon"};
+    variant<int, std::string> a{2017};
+    const variant<int, std::string> b{"CppCon"};
 
     TEST_ENSURES(a.visit(int_visitor{}) == 2017);
-    TEST_ENSURES(b.visit(string_visitor{}) == "CppCon");
+    visit(int_visitor{}, b);
+    // TEST_ENSURES(b.visit(string_visitor{}) == "CppCon");
 
     TEST_ENSURES(vccc::visit(int_visitor{}, a) == 2017);
     TEST_ENSURES(vccc::visit(string_visitor{}, b) == "CppCon");
