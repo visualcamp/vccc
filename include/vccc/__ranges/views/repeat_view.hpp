@@ -51,7 +51,7 @@ class repeat_view : public view_interface<repeat_view<W, Bound>> {
     using difference_type = std::conditional_t<
         is_signed_integer_like<index_type>::value, index_type, detail::iota_diff_t<index_type>>;
 #if __cplusplus < 202002L
-    using pointer = const W&;
+    using pointer = void;
     using reference =  const W&;
 #endif
 
