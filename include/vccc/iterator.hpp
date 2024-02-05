@@ -19,6 +19,7 @@
 #include "vccc/__iterator/advance.hpp"
 #include "vccc/__iterator/basic_const_iterator.hpp"
 #include "vccc/__iterator/bidirectional_iterator.hpp"
+#include "vccc/__iterator/common_iterator.hpp"
 #include "vccc/__iterator/contiguous_iterator.hpp"
 #include "vccc/__iterator/counted_iterator.hpp"
 #include "vccc/__iterator/default_sentinel_t.hpp"
