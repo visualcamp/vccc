@@ -166,12 +166,8 @@ class basic_string_view {
   constexpr basic_string_view(const std::basic_string<CharT, Traits>& s)
   : data_(s.data()), size_(s.size()) {}
 
-  constexpr basic_string_view(std::basic_string<CharT, Traits>&&)
-      : data_(nullptr), size_(0) {
-#ifndef NDEBUG
-    throw std::runtime_error("Cannot construct vccc::string_view from std::string&&");
-#endif
-  }
+  constexpr basic_string_view(std::basic_string<CharT, Traits>&& s)
+      : data_(s.data()), size_(s.size()) {}
 
 #if __cplusplus < 201703L
   // Substitutaion for std::basic_string::basic_string(StringViewLike, ...)

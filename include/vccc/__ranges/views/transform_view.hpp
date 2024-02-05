@@ -104,7 +104,7 @@ class transform_view : public view_interface<transform_view<V, F>> {
     using difference_type = range_difference_t<Base>;
 #if __cplusplus < 202002L
     using pointer = void;
-    using reference = void;
+    using reference = invoke_result_t<decltype(std::declval<F&>()), decltype(*std::declval<iterator_t<Base>&>())>;
 #endif
 
     iterator() = default;
@@ -223,17 +223,18 @@ class transform_view : public view_interface<transform_view<V, F>> {
       return x.current_ - y.current_;
     }
 
-    friend constexpr decltype(auto) iter_move(const iterator& i)
-        noexcept(noexcept(*i)) {
-      return std::is_lvalue_reference<decltype(*i)>::value ? std::move(*i) : *i;
-    }
+    // TODO: Solve "redefinition of 'iter_move' as different kind of symbol" in Android NDK 21.1.6352462
+    // friend constexpr decltype(auto) iter_move(const iterator& i)
+    //     noexcept(noexcept(*i)) {
+    //   return std::is_lvalue_reference<decltype(*i)>::value ? std::move(*i) : *i;
+    // }
 
    private:
     template<bool B>
     friend class sentinel;
     friend class transform_view;
 
-    ranges::iterator_t<Base> current_;
+    iterator_t<Base> current_;
     Parent* parent_ = nullptr;
   };
 

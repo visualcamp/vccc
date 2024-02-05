@@ -6,6 +6,7 @@
 #define VCCC_ALGORITHM_RANGES_EQUAL_HPP
 
 #include <functional>
+#include <initializer_list>
 #include <type_traits>
 
 #include "vccc/__core/inline_or_static.hpp"
@@ -47,6 +48,10 @@ struct equal_niebloid {
   }
 
  public:
+  /**
+   * @brief Returns `true` if the projected values of the range [`first1`, `last1`) are equal to the projected values of
+   * the range [`first2`, `last2`), and `false` otherwise.
+   */
   template<
       typename I1, typename S1,
       typename I2, typename S2,
@@ -70,6 +75,10 @@ struct equal_niebloid {
     return true;
   }
 
+  /**
+   * @brief Returns `true` if the projected values of the range `r1` are equal to the projected values of the range
+   * `r2`, and `false` otherwise.
+   */
   template<
       typename R1,
       typename R2,
@@ -82,6 +91,45 @@ struct equal_niebloid {
     return (*this)(ranges::begin(r1), ranges::end(r1), ranges::begin(r2), ranges::end(r2),
                    std::ref(pred), std::ref(proj1), std::ref(proj2));
   }
+
+  template<
+      typename T,
+      typename R2,
+      typename Pred = equal_to,
+      typename Proj1 = identity, typename Proj2 = identity,
+      std::enable_if_t<check_range<std::initializer_list<T>, R2, Pred, Proj1, Proj2>::value, int> = 0
+  >
+  VCCC_NODISCARD constexpr bool
+  operator()(std::initializer_list<T>&& il, R2&& r2, Pred pred = {}, Proj1 proj1 = {}, Proj2 proj2 = {}) const {
+    return (*this)(ranges::begin(il), ranges::end(il), ranges::begin(r2), ranges::end(r2),
+                   std::ref(pred), std::ref(proj1), std::ref(proj2));
+  }
+
+  template<
+      typename R1,
+      typename U,
+      typename Pred = equal_to,
+      typename Proj1 = identity, typename Proj2 = identity,
+      std::enable_if_t<check_range<R1, std::initializer_list<U>, Pred, Proj1, Proj2>::value, int> = 0
+  >
+  VCCC_NODISCARD constexpr bool
+  operator()(R1&& r1, std::initializer_list<U> il, Pred pred = {}, Proj1 proj1 = {}, Proj2 proj2 = {}) const {
+    return (*this)(ranges::begin(r1), ranges::end(r1), ranges::begin(il), ranges::end(il),
+                   std::ref(pred), std::ref(proj1), std::ref(proj2));
+  }
+
+  template<
+      typename T,
+      typename U,
+      typename Pred = equal_to,
+      typename Proj1 = identity, typename Proj2 = identity,
+      std::enable_if_t<check_range<std::initializer_list<T>, std::initializer_list<U>, Pred, Proj1, Proj2>::value, int> = 0
+  >
+  VCCC_NODISCARD constexpr bool
+  operator()(std::initializer_list<T> il1, std::initializer_list<U> il2, Pred pred = {}, Proj1 proj1 = {}, Proj2 proj2 = {}) const {
+    return (*this)(ranges::begin(il1), ranges::end(il1), ranges::begin(il2), ranges::end(il2),
+                   std::ref(pred), std::ref(proj1), std::ref(proj2));
+  }
 };
 
 } // namespace detail
@@ -89,6 +137,8 @@ struct equal_niebloid {
 /// @addtogroup algorithm
 /// @{
 
+/// @brief Two ranges are considered equal if they have the same number of elements and every pair of corresponding
+/// projected elements satisfies `pred`
 VCCC_INLINE_OR_STATIC constexpr detail::equal_niebloid equal{};
 
 /// @}

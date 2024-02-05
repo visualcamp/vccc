@@ -44,7 +44,8 @@ class owning_view : public view_interface<owning_view<R>> {
   constexpr owning_view() = default;
   constexpr owning_view(owning_view&&) = default;
   constexpr owning_view(const owning_view&) = delete;
-  constexpr owning_view(R&& t) : r_(std::move(t)) {}
+  constexpr owning_view(R&& t) noexcept(std::is_nothrow_move_constructible<R>::value)
+      : r_(std::move(t)) {}
 
 
   owning_view& operator=(owning_view&&) = default;

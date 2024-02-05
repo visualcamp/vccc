@@ -86,6 +86,18 @@ struct counted_niebloid {
 /// @addtogroup ranges
 /// @{
 
+/**
+@brief creates a subrange from an iterator and a count
+
+A counted view presents a \ref ranges::view "view" of the elements of the counted range [i, n) for some iterator i and
+non-negative integer n.
+A counted range [i, n) is the n elements starting with the element pointed to by i and up to but not including the
+element, if any, pointed to by the result of n applications of `++i`.
+If `n == 0`, the counted range is valid and empty. Otherwise, the counted range is only valid if n is positive, i is
+dereferenceable, and [`++i`, `--n`) is a valid counted range.
+
+@sa [std::views::counted](https://en.cppreference.com/w/cpp/ranges/view_counted)
+ */
 VCCC_INLINE_OR_STATIC constexpr detail::counted_niebloid counted{};
 
 /// @}

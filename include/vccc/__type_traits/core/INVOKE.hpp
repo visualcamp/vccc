@@ -136,7 +136,7 @@ struct invoke_concrete<F, T1, Ts...> : invoke_impl<
 
 
 template<typename F, typename ...Args>
-auto INVOKE(F&& f, Args&&... args)
+constexpr auto INVOKE(F&& f, Args&&... args)
     noexcept(noexcept(invoke_concrete<F, Args...>::INVOKE(std::declval<F>(),  std::declval<Args>()...)     ))
           -> decltype(invoke_concrete<F, Args...>::INVOKE(std::declval<F>(),  std::declval<Args>()...)      )
              { return invoke_concrete<F, Args...>::INVOKE(std::forward<F>(f), std::forward<Args>(args)...); }

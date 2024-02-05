@@ -6,6 +6,7 @@
 #include <cctype>
 #include <forward_list>
 #include <iostream>
+#include <iomanip>
 #include <iterator>
 #include <list>
 #include <map>
@@ -84,6 +85,7 @@ char rot13(const char x)
 
 int main() {
   INIT_TEST("vccc::ranges")
+  using namespace vccc::string_view_literals;
 
 
   {
@@ -686,7 +688,6 @@ int main() {
   { // ranges::repeat_view, views::drop
     std::cout << "Line " << __LINE__ << ", ranges::repeat_view, views::drop: \n";
 
-    using namespace vccc::string_view_literals;
     TEST_ENSURES((vccc::ranges::equal(
         vccc::views::repeat("C++"_sv, 3),
         vccc::span<const vccc::string_view>{"C++"_sv, "C++"_sv, "C++"_sv}
@@ -701,7 +702,6 @@ int main() {
   { // ranges::join_view, views::join
     std::cout << "Line " << __LINE__ << ", ranges::join_view, views::join: \n";
 
-    using namespace vccc::string_view_literals;
 
     const auto bits = {"https:"_sv, "//"_sv, "cppreference"_sv, "."_sv, "com"_sv};
     TEST_ENSURES((vccc::ranges::equal(bits | vccc::views::join, "https://cppreference.com"_sv)));
@@ -718,6 +718,140 @@ int main() {
 
     std::vector<Person> pv = {{10, "john"}, {20, "james"}};
     TEST_ENSURES((vccc::ranges::equal(f(pv), "johnjames"_sv)));
+  }
+
+  { // ranges::istream_view, views::istream
+    std::cout << "Line " << __LINE__ << ", ranges::istream_view, views::istream: \n";
+
+    auto words = std::istringstream{"today is yesterday's tomorrow"};
+    auto s = vccc::views::istream<std::string>(words);
+
+    for (auto it = s.begin(); it != s.end(); ++it)
+      std::cout << std::quoted(*it, '/') << ' ';
+    std::cout << '\n';
+
+    auto floats = std::istringstream{"1.1  2.2\t3.3\v4.4\f55\n66\r7.7  8.8"};
+    vccc::ranges::copy(
+        vccc::views::istream<float>(floats),
+        std::ostream_iterator<float>{std::cout, ", "}
+    );
+    std::cout << '\n';
+
+  }
+
+  { // ranges::split_view, views::split
+    std::cout << "Line " << __LINE__ << ", ranges::split_view, views::split: \n";
+    {
+      auto w1 = vccc::ranges::make_split_view("a::b::c"_sv, "::"_sv);
+      static_assert(std::is_same<
+          decltype(w1),
+          vccc::ranges::split_view<vccc::string_view, vccc::string_view> >::value, "");
+
+      auto w2 = vccc::ranges::make_split_view("x,y,z"_sv, ',');
+      static_assert(std::is_same<
+          decltype(w2),
+          vccc::ranges::split_view<vccc::string_view, vccc::ranges::single_view<char>> >::value, "");
+    }
+
+    {
+      auto view = vccc::views::iota(1, 20)
+                | vccc::views::transform([](int x) { return x % 5; });
+      auto splitts = vccc::views::split(view, 0); // (2)
+
+      auto it = splitts.begin();
+      TEST_ENSURES(vccc::ranges::equal(*it++, {1, 2, 3, 4}));
+      TEST_ENSURES(vccc::ranges::equal(*it++, {1, 2, 3, 4}));
+      TEST_ENSURES(vccc::ranges::equal(*it++, {1, 2, 3, 4}));
+      TEST_ENSURES(vccc::ranges::equal(*it++, {1, 2, 3, 4}));
+      TEST_ENSURES(it == splitts.end());
+
+      for (const auto& split : splitts) {
+        std::cout << "{ ";
+        vccc::ranges::copy(split, std::ostream_iterator<int>(std::cout, " "));
+        std::cout << "} ";
+      }
+      std::cout << '\n';
+    }
+
+    {
+      const std::vector<int> nums{1, -1, -1, 2, 3, -1, -1, 4, 5, 6};
+      const std::array<int, 2> delim{-1, -1};
+      auto splitter = vccc::views::split(nums, delim); // (3)
+
+      auto it = splitter.begin();
+      TEST_ENSURES(vccc::ranges::equal(*it++, {1}));
+      TEST_ENSURES(vccc::ranges::equal(*it++, {2, 3}));
+      TEST_ENSURES(vccc::ranges::equal(*it++, {4, 5, 6}));
+      TEST_ENSURES(it == splitter.end());
+
+      for (const auto& split : splitter) {
+        std::cout << "{ ";
+        vccc::ranges::copy(split, std::ostream_iterator<int>(std::cout, " "));
+        std::cout << "} ";
+      }
+      std::cout << '\n';
+    }
+
+    {
+      const vccc::string_view JupiterMoons{"Callisto, Europa, Ganymede, Io, and 91 more"};
+      const vccc::string_view delim{", "};
+      auto moons_extractor = vccc::ranges::make_split_view(JupiterMoons, delim); // (3)
+      auto is_moon = vccc::views::filter([](auto str) {
+          return std::isupper(str[0]);
+      });
+
+      auto splitted = moons_extractor | is_moon;
+      auto it = splitted.begin();
+      TEST_ENSURES(vccc::ranges::equal(*it++, "Callisto"_sv));
+      TEST_ENSURES(vccc::ranges::equal(*it++, "Europa"_sv));
+      TEST_ENSURES(vccc::ranges::equal(*it++, "Ganymede"_sv));
+      TEST_ENSURES(vccc::ranges::equal(*it++, "Io"_sv));
+      TEST_ENSURES(it == (moons_extractor | is_moon).end());
+
+      std::cout << "Some moons of Jupiter: ";
+      for (const auto moon : moons_extractor | is_moon)
+        std::cout << vccc::string_view(moon) << ' ';
+      std::cout << '\n';
+    }
+
+    {
+      constexpr auto words{"Hello^_^C++^_^20^_^!"_sv};
+      constexpr auto delim{"^_^"_sv};
+
+      auto splitted = vccc::views::split(words, delim);
+      auto it = splitted.begin();
+      TEST_ENSURES(vccc::ranges::equal(*it++, "Hello"_sv));
+      TEST_ENSURES(vccc::ranges::equal(*it++, "C++"_sv));
+      TEST_ENSURES(vccc::ranges::equal(*it++, "20"_sv));
+      TEST_ENSURES(vccc::ranges::equal(*it++, "!"_sv));
+      TEST_ENSURES(it == vccc::views::split(words, delim).end());
+
+      for (const auto word : vccc::views::split(words, delim))
+          std::cout << std::quoted(std::string(vccc::string_view(word))) << ' ';
+      std::cout << '\n';
+    }
+
+    {
+      const vccc::string_view keywords{"this throw true try typedef typeid"};
+      const std::vector<vccc::string_view> splitted{"this", "throw", "true", "try", "typedef", "typeid"};
+
+      auto split_view = vccc::ranges::make_split_view(keywords, ' ');
+      TEST_ENSURES(vccc::ranges::equal(split_view, splitted, vccc::ranges::equal_to{}, [](const auto& sub) { return vccc::string_view{sub}; }));
+
+      std::cout << "base() = " << std::quoted(std::string(split_view.base())) << "\n"
+                   "substrings: ";
+      for (auto split : split_view)
+        std::cout << std::quoted(std::string(vccc::string_view{split})) << ' ';
+      std::cout << '\n';
+    }
+
+    {
+      const vccc::string_view keywords{"bitand bitor bool break"};
+      auto kw = vccc::ranges::make_split_view(keywords, ' ');
+      const auto count = vccc::ranges::distance(kw.begin(), kw.end());
+      std::cout << "Words count: " << count << '\n';
+      TEST_ENSURES(count == 4);
+    }
   }
 
   return TEST_RETURN_RESULT;

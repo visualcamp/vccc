@@ -12,6 +12,7 @@ VCCC_TEST(span_test span_test.cpp VCCC)
 VCCC_TEST(string_view_test string_view_test.cpp VCCC)
 VCCC_TEST(tuple_test tuple_test.cpp VCCC)
 VCCC_TEST(type_traits_test type_traits_test.cpp VCCC)
+VCCC_TEST(variant_test variant_test.cpp VCCC)
 
 VCCC_TEST_ONE_CXX(directory_test directory_test.cc 17 VCCC)
 VCCC_TEST(log_test log_test.cpp VCCC)

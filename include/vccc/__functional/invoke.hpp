@@ -12,7 +12,15 @@
 # include "vccc/__type_traits/is_invocable.hpp"
 
 namespace vccc {
+namespace detail {
 
+template<typename R, typename F, typename... Args>
+constexpr void invoke_r_impl(std::true_type /* is_void */, F&& f, Args&&... args);
+
+template<typename R, typename F, typename... Args>
+constexpr R invoke_r_impl(std::false_type /* is_void */, F&& f, Args&&... args);
+
+} // namespace detail
 
 /**
 @addtogroup functional
@@ -43,13 +51,26 @@ constexpr std::enable_if_t<is_invocable_r<R, F, Args...>::value, R>
 invoke_r(F&& f, Args&&... args)
 noexcept(is_nothrow_invocable_r<R, F, Args...>::value)
 {
-  return detail::INVOKE<R>(std::forward<F>(f), std::forward<Args>(args)...);
+  return vccc::detail::invoke_r_impl<R>(std::is_void<R>{}, std::forward<F>(f), std::forward<Args>(args)...);
 }
 /// @}
 
 
 /// @}
+///
+namespace detail {
 
+template<typename R, typename F, typename... Args>
+constexpr void invoke_r_impl(std::true_type /* is_void */, F&& f, Args&&... args) {
+  static_cast<void>(detail::INVOKE(std::forward<F>(f), std::forward<Args>(args)...));
+}
+
+template<typename R, typename F, typename... Args>
+constexpr R invoke_r_impl(std::false_type /* is_void */, F&& f, Args&&... args) {
+  return detail::INVOKE(std::forward<F>(f), std::forward<Args>(args)...);
+}
+
+} // namespace detail
 } // namespace vccc
 
 #endif // VCCC_FUNCTIONAL_INVOKE_HPP

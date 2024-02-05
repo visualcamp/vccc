@@ -6,10 +6,14 @@
 # define VCCC_FUNCTIONAL_FUNCTIONAL_HPP
 #
 # include "vccc/__functional/equal_to.hpp"
+# include "vccc/__functional/greater.hpp"
+# include "vccc/__functional/greater_equal.hpp"
 # include "vccc/__functional/hash_array.hpp"
 # include "vccc/__functional/identity.hpp"
 # include "vccc/__functional/invoke.hpp"
 # include "vccc/__functional/less.hpp"
+# include "vccc/__functional/less_equal.hpp"
+# include "vccc/__functional/not_equal_to.hpp"
 
 /**
 @defgroup functional functional
