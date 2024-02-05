@@ -475,6 +475,7 @@ struct variant_base {
     auto& x = variant_raw_get(union_, in_place_index<I>);
     using T = remove_cvref_t<decltype(x)>;
     x.~T();
+    index_ = variant_npos;
   }
 
   union_wrapper<Types...>& storage() & { return union_; }
