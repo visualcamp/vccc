@@ -475,6 +475,7 @@ struct variant_base {
     auto& x = variant_raw_get(union_, in_place_index<I>);
     using T = remove_cvref_t<decltype(x)>;
     x.~T();
+    index_ = variant_npos;
   }
 
   union_wrapper<Types...>& storage() & { return union_; }
@@ -580,6 +581,8 @@ constexpr decltype(auto) visit_single(Visitor&& vis, Variant&& var);
 template<typename R, typename Visitor, typename Variant>
 constexpr R visit_single(Visitor&& vis, Variant&& var);
 
+struct variant_valueless_ctor {};
+
 } // namespace detail
 
 template<typename... Types>
@@ -592,6 +595,9 @@ class variant : private detail::variant_control_smf<Types...> {
   static_assert(disjunction<std::is_array<Types>...>::value == false, "Type must not be an array");
   static_assert(disjunction<std::is_reference<Types>...>::value == false, "Type must not be a reference");
   static_assert(disjunction<std::is_void<Types>...>::value == false, "Type must not be a void");
+
+  constexpr explicit variant(detail::variant_valueless_ctor) noexcept
+      : base() {}
 
   template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
       std::is_default_constructible<type_sequence_element_type_t<0, TypeSeq>>
