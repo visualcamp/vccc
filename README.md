@@ -11,7 +11,8 @@
 # VisualCamp Common C++ library
 ## Features
 * C++14 concepts library (up to C++23 standard)
-* C++14 ranges library (up to C++23 standard)
+* C++14 ranges library (up to C++26 standard)
+* C++14 variant, optional, span, ... (up to C++26 standard)
 * Compatible with existing STL
 
 ## Examples
