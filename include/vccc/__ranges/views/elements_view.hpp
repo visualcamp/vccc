@@ -103,6 +103,15 @@ class elements_view : public view_interface<elements_view<V, N>> {
     using Base = std::conditional_t<Const, const V, V>;
     template<bool> friend class sentinel;
 
+    template<typename Ref, bool = std::is_reference<Ref>::value /* true */>
+    struct iterator_reference {
+      using type = decltype(std::get<N>(*std::declval<iterator_t<Base>&>()));
+    };
+    template<typename Ref>
+    struct iterator_reference<Ref, false> {
+      using type = std::remove_cv_t<std::tuple_element_t<N, Ref>>;
+    };
+
    public:
     using iterator_concept =
         std::conditional_t<
@@ -117,7 +126,7 @@ class elements_view : public view_interface<elements_view<V, N>> {
     using difference_type = range_difference_t<Base>;
 #if __cplusplus < 202002L
     using pointer = void;
-    using reference = void;
+    using reference = typename iterator_reference<range_reference_t<Base>>::type;
 #endif
 
     iterator() = default;

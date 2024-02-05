@@ -134,7 +134,7 @@ class filter_view : public view_interface<filter_view<V, Pred>>, detail::filter_
     using difference_type = range_difference_t<V>;
 #if __cplusplus < 202002L
     using pointer = void;
-    using reference = void;
+    using reference = range_reference_t<V>;
 #endif
 
     iterator() = default;
