@@ -107,7 +107,7 @@ int Test() {
     };
 
     variant<int, std::string> a{2017};
-    const variant<int, std::string> b{"CppCon"};
+    variant<int, std::string> b{"CppCon"};
 
     TEST_ENSURES(a.visit(int_visitor{}) == 2017);
     visit(int_visitor{}, b);
