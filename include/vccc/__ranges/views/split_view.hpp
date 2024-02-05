@@ -74,7 +74,7 @@ class split_view : public view_interface<split_view<V, Pattern>> {
     using difference_type = range_difference_t<V>;
 #if __cplusplus < 202002L
     using pointer = void;
-    using reference = void;
+    using reference = value_type;
 #endif
 
     iterator() = default;
@@ -86,6 +86,7 @@ class split_view : public view_interface<split_view<V, Pattern>> {
       return cur_;
     }
 
+    // TODO: inspect
     constexpr value_type operator*() const {
       return {cur_, next_.begin()};
     }

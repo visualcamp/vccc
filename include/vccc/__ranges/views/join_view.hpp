@@ -130,7 +130,7 @@ class join_view : public view_interface<join_view<V>> {
     using difference_type = common_type_t<range_difference_t<Base>, range_difference_t<range_reference_t<Base>>>;
 #if __cplusplus < 202002L
     using pointer = void;
-    using reference = void;
+    using reference = decltype(**std::declval<movable_box<InnerIter>&>());
 #endif
 
     template<typename O = OuterIter, std::enable_if_t<conjunction<

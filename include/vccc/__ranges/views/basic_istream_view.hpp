@@ -49,7 +49,7 @@ class basic_istream_view : public view_interface<basic_istream_view<Val, CharT, 
 #if __cplusplus < 202002L
     using iterator_category = iterator_ignore;
     using pointer = void;
-    using reference = void;
+    using reference = Val&;
 #endif
 
     constexpr explicit iterator(basic_istream_view& parent)
