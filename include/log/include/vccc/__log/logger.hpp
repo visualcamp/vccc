@@ -97,11 +97,14 @@ class Logger {
  */
 constexpr Logger Log;
 
-/// @defgroup log_log_macro__macro__Logging_macros LOGD, LOGI, LOGW, LOGE
+/// @defgroup log_log_macro__macro__Logging_macros LOGD, LOGI, LOGID, LOGW, LOGWD, LOGE, LOGED
 /// @{
 
 # ifdef NDEBUG
 # define LOGD(...)
+# define LOGID(...)
+# define LOGWD(...)
+# define LOGED(...)
 #else
 /**
  *
@@ -119,10 +122,13 @@ Below example applies to LOGI, LOGW, LOGE
 
 /** @brief Information log wrapper **/
 # define LOGI(...) ::vccc::Log.i(__VA_ARGS__)
+# define LOGID(...) ::vccc::Log.i(__VA_ARGS__)
 /** @brief Warning log wrapper **/
 # define LOGW(...) ::vccc::Log.w(__VA_ARGS__)
+# define LOGWD(...) ::vccc::Log.w(__VA_ARGS__)
 /** @brief Error log wrapper **/
 # define LOGE(...) ::vccc::Log.e(__VA_ARGS__)
+# define LOGED(...) ::vccc::Log.e(__VA_ARGS__)
 /// @}
 
 //! @} log
