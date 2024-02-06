@@ -118,17 +118,17 @@ Below example applies to LOGI, LOGW, LOGE
 @endcode
  */
 # define LOGD(...) ::vccc::Log.d(__VA_ARGS__)
+# define LOGID(...) ::vccc::Log.i(__VA_ARGS__)
+# define LOGWD(...) ::vccc::Log.w(__VA_ARGS__)
+# define LOGED(...) ::vccc::Log.e(__VA_ARGS__)
 # endif
 
 /** @brief Information log wrapper **/
 # define LOGI(...) ::vccc::Log.i(__VA_ARGS__)
-# define LOGID(...) ::vccc::Log.i(__VA_ARGS__)
 /** @brief Warning log wrapper **/
 # define LOGW(...) ::vccc::Log.w(__VA_ARGS__)
-# define LOGWD(...) ::vccc::Log.w(__VA_ARGS__)
 /** @brief Error log wrapper **/
 # define LOGE(...) ::vccc::Log.e(__VA_ARGS__)
-# define LOGED(...) ::vccc::Log.e(__VA_ARGS__)
 /// @}
 
 //! @} log
