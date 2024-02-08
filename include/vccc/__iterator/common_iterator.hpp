@@ -374,4 +374,8 @@ struct detail::is_primary_iterator_traits< cxx20_iterator_traits<common_iterator
 
 } // namespace vccc
 
+template<typename I, typename S>
+struct std::iterator_traits<::vccc::common_iterator<I, S>>
+    : ::vccc::cxx20_iterator_traits<::vccc::common_iterator<I, S>> {};
+
 #endif // VCCC_ITERATOR_COMMON_ITERATOR_HPP_
