@@ -45,6 +45,7 @@
 #include "vccc/__ranges/range_value_t.hpp"
 #include "vccc/__ranges/rbegin.hpp"
 #include "vccc/__ranges/ref_view.hpp"
+#include "vccc/__ranges/rend.hpp"
 #include "vccc/__ranges/size.hpp"
 #include "vccc/__ranges/sized_range.hpp"
 #include "vccc/__ranges/ssize.hpp"

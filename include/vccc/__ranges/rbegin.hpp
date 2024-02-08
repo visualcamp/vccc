@@ -8,6 +8,7 @@
 #include <iterator>
 #include <type_traits>
 
+#include "vccc/__core/decay_copy.hpp"
 #include "vccc/__core/inline_or_static.hpp"
 #include "vccc/__iterator/input_or_output_iterator.hpp"
 #include "vccc/__iterator/forward_iterator.hpp"
@@ -15,7 +16,6 @@
 #include "vccc/__ranges/detail/not_incomplete_array.hpp"
 #include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__ranges/end.hpp"
-#include "vccc/__core/decay_copy.hpp"
 #include "vccc/__type_traits/bool_constant.hpp"
 #include "vccc/__type_traits/detail/tag.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
