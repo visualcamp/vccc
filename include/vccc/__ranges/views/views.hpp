@@ -30,6 +30,7 @@
 #include "vccc/__ranges/views/keys_view.hpp"
 #include "vccc/__ranges/views/repeat.hpp"
 #include "vccc/__ranges/views/repeat_view.hpp"
+#include "vccc/__ranges/views/reverse_view.hpp"
 #include "vccc/__ranges/views/single.hpp"
 #include "vccc/__ranges/views/split.hpp"
 #include "vccc/__ranges/views/split_view.hpp"
