@@ -980,5 +980,27 @@ int main() {
     }
   }
 
+  { // ranges::common_view, views::common
+    std::cout << "Line " << __LINE__ << ", ranges::common_view, views::common: \n";
+
+    static constexpr auto il = {3, 1, 4, 1, 5, 9};
+
+    auto rv = vccc::ranges::make_reverse_view(il);
+    for (int i : rv)
+      std::cout << i << ' ';
+    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(rv, {9, 5, 1, 4, 1, 3})));
+    
+    for (int i : il | vccc::views::reverse)
+      std::cout << i << ' ';
+    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(il | vccc::views::reverse, {9, 5, 1, 4, 1, 3})));
+
+    // operator[] is inherited from std::view_interface
+    for (auto i{0U}; i != rv.size(); ++i)
+      std::cout << rv[i] << ' ';
+    std::cout << '\n';
+  }
+
   return TEST_RETURN_RESULT;
 }
