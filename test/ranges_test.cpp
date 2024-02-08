@@ -974,7 +974,6 @@ int main() {
       // constexpr auto common2 { take3 | vccc::views::common };
       // static_assert(common2.size() == 3);
 
-      using namespace vccc::literals;
       constexpr static auto v2 = { "∧"_sv, "∨"_sv, "∃"_sv, "∀"_sv };
       TEST_ENSURES(vccc::ranges::views::common(v2).size() == 4);
     }
@@ -990,7 +989,7 @@ int main() {
       std::cout << i << ' ';
     std::cout << '\n';
     TEST_ENSURES((vccc::ranges::equal(rv, {9, 5, 1, 4, 1, 3})));
-    
+
     for (int i : il | vccc::views::reverse)
       std::cout << i << ' ';
     std::cout << '\n';
