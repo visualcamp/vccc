@@ -1,17 +1,17 @@
 //
-// Created by yonggyulee on 2023/12/24.
+// Created by yonggyulee on 2024/02/08.
 //
 
 #ifndef VCCC_RANGES_RBEGIN_HPP_
 #define VCCC_RANGES_RBEGIN_HPP_
 
-#include <cstddef>
 #include <iterator>
 #include <type_traits>
 
 #include "vccc/__core/inline_or_static.hpp"
 #include "vccc/__iterator/forward_iterator.hpp"
 #include "vccc/__ranges/common_range.hpp"
+#include "vccc/__ranges/detail/not_incomplete_array.hpp"
 #include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__ranges/end.hpp"
 #include "vccc/__core/decay_copy.hpp"
@@ -69,6 +69,7 @@ struct rbegin_niebloid {
 
  public:
   template<typename T, std::enable_if_t<disjunction<
+      vccc::detail::not_incomplete_array<T>,
       std::is_lvalue_reference<std::remove_cv_t<T>>,
       enable_borrowed_range<std::remove_cv_t<T>>,
       bool_constant<(rbegin_tag<T>::value > 0)>
