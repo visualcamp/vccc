@@ -68,10 +68,12 @@ struct rbegin_niebloid {
   }
 
  public:
-  template<typename T, std::enable_if_t<disjunction<
+  template<typename T, std::enable_if_t<conjunction<
       vccc::detail::not_incomplete_array<T>,
-      std::is_lvalue_reference<std::remove_cv_t<T>>,
-      enable_borrowed_range<std::remove_cv_t<T>>,
+      disjunction<
+        std::is_lvalue_reference<std::remove_cv_t<T>>,
+        enable_borrowed_range<std::remove_cv_t<T>>
+      >,
       bool_constant<(rbegin_tag<T>::value > 0)>
   >::value, int> = 0>
   constexpr auto operator()(T&& t) const {
