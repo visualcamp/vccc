@@ -13,7 +13,7 @@
 namespace vccc {
 namespace detail {
 
-template<typename T, bool = remove_cvref_t<T>::value /* false */>
+template<typename T, bool = std::is_array<remove_cvref_t<T>>::value /* false */>
 struct not_incomplete_array : std::true_type {};
 
 template<typename T>
