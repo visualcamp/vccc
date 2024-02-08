@@ -89,12 +89,7 @@ struct take_niebloid {
     using category = return_category<0>;
   };
 
-  template<typename T>
-  struct is_subrange : std::false_type {};
-  template<typename I, typename S, subrange_kind K>
-  struct is_subrange<subrange<I, S, K>> : std::true_type {};
-
-  template<typename T, bool = is_subrange<T>::value /* true */>
+  template<typename T, bool = ranges::detail::is_subrange<T>::value /* true */>
   struct return_category_subrange : std::true_type {
     using category = return_category<2, subrange<iterator_t<T>>>;
   };
