@@ -9,6 +9,7 @@
 #include <type_traits>
 
 #include "vccc/__core/inline_or_static.hpp"
+#include "vccc/__iterator/input_or_output_iterator.hpp"
 #include "vccc/__iterator/forward_iterator.hpp"
 #include "vccc/__ranges/common_range.hpp"
 #include "vccc/__ranges/detail/not_incomplete_array.hpp"
