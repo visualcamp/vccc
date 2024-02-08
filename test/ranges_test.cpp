@@ -10,6 +10,7 @@
 #include <iterator>
 #include <list>
 #include <map>
+#include <numeric>
 #include <string>
 #include <tuple>
 #include <type_traits>
@@ -851,6 +852,94 @@ int main() {
       const auto count = vccc::ranges::distance(kw.begin(), kw.end());
       std::cout << "Words count: " << count << '\n';
       TEST_ENSURES(count == 4);
+    }
+  }
+
+  { // common_view, common
+    {
+      auto v1 = {1, 2, 3, 4, 5};
+      auto i1 = vccc::counted_iterator<decltype(v1)::iterator>{v1.begin(), vccc::ssize(v1)};
+      auto r1 = vccc::ranges::subrange<decltype(i1), vccc::default_sentinel_t>{i1, vccc::default_sentinel};
+      //  auto e1 = std::accumulate(r1.begin(), r1.end(), 0); // error: "common range" required
+      auto c1 = vccc::ranges::make_common_view(r1);
+      TEST_ENSURES((std::accumulate(c1.begin(), c1.end(), 0) == 15));
+      //
+      // // inherited from ranges::view_interface:
+      TEST_ENSURES(c1.front() == 1);
+      TEST_ENSURES(c1.back() == 5);
+      std::cout << "c1.data(): " << c1.data() << '\n';
+      TEST_ENSURES(c1[0] == 1);
+
+      auto v2 = std::list<int>{1, 2, 3, 4, 5};
+      auto i2 = vccc::counted_iterator<decltype(v2)::iterator>{v2.begin(), vccc::ssize(v2)};
+      auto r2 = vccc::ranges::subrange<decltype(i2), vccc::default_sentinel_t>{i2, vccc::default_sentinel};
+      //  auto e2 = std::accumulate(r2.begin(), r2.end(), 0); // error: "common range" required
+      auto c2 = vccc::ranges::make_common_view(r2);
+      TEST_ENSURES((std::accumulate(c2.begin(), c2.end(), 0) == 15));
+
+      // inherited from ranges::view_interface:
+      std::cout << "c2.front(): " << c2.front() << '\n';
+      TEST_ENSURES(c2.front() == 1);
+      //  auto e3 = c2.back(); // error: "bidirectional range" required
+      //  auto e4 = c2.data(); // error: "contiguous range" required
+      //  auto e5 = c2[0];     // error: "random access range" required
+    }
+
+    {
+      std::string str { "C++20" };
+      auto view = vccc::views::common(str);
+
+      std::string copy_of_str = view.base();
+      TEST_ENSURES(copy_of_str == "C++20");
+      TEST_ENSURES(view.base() == "C++20");
+
+      std::string move_str = std::move(view.base());
+      TEST_ENSURES(move_str == "C++20");
+      TEST_ENSURES(view.base() == vccc::string_view{});
+    }
+
+    {
+      constexpr auto common = vccc::views::iota(1)
+                          | vccc::views::take(3)
+                          | vccc::views::common
+                          ;
+      int i = 0;
+      auto first = common.begin(), last = common.end();
+      for (int e : common)
+        std::cout << (i++ ? " + " : "") << e;
+
+      std::cout << " = " << std::accumulate(common.begin(), common.end(), 0) << '\n';
+      TEST_ENSURES((std::accumulate(common.begin(), common.end(), 0) == 6));
+    }
+
+    {
+      constexpr int n{4};
+
+      constexpr auto v1 = vccc::views::iota(1)
+                        | vccc::views::take(n)
+                        | vccc::views::common
+                        ;
+      constexpr auto v2 = vccc::views::iota(2)
+                        | vccc::views::take(n)
+                        ;
+      const int product = std::inner_product(v1.begin(), v1.end(),
+                                             v2.begin(),
+                                             0);
+      TEST_ENSURES(product == 40);
+    }
+
+    {
+      constexpr static auto v1 = {1, 2, 3, 4, 5};
+      constexpr auto common1 { v1 | vccc::views::common };
+      TEST_ENSURES(common1.size() == 5);
+
+      // constexpr auto take3 { v1 | vccc::views::reverse | vccc::views::take(3) };
+      // constexpr auto common2 { take3 | vccc::views::common };
+      // static_assert(common2.size() == 3);
+
+      using namespace vccc::literals;
+      constexpr static auto v2 = { "∧"_sv, "∨"_sv, "∃"_sv, "∀"_sv };
+      TEST_ENSURES(vccc::ranges::views::common(v2).size() == 4);
     }
   }
 
