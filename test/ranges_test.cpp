@@ -123,7 +123,7 @@ int main() {
     vccc::ranges::swap(d1, d2);
   }
 
-  {
+  { // ranges::size
     int array[] = {1, 2, 3};
     std::vector<int> v = {4, 5, 6};
     auto il = {7};
@@ -142,7 +142,7 @@ int main() {
   }
 
 
-  {
+  { // ranges::empty
     int array[] = {1, 2, 3};
     std::vector<int> v = {4, 5, 6};
     auto il = {7};
@@ -158,7 +158,33 @@ int main() {
     vccc::ranges::empty(i);
   }
 
-  {
+  { // ranges::rbegin
+    std::cout << "Line " << __LINE__ << ", ranges::rbegin: \n";
+
+    std::vector<int> v = {3, 1, 4};
+    auto vi = vccc::ranges::rbegin(v);
+    TEST_ENSURES(*vi == 4);
+    *vi = 42; // OK
+    TEST_ENSURES(v.back() == 42);
+
+    int a[] = {-5, 10, 15};
+    auto ai = vccc::ranges::rbegin(a);
+    TEST_ENSURES(*ai == 15);
+    *ai = 42; // OK
+    TEST_ENSURES(a[2] == 42);
+
+    // auto x_x = std::ranges::rbegin(std::vector{6, 6, 6});
+    // ill-formed: the argument is an rvalue (see Notes ↑)
+
+    auto si = vccc::ranges::rbegin(vccc::span<int>(a)); // OK
+    static_assert(vccc::ranges::enable_borrowed_range<
+        std::remove_cv_t<decltype(vccc::span<int>(a))>>::value, "");
+    *si = 52; // OK
+    TEST_ENSURES(a[2] == 52);
+  }
+
+  { // ranges::iota_view, views::iota
+    std::cout << "Line " << __LINE__ << ", ranges::iota_view, views::iota: \n";
 
     for (int i : vccc::ranges::iota_view<int, int>{1, 10})
       std::cout << i << ' ';
