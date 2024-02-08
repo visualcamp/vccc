@@ -356,6 +356,11 @@ template<> struct get_subrange<1> {
   }
 };
 
+template<typename T>
+struct is_subrange : std::false_type {};
+template<typename I, typename S, subrange_kind K>
+struct is_subrange<subrange<I, S, K>> : std::true_type {};
+
 } // namespace detail
 
 template<std::size_t N, typename I, typename S, subrange_kind K,
