@@ -183,6 +183,17 @@ int main() {
     TEST_ENSURES(a[2] == 52);
   }
 
+  { // ranges::rend
+    std::cout << "Line " << __LINE__ << ", ranges::rend: \n";
+
+    std::vector<int> v = {3, 1, 4};
+    namespace ranges = vccc::ranges;
+    TEST_ENSURES((ranges::find(ranges::rbegin(v), ranges::rend(v), 5) == ranges::rend(v)));
+
+    int a[] = {5, 10, 15};
+    TEST_ENSURES((ranges::find(ranges::rbegin(a), ranges::rend(a), 5) != ranges::rend(a)));
+  }
+
   { // ranges::iota_view, views::iota
     std::cout << "Line " << __LINE__ << ", ranges::iota_view, views::iota: \n";
 
