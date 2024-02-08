@@ -12,6 +12,7 @@
 #include "vccc/__ranges/views/basic_istream_view.hpp"
 #include "vccc/__ranges/views/cartesian_product.hpp"
 #include "vccc/__ranges/views/cartesian_product_view.hpp"
+#include "vccc/__ranges/views/common.hpp"
 #include "vccc/__ranges/views/common_view.hpp"
 #include "vccc/__ranges/views/counted.hpp"
 #include "vccc/__ranges/views/drop.hpp"
