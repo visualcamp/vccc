@@ -19,6 +19,7 @@
 #include "vccc/__type_traits/bool_constant.hpp"
 #include "vccc/__type_traits/detail/tag.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
+#include "vccc/__type_traits/is_class_or_enum.hpp"
 #include "vccc/__type_traits/remove_cvref.hpp"
 #include "vccc/__type_traits/void_t.hpp"
 
@@ -39,7 +40,7 @@ struct rbegin_niebloid {
   struct rbegin_member_check<T, void_t<decltype(vccc_decay_copy( std::declval<T>().rbegin() )) >>
             : input_or_output_iterator<decltype(vccc_decay_copy( std::declval<T>().rbegin() )) > {};
 
-  template<typename T, bool = disjunction<std::is_class<remove_cvref_t<T>>, std::is_enum<remove_cvref_t<T>>>::value, typename = void>
+  template<typename T, bool = is_class_or_enum<remove_cvref_t<T>>::value, typename = void>
   struct rbegin_global_check : std::false_type {};
   template<typename T>
   struct rbegin_global_check<T, true, void_t<decltype(vccc_decay_copy( rbegin(std::declval<T>()) ))>>
