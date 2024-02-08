@@ -194,14 +194,14 @@ class common_iterator {
     switch (x.var_.index()) {
       case 0:
         switch(y.var_.index()) {
-          case 0: return x.iterator() == y.iterator();
+          case 0: return true;
           case 1: return x.iterator() == y.sentinel();
           default: return false;
         }
       case 1:
         switch(y.var_.index()) {
           case 0: return x.sentinel() == y.iterator();
-          case 1: return x.sentinel() == y.sentinel();
+          case 1: return true;
           default: return false;
         }
       default:
@@ -235,7 +235,7 @@ class common_iterator {
       case 1:
         switch(y.var_.index()) {
           case 0: return x.sentinel() == y.iterator();
-          case 1: return x.sentinel() == y.sentinel();
+          case 1: return true;
           default: return false;
         }
       default:
