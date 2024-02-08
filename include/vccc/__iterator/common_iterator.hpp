@@ -369,6 +369,9 @@ struct cxx20_iterator_traits<common_iterator<I, S>> : detail::common_iterator_ca
   using reference = iter_reference_t<I>;
 };
 
+template<typename I, typename S>
+struct detail::is_primary_iterator_traits< cxx20_iterator_traits<common_iterator<I, S>> > : std::false_type {};
+
 } // namespace vccc
 
 #endif // VCCC_ITERATOR_COMMON_ITERATOR_HPP_
