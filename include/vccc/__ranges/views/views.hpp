@@ -27,6 +27,8 @@
 #include "vccc/__ranges/views/iota_view.hpp"
 #include "vccc/__ranges/views/join.hpp"
 #include "vccc/__ranges/views/join_view.hpp"
+#include "vccc/__ranges/views/join_with.hpp"
+#include "vccc/__ranges/views/join_with_view.hpp"
 #include "vccc/__ranges/views/keys_view.hpp"
 #include "vccc/__ranges/views/repeat.hpp"
 #include "vccc/__ranges/views/repeat_view.hpp"

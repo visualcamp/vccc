@@ -174,7 +174,7 @@ int main() {
     TEST_ENSURES(a[2] == 42);
 
     // auto x_x = std::ranges::rbegin(std::vector{6, 6, 6});
-    // ill-formed: the argument is an rvalue (see Notes ↑)
+    // ill-formed: the argument is an rvalue (see Notes above)
 
     auto si = vccc::ranges::rbegin(vccc::span<int>(a)); // OK
     static_assert(vccc::ranges::enable_borrowed_range<
@@ -974,7 +974,7 @@ int main() {
       constexpr auto common2 { take3 | vccc::views::common };
       static_assert(common2.size() == 3);
 
-      constexpr static auto v2 = { "∧"_sv, "∨"_sv, "∃"_sv, "∀"_sv };
+      constexpr static auto v2 = { "^"_sv, "v"_sv, "<"_sv, ">"_sv };
       TEST_ENSURES(vccc::ranges::views::common(v2).size() == 4);
     }
   }
@@ -999,6 +999,18 @@ int main() {
     for (auto i{0U}; i != rv.size(); ++i)
       std::cout << rv[i] << ' ';
     std::cout << '\n';
+  }
+
+  { // ranges::join_with_view, views::join_with
+    std::cout << "Line " << __LINE__ << ", ranges::join_with_view, views::join_with: \n";
+
+    std::vector<vccc::string_view> v{"This"_sv, "is"_sv, "a"_sv, "test."_sv};
+    auto joined = vccc::views::join_with(v, ' ');
+
+    TEST_ENSURES((vccc::ranges::equal(joined, "This is a test."_sv)));
+    auto s = joined | vccc::ranges::to<std::string>();
+    static_assert(vccc::same_as<std::string, decltype(s)>::value, "");
+    TEST_ENSURES(s == "This is a test.");
   }
 
   return TEST_RETURN_RESULT;
