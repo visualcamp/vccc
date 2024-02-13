@@ -11,8 +11,10 @@
 #include <utility>
 
 #include "vccc/__core/inline_or_static.hpp"
+#include "vccc/__iterator/next.hpp"
 #include "vccc/__ranges/common_range.hpp"
 #include "vccc/__ranges/detail/simple_view.hpp"
+#include "vccc/__ranges/distance.hpp"
 #include "vccc/__ranges/end.hpp"
 #include "vccc/__ranges/range_difference_t.hpp"
 #include "vccc/__ranges/view.hpp"
