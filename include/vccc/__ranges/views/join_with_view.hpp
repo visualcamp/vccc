@@ -70,7 +70,7 @@ template<typename V, typename Pattern, typename Derived>
 class join_with_view_base<V, Pattern, Derived, false> : public view_interface<Derived> {
  protected:
   non_propagating_cache<std::remove_cv_t<range_reference_t<V>>> inner_base_{};
-  non_propagating_cache<iterator_t<V>> outer_it_;
+  non_propagating_cache<iterator_t<V>> outer_it_{};
 };
 
 
