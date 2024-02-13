@@ -1026,7 +1026,7 @@ int main() {
 
     std::vector<int> v1 = {1, 2, 3, 4, 5};
 
-    for (const auto x : vccc::views::concat(v1, vccc::views::iota(100) | vccc::views::common )) {
+    for (const auto x : vccc::views::concat(v1, vccc::views::iota(100) | vccc::views::take(10) | vccc::views::common )) {
       std::cout << x;
     }
     std::cout << '\n';
