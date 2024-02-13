@@ -1013,5 +1013,24 @@ int main() {
     TEST_ENSURES(s == "This is a test.");
   }
 
+  {
+    std::string a = "hello, ";
+    std::vector<char> b = {'w', 'o', 'r', 'l', 'd', '!'};
+
+    auto catted = vccc::views::concat(a, b);
+
+    for (const auto c : catted) {
+      std::cout << c;
+    }
+    std::cout << '\n';
+
+    std::vector<int> v1 = {1, 2, 3, 4, 5};
+
+    for (const auto x : vccc::views::concat(v1, vccc::views::iota(100) )) {
+      std::cout << x;
+    }
+    std::cout << '\n';
+  }
+
   return TEST_RETURN_RESULT;
 }
