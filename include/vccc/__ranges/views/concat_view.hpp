@@ -80,10 +80,8 @@ struct concat_view : view_interface<concat_view<Rngs...>> {
         >>>;
     using value_type = common_type_t<range_value_t<detail::maybe_const<IsConst, Rngs>>...>;
     using difference_type = common_type_t<range_difference_t<Rngs>...>;
-#if __cplusplus < 202002L
     using reference = common_reference_t<range_reference_t<detail::maybe_const<IsConst, Rngs>>...>;
     using pointer = void;
-#endif
 
    private:
     friend struct iterator<!IsConst>;
@@ -243,7 +241,7 @@ struct concat_view : view_interface<concat_view<Rngs...>> {
       , its_(std::move(that.its_)) {}
 
     constexpr decltype(auto) operator*() const {
-      return its_.visit([](auto&& it) -> reference { return *it; });
+      return its_.visit([](auto&& it) -> iterator::reference { return *it; });
     }
 
     template<typename V = variant<iterator_t<detail::maybe_const<IsConst, Rngs>>...>, std::enable_if_t<
