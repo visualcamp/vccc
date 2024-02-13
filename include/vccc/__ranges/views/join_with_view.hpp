@@ -57,8 +57,8 @@ class join_with_view_base : public view_interface<Derived> {
   struct cache_wrapper {
     template <typename I>
     constexpr cache_wrapper(const I& i) noexcept(
-      noexcept(static_cast<decltype(val)>(*i)))
-      : val(*i) {}
+        std::is_nothrow_constructible<non_propagating_cache<cache_wrapper>, decltype(*i)>::value)
+        : val(*i) {}
 
     std::remove_cv_t<range_reference_t<V>> val;
   };

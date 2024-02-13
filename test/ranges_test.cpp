@@ -972,7 +972,7 @@ int main() {
 
       constexpr auto take3 { v1 | vccc::views::reverse | vccc::views::take(3) };
       constexpr auto common2 { take3 | vccc::views::common };
-      static_assert(common2.size() == 3);
+      static_assert(common2.size() == 3, "");
 
       constexpr static auto v2 = { "^"_sv, "v"_sv, "<"_sv, ">"_sv };
       TEST_ENSURES(vccc::ranges::views::common(v2).size() == 4);
