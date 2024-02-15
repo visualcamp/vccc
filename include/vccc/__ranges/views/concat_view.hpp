@@ -29,8 +29,7 @@ namespace vccc {
 namespace ranges {
 
 template<typename... Rngs>
-struct concat_view : view_interface<concat_view<Rngs...>> {
- private:
+class concat_view : view_interface<concat_view<Rngs...>> {
   using difference_type_ = common_type_t<range_difference_t<Rngs>...>;
   using BackBase = typename type_sequence<Rngs...>::back;
 
