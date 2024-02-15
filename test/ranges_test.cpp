@@ -123,7 +123,7 @@ int main() {
     vccc::ranges::swap(d1, d2);
   }
 
-  {
+  { // ranges::size
     int array[] = {1, 2, 3};
     std::vector<int> v = {4, 5, 6};
     auto il = {7};
@@ -142,7 +142,7 @@ int main() {
   }
 
 
-  {
+  { // ranges::empty
     int array[] = {1, 2, 3};
     std::vector<int> v = {4, 5, 6};
     auto il = {7};
@@ -158,7 +158,44 @@ int main() {
     vccc::ranges::empty(i);
   }
 
-  {
+  { // ranges::rbegin
+    std::cout << "Line " << __LINE__ << ", ranges::rbegin: \n";
+
+    std::vector<int> v = {3, 1, 4};
+    auto vi = vccc::ranges::rbegin(v);
+    TEST_ENSURES(*vi == 4);
+    *vi = 42; // OK
+    TEST_ENSURES(v.back() == 42);
+
+    int a[] = {-5, 10, 15};
+    auto ai = vccc::ranges::rbegin(a);
+    TEST_ENSURES(*ai == 15);
+    *ai = 42; // OK
+    TEST_ENSURES(a[2] == 42);
+
+    // auto x_x = std::ranges::rbegin(std::vector{6, 6, 6});
+    // ill-formed: the argument is an rvalue (see Notes above)
+
+    auto si = vccc::ranges::rbegin(vccc::span<int>(a)); // OK
+    static_assert(vccc::ranges::enable_borrowed_range<
+        std::remove_cv_t<decltype(vccc::span<int>(a))>>::value, "");
+    *si = 52; // OK
+    TEST_ENSURES(a[2] == 52);
+  }
+
+  { // ranges::rend
+    std::cout << "Line " << __LINE__ << ", ranges::rend: \n";
+
+    std::vector<int> v = {3, 1, 4};
+    namespace ranges = vccc::ranges;
+    TEST_ENSURES((ranges::find(ranges::rbegin(v), ranges::rend(v), 5) == ranges::rend(v)));
+
+    int a[] = {5, 10, 15};
+    TEST_ENSURES((ranges::find(ranges::rbegin(a), ranges::rend(a), 5) != ranges::rend(a)));
+  }
+
+  { // ranges::iota_view, views::iota
+    std::cout << "Line " << __LINE__ << ", ranges::iota_view, views::iota: \n";
 
     for (int i : vccc::ranges::iota_view<int, int>{1, 10})
       std::cout << i << ' ';
@@ -752,6 +789,15 @@ int main() {
       static_assert(std::is_same<
           decltype(w2),
           vccc::ranges::split_view<vccc::string_view, vccc::ranges::single_view<char>> >::value, "");
+
+      std::string s = "path/to/my/file.foo.bar";
+
+      auto splitted = s | vccc::views::split('/') | vccc::ranges::to<std::vector<std::string>>();
+      TEST_ENSURES(splitted.size() == 4);
+      TEST_ENSURES(splitted[0] == "path");
+      TEST_ENSURES(splitted[1] == "to");
+      TEST_ENSURES(splitted[2] == "my");
+      TEST_ENSURES(splitted[3] == "file.foo.bar");
     }
 
     {
@@ -933,14 +979,66 @@ int main() {
       constexpr auto common1 { v1 | vccc::views::common };
       TEST_ENSURES(common1.size() == 5);
 
-      // constexpr auto take3 { v1 | vccc::views::reverse | vccc::views::take(3) };
-      // constexpr auto common2 { take3 | vccc::views::common };
-      // static_assert(common2.size() == 3);
+      constexpr auto take3 { v1 | vccc::views::reverse | vccc::views::take(3) };
+      constexpr auto common2 { take3 | vccc::views::common };
+      static_assert(common2.size() == 3, "");
 
-      using namespace vccc::literals;
-      constexpr static auto v2 = { "∧"_sv, "∨"_sv, "∃"_sv, "∀"_sv };
+      constexpr static auto v2 = { "^"_sv, "v"_sv, "<"_sv, ">"_sv };
       TEST_ENSURES(vccc::ranges::views::common(v2).size() == 4);
     }
+  }
+
+  { // ranges::common_view, views::common
+    std::cout << "Line " << __LINE__ << ", ranges::common_view, views::common: \n";
+
+    static constexpr auto il = {3, 1, 4, 1, 5, 9};
+
+    auto rv = vccc::ranges::make_reverse_view(il);
+    for (int i : rv)
+      std::cout << i << ' ';
+    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(rv, {9, 5, 1, 4, 1, 3})));
+
+    for (int i : il | vccc::views::reverse)
+      std::cout << i << ' ';
+    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(il | vccc::views::reverse, {9, 5, 1, 4, 1, 3})));
+
+    // operator[] is inherited from std::view_interface
+    for (auto i{0U}; i != rv.size(); ++i)
+      std::cout << rv[i] << ' ';
+    std::cout << '\n';
+  }
+
+  { // ranges::join_with_view, views::join_with
+    std::cout << "Line " << __LINE__ << ", ranges::join_with_view, views::join_with: \n";
+
+    std::vector<vccc::string_view> v{"This"_sv, "is"_sv, "a"_sv, "test."_sv};
+    auto joined = vccc::views::join_with(v, ' ');
+
+    TEST_ENSURES((vccc::ranges::equal(joined, "This is a test."_sv)));
+    auto s = joined | vccc::ranges::to<std::string>();
+    static_assert(vccc::same_as<std::string, decltype(s)>::value, "");
+    TEST_ENSURES(s == "This is a test.");
+  }
+
+  {
+    std::string a = "hello, ";
+    std::vector<char> b = {'w', 'o', 'r', 'l', 'd', '!'};
+
+    auto catted = vccc::views::concat(a, b);
+
+    for (const auto c : catted) {
+      std::cout << c;
+    }
+    std::cout << '\n';
+
+    std::vector<int> v1 = {1, 2, 3, 4, 5};
+
+    for (const auto x : vccc::views::concat(v1, vccc::views::iota(100) | vccc::views::take(10) | vccc::views::common )) {
+      std::cout << x;
+    }
+    std::cout << '\n';
   }
 
   return TEST_RETURN_RESULT;

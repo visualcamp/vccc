@@ -19,6 +19,7 @@
 #include "vccc/__type_traits/disjunction.hpp"
 #include "vccc/__type_traits/negation.hpp"
 #include "vccc/__type_traits/remove_cvref.hpp"
+#include "vccc/__type_traits/is_class_or_enum.hpp"
 
 namespace vccc {
 namespace ranges {
@@ -34,8 +35,8 @@ template<typename T, typename U>
 constexpr auto test_iter_swap(...) -> std::false_type;
 
 template<typename T, typename U, bool = disjunction<
-    std::is_class<remove_cvref_t<T>>, std::is_enum<remove_cvref_t<T>>,
-    std::is_class<remove_cvref_t<U>>, std::is_enum<remove_cvref_t<U>>
+    is_class_or_enum<remove_cvref_t<T>>,
+    is_class_or_enum<remove_cvref_t<U>>
   >::value>
 struct unqual_iter_swap : decltype(test_iter_swap<T, U>(0)) {};
 

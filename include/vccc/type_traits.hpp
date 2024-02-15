@@ -30,6 +30,7 @@
 # include "vccc/__type_traits/has_typename_type.hpp"
 # include "vccc/__type_traits/has_typename_value_type.hpp"
 # include "vccc/__type_traits/is_bounded_array.hpp"
+# include "vccc/__type_traits/is_class_or_enum.hpp"
 # include "vccc/__type_traits/is_complete.hpp"
 # include "vccc/__type_traits/is_explicitly_constructible.hpp"
 # include "vccc/__type_traits/is_explicitly_convertible.hpp"
