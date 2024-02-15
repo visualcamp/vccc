@@ -789,6 +789,15 @@ int main() {
       static_assert(std::is_same<
           decltype(w2),
           vccc::ranges::split_view<vccc::string_view, vccc::ranges::single_view<char>> >::value, "");
+
+      std::string s = "path/to/my/file.foo.bar";
+
+      auto splitted = s | vccc::views::split('/') | vccc::ranges::to<std::vector<std::string>>();
+      TEST_ENSURES(splitted.size() == 4);
+      TEST_ENSURES(splitted[0] == "path");
+      TEST_ENSURES(splitted[1] == "to");
+      TEST_ENSURES(splitted[2] == "my");
+      TEST_ENSURES(splitted[3] == "file.foo.bar");
     }
 
     {
