@@ -1035,10 +1035,53 @@ int main() {
 
     std::vector<int> v1 = {1, 2, 3, 4, 5};
 
-    for (const auto x : vccc::views::concat(v1, vccc::views::iota(100) | vccc::views::take(10) | vccc::views::common )) {
+    for (const auto x : vccc::views::concat(v1, vccc::views::iota(100) | vccc::views::take(10) | vccc::views::common)) {
       std::cout << x;
     }
     std::cout << '\n';
+  }
+
+  { // ranges::drop_while_view, views::drop_while
+    {
+      auto is_space = [](char q) {
+        static constexpr auto ws = {' ', '\t', '\n', '\v', '\r', '\f'};
+        return vccc::ranges::any_of(ws, [q](auto p) { return p == q; });
+      };
+
+      auto trim_left = [=](const vccc::string_view in) -> std::string {
+        auto view = in | vccc::views::drop_while(is_space);
+        return {view.begin(), view.end()};
+      };
+
+      auto trim = [=](const vccc::string_view in) -> std::string {
+        auto view = in
+                  | vccc::views::drop_while(is_space) | vccc::views::reverse
+                  | vccc::views::drop_while(is_space) | vccc::views::reverse;
+        return {view.begin(), view.end()};
+      };
+
+      TEST_ENSURES(trim_left(" \n C++23") == "C++23"_sv);
+      vccc::string_view src = " \f\n\t\r\vHello, C++20!\f\n\t\r\v ";
+
+      const auto s = trim(src);
+      TEST_ENSURES(s == "Hello, C++20!");
+
+      static constexpr auto v = {0, 1, 2, 3, 4, 5};
+      TEST_ENSURES(vccc::ranges::equal(v | vccc::views::drop_while([](int i) { return i < 3; }), vccc::views::iota(3, 6)));
+    }
+    {
+      constexpr std::array<int, 8> data{0, -1, -2, 3, 1, 4, 1, 5};
+      auto view = vccc::ranges::make_drop_while_view(data, [](int x) { return x <= 0; });
+      TEST_ENSURES(vccc::ranges::equal(view, vccc::span<const int>{3, 1, 4, 1, 5}));
+
+      TEST_ENSURES(*view.begin() == 3);
+      TEST_ENSURES(view.front() == 3);
+      TEST_ENSURES(view.back() == 5);
+      TEST_ENSURES(view.size() == 5);
+      TEST_ENSURES(view[4] == 5);
+      TEST_ENSURES(!view.empty());
+      TEST_ENSURES(view);
+    }
   }
 
   return TEST_RETURN_RESULT;
