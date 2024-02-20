@@ -1025,16 +1025,15 @@ int main() {
   {
     std::string a = "hello, ";
     std::vector<char> b = {'w', 'o', 'r', 'l', 'd', '!'};
+    std::list<char> c = {'?'};
 
-    auto catted = vccc::views::concat(a, b);
+    auto catted = vccc::views::concat(a, b, c);
+    TEST_ENSURES(*catted.begin() == 'h');
+    TEST_ENSURES(catted.size() == a.size() + b.size() + c.size());
 
-    for (const auto c : catted) {
-      std::cout << c;
-    }
-    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(catted, "hello, world!?"_sv)));
 
     std::vector<int> v1 = {1, 2, 3, 4, 5};
-
     for (const auto x : vccc::views::concat(v1, vccc::views::iota(100) | vccc::views::take(10) | vccc::views::common)) {
       std::cout << x;
     }
@@ -1080,7 +1079,7 @@ int main() {
       TEST_ENSURES(view.size() == 5);
       TEST_ENSURES(view[4] == 5);
       TEST_ENSURES(!view.empty());
-      TEST_ENSURES(view);
+      TEST_ENSURES(bool(view));
     }
   }
 
