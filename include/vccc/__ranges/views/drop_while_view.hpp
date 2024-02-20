@@ -76,7 +76,7 @@ class drop_while_view : public view_interface<drop_while_view<V, Pred>> {
 #if __cplusplus >= 201703L
 
 template<typename R, typename Pred>
-drop_while_view(R&&, Pred) -> drop_while_view<views::all_t<R>, Pred>
+drop_while_view(R&&, Pred) -> drop_while_view<views::all_t<R>, Pred>;
 
 #endif
 
