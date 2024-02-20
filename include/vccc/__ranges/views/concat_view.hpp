@@ -5,7 +5,7 @@
 #ifndef CONCAT_VIEW_HPP
 #define CONCAT_VIEW_HPP
 
-#include <tuple>
+#include <functional>
 #include <tuple>
 #include <type_traits>
 #include <utility>
@@ -18,9 +18,10 @@
 #include "vccc/__ranges/end.hpp"
 #include "vccc/__ranges/range_difference_t.hpp"
 #include "vccc/__ranges/sized_range.hpp"
-#include "vccc/__ranges/view.hpp"
 #include "vccc/__ranges/views/all.hpp"
 #include "vccc/__ranges/views/maybe_const.hpp"
+#include "vccc/__tuple/tuple_fold.hpp"
+#include "vccc/__tuple/tuple_transform.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/common_type.hpp"
 #include "vccc/__type_traits/common_reference.hpp"
@@ -44,6 +45,7 @@ using concat_compatible = conjunction<
 /// @addtogroup ranges
 /// @{
 
+// Modified from ranges-v3 library
 template<typename... Rngs>
 struct concat_view : view_interface<concat_view<Rngs...>> {
   static_assert(sizeof...(Rngs) != 0, "Constraints not satisfied");
@@ -427,7 +429,11 @@ struct concat_view : view_interface<concat_view<Rngs...>> {
       sized_range<Rngs>...
   >::value, int> = 0>
   constexpr auto size() {
-    return size_impl<std::size_t>(std::make_index_sequence<cranges>{});
+    return vccc::tuple_fold_left(
+        vccc::tuple_transform(bases_, [](auto&& r) { return r.size(); }),
+        std::size_t{0},
+        std::plus<>{}
+    );
   }
 
   template<typename Dummy = void, std::enable_if_t<conjunction<
@@ -435,30 +441,14 @@ struct concat_view : view_interface<concat_view<Rngs...>> {
       sized_range<const Rngs>...
   >::value, int> = 0>
   constexpr auto size() const {
-    return size_impl<std::size_t>(std::make_index_sequence<cranges>{});
+    return vccc::tuple_fold_left(
+        vccc::tuple_transform(bases_, [](auto&& r) { return r.size(); }),
+        std::size_t{0},
+        std::plus<>{}
+    );
   }
 
  private:
-  template<typename T, std::size_t... I>
-  constexpr auto size_impl(std::index_sequence<I...>) {
-    T init{0};
-    int dummy[] = {
-        ((init = init + std::get<I>(bases_).size()), 0)...
-    };
-    (void)dummy;
-    return init;
-  }
-
-  template<typename T, std::size_t... I>
-  constexpr auto size_impl(std::index_sequence<I...>) const {
-    T init{0};
-    int dummy[] = {
-        ((init = init + std::get<I>(bases_).size()), 0)...
-    };
-    (void)dummy;
-    return init;
-  }
-
   constexpr iterator<true> end_impl(std::true_type /* common_range */) const {
     return iterator<true>{this, in_place_index<cranges - 1>, ranges::end(std::get<cranges - 1>(bases_))};
   }
@@ -491,7 +481,7 @@ struct concat_niebloid {
 
 } // namespace detail
 
-/// @brief
+/// @brief concatenate ranges
 constexpr VCCC_INLINE_OR_STATIC detail::concat_niebloid concat{};
 
 /// @}
