@@ -68,7 +68,7 @@ struct concat_view : view_interface<concat_view<Rngs...>> {
    private:
     friend struct sentinel<!Const>;
     friend struct iterator<Const>;
-    friend class concat_view;
+    friend struct concat_view;
 
     using Parent = detail::maybe_const<Const, concat_view>;
     using Base = detail::maybe_const<Const, BackBase>;
