@@ -5,7 +5,7 @@
 #ifndef CONCAT_VIEW_HPP
 #define CONCAT_VIEW_HPP
 
-#include <tuple>
+#include <functional>
 #include <tuple>
 #include <type_traits>
 #include <utility>
@@ -17,24 +17,47 @@
 #include "vccc/__ranges/distance.hpp"
 #include "vccc/__ranges/end.hpp"
 #include "vccc/__ranges/range_difference_t.hpp"
-#include "vccc/__ranges/view.hpp"
+#include "vccc/__ranges/sized_range.hpp"
 #include "vccc/__ranges/views/all.hpp"
 #include "vccc/__ranges/views/maybe_const.hpp"
+#include "vccc/__tuple/tuple_fold.hpp"
+#include "vccc/__tuple/tuple_transform.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/common_type.hpp"
+#include "vccc/__type_traits/common_reference.hpp"
+#include "vccc/__type_traits/has_typename_type.hpp"
 #include "vccc/__utility/type_sequence.hpp"
 #include "vccc/variant.hpp"
 
 namespace vccc {
 namespace ranges {
+namespace detail {
 
 template<typename... Rngs>
-class concat_view : view_interface<concat_view<Rngs...>> {
+using concat_compatible = conjunction<
+    has_typename_type<common_type<range_value_t<Rngs>...>>,
+    has_typename_type<common_reference<range_reference_t<Rngs>...>>,
+    has_typename_type<common_reference<range_rvalue_reference_t<Rngs>...>>
+>;
+
+} // namespace detail
+
+/// @addtogroup ranges
+/// @{
+
+// Modified from ranges-v3 library
+template<typename... Rngs>
+struct concat_view : view_interface<concat_view<Rngs...>> {
+  static_assert(sizeof...(Rngs) != 0, "Constraints not satisfied");
+  static_assert(conjunction<input_range<Rngs>...>::value, "Constraints not satisfied");
+  static_assert(detail::concat_compatible<Rngs...>::value, "Constraints not satisfied");
+
+ private:
   using difference_type_ = common_type_t<range_difference_t<Rngs>...>;
   using BackBase = typename type_sequence<Rngs...>::back;
 
   static constexpr std::size_t cranges = sizeof...(Rngs);
-  std::tuple<Rngs...> bases_;
+  std::tuple<Rngs...> bases_{};
 
  public:
   template<bool IsConst>
@@ -204,16 +227,19 @@ class concat_view : view_interface<concat_view<Rngs...>> {
 
       if (from.its_.index() == N) {
         if (to.its_.index() == N)
-          return ranges::distance(ranges::get<N>(from.its_), ranges::get<N>(to.its_));
-        return ranges::distance(ranges::get<N>(from.its_), ranges::end(std::get<N>(from.parent_->bases_)))
-            + iterator::distance_to_(std::integral_constant<size_t, N + 1>{}, from, to);
+          return ranges::distance(vccc::detail::variant_raw_get(from.its_._base().storage(), in_place_index<N>),
+                                  vccc::detail::variant_raw_get(to.its_._base().storage(), in_place_index<N>));
+        return ranges::distance(vccc::detail::variant_raw_get(from.its_._base().storage(), in_place_index<N>),
+                                ranges::end(std::get<N>(from.parent_->bases_)))
+               + iterator::distance_to_(std::integral_constant<size_t, N + 1>{}, from, to);
       }
 
       if (from.its_.index() < N && to.its_.index() > N)
           return ranges::distance(std::get<N>(from.parent_->bases_))
               + iterator::distance_to_(std::integral_constant<size_t, N + 1>{}, from, to);
 
-      return ranges::distance(ranges::begin(std::get<N>(from.parent_->bases_)), ranges::get<N>(to.its_));
+      return ranges::distance(ranges::begin(std::get<N>(from.parent_->bases_)),
+                              vccc::detail::variant_raw_get(to.its_._base().storage(), in_place_index<N>));
     }
 
    public:
@@ -347,11 +373,17 @@ class concat_view : view_interface<concat_view<Rngs...>> {
     >::value, int> = 0>
     friend constexpr difference_type operator-(const iterator& x, const iterator& y) {
       if (x.its_.index() <= y.its_.index())
-        return iterator::distance_to_(std::integral_constant<std::size_t, 0>{}, x, y);
-      return -iterator::distance_to_(std::integral_constant<std::size_t, 0>{}, y, x);
+        return -iterator::distance_to_(std::integral_constant<std::size_t, 0>{}, x, y);
+      return iterator::distance_to_(std::integral_constant<std::size_t, 0>{}, y, x);
     }
 
   };
+
+
+  concat_view() = default;
+
+  explicit concat_view(Rngs... rngs)
+      : bases_{std::move(rngs)...} {}
 
   constexpr auto begin() {
     using Const = conjunction<detail::simple_view<Rngs>...>;
@@ -392,6 +424,31 @@ class concat_view : view_interface<concat_view<Rngs...>> {
     return end_impl(conjunction<common_range<const Rngs>...>{});
   }
 
+  template<typename Dummy = void, std::enable_if_t<conjunction<
+      std::is_void<Dummy>,
+      sized_range<Rngs>...
+  >::value, int> = 0>
+  constexpr auto size() {
+    return vccc::tuple_fold_left(
+        vccc::tuple_transform(bases_, [](auto&& r) { return r.size(); }),
+        std::size_t{0},
+        std::plus<>{}
+    );
+  }
+
+  template<typename Dummy = void, std::enable_if_t<conjunction<
+      std::is_void<Dummy>,
+      sized_range<const Rngs>...
+  >::value, int> = 0>
+  constexpr auto size() const {
+    return vccc::tuple_fold_left(
+        vccc::tuple_transform(bases_, [](auto&& r) { return r.size(); }),
+        std::size_t{0},
+        std::plus<>{}
+    );
+  }
+
+ private:
   constexpr iterator<true> end_impl(std::true_type /* common_range */) const {
     return iterator<true>{this, in_place_index<cranges - 1>, ranges::end(std::get<cranges - 1>(bases_))};
   }
@@ -399,44 +456,6 @@ class concat_view : view_interface<concat_view<Rngs...>> {
   constexpr sentinel<true> end_impl(std::false_type /* common_range */) const {
     return sentinel<true>{*this};
   }
-
-  concat_view() = default;
-  explicit concat_view(Rngs... rngs)
-    : bases_{std::move(rngs)...} {}
-
-  // CPP_member
-  // constexpr auto size() const //
-  //     -> CPP_ret(std::size_t)(
-  //         requires (detail::concat_cardinality<Rngs...>::value >= 0))
-  // {
-  //     return static_cast<std::size_t>(detail::concat_cardinality<Rngs...>::value);
-  // }
-  //
-  // CPP_auto_member
-  // constexpr auto CPP_fun(size)()(const //
-  //     requires(detail::concat_cardinality<Rngs...>::value < 0) &&
-  //         and_v<sized_range<Rngs const>...>)
-  // {
-  //     using size_type = common_type_t<range_size_t<Rngs const>...>;
-  //     return tuple_foldl(
-  //         tuple_transform(bases_,
-  //                         [](auto && r) -> size_type { return ranges::size(r); }),
-  //         size_type{0},
-  //         plus{});
-  // }
-  //
-  // CPP_auto_member
-  // constexpr auto CPP_fun(size)()(
-  //     requires (detail::concat_cardinality<Rngs...>::value < 0) &&
-  //         and_v<sized_range<Rngs>...>)
-  // {
-  //     using size_type = common_type_t<range_size_t<Rngs>...>;
-  //     return tuple_foldl(
-  //         tuple_transform(bases_,
-  //                         [](auto && r) -> size_type { return ranges::size(r); }),
-  //         size_type{0},
-  //         plus{});
-  // }
 };
 
 #if __cplusplus >= 201703L
@@ -462,7 +481,10 @@ struct concat_niebloid {
 
 } // namespace detail
 
+/// @brief concatenate ranges
 constexpr VCCC_INLINE_OR_STATIC detail::concat_niebloid concat{};
+
+/// @}
 
 } // namespace views
 

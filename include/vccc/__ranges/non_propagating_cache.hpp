@@ -26,7 +26,7 @@ struct constructible_from_deref<T, U, true> : constructible_from<T, decltype(*st
 
 // https://eel.is/c++draft/range.adaptors#range.nonprop.cache
 template<typename T>
-class non_propagating_cache : public optional<T> {
+class non_propagating_cache : private optional<T> {
   using base = optional<T>;
  public:
   static_assert(std::is_object<T>::value, "Constraints not satisfied");
