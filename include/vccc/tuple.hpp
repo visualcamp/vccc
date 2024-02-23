@@ -6,7 +6,6 @@
 # define VCCC_TUPLE_HPP
 #
 # include "vccc/__tuple/apply.hpp"
-# include "vccc/__tuple/common_type.hpp"
 # include "vccc/__tuple/make_from_tuple.hpp"
 # include "vccc/__tuple/tuple_fold.hpp"
 # include "vccc/__tuple/tuple_like.hpp"
