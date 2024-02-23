@@ -32,6 +32,18 @@ struct tuple_size_equal_to : bool_constant<std::tuple_size<T>::value == X> {};
 template<typename T, std::size_t X>
 struct tuple_size_equal_to<T, X, false> : std::false_type {};
 
+template<typename T, std::size_t X, bool v = /* true */ has_tuple_size<T>::value>
+struct tuple_size_greater_than : bool_constant<(std::tuple_size<T>::value > X)> {};
+
+template<typename T, std::size_t X>
+struct tuple_size_greater_than<T, X, false> : std::false_type {};
+
+template<typename T, std::size_t X, bool v = /* true */ has_tuple_size<T>::value>
+struct tuple_size_less_than : bool_constant<(std::tuple_size<T>::value < X)> {};
+
+template<typename T, std::size_t X>
+struct tuple_size_less_than<T, X, false> : std::false_type {};
+
 template<typename T>
 struct tuple_like_uncvref : std::false_type {};
 
@@ -81,15 +93,27 @@ struct tuple_like : internal::tuple_like_uncvref<remove_cvref_t<T>> {};
 
 
 /**
+ * @brief check if tuple-like objects with exactly N elements.
+ *
+ * @par See Also
+ * @ref tuple_like "\a tuple-like ": @copybrief tuple_like
+ */
+template<typename T, std::size_t N>
+struct sized_tuple_like
+    : conjunction<
+          tuple_like<T>,
+          internal::tuple_size_equal_to<T, N>
+      > {};
+
+
+/**
  * @brief pair-like objects are tuple-like objects with exactly 2 elements.
  *
  * @par See Also
  * @ref tuple_like "\a tuple-like ": @copybrief tuple_like
  */
 template<typename T>
-struct pair_like
-    : conjunction<tuple_like<T>,
-                  internal::tuple_size_equal_to<T, 2>> {};
+using pair_like = sized_tuple_like<T, 2>;
 
 /// @}
 
