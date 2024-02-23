@@ -23,6 +23,7 @@
 #include "vccc/span.hpp"
 #include "vccc/string_view.hpp"
 #include "vccc/type_traits.hpp"
+#include "vccc/utility.hpp"
 #include "test_core.hpp"
 
 struct IntLike {
@@ -566,7 +567,7 @@ int main() {
 
 #if __cplusplus < 201703L
     for (const auto p : vccc::views::enumerate(v))
-      std::cout << '(' << std::get<0>(p) << ':' << std::get<1>(p) << ") ";
+      std::cout << '(' << vccc::first(p) << ':' << vccc::second(p) << ") ";
 #else
     for (auto const [index, letter] : vccc::views::enumerate(v))
       std::cout << '(' << index << ':' << letter << ") ";
@@ -580,7 +581,7 @@ int main() {
 
 #if __cplusplus < 201703L
     for (const auto kv : m)
-      std::cout << '[' << std::get<0>(kv) << "]:" << std::get<1>(kv) << ' ';
+      std::cout << '[' << vccc::key(kv) << "]:" << vccc::value(kv) << ' ';
 #else
     for (auto const [key, value] : m)
       std::cout << '[' << key << "]:" << value << ' ';
@@ -597,7 +598,7 @@ int main() {
 
 #if __cplusplus < 201703L
     for (const auto i_n : vccc::views::enumerate(numbers)) {
-      ++std::get<1>(i_n);
+      ++vccc::value(i_n);
       std::cout << numbers[std::get<0>(i_n)] << ' ';
     }
 #else
@@ -606,6 +607,35 @@ int main() {
       std::cout << numbers[index] << ' ';
     }
 #endif
+    std::cout << '\n';
+  }
+
+  { // views::enumerate_struct
+    constexpr static auto v = {'A', 'B', 'C', 'D'};
+
+    for (const auto p : vccc::views::enumerate_pair(v))
+      std::cout << '(' << p.first << ':' << p.second << ") ";
+    std::cout << std::endl;
+    TEST_ENSURES(vccc::views::enumerate_pair(v).size() == 4);
+    TEST_ENSURES(vccc::views::enumerate_pair(v).begin().index() == 0);
+    TEST_ENSURES((vccc::views::enumerate_pair(v).end() - 1).index() == 3);
+
+
+    auto m = v | vccc::views::enumerate_pair | vccc::ranges::to<std::map>();
+
+    TEST_ENSURES(m.size() == 4);
+    TEST_ENSURES(m[0] == 'A');
+    TEST_ENSURES(m[1] == 'B');
+    TEST_ENSURES(m[2] == 'C');
+    TEST_ENSURES(m[3] == 'D');
+
+
+    std::vector<int> numbers{1, 3, 5, 7};
+
+    for (const auto i_n : vccc::views::enumerate_pair(numbers)) {
+      ++i_n.second;
+      std::cout << numbers[i_n.first] << ' ';
+    }
     std::cout << '\n';
   }
 
