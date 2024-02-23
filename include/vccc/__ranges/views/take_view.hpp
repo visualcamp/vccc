@@ -78,10 +78,10 @@ class take_view : public view_interface<take_view<V>> {
     template<bool AntiConst, std::enable_if_t<conjunction<
         bool_constant<Const != AntiConst>,
         sentinel_for< sentinel_t<Base>,
-                      iterator_t<detail::maybe_const<AntiConst, V>> >
+                      iterator_t<maybe_const<AntiConst, V>> >
     >::value, int> = 0>
     friend constexpr bool
-    operator==(const counted_iterator<iterator_t<detail::maybe_const<AntiConst, V>>>& y, const sentinel& x) {
+    operator==(const counted_iterator<iterator_t<maybe_const<AntiConst, V>>>& y, const sentinel& x) {
       using namespace vccc::rel_ops;
       return y.count() == 0 || y.base() == x.end_;
     }
@@ -89,10 +89,10 @@ class take_view : public view_interface<take_view<V>> {
     template<bool AntiConst, std::enable_if_t<conjunction<
         bool_constant<Const != AntiConst>,
         sentinel_for< sentinel_t<Base>,
-                      iterator_t<detail::maybe_const<AntiConst, V>> >
+                      iterator_t<maybe_const<AntiConst, V>> >
     >::value, int> = 0>
     friend constexpr bool
-    operator!=(const counted_iterator<iterator_t<detail::maybe_const<AntiConst, V>>>& y, const sentinel& x) {
+    operator!=(const counted_iterator<iterator_t<maybe_const<AntiConst, V>>>& y, const sentinel& x) {
       using namespace vccc::rel_ops;
       return !(y == x);
     }

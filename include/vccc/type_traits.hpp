@@ -50,6 +50,7 @@
 # include "vccc/__type_traits/is_unbounded_array.hpp"
 # include "vccc/__type_traits/iterable.hpp"
 # include "vccc/__type_traits/lossless_type.hpp"
+# include "vccc/__type_traits/maybe_const.hpp"
 # include "vccc/__type_traits/negation.hpp"
 # include "vccc/__type_traits/numeric.hpp"
 # include "vccc/__type_traits/remove_cvref.hpp"

@@ -27,10 +27,10 @@
 #include "vccc/__ranges/view.hpp"
 #include "vccc/__ranges/view_interface.hpp"
 #include "vccc/__ranges/views/all.hpp"
-#include "vccc/__ranges/views/maybe_const.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/common_type.hpp"
 #include "vccc/__type_traits/has_operator_arrow.hpp"
+#include "vccc/__type_traits/maybe_const.hpp"
 #include "vccc/__utility/as_const.hpp"
 #include "vccc/__utility/cxx20_rel_ops.hpp"
 
@@ -105,7 +105,7 @@ class join_view : public view_interface<join_view<V>> {
 
  private:
   template <bool Const>
-  using InnerRng = range_reference_t<detail::maybe_const<Const, V>>;
+  using InnerRng = range_reference_t<maybe_const<Const, V>>;
 
  public:
   template<bool Const> class iterator;
@@ -113,9 +113,9 @@ class join_view : public view_interface<join_view<V>> {
   template<bool Const> class sentinel;
 
   template<bool Const>
-  class iterator : detail::join_view_iterator_category<detail::maybe_const<Const, V>> {
-    using Parent = detail::maybe_const<Const, join_view>;
-    using Base = detail::maybe_const<Const, V>;
+  class iterator : detail::join_view_iterator_category<maybe_const<Const, V>> {
+    using Parent = maybe_const<Const, join_view>;
+    using Base = maybe_const<Const, V>;
     using OuterIter = iterator_t<Base>;
     using InnerIter = iterator_t<range_reference_t<Base>>;
     static constexpr bool ref_is_glvalue = std::is_reference<range_reference_t<Base>>::value;
@@ -321,8 +321,8 @@ class join_view : public view_interface<join_view<V>> {
 
   template<bool Const>
   class sentinel {
-    using Parent = detail::maybe_const<Const, join_view>;
-    using Base = detail::maybe_const<Const, V>;
+    using Parent = maybe_const<Const, join_view>;
+    using Base = maybe_const<Const, V>;
 
    public:
     sentinel() = default;
