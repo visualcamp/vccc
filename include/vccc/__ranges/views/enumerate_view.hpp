@@ -33,12 +33,12 @@
 #include "vccc/__ranges/sized_range.hpp"
 #include "vccc/__ranges/view.hpp"
 #include "vccc/__ranges/view_interface.hpp"
-#include "vccc/__ranges/views/maybe_const.hpp"
 #if __cplusplus >= 201703L
 #include "vccc/__ranges/views/all.hpp"
 #endif
 #include "vccc/__type_traits/bool_constant.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
+#include "vccc/__type_traits/maybe_const.hpp"
 #include "vccc/__utility/cxx20_rel_ops.hpp"
 
 namespace vccc {
@@ -59,7 +59,7 @@ struct range_with_movable_reference<R, true>
 /// @addtogroup ranges
 /// @{
 
-template<typename V>
+template<typename V, template<typename...> class Tuple = std::tuple>
 class enumerate_view : public view_interface<enumerate_view<V>> {
  public:
   static_assert(view<V>::value, "Constraints not satisfied");
@@ -74,7 +74,7 @@ class enumerate_view : public view_interface<enumerate_view<V>> {
     template<bool b>
     friend class sentinel;
 
-    using Base = detail::maybe_const<Const, V>;
+    using Base = maybe_const<Const, V>;
 
    public:
     using iterator_category = input_iterator_tag;
@@ -88,10 +88,10 @@ class enumerate_view : public view_interface<enumerate_view<V>> {
             input_iterator_tag
         >>>;
     using difference_type = range_difference_t<Base>;
-    using value_type = std::tuple<difference_type, range_value_t<Base>>;
-   private:
-    using reference_type = std::tuple<difference_type, range_reference_t<Base>>;
-   public:
+    using value_type = Tuple<difference_type, range_value_t<Base>>;
+    using pointer = void;
+    using reference = Tuple<difference_type, range_reference_t<Base>>;
+
     iterator() = default;
 
     template<bool AntiConst, std::enable_if_t<conjunction<
@@ -118,12 +118,12 @@ class enumerate_view : public view_interface<enumerate_view<V>> {
     }
 
     constexpr auto operator*() const {
-      return reference_type(pos_, *current_);
+      return reference(pos_, *current_);
     }
 
     template<typename B = Base, std::enable_if_t<random_access_range<B>::value, int> = 0>
     constexpr auto operator[](difference_type n) const {
-      return reference_type(pos_ + n, current_[n]);
+      return reference(pos_ + n, current_[n]);
     }
 
     constexpr iterator& operator++() {
@@ -279,10 +279,10 @@ class enumerate_view : public view_interface<enumerate_view<V>> {
     template<bool OtherConst, std::enable_if_t<conjunction<
         sized_sentinel_for<
             sentinel_t<Base>,
-            iterator_t<detail::maybe_const<OtherConst, V>>
+            iterator_t<maybe_const<OtherConst, V>>
         >
     >::value, int> = 0>
-    friend constexpr range_difference_t<detail::maybe_const<OtherConst, V>>
+    friend constexpr range_difference_t<maybe_const<OtherConst, V>>
     operator-(const iterator<OtherConst>& x, const sentinel& y) {
       return x.base() - y.base();
     }
@@ -290,10 +290,10 @@ class enumerate_view : public view_interface<enumerate_view<V>> {
     template<bool OtherConst, std::enable_if_t<conjunction<
         sized_sentinel_for<
             sentinel_t<Base>,
-            iterator_t<detail::maybe_const<OtherConst, V>>
+            iterator_t<maybe_const<OtherConst, V>>
         >
     >::value, int> = 0>
-    friend constexpr range_difference_t<detail::maybe_const<OtherConst, V>>
+    friend constexpr range_difference_t<maybe_const<OtherConst, V>>
     operator-(const sentinel& y, const iterator<OtherConst>& x) {
       return y.base() - x.base();
     }

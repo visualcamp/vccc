@@ -1,9 +1,9 @@
 //
-// Created by YongGyu Lee on 2/13/24.
+// Created by YongGyu Lee on 2/20/24.
 //
 
-#ifndef CONCAT_VIEW_HPP
-#define CONCAT_VIEW_HPP
+#ifndef CONCAT_WITH_VIEW_HPP
+#define CONCAT_WITH_VIEW_HPP
 
 #include <functional>
 #include <tuple>
@@ -19,13 +19,13 @@
 #include "vccc/__ranges/range_difference_t.hpp"
 #include "vccc/__ranges/sized_range.hpp"
 #include "vccc/__ranges/views/all.hpp"
+#include "vccc/__ranges/views/maybe_const.hpp"
 #include "vccc/__tuple/tuple_fold.hpp"
 #include "vccc/__tuple/tuple_transform.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/common_type.hpp"
 #include "vccc/__type_traits/common_reference.hpp"
 #include "vccc/__type_traits/has_typename_type.hpp"
-#include "vccc/__type_traits/maybe_const.hpp"
 #include "vccc/__utility/type_sequence.hpp"
 #include "vccc/variant.hpp"
 
@@ -33,11 +33,11 @@ namespace vccc {
 namespace ranges {
 namespace detail {
 
-template<typename... Rngs>
-using concat_compatible = conjunction<
-    has_typename_type<common_type<range_value_t<Rngs>...>>,
-    has_typename_type<common_reference<range_reference_t<Rngs>...>>,
-    has_typename_type<common_reference<range_rvalue_reference_t<Rngs>...>>
+template<typename Pattern, typename... Rngs>
+using concat_with_compatible = conjunction<
+    has_typename_type<common_type<range_value_t<Pattern>, range_value_t<Rngs>...>>,
+    has_typename_type<common_reference<range_reference_t<Pattern>, range_reference_t<Rngs>...>>,
+    has_typename_type<common_reference<range_rvalue_reference_t<Pattern>, range_rvalue_reference_t<Rngs>...>>
 >;
 
 } // namespace detail
@@ -45,12 +45,12 @@ using concat_compatible = conjunction<
 /// @addtogroup ranges
 /// @{
 
-// Modified from ranges-v3 library
-template<typename... Rngs>
-struct concat_view : view_interface<concat_view<Rngs...>> {
+template<typename Pattern, typename... Rngs>
+struct concat_with_view : view_interface<concat_with_view<Pattern, Rngs...>> {
   static_assert(sizeof...(Rngs) != 0, "Constraints not satisfied");
   static_assert(conjunction<input_range<Rngs>...>::value, "Constraints not satisfied");
-  static_assert(detail::concat_compatible<Rngs...>::value, "Constraints not satisfied");
+  static_assert(view<Pattern>::value, "Constraints not satisfied");
+  static_assert(detail::concat_with_compatible<Pattern, Rngs...>::value, "Constraints not satisfied");
 
  private:
   using difference_type_ = common_type_t<range_difference_t<Rngs>...>;
@@ -58,6 +58,7 @@ struct concat_view : view_interface<concat_view<Rngs...>> {
 
   static constexpr std::size_t cranges = sizeof...(Rngs);
   std::tuple<Rngs...> bases_{};
+  Pattern pattern_;
 
  public:
   template<bool IsConst>
@@ -68,9 +69,9 @@ struct concat_view : view_interface<concat_view<Rngs...>> {
    private:
     friend struct sentinel<!Const>;
     friend struct iterator<Const>;
-    friend class concat_view;
+    friend class concat_with_view;
 
-    using Parent = maybe_const<Const, concat_view>;
+    using Parent = maybe_const<Const, concat_with_view>;
     using Base = maybe_const<Const, BackBase>;
     sentinel_t<Base> end_{};
 
@@ -380,9 +381,9 @@ struct concat_view : view_interface<concat_view<Rngs...>> {
   };
 
 
-  concat_view() = default;
+  concat_with_view() = default;
 
-  explicit concat_view(Rngs... rngs)
+  explicit concat_with_view(Rngs... rngs)
       : bases_{std::move(rngs)...} {}
 
   constexpr auto begin() {
@@ -469,20 +470,20 @@ concat_view(Rng &&...) //
 namespace views {
 namespace detail {
 
-struct concat_niebloid {
+struct concat_with_niebloid {
   template<typename... R, std::enable_if_t<conjunction<
       viewable_range<R>...,
       input_range<R>...
   >::value, int> = 0>
   constexpr auto operator()(R&&... rs) const {
-    return concat_view<all_t<R>...>{views::all(std::forward<R>(rs))...};
+    return concat_with_view<all_t<R>...>{views::all(std::forward<R>(rs))...};
   }
 };
 
 } // namespace detail
 
 /// @brief concatenate ranges
-constexpr VCCC_INLINE_OR_STATIC detail::concat_niebloid concat{};
+constexpr VCCC_INLINE_OR_STATIC detail::concat_with_niebloid concat_with{};
 
 /// @}
 
@@ -491,4 +492,4 @@ constexpr VCCC_INLINE_OR_STATIC detail::concat_niebloid concat{};
 } // namespace ranges
 } // namespace vccc
 
-#endif //CONCAT_VIEW_HPP
+#endif // CONCAT_WITH_VIEW_HPP

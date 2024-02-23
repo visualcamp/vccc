@@ -32,11 +32,11 @@
 #include "vccc/__ranges/view.hpp"
 #include "vccc/__ranges/view_interface.hpp"
 #include "vccc/__ranges/views/all.hpp"
-#include "vccc/__ranges/views/maybe_const.hpp"
 #include "vccc/__ranges/views/single.hpp"
 #include "vccc/__type_traits/common_reference.hpp"
 #include "vccc/__type_traits/common_type.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
+#include "vccc/__type_traits/maybe_const.hpp"
 #include "vccc/__type_traits/negation.hpp"
 #include "vccc/__utility/cxx20_rel_ops.hpp"
 #include "vccc/variant.hpp"
@@ -173,22 +173,22 @@ class join_with_view : public detail::join_with_view_base<V, Pattern, join_with_
   template<bool Const>
   class iterator
       : public detail::join_with_view_iterator_base<
-          detail::maybe_const<Const, V>,
-          range_reference_t<detail::maybe_const<Const, V>>,
-          detail::maybe_const<Const, Pattern>>
+          maybe_const<Const, V>,
+          range_reference_t<maybe_const<Const, V>>,
+          maybe_const<Const, Pattern>>
     {
       using iterator_base = detail::join_with_view_iterator_base<
-            detail::maybe_const<Const, V>,
-            range_reference_t<detail::maybe_const<Const, V>>,
-            detail::maybe_const<Const, Pattern>>;
+            maybe_const<Const, V>,
+            range_reference_t<maybe_const<Const, V>>,
+            maybe_const<Const, Pattern>>;
 
       friend class join_with_view;
       template<bool OtherConst> friend class sentinel;
 
-      using Parent = detail::maybe_const<Const, join_with_view>;
-      using Base = detail::maybe_const<Const, V>;
+      using Parent = maybe_const<Const, join_with_view>;
+      using Base = maybe_const<Const, V>;
       using InnerBase = range_reference_t<Base>;
-      using PatternBase = detail::maybe_const<Const, Pattern>;
+      using PatternBase = maybe_const<Const, Pattern>;
 
       using OuterIter = iterator_t<Base>;
       using InnerIter = iterator_t<InnerBase>;
@@ -445,8 +445,8 @@ class join_with_view : public detail::join_with_view_base<V, Pattern, join_with_
   class sentinel {
     friend class join_with_view;
 
-    using Parent = detail::maybe_const<Const, join_with_view>;
-    using Base = detail::maybe_const<Const, V>;
+    using Parent = maybe_const<Const, join_with_view>;
+    using Base = maybe_const<Const, V>;
 
    public:
     sentinel() = default;
