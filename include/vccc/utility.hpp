@@ -10,6 +10,7 @@
 # include "vccc/__utility/compressed_pair.hpp"
 # include "vccc/__utility/cxx20_rel_ops.hpp"
 # include "vccc/__utility/in_place.hpp"
+# include "vccc/__utility/key_value.hpp"
 # include "vccc/__utility/nontype.hpp"
 # include "vccc/__utility/sequence.hpp"
 # include "vccc/__utility/time.hpp"
