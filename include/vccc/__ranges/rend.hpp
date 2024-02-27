@@ -61,12 +61,12 @@ struct rend_niebloid {
 
   template<typename T>
   constexpr auto run(T&& t, tag_1) const {
-    return vccc_decay_copy(std::forward<T>(t).rend());
+    return vccc_decay_copy(t.rend());
   }
 
   template<typename T>
   constexpr auto run(T&& t, tag_2) const {
-    return vccc_decay_copy(rend(std::forward<T>(t)));
+    return vccc_decay_copy(rend(t));
   }
 
   template<typename T>

@@ -82,12 +82,12 @@ constexpr R ranges_begin(T&& t, return_category<1, R>) {
 
 template<typename T, typename R>
 constexpr R ranges_begin(T&& t, return_category<2, R>) {
-  return vccc_decay_copy(std::forward<T>(t).begin());
+  return vccc_decay_copy(t.begin());
 }
 
 template<typename T, typename R>
 constexpr R ranges_begin(T&& t, return_category<3, R>) {
-  return vccc_decay_copy(begin(std::forward<T>(t)));
+  return vccc_decay_copy(begin(t));
 }
 
 struct begin_niebloid {

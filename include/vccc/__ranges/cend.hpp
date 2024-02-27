@@ -33,15 +33,15 @@ struct cend_niebloid {
  private:
   template<typename T>
   constexpr auto call(T&& t, vccc::detail::tag_1) const {
-    return ranges::end(std::forward<T>(t));
+    return ranges::end(t);
   }
   template<typename T>
   constexpr auto call(T&& t, vccc::detail::tag_2) const {
-    return ranges::end(vccc::as_const(std::forward<T>(t)));
+    return ranges::end(vccc::as_const(t));
   }
   template<typename T>
   constexpr auto call(T&& t, vccc::detail::tag_else) const {
-    return make_const_sentinel(ranges::end(std::forward<T>(t)));
+    return make_const_sentinel(ranges::end(t));
   }
 };
 

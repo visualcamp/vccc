@@ -84,20 +84,20 @@ class common_view : public view_interface<common_view<V>> {
  private:
   template<typename V2, typename Base>
   static constexpr auto begin_impl(Base&& base, std::true_type /* random_and_sized */) {
-    return ranges::begin(std::forward<Base>(base));
+    return ranges::begin(base);
   }
   template<typename V2, typename Base>
   static constexpr auto begin_impl(Base&& base, std::false_type /* random_and_sized */) {
-    return common_iterator<iterator_t<V2>, sentinel_t<V2>>(ranges::begin(std::forward<Base>(base)));
+    return common_iterator<iterator_t<V2>, sentinel_t<V2>>(ranges::begin(base));
   }
 
   template<typename V2, typename Base>
   static constexpr auto end_impl(Base&& base, std::true_type /* random_and_sized */) {
-    return ranges::begin(std::forward<Base>(base)) + ranges::size(std::forward<Base>(base));
+    return ranges::begin(base) + ranges::size(base);
   }
   template<typename V2, typename Base>
   static constexpr auto end_impl(Base&& base, std::false_type /* random_and_sized */) {
-    return common_iterator<iterator_t<V2>, sentinel_t<V2>>(ranges::end(std::forward<Base>(base)));
+    return common_iterator<iterator_t<V2>, sentinel_t<V2>>(ranges::end(base));
   }
 
   V base_{};

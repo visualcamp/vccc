@@ -49,7 +49,7 @@ struct distance_niebloid {
 
   template<typename R, std::enable_if_t<ranges::sized_range<remove_cvref_t<R>>::value, int> = 0>
   constexpr ranges::range_difference_t<R> operator()(R&& r) const {
-    return static_cast<ranges::range_difference_t<R>>(ranges::size(std::forward<R>(r)));
+    return static_cast<ranges::range_difference_t<R>>(ranges::size(r));
   }
 
   template<typename R, std::enable_if_t<conjunction<
