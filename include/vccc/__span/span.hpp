@@ -224,8 +224,8 @@ class span : private detail::span_storage_t<T, Extent> {
       detail::span_ctor_range<R, element_type>
   >::value, int> = 0>
   constexpr span(R&& range)
-      : base(ranges::data(std::forward<R>(range)),
-             ranges::size(std::forward<R>(range))) {}
+      : base(ranges::data(range),
+             ranges::size(range)) {}
 
   template<typename R, std::enable_if_t<
     conjunction<
@@ -233,8 +233,8 @@ class span : private detail::span_storage_t<T, Extent> {
       detail::span_ctor_range<R, element_type>
   >::value, int> = 0>
   constexpr explicit span(R&& range)
-      : base(ranges::data(std::forward<R>(range)),
-             ranges::size(std::forward<R>(range))) {}
+      : base(ranges::data(range),
+             ranges::size(range)) {}
 
   // (8) (C++ 26)
   // explicit(extent != std::dynamic_extent)

@@ -56,12 +56,12 @@ struct rbegin_niebloid {
 
   template<typename T>
   constexpr auto run(T&& t, tag_1) const {
-    return vccc_decay_copy(std::forward<T>(t).rbegin());
+    return vccc_decay_copy(t.rbegin());
   }
 
   template<typename T>
   constexpr auto run(T&& t, tag_2) const {
-    return vccc_decay_copy(rbegin(std::forward<T>(t)));
+    return vccc_decay_copy(rbegin(t));
   }
 
   template<typename T>

@@ -102,9 +102,8 @@ struct take_niebloid {
   constexpr U operator()(R&& e, range_difference_t<R> f, return_category<2, U>) const {
     using D = range_difference_t<decltype((e))>;
     return U(
-        ranges::begin(std::forward<R>(e)),
-        ranges::begin(std::forward<R>(e))
-            + (std::min<D>)(ranges::distance(std::forward<R>(e)), f)
+        ranges::begin(e),
+        ranges::begin(e) + (std::min<D>)(ranges::distance(e), f)
     );
   }
 
@@ -120,9 +119,8 @@ struct take_niebloid {
   constexpr IV operator()(R&& e, ranges::range_difference_t<R> f, return_category<3, IV>) const {
     using D = ranges::range_difference_t<decltype((e))>;
     return IV(
-        *ranges::begin(std::forward<R>(e)),
-        *(ranges::begin(std::forward<R>(e))
-            + (std::min<D>)(ranges::distance(std::forward<R>(e)), f))
+        *ranges::begin(e),
+        *(ranges::begin(e) + (std::min<D>)(ranges::distance(e), f))
     );
   }
 

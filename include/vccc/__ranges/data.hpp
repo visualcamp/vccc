@@ -73,12 +73,12 @@ struct data_niebloid {
  private:
   template<typename T, typename R>
   constexpr R operator()(T&& t, return_category<1, R>) const {
-    return vccc_decay_copy(std::forward<T>(t).data());
+    return vccc_decay_copy(t.data());
   }
 
   template<typename T, typename R>
   constexpr R operator()(T&& t, return_category<2, R>) const {
-    return vccc::to_address(ranges::begin(std::forward<T>(t)));
+    return vccc::to_address(ranges::begin(t));
   }
 };
 

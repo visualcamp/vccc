@@ -33,10 +33,10 @@ struct is_ranges_size_callable<T, void_t<decltype( vccc::ranges::size(std::declv
 struct ssize_niebloid {
   template<typename T, std::enable_if_t<is_ranges_size_callable<T&&>::value, int> = 0>
   constexpr auto operator()(T&& t) const {
-    using size_type = decltype(ranges::size(std::forward<T>(t)));
+    using size_type = decltype(ranges::size(t));
     using unsigned_type = std::make_unsigned_t<size_type>;
     using R = typename ssize_type<unsigned_type>::type;
-    return static_cast<R>(ranges::size(std::forward<T>(t)));
+    return static_cast<R>(ranges::size(t));
   }
 };
 

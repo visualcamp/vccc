@@ -78,18 +78,18 @@ struct empty_return_category
 
 template<typename T, typename R>
 constexpr R empty_impl(T&& t, return_category<1, R>) {
-  return bool(std::forward<T>(t).empty());
+  return bool(t.empty());
 }
 
 template<typename T, typename R>
 constexpr R empty_impl(T&& t, return_category<2, R>) {
-  return (ranges::size(std::forward<T>(t)) == 0);
+  return (ranges::size(t) == 0);
 }
 
 template<typename T, typename R>
 constexpr R empty_impl(T&& t, return_category<3, R>) {
   using namespace vccc::rel_ops;
-  return bool(ranges::begin(std::forward<T>(t)) == ranges::end(std::forward<T>(t)));
+  return bool(ranges::begin(t) == ranges::end(t));
 }
 
 struct empty_niebloid {

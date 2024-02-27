@@ -33,15 +33,15 @@ struct cbegin_niebloid {
  private:
   template<typename T>
   constexpr auto call(T&& t, vccc::detail::tag_1) const {
-    return ranges::begin(std::forward<T>(t));
+    return ranges::begin(t);
   }
   template<typename T>
   constexpr auto call(T&& t, vccc::detail::tag_2) const {
-    return ranges::begin(vccc::as_const(std::forward<T>(t)));
+    return ranges::begin(vccc::as_const(t));
   }
   template<typename T>
   constexpr auto call(T&& t, vccc::detail::tag_else) const {
-    return make_const_iterator(ranges::begin(std::forward<T>(t)));
+    return make_const_iterator(ranges::begin(t));
   }
 };
 
