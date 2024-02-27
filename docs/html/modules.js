@@ -1,0 +1,25 @@
+var modules =
+[
+    [ "directory", "group__directory.html", "group__directory" ],
+    [ "literal", "group__literal.html", "group__literal" ],
+    [ "log", "group__log.html", "group__log" ],
+    [ "math", "group__math.html", "group__math" ],
+    [ "random", "group__random.html", "group__random" ],
+    [ "signal", "group__signal.html", "group__signal" ],
+    [ "type support", "group__type__support.html", "group__type__support" ],
+    [ "numeric", "group__numeric.html", "group__numeric" ],
+    [ "optional", "group__optional.html", "group__optional" ],
+    [ "ranges", "group__ranges.html", "group__ranges" ],
+    [ "type_traits", "group__type__traits.html", "group__type__traits" ],
+    [ "variant", "group__variant.html", "group__variant" ],
+    [ "Algorithm", "group__algorithm.html", "group__algorithm" ],
+    [ "concepts", "group__concepts.html", "group__concepts" ],
+    [ "functional", "group__functional.html", "group__functional" ],
+    [ "iterator", "group__iterator.html", "group__iterator" ],
+    [ "span", "group__span.html", "group__span" ],
+    [ "string_view", "group__string__view.html", "group__string__view" ],
+    [ "tuple", "group__tuple.html", "group__tuple" ],
+    [ "utility", "group__utility.html", "group__utility" ],
+    [ "Math_calculus", "group__math__calculus.html", "group__math__calculus" ],
+    [ "Memory", "group__memory.html", "group__memory" ]
+];
