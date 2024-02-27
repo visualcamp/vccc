@@ -32,10 +32,10 @@
 #include "vccc/__ranges/sized_range.hpp"
 #include "vccc/__ranges/view.hpp"
 #include "vccc/__ranges/view_interface.hpp"
-#include "vccc/__ranges/views/maybe_const.hpp"
 #include "vccc/__type_traits/bool_constant.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
+#include "vccc/__type_traits/maybe_const.hpp"
 #include "vccc/__type_traits/negation.hpp"
 
 namespace vccc {
@@ -170,8 +170,8 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
   std::tuple<First, Vs...> bases_;
   template<bool Const>
   using iterator_current = std::tuple<
-        iterator_t<detail::maybe_const<Const, First>>,
-        iterator_t<detail::maybe_const<Const, Vs   >>... >;
+        iterator_t<maybe_const<Const, First>>,
+        iterator_t<maybe_const<Const, Vs   >>... >;
 
  public:
   static_assert(input_range<First>::value, "Constraints not satisfied");
@@ -184,7 +184,7 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
 
   template<bool Const>
   class iterator {
-    using Parent = detail::maybe_const<Const, cartesian_product_view>;
+    using Parent = maybe_const<Const, cartesian_product_view>;
     friend class cartesian_product_view;
 
    public:
@@ -195,15 +195,15 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
         std::conditional_t<
             detail::cartesian_product_is_bidirectional<Const, First, Vs...>::value, bidirectional_iterator_tag,
         std::conditional_t<
-            forward_range<detail::maybe_const<Const, First>>::value, forward_iterator_tag,
+            forward_range<maybe_const<Const, First>>::value, forward_iterator_tag,
             input_iterator_tag
         >>>;
     using value_type = std::tuple<
-        range_value_t<detail::maybe_const<Const, First>>,
-        range_value_t<detail::maybe_const<Const, Vs   >>... >;
+        range_value_t<maybe_const<Const, First>>,
+        range_value_t<maybe_const<Const, Vs   >>... >;
     using reference = std::tuple<
-        range_reference_t<detail::maybe_const<Const, First>>,
-        range_reference_t<detail::maybe_const<Const, Vs   >>... >;
+        range_reference_t<maybe_const<Const, First>>,
+        range_reference_t<maybe_const<Const, Vs   >>... >;
     using difference_type = int;
 #if __cplusplus < 202002L
     using pointer = void;
@@ -255,13 +255,13 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
     }
 
     template<typename First2 = First, std::enable_if_t<
-        forward_range<detail::maybe_const<Const, First2>>::value == false, int> = 0>
+        forward_range<maybe_const<Const, First2>>::value == false, int> = 0>
     constexpr void operator++(int) {
       ++*this;
     }
 
     template<typename First2 = First, std::enable_if_t<
-        forward_range<detail::maybe_const<Const, First2>>::value, int> = 0>
+        forward_range<maybe_const<Const, First2>>::value, int> = 0>
     constexpr iterator operator++(int) {
       auto tmp = *this;
       ++*this;
@@ -308,37 +308,37 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
     }
 
     template<typename First2 = First, std::enable_if_t<
-        equality_comparable<iterator_t<detail::maybe_const<Const, First2>>>::value, int> = 0>
+        equality_comparable<iterator_t<maybe_const<Const, First2>>>::value, int> = 0>
     friend constexpr bool operator==(const iterator& x, const iterator& y) {
       return x.current_ == y.current_;
     }
 
     template<typename First2 = First, std::enable_if_t<
-        equality_comparable<iterator_t<detail::maybe_const<Const, First2>>>::value, int> = 0>
+        equality_comparable<iterator_t<maybe_const<Const, First2>>>::value, int> = 0>
     friend constexpr bool operator!=(const iterator& x, const iterator& y) {
       return !(x == y);
     }
 
     template<typename First2 = First, std::enable_if_t<
-        equality_comparable<iterator_t<detail::maybe_const<Const, First2>>>::value, int> = 0>
+        equality_comparable<iterator_t<maybe_const<Const, First2>>>::value, int> = 0>
     friend constexpr bool operator==(const iterator& x, default_sentinel_t) {
       return x.compare_with_default();
     }
 
     template<typename First2 = First, std::enable_if_t<
-        equality_comparable<iterator_t<detail::maybe_const<Const, First2>>>::value, int> = 0>
+        equality_comparable<iterator_t<maybe_const<Const, First2>>>::value, int> = 0>
     friend constexpr bool operator!=(const iterator& x, default_sentinel_t) {
       return !x.compare_with_default();
     }
 
     template<typename First2 = First, std::enable_if_t<
-        equality_comparable<iterator_t<detail::maybe_const<Const, First2>>>::value, int> = 0>
+        equality_comparable<iterator_t<maybe_const<Const, First2>>>::value, int> = 0>
     friend constexpr bool operator==(default_sentinel_t, const iterator& x) {
       return x.compare_with_default();
     }
 
     template<typename First2 = First, std::enable_if_t<
-        equality_comparable<iterator_t<detail::maybe_const<Const, First2>>>::value, int> = 0>
+        equality_comparable<iterator_t<maybe_const<Const, First2>>>::value, int> = 0>
     friend constexpr bool operator!=(default_sentinel_t, const iterator& x) {
       return !x.compare_with_default();
     }
@@ -384,8 +384,8 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
     //     noexcept(
     //         noexcept(detail::cartesian_tuple_transform(ranges::iter_move, i.current_)) &&
     //         conjunction<
-    //             std::is_nothrow_move_constructible<range_rvalue_reference_t< detail::maybe_const<Const, First> >>,
-    //             std::is_nothrow_move_constructible<range_rvalue_reference_t< detail::maybe_const<Const, Vs>    >>...
+    //             std::is_nothrow_move_constructible<range_rvalue_reference_t< maybe_const<Const, First> >>,
+    //             std::is_nothrow_move_constructible<range_rvalue_reference_t< maybe_const<Const, Vs>    >>...
     //         >::value
     //     )
     // {
@@ -398,8 +398,8 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
       noexcept(noexcept(x.iter_swap_impl(y)))
       requires(
           conjunction<
-              indirectly_swappable< iterator_t<detail::maybe_const<Const, First>> >,
-              indirectly_swappable< iterator_t<detail::maybe_const<Const, Vs>> >...
+              indirectly_swappable< iterator_t<maybe_const<Const, First>> >,
+              indirectly_swappable< iterator_t<maybe_const<Const, Vs>> >...
           >::value
       )
     {

@@ -108,17 +108,17 @@ constexpr R size_impl(T&&, return_category<1, R>) {
 
 template<typename T, typename R>
 constexpr R size_impl(T&& t, return_category<2, R>) {
-  return vccc_decay_copy(std::forward<T>(t).size());
+  return vccc_decay_copy(t.size());
 }
 
 template<typename T, typename R>
 constexpr R size_impl(T&& t, return_category<3, R>) {
-  return vccc_decay_copy(size(std::forward<T>(t)));
+  return vccc_decay_copy(size(t));
 }
 
 template<typename T, typename R>
 constexpr R size_impl(T&& t, return_category<4, R>) {
-  return static_cast<R>(ranges::end(std::forward<T>(t)) - ranges::begin(std::forward<T>(t)));
+  return static_cast<R>(ranges::end(t) - ranges::begin(t));
 }
 
 struct size_niebloid {

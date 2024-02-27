@@ -68,12 +68,7 @@ struct drop_niebloid {
   }
 
   // subrange - 2 / 3
-  template<typename T>
-  struct is_subrange : std::false_type {};
-  template<typename I, typename S, subrange_kind K>
-  struct is_subrange<subrange<I, S, K>> : std::true_type {};
-
-  template<typename T, bool = conjunction<is_subrange<T>, random_access_range<T>, sized_range<T>>::value /* true */>
+  template<typename T, bool = conjunction<ranges::detail::is_subrange<T>, random_access_range<T>, sized_range<T>>::value /* true */>
   struct return_category_subrange : std::true_type {
     using category = std::conditional_t<ranges::detail::is_size_storing_subrange<T>::value,
         return_category<2, subrange<iterator_t<T>, sentinel_t<T>, subrange_kind::sized> >,
@@ -89,8 +84,8 @@ struct drop_niebloid {
   constexpr U operator()(R&& e, D f, return_category<2, U>) const {
     auto inc = (std::min<D>)(ranges::distance(e), f);
     return U(
-        ranges::begin(std::forward<R>(e)) + inc,
-        ranges::end(std::forward<R>(e)),
+        ranges::begin(e) + inc,
+        ranges::end(e),
         static_cast<std::make_unsigned_t<decltype(inc)>>(ranges::distance(e) - inc)
     );
   }
@@ -133,8 +128,8 @@ struct drop_niebloid {
   template<typename R, typename D, typename U>
   constexpr U operator()(R&& e, D f, return_category<3, U>) const {
     return U(
-        ranges::begin(std::forward<R>(e)) + (std::min<D>)(ranges::distance(std::forward<R>(e)), f),
-        ranges::end(std::forward<R>(e))
+        ranges::begin(e) + (std::min<D>)(ranges::distance(e), f),
+        ranges::end(e)
     );
   }
 

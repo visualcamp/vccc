@@ -581,6 +581,8 @@ constexpr decltype(auto) visit_single(Visitor&& vis, Variant&& var);
 template<typename R, typename Visitor, typename Variant>
 constexpr R visit_single(Visitor&& vis, Variant&& var);
 
+struct variant_valueless_ctor {};
+
 } // namespace detail
 
 template<typename... Types>
@@ -593,6 +595,11 @@ class variant : private detail::variant_control_smf<Types...> {
   static_assert(disjunction<std::is_array<Types>...>::value == false, "Type must not be an array");
   static_assert(disjunction<std::is_reference<Types>...>::value == false, "Type must not be a reference");
   static_assert(disjunction<std::is_void<Types>...>::value == false, "Type must not be a void");
+
+  /// @cond ignored
+  constexpr explicit variant(detail::variant_valueless_ctor) noexcept
+      : base() {}
+  /// @endcond
 
   template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
       std::is_default_constructible<type_sequence_element_type_t<0, TypeSeq>>
@@ -736,10 +743,12 @@ class variant : private detail::variant_control_smf<Types...> {
     return detail::visit_single<R>(std::forward<Visitor>(vis), std::move(*this));
   }
 
+  /// @cond ignored
   detail::variant_base<Types...>& _base() & { return static_cast<detail::variant_base<Types...>&>(*this); }
   detail::variant_base<Types...>&& _base() && { return static_cast<detail::variant_base<Types...>&&>(*this); }
   const detail::variant_base<Types...>& _base() const & { return static_cast<const detail::variant_base<Types...>&>(*this); }
   const detail::variant_base<Types...>&& _base() const && { return static_cast<const detail::variant_base<Types...>&&>(*this); }
+  /// @endcond
 
  private:
   struct visitor_self {

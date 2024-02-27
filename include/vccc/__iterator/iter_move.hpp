@@ -13,6 +13,7 @@
 #include "vccc/__type_traits/detail/return_category.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
+#include "vccc/__type_traits/is_class_or_enum.hpp"
 
 namespace vccc {
 namespace ranges {
@@ -22,7 +23,7 @@ using vccc::detail::return_category;
 
 template<
     typename T,
-    bool = disjunction<std::is_class<std::decay_t<T>>, std::is_enum<std::decay_t<T>>>::value,
+    bool = is_class_or_enum<std::decay_t<T>>::value,
     typename = void
 >
 struct iter_move_check_adaptors : std::false_type {

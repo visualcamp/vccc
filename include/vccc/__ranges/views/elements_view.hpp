@@ -31,13 +31,13 @@
 #include "vccc/__ranges/view.hpp"
 #include "vccc/__ranges/view_interface.hpp"
 #include "vccc/__ranges/viewable_range.hpp"
-#include "vccc/__ranges/views/maybe_const.hpp"
 #include "vccc/__tuple/tuple_like.hpp"
 #include "vccc/__type_traits/bool_constant.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
 #include "vccc/__type_traits/has_typename_type.hpp"
 #include "vccc/__type_traits/is_invocable.hpp"
+#include "vccc/__type_traits/maybe_const.hpp"
 #include "vccc/__type_traits/negation.hpp"
 #include "vccc/__type_traits/remove_cvref.hpp"
 #include "vccc/__utility/cxx20_rel_ops.hpp"
@@ -289,7 +289,7 @@ class elements_view : public view_interface<elements_view<V, N>> {
     template<bool OtherConst, std::enable_if_t<
         sentinel_for<
             sentinel_t<Base>,
-            iterator_t<detail::maybe_const<OtherConst, V>>
+            iterator_t<maybe_const<OtherConst, V>>
         >::value, int> = 0>
     friend constexpr bool operator==(const iterator<OtherConst>& x, const sentinel& y) {
       using namespace vccc::rel_ops;
@@ -299,7 +299,7 @@ class elements_view : public view_interface<elements_view<V, N>> {
     template<bool OtherConst, std::enable_if_t<
         sentinel_for<
             sentinel_t<Base>,
-            iterator_t<detail::maybe_const<OtherConst, V>>
+            iterator_t<maybe_const<OtherConst, V>>
         >::value, int> = 0>
     friend constexpr bool operator!=(const iterator<OtherConst>& x, const sentinel& y) {
       return !(x == y);
@@ -308,7 +308,7 @@ class elements_view : public view_interface<elements_view<V, N>> {
     template<bool OtherConst, std::enable_if_t<
         sentinel_for<
             sentinel_t<Base>,
-            iterator_t<detail::maybe_const<OtherConst, V>>
+            iterator_t<maybe_const<OtherConst, V>>
         >::value, int> = 0>
     friend constexpr bool operator==(const sentinel& y, const iterator<OtherConst>& x) {
       return x == y;
@@ -317,7 +317,7 @@ class elements_view : public view_interface<elements_view<V, N>> {
     template<bool OtherConst, std::enable_if_t<
         sentinel_for<
             sentinel_t<Base>,
-            iterator_t<detail::maybe_const<OtherConst, V>>
+            iterator_t<maybe_const<OtherConst, V>>
         >::value, int> = 0>
     friend constexpr bool operator!=(const sentinel& y, const iterator<OtherConst>& x) {
       return !(x == y);
@@ -326,9 +326,9 @@ class elements_view : public view_interface<elements_view<V, N>> {
     template<bool OtherConst, std::enable_if_t<
         sized_sentinel_for<
             sentinel_t<Base>,
-            iterator_t<detail::maybe_const<OtherConst, V>>
+            iterator_t<maybe_const<OtherConst, V>>
         >::value, int> = 0>
-    friend constexpr range_difference_t<detail::maybe_const<OtherConst, V>>
+    friend constexpr range_difference_t<maybe_const<OtherConst, V>>
     operator-(const iterator<OtherConst>& x, const sentinel& y) {
       return x.base() - y.end_;
     }
@@ -336,9 +336,9 @@ class elements_view : public view_interface<elements_view<V, N>> {
     template<bool OtherConst, std::enable_if_t<
         sized_sentinel_for<
             sentinel_t<Base>,
-            iterator_t<detail::maybe_const<OtherConst, V>>
+            iterator_t<maybe_const<OtherConst, V>>
         >::value, int> = 0>
-    friend constexpr range_difference_t<detail::maybe_const<OtherConst, V>>
+    friend constexpr range_difference_t<maybe_const<OtherConst, V>>
     operator-(const sentinel& y, const iterator<OtherConst>& x) {
       return y.end_ - x.base();
     }

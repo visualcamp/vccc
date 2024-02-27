@@ -21,7 +21,7 @@ template<
     typename U,
     bool = conjunction<
                has_typename_type<common_reference<T, U>>,
-               has_typename_type<common_reference<T, U>>
+               has_typename_type<common_reference<U, T>>
            >::value /* false */
 >
 struct common_reference_with_impl : std::false_type {};

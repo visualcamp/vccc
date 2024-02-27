@@ -119,6 +119,9 @@ struct type_sequence {
 
   template<std::size_t I>
   using element_type = type_sequence_element_type_t<I, type_sequence>;
+
+  using front = element_type<0>;
+  using back = element_type<sizeof...(Types) - 1>;
 };
 
 /// @}

@@ -86,12 +86,12 @@ struct end_niebloid {
 
   template<typename T, typename R>
   constexpr R operator()(T&& t, return_category<2, R>) const {
-    return vccc_decay_copy(std::forward<T>(t).end());
+    return vccc_decay_copy(t.end());
   }
 
   template<typename T, typename R>
   constexpr R operator()(T&& t, return_category<3, R>) const {
-    return vccc_decay_copy(end(std::forward<T>(t)));
+    return vccc_decay_copy(end(t));
   }
 
  public:

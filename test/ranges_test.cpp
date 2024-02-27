@@ -10,6 +10,7 @@
 #include <iterator>
 #include <list>
 #include <map>
+#include <numeric>
 #include <string>
 #include <tuple>
 #include <type_traits>
@@ -22,6 +23,7 @@
 #include "vccc/span.hpp"
 #include "vccc/string_view.hpp"
 #include "vccc/type_traits.hpp"
+#include "vccc/utility.hpp"
 #include "test_core.hpp"
 
 struct IntLike {
@@ -122,7 +124,7 @@ int main() {
     vccc::ranges::swap(d1, d2);
   }
 
-  {
+  { // ranges::size
     int array[] = {1, 2, 3};
     std::vector<int> v = {4, 5, 6};
     auto il = {7};
@@ -141,7 +143,7 @@ int main() {
   }
 
 
-  {
+  { // ranges::empty
     int array[] = {1, 2, 3};
     std::vector<int> v = {4, 5, 6};
     auto il = {7};
@@ -157,7 +159,44 @@ int main() {
     vccc::ranges::empty(i);
   }
 
-  {
+  { // ranges::rbegin
+    std::cout << "Line " << __LINE__ << ", ranges::rbegin: \n";
+
+    std::vector<int> v = {3, 1, 4};
+    auto vi = vccc::ranges::rbegin(v);
+    TEST_ENSURES(*vi == 4);
+    *vi = 42; // OK
+    TEST_ENSURES(v.back() == 42);
+
+    int a[] = {-5, 10, 15};
+    auto ai = vccc::ranges::rbegin(a);
+    TEST_ENSURES(*ai == 15);
+    *ai = 42; // OK
+    TEST_ENSURES(a[2] == 42);
+
+    // auto x_x = std::ranges::rbegin(std::vector{6, 6, 6});
+    // ill-formed: the argument is an rvalue (see Notes above)
+
+    auto si = vccc::ranges::rbegin(vccc::span<int>(a)); // OK
+    static_assert(vccc::ranges::enable_borrowed_range<
+        std::remove_cv_t<decltype(vccc::span<int>(a))>>::value, "");
+    *si = 52; // OK
+    TEST_ENSURES(a[2] == 52);
+  }
+
+  { // ranges::rend
+    std::cout << "Line " << __LINE__ << ", ranges::rend: \n";
+
+    std::vector<int> v = {3, 1, 4};
+    namespace ranges = vccc::ranges;
+    TEST_ENSURES((ranges::find(ranges::rbegin(v), ranges::rend(v), 5) == ranges::rend(v)));
+
+    int a[] = {5, 10, 15};
+    TEST_ENSURES((ranges::find(ranges::rbegin(a), ranges::rend(a), 5) != ranges::rend(a)));
+  }
+
+  { // ranges::iota_view, views::iota
+    std::cout << "Line " << __LINE__ << ", ranges::iota_view, views::iota: \n";
 
     for (int i : vccc::ranges::iota_view<int, int>{1, 10})
       std::cout << i << ' ';
@@ -528,7 +567,7 @@ int main() {
 
 #if __cplusplus < 201703L
     for (const auto p : vccc::views::enumerate(v))
-      std::cout << '(' << std::get<0>(p) << ':' << std::get<1>(p) << ") ";
+      std::cout << '(' << vccc::first(p) << ':' << vccc::second(p) << ") ";
 #else
     for (auto const [index, letter] : vccc::views::enumerate(v))
       std::cout << '(' << index << ':' << letter << ") ";
@@ -542,7 +581,7 @@ int main() {
 
 #if __cplusplus < 201703L
     for (const auto kv : m)
-      std::cout << '[' << std::get<0>(kv) << "]:" << std::get<1>(kv) << ' ';
+      std::cout << '[' << vccc::key(kv) << "]:" << vccc::value(kv) << ' ';
 #else
     for (auto const [key, value] : m)
       std::cout << '[' << key << "]:" << value << ' ';
@@ -559,7 +598,7 @@ int main() {
 
 #if __cplusplus < 201703L
     for (const auto i_n : vccc::views::enumerate(numbers)) {
-      ++std::get<1>(i_n);
+      ++vccc::value(i_n);
       std::cout << numbers[std::get<0>(i_n)] << ' ';
     }
 #else
@@ -568,6 +607,35 @@ int main() {
       std::cout << numbers[index] << ' ';
     }
 #endif
+    std::cout << '\n';
+  }
+
+  { // views::enumerate_struct
+    constexpr static auto v = {'A', 'B', 'C', 'D'};
+
+    for (const auto p : vccc::views::enumerate_pair(v))
+      std::cout << '(' << p.first << ':' << p.second << ") ";
+    std::cout << std::endl;
+    TEST_ENSURES(vccc::views::enumerate_pair(v).size() == 4);
+    TEST_ENSURES(vccc::views::enumerate_pair(v).begin().index() == 0);
+    TEST_ENSURES((vccc::views::enumerate_pair(v).end() - 1).index() == 3);
+
+
+    auto m = v | vccc::views::enumerate_pair | vccc::ranges::to<std::map>();
+
+    TEST_ENSURES(m.size() == 4);
+    TEST_ENSURES(m[0] == 'A');
+    TEST_ENSURES(m[1] == 'B');
+    TEST_ENSURES(m[2] == 'C');
+    TEST_ENSURES(m[3] == 'D');
+
+
+    std::vector<int> numbers{1, 3, 5, 7};
+
+    for (const auto i_n : vccc::views::enumerate_pair(numbers)) {
+      ++i_n.second;
+      std::cout << numbers[i_n.first] << ' ';
+    }
     std::cout << '\n';
   }
 
@@ -751,6 +819,15 @@ int main() {
       static_assert(std::is_same<
           decltype(w2),
           vccc::ranges::split_view<vccc::string_view, vccc::ranges::single_view<char>> >::value, "");
+
+      std::string s = "path/to/my/file.foo.bar";
+
+      auto splitted = s | vccc::views::split('/') | vccc::ranges::to<std::vector<std::string>>();
+      TEST_ENSURES(splitted.size() == 4);
+      TEST_ENSURES(splitted[0] == "path");
+      TEST_ENSURES(splitted[1] == "to");
+      TEST_ENSURES(splitted[2] == "my");
+      TEST_ENSURES(splitted[3] == "file.foo.bar");
     }
 
     {
@@ -851,6 +928,188 @@ int main() {
       const auto count = vccc::ranges::distance(kw.begin(), kw.end());
       std::cout << "Words count: " << count << '\n';
       TEST_ENSURES(count == 4);
+    }
+  }
+
+  { // common_view, common
+    {
+      auto v1 = {1, 2, 3, 4, 5};
+      auto i1 = vccc::counted_iterator<decltype(v1)::iterator>{v1.begin(), vccc::ssize(v1)};
+      auto r1 = vccc::ranges::subrange<decltype(i1), vccc::default_sentinel_t>{i1, vccc::default_sentinel};
+      //  auto e1 = std::accumulate(r1.begin(), r1.end(), 0); // error: "common range" required
+      auto c1 = vccc::ranges::make_common_view(r1);
+      TEST_ENSURES((std::accumulate(c1.begin(), c1.end(), 0) == 15));
+      //
+      // // inherited from ranges::view_interface:
+      TEST_ENSURES(c1.front() == 1);
+      TEST_ENSURES(c1.back() == 5);
+      std::cout << "c1.data(): " << c1.data() << '\n';
+      TEST_ENSURES(c1[0] == 1);
+
+      auto v2 = std::list<int>{1, 2, 3, 4, 5};
+      auto i2 = vccc::counted_iterator<decltype(v2)::iterator>{v2.begin(), vccc::ssize(v2)};
+      auto r2 = vccc::ranges::subrange<decltype(i2), vccc::default_sentinel_t>{i2, vccc::default_sentinel};
+      //  auto e2 = std::accumulate(r2.begin(), r2.end(), 0); // error: "common range" required
+      auto c2 = vccc::ranges::make_common_view(r2);
+      TEST_ENSURES((std::accumulate(c2.begin(), c2.end(), 0) == 15));
+
+      // inherited from ranges::view_interface:
+      std::cout << "c2.front(): " << c2.front() << '\n';
+      TEST_ENSURES(c2.front() == 1);
+      //  auto e3 = c2.back(); // error: "bidirectional range" required
+      //  auto e4 = c2.data(); // error: "contiguous range" required
+      //  auto e5 = c2[0];     // error: "random access range" required
+    }
+
+    {
+      std::string str { "C++20" };
+      auto view = vccc::views::common(str);
+
+      std::string copy_of_str = view.base();
+      TEST_ENSURES(copy_of_str == "C++20");
+      TEST_ENSURES(view.base() == "C++20");
+
+      std::string move_str = std::move(view.base());
+      TEST_ENSURES(move_str == "C++20");
+      TEST_ENSURES(view.base() == vccc::string_view{});
+    }
+
+    {
+      constexpr auto common = vccc::views::iota(1)
+                          | vccc::views::take(3)
+                          | vccc::views::common
+                          ;
+      int i = 0;
+      auto first = common.begin(), last = common.end();
+      for (int e : common)
+        std::cout << (i++ ? " + " : "") << e;
+
+      std::cout << " = " << std::accumulate(common.begin(), common.end(), 0) << '\n';
+      TEST_ENSURES((std::accumulate(common.begin(), common.end(), 0) == 6));
+    }
+
+    {
+      constexpr int n{4};
+
+      constexpr auto v1 = vccc::views::iota(1)
+                        | vccc::views::take(n)
+                        | vccc::views::common
+                        ;
+      constexpr auto v2 = vccc::views::iota(2)
+                        | vccc::views::take(n)
+                        ;
+      const int product = std::inner_product(v1.begin(), v1.end(),
+                                             v2.begin(),
+                                             0);
+      TEST_ENSURES(product == 40);
+    }
+
+    {
+      constexpr static auto v1 = {1, 2, 3, 4, 5};
+      constexpr auto common1 { v1 | vccc::views::common };
+      TEST_ENSURES(common1.size() == 5);
+
+      constexpr auto take3 { v1 | vccc::views::reverse | vccc::views::take(3) };
+      constexpr auto common2 { take3 | vccc::views::common };
+      static_assert(common2.size() == 3, "");
+
+      constexpr static auto v2 = { "^"_sv, "v"_sv, "<"_sv, ">"_sv };
+      TEST_ENSURES(vccc::ranges::views::common(v2).size() == 4);
+    }
+  }
+
+  { // ranges::common_view, views::common
+    std::cout << "Line " << __LINE__ << ", ranges::common_view, views::common: \n";
+
+    static constexpr auto il = {3, 1, 4, 1, 5, 9};
+
+    auto rv = vccc::ranges::make_reverse_view(il);
+    for (int i : rv)
+      std::cout << i << ' ';
+    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(rv, {9, 5, 1, 4, 1, 3})));
+
+    for (int i : il | vccc::views::reverse)
+      std::cout << i << ' ';
+    std::cout << '\n';
+    TEST_ENSURES((vccc::ranges::equal(il | vccc::views::reverse, {9, 5, 1, 4, 1, 3})));
+
+    // operator[] is inherited from std::view_interface
+    for (auto i{0U}; i != rv.size(); ++i)
+      std::cout << rv[i] << ' ';
+    std::cout << '\n';
+  }
+
+  { // ranges::join_with_view, views::join_with
+    std::cout << "Line " << __LINE__ << ", ranges::join_with_view, views::join_with: \n";
+
+    std::vector<vccc::string_view> v{"This"_sv, "is"_sv, "a"_sv, "test."_sv};
+    auto joined = vccc::views::join_with(v, ' ');
+
+    TEST_ENSURES((vccc::ranges::equal(joined, "This is a test."_sv)));
+    auto s = joined | vccc::ranges::to<std::string>();
+    static_assert(vccc::same_as<std::string, decltype(s)>::value, "");
+    TEST_ENSURES(s == "This is a test.");
+  }
+
+  {
+    std::string a = "hello, ";
+    std::vector<char> b = {'w', 'o', 'r', 'l', 'd', '!'};
+    std::list<char> c = {'?'};
+
+    auto catted = vccc::views::concat(a, b, c);
+    TEST_ENSURES(*catted.begin() == 'h');
+    TEST_ENSURES(catted.size() == a.size() + b.size() + c.size());
+
+    TEST_ENSURES((vccc::ranges::equal(catted, "hello, world!?"_sv)));
+
+    std::vector<int> v1 = {1, 2, 3, 4, 5};
+    for (const auto x : vccc::views::concat(v1, vccc::views::iota(100) | vccc::views::take(10) | vccc::views::common)) {
+      std::cout << x;
+    }
+    std::cout << '\n';
+  }
+
+  { // ranges::drop_while_view, views::drop_while
+    {
+      auto is_space = [](char q) {
+        static constexpr auto ws = {' ', '\t', '\n', '\v', '\r', '\f'};
+        return vccc::ranges::any_of(ws, [q](auto p) { return p == q; });
+      };
+
+      auto trim_left = [=](const vccc::string_view in) -> std::string {
+        auto view = in | vccc::views::drop_while(is_space);
+        return {view.begin(), view.end()};
+      };
+
+      auto trim = [=](const vccc::string_view in) -> std::string {
+        auto view = in
+                  | vccc::views::drop_while(is_space) | vccc::views::reverse
+                  | vccc::views::drop_while(is_space) | vccc::views::reverse;
+        return {view.begin(), view.end()};
+      };
+
+      TEST_ENSURES(trim_left(" \n C++23") == "C++23"_sv);
+      vccc::string_view src = " \f\n\t\r\vHello, C++20!\f\n\t\r\v ";
+
+      const auto s = trim(src);
+      TEST_ENSURES(s == "Hello, C++20!");
+
+      static constexpr auto v = {0, 1, 2, 3, 4, 5};
+      TEST_ENSURES(vccc::ranges::equal(v | vccc::views::drop_while([](int i) { return i < 3; }), vccc::views::iota(3, 6)));
+    }
+    {
+      constexpr std::array<int, 8> data{0, -1, -2, 3, 1, 4, 1, 5};
+      auto view = vccc::ranges::make_drop_while_view(data, [](int x) { return x <= 0; });
+      TEST_ENSURES(vccc::ranges::equal(view, vccc::span<const int>{3, 1, 4, 1, 5}));
+
+      TEST_ENSURES(*view.begin() == 3);
+      TEST_ENSURES(view.front() == 3);
+      TEST_ENSURES(view.back() == 5);
+      TEST_ENSURES(view.size() == 5);
+      TEST_ENSURES(view[4] == 5);
+      TEST_ENSURES(!view.empty());
+      TEST_ENSURES(bool(view));
     }
   }
 

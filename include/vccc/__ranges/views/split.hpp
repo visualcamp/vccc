@@ -26,14 +26,17 @@ namespace detail {
 
 template<typename Pattern>
 class split_adapter_closure : public range_adaptor_closure<split_adapter_closure<Pattern>> {
+  template<typename R, bool = ranges::detail::same_with_range_value<R, Pattern>::value /* true */>
+  struct pattern_type_impl {
+    using type = single_view<range_value_t<R>>;
+  };
   template<typename R>
-  using pattern_type =
-      std::conditional_t<
-          ranges::detail::same_with_range_value<R, Pattern>::value,
-          single_view<range_value_t<R>>,
-          all_t<Pattern>
-      >;
+  struct pattern_type_impl<R, false> {
+    using type = all_t<Pattern>;
+  };
 
+  template<typename R>
+  using pattern_type = typename pattern_type_impl<R>::type;
   movable_box<Pattern> pattern_;
 
  public:

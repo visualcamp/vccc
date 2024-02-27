@@ -89,12 +89,7 @@ struct take_niebloid {
     using category = return_category<0>;
   };
 
-  template<typename T>
-  struct is_subrange : std::false_type {};
-  template<typename I, typename S, subrange_kind K>
-  struct is_subrange<subrange<I, S, K>> : std::true_type {};
-
-  template<typename T, bool = is_subrange<T>::value /* true */>
+  template<typename T, bool = ranges::detail::is_subrange<T>::value /* true */>
   struct return_category_subrange : std::true_type {
     using category = return_category<2, subrange<iterator_t<T>>>;
   };
@@ -107,9 +102,8 @@ struct take_niebloid {
   constexpr U operator()(R&& e, range_difference_t<R> f, return_category<2, U>) const {
     using D = range_difference_t<decltype((e))>;
     return U(
-        ranges::begin(std::forward<R>(e)),
-        ranges::begin(std::forward<R>(e))
-            + (std::min<D>)(ranges::distance(std::forward<R>(e)), f)
+        ranges::begin(e),
+        ranges::begin(e) + (std::min<D>)(ranges::distance(e), f)
     );
   }
 
@@ -125,9 +119,8 @@ struct take_niebloid {
   constexpr IV operator()(R&& e, ranges::range_difference_t<R> f, return_category<3, IV>) const {
     using D = ranges::range_difference_t<decltype((e))>;
     return IV(
-        *ranges::begin(std::forward<R>(e)),
-        *(ranges::begin(std::forward<R>(e))
-            + (std::min<D>)(ranges::distance(std::forward<R>(e)), f))
+        *ranges::begin(e),
+        *(ranges::begin(e) + (std::min<D>)(ranges::distance(e), f))
     );
   }
 

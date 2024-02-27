@@ -154,6 +154,18 @@ int Test() {
     TEST_ENSURES(found5 && vccc::ranges::distance(haystack.begin(), found5.begin()) == 1);
   }
 
+  { // ranges::lexicographical_compare
+    std::cout << "Line " << __LINE__ << ", ranges::lexicographical_compare:\n";
+
+    std::vector<char> v1 {'a', 'b', 'c', 'd'};
+    std::vector<char> v2 {'a', 'b', 'c', 'd'};
+
+    TEST_ENSURES(ranges::lexicographical_compare(v1, v2) == false);
+    TEST_ENSURES(ranges::lexicographical_compare("dabc"_sv, "cbda"_sv) == false);
+    TEST_ENSURES(ranges::lexicographical_compare("bdac"_sv, "adcb"_sv) == false);
+    TEST_ENSURES(ranges::lexicographical_compare("acdb"_sv, "cdab"_sv) == true);
+  }
+
   return TEST_RETURN_RESULT;
 }
 
