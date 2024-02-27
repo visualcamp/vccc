@@ -47,7 +47,11 @@ struct basic_const_iterator_category {
 };
 
 template<typename Iter>
-struct basic_const_iterator_category<Iter, false> {};
+struct basic_const_iterator_category<Iter, false> {
+#if __cplusplus < 202002L
+  using iterator_category = iterator_ignore;
+#endif
+};
 
 template<typename Iter>
 struct basic_const_iterator_concept {
@@ -89,7 +93,6 @@ struct const_iterator_implicit_conversion_check<Class, Other, Iter, true>
 
 template<typename Iter>
 class basic_const_iterator : public detail::basic_const_iterator_category<Iter> {
-  using reference = iter_const_reference_t<Iter>;
   using rvalue_reference = common_reference_t<const iter_value_t<Iter>&&, iter_rvalue_reference_t<Iter>>;
  public:
   static_assert(input_iterator<Iter>::value, "Constraints not satisfied");
@@ -97,6 +100,7 @@ class basic_const_iterator : public detail::basic_const_iterator_category<Iter> 
   using iterator_concept = typename detail::basic_const_iterator_concept<Iter>::iterator_concept;
   using value_type = iter_value_t<Iter>;
   using difference_type = iter_difference_t<Iter>;
+  using reference = iter_const_reference_t<Iter>;
 
   basic_const_iterator() = default;
 

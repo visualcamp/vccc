@@ -34,7 +34,7 @@ struct indirectly_readable_impl<In, true>
 template<
   typename In,
   bool = conjunction<
-        dereferenceable<In>,
+        dereferenceable<const In>,
         has_typename_type<iter_value<In>>,
         has_typename_type<iter_reference<In>>,
         has_typename_type<iter_rvalue_reference<In>>
