@@ -6,6 +6,7 @@
 #define VCCC_MEMORY_HPP_
 
 #include "vccc/__memory/addressof.hpp"
+#include "vccc/__memory/pointer_traits.hpp"
 #include "vccc/__memory/to_address.hpp"
 
 #endif // VCCC_MEMORY_HPP_
