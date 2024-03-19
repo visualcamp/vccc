@@ -166,6 +166,26 @@ int Test() {
     TEST_ENSURES(ranges::lexicographical_compare("acdb"_sv, "cdab"_sv) == true);
   }
 
+  { // ranges::set_intersection
+    const auto in1 = {1, 2, 2, 3, 4, 5, 6};
+    const auto in2 = {2, 2, 3, 3, 5, 7};
+    std::vector<int> out {};
+
+    ranges::set_intersection(in1, in2, std::back_inserter(out));
+
+    TEST_ENSURES(ranges::equal(out, {2, 2, 3, 5}));
+
+    std::vector<int> v1{7, 2, 3, 4, 5, 6, 7, 8};
+    std::vector<int> v2{5, 7, 9, 7};
+    std::sort(v1.begin(), v1.end());
+    std::sort(v2.begin(), v2.end());
+
+    std::vector<int> v_intersection;
+    ranges::set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(),
+                             std::back_inserter(v_intersection));
+    TEST_ENSURES(ranges::equal(v_intersection, {5, 7, 7}));
+  }
+
   return TEST_RETURN_RESULT;
 }
 
