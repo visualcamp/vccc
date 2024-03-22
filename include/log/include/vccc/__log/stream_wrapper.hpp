@@ -144,12 +144,21 @@ class StreamWrapperBase {
     expand_aggregate_ = new_value;
   }
 
+  VCCC_NODISCARD bool expand_array() {
+    return expand_array_;
+  }
+
+  void expand_array(bool new_value) {
+    expand_array_ = new_value;
+  }
+
  protected:
   struct {
     string_type separator_ = global_separator();
     bool first_ = true;
     bool quote_string_ = GlobalStreamWrapperSettings::quote_string();
     bool expand_aggregate_ = GlobalStreamWrapperSettings::expand_aggregate();
+    bool expand_array_ = GlobalStreamWrapperSettings::expand_array();
   };
 };
 
@@ -252,9 +261,14 @@ class BasicStreamWrapper : public StreamWrapperBase<String, Stream> {
     stream_ << value;
   }
 
-  // Array of non default-printable types
-  template<typename T, std::size_t N, std::enable_if_t<!is_printable<T>::value, int> = 0>
+  // Array types
+  template<typename T, std::size_t N>
   void try_write(default_printable_t, const T(&arr)[N]) {
+    if (!base::expand_array() && is_printable<T>::value) {
+      stream_ << arr;
+      return;
+    }
+
     if (N == 0) {
       stream_ << "{}";
       return;

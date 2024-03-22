@@ -143,7 +143,6 @@ int main() {
   };
 
   auto str = l.to_string(vccc::Quoted{}, vccc::ExpandAggregate{}, c);
-  std::cout << str << std::endl;
 
   TEST_ENSURES(
       str ==
@@ -159,6 +158,10 @@ int main() {
       " }"
 #endif
       );
+
+  int arr[] = {1,2,3,4,5};
+  TEST_ENSURES(l.to_string(arr) == address_to_string(std::addressof(arr)));
+  TEST_ENSURES(l.to_string(vccc::ExpandArray{}, arr) == "{ 1, 2, 3, 4, 5 }");
 
   return TEST_RETURN_RESULT;
 }

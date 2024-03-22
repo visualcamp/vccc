@@ -75,6 +75,25 @@ class ExpandAggregate : public StreamManipulator {
   bool value_;
 };
 
+/// @brief Expand array instead of printing its value
+///
+/// Note: non-default-printable array is expanded by default
+class ExpandArray : public StreamManipulator {
+ public:
+  ExpandArray() : value_(true) {}
+
+  explicit ExpandArray(bool value) : value_(value) {}
+
+  template<typename CharT, typename String, typename Stream>
+  BasicStreamWrapper<CharT, String, Stream>& operator()(BasicStreamWrapper<CharT, String, Stream>& stream) const {
+    stream.expand_array(value_);
+    return stream;
+  }
+
+ private:
+  bool value_;
+};
+
 //! @} log
 
 } // namespace vccc

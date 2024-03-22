@@ -35,6 +35,14 @@ class GlobalStreamWrapperSettings {
     GetInstance().expand_aggregate_ = new_value;
   }
 
+  static bool expand_array() {
+    return GetInstance().expand_array_;
+  }
+
+  static void expand_array(bool new_value) {
+    GetInstance().expand_array_ = new_value;
+  }
+
  private:
   GlobalStreamWrapperSettings() = default;
 
@@ -45,6 +53,7 @@ class GlobalStreamWrapperSettings {
 
   bool quote_string_ = false;
   bool expand_aggregate_ = false;
+  bool expand_array_ = false;
 };
 
 /// @}
