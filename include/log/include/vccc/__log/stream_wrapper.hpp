@@ -352,7 +352,10 @@ class BasicStreamWrapper : public StreamWrapperBase<String, Stream> {
 #else
   template<typename T, std::enable_if_t<conjunction<
       negation<ranges::range<T>>,
-      detail::empty_aggregate<T>
+      disjunction<
+          negation<std::is_aggregate<T>>,
+          detail::empty_aggregate<T>
+      >
   >::value, int> = 0>
 #endif
   void write(const T& value) {
