@@ -261,6 +261,12 @@ class BasicStreamWrapper : public StreamWrapperBase<String, Stream> {
     stream_ << value;
   }
 
+  // Raw string
+  template<std::size_t N>
+  void try_write(default_printable_t, const char(&str)[N]) {
+    stream_ << str;
+  }
+
   // Array types
   template<typename T, std::size_t N>
   void try_write(default_printable_t, const T(&arr)[N]) {
