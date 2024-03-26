@@ -12,6 +12,7 @@
 #include "vccc/__concepts/different_from.hpp"
 #include "vccc/__core/decay_copy.hpp"
 #include "vccc/__ranges/range.hpp"
+#include "vccc/__ranges/range_adaptor.hpp"
 #include "vccc/__ranges/range_adaptor_closure.hpp"
 #include "vccc/__ranges/subrange.hpp"
 #include "vccc/__ranges/views/all.hpp"
@@ -30,24 +31,6 @@ namespace vccc {
 namespace ranges {
 namespace views {
 namespace detail {
-
-template<typename D>
-struct drop_adaptor_closure : range_adaptor_closure<drop_adaptor_closure<D>> {
-  template<typename U, std::enable_if_t<conjunction<
-    different_from<U, drop_adaptor_closure>,
-    std::is_constructible<D, U&&>
-  >::value, int> = 0>
-  constexpr explicit drop_adaptor_closure(U&& count) : count_(std::forward<U>(count)) {}
-
-  template<typename R, std::enable_if_t<range<R>::value, int> = 0>
-  constexpr drop_view<all_t<R>>
-  operator()(R&& r) const {
-    return drop_view<all_t<R>>(std::forward<R>(r), count_);
-  }
-
- private:
-  D count_;
-};
 
 using vccc::detail::return_category;
 
@@ -183,9 +166,8 @@ struct drop_niebloid {
   }
 
   template<typename DifferenceType>
-  constexpr drop_adaptor_closure<std::remove_reference_t<DifferenceType>>
-  operator()(DifferenceType&& count) const {
-    return drop_adaptor_closure<std::remove_reference_t<DifferenceType>>(std::forward<DifferenceType>(count));
+  constexpr auto operator()(DifferenceType&& count) const {
+    return range_adaptor<drop_niebloid, std::remove_reference_t<DifferenceType>>(std::forward<DifferenceType>(count));
   }
 };
 
