@@ -38,13 +38,14 @@ struct first_template_arg<Class<T1, Ts...>> {
 template<typename T>
 using first_template_arg_t = typename first_template_arg<T>::type;
 
+// Using its own implementation to support lazy pattern evaluation
 template<typename Pattern>
-class join_with_closure : public range_adaptor_closure<join_with_closure<Pattern>> {
+class join_with_adaptor : public range_adaptor_closure<join_with_adaptor<Pattern>> {
   using prv = first_template_arg_t<Pattern>;
 
  public:
-  template<typename U, std::enable_if_t<different_from<join_with_closure, U>::value, int> = 0>
-  constexpr explicit join_with_closure(U&& pattern)
+  template<typename U, std::enable_if_t<different_from<join_with_adaptor, U>::value, int> = 0>
+  constexpr explicit join_with_adaptor(U&& pattern)
       : pattern_(std::forward<U>(pattern)) {}
 
   template<typename R, std::enable_if_t<viewable_range<R>::value, int> = 0>
@@ -113,12 +114,12 @@ struct join_with_niebloid {
  private:
   template<typename Pattern>
   constexpr auto create_closure(Pattern&& pattern, std::true_type /* all */) const {
-    return join_with_closure<views::all_t<Pattern>>(std::forward<Pattern>(pattern));
+    return join_with_adaptor<views::all_t<Pattern>>(std::forward<Pattern>(pattern));
   }
 
   template<typename Pattern>
   constexpr auto create_closure(Pattern&& pattern, std::false_type /* all */) const {
-    return join_with_closure<decltype(views::single(std::forward<Pattern>(pattern)))>(std::forward<Pattern>(pattern));
+    return join_with_adaptor<decltype(views::single(std::forward<Pattern>(pattern)))>(std::forward<Pattern>(pattern));
   }
 };
 
