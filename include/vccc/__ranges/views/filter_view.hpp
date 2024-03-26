@@ -111,9 +111,9 @@ struct has_arrow<I, true>
 
 template<typename V, typename Pred>
 class filter_view : public view_interface<filter_view<V, Pred>>, detail::filter_view_cache<V> {
-    V base_;
-    movable_box<Pred> pred_;
-    using cache_base = detail::filter_view_cache<V>;
+  V base_;
+  movable_box<Pred> pred_;
+  using cache_base = detail::filter_view_cache<V>;
 
  public:
   static_assert(input_range<V>::value, "Constraints not satisfied");
