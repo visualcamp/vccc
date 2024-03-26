@@ -144,20 +144,19 @@ int main() {
 
   auto str = l.to_string(vccc::Quoted{}, vccc::ExpandAggregate{}, c);
 
-  TEST_ENSURES(
-      str ==
 #if __cplusplus < 201703L
+  TEST_ENSURES(str ==
       "{ "
           "\"first\""  " => { " "@" + address_to_string(std::addressof(c["first" ].first)) + ", " "@" + address_to_string(std::addressof(c["first" ].second)) + " }"  ", "
           "\"second\"" " => { " "@" + address_to_string(std::addressof(c["second"].first)) + ", " "@" + address_to_string(std::addressof(c["second"].second)) + " }"
-      " }"
+      " }");
 #else
+  TEST_ENSURES(str ==
       "{ "
           "\"first\""  " => { { 1, \"one\" }, " "@" + address_to_string(std::addressof(c["first" ].second)) + " }"  ", "
           "\"second\"" " => { { 2, \"two\" }, " "@" + address_to_string(std::addressof(c["second"].second)) + " }"
-      " }"
+      " }");
 #endif
-      );
 
   int arr[] = {1,2,3,4,5};
   TEST_ENSURES(l.to_string(arr) == address_to_string(std::addressof(arr)));
