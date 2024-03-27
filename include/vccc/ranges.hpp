@@ -11,6 +11,7 @@
 #include "vccc/__ranges/borrowed_range.hpp"
 #include "vccc/__ranges/borrowed_subrange_t.hpp"
 #include "vccc/__ranges/cbegin.hpp"
+#include "vccc/__ranges/cdata.hpp"
 #include "vccc/__ranges/cend.hpp"
 #include "vccc/__ranges/common_range.hpp"
 #include "vccc/__ranges/const_iterator_t.hpp"
