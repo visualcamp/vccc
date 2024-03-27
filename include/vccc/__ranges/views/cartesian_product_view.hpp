@@ -21,7 +21,7 @@
 #include "vccc/__ranges/begin.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
 #include "vccc/__ranges/common_range.hpp"
-#include "vccc/__ranges/detail/simple_view.hpp"
+#include "vccc/__ranges/simple_view.hpp"
 #include "vccc/__ranges/distance.hpp"
 #include "vccc/__ranges/end.hpp"
 #include "vccc/__ranges/forward_range.hpp"
@@ -498,8 +498,8 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
       : bases_(std::move(first), std::move(bases)...) {}
 
   template<typename First2 = First, std::enable_if_t<disjunction<
-      negation< detail::simple_view<First2> >,
-      negation< detail::simple_view<Vs> >...
+      negation< simple_view<First2> >,
+      negation< simple_view<Vs> >...
   >::value, int> = 0>
   constexpr iterator<false> begin() {
     return iterator<false>(
@@ -517,8 +517,8 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
 
   template<typename First2 = First, std::enable_if_t<conjunction<
       disjunction<
-          negation< detail::simple_view<First2> >,
-          negation< detail::simple_view<Vs> >...>,
+          negation< simple_view<First2> >,
+          negation< simple_view<Vs> >...>,
       detail::cartesian_product_is_common<First, Vs...>
   >::value, int> = 0>
   constexpr iterator<false> end() {

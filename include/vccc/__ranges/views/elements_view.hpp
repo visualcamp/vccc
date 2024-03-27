@@ -19,7 +19,7 @@
 #include "vccc/__ranges/begin.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
 #include "vccc/__ranges/common_range.hpp"
-#include "vccc/__ranges/detail/simple_view.hpp"
+#include "vccc/__ranges/simple_view.hpp"
 #include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__ranges/end.hpp"
 #include "vccc/__ranges/forward_range.hpp"
@@ -362,7 +362,7 @@ class elements_view : public view_interface<elements_view<V, N>> {
     return std::move(base_);
   }
 
-  template<typename V2 = V, std::enable_if_t<detail::simple_view<V2>::value == false, int> = 0>
+  template<typename V2 = V, std::enable_if_t<simple_view<V2>::value == false, int> = 0>
   constexpr auto begin() {
     return iterator<false>{ranges::begin(base_)};
   }
@@ -373,7 +373,7 @@ class elements_view : public view_interface<elements_view<V, N>> {
   }
 
   template<typename V2 = V, std::enable_if_t<conjunction<
-      negation< detail::simple_view<V2> >,
+      negation< simple_view<V2> >,
       negation< common_range<V2> >
   >::value, int> = 0>
   constexpr auto end() {
@@ -381,7 +381,7 @@ class elements_view : public view_interface<elements_view<V, N>> {
   }
 
   template<typename V2 = V, std::enable_if_t<conjunction<
-      negation< detail::simple_view<V2> >,
+      negation< simple_view<V2> >,
       common_range<V2>
   >::value, int> = 0>
   constexpr auto end() {

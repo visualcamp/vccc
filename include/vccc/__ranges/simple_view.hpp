@@ -2,8 +2,8 @@
 // Created by yonggyulee on 2024/01/03.
 //
 
-#ifndef VCCC_RANGES_DETAIL_SIMPLE_VIEW_HPP
-#define VCCC_RANGES_DETAIL_SIMPLE_VIEW_HPP
+#ifndef VCCC_RANGES_SIMPLE_VIEW_HPP
+#define VCCC_RANGES_SIMPLE_VIEW_HPP
 
 #include <type_traits>
 
@@ -16,7 +16,6 @@
 
 namespace vccc {
 namespace ranges {
-namespace detail {
 
 template<typename R, bool = conjunction<view<R>, range<const R>>::value /* true */>
 struct simple_view
@@ -28,8 +27,7 @@ struct simple_view
 template<typename R>
 struct simple_view<R, false> : std::false_type {};
 
-} // namespace detail
 } // namespace vccc
 } // namespace ranges
 
-#endif // VCCC_RANGES_DETAIL_SIMPLE_VIEW_HPP
+#endif // VCCC_RANGES_SIMPLE_VIEW_HPP
