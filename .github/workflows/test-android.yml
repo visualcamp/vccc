@@ -1,0 +1,30 @@
+name: Android
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!releases'
+
+
+jobs:
+  build:
+    runs-on: [ self-hosted, android-sdk ]
+    strategy:
+      matrix:
+        BUILD_TYPE: [Release, Debug]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure CMake
+        run: >
+          cmake -B build
+          -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }}
+          -DVCCC_USE_OPENCV_FEATURES=OFF
+          -DVCCC_RUN_TEST=ON
+
+      - name: Build
+        run: cmake --build build --config ${{ matrix.BUILD_TYPE }} -- -j
+
+    # CTest not available
