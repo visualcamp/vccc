@@ -9,12 +9,10 @@
 
 #include "vccc/__core/inline_or_static.hpp"
 #include "vccc/__iterator/basic_const_iterator.hpp"
-#include "vccc/__ranges/constant_range.hpp"
 #include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__ranges/end.hpp"
-#include "vccc/__type_traits/detail/tag.hpp"
+#include "vccc/__ranges/possibly_const_range.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
-#include "vccc/__utility/as_const.hpp"
 
 namespace vccc {
 namespace ranges {
@@ -26,22 +24,7 @@ struct cend_niebloid {
       enable_borrowed_range<std::remove_cv_t<T>>
   >::value, int> = 0>
   constexpr auto operator()(T&& t) const {
-    using tag = conditional_tag<constant_range<T>, constant_range<const T>>;
-    return this->call(std::forward<T>(t), tag{});
-  }
-
- private:
-  template<typename T>
-  constexpr auto call(T&& t, vccc::detail::tag_1) const {
-    return ranges::end(t);
-  }
-  template<typename T>
-  constexpr auto call(T&& t, vccc::detail::tag_2) const {
-    return ranges::end(vccc::as_const(t));
-  }
-  template<typename T>
-  constexpr auto call(T&& t, vccc::detail::tag_else) const {
-    return make_const_sentinel(ranges::end(t));
+    return vccc::const_sentinel<decltype(ranges::end(possibly_const_range(t)))>(ranges::end(possibly_const_range(t)));
   }
 };
 
