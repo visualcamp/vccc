@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: [ self-hosted, android-sdk ]
+    runs-on: [ self-hosted, android-ndk ]
     strategy:
       matrix:
         BUILD_TYPE: [Release, Debug]
