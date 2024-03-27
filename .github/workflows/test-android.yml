@@ -6,7 +6,6 @@ on:
       - '**'
       - '!releases'
 
-
 jobs:
   build:
     runs-on: [ self-hosted, android-ndk ]
@@ -20,6 +19,7 @@ jobs:
       - name: Configure CMake
         run: >
           cmake -B build
+          -DCMAKE_TOOLCHAIN_FILE=$ANDROID_HOME/ndk/21.1.6352462/build/cmake/android.toolchain.cmake
           -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }}
           -DVCCC_USE_OPENCV_FEATURES=OFF
           -DVCCC_RUN_TEST=ON
