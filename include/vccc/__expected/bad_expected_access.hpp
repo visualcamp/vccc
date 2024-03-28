@@ -22,7 +22,8 @@ class bad_expected_access<void> : public std::exception {
 
  protected:
   bad_expected_access() noexcept = default;
-  ~bad_expected_access() noexcept = default;
+  bad_expected_access(const bad_expected_access&) = default;
+  bad_expected_access(bad_expected_access&&) = default;
   bad_expected_access& operator=(const bad_expected_access&) = default;
   bad_expected_access& operator=(bad_expected_access&&) = default;
 };
