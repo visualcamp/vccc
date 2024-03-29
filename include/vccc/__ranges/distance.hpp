@@ -16,6 +16,7 @@
 #include "vccc/__ranges/range.hpp"
 #include "vccc/__ranges/range_difference_t.hpp"
 #include "vccc/__ranges/size.hpp"
+#include "vccc/__ranges/sized_range.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/negation.hpp"
 #include "vccc/__type_traits/remove_cvref.hpp"

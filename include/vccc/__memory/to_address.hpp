@@ -8,6 +8,7 @@
 #include <memory>
 #include <type_traits>
 
+#include "vccc/__memory/pointer_traits.hpp"
 #include "vccc/__type_traits/has_operator_arrow.hpp"
 #include "vccc/__type_traits/void_t.hpp"
 
@@ -18,11 +19,11 @@ template<typename T, typename = void>
 struct has_to_address : std::false_type {};
 
 template<typename T>
-struct has_to_address<T, void_t<decltype(std::pointer_traits<T>::to_address(std::declval<const T&>()))>> : std::true_type {};
+struct has_to_address<T, void_t<decltype(pointer_traits<T>::to_address(std::declval<const T&>()))>> : std::true_type {};
 
 template<typename T>
 constexpr auto to_address_fancy(const T& p, std::true_type /* has_to_address */ ) noexcept {
-  return std::pointer_traits<T>::to_address(p);
+  return vccc::pointer_traits<T>::to_address(p);
 }
 template<typename T>
 constexpr auto to_address_fancy(const T& p, std::false_type /* has_to_address */ ) noexcept;

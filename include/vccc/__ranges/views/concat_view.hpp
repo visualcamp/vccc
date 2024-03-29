@@ -13,7 +13,7 @@
 #include "vccc/__core/inline_or_static.hpp"
 #include "vccc/__iterator/next.hpp"
 #include "vccc/__ranges/common_range.hpp"
-#include "vccc/__ranges/detail/simple_view.hpp"
+#include "vccc/__ranges/simple_view.hpp"
 #include "vccc/__ranges/distance.hpp"
 #include "vccc/__ranges/end.hpp"
 #include "vccc/__ranges/range_difference_t.hpp"
@@ -386,7 +386,7 @@ struct concat_view : view_interface<concat_view<Rngs...>> {
       : bases_{std::move(rngs)...} {}
 
   constexpr auto begin() {
-    using Const = conjunction<detail::simple_view<Rngs>...>;
+    using Const = conjunction<simple_view<Rngs>...>;
     return iterator<Const::value>{this, in_place_index<0>, ranges::begin(std::get<0>(bases_))};
   }
 
@@ -403,7 +403,7 @@ struct concat_view : view_interface<concat_view<Rngs...>> {
       common_range<Rngs>...
   >::value, int> = 0>
   constexpr auto end() {
-    using Const = conjunction<detail::simple_view<Rngs>...>;
+    using Const = conjunction<simple_view<Rngs>...>;
     return iterator<Const::value>{this, in_place_index<cranges - 1>, ranges::end(std::get<cranges - 1>(bases_))};
   }
 
@@ -412,7 +412,7 @@ struct concat_view : view_interface<concat_view<Rngs...>> {
       negation<common_range<Rngs>>...
   >::value, int> = 0>
   constexpr auto end() {
-    using Const = conjunction<detail::simple_view<Rngs>...>;
+    using Const = conjunction<simple_view<Rngs>...>;
     return sentinel<Const::value>{*this};
   }
 

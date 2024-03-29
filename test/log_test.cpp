@@ -72,8 +72,8 @@ int main() {
 
   TEST_ENSURES(vccc::Logger{}.to_string(std::array<int, 3>{-1,-2,-3}) == "{ -1, -2, -3 }");
   TEST_ENSURES(vccc::Logger{}.to_string(std::list<int>{0,1,0}) == "{ 0, 1, 0 }");
-  TEST_ENSURES(vccc::Logger{}.to_string(std::map<int, std::string>{{1,"one"},{2,"two"}})
-                == "{ { 1: one }, { 2: two } }");
+  TEST_ENSURES(vccc::Logger{}.to_string(vccc::Quoted{}, std::map<int, std::string>{{1,"one"},{2,"two"}})
+                == "{ 1 => \"one\", 2 => \"two\" }");
   TEST_ENSURES(vccc::Logger{}.to_string(bar{1,2,3}) == "{ 1, 2, 3 }");
 
   // test tuples
@@ -106,37 +106,61 @@ int main() {
   LOGD(std::chrono::milliseconds(123));
   LOGD(std::chrono::time_point<std::chrono::system_clock>(std::chrono::hours(24)*365*1));
 
+  auto address_to_string = [](const void* p) {
+    std::stringstream ss;
+    ss << p;
+    return ss.str();
+  };
+
+  // test non-printable
+  struct bar {};
+  bar b;
+  TEST_ENSURES(vccc::Logger{}.to_string(b) == '@' + address_to_string(std::addressof(b)));
+
   LOGD("THIS", "IS", "DEBUG");
   LOGI("THIS", "IS", "INFO");
   LOGW("THIS", "IS", "WARN");
   LOGE("THIS", "IS", "ERROR");
 
-//  vccc::StreamWrapper<std::stringstream> sw;
-//
-//  sw << std::vector<std::vector<int>>{{1, 2, 3}, {}};
-//  LOGD(sw.stream().str()); sw.stream().str("");
-//  sw << std::map<std::string, std::string>{{"key", "value"}};
-//  LOGD(sw.stream().str()); sw.stream().str("");
-//  sw << std::make_tuple();
-//  LOGD(sw.stream().str()); sw.stream().str("");
-//  sw << std::make_index_sequence<0>();
-//  LOGD(sw.stream().str()); sw.stream().str("");
-//  sw << std::make_index_sequence<3>();
-//  LOGD(sw.stream().str()); sw.stream().str("");
-//
-//  sw << std::chrono::system_clock::now();
-//  LOGD(sw.stream().str()); sw.stream().str("");
-//
-//  auto now = std::chrono::steady_clock::now();
-//  for(int i=0; i<3600*3; ++i) {
-//    sw << now;
-//    std::cout << sw.stream().str() << '\n';
-//    sw.stream().str("");
-//    now += std::chrono::milliseconds (7007);
-//  }
-//
-//  vccc::IOSFlagsSaver<std::ostream> saver(std::cout);
+  // test non-empty aggregate types
 
+  struct agg {
+    int x;
+    std::string s;
+  };
+  agg a{1, "foo"};
+#if __cplusplus < 201703L
+  TEST_ENSURES(vccc::Logger{}.to_string(a) == '@' + address_to_string(std::addressof(a)));
+#else
+  TEST_ENSURES(vccc::Logger{}.to_string(vccc::ExpandAggregate{}, a) == "{ 1, foo }");
+#endif
+
+  vccc::Logger l;
+  using complex_type = std::map<std::string, std::pair<agg, bar>>;
+  complex_type c = {
+      {"first", {{1, "one"}, {}}},
+      {"second", {{2, "two"}, {}}}
+  };
+
+  auto str = l.to_string(vccc::Quoted{}, vccc::ExpandAggregate{}, c);
+
+#if __cplusplus < 201703L
+  TEST_ENSURES(str ==
+      "{ "
+          "\"first\""  " => { " "@" + address_to_string(std::addressof(c["first" ].first)) + ", " "@" + address_to_string(std::addressof(c["first" ].second)) + " }"  ", "
+          "\"second\"" " => { " "@" + address_to_string(std::addressof(c["second"].first)) + ", " "@" + address_to_string(std::addressof(c["second"].second)) + " }"
+      " }");
+#else
+  TEST_ENSURES(str ==
+      "{ "
+          "\"first\""  " => { { 1, \"one\" }, " "@" + address_to_string(std::addressof(c["first" ].second)) + " }"  ", "
+          "\"second\"" " => { { 2, \"two\" }, " "@" + address_to_string(std::addressof(c["second"].second)) + " }"
+      " }");
+#endif
+
+  int arr[] = {1,2,3,4,5};
+  TEST_ENSURES(l.to_string(arr) == address_to_string(std::addressof(arr)));
+  TEST_ENSURES(l.to_string(vccc::ExpandArray{}, arr) == "{ 1, 2, 3, 4, 5 }");
 
   return TEST_RETURN_RESULT;
 }
