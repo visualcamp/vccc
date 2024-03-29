@@ -5,14 +5,24 @@
 ![develop](https://github.com/visualcamp/vccc/actions/workflows/test-macos.yml/badge.svg?branch=main)
 ![develop](https://github.com/visualcamp/vccc/actions/workflows/test-ubuntu.yml/badge.svg?branch=main)
 ![develop](https://github.com/visualcamp/vccc/actions/workflows/test-windows.yml/badge.svg?branch=main)
+![develop](https://github.com/visualcamp/vccc/actions/workflows/test-android.yml/badge.svg?branch=main)
+![develop](https://github.com/visualcamp/vccc/actions/workflows/test-emscripten.yml/badge.svg?branch=main)
 
 [![Deploy](https://github.com/visualcamp/vccc/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/visualcamp/vccc/actions/workflows/deploy-docs.yml)
 
 # VisualCamp Common C++ library
 ## Features
-* C++14 concepts library (up to C++23 standard)
-* C++14 ranges library (up to C++23 standard)
-* Compatible with existing STL
+* algorithm library implemented in C++14 (up to C++23 standard)
+* concepts library implemented in C++14 (up to C++23 standard)
+* ranges library implemented in C++14 (up to C++26 standard)
+* utility library implemented in c++14 (up to C++26 standard)
+  * `expected`
+  * `optional`
+  * `span`
+  * `variant`
+* Other ~ C++26 libraries
+
+#### All features are compatible with existing STL
 
 ## Examples
 ```c++
