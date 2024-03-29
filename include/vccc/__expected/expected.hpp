@@ -948,10 +948,10 @@ class expected : private detail::expected_control_smf<detail::void_placdholder_o
   }
 
  private:
-  static VCCC_CONSTEXPR_AFTER_CXX17
+  static constexpr
   void swap_value(expected& thiz, expected& other, std::true_type /* void */) noexcept {}
 
-  static VCCC_CONSTEXPR_AFTER_CXX17
+  static constexpr
   void swap_value(expected& thiz, expected& other, std::false_type /* void */) noexcept(value_nothrow_swappable::value) {
     using std::swap;
     using vccc::swap;
@@ -970,7 +970,7 @@ class expected : private detail::expected_control_smf<detail::void_placdholder_o
     vccc::destroy_at(std::addressof(other.error()));
   }
 
-  static VCCC_CONSTEXPR_AFTER_CXX17
+  static VCCC_CONSTEXPR_AFTER_CXX23
   void swap_value_with_error(expected& thiz, expected& other, std::false_type /* void */, std::true_type /* nothrow */) noexcept(nothrow_swappable::value) {
     E temp(std::move(other.error()));
     vccc::destroy_at(std::addressof(other.error()));
@@ -984,7 +984,7 @@ class expected : private detail::expected_control_smf<detail::void_placdholder_o
     }
   }
 
-  static VCCC_CONSTEXPR_AFTER_CXX17
+  static VCCC_CONSTEXPR_AFTER_CXX23
   void swap_value_with_error(expected& thiz, expected& other, std::false_type /* void */, std::false_type /* nothrow */) noexcept(nothrow_swappable::value) {
     T temp(std::move(thiz.value()));
     vccc::destroy_at(std::addressof(thiz.value()));
