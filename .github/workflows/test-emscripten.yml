@@ -1,0 +1,42 @@
+name: WebAssembly
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!releases'
+
+env:
+  BUILD_TYPE: Release
+  EMSDK_VERSION: 3.1.34
+
+jobs:
+  build:
+    runs-on: [ self-hosted, unix ]
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - name: Install Emscripten
+      run: |
+        git clone https://github.com/emscripten-core/emsdk.git
+        cd emsdk
+        ./emsdk install ${{ env.EMSDK_VERSION }}
+        ./emsdk activate ${{ env.EMSDK_VERSION }}
+
+    - name: Configure CMake
+      run: |
+        source emsdk/emsdk_env.sh
+        emcmake cmake -B build -DCMAKE_CROSSCOMPILING_EMULATOR=node -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DVCCC_USE_OPENCV_FEATURES=OFF -DVCCC_RUN_TEST=ON
+
+    - name: Build
+      run: |
+        source emsdk/emsdk_env.sh
+        emmake cmake --build build --config ${{ env.BUILD_TYPE }} -- -j 4
+
+    - name: Test
+      working-directory: build
+      run: ctest -C ${{ env.BUILD_TYPE }} --extra-verbose --output-on-failure

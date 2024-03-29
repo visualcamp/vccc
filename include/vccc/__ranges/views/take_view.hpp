@@ -13,7 +13,7 @@
 #include "vccc/__concepts/copy_constructible.hpp"
 #include "vccc/__iterator/counted_iterator.hpp"
 #include "vccc/__iterator/sentinel_for.hpp"
-#include "vccc/__ranges/detail/simple_view.hpp"
+#include "vccc/__ranges/simple_view.hpp"
 #include "vccc/__ranges/begin.hpp"
 #include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__ranges/iterator_t.hpp"
@@ -118,7 +118,7 @@ class take_view : public view_interface<take_view<V>> {
 
 
   template<typename T = V, std::enable_if_t<conjunction<
-      negation< detail::simple_view<T> >,
+      negation< simple_view<T> >,
       sized_range<T>,
       random_access_range<T>
   >::value, int> = 0>
@@ -127,7 +127,7 @@ class take_view : public view_interface<take_view<V>> {
   }
 
   template<typename T = V, std::enable_if_t<conjunction<
-      negation< detail::simple_view<T> >,
+      negation< simple_view<T> >,
       sized_range<T>,
       negation< random_access_range<T> >
   >::value, int> = 0>
@@ -137,7 +137,7 @@ class take_view : public view_interface<take_view<V>> {
   }
 
   template<typename T = V, std::enable_if_t<conjunction<
-      negation< detail::simple_view<T> >,
+      negation< simple_view<T> >,
       negation< sized_range<T> >
   >::value, int> = 0>
   constexpr auto begin() {
@@ -175,7 +175,7 @@ class take_view : public view_interface<take_view<V>> {
 
 
   template<typename T = V, std::enable_if_t<conjunction<
-      negation< detail::simple_view<T> >,
+      negation< simple_view<T> >,
       sized_range<T>,
       random_access_range<T>
   >::value, int> = 0>
@@ -184,7 +184,7 @@ class take_view : public view_interface<take_view<V>> {
   }
 
   template<typename T = V, std::enable_if_t<conjunction<
-      negation< detail::simple_view<T> >,
+      negation< simple_view<T> >,
       sized_range<T>,
       negation< random_access_range<T> >
   >::value, int> = 0>
@@ -193,7 +193,7 @@ class take_view : public view_interface<take_view<V>> {
   }
 
   template<typename T = V, std::enable_if_t<conjunction<
-      negation< detail::simple_view<T> >,
+      negation< simple_view<T> >,
       negation< sized_range<T> >
   >::value, int> = 0>
   constexpr sentinel<false> end() {

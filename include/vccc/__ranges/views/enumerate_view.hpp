@@ -16,7 +16,7 @@
 #include "vccc/__ranges/begin.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
 #include "vccc/__ranges/common_range.hpp"
-#include "vccc/__ranges/detail/simple_view.hpp"
+#include "vccc/__ranges/simple_view.hpp"
 #include "vccc/__ranges/distance.hpp"
 #include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__ranges/end.hpp"
@@ -317,7 +317,7 @@ class enumerate_view : public view_interface<enumerate_view<V>> {
     return std::move(base_);
   }
 
-  template<typename V2 = V, std::enable_if_t<detail::simple_view<V2>::valule == false, int> = 0>
+  template<typename V2 = V, std::enable_if_t<simple_view<V2>::valule == false, int> = 0>
   constexpr iterator<false> begin() {
     return iterator<false>(ranges::begin(base_), 0);
   }
@@ -328,7 +328,7 @@ class enumerate_view : public view_interface<enumerate_view<V>> {
     return iterator<true>(ranges::begin(base_), 0);
   }
 
-  template<typename V2 = V, std::enable_if_t<detail::simple_view<V2>::value == false, int> = 0>
+  template<typename V2 = V, std::enable_if_t<simple_view<V2>::value == false, int> = 0>
   constexpr auto end() {
     return end_nonconst(conjunction<common_range<V2>, sized_range<V2>>{});
   }

@@ -17,7 +17,7 @@
 #include "vccc/__memory/addressof.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
 #include "vccc/__ranges/common_range.hpp"
-#include "vccc/__ranges/detail/simple_view.hpp"
+#include "vccc/__ranges/simple_view.hpp"
 #include "vccc/__ranges/forward_range.hpp"
 #include "vccc/__ranges/input_range.hpp"
 #include "vccc/__ranges/movable_box.hpp"
@@ -365,7 +365,7 @@ class join_view : public view_interface<join_view<V>> {
   }
 
   constexpr auto begin() {
-    using B = conjunction<detail::simple_view<V>, std::is_reference<range_reference_t<V>>>;
+    using B = conjunction<simple_view<V>, std::is_reference<range_reference_t<V>>>;
     return iterator<B::value>{*this, ranges::begin(base_)};
   }
 
@@ -403,10 +403,10 @@ class join_view : public view_interface<join_view<V>> {
 
  private:
   constexpr auto end_impl(std::true_type) {
-    return iterator<detail::simple_view<V>::value>{*this, ranges::end(base_)};
+    return iterator<simple_view<V>::value>{*this, ranges::end(base_)};
   }
   constexpr auto end_impl(std::false_type) {
-    return sentinel<detail::simple_view<V>::value>{*this};
+    return sentinel<simple_view<V>::value>{*this};
   }
 
   constexpr auto end_impl(std::true_type) const {

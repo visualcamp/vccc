@@ -13,19 +13,19 @@
 #include "vccc/__core/inline_or_static.hpp"
 #include "vccc/__iterator/next.hpp"
 #include "vccc/__ranges/common_range.hpp"
-#include "vccc/__ranges/detail/simple_view.hpp"
+#include "vccc/__ranges/simple_view.hpp"
 #include "vccc/__ranges/distance.hpp"
 #include "vccc/__ranges/end.hpp"
 #include "vccc/__ranges/range_difference_t.hpp"
 #include "vccc/__ranges/sized_range.hpp"
 #include "vccc/__ranges/views/all.hpp"
-#include "vccc/__ranges/views/maybe_const.hpp"
 #include "vccc/__tuple/tuple_fold.hpp"
 #include "vccc/__tuple/tuple_transform.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/common_type.hpp"
 #include "vccc/__type_traits/common_reference.hpp"
 #include "vccc/__type_traits/has_typename_type.hpp"
+#include "vccc/__type_traits/maybe_const.hpp"
 #include "vccc/__utility/type_sequence.hpp"
 #include "vccc/variant.hpp"
 
@@ -387,7 +387,7 @@ struct concat_with_view : view_interface<concat_with_view<Pattern, Rngs...>> {
       : bases_{std::move(rngs)...} {}
 
   constexpr auto begin() {
-    using Const = conjunction<detail::simple_view<Rngs>...>;
+    using Const = conjunction<simple_view<Rngs>...>;
     return iterator<Const::value>{this, in_place_index<0>, ranges::begin(std::get<0>(bases_))};
   }
 
@@ -404,7 +404,7 @@ struct concat_with_view : view_interface<concat_with_view<Pattern, Rngs...>> {
       common_range<Rngs>...
   >::value, int> = 0>
   constexpr auto end() {
-    using Const = conjunction<detail::simple_view<Rngs>...>;
+    using Const = conjunction<simple_view<Rngs>...>;
     return iterator<Const::value>{this, in_place_index<cranges - 1>, ranges::end(std::get<cranges - 1>(bases_))};
   }
 
@@ -413,7 +413,7 @@ struct concat_with_view : view_interface<concat_with_view<Pattern, Rngs...>> {
       negation<common_range<Rngs>>...
   >::value, int> = 0>
   constexpr auto end() {
-    using Const = conjunction<detail::simple_view<Rngs>...>;
+    using Const = conjunction<simple_view<Rngs>...>;
     return sentinel<Const::value>{*this};
   }
 

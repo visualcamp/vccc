@@ -19,7 +19,7 @@
 #include "vccc/__ranges/begin.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
 #include "vccc/__ranges/common_range.hpp"
-#include "vccc/__ranges/detail/simple_view.hpp"
+#include "vccc/__ranges/simple_view.hpp"
 #include "vccc/__ranges/end.hpp"
 #include "vccc/__ranges/forward_range.hpp"
 #include "vccc/__ranges/input_range.hpp"
@@ -522,8 +522,8 @@ class join_with_view : public detail::join_with_view_base<V, Pattern, join_with_
   template<typename V2 = V, std::enable_if_t<forward_range<V2>::value, int> = 0>
   constexpr auto begin() {
     using Const = conjunction<
-      detail::simple_view<V2>,
-      detail::simple_view<Pattern>,
+      simple_view<V2>,
+      simple_view<Pattern>,
       std::is_reference<range_reference_t<V2>>
     >;
     return iterator<Const::value>{*this, ranges::begin(base_)};
@@ -552,7 +552,7 @@ class join_with_view : public detail::join_with_view_base<V, Pattern, join_with_
     common_range<range_reference_t<V2>>
   >::value, int> = 0>
   constexpr auto end() {
-    using simple = conjunction<detail::simple_view<V>, detail::simple_view<Pattern>>;
+    using simple = conjunction<simple_view<V>, simple_view<Pattern>>;
     return iterator<simple::value>{*this, ranges::end(base_)};
   }
 
@@ -564,7 +564,7 @@ class join_with_view : public detail::join_with_view_base<V, Pattern, join_with_
     common_range<range_reference_t<V2>>
   >::value == false, int> = 0>
   constexpr auto end() {
-    using simple = conjunction<detail::simple_view<V>, detail::simple_view<Pattern>>;
+    using simple = conjunction<simple_view<V>, simple_view<Pattern>>;
     return sentinel<simple::value>{*this};
   }
 

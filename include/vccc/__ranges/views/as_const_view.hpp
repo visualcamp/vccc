@@ -9,7 +9,7 @@
 
 #include "vccc/__concepts/copy_constructible.hpp"
 #include "vccc/__ranges/cbegin.hpp"
-#include "vccc/__ranges/detail/simple_view.hpp"
+#include "vccc/__ranges/simple_view.hpp"
 #include "vccc/__ranges/enable_borrowed_range.hpp"
 #include "vccc/__ranges/input_range.hpp"
 #include "vccc/__ranges/range.hpp"
@@ -42,7 +42,7 @@ class as_const_view : public view_interface<as_const_view<V>> {
     return std::move(base_);
   }
 
-  template<typename V2 = V, std::enable_if_t<detail::simple_view<V2>::value == false, int> = 0>
+  template<typename V2 = V, std::enable_if_t<simple_view<V2>::value == false, int> = 0>
   constexpr auto begin() {
     return vccc::ranges::cbegin(base_);
   }
@@ -52,7 +52,7 @@ class as_const_view : public view_interface<as_const_view<V>> {
     return vccc::ranges::cbegin(base_);
   }
 
-  template<typename V2 = V, std::enable_if_t<detail::simple_view<V2>::value == false, int> = 0>
+  template<typename V2 = V, std::enable_if_t<simple_view<V2>::value == false, int> = 0>
   constexpr auto end() {
     return vccc::ranges::cend(base_);
   }

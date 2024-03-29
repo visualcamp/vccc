@@ -4,6 +4,7 @@
 
 #include <array>
 #include <cctype>
+#include <deque>
 #include <forward_list>
 #include <iostream>
 #include <iomanip>
@@ -400,6 +401,12 @@ int main() {
       std::cout << x << ' ';
     }
     std::cout << '\n';
+  }
+
+  { // take_while
+    using namespace vccc;
+
+    TEST_ENSURES(ranges::equal(views::iota(2020) | views::take_while([](int y) { return y <= 2023; }), views::iota(2020, 2024)));
   }
 
   { // transform_view
