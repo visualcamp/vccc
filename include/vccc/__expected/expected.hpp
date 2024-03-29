@@ -27,6 +27,7 @@
 #include "vccc/__type_traits/is_swappable.hpp"
 #include "vccc/__type_traits/remove_cvref.hpp"
 #include "vccc/__utility/as_const.hpp"
+#include "vccc/__utility/cxx20_rel_ops.hpp"
 #include "vccc/__utility/in_place.hpp"
 #include "vccc/variant.hpp"
 
@@ -945,6 +946,83 @@ class expected : private detail::expected_control_smf<detail::void_placdholder_o
     } else {
       has_value() ? swap_value_with_error(*this, other) : swap_value_with_error(other, *this);
     }
+  }
+
+  template<typename T2, typename E2, std::enable_if_t<conjunction<
+      negation<std::is_void<T2>>,
+      negation<std::is_void<T>>,
+      rel_ops::is_equality_comparable<
+          std::add_lvalue_reference_t<std::add_const_t<T>>,
+          std::add_lvalue_reference_t<std::add_const_t<T2>>>,
+      rel_ops::is_equality_comparable<const E&, const E2&>
+  >::value, int> = 0>
+  friend constexpr bool operator==(const expected& lhs, const expected<T2, E2>& rhs) {
+    if (lhs.has_value() != rhs.has_value())
+      return false;
+    using namespace rel_ops;
+    return lhs.has_value() ? *lhs == *rhs : lhs.error() == rhs.error();
+  }
+
+  template<typename T2, typename E2, std::enable_if_t<conjunction<
+      std::is_void<T2>,
+      std::is_void<T>,
+      rel_ops::is_equality_comparable<const E&, const E2&>
+  >::value, int> = 0>
+  friend constexpr bool operator==(const expected& lhs, const expected<T2, E2>& rhs) {
+    if (lhs.has_value() != rhs.has_value())
+      return false;
+    using namespace rel_ops;
+    return lhs.has_value() ? true : lhs.error() == rhs.error();
+  }
+
+  template<typename T2, typename E2, std::enable_if_t<rel_ops::is_equality_comparable<const expected&, const expected<T2, E2>&>::value, int> = 0>
+  friend constexpr bool operator!=(const expected& lhs, const expected<T2, E2>& rhs) {
+    return !(lhs == rhs);
+  }
+
+  template<typename T2, std::enable_if_t<conjunction<
+      negation<std::is_void<T>>,
+      rel_ops::is_equality_comparable<std::add_lvalue_reference_t<std::add_const_t<T>>, const T2&>
+  >::value, int> = 0>
+  friend constexpr bool operator==(const expected& x, const T2& y) {
+    using namespace rel_ops;
+    return x.has_value() && static_cast<bool>(*x == y);
+  }
+
+  template<typename T2, std::enable_if_t<rel_ops::is_equality_comparable<const expected&, const T2&>::value, int> = 0>
+  friend constexpr bool operator!=(const expected& x, const T2& y) {
+    return !(x == y);
+  }
+
+  template<typename T2, std::enable_if_t<rel_ops::is_equality_comparable<const expected&, const T2&>::value, int> = 0>
+  friend constexpr bool operator==(const T2& y, const expected& x) {
+    return x == y;
+  }
+
+  template<typename T2, std::enable_if_t<rel_ops::is_equality_comparable<const expected&, const T2&>::value, int> = 0>
+  friend constexpr bool operator!=(const T2& y, const expected& x) {
+    return !(x == y);
+  }
+
+  template<typename E2, std::enable_if_t<rel_ops::is_equality_comparable<const E&, const E2&>::value, int> = 0>
+  friend constexpr bool operator==(const expected& x, const unexpected<E2>& e) {
+    using namespace rel_ops;
+    return !x.has_value() && static_cast<bool>(x.error() == e.error());
+  }
+
+  template<typename E2, std::enable_if_t<rel_ops::is_equality_comparable<const E&, const E2&>::value, int> = 0>
+  friend constexpr bool operator!=(const expected& x, const unexpected<E2>& e) {
+    return !(x == e);
+  }
+
+  template<typename E2, std::enable_if_t<rel_ops::is_equality_comparable<const E&, const E2&>::value, int> = 0>
+  friend constexpr bool operator==(const unexpected<E2>& e, const expected& x) {
+    return x == e;
+  }
+
+  template<typename E2, std::enable_if_t<rel_ops::is_equality_comparable<const E&, const E2&>::value, int> = 0>
+  friend constexpr bool operator!=(const unexpected<E2>& e, const expected& x) {
+    return !(x == e);
   }
 
  private:
