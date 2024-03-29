@@ -8,6 +8,7 @@
 #include <type_traits>
 
 #include "vccc/expected.hpp"
+#include "vccc/string_view.hpp"
 #include "vccc/type_traits.hpp"
 #include "test_core.hpp"
 
@@ -62,6 +63,32 @@ int Test() {
     e.or_else([](const std::string&) { return expected<foo, std::string>{1}; });
     e.transform_error([](const std::string&) { return 123123; });
     e.emplace(2);
+  }
+
+  {
+    enum class parse_error {
+      invalid_input,
+      overflow
+    };
+
+    auto parse_number = [](vccc::string_view str) -> vccc::expected<double, parse_error> {
+      const char* begin = str.data();
+      char* end;
+      double retval = std::strtod(begin, &end);
+
+      if (begin == end)
+        return vccc::unexpected<parse_error>(parse_error::invalid_input);
+      else if (std::isinf(retval))
+        return vccc::unexpected<parse_error>(parse_error::overflow);
+
+      str.remove_prefix(end - begin);
+      return retval;
+    };
+
+    TEST_ENSURES(*parse_number("42") == 42);
+    TEST_ENSURES(parse_number("42abc") == 42);
+    TEST_ENSURES(parse_number("meow").error() == parse_error::invalid_input);
+    TEST_ENSURES(parse_number("inf").error() == parse_error::overflow);
   }
 
   expected<foo, foo> e1 = 1;
