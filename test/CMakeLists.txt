@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 
+if (EMSCRIPTEN)
+    add_compile_options(-fexceptions)
+endif ()
+
 VCCC_TEST(algorithm_test algorithm_test.cpp VCCC)
 VCCC_TEST(concepts_test concepts_test.cpp VCCC)
 VCCC_TEST(core_test core_test.cpp VCCC)
@@ -15,7 +19,7 @@ VCCC_TEST(tuple_test tuple_test.cpp VCCC)
 VCCC_TEST(type_traits_test type_traits_test.cpp VCCC)
 VCCC_TEST(variant_test variant_test.cpp VCCC)
 
-if (NOT ANDROID)
+if (NOT ANDROID AND NOT EMSCRIPTEN)
     VCCC_TEST_ONE_CXX(directory_test directory_test.cc 17 VCCC)
 endif()
 VCCC_TEST(log_test log_test.cpp VCCC)
