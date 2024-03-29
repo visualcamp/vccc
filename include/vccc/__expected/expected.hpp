@@ -949,7 +949,7 @@ class expected : private detail::expected_control_smf<detail::void_placdholder_o
 
  private:
   static constexpr
-  void swap_value(expected& thiz, expected& other, std::true_type /* void */) noexcept {}
+  void swap_value(expected&, expected&, std::true_type /* void */) noexcept {}
 
   static constexpr
   void swap_value(expected& thiz, expected& other, std::false_type /* void */) noexcept(value_nothrow_swappable::value) {
