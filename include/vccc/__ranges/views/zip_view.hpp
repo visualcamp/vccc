@@ -298,20 +298,20 @@ class zip_view : public view_interface<zip_view<Views...>> {
       return detail::min_tuple_distance_fn<difference_type>{}(i.current_, j.current_);
     }
 
-    friend constexpr auto iter_move(const iterator& i)
-        noexcept(conjunction<
-            bool_constant<noexcept(
-                ranges::iter_move(
-                    std::declval<const iterator_t<maybe_const<Const, Views>>&>()
-                )
-            )>...,
-            std::is_nothrow_move_constructible<
-                range_rvalue_reference_t<maybe_const<Const, Views>>
-            >...
-        >::value)
-    {
-      return vccc::tuple_transform(i.current_, ranges::iter_move);
-    }
+//    friend constexpr auto iter_move(const iterator& i)
+//        noexcept(conjunction<
+//            bool_constant<noexcept(
+//                ranges::iter_move(
+//                    std::declval<const iterator_t<maybe_const<Const, Views>>&>()
+//                )
+//            )>...,
+//            std::is_nothrow_move_constructible<
+//                range_rvalue_reference_t<maybe_const<Const, Views>>
+//            >...
+//        >::value)
+//    {
+//      return vccc::tuple_transform(i.current_, ranges::iter_move);
+//    }
 
     // iter_swap
 
