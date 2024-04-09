@@ -34,6 +34,7 @@
 #include "vccc/__type_traits/bool_constant.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/is_invocable.hpp"
+#include "vccc/__type_traits/maybe_const.hpp"
 #include "vccc/__type_traits/remove_cvref.hpp"
 #include "vccc/__utility/cxx20_rel_ops.hpp"
 
@@ -89,7 +90,7 @@ class transform_view : public view_interface<transform_view<V, F>> {
   template<bool Const>
   class iterator : public transform_view_iterator_category<std::conditional_t<Const, const V, V>> {
     using Parent = std::conditional_t<Const, const transform_view, transform_view>;
-    using Base = std::conditional_t<Const, const V, V>;
+    using Base = maybe_const<Const, V>;
    public:
     using iterator_concept =
       std::conditional_t<
@@ -241,7 +242,7 @@ class transform_view : public view_interface<transform_view<V, F>> {
   template<bool Const>
   class sentinel {
     using Parent = std::conditional_t<Const, const transform_view, transform_view>;
-    using Base = std::conditional_t<Const, const V, V>;
+    using Base = maybe_const<Const, V>;
 
    public:
     sentinel() = default;

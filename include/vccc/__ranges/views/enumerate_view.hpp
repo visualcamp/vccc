@@ -237,7 +237,7 @@ class enumerate_view : public view_interface<enumerate_view<V>> {
 
   template<bool Const>
   class sentinel {
-    using Base = std::conditional_t<Const, const V, V>;\
+    using Base = maybe_const<Const, V>;
     friend class enumerate_view;
 
    public:

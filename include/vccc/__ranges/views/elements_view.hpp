@@ -100,7 +100,7 @@ class elements_view : public view_interface<elements_view<V, N>> {
 
   template<bool Const>
   class iterator : public detail::elements_view_iterator_category<std::conditional_t<Const, const V, V>, N> {
-    using Base = std::conditional_t<Const, const V, V>;
+    using Base = maybe_const<Const, V>;
     template<bool> friend class sentinel;
 
     template<typename Ref, bool = std::is_reference<Ref>::value /* true */>
@@ -267,7 +267,7 @@ class elements_view : public view_interface<elements_view<V, N>> {
 
   template<bool Const>
   class sentinel {
-    using Base = std::conditional_t<Const, const V, V>;
+    using Base = maybe_const<Const, V>;
 
    public:
     sentinel() = default;

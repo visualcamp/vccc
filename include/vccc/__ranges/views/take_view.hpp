@@ -28,6 +28,7 @@
 #include "vccc/__ranges/views/all.hpp"
 #include "vccc/__type_traits/bool_constant.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
+#include "vccc/__type_traits/maybe_const.hpp"
 #include "vccc/__type_traits/negation.hpp"
 #include "vccc/__type_traits/remove_cvref.hpp"
 #include "vccc/__utility/cxx20_rel_ops.hpp"
@@ -45,7 +46,7 @@ class take_view : public view_interface<take_view<V>> {
 
   template<bool Const>
   class sentinel {
-    using Base = std::conditional_t<Const, const V, V>;
+    using Base = maybe_const<Const, V>;
    public:
     sentinel() = default;
 
