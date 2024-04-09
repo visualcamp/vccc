@@ -1120,5 +1120,43 @@ int main() {
     }
   }
 
+  { // ranges::zip_view, views::zip
+    auto print = [](auto const rem, auto const& range) {
+      std::cout << rem;
+      for (auto const& elem : range)
+        std::cout << elem << ' ';
+      std::cout << '\n';
+    };
+
+    auto x = std::vector<int>{1, 2, 3, 4};
+    auto y = std::list<std::string>{"a", "b", "c", "d", "e"};
+    auto z = std::array<char, 6>{'A', 'B', 'C', 'D', 'E', 'F'};
+
+    print("x: ", x);
+    print("y: ", y);
+    print("z: ", z);
+
+    for (std::tuple<int&, std::string&, char&> elem : vccc::views::zip(x, y, z) | vccc::views::common) {
+      std::cout << std::get<0>(elem) << ' '
+                << std::get<1>(elem) << ' '
+                << std::get<2>(elem) << '\n';
+
+      std::get<char&>(elem) += ('a' - 'A'); // modifies the element of z
+    }
+
+    print("\nAfter modification, z: ", z);
+    TEST_ENSURES(vccc::ranges::equal(z, "abcdEF"_sv));
+
+    auto v1 = vccc::views::zip(x, y);
+    TEST_ENSURES(v1.size() == std::min(x.size(), y.size()));
+    TEST_ENSURES(v1.size() == 4);
+
+    auto w = std::forward_list<double>{1., 2.};
+    [[maybe_unused]] auto v2 = vccc::views::zip(x, w);
+//    auto sz = v2.size();
+//  auto sz = v2.size(); // Error, v2 does not have size():
+    static_assert(!vccc::ranges::sized_range<decltype(v2)>::value, "");
+  }
+
   return TEST_RETURN_RESULT;
 }
