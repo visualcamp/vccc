@@ -368,7 +368,7 @@ class zip_view : public view_interface<zip_view<Views...>> {
         >...
     >::value, int> = 0>
     friend constexpr bool operator==(const iterator<OtherConst>& x, const sentinel& y) {
-      return x.equal_2(y.end_, in_place_index_t<0>{});
+      return y.is_equal(x);
     }
 
     template<bool OtherConst, std::enable_if_t<conjunction<
@@ -428,6 +428,11 @@ class zip_view : public view_interface<zip_view<Views...>> {
     template<typename Tuple>
     constexpr explicit sentinel(in_place_t, Tuple&& tup)
         : end_(std::forward<Tuple>(tup)) {}
+
+    template<bool OtherConst>
+    constexpr bool is_equal(const iterator<OtherConst>& i) const {
+      return i.equal_2(end_, in_place_index_t<0>{});
+    }
 
     std::tuple<sentinel_t<maybe_const<Const, Views>>...> end_{};
   };
