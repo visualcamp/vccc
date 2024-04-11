@@ -19,6 +19,7 @@
 #include <vector>
 
 #include "vccc/algorithm.hpp"
+#include "vccc/array.hpp"
 #include "vccc/iterator.hpp"
 #include "vccc/ranges.hpp"
 #include "vccc/span.hpp"
@@ -1156,6 +1157,34 @@ int main() {
 //    auto sz = v2.size();
 //  auto sz = v2.size(); // Error, v2 does not have size():
     static_assert(!vccc::ranges::sized_range<decltype(v2)>::value, "");
+  }
+
+  { // ranges::zip_transform_view, views::zip_transform
+    {
+      auto v1 = std::vector<float>{1, 2, 3};
+      auto v2 = std::list<short>{1, 2, 3, 4};
+      auto v3 = vccc::to_array({1, 2, 3, 4, 5});
+
+      auto add = [](auto a, auto b, auto c) { return a + b + c; };
+
+      auto sum = vccc::views::zip_transform(add, v1, v2, v3);
+      TEST_ENSURES(vccc::ranges::equal(sum, {3, 6, 9}));
+    }
+
+    {
+      auto x = std::vector<int>{1, 2, 3, 4, 5};
+      auto y = std::deque<short>{10, 20, 30};
+      auto z = std::forward_list<double>{100., 200.};
+
+      auto v1 = vccc::views::zip_transform(std::plus<>{}, x, y);
+      TEST_ENSURES(v1.size() == (std::min)(x.size(), y.size()));
+      TEST_ENSURES(v1.size() == 3);
+      TEST_ENSURES(vccc::ranges::equal(v1, {11, 22, 33}));
+
+      [[maybe_unused]] auto v2 = vccc::views::zip_transform(std::plus<>{}, x, z);
+//      auto sz = v2.size(); // Error: z doesn't have size(), so neither does v2
+      static_assert(not vccc::ranges::sized_range<decltype(z)>::value, "");
+    }
   }
 
   return TEST_RETURN_RESULT;
