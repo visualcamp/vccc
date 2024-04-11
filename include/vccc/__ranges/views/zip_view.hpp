@@ -70,7 +70,7 @@ struct min_tuple_distance_fn {
     static_assert(std::tuple_size<remove_cvref_t<T1>>::value ==
                   std::tuple_size<remove_cvref_t<T2>>::value, "Size doesn't match");
 
-    return call(t1, t2, in_place_index_t<0>{});
+    return call(t1, t2, std::make_index_sequence<std::tuple_size<remove_cvref_t<T2>>::value>{});
   }
 
  private:
@@ -402,7 +402,7 @@ class zip_view : public view_interface<zip_view<Views...>> {
     }
 
     template<bool OtherConst, std::enable_if_t<conjunction<
-        sentinel_for<
+        sized_sentinel_for<
             sentinel_t<maybe_const<Const, Views>>,
             iterator_t<maybe_const<OtherConst, Views>>
         >...
@@ -414,7 +414,7 @@ class zip_view : public view_interface<zip_view<Views...>> {
     }
 
     template<bool OtherConst, std::enable_if_t<conjunction<
-        sentinel_for<
+        sized_sentinel_for<
             sentinel_t<maybe_const<Const, Views>>,
             iterator_t<maybe_const<OtherConst, Views>>
         >...
