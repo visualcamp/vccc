@@ -5,6 +5,7 @@
 #include "test_core.hpp"
 
 #include <algorithm>
+#include <cctype>
 #include <forward_list>
 #include <iomanip>
 #include <iostream>
@@ -249,6 +250,25 @@ int Test() {
     // find latest element that satisfy the comparator, and projecting pair::first
     const auto subrange = ranges::find_last_if(list, cmp_one, &P::first);
     TEST_ENSURES(ranges::equal(subrange, std::vector<P>{{"one", 4}, {"two", 5}, {"three", 6}}));
+  }
+
+  { // ranges::find_end
+    constexpr auto secret{"password password word..."_sv};
+    constexpr auto wanted{"password"_sv};
+
+    auto s1 = ranges::find_end(secret.cbegin(), secret.cend(), wanted.cbegin(), wanted.cend());
+    TEST_ENSURES(std::distance(secret.begin(), s1.begin()) == 9 && s1.size() == 8);
+
+    auto s2 = ranges::find_end(secret, "word"_sv);
+    TEST_ENSURES(std::distance(secret.begin(), s2.begin()) == 18 && s2.size() == 4);
+
+    auto s3 = ranges::find_end(secret, "ORD"_sv, [](const char x, const char y) {
+      return std::tolower(x) == std::tolower(y);
+    });
+    TEST_ENSURES(std::distance(secret.begin(), s3.begin()) == 19 && s3.size() == 3);
+
+    auto s4 = ranges::find_end(secret, "SWORD"_sv, {}, {}, [](char c) { return std::tolower(c); });
+    TEST_ENSURES(std::distance(secret.begin(), s4.begin()) == 12 && s4.size() == 5);
   }
 
   return TEST_RETURN_RESULT;

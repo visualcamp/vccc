@@ -15,6 +15,7 @@
 #include "vccc/__algorithm/ranges/count_if.hpp"
 #include "vccc/__algorithm/ranges/equal.hpp"
 #include "vccc/__algorithm/ranges/find.hpp"
+#include "vccc/__algorithm/ranges/find_end.hpp"
 #include "vccc/__algorithm/ranges/find_if.hpp"
 #include "vccc/__algorithm/ranges/find_if_not.hpp"
 #include "vccc/__algorithm/ranges/find_last.hpp"
