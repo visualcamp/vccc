@@ -271,6 +271,32 @@ int Test() {
     TEST_ENSURES(std::distance(secret.begin(), s4.begin()) == 12 && s4.size() == 5);
   }
 
+  { // ranges::find_first_of
+    constexpr static auto haystack = {1, 2, 3, 4};
+    constexpr static auto needles  = {0, 3, 4, 3};
+
+    constexpr auto found1 = ranges::find_first_of(haystack.begin(), haystack.end(),
+                                               needles.begin(), needles.end());
+    TEST_ENSURES(std::distance(haystack.begin(), found1) == 2);
+
+    constexpr auto found2 = ranges::find_first_of(haystack, needles);
+    TEST_ENSURES(std::distance(haystack.begin(), found2) == 2);
+
+    constexpr static auto negatives = {-6, -3, -4, -3};
+    constexpr auto not_found = ranges::find_first_of(haystack, negatives);
+    TEST_ENSURES(not_found == haystack.end());
+
+    auto found3 = ranges::find_first_of(haystack, negatives,
+                                               [](int x, int y) { return x == -y; }); // uses a binary comparator
+    TEST_ENSURES(std::distance(haystack.begin(), found3) == 2);
+
+    struct P { int x, y; };
+    constexpr static auto p1 = {P{1, -1}, P{2, -2}, P{3, -3}, P{4, -4}};
+    constexpr static auto p2 = {P{5, -5}, P{6, -3}, P{7, -5}, P{8, -3}};
+    const auto found4 = ranges::find_first_of(p1, p2, {}, &P::y, &P::y);
+    TEST_ENSURES(std::distance(p1.begin(), found4) == 2);
+  }
+
   return TEST_RETURN_RESULT;
 }
 
