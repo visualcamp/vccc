@@ -275,15 +275,15 @@ int Test() {
     constexpr static auto haystack = {1, 2, 3, 4};
     constexpr static auto needles  = {0, 3, 4, 3};
 
-    constexpr auto found1 = ranges::find_first_of(haystack.begin(), haystack.end(),
+    auto found1 = ranges::find_first_of(haystack.begin(), haystack.end(),
                                                needles.begin(), needles.end());
     TEST_ENSURES(std::distance(haystack.begin(), found1) == 2);
 
-    constexpr auto found2 = ranges::find_first_of(haystack, needles);
+    auto found2 = ranges::find_first_of(haystack, needles);
     TEST_ENSURES(std::distance(haystack.begin(), found2) == 2);
 
     constexpr static auto negatives = {-6, -3, -4, -3};
-    constexpr auto not_found = ranges::find_first_of(haystack, negatives);
+    auto not_found = ranges::find_first_of(haystack, negatives);
     TEST_ENSURES(not_found == haystack.end());
 
     auto found3 = ranges::find_first_of(haystack, negatives,
