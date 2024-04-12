@@ -5,6 +5,10 @@
 #include "test_core.hpp"
 
 #include <algorithm>
+#include <forward_list>
+#include <iomanip>
+#include <iostream>
+#include <list>
 #include <string>
 #include <vector>
 
@@ -184,6 +188,67 @@ int Test() {
     ranges::set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(),
                              std::back_inserter(v_intersection));
     TEST_ENSURES(ranges::equal(v_intersection, {5, 7, 7}));
+  }
+
+  {
+    constexpr static auto v = {1, 2, 3, 1, 2, 3, 1, 2};
+
+    {
+      auto i1 = ranges::find_last(v.begin(), v.end(), 3);
+      auto i2 = ranges::find_last(v, 3);
+      TEST_ENSURES(ranges::distance(v.begin(), i1.begin()) == 5);
+      TEST_ENSURES(ranges::distance(v.begin(), i2.begin()) == 5);
+    }
+    {
+      auto i1 = ranges::find_last(v.begin(), v.end(), -3);
+      auto i2 = ranges::find_last(v, -3);
+      TEST_ENSURES(i1.begin() == v.end());
+      TEST_ENSURES(i2.begin() == v.end());
+    }
+
+    auto abs = [](int x) { return x < 0 ? -x : x; };
+
+    {
+      auto pred = [](int x) { return x == 3; };
+      auto i1 = ranges::find_last_if(v.begin(), v.end(), pred, abs);
+      auto i2 = ranges::find_last_if(v, pred, abs);
+      TEST_ENSURES(ranges::distance(v.begin(), i1.begin()) == 5);
+      TEST_ENSURES(ranges::distance(v.begin(), i2.begin()) == 5);
+    }
+    {
+      auto pred = [](int x) { return x == -3; };
+      auto i1 = ranges::find_last_if(v.begin(), v.end(), pred, abs);
+      auto i2 = ranges::find_last_if(v, pred, abs);
+      TEST_ENSURES(i1.begin() == v.end());
+      TEST_ENSURES(i2.begin() == v.end());
+    }
+
+    {
+      auto pred = [](int x) { return x == 1 or x == 2; };
+      auto i1 = ranges::find_last_if_not(v.begin(), v.end(), pred, abs);
+      auto i2 = ranges::find_last_if_not(v, pred, abs);
+      TEST_ENSURES(ranges::distance(v.begin(), i1.begin()) == 5);
+      TEST_ENSURES(ranges::distance(v.begin(), i2.begin()) == 5);
+    }
+    {
+      auto pred = [](int x) { return x == 1 or x == 2 or x == 3; };
+      auto i1 = ranges::find_last_if_not(v.begin(), v.end(), pred, abs);
+      auto i2 = ranges::find_last_if_not(v, pred, abs);
+      TEST_ENSURES(i1.begin() == v.end());
+      TEST_ENSURES(i2.begin() == v.end());
+    }
+
+    using P = std::pair<vccc::string_view, int>;
+    std::forward_list<P> list
+        {
+            {"one", 1}, {"two", 2}, {"three", 3},
+            {"one", 4}, {"two", 5}, {"three", 6},
+        };
+    auto cmp_one = [](const vccc::string_view &s) { return s == "one"; };
+
+    // find latest element that satisfy the comparator, and projecting pair::first
+    const auto subrange = ranges::find_last_if(list, cmp_one, &P::first);
+    TEST_ENSURES(ranges::equal(subrange, std::vector<P>{{"one", 4}, {"two", 5}, {"three", 6}}));
   }
 
   return TEST_RETURN_RESULT;

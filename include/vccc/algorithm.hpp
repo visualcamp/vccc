@@ -17,6 +17,7 @@
 #include "vccc/__algorithm/ranges/find.hpp"
 #include "vccc/__algorithm/ranges/find_if.hpp"
 #include "vccc/__algorithm/ranges/find_if_not.hpp"
+#include "vccc/__algorithm/ranges/find_last.hpp"
 #include "vccc/__algorithm/ranges/fold_left.hpp"
 #include "vccc/__algorithm/ranges/for_each.hpp"
 #include "vccc/__algorithm/ranges/for_each_n.hpp"
