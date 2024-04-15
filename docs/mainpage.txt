@@ -5,7 +5,7 @@
 
 \section Overview
 VCCC is a cross-platform header-only library consisting of several modules written C++14. <br>
-It provides various algorithms, implementing C++17 and C++20 feature in C++14.
+It provides various algorithms, implementing C++17 ... C++26 feature in C++14.
 
 \section compiler_support Compiler Support
 - GCC 6.0 or above
