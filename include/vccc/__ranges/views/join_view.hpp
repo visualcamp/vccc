@@ -12,8 +12,11 @@
 #include "vccc/__concepts/default_initializable.hpp"
 #include "vccc/__concepts/derived_from.hpp"
 #include "vccc/__concepts/equality_comparable.hpp"
+#include "vccc/__iterator/indirectly_swappable.hpp"
 #include "vccc/__iterator/iterator_tag.hpp"
 #include "vccc/__iterator/iterator_traits/cxx20_iterator_traits.hpp"
+#include "vccc/__iterator/iter_move.hpp"
+#include "vccc/__iterator/iter_swap.hpp"
 #include "vccc/__memory/addressof.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
 #include "vccc/__ranges/common_range.hpp"
@@ -255,14 +258,18 @@ class join_view : public view_interface<join_view<V>> {
       return !(x == y);
     }
 
-    // TODO: Solve "redefinition of 'iter_move' as different kind of symbol" in Android NDK 21.1.6352462
-    // friend constexpr decltype(auto) iter_move(const iterator& i)
-    //     noexcept(noexcept(ranges::iter_move(*i.inner_)))
-    // {
-    //   return ranges::iter_move(*i.inner_);
-    // }
+    friend constexpr decltype(auto) iter_move(const iterator& i)
+        noexcept(noexcept(ranges::iter_move(*i.inner_)))
+    {
+      return ranges::iter_move(*i.inner_);
+    }
 
-    // TODO: Implement iter_swap
+    template<typename II = InnerIter, std::enable_if_t<indirectly_swappable<II>::value, int> = 0>
+    friend constexpr void iter_swap(const iterator& x, const iterator& y)
+        noexcept(noexcept(ranges::iter_swap(*x.inner_, *y.inner_)))
+    {
+      ranges::iter_swap(x.inner_, y.inner_);
+    }
 
    private:
     constexpr OuterIter& get_outer() noexcept {

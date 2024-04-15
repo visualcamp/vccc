@@ -91,6 +91,9 @@ class transform_view : public view_interface<transform_view<V, F>> {
   class iterator : public transform_view_iterator_category<std::conditional_t<Const, const V, V>> {
     using Parent = std::conditional_t<Const, const transform_view, transform_view>;
     using Base = maybe_const<Const, V>;
+
+    template<bool B> friend class sentinel;
+    friend class transform_view;
    public:
     using iterator_concept =
       std::conditional_t<
@@ -224,16 +227,21 @@ class transform_view : public view_interface<transform_view<V, F>> {
       return x.current_ - y.current_;
     }
 
-    // TODO: Solve "redefinition of 'iter_move' as different kind of symbol" in Android NDK 21.1.6352462
-    // friend constexpr decltype(auto) iter_move(const iterator& i)
-    //     noexcept(noexcept(*i)) {
-    //   return std::is_lvalue_reference<decltype(*i)>::value ? std::move(*i) : *i;
-    // }
+    friend constexpr decltype(auto) iter_move(const iterator& i)
+        noexcept(noexcept(vccc::invoke(*i.parent_->func_, *i.current_)))
+    {
+      return iter_move_ref(*i);
+    }
 
    private:
-    template<bool B>
-    friend class sentinel;
-    friend class transform_view;
+    template<typename T, std::enable_if_t<std::is_rvalue_reference<T&&>::value, int> = 0>
+    static constexpr decltype(auto) iter_move_ref(T&& ref) {
+      return std::move(ref);
+    }
+    template<typename T>
+    static constexpr decltype(auto) iter_move_ref(T& ref) {
+      return std::move(ref);
+    }
 
     iterator_t<Base> current_;
     Parent* parent_ = nullptr;

@@ -42,7 +42,7 @@ struct prev_niebloid {
 
 } // namespace detail
 
-inline namespace niebloid {
+namespace niebloid {
 
 /// @addtogroup iterator
 /// @{
@@ -55,7 +55,8 @@ VCCC_INLINE_OR_STATIC constexpr detail::prev_niebloid prev{};
 /// @}
 /// @}
 
-} // inline namespace niebloid
+} // namespace niebloid
+using namespace niebloid;
 
 } // namespace ranges
 } // namespace vccc

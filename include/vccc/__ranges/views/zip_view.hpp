@@ -15,6 +15,7 @@
 #include "vccc/__concepts/equality_comparable.hpp"
 #include "vccc/__iterator/iterator_tag.hpp"
 #include "vccc/__iterator/iter_move.hpp"
+#include "vccc/__iterator/iter_swap.hpp"
 #include "vccc/__iterator/sentinel_for.hpp"
 #include "vccc/__iterator/sized_sentinel_for.hpp"
 #include "vccc/__ranges/begin.hpp"
@@ -298,22 +299,34 @@ class zip_view : public view_interface<zip_view<Views...>> {
       return detail::min_tuple_distance_fn<difference_type>{}(i.current_, j.current_);
     }
 
-//    friend constexpr auto iter_move(const iterator& i)
-//        noexcept(conjunction<
-//            bool_constant<noexcept(
-//                ranges::iter_move(
-//                    std::declval<const iterator_t<maybe_const<Const, Views>>&>()
-//                )
-//            )>...,
-//            std::is_nothrow_move_constructible<
-//                range_rvalue_reference_t<maybe_const<Const, Views>>
-//            >...
-//        >::value)
-//    {
-//      return vccc::tuple_transform(i.current_, ranges::iter_move);
-//    }
+    friend constexpr auto iter_move(const iterator& i)
+        noexcept(conjunction<
+            bool_constant<noexcept(
+                ranges::iter_move(
+                    std::declval<const iterator_t<maybe_const<Const, Views>>&>()
+                )
+            )>...,
+            std::is_nothrow_move_constructible<
+                range_rvalue_reference_t<maybe_const<Const, Views>>
+            >...
+        >::value)
+    {
+      return vccc::tuple_transform(i.current_, ranges::iter_move);
+    }
 
-    // iter_swap
+    template<typename IS = conjunction<
+        indirectly_swappable<iterator_t<maybe_const<Const, Views>>>...>,
+        std::enable_if_t<IS::value, int> = 0>
+    friend constexpr void iter_swap(const iterator& x, const iterator& y)
+        noexcept(conjunction<
+            bool_constant<noexcept(ranges::iter_swap(
+                std::declval<const iterator_t<maybe_const<Const, Views>>&>(),
+                std::declval<const iterator_t<maybe_const<Const, Views>>&>()
+            ))>...
+        >::value)
+    {
+      x.iter_swap_impl(y, tuple_index_sequence{});
+    }
 
    private:
     template<typename Tuple>
@@ -340,8 +353,16 @@ class zip_view : public view_interface<zip_view<Views...>> {
     }
 
     template<typename OtherTuple>
-    constexpr bool equal_2(const OtherTuple& other, in_place_index_t<kViewCount>) const {
+    constexpr bool equal_2(const OtherTuple&, in_place_index_t<kViewCount>) const {
       return false;
+    }
+
+    template<std::size_t... I>
+    constexpr void iter_swap_impl(const iterator& other, std::index_sequence<I...>) const {
+      int dummy[] = {
+          (ranges::iter_swap(std::get<I>(current_), std::get<I>(other.current_)), 0)...
+      };
+      (void)dummy;
     }
 
     std::tuple<iterator_t<maybe_const<Const, Views>>...> current_{};

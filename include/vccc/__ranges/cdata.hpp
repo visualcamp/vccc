@@ -32,7 +32,7 @@ struct cdata_niebloid {
 
 } // namespace detail
 
-inline namespace niebloid {
+namespace niebloid {
 
 /// @addtogroup ranges
 /// @{
@@ -41,7 +41,8 @@ VCCC_INLINE_OR_STATIC constexpr detail::cdata_niebloid cdata{};
 
 /// @}
 
-} // inline namespace niebloid
+} // namespace niebloid
+using namespace niebloid;
 
 } // namespace ranges
 } // namespace vccc

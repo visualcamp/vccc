@@ -42,7 +42,7 @@ struct ssize_niebloid {
 
 } // namespace detail
 
-inline namespace niebloid {
+namespace niebloid {
 
 /// @addtogroup ranges
 /// @{
@@ -57,7 +57,8 @@ VCCC_INLINE_OR_STATIC constexpr detail::ssize_niebloid ssize{};
 
 /// @}
 
-} // inline namespace niebloid
+} // namespace niebloid
+using namespace niebloid;
 
 } // namespace ranges
 } // namespace vccc

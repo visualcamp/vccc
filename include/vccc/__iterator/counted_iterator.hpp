@@ -10,6 +10,7 @@
 #include <utility>
 
 #include "vccc/__core/constexpr.hpp"
+#include "vccc/__core/debug_assert.hpp"
 #include "vccc/__concepts/assignable_from.hpp"
 #include "vccc/__concepts/common_with.hpp"
 #include "vccc/__concepts/convertible_to.hpp"
@@ -20,11 +21,13 @@
 #include "vccc/__iterator/default_sentinel_t.hpp"
 #include "vccc/__iterator/forward_iterator.hpp"
 #include "vccc/__iterator/indirectly_readable.hpp"
+#include "vccc/__iterator/indirectly_swappable.hpp"
 #include "vccc/__iterator/input_iterator.hpp"
 #include "vccc/__iterator/input_or_output_iterator.hpp"
 #include "vccc/__iterator/iter_difference_t.hpp"
 #include "vccc/__iterator/iter_move.hpp"
 #include "vccc/__iterator/iter_rvalue_reference_t.hpp"
+#include "vccc/__iterator/iter_swap.hpp"
 #include "vccc/__iterator/iter_value_t.hpp"
 #include "vccc/__iterator/random_access_iterator.hpp"
 #include "vccc/__memory/to_address.hpp"
@@ -249,7 +252,13 @@ class counted_iterator
     return ranges::iter_move(i.base());
   }
 
-  // TODO: implement iter_swap
+  template<typename I2, std::enable_if_t<indirectly_swappable<I2, I>::value, int> = 0>
+  friend constexpr void iter_swap(const counted_iterator& x, const counted_iterator<I2>& y)
+      noexcept(noexcept(ranges::iter_swap(x.base(), y.base())))
+  {
+    VCCC_DEBUG_ASSERT(x.count() != 0 && y.count() != 0);
+    ranges::iter_swap(x.base(), y.base());
+  }
 
  private:
   iterator_type current_;

@@ -15,6 +15,8 @@
 #include "vccc/__concepts/equality_comparable.hpp"
 #include "vccc/__iterator/iterator_tag.hpp"
 #include "vccc/__iterator/iterator_traits/cxx20_iterator_traits.hpp"
+#include "vccc/__iterator/iter_move.hpp"
+#include "vccc/__iterator/iter_swap.hpp"
 #include "vccc/__memory/addressof.hpp"
 #include "vccc/__ranges/begin.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
@@ -27,6 +29,7 @@
 #include "vccc/__ranges/non_propagating_cache.hpp"
 #include "vccc/__ranges/range_difference_t.hpp"
 #include "vccc/__ranges/range_reference_t.hpp"
+#include "vccc/__ranges/range_rvalue_reference_t.hpp"
 #include "vccc/__ranges/range_value_t.hpp"
 #include "vccc/__ranges/sentinel_t.hpp"
 #include "vccc/__ranges/view.hpp"
@@ -350,6 +353,18 @@ class join_with_view : public detail::join_with_view_base<V, Pattern, join_with_
         return !(x == y);
       }
 
+      friend constexpr decltype(auto) iter_move(const iterator& i) {
+        using R = common_reference_t<range_rvalue_reference_t<InnerBase>, range_rvalue_reference_t<PatternBase>>;
+        return i.inner_it_.template visit([](auto&& i) -> R {
+          return ranges::iter_move(std::forward<decltype(i)>(i));
+        });
+      }
+
+      template<typename IS = indirectly_swappable<iterator_t<InnerBase>, iterator_t<PatternBase>>, std::enable_if_t<IS::value, int> = 0>
+      friend constexpr void iter_swap(const iterator& x, const iterator& y) {
+        vccc::visit(ranges::iter_swap, x.inner_it_, y.inner_it_);
+      }
+
      private:
       template<typename B = Base, std::enable_if_t<forward_range<B>::value, int> = 0>
       constexpr iterator(Parent& parent, iterator_t<Base> outer_it)
@@ -394,22 +409,22 @@ class join_with_view : public detail::join_with_view_base<V, Pattern, join_with_
       }
 
       template<typename IB = InnerBase, std::enable_if_t<std::is_reference<IB>::value, int> = 0>
-      constexpr auto& update_inner() {
+      constexpr decltype(auto) update_inner() {
         return *get_outer();
       }
 
       template<typename IB = InnerBase, std::enable_if_t<std::is_reference<IB>::value == false, int> = 0>
-      constexpr auto& update_inner() {
+      constexpr decltype(auto) update_inner() {
         return parent_->inner_base_.emplace_deref(get_outer()).val;
       }
 
       template<typename IB = InnerBase, std::enable_if_t<std::is_reference<IB>::value, int> = 0>
-      constexpr auto& get_inner() noexcept {
+      constexpr decltype(auto) get_inner() noexcept {
         return *get_outer();
       }
 
       template<typename IB = InnerBase, std::enable_if_t<std::is_reference<IB>::value == false, int> = 0>
-      constexpr auto& get_inner() noexcept {
+      constexpr decltype(auto) get_inner() noexcept {
         return *parent_->inner_base_.val;
       }
 

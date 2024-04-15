@@ -167,7 +167,7 @@ class subrange
       bool_constant< K == subrange_kind::sized >
   >::value, int> = 0>
   constexpr subrange(I2 i, S s, detail::make_unsigned_like_t<iter_difference_t<I>> n)
-      : iterator_(std::move(i)), sentinel_(std::move(s)), size_base(in_place, n) {}
+      : size_base(in_place, n), iterator_(std::move(i)), sentinel_(std::move(s)) {}
 
   template<typename R, std::enable_if_t<conjunction<
       detail::different_from<subrange, R>,
