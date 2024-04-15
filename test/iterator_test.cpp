@@ -35,7 +35,7 @@ int main() {
   }
 
   {
-    int* p;
+    int* p = nullptr;
     static_assert(vccc::weakly_incrementable<int*>::value, "");
 
     // operator==(vccc::unreachable_sentinel, p);
@@ -152,6 +152,54 @@ int main() {
     static_assert(std::is_same<int*, vccc::cxx20_iterator_traits<decltype(iv)>::pointer>(), "");
     static_assert(std::is_same<void, vccc::cxx20_iterator_traits<decltype(il)>::pointer>(), "");
 
+  }
+
+  { // common_iterator
+    { // iter_move
+      std::vector<std::string> p{"Andromeda", "Cassiopeia", "Phoenix"}, q;
+
+      using CTI = vccc::counted_iterator<std::vector<std::string>::iterator>;
+      using CI = vccc::common_iterator<CTI, vccc::default_sentinel_t>;
+      CI last{vccc::default_sentinel};
+
+      for (CI first{{p.begin(), 2}}; first != last; ++first)
+        q.emplace_back(/* ADL */ iter_move(first));
+      TEST_ENSURES(p[0].empty() && q[0] == "Andromeda");
+      TEST_ENSURES(p[1].empty() && q[1] == "Cassiopeia");
+      TEST_ENSURES(!p[2].empty() && q.size() == 2);
+    }
+    { // iter_swap
+      using vector = std::vector<std::string>;
+
+      vector v1{"1", "2", "3", "4", "5"}, v2{"a", "b", "c", "d", "e"};
+
+      using CI = vccc::common_iterator<
+          vccc::counted_iterator<std::vector<std::string>::iterator>,
+          vccc::default_sentinel_t
+      >;
+
+      CI first1{vccc::counted_iterator<decltype(v1.begin())>{v1.begin(), 3}};
+      CI first2{vccc::counted_iterator<decltype(v2.begin())>{v2.begin(), 4}};
+      CI last{vccc::default_sentinel};
+
+      for (; first1 != last && first2 != last; ++first1, ++first2)
+        iter_swap(first1, first2); // ADL
+
+      TEST_ENSURES(vccc::ranges::equal(v1, vector{"a", "b", "c", "4", "5"}));
+      TEST_ENSURES(vccc::ranges::equal(v2, vector{"1", "2", "3", "d", "e"}));
+    }
+  }
+
+
+  {
+    std::vector<int> v = {1, 2, 3};
+    auto it = std::make_reverse_iterator(v.begin());
+
+    iter_move(it);
+
+
+    auto it2 = std::make_move_iterator(v.begin());
+    bool res = it2 == vccc::move_sentinel<decltype(v)::iterator>{};
   }
 
   return TEST_RETURN_RESULT;
