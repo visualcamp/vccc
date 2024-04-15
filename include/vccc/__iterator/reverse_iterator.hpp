@@ -22,7 +22,6 @@
 #include "vccc/__iterator/random_access_iterator.hpp"
 #include "vccc/__iterator/sized_sentinel_for.hpp"
 #include "vccc/__type_traits/negation.hpp"
-2
 
 namespace vccc {
 
