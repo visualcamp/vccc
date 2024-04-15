@@ -297,6 +297,17 @@ int Test() {
     TEST_ENSURES(std::distance(p1.begin(), found4) == 2);
   }
 
+  { // ranges::make_heap
+    std::vector<int> h{1, 6, 1, 8, 0, 3, 3, 9, 8, 8, 7, 4, 9, 8, 9};
+
+    vccc::ranges::make_heap(h);
+    TEST_ENSURES(std::is_heap(h.begin(), h.end()));
+
+    vccc::ranges::make_heap(h, std::greater<>{});
+    TEST_ENSURES(std::is_heap(h.begin(), h.end()) == false);
+    TEST_ENSURES(std::is_heap(h.begin(), h.end(), std::greater<>{}));
+  }
+
   return TEST_RETURN_RESULT;
 }
 

@@ -31,6 +31,7 @@
 #include "vccc/__algorithm/ranges/in_out_result.hpp"
 #include "vccc/__algorithm/ranges/in_value_result.hpp"
 #include "vccc/__algorithm/ranges/lexicographical_compare.hpp"
+#include "vccc/__algorithm/ranges/make_heap.hpp"
 #include "vccc/__algorithm/ranges/max.hpp"
 #include "vccc/__algorithm/ranges/max_element.hpp"
 #include "vccc/__algorithm/ranges/min.hpp"
