@@ -336,6 +336,35 @@ int Test() {
     TEST_ENSURES(std::is_sorted(v.begin(), v.end(), vccc::ranges::greater{}));
   }
 
+  { // ranges::sort
+    struct Particle {
+      std::string name;
+      double mass; // MeV
+    };
+
+    auto s = vccc::to_array({5, 7, 4, 2, 8, 6, 1, 9, 0, 3});
+    namespace ranges = vccc::ranges;
+
+    ranges::sort(s);
+    TEST_ENSURES(std::is_sorted(s.begin(), s.end()));
+
+    ranges::sort(s, ranges::greater());
+    TEST_ENSURES(std::is_sorted(s.begin(), s.end(), std::greater<>{}));
+
+    Particle particles[] {
+        {"Electron", 0.511}, {"Muon", 105.66}, {"Tau", 1776.86},
+        {"Positron", 0.511}, {"Proton", 938.27}, {"Neutron", 939.57}
+    };
+
+    // Sort by name using a projection
+    ranges::sort(particles, {}, &Particle::name);
+    TEST_ENSURES(ranges::equal(particles, {"Electron"_sv, "Muon"_sv, "Neutron"_sv, "Positron"_sv, "Proton"_sv, "Tau"_sv}, {}, &Particle::name));
+
+    // Sort by mass using a projection
+    ranges::sort(particles, {}, &Particle::mass);
+    TEST_ENSURES(ranges::equal(particles, {0.511, 0.511, 105.66, 938.27, 939.57, 1776.86}, {}, &Particle::mass));
+  }
+
   return TEST_RETURN_RESULT;
 }
 

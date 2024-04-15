@@ -43,6 +43,7 @@
 #include "vccc/__algorithm/ranges/pop_heap.hpp"
 #include "vccc/__algorithm/ranges/search.hpp"
 #include "vccc/__algorithm/ranges/set_intersection.hpp"
+#include "vccc/__algorithm/ranges/sort.hpp"
 #include "vccc/__algorithm/ranges/sort_heap.hpp"
 #include "vccc/__algorithm/ranges/swap_ranges.hpp"
 
