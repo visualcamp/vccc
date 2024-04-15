@@ -127,6 +127,9 @@ int main() {
 */
 
 /// @brief synthesized from `U == T`
+
+#if __cplusplus < 202002L
+
 template<typename T, typename U, std::enable_if_t<conjunction<
     negation<std::is_same<T, U>>,
     detail::has_operator_equal_2<const U&, const T&>
@@ -134,6 +137,8 @@ template<typename T, typename U, std::enable_if_t<conjunction<
 constexpr bool operator==(const T& a, const U& b) noexcept(noexcept(b == a)) {
   return b == a;
 }
+
+#endif // __cplusplus < 202002L
 
 namespace detail {
 
