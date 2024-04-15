@@ -355,7 +355,7 @@ class join_with_view : public detail::join_with_view_base<V, Pattern, join_with_
 
       friend constexpr decltype(auto) iter_move(const iterator& i) {
         using R = common_reference_t<range_rvalue_reference_t<InnerBase>, range_rvalue_reference_t<PatternBase>>;
-        return i.inner_it_.template visit([](auto&& i) -> R {
+        return i.inner_it_.visit([](auto&& i) -> R {
           return ranges::iter_move(std::forward<decltype(i)>(i));
         });
       }
