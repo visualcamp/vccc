@@ -230,17 +230,17 @@ class transform_view : public view_interface<transform_view<V, F>> {
     friend constexpr decltype(auto) iter_move(const iterator& i)
         noexcept(noexcept(vccc::invoke(*(i.parent_->func_), *i.current_)))
     {
-      return iter_move_ref(i, std::is_rvalue_reference<decltype(*i)>{});
+      return iter_move_ref(*i);
     }
 
    private:
-    template<typename Self>
-    static constexpr decltype(auto) iter_move_ref(Self&& self, std::true_type /* rvalue */) {
-      return *std::forward<Self>(self);
+    template<typename T, std::enable_if_t<std::is_rvalue_reference<T&&>::value, int> = 0>
+    static constexpr decltype(auto) iter_move_ref(T&& ref) {
+      return std::forward<T>(ref);
     }
-    template<typename Self>
-    static constexpr decltype(auto) iter_move_ref(Self&& self, std::false_type /* rvalue */) {
-      return std::move(*std::forward<Self>(self));
+    template<typename T>
+    static constexpr decltype(auto) iter_move_ref(T& ref) {
+      return std::move(ref);
     }
 
     iterator_t<Base> current_;
