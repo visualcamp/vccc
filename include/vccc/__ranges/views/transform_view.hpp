@@ -85,6 +85,8 @@ class transform_view : public view_interface<transform_view<V, F>> {
 
  public:
   template<bool Const> class iterator;
+  template<bool Const> friend class iterator;
+
   template<bool Const> class sentinel;
 
   template<bool Const>
@@ -228,7 +230,7 @@ class transform_view : public view_interface<transform_view<V, F>> {
     }
 
     friend constexpr decltype(auto) iter_move(const iterator& i)
-        noexcept(noexcept(vccc::invoke(*(i.parent_->func_), *i.current_)))
+        noexcept(noexcept(vccc::invoke(std::declval<const F&>(), *i.current_)))
     {
       return iter_move_ref(*i);
     }
