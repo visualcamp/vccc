@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 
+#include "vccc/array.hpp"
 #include "vccc/algorithm.hpp"
 #include "vccc/string_view.hpp"
 #include "vccc/ranges.hpp"
@@ -306,6 +307,22 @@ int Test() {
     vccc::ranges::make_heap(h, std::greater<>{});
     TEST_ENSURES(std::is_heap(h.begin(), h.end()) == false);
     TEST_ENSURES(std::is_heap(h.begin(), h.end(), std::greater<>{}));
+  }
+
+  { // ranges::pop_heap
+    auto v = vccc::to_array({3, 1, 4, 1, 5, 9, 2, 6, 5, 3});
+
+    vccc::ranges::make_heap(v);
+    for (auto n {vccc::ssize(v)}; n >= 0; --n) {
+      vccc::ranges::pop_heap(v.begin(), v.begin() + n);
+      TEST_ENSURES(std::is_sorted(v.cbegin() + n, v.cend()));
+    }
+
+    vccc::ranges::make_heap(v, vccc::ranges::greater{});
+    for (auto n {vccc::ssize(v)}; n >= 0; --n) {
+      vccc::ranges::pop_heap(v.begin(), v.begin() + n, vccc::ranges::greater{});
+      TEST_ENSURES(std::is_sorted(v.cbegin() + n, v.cend(), vccc::ranges::greater{}));
+    }
   }
 
   return TEST_RETURN_RESULT;
