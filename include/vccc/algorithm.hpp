@@ -40,8 +40,10 @@
 #include "vccc/__algorithm/ranges/mismatch.hpp"
 #include "vccc/__algorithm/ranges/none_of.hpp"
 #include "vccc/__algorithm/ranges/out_value_result.hpp"
+#include "vccc/__algorithm/ranges/pop_heap.hpp"
 #include "vccc/__algorithm/ranges/search.hpp"
 #include "vccc/__algorithm/ranges/set_intersection.hpp"
+#include "vccc/__algorithm/ranges/sort_heap.hpp"
 #include "vccc/__algorithm/ranges/swap_ranges.hpp"
 
 /// @defgroup algorithm

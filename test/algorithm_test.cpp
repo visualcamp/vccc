@@ -325,6 +325,17 @@ int Test() {
     }
   }
 
+  { // ranges::sort_heap
+    auto v = vccc::to_array({3, 1, 4, 1, 5, 9});
+    vccc::ranges::make_heap(v);
+    vccc::ranges::sort_heap(v);
+    TEST_ENSURES(std::is_sorted(v.begin(), v.end()));
+
+    vccc::ranges::make_heap(v, vccc::ranges::greater{});
+    vccc::ranges::sort_heap(v, vccc::ranges::greater{});
+    TEST_ENSURES(std::is_sorted(v.begin(), v.end(), vccc::ranges::greater{}));
+  }
+
   return TEST_RETURN_RESULT;
 }
 
