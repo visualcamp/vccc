@@ -29,8 +29,9 @@ constexpr void tuple_for_each_impl(Tuple&& t, F&& f, std::index_sequence<I...>, 
 template<typename Tuple, typename F, std::size_t... I>
 constexpr void tuple_for_each_impl(Tuple&& t, F&& f, std::index_sequence<I...>, std::false_type) {
   int dummy[] = {
-      ((void)vccc::invoke(f, std::get<I>(std::forward<Tuple>(t))), 0)...
+      (vccc::invoke(f, std::get<I>(std::forward<Tuple>(t))), 0)...
   };
+  (void)dummy;
 }
 
 template<typename Tuple>
