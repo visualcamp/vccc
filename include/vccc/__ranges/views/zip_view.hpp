@@ -77,7 +77,7 @@ struct min_tuple_distance_fn {
  private:
   template<typename T1, typename T2, std::size_t... I>
   R call(const T1& t1, const T2& t2, std::index_sequence<I...>) const {
-    return ranges::min({R(std::get<I>(t1) - std::get<I>(t2))...});
+    return (ranges::min)({R(std::get<I>(t1) - std::get<I>(t2))...});
   }
 };
 
@@ -502,7 +502,7 @@ class zip_view : public view_interface<zip_view<Views...>> {
     return vccc::apply(
         [](auto... sizes) {
           using CT = std::make_unsigned_t<common_type_t<decltype(sizes)...>>;
-          return ranges::min({CT(sizes)...});
+          return (ranges::min)({CT(sizes)...});
         },
         vccc::tuple_transform(views_, ranges::size)
     );
@@ -515,7 +515,7 @@ class zip_view : public view_interface<zip_view<Views...>> {
     return vccc::apply(
         [](auto... sizes) {
           using CT = std::make_unsigned_t<common_type_t<decltype(sizes)...>>;
-          return ranges::min({CT(sizes)...});
+          return (ranges::min)({CT(sizes)...});
         },
         vccc::tuple_transform(views_, ranges::size)
     );
