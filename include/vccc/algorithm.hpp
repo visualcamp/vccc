@@ -10,6 +10,8 @@
 #include "vccc/__algorithm/shift.hpp"
 #include "vccc/__algorithm/ranges/all_of.hpp"
 #include "vccc/__algorithm/ranges/any_of.hpp"
+#include "vccc/__algorithm/ranges/contains.hpp"
+#include "vccc/__algorithm/ranges/contains_subrange.hpp"
 #include "vccc/__algorithm/ranges/copy.hpp"
 #include "vccc/__algorithm/ranges/count.hpp"
 #include "vccc/__algorithm/ranges/count_if.hpp"

@@ -365,6 +365,25 @@ int Test() {
     TEST_ENSURES(ranges::equal(particles, {0.511, 0.511, 105.66, 938.27, 939.57, 1776.86}, {}, &Particle::mass));
   }
 
+  { // ranges::contains, ranges::contains_subrange
+    constexpr auto haystack = vccc::to_array({3, 1, 4, 1, 5});
+    constexpr auto needle = vccc::to_array({1, 4, 1});
+    constexpr auto bodkin = vccc::to_array({2, 5, 2});
+    auto increment = [](int x) { return ++x; };
+    auto decrement = [](int x) { return --x; };
+
+    TEST_ENSURES(vccc::ranges::contains(haystack, 4));
+    TEST_ENSURES(!vccc::ranges::contains(haystack, 6));
+    TEST_ENSURES(vccc::ranges::contains(haystack, 6, increment));
+    TEST_ENSURES(!vccc::ranges::contains(haystack, 1, increment));
+
+    TEST_ENSURES(vccc::ranges::contains_subrange(haystack, needle));
+    TEST_ENSURES(!vccc::ranges::contains_subrange(haystack, bodkin));
+    TEST_ENSURES(vccc::ranges::contains_subrange(haystack, bodkin, {}, increment));
+    TEST_ENSURES(!vccc::ranges::contains_subrange(haystack, bodkin, {}, decrement));
+    TEST_ENSURES(vccc::ranges::contains_subrange(haystack, bodkin, {}, {}, decrement));
+  }
+
   return TEST_RETURN_RESULT;
 }
 
