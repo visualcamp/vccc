@@ -29,13 +29,15 @@ constexpr inline auto ssize(const C& c)
     -> common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>
 {
   using R = common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>;
+  static_assert(std::is_signed<R>::value, "R must be signed integer");
   return static_cast<R>(c.size());
 }
 
-template<typename T, std::size_t N>
+template<typename T, std::ptrdiff_t N>
 constexpr inline std::ptrdiff_t ssize(const T (&array)[N]) noexcept
 {
-  return static_cast<std::ptrdiff_t>(N);
+  static_assert(std::is_signed<std::ptrdiff_t>::value, "R must be signed integer");
+  return N;
 }
 
 } // namespace vccc
