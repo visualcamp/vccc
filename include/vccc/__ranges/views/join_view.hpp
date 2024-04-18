@@ -353,6 +353,14 @@ class join_view : public view_interface<join_view<V>> {
       return x == y;
     }
 
+    friend constexpr bool operator!=(const iterator<Const>& x, const sentinel& y) {
+      return !(x == y);
+    }
+
+    friend constexpr bool operator!=(const sentinel& y, const iterator<Const>& x) {
+      return !(x == y);
+    }
+
    private:
     sentinel_t<Base> end_;
   };

@@ -276,7 +276,15 @@ class transform_view : public view_interface<transform_view<V, F>> {
       return x.current_ == y.end_;
     }
 
+    friend constexpr bool operator==(const sentinel& y, const transform_view::iterator<Const>& x) {
+      return x == y;
+    }
+
     friend constexpr bool operator!=(const transform_view::iterator<Const>& x, const sentinel& y) {
+      return !(x == y);
+    }
+
+    friend constexpr bool operator!=(const sentinel& y, const transform_view::iterator<Const>& x) {
       return !(x == y);
     }
 
