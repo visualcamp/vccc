@@ -219,7 +219,13 @@ class counted_iterator
   friend constexpr bool operator==(const counted_iterator& x, default_sentinel_t) {
     return x.count() == 0;
   }
+  friend constexpr bool operator==(default_sentinel_t, const counted_iterator& x) {
+    return x.count() == 0;
+  }
   friend constexpr bool operator!=(const counted_iterator& x, default_sentinel_t) {
+    return x.count() != 0;
+  }
+  friend constexpr bool operator!=(default_sentinel_t, const counted_iterator& x) {
     return x.count() != 0;
   }
 
