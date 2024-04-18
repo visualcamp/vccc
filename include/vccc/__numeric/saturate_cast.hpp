@@ -18,9 +18,9 @@ namespace detail {
 template<typename To, typename From, typename Any>
 inline constexpr To saturate_cast_impl(From x, Any, Any, std::true_type /* digit<To>  <  digit<From> */) noexcept {
   if (x < static_cast<From>((std::numeric_limits<To>::min)()))
-    return std::numeric_limits<To>::min();
+    return (std::numeric_limits<To>::min)();
   if (x > static_cast<From>((std::numeric_limits<To>::max)()))
-    return std::numeric_limits<To>::max();
+    return (std::numeric_limits<To>::max)();
   return static_cast<To>(x);
 }
 
