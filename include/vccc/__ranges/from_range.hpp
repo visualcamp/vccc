@@ -17,7 +17,7 @@ namespace vccc {
 /// @addtogroup ranges
 /// @{
 
-#if __cplusplus >= 202302L
+#if __cplusplus >= 202302L && defined(__cpp_lib_containers_ranges)
 using from_range_t = std::from_range_t;
 #else
 struct from_range_t {
