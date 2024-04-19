@@ -19,7 +19,7 @@ namespace ranges {
 /// @{
 
 #if __cplusplus >= 202302L
-using from_range_t = std::ranges::from_range_t;
+using from_range_t = std::from_range_t;
 #else
 struct from_range_t {
   explicit from_range_t() = default;
