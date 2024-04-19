@@ -13,7 +13,6 @@
 
 
 namespace vccc {
-namespace ranges {
 
 /// @addtogroup ranges
 /// @{
@@ -30,7 +29,6 @@ VCCC_INLINE_OR_STATIC constexpr from_range_t from_range{};
 
 /// @}
 
-} // namespace ranges
 } // namespace vccc
 
 #endif // VCCC_RANGES_FROM_RANGE_HPP_
