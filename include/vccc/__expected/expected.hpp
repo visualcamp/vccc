@@ -697,7 +697,13 @@ class expected : private detail::expected_control_smf<detail::void_placdholder_o
   }
 
   template<typename U = T, std::enable_if_t<std::is_void<U>::value, int> = 0>
-  constexpr void operator*() const noexcept {}
+  constexpr void operator*() & noexcept {}
+  template<typename U = T, std::enable_if_t<std::is_void<U>::value, int> = 0>
+  constexpr void operator*() const& noexcept {}
+  template<typename U = T, std::enable_if_t<std::is_void<U>::value, int> = 0>
+  constexpr void operator*() && noexcept {}
+  template<typename U = T, std::enable_if_t<std::is_void<U>::value, int> = 0>
+  constexpr void operator*() const&& noexcept {}
 
   VCCC_NODISCARD bool has_value() const noexcept {
     return base::has_value();
