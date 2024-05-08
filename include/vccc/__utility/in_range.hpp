@@ -16,8 +16,8 @@ namespace vccc {
 
 template<typename R, typename T>
 constexpr bool in_range(T t) noexcept {
-  return vccc::cmp_greater_equal(t, std::numeric_limits<R>::min()) &&
-         vccc::cmp_less_equal(t, std::numeric_limits<R>::max());
+  return vccc::cmp_greater_equal(t, (std::numeric_limits<R>::min)()) &&
+         vccc::cmp_less_equal(t, (std::numeric_limits<R>::max)());
 }
 
 /// @}
