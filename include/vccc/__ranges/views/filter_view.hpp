@@ -260,7 +260,7 @@ class filter_view : public view_interface<filter_view<V, Pred>>, detail::filter_
   constexpr explicit filter_view(V base, Pred pred)
       : base_(std::move(base)), pred_(std::move(pred)) {}
 
-  template<typename V2 = V, std::enable_if_t<copy_constructible<V>::value, int> = 0>
+  template<typename V2 = V, std::enable_if_t<copy_constructible<V2>::value, int> = 0>
   constexpr V base() const & {
     return base_;
   }
