@@ -9,6 +9,7 @@
 
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/is_character.hpp"
+#include "vccc/__type_traits/negation.hpp"
 #include "vccc/__type_traits/remove_cvref.hpp"
 
 namespace vccc {
