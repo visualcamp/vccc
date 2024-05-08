@@ -7,6 +7,7 @@
 #
 # include "vccc/__utility/as_const.hpp"
 # include "vccc/__utility/assert.hpp"
+# include "vccc/__utility/cmp.hpp"
 # include "vccc/__utility/compressed_pair.hpp"
 # include "vccc/__utility/cxx20_rel_ops.hpp"
 # include "vccc/__utility/in_place.hpp"
