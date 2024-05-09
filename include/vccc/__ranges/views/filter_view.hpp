@@ -73,19 +73,19 @@ class filter_view_cache<V, false> {
   }
 };
 
-template<
-    typename V,
-    typename C = typename cxx20_iterator_traits<iterator_t<V>>::iterator_category,
-    bool = forward_range<V>::value /* false */
->
+template<typename V, bool = forward_range<V>::value /* false */>
 struct filter_view_iterator_category {
 #if __cplusplus < 202002L
   using iterator_category = iterator_ignore;
 #endif
 };
 
-template<typename V, typename C>
-struct filter_view_iterator_category<V, C, true> {
+template<typename V>
+struct filter_view_iterator_category<V, true> {
+ private:
+  using C = typename cxx20_iterator_traits<iterator_t<V>>::iterator_category;
+
+ public:
   using iterator_category =
      std::conditional_t<
          derived_from<C, bidirectional_iterator_tag>::value, bidirectional_iterator_tag,
