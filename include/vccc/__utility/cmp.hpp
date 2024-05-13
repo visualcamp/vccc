@@ -15,8 +15,8 @@
 namespace vccc {
 namespace detail {
 
-template<typename T, typename U, typename SameSignity>
-constexpr bool cmp_equal_impl(T t, U u, SameSignity, SameSignity) noexcept {
+template<typename T, typename U, typename... SameSignity>
+constexpr bool cmp_equal_impl(T t, U u, SameSignity...) noexcept {
   return t == u;
 }
 
@@ -30,8 +30,8 @@ constexpr bool cmp_equal_impl(T t, U u, std::false_type, std::true_type) noexcep
   return u >= 0 && std::make_unsigned_t<U>(u) == t;
 }
 
-template<typename T, typename U, typename SameSignity>
-constexpr bool cmp_less_impl(T t, U u, SameSignity, SameSignity) noexcept {
+template<typename T, typename U, typename... SameSignity>
+constexpr bool cmp_less_impl(T t, U u, SameSignity...) noexcept {
   return t < u;
 }
 
