@@ -22,6 +22,7 @@
 # include "vccc/__type_traits/common_type.hpp"
 # include "vccc/__type_traits/conjunction.hpp"
 # include "vccc/__type_traits/copy_cvref.hpp"
+# include "vccc/__type_traits/copy_template.hpp"
 # include "vccc/__type_traits/disjunction.hpp"
 # include "vccc/__type_traits/empty.hpp"
 # include "vccc/__type_traits/has_operator_arrow.hpp"
