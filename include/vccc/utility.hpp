@@ -15,6 +15,7 @@
 # include "vccc/__utility/key_value.hpp"
 # include "vccc/__utility/nontype.hpp"
 # include "vccc/__utility/sequence.hpp"
+# include "vccc/__utility/sequence_for_each.hpp"
 # include "vccc/__utility/time.hpp"
 # include "vccc/__utility/to_underlying.hpp"
 # include "vccc/__utility/type_sequence.hpp"
