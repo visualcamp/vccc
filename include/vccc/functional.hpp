@@ -5,6 +5,8 @@
 # ifndef VCCC_FUNCTIONAL_FUNCTIONAL_HPP
 # define VCCC_FUNCTIONAL_FUNCTIONAL_HPP
 #
+# include "vccc/__functional/bind_back.hpp"
+# include "vccc/__functional/bind_front.hpp"
 # include "vccc/__functional/equal_to.hpp"
 # include "vccc/__functional/greater.hpp"
 # include "vccc/__functional/greater_equal.hpp"
