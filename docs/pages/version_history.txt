@@ -5,104 +5,104 @@
 
 \section version_2024_05 v2024.05
 - \subpage log
-    - Add `Log_t::operator()` for custom priority and tag
+    - Add \ref Log_t::operator() for custom priority and tag
 
 - \subpage algorithm
-    - Add `ranges::clamp`
-    - Add `ranges::contains`
-    - Add `ranges::constains_subrange`
-    - Add `ranges::find_end`
-    - Add `ranges::find_first_of`
-    - Add `ranges::find_last`
-    - Add `ranges::make_heap`
-    - Add `ranges::pop_heap`
-    - Add `ranges::sort`
-    - Add `ranges::sort_heap`
-    - Fix `ranges::fold_left`
+    - Add \ref ranges::clamp
+    - Add \ref ranges::contains
+    - Add \ref ranges::constains_subrange
+    - Add \ref ranges::find_end
+    - Add \ref ranges::find_first_of
+    - Add \ref ranges::find_last
+    - Add \ref ranges::make_heap
+    - Add \ref ranges::pop_heap
+    - Add \ref ranges::sort
+    - Add \ref ranges::sort_heap
+    - Fix \ref ranges::fold_left
 
 - \subpage array
-    - Add `to_array`
+    - Add \ref to_array
 
 - \subpage compare
-    - Add `unstable_three_way_comparable`
+    - Add \ref unstable_three_way_comparable
 
 - \subpage concepts
-    - Fix lookup of `ranges::swap`
+    - Fix lookup of \ref ranges::swap
 
 - \subpage expected
-    - Fix `expected::operator*()`
+    - Fix \ref expected::operator*()
 
 - \subpage functional
-    - Add `bind_back`
-    - Add `bind_front`
-    - Fix `ranges::equal_to`
+    - Add \ref bind_back
+    - Add \ref bind_front
+    - Fix \ref ranges::equal_to
 
 - \subpage iterator
-    - Add `common_iterator::iter_move`
-    - Add `common_iterator::iter_swap`
-    - Add `counted_iterator::iter_move`
-    - Add `counted_iterator::iter_swap`
-    - Add `move_iterator`
-    - Add `reverse_iterator`
-    - Fix lookup of `ranges::advance`
-    - Fix comparison with `counted_iterator` and `default_sentinel_t`
-    - Fix `indirectly_swappable`
-    - Fix `ranges::iter_move`
-    - Fix `ranges::iter_swap`
-    - Fix lookup of `ranges::next`
-    - Fix lookup of `ranges::prev`
+    - Add \ref common_iterator::iter_move
+    - Add \ref common_iterator::iter_swap
+    - Add \ref counted_iterator::iter_move
+    - Add \ref counted_iterator::iter_swap
+    - Add \ref move_iterator
+    - Add \ref reverse_iterator
+    - Fix lookup of \ref ranges::advance
+    - Fix comparison with \ref counted_iterator and \ref default_sentinel_t
+    - Fix \ref indirectly_swappable
+    - Fix \ref ranges::iter_move
+    - Fix \ref ranges::iter_swap
+    - Fix lookup of \ref ranges::next
+    - Fix lookup of \ref ranges::prev
 
 - \subpage numeric
-    - Add `saturate_cast`
+    - Add \ref saturate_cast
 
 - \subpage ranges
-    - Add `ranges::cartesian_product_view::iter_move`
-    - Add `ranges::cartesian_product_view::iter_swap`
-    - Add `ranges::enumerate_view::iter_move`
-    - Add `ranges::enumerate_view::iter_swap`
-    - Add `ranges::filter_view::iter_move`
-    - Add `ranges::filter_view::iter_swap`
-    - Add `ranges::join_view::iter_move`
-    - Add `ranges::join_view::iter_swap`
-    - Add `ranges::join_with_view::iter_move`
-    - Add `ranges::join_with_view::iter_swap`
-    - Add `ranges::transform_view::iter_move`
-    - Add `ranges::zip_view`, `views::zip`
-    - Add `ranges::zip_transform_view`, `views::zip_transform`
-    - Fix lookup of `ranges::begin`
-    - Fix lookup of `ranges::cbegin`
-    - Fix lookup of `ranges::cdata`
-    - Fix lookup of `ranges::cend`
-    - Fix lookup of `ranges::crbegin`
-    - Fix lookup of `ranges::crend`
-    - Fix lookup of `ranges::data`
-    - Fix lookup of `ranges::distance`
-    - Fix lookup of `ranges::empty`
-    - Fix lookup of `ranges::end`
-    - Fix lookup of `ranges::from_range`
-    - Fix `ranges::non_propagating_cache::non_propagating_cache()`
-    - Fix lookup of `ranges::rbegin`
-    - Fix lookup of `ranges::rend`
-    - Fix lookup of `ranges::size`
-    - Fix lookup of `ranges::ssize`
-    - Fix initialization order of `ranges::subrange`
-    - Fix lookup of `views::all`
-    - Fix lookup of `views::single`
-    - Fix comparison with `take_view::sentinel` and `counted_iterator`
-    - Fix comparison with `transform_view::iterator` and `transform_view::sentinel`
+    - Add \ref ranges::cartesian_product_view::iter_move
+    - Add \ref ranges::cartesian_product_view::iter_swap
+    - Add \ref ranges::enumerate_view::iter_move
+    - Add \ref ranges::enumerate_view::iter_swap
+    - Add \ref ranges::filter_view::iter_move
+    - Add \ref ranges::filter_view::iter_swap
+    - Add \ref ranges::join_view::iter_move
+    - Add \ref ranges::join_view::iter_swap
+    - Add \ref ranges::join_with_view::iter_move
+    - Add \ref ranges::join_with_view::iter_swap
+    - Add \ref ranges::transform_view::iter_move
+    - Add \ref ranges::zip_view, \ref views::zip
+    - Add \ref ranges::zip_transform_view, \ref views::zip_transform
+    - Fix lookup of \ref ranges::begin
+    - Fix lookup of \ref ranges::cbegin
+    - Fix lookup of \ref ranges::cdata
+    - Fix lookup of \ref ranges::cend
+    - Fix lookup of \ref ranges::crbegin
+    - Fix lookup of \ref ranges::crend
+    - Fix lookup of \ref ranges::data
+    - Fix lookup of \ref ranges::distance
+    - Fix lookup of \ref ranges::empty
+    - Fix lookup of \ref ranges::end
+    - Fix lookup of \ref ranges::from_range
+    - Fix \ref ranges::non_propagating_cache::non_propagating_cache()
+    - Fix lookup of \ref ranges::rbegin
+    - Fix lookup of \ref ranges::rend
+    - Fix lookup of \ref ranges::size
+    - Fix lookup of \ref ranges::ssize
+    - Fix initialization order of \ref ranges::subrange
+    - Fix lookup of \ref views::all
+    - Fix lookup of \ref views::single
+    - Fix comparison with \ref take_view::sentinel and \ref counted_iterator
+    - Fix comparison with \ref transform_view::iterator and \ref transform_view::sentinel
 
 - \subpage tuple
-    - Add `tuple_for_each`, `tuple_for_each_index`
-    - Fix `tuple_transform`
+    - Add \ref tuple_for_each, \ref tuple_for_each_index
+    - Fix \ref tuple_transform
 
 - \subpage type_traits
-    - Add `copy_template`, `copy_template_t`
-    - Fix `ssize`
+    - Add \ref copy_template, \ref copy_template_t
+    - Fix \ref ssize
 
 - \subpage utility
-    - Add `cmp_equal`, `cmp_not_equal`, `cmp_less`, `cmp_greater`, `cmp_less_equal`, `cmp_greater_equal`
-    - Add `in_range`
-    - Add `sequence_for_each`
+    - Add \ref cmp_equal, \ref cmp_not_equal, \ref cmp_less, \ref cmp_greater, \ref cmp_less_equal, \ref cmp_greater_equal
+    - Add \ref in_range
+    - Add \ref sequence_for_each
 
 - Others
     - Remove false diagnostic messages
