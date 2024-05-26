@@ -63,7 +63,12 @@ struct find_first_of_niebloid {
 
 } // namespace detail
 
+/// @addtogroup algorithm
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::find_first_of_niebloid find_first_of{};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

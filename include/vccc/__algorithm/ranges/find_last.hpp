@@ -126,9 +126,14 @@ struct find_last_if_not_niebloid {
 
 } // namespace detail
 
+/// @addtogroup algorithm
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::find_last_niebloid find_last{};
 VCCC_INLINE_OR_STATIC constexpr detail::find_last_if_niebloid find_last_if{};
 VCCC_INLINE_OR_STATIC constexpr detail::find_last_if_not_niebloid find_last_if_not{};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

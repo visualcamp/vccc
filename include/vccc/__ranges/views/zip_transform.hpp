@@ -52,7 +52,12 @@ struct zip_transform_niebloid {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::zip_transform_niebloid zip_transform{};
+
+/// @}
 
 } // namespace views
 } // namespace ranges

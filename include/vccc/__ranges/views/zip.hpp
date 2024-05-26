@@ -36,7 +36,12 @@ struct zip_niebloid {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::zip_niebloid zip{};
+
+/// @}
 
 } // namespace views
 } // namespace ranges

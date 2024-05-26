@@ -87,6 +87,9 @@ struct simple_common_reference_mixed_ref<B, DWrap, false> {};
 
 } // namespace impl
 
+/// @addtogroup type_traits
+/// @{
+
 template<typename T1, typename T2>
 struct simple_common_reference {}; // no simple common reference type
 
@@ -104,6 +107,8 @@ struct simple_common_reference<A&, B&&>
 
 template<typename B, typename A>
 struct simple_common_reference<B&&, A&> : simple_common_reference<A&, B&&> {};
+
+/// @}
 
 } // namespace vccc
 

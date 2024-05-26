@@ -10,6 +10,9 @@
 
 namespace vccc {
 
+/// @addtogroup expected
+/// @{
+
 template<typename E>
 class bad_expected_access;
 
@@ -42,6 +45,8 @@ class bad_expected_access : public bad_expected_access<void> {
  private:
   E error_;
 };
+
+/// @}
 
 } // namespace vccc
 

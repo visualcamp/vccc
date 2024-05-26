@@ -8,10 +8,15 @@
 namespace vccc {
 namespace ranges {
 
+/// @addtogroup ranges
+/// @{
+
 template<typename T>
 constexpr auto as_const_pointer(const T* p) noexcept {
   return p;
 }
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

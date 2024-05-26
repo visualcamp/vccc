@@ -11,12 +11,17 @@
 
 namespace vccc {
 
+/// @addtogroup compare
+/// @{
+
 template<typename T>
 struct unstable_three_way_comparable
     : conjunction<
         weakly_equality_comparable_with<T, T>,
         partially_ordered_with<T, T>
     > {};
+
+/// @}
 
 } // namespace vccc
 

@@ -12,13 +12,15 @@ namespace vccc {
 /** @addtogroup type_traits
 @{
     @defgroup is_range is_range
-    @brief check if a type is range
+    @brief check if a type is range(deprecated)
 @}
 @addtogroup is_range
 @{ */
 
 /**
-@brief check if a type met range requirements
+@brief check if a type met range requirements(deprecated)
+
+Use ranges::ranges instead
  */
 template<typename T, typename = void>
 struct is_range : std::false_type {};

@@ -25,8 +25,10 @@
 #include "vccc/__iterator/random_access_iterator.hpp"
 #include "vccc/__type_traits/negation.hpp"
 
-
 namespace vccc {
+
+/// @addtogroup iterator
+/// @{
 
 template<typename Iterator1, typename Iterator2>
 struct disable_sized_sentinel_for<std::move_iterator<Iterator1>, std::move_iterator<Iterator2>>
@@ -76,6 +78,8 @@ struct is_primary_iterator_traits<std::move_iterator<Iter>> : std::true_type {};
 } // namespace detail
 
 #endif // __cplusplus < 202302L
+
+/// @}
 
 } // namespace vccc
 

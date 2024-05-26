@@ -102,6 +102,9 @@ struct zip_is_common
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 template<typename... Views>
 class zip_view : public view_interface<zip_view<Views...>> {
   static constexpr std::size_t kViewCount = sizeof...(Views);
@@ -546,6 +549,8 @@ template<typename... Rs>
 zip_view(Rs&&...) -> zip_view<views::all_t<Rs>...>;
 
 #endif
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

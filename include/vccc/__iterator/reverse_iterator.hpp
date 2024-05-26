@@ -25,6 +25,9 @@
 
 namespace vccc {
 
+/// @addtogroup iterator
+/// @{
+
 template<typename I1, typename I2>
 struct disable_sized_sentinel_for<std::reverse_iterator<I1>, std::reverse_iterator<I2>>
     : negation<sized_sentinel_for<I1, I2>> {};
@@ -58,6 +61,8 @@ struct is_primary_iterator_traits<cxx20_iterator_traits<std::reverse_iterator<It
 } // namespace detail
 
 #endif // __cplusplus < 202002L
+
+/// @}
 
 } // namespace vccc
 

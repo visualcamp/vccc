@@ -53,7 +53,12 @@ struct sort_heap_niebloid {
 
 } // namespace detail
 
+/// @addtogroup algorithm
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::sort_heap_niebloid sort_heap{};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

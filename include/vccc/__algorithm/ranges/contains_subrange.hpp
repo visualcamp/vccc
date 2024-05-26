@@ -28,7 +28,7 @@
 namespace vccc {
 namespace ranges {
 
-/// @addtogroup ranges
+/// @addtogroup algorithm
 /// @{
 
 namespace detail {

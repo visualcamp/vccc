@@ -86,6 +86,9 @@ struct elements_view_iterator_category<Base, N, true> {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 template<typename V, std::size_t N>
 class elements_view : public view_interface<elements_view<V, N>> {
  public:
@@ -419,6 +422,8 @@ class elements_view : public view_interface<elements_view<V, N>> {
 
 template<typename V, std::size_t N>
 struct enable_borrowed_range<elements_view<V, N>> : enable_borrowed_range<V> {};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

@@ -9,8 +9,13 @@
 
 namespace vccc {
 
+/// @addtogroup type_traits
+/// @{
+
 template<bool Const, typename V>
 using maybe_const = std::conditional_t<Const, const V, V>;
+
+/// @}
 
 } // namespace vccc
 

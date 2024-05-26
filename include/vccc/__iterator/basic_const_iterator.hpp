@@ -91,6 +91,9 @@ struct const_iterator_implicit_conversion_check<Class, Other, Iter, true>
 
 }
 
+/// @addtogroup iterator
+/// @{
+
 template<typename Iter>
 class basic_const_iterator : public detail::basic_const_iterator_category<Iter> {
   using rvalue_reference = common_reference_t<const iter_value_t<Iter>&&, iter_rvalue_reference_t<Iter>>;
@@ -414,8 +417,7 @@ template<typename T, typename U>
 struct common_type<basic_const_iterator<T>, basic_const_iterator<U>>
     : detail::basic_const_iterator_common_type<T, U> {};
 
-
-
+/// @}
 
 } // namespace vccc
 

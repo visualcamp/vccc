@@ -58,7 +58,12 @@ struct pop_heap_niebloid {
 
 } // namespace detail
 
+/// @addtogroup algorithm
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::pop_heap_niebloid pop_heap{};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

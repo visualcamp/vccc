@@ -12,7 +12,12 @@
 
 namespace vccc {
 
+/// @addtogroup span
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr std::size_t dynamic_extent = (std::numeric_limits<std::size_t>::max)();
+
+/// @}
 
 } // namespace vccc
 

@@ -50,6 +50,9 @@ inline constexpr To saturate_cast_impl(From x, std::true_type /* signed */, std:
 
 } // namespace detail
 
+/// @addtogroup iterator
+/// @{
+
 template<typename To, typename From, std::enable_if_t<conjunction<
     std::is_integral<To>,
     std::is_integral<From>
@@ -62,6 +65,8 @@ inline constexpr To saturate_cast(From x) noexcept {
       vccc::bool_constant<((std::numeric_limits<To>::digits) < (std::numeric_limits<From>::digits))>{}
   );
 }
+
+/// @}
 
 } // namespace vccc
 

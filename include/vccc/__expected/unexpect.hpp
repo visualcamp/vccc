@@ -17,6 +17,9 @@
 
 namespace vccc {
 
+/// @addtogroup expected
+/// @{
+
 #if __cplusplus >= 202302L
 
 using unexpect_t = std::unexpect_t;
@@ -29,6 +32,8 @@ struct unexpect_t {
 };
 
 VCCC_INLINE_OR_STATIC constexpr unexpect_t unexpect{};
+
+/// @}
 
 #endif
 

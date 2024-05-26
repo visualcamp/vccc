@@ -137,6 +137,9 @@ struct subrange_ctor_range<I, S, R, false> : std::false_type {};
 
 }
 
+/// @addtogroup ranges
+/// @{
+
 template<
     typename I,
     typename S = I,
@@ -377,6 +380,8 @@ constexpr auto get(subrange<I, S, K>&& r) {
 
 template<typename I, typename S, subrange_kind K>
 struct enable_borrowed_range<subrange<I, S, K>> : std::true_type {};
+
+/// @}
 
 } // namespace ranges
 

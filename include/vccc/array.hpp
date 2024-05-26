@@ -7,4 +7,6 @@
 
 #include "vccc/__array/to_array.hpp"
 
+/// @defgroup array array
+
 #endif // VCCC_ARRAY_HPP_

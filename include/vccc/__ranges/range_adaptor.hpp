@@ -18,6 +18,9 @@
 namespace vccc {
 namespace ranges {
 
+/// @addtogroup ranges
+/// @{
+
 template<typename Niebloid, typename... Args>
 class range_adaptor : public range_adaptor_closure<range_adaptor<Niebloid, Args...>> {
  public:
@@ -60,6 +63,8 @@ class range_adaptor : public range_adaptor_closure<range_adaptor<Niebloid, Args.
 
   std::tuple<Args...> args_;
 };
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

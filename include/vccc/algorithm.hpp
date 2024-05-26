@@ -50,6 +50,6 @@
 #include "vccc/__algorithm/ranges/sort_heap.hpp"
 #include "vccc/__algorithm/ranges/swap_ranges.hpp"
 
-/// @defgroup algorithm
+/// @defgroup algorithm algorithm
 
 #endif // VCCC_ALGORITHM_HPP

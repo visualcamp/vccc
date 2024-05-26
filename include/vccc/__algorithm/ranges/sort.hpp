@@ -59,7 +59,12 @@ struct sort_niebloid {
 
 } // namespace detail
 
+/// @addtogroup algorithm
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::sort_niebloid sort{};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

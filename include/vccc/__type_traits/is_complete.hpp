@@ -16,8 +16,13 @@ std::true_type is_complete_impl(T *);
 std::false_type is_complete_impl(...);
 } // namespace detail
 
+/// @addtogroup type_traits
+/// @{
+
 template <class T>
 using is_complete = decltype(detail::is_complete_impl(std::declval<T*>()));
+
+/// @}
 
 } // namespace vccc
 

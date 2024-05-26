@@ -14,6 +14,9 @@
 
 namespace vccc {
 
+/// @addtogroup core
+/// @{
+
 // TODO: Use CheckCXXTypeExists
 #if __cplusplus < 201703L
 
@@ -137,6 +140,8 @@ to_integer(byte b) noexcept {
 }
 
 #endif
+
+/// @}
 
 } // namespace vccc
 

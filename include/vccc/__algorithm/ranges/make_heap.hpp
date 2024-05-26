@@ -59,7 +59,12 @@ struct make_heap_niebloid {
 
 } // namespace detail
 
+/// @addtogroup algorithm
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::make_heap_niebloid make_heap{};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

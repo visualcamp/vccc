@@ -24,6 +24,9 @@ struct constructible_from_deref<T, U, true> : constructible_from<T, decltype(*st
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 // https://eel.is/c++draft/range.adaptors#range.nonprop.cache
 template<typename T>
 class non_propagating_cache : private optional<T> {
@@ -70,6 +73,8 @@ class non_propagating_cache : private optional<T> {
     return emplace(*i);
   }
 };
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

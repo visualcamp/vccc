@@ -7,4 +7,6 @@
 
 #include "vccc/__expected/expected.hpp"
 
+/// @defgroup expected expected
+
 #endif // VCCC_EXPECTED_HPP_

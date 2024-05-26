@@ -77,6 +77,9 @@ struct zip_transform_view_iterator_category<Const, Base, F, type_sequence<Views.
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 template<typename F, typename... Views>
 class zip_transform_view : public view_interface<zip_transform_view<Views...>> {
  public:
@@ -407,6 +410,8 @@ template<typename F, typename... Rs>
 zip_transform_view(F, Rs&&...) -> zip_transform_view<F, views::all_t<Rs>...>;
 
 #endif
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

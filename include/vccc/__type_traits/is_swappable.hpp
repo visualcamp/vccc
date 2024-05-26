@@ -16,6 +16,9 @@
 
 namespace vccc {
 
+/// @addtogroup type_traits
+/// @{
+
 template<typename T> struct is_swappable;
 template<typename T> struct is_nothrow_swappable;
 
@@ -120,6 +123,8 @@ struct is_nothrow_swappable_with : internal::is_nothrow_swappable_with_impl<T, U
 
 template<typename T>
 struct is_nothrow_swappable : is_nothrow_swappable_with<T&, T&> {};
+
+/// @}
 
 } // namespace vccc
 

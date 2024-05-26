@@ -33,6 +33,9 @@
 
 namespace vccc {
 
+/// @addtogroup expected
+/// @{
+
 template<typename T, typename E>
 class expected;
 
@@ -1091,6 +1094,8 @@ class expected : private detail::expected_control_smf<detail::void_placdholder_o
       throw bad_expected_access<std::decay_t<E>>(std::move(error()));
   }
 };
+
+/// @}
 
 } // namespace vccc
 

@@ -28,10 +28,15 @@ constexpr auto& possibly_const_range_impl(R& r, std::false_type) noexcept {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 template<typename R, std::enable_if_t<input_range<R>::value, int> = 0>
 constexpr auto& possibly_const_range(R& r) noexcept {
   return detail::possibly_const_range_impl(r, conjunction<constant_range<const R>, negation<constant_range<R>>>{});
 }
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

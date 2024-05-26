@@ -69,7 +69,12 @@ struct find_end_niebloid {
 
 } // namespace detail
 
+/// @addtogroup algorithm
+/// @{
+
 VCCC_INLINE_OR_STATIC constexpr detail::find_end_niebloid find_end{};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

@@ -18,6 +18,9 @@
 
 namespace vccc {
 
+/// @addtogroup expected
+/// @{
+
 template<typename E>
 class unexpected {
  public:
@@ -94,6 +97,8 @@ template<typename E>
 unexpected(E) -> unexpected<E>;
 
 #endif
+
+/// @}
 
 } // namespace vccc
 
