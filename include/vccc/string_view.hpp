@@ -867,7 +867,7 @@ struct hash<vccc::wstring_view> {
   }
 };
 
-#if __cplusplus >= 202002L
+#if __cplusplus >= 202002L && VCCC_HAS_TYPE_CHAR8_T_CXX20
 template<>
 struct hash<vccc::u8string_view> {
   std::size_t operator()(const vccc::u8string_view& sv) const noexcept {
