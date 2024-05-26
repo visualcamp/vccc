@@ -11,15 +11,20 @@ It provides various algorithms, implementing C++17 ... C++26 feature in C++14.
 - GCC 6.0 or above
 - Clang 8.0 or above
 - MSVC 15.0 or above
-- Emscripten 2.0.14 or above (below versions are not tested)
+- Emscripten 3.1.57 or above (tested 2.0.14 ~)
 
 \section Libraries
+- \subpage algorithm. \copybrief algorithm
+- \subpage array. \copybrief array
+- \subpage compare. \copybrief compare
 - \subpage concepts. \copybrief concepts
+- \subpage expected. \copybrief expected
 - \subpage functional. \copybrief functional
 - \subpage iterator. \copybrief iterator
 - \subpage literal. \copybrief literal
 - \subpage log. \copybrief log
 - \subpage math. \copybrief math
+- \subpage memory. \copybrief memory
 - \subpage numeric. \copybrief numeric
 - \subpage optional. \copybrief optional
 - \subpage random. \copybrief random
@@ -31,6 +36,7 @@ It provides various algorithms, implementing C++17 ... C++26 feature in C++14.
 - \subpage type_support. \copybrief type_support
 - \subpage type_traits. \copybrief type_traits
 - \subpage utility. \copybrief utility
+- \subpage variant. \copybrief variant
 
 \section third_party_libraries Third Party Libraries
 \subsection boost_predef Boost.Predef
