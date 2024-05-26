@@ -6,6 +6,7 @@
 
 #include "vccc/__functional/invoke.hpp"
 #include "vccc/__functional/detail/bind_base.hpp"
+#include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/is_invocable.hpp"
 
 namespace vccc {
@@ -44,7 +45,12 @@ class bind_front_object : public bind_object_base<bind_front_object<F, Args...>,
 /// @addtogroup functional
 /// @{
 
-template<typename F, typename... Args, std::enable_if_t<std::is_constructible<std::decay_t<F>, F>::value, int> = 0>
+template<typename F, typename... Args, std::enable_if_t<conjunction<
+    std::is_constructible<std::decay_t<F>, F>,
+    std::is_move_constructible<std::decay_t<F>>,
+    std::is_constructible<std::decay_t<Args>, Args>...,
+    std::is_move_constructible<std::decay_t<Args>>...
+>::value, int> = 0>
 constexpr auto bind_front(F&& f, Args&&... args) {
   return detail::bind_front_object<std::decay_t<F>, std::decay_t<Args>...>{
     detail::bind_object_ctor_tag{},
