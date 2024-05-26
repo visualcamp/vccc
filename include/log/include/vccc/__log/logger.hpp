@@ -5,7 +5,9 @@
 # ifndef VCCC_LOG_LOG_HPP
 # define VCCC_LOG_LOG_HPP
 #
+# include "vccc/__core/inline_or_static.hpp"
 # include "vccc/__log/detail/log_impl.h"
+# include "vccc/__log/detail/tag.h"
 # include "vccc/__log/stream_wrapper.hpp"
 
 
@@ -51,19 +53,58 @@ if ostringstream& operator << is overloaded for user-defined types, it can be pr
  */
 class Logger {
  public:
+  enum Priority {
+    kDebug,
+    kInfo,
+    kWarn,
+    kError,
+  };
+
   using stream_type = StreamWrapper;
   using string_type = std::string;
 
   constexpr Logger() = default;
 
   /** @brief Log output as debug */
-  template<typename ...Args> void d(const Args&... args) const { d_(to_string(args...)); }
+  template<typename ...Args> void d(const Args&... args) const {
+    d_(VCCC_LOG_TAG_DEBUG, to_string(args...));
+  }
+
   /** @brief Informational log */
-  template<typename ...Args> void i(const Args&... args) const { i_(to_string(args...)); }
+  template<typename ...Args> void i(const Args&... args) const {
+    i_(VCCC_LOG_TAG_INFO, to_string(args...));
+  }
+
   /** @brief Warning log */
-  template<typename ...Args> void w(const Args&... args) const { w_(to_string(args...)); }
+  template<typename ...Args> void w(const Args&... args) const {
+    w_(VCCC_LOG_TAG_WARN, to_string(args...));
+  }
+
   /** @brief Error log */
-  template<typename ...Args> void e(const Args&... args) const { e_(to_string(args...)); }
+  template<typename ...Args> void e(const Args&... args) const {
+    e_(VCCC_LOG_TAG_ERROR, to_string(args...));
+  }
+
+  template<typename... Args>
+  void operator()(Priority priority, const char* tag, const Args&... args) const {
+    switch (priority) {
+      case kDebug:
+        this->d_(tag, to_string(args...));
+        return;
+
+      case kInfo:
+        this->i_(tag, to_string(args...));
+        return;
+
+      case kWarn:
+        this->w_(tag, to_string(args...));
+        return;
+
+      case kError:
+        this->e_(tag, to_string(args...));
+        return;
+    }
+  }
 
   /** @brief Return logged value as std::string
    *
@@ -86,16 +127,16 @@ class Logger {
   }
 
  private:
-  template<typename ...Args> void d_(const std::string& str) const { LOGD_IMPL("%s", str.c_str()); }
-  template<typename ...Args> void i_(const std::string& str) const { LOGI_IMPL("%s", str.c_str()); }
-  template<typename ...Args> void w_(const std::string& str) const { LOGW_IMPL("%s", str.c_str()); }
-  template<typename ...Args> void e_(const std::string& str) const { LOGE_IMPL("%s", str.c_str()); }
+  template<typename ...Args> void d_(const char* tag, const std::string& str) const { LOGD_IMPL(tag, "%s", str.c_str()); }
+  template<typename ...Args> void i_(const char* tag, const std::string& str) const { LOGI_IMPL(tag, "%s", str.c_str()); }
+  template<typename ...Args> void w_(const char* tag, const std::string& str) const { LOGW_IMPL(tag, "%s", str.c_str()); }
+  template<typename ...Args> void e_(const char* tag, const std::string& str) const { LOGE_IMPL(tag, "%s", str.c_str()); }
 };
 
 /**
 @brief Global vccc::Logger instance for syntax sugar
  */
-constexpr Logger Log;
+constexpr VCCC_INLINE_OR_STATIC Logger Log;
 
 /// @defgroup log_log_macro__macro__Logging_macros LOGD, LOGI, LOGID, LOGW, LOGWD, LOGE, LOGED
 /// @{

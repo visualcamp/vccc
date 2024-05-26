@@ -11,6 +11,9 @@
 
 namespace vccc {
 
+/// @addtogroup iterator
+/// @{
+
 template<typename ForwardIt>
 VCCC_CONSTEXPR_AFTER_CXX20 void destroy(ForwardIt first, ForwardIt last) {
   for (; first != last; ++first) {
@@ -18,6 +21,7 @@ VCCC_CONSTEXPR_AFTER_CXX20 void destroy(ForwardIt first, ForwardIt last) {
   }
 }
 
+/// @}
 
 } // namespace vccc
 

@@ -6,16 +6,15 @@
 # define VCCC_LOG_DETAIL_LOG_IMPL_H_
 #
 # include "vccc/__log/detail/buffer.h"
-# include "vccc/__log/detail/tag.h"
 #
 # ifdef NDEBUG
-#   define LOGD_IMPL(...)
+#   define LOGD_IMPL(tag, fmt, ...)
 # else
-#   define LOGD_IMPL(...) VCCC_LOG_EXPAND(VCCC_LOG_PRINTER(VCCC_LOG_BUFFER_DEBUG, VCCC_LOG_TAG_DEBUG, __VA_ARGS__))
+#   define LOGD_IMPL(tag, fmt, ...) VCCC_LOG_EXPAND(VCCC_LOG_PRINTER(VCCC_LOG_BUFFER_DEBUG, tag, fmt, __VA_ARGS__))
 # endif
 #
-# define LOGI_IMPL(...) VCCC_LOG_EXPAND(VCCC_LOG_PRINTER(VCCC_LOG_BUFFER_INFO, VCCC_LOG_TAG_INFO, __VA_ARGS__))
-# define LOGW_IMPL(...) VCCC_LOG_EXPAND(VCCC_LOG_PRINTER(VCCC_LOG_BUFFER_WARN, VCCC_LOG_TAG_WARN, __VA_ARGS__))
-# define LOGE_IMPL(...) VCCC_LOG_EXPAND(VCCC_LOG_PRINTER(VCCC_LOG_BUFFER_ERROR, VCCC_LOG_TAG_ERROR, __VA_ARGS__))
+# define LOGI_IMPL(tag, fmt, ...) VCCC_LOG_EXPAND(VCCC_LOG_PRINTER(VCCC_LOG_BUFFER_INFO, tag, fmt, __VA_ARGS__))
+# define LOGW_IMPL(tag, fmt, ...) VCCC_LOG_EXPAND(VCCC_LOG_PRINTER(VCCC_LOG_BUFFER_WARN, tag, fmt, __VA_ARGS__))
+# define LOGE_IMPL(tag, fmt, ...) VCCC_LOG_EXPAND(VCCC_LOG_PRINTER(VCCC_LOG_BUFFER_ERROR, tag, fmt, __VA_ARGS__))
 #
 # endif //VCCC_LOG_DETAIL_LOG_IMPL_H_

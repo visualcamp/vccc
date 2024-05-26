@@ -30,7 +30,7 @@ struct crend_niebloid {
 
 } // namespace detail
 
-inline namespace niebloid {
+namespace niebloid {
 
 /// @addtogroup ranges
 /// @{
@@ -39,7 +39,8 @@ VCCC_INLINE_OR_STATIC constexpr detail::crend_niebloid crend{};
 
 /// @}
 
-} // inline namespace niebloid
+} // namespace niebloid
+using namespace niebloid;
 
 } // namespace ranges
 } // namespace vccc

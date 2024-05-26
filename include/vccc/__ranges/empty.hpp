@@ -102,7 +102,7 @@ struct empty_niebloid {
 
 } // namespace detail
 
-inline namespace niebloid {
+namespace niebloid {
 
 /// @addtogroup ranges
 /// @{
@@ -117,7 +117,8 @@ VCCC_INLINE_OR_STATIC constexpr detail::empty_niebloid empty{};
 
 /// @}
 
-} // inline namespace niebloid
+} // namespace niebloid
+using namespace niebloid;
 
 } // namespace ranges
 } // namespace vccc

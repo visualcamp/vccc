@@ -96,7 +96,7 @@ struct single_niebloid {
 
 } // namespace detail
 
-inline namespace niebloid {
+namespace niebloid {
 
 /// @addtogroup ranges_single_view__class__Factories
 /// @{
@@ -105,7 +105,9 @@ VCCC_INLINE_OR_STATIC constexpr detail::single_niebloid single{};
 
 /// @}
 
-} // inline namespace niebloid
+} // namespace niebloid
+using namespace niebloid;
+
 } // namespace vccc
 } // namespace ranges
 } // namespace views

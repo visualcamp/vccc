@@ -5,9 +5,15 @@
 #include "test_core.hpp"
 
 #include <algorithm>
+#include <cctype>
+#include <forward_list>
+#include <iomanip>
+#include <iostream>
+#include <list>
 #include <string>
 #include <vector>
 
+#include "vccc/array.hpp"
 #include "vccc/algorithm.hpp"
 #include "vccc/string_view.hpp"
 #include "vccc/ranges.hpp"
@@ -184,6 +190,198 @@ int Test() {
     ranges::set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(),
                              std::back_inserter(v_intersection));
     TEST_ENSURES(ranges::equal(v_intersection, {5, 7, 7}));
+  }
+
+  {
+    constexpr static auto v = {1, 2, 3, 1, 2, 3, 1, 2};
+
+    {
+      auto i1 = ranges::find_last(v.begin(), v.end(), 3);
+      auto i2 = ranges::find_last(v, 3);
+      TEST_ENSURES(ranges::distance(v.begin(), i1.begin()) == 5);
+      TEST_ENSURES(ranges::distance(v.begin(), i2.begin()) == 5);
+    }
+    {
+      auto i1 = ranges::find_last(v.begin(), v.end(), -3);
+      auto i2 = ranges::find_last(v, -3);
+      TEST_ENSURES(i1.begin() == v.end());
+      TEST_ENSURES(i2.begin() == v.end());
+    }
+
+    auto abs = [](int x) { return x < 0 ? -x : x; };
+
+    {
+      auto pred = [](int x) { return x == 3; };
+      auto i1 = ranges::find_last_if(v.begin(), v.end(), pred, abs);
+      auto i2 = ranges::find_last_if(v, pred, abs);
+      TEST_ENSURES(ranges::distance(v.begin(), i1.begin()) == 5);
+      TEST_ENSURES(ranges::distance(v.begin(), i2.begin()) == 5);
+    }
+    {
+      auto pred = [](int x) { return x == -3; };
+      auto i1 = ranges::find_last_if(v.begin(), v.end(), pred, abs);
+      auto i2 = ranges::find_last_if(v, pred, abs);
+      TEST_ENSURES(i1.begin() == v.end());
+      TEST_ENSURES(i2.begin() == v.end());
+    }
+
+    {
+      auto pred = [](int x) { return x == 1 or x == 2; };
+      auto i1 = ranges::find_last_if_not(v.begin(), v.end(), pred, abs);
+      auto i2 = ranges::find_last_if_not(v, pred, abs);
+      TEST_ENSURES(ranges::distance(v.begin(), i1.begin()) == 5);
+      TEST_ENSURES(ranges::distance(v.begin(), i2.begin()) == 5);
+    }
+    {
+      auto pred = [](int x) { return x == 1 or x == 2 or x == 3; };
+      auto i1 = ranges::find_last_if_not(v.begin(), v.end(), pred, abs);
+      auto i2 = ranges::find_last_if_not(v, pred, abs);
+      TEST_ENSURES(i1.begin() == v.end());
+      TEST_ENSURES(i2.begin() == v.end());
+    }
+
+    using P = std::pair<vccc::string_view, int>;
+    std::forward_list<P> list
+        {
+            {"one", 1}, {"two", 2}, {"three", 3},
+            {"one", 4}, {"two", 5}, {"three", 6},
+        };
+    auto cmp_one = [](const vccc::string_view &s) { return s == "one"; };
+
+    // find latest element that satisfy the comparator, and projecting pair::first
+    const auto subrange = ranges::find_last_if(list, cmp_one, &P::first);
+    TEST_ENSURES(ranges::equal(subrange, std::vector<P>{{"one", 4}, {"two", 5}, {"three", 6}}));
+  }
+
+  { // ranges::find_end
+    constexpr auto secret{"password password word..."_sv};
+    constexpr auto wanted{"password"_sv};
+
+    auto s1 = ranges::find_end(secret.cbegin(), secret.cend(), wanted.cbegin(), wanted.cend());
+    TEST_ENSURES(std::distance(secret.begin(), s1.begin()) == 9 && s1.size() == 8);
+
+    auto s2 = ranges::find_end(secret, "word"_sv);
+    TEST_ENSURES(std::distance(secret.begin(), s2.begin()) == 18 && s2.size() == 4);
+
+    auto s3 = ranges::find_end(secret, "ORD"_sv, [](const char x, const char y) {
+      return std::tolower(x) == std::tolower(y);
+    });
+    TEST_ENSURES(std::distance(secret.begin(), s3.begin()) == 19 && s3.size() == 3);
+
+    auto s4 = ranges::find_end(secret, "SWORD"_sv, {}, {}, [](char c) { return std::tolower(c); });
+    TEST_ENSURES(std::distance(secret.begin(), s4.begin()) == 12 && s4.size() == 5);
+  }
+
+  { // ranges::find_first_of
+    constexpr static auto haystack = {1, 2, 3, 4};
+    constexpr static auto needles  = {0, 3, 4, 3};
+
+    auto found1 = ranges::find_first_of(haystack.begin(), haystack.end(),
+                                               needles.begin(), needles.end());
+    TEST_ENSURES(std::distance(haystack.begin(), found1) == 2);
+
+    auto found2 = ranges::find_first_of(haystack, needles);
+    TEST_ENSURES(std::distance(haystack.begin(), found2) == 2);
+
+    constexpr static auto negatives = {-6, -3, -4, -3};
+    auto not_found = ranges::find_first_of(haystack, negatives);
+    TEST_ENSURES(not_found == haystack.end());
+
+    auto found3 = ranges::find_first_of(haystack, negatives,
+                                               [](int x, int y) { return x == -y; }); // uses a binary comparator
+    TEST_ENSURES(std::distance(haystack.begin(), found3) == 2);
+
+    struct P { int x, y; };
+    constexpr static auto p1 = {P{1, -1}, P{2, -2}, P{3, -3}, P{4, -4}};
+    constexpr static auto p2 = {P{5, -5}, P{6, -3}, P{7, -5}, P{8, -3}};
+    const auto found4 = ranges::find_first_of(p1, p2, {}, &P::y, &P::y);
+    TEST_ENSURES(std::distance(p1.begin(), found4) == 2);
+  }
+
+  { // ranges::make_heap
+    std::vector<int> h{1, 6, 1, 8, 0, 3, 3, 9, 8, 8, 7, 4, 9, 8, 9};
+
+    vccc::ranges::make_heap(h);
+    TEST_ENSURES(std::is_heap(h.begin(), h.end()));
+
+    vccc::ranges::make_heap(h, std::greater<>{});
+    TEST_ENSURES(std::is_heap(h.begin(), h.end()) == false);
+    TEST_ENSURES(std::is_heap(h.begin(), h.end(), std::greater<>{}));
+  }
+
+  { // ranges::pop_heap
+    auto v = vccc::to_array({3, 1, 4, 1, 5, 9, 2, 6, 5, 3});
+
+    vccc::ranges::make_heap(v);
+    for (auto n {vccc::ssize(v)}; n >= 0; --n) {
+      vccc::ranges::pop_heap(v.begin(), v.begin() + n);
+      TEST_ENSURES(std::is_sorted(v.cbegin() + n, v.cend()));
+    }
+
+    vccc::ranges::make_heap(v, vccc::ranges::greater{});
+    for (auto n {vccc::ssize(v)}; n >= 0; --n) {
+      vccc::ranges::pop_heap(v.begin(), v.begin() + n, vccc::ranges::greater{});
+      TEST_ENSURES(std::is_sorted(v.cbegin() + n, v.cend(), vccc::ranges::greater{}));
+    }
+  }
+
+  { // ranges::sort_heap
+    auto v = vccc::to_array({3, 1, 4, 1, 5, 9});
+    vccc::ranges::make_heap(v);
+    vccc::ranges::sort_heap(v);
+    TEST_ENSURES(std::is_sorted(v.begin(), v.end()));
+
+    vccc::ranges::make_heap(v, vccc::ranges::greater{});
+    vccc::ranges::sort_heap(v, vccc::ranges::greater{});
+    TEST_ENSURES(std::is_sorted(v.begin(), v.end(), vccc::ranges::greater{}));
+  }
+
+  { // ranges::sort
+    struct Particle {
+      std::string name;
+      double mass; // MeV
+    };
+
+    auto s = vccc::to_array({5, 7, 4, 2, 8, 6, 1, 9, 0, 3});
+    namespace ranges = vccc::ranges;
+
+    ranges::sort(s);
+    TEST_ENSURES(std::is_sorted(s.begin(), s.end()));
+
+    ranges::sort(s, ranges::greater());
+    TEST_ENSURES(std::is_sorted(s.begin(), s.end(), std::greater<>{}));
+
+    Particle particles[] {
+        {"Electron", 0.511}, {"Muon", 105.66}, {"Tau", 1776.86},
+        {"Positron", 0.511}, {"Proton", 938.27}, {"Neutron", 939.57}
+    };
+
+    // Sort by name using a projection
+    ranges::sort(particles, {}, &Particle::name);
+    TEST_ENSURES(ranges::equal(particles, {"Electron"_sv, "Muon"_sv, "Neutron"_sv, "Positron"_sv, "Proton"_sv, "Tau"_sv}, {}, &Particle::name));
+
+    // Sort by mass using a projection
+    ranges::sort(particles, {}, &Particle::mass);
+    TEST_ENSURES(ranges::equal(particles, {0.511, 0.511, 105.66, 938.27, 939.57, 1776.86}, {}, &Particle::mass));
+  }
+
+  { // ranges::contains, ranges::contains_subrange
+    constexpr auto haystack = vccc::to_array({3, 1, 4, 1, 5});
+    constexpr auto needle = vccc::to_array({1, 4, 1});
+    constexpr auto bodkin = vccc::to_array({2, 5, 2});
+    auto increment = [](int x) { return ++x; };
+    auto decrement = [](int x) { return --x; };
+
+    TEST_ENSURES(vccc::ranges::contains(haystack, 4));
+    TEST_ENSURES(!vccc::ranges::contains(haystack, 6));
+    TEST_ENSURES(vccc::ranges::contains(haystack, 6, increment));
+    TEST_ENSURES(!vccc::ranges::contains(haystack, 1, increment));
+
+    TEST_ENSURES(vccc::ranges::contains_subrange(haystack, needle));
+    TEST_ENSURES(!vccc::ranges::contains_subrange(haystack, bodkin));
+    TEST_ENSURES(vccc::ranges::contains_subrange(haystack, bodkin, {}, increment));
+    TEST_ENSURES(!vccc::ranges::contains_subrange(haystack, bodkin, {}, decrement));
+    TEST_ENSURES(vccc::ranges::contains_subrange(haystack, bodkin, {}, {}, decrement));
   }
 
   return TEST_RETURN_RESULT;

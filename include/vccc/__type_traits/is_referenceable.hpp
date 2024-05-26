@@ -11,11 +11,16 @@
 
 namespace vccc {
 
+/// @addtogroup type_traits
+/// @{
+
 template<typename T, typename = void>
 struct is_referencable : std::false_type {};
 
 template<typename T>
 struct is_referencable<T, void_t<T&>> : std::true_type {};
+
+/// @}
 
 } // namespace vccc
 

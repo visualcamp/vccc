@@ -8,6 +8,7 @@
 # include "vccc/__tuple/apply.hpp"
 # include "vccc/__tuple/make_from_tuple.hpp"
 # include "vccc/__tuple/tuple_fold.hpp"
+# include "vccc/__tuple/tuple_for_each.hpp"
 # include "vccc/__tuple/tuple_like.hpp"
 # include "vccc/__tuple/tuple_transform.hpp"
 

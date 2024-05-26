@@ -117,10 +117,12 @@ int main() {
   bar b;
   TEST_ENSURES(vccc::Logger{}.to_string(b) == '@' + address_to_string(std::addressof(b)));
 
-  LOGD("THIS", "IS", "DEBUG");
-  LOGI("THIS", "IS", "INFO");
-  LOGW("THIS", "IS", "WARN");
-  LOGE("THIS", "IS", "ERROR");
+  LOGD("THIS ", "IS ", "DEBUG");
+  LOGI("THIS ", "IS ", "INFO");
+  LOGW("THIS ", "IS ", "WARN");
+  LOGE("THIS ", "IS ", "ERROR");
+
+  vccc::Log(vccc::Logger::kError, "my tag ", "hello, ", 'w', 0, "rld", "!");
 
   // test non-empty aggregate types
 

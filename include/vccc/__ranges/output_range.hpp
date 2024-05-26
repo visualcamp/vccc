@@ -22,8 +22,13 @@ struct output_range_impl<R, T, true> : output_iterator<iterator_t<R>, T> {};
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 template<typename R, typename T>
 struct output_range : detail::output_range_impl<R, T> {};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

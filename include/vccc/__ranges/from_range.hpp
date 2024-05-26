@@ -13,13 +13,12 @@
 
 
 namespace vccc {
-namespace ranges {
 
 /// @addtogroup ranges
 /// @{
 
-#if __cplusplus >= 202302L
-using from_range_t = std::ranges::from_range_t;
+#if __cplusplus >= 202302L && defined(__cpp_lib_containers_ranges)
+using from_range_t = std::from_range_t;
 #else
 struct from_range_t {
   explicit from_range_t() = default;
@@ -30,7 +29,6 @@ VCCC_INLINE_OR_STATIC constexpr from_range_t from_range{};
 
 /// @}
 
-} // namespace ranges
 } // namespace vccc
 
 #endif // VCCC_RANGES_FROM_RANGE_HPP_

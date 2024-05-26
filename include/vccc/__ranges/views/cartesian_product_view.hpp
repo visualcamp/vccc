@@ -32,6 +32,7 @@
 #include "vccc/__ranges/sized_range.hpp"
 #include "vccc/__ranges/view.hpp"
 #include "vccc/__ranges/view_interface.hpp"
+#include "vccc/__tuple/tuple_transform.hpp"
 #include "vccc/__type_traits/bool_constant.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
 #include "vccc/__type_traits/disjunction.hpp"
@@ -379,33 +380,27 @@ class cartesian_product_view : public view_interface<cartesian_product_view<Firs
       return -(i - s);
     }
 
-    // TODO: Solve "redefinition of 'iter_move' as different kind of symbol" in Android NDK 21.1.6352462
-    // friend constexpr auto iter_move(const iterator& i)
-    //     noexcept(
-    //         noexcept(detail::cartesian_tuple_transform(ranges::iter_move, i.current_)) &&
-    //         conjunction<
-    //             std::is_nothrow_move_constructible<range_rvalue_reference_t< maybe_const<Const, First> >>,
-    //             std::is_nothrow_move_constructible<range_rvalue_reference_t< maybe_const<Const, Vs>    >>...
-    //         >::value
-    //     )
-    // {
-    //   return detail::cartesian_tuple_transform(ranges::iter_move, i.current_);
-    // }
+     friend constexpr auto iter_move(const iterator& i)
+         noexcept(
+             noexcept(vccc::tuple_transform(i.current_, ranges::iter_move)) &&
+             conjunction<
+                 std::is_nothrow_move_constructible<range_rvalue_reference_t< maybe_const<Const, First> >>,
+                 std::is_nothrow_move_constructible<range_rvalue_reference_t< maybe_const<Const, Vs>    >>...
+             >::value
+         )
+     {
+       return vccc::tuple_transform(i.current_, ranges::iter_move);
+     }
 
-    // TODO: Solve "redefinition of 'iter_swap' as different kind of symbol"
-#if __cplusplus >= 202002L
+    template<typename Dummy = void, std::enable_if_t<conjunction<std::is_void<Dummy>,
+        indirectly_swappable< iterator_t<maybe_const<Const, First>> >,
+        indirectly_swappable< iterator_t<maybe_const<Const, Vs>> >...
+    >::value, int> = 0>
     friend constexpr void iter_swap(const iterator& x, const iterator& y)
-      noexcept(noexcept(x.iter_swap_impl(y)))
-      requires(
-          conjunction<
-              indirectly_swappable< iterator_t<maybe_const<Const, First>> >,
-              indirectly_swappable< iterator_t<maybe_const<Const, Vs>> >...
-          >::value
-      )
+        noexcept(noexcept(x.iter_swap_impl(y)))
     {
       x.iter_swap_impl(y);
     }
-#endif
 
    private:
     template<typename It>

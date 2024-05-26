@@ -28,6 +28,7 @@
 #include "vccc/__ranges/views/all.hpp"
 #include "vccc/__type_traits/bool_constant.hpp"
 #include "vccc/__type_traits/conjunction.hpp"
+#include "vccc/__type_traits/maybe_const.hpp"
 #include "vccc/__type_traits/negation.hpp"
 #include "vccc/__type_traits/remove_cvref.hpp"
 #include "vccc/__utility/cxx20_rel_ops.hpp"
@@ -45,7 +46,7 @@ class take_view : public view_interface<take_view<V>> {
 
   template<bool Const>
   class sentinel {
-    using Base = std::conditional_t<Const, const V, V>;
+    using Base = maybe_const<Const, V>;
    public:
     sentinel() = default;
 
@@ -71,7 +72,17 @@ class take_view : public view_interface<take_view<V>> {
     }
 
     friend constexpr bool
+    operator==(const sentinel& x, const counted_iterator<iterator_t<Base>>& y) {
+      return y == x;
+    }
+
+    friend constexpr bool
     operator!=(const counted_iterator<iterator_t<Base>>& y, const sentinel& x) {
+      return !(y == x);
+    }
+
+    friend constexpr bool
+    operator!=(const sentinel& x, const counted_iterator<iterator_t<Base>>& y) {
       return !(y == x);
     }
 
@@ -92,8 +103,27 @@ class take_view : public view_interface<take_view<V>> {
                       iterator_t<maybe_const<AntiConst, V>> >
     >::value, int> = 0>
     friend constexpr bool
+    operator==(const sentinel& x, const counted_iterator<iterator_t<maybe_const<AntiConst, V>>>& y) {
+      return y == x;
+    }
+
+    template<bool AntiConst, std::enable_if_t<conjunction<
+        bool_constant<Const != AntiConst>,
+        sentinel_for< sentinel_t<Base>,
+                      iterator_t<maybe_const<AntiConst, V>> >
+    >::value, int> = 0>
+    friend constexpr bool
     operator!=(const counted_iterator<iterator_t<maybe_const<AntiConst, V>>>& y, const sentinel& x) {
-      using namespace vccc::rel_ops;
+      return !(y == x);
+    }
+
+    template<bool AntiConst, std::enable_if_t<conjunction<
+        bool_constant<Const != AntiConst>,
+        sentinel_for< sentinel_t<Base>,
+                      iterator_t<maybe_const<AntiConst, V>> >
+    >::value, int> = 0>
+    friend constexpr bool
+    operator!=(const sentinel& x, const counted_iterator<iterator_t<maybe_const<AntiConst, V>>>& y) {
       return !(y == x);
     }
 

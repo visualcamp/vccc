@@ -19,6 +19,7 @@
 #include <vector>
 
 #include "vccc/algorithm.hpp"
+#include "vccc/array.hpp"
 #include "vccc/iterator.hpp"
 #include "vccc/ranges.hpp"
 #include "vccc/span.hpp"
@@ -1117,6 +1118,72 @@ int main() {
       TEST_ENSURES(view[4] == 5);
       TEST_ENSURES(!view.empty());
       TEST_ENSURES(bool(view));
+    }
+  }
+
+  { // ranges::zip_view, views::zip
+    auto print = [](auto const rem, auto const& range) {
+      std::cout << rem;
+      for (auto const& elem : range)
+        std::cout << elem << ' ';
+      std::cout << '\n';
+    };
+
+    auto x = std::vector<int>{1, 2, 3, 4};
+    auto y = std::list<std::string>{"a", "b", "c", "d", "e"};
+    auto z = std::array<char, 6>{'A', 'B', 'C', 'D', 'E', 'F'};
+
+    print("x: ", x);
+    print("y: ", y);
+    print("z: ", z);
+
+    for (std::tuple<int&, std::string&, char&> elem : vccc::views::zip(x, y, z) | vccc::views::common) {
+      std::cout << std::get<0>(elem) << ' '
+                << std::get<1>(elem) << ' '
+                << std::get<2>(elem) << '\n';
+
+      std::get<char&>(elem) += ('a' - 'A'); // modifies the element of z
+    }
+
+    print("\nAfter modification, z: ", z);
+    TEST_ENSURES(vccc::ranges::equal(z, "abcdEF"_sv));
+
+    auto v1 = vccc::views::zip(x, y);
+    TEST_ENSURES(v1.size() == std::min(x.size(), y.size()));
+    TEST_ENSURES(v1.size() == 4);
+
+    auto w = std::forward_list<double>{1., 2.};
+    [[maybe_unused]] auto v2 = vccc::views::zip(x, w);
+//    auto sz = v2.size();
+//  auto sz = v2.size(); // Error, v2 does not have size():
+    static_assert(!vccc::ranges::sized_range<decltype(v2)>::value, "");
+  }
+
+  { // ranges::zip_transform_view, views::zip_transform
+    {
+      auto v1 = std::vector<float>{1, 2, 3};
+      auto v2 = std::list<short>{1, 2, 3, 4};
+      auto v3 = vccc::to_array({1, 2, 3, 4, 5});
+
+      auto add = [](auto a, auto b, auto c) { return a + b + c; };
+
+      auto sum = vccc::views::zip_transform(add, v1, v2, v3);
+      TEST_ENSURES(vccc::ranges::equal(sum, {3, 6, 9}));
+    }
+
+    {
+      auto x = std::vector<int>{1, 2, 3, 4, 5};
+      auto y = std::deque<short>{10, 20, 30};
+      auto z = std::forward_list<double>{100., 200.};
+
+      auto v1 = vccc::views::zip_transform(std::plus<>{}, x, y);
+      TEST_ENSURES(v1.size() == (std::min)(x.size(), y.size()));
+      TEST_ENSURES(v1.size() == 3);
+      TEST_ENSURES(vccc::ranges::equal(v1, {11, 22, 33}));
+
+      [[maybe_unused]] auto v2 = vccc::views::zip_transform(std::plus<>{}, x, z);
+//      auto sz = v2.size(); // Error: z doesn't have size(), so neither does v2
+      static_assert(not vccc::ranges::sized_range<decltype(z)>::value, "");
     }
   }
 

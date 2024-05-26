@@ -85,7 +85,7 @@ struct rbegin_niebloid {
 
 } // namespace detail
 
-inline namespace niebloid {
+namespace niebloid {
 
 /// @addtogroup ranges
 /// @{
@@ -94,7 +94,8 @@ VCCC_INLINE_OR_STATIC constexpr detail::rbegin_niebloid rbegin{};
 
 /// @}
 
-} // inline namespace niebloid
+} // namespace niebloid
+using namespace niebloid;
 
 } // namespace ranges
 } // namespace vccc

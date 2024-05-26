@@ -22,8 +22,13 @@ struct ValueSwappableImpl<I1, I2, true>
 
 } // namespace detail
 
+/// @addtogroup concepts
+/// @{
+
 template<typename I1, typename I2>
 struct ValueSwappable : detail::ValueSwappableImpl<I1, I2> {};
+
+/// @}
 
 } // namespace vccc
 

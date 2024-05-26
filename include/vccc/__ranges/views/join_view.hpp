@@ -12,8 +12,11 @@
 #include "vccc/__concepts/default_initializable.hpp"
 #include "vccc/__concepts/derived_from.hpp"
 #include "vccc/__concepts/equality_comparable.hpp"
+#include "vccc/__iterator/indirectly_swappable.hpp"
 #include "vccc/__iterator/iterator_tag.hpp"
 #include "vccc/__iterator/iterator_traits/cxx20_iterator_traits.hpp"
+#include "vccc/__iterator/iter_move.hpp"
+#include "vccc/__iterator/iter_swap.hpp"
 #include "vccc/__memory/addressof.hpp"
 #include "vccc/__ranges/bidirectional_range.hpp"
 #include "vccc/__ranges/common_range.hpp"
@@ -57,15 +60,21 @@ using join_view_iterator_concept =
         input_iterator_tag
     >>;
 
-template<typename ThisC, typename OuterC, typename InnerC>
-struct join_view_iterator_category_impl {
+// Defined only if IteratorConcept models forward_iterator_tag
+template<typename Base, typename IteratorConcept = join_view_iterator_concept<Base>>
+struct join_view_iterator_category {
 #if __cplusplus < 202002L
   using iterator_category = iterator_ignore;
 #endif
 };
 
-template<typename OuterC, typename InnerC>
-struct join_view_iterator_category_impl<forward_iterator_tag, OuterC, InnerC> {
+template<typename Base>
+struct join_view_iterator_category<Base, forward_iterator_tag> {
+ private:
+  using OuterC = typename cxx20_iterator_traits<iterator_t<Base>>::iterator_category;
+  using InnerC = typename cxx20_iterator_traits<iterator_t<range_reference_t<Base>>>::iterator_category;
+
+ public:
   using iterator_category =
       std::conditional_t<
           conjunction<
@@ -73,23 +82,15 @@ struct join_view_iterator_category_impl<forward_iterator_tag, OuterC, InnerC> {
               derived_from<InnerC, bidirectional_iterator_tag>
           >::value,
           bidirectional_iterator_tag,
-      std::conditional_t<
-          conjunction<
-              derived_from<OuterC, forward_iterator_tag>,
-              derived_from<InnerC, forward_iterator_tag>
-          >::value,
-          forward_iterator_tag,
-          input_iterator_tag
-      >>;
+          std::conditional_t<
+              conjunction<
+                  derived_from<OuterC, forward_iterator_tag>,
+                  derived_from<InnerC, forward_iterator_tag>
+              >::value,
+              forward_iterator_tag,
+              input_iterator_tag
+          >>;
 };
-
-template<typename Base>
-struct join_view_iterator_category
-    : join_view_iterator_category_impl<
-          join_view_iterator_concept<Base>,
-          typename cxx20_iterator_traits<iterator_t<Base>>::iterator_category,
-          typename cxx20_iterator_traits<iterator_t<range_reference_t<Base>>>::iterator_category
-      > {};
 
 } // namespace detail
 
@@ -255,14 +256,18 @@ class join_view : public view_interface<join_view<V>> {
       return !(x == y);
     }
 
-    // TODO: Solve "redefinition of 'iter_move' as different kind of symbol" in Android NDK 21.1.6352462
-    // friend constexpr decltype(auto) iter_move(const iterator& i)
-    //     noexcept(noexcept(ranges::iter_move(*i.inner_)))
-    // {
-    //   return ranges::iter_move(*i.inner_);
-    // }
+    friend constexpr decltype(auto) iter_move(const iterator& i)
+        noexcept(noexcept(ranges::iter_move(*i.inner_)))
+    {
+      return ranges::iter_move(*i.inner_);
+    }
 
-    // TODO: Implement iter_swap
+    template<typename II = InnerIter, std::enable_if_t<indirectly_swappable<II>::value, int> = 0>
+    friend constexpr void iter_swap(const iterator& x, const iterator& y)
+        noexcept(noexcept(ranges::iter_swap(*x.inner_, *y.inner_)))
+    {
+      ranges::iter_swap(x.inner_, y.inner_);
+    }
 
    private:
     constexpr OuterIter& get_outer() noexcept {
@@ -344,6 +349,14 @@ class join_view : public view_interface<join_view<V>> {
 
     friend constexpr bool operator==(const sentinel& y, const iterator<Const>& x) {
       return x == y;
+    }
+
+    friend constexpr bool operator!=(const iterator<Const>& x, const sentinel& y) {
+      return !(x == y);
+    }
+
+    friend constexpr bool operator!=(const sentinel& y, const iterator<Const>& x) {
+      return !(x == y);
     }
 
    private:

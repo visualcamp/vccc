@@ -137,6 +137,9 @@ struct subrange_ctor_range<I, S, R, false> : std::false_type {};
 
 }
 
+/// @addtogroup ranges
+/// @{
+
 template<
     typename I,
     typename S = I,
@@ -167,7 +170,7 @@ class subrange
       bool_constant< K == subrange_kind::sized >
   >::value, int> = 0>
   constexpr subrange(I2 i, S s, detail::make_unsigned_like_t<iter_difference_t<I>> n)
-      : iterator_(std::move(i)), sentinel_(std::move(s)), size_base(in_place, n) {}
+      : size_base(in_place, n), iterator_(std::move(i)), sentinel_(std::move(s)) {}
 
   template<typename R, std::enable_if_t<conjunction<
       detail::different_from<subrange, R>,
@@ -377,6 +380,8 @@ constexpr auto get(subrange<I, S, K>&& r) {
 
 template<typename I, typename S, subrange_kind K>
 struct enable_borrowed_range<subrange<I, S, K>> : std::true_type {};
+
+/// @}
 
 } // namespace ranges
 

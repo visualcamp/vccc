@@ -10,6 +10,7 @@
 
 #include "vccc/__core/inline_or_static.hpp"
 #include "vccc/__concepts/swappable_with.hpp"
+#include "vccc/__iterator/detail/iter_exchange_move.hpp"
 #include "vccc/__iterator/indirectly_movable_storable.hpp"
 #include "vccc/__iterator/indirectly_readable.hpp"
 #include "vccc/__iterator/iter_move.hpp"
@@ -43,13 +44,10 @@ struct unqual_iter_swap : decltype(test_iter_swap<T, U>(0)) {};
 template<typename T, typename U>
 struct unqual_iter_swap<T, U, true> : decltype(test_iter_swap<T, U>(0)) {};
 
+template<typename I1, typename I2, bool = conjunction<indirectly_readable<I1>, indirectly_readable<I2>>::value /* false */>
+struct read_iter_swap : std::false_type{};
 template<typename I1, typename I2>
-struct read_iter_swap_2 : swappable_with<iter_reference_t<I1>, iter_reference_t<I2>> {};
-
-template<typename I1, typename I2, bool = conjunction<indirectly_readable<I1>, indirectly_readable<I2>>::value /* true */>
-struct read_iter_swap : read_iter_swap_2<I1, I2> {};
-template<typename I1, typename I2>
-struct read_iter_swap<I1, I2, false> : std::false_type {};
+struct read_iter_swap<I1, I2, false> : swappable_with<iter_reference_t<I1>, iter_reference_t<I2>> {};
 
 struct iter_swap_niebloid {
   template<typename I1, typename I2, std::enable_if_t<unqual_iter_swap<I1, I2>::value, int> = 0>
@@ -75,20 +73,16 @@ struct iter_swap_niebloid {
       indirectly_movable_storable<I1, I2>,
       indirectly_movable_storable<I2, I1>
   >::value, int> = 0>
-  constexpr void operator()(I1&& x, I2&& y) const
-    noexcept(noexcept( iter_value_t<I1>(ranges::iter_move(x)) ) &&
-             noexcept( *x = ranges::iter_move(y) ) &&
-             noexcept( *std::forward<I2>(y) = std::declval<iter_value_t<I1>>() ))
+  constexpr void operator()(I1&& i1, I2&& i2) const
+    noexcept(noexcept( *i1 = vccc::detail::iter_exchange_move(std::forward<I2>(i2), std::forward<I1>(i1)) ))
   {
-    iter_value_t<I1> old(ranges::iter_move(x));
-    *x = ranges::iter_move(y);
-    *std::forward<I2>(y) = std::move(old);
+    (void)(*i1 = vccc::detail::iter_exchange_move(std::forward<I2>(i2), std::forward<I1>(i1)));
   }
 };
 
 } // namespace detail_iter_swap
 
-inline namespace niebloid {
+namespace niebloid {
 
 /// @addtogroup iterator
 /// @{
@@ -97,7 +91,8 @@ VCCC_INLINE_OR_STATIC constexpr detail_iter_swap::iter_swap_niebloid iter_swap{}
 
 /// @}
 
-} // inline namespace niebloid
+} // namespace niebloid
+using namespace niebloid;
 
 } // namespace ranges
 } // namespace vccc

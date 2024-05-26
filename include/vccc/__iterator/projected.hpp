@@ -5,6 +5,8 @@
 #ifndef VCCC_ITERATOR_PROJECTED_HPP
 #define VCCC_ITERATOR_PROJECTED_HPP
 
+#include "vccc/__core/ignore_dumb_diagnostics_push.hpp"
+
 #include "vccc/__iterator/indirect_result_t.hpp"
 #include "vccc/__iterator/indirectly_readable.hpp"
 #include "vccc/__iterator/indirectly_regular_unary_invocable.hpp"
@@ -75,4 +77,5 @@ using projectable = has_typename_type<detail::projected_impl<I, Proj>>;
 
 } // namespace vccc
 
+#include "vccc/__core/ignore_dumb_diagnostics_pop.hpp"
 #endif // VCCC_ITERATOR_PROJECTED_HPP

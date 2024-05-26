@@ -100,7 +100,7 @@ struct begin_niebloid {
 
 } // namespace detail
 
-inline namespace niebloid {
+namespace niebloid {
 
 /// @addtogroup ranges
 /// @{
@@ -116,7 +116,8 @@ Returns an iterator to the first element of the argument.
 VCCC_INLINE_OR_STATIC constexpr detail::begin_niebloid begin{};
 /// @}
 
-} // inline namespace niebloid
+} // namespace niebloid
+using namespace niebloid;
 
 } // namespace ranges
 } // namespace vccc

@@ -15,6 +15,9 @@
 namespace vccc {
 namespace ranges {
 
+/// @addtogroup algorithm
+/// @{
+
 template<typename I, typename F>
 struct in_fun_result {
   VCCC_NO_UNIQUE_ADDRESS I in;
@@ -36,6 +39,8 @@ struct in_fun_result {
     return {std::move(in), std::move(fun)};
   }
 };
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

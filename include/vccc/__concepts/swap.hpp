@@ -79,7 +79,7 @@ struct swap_niebloid {
 } // namespace detail_ranges_swap
 
 /// Niebloids
-inline namespace niebloid {
+namespace niebloid {
 
 /// @addtogroup concepts
 /// @{
@@ -101,6 +101,7 @@ VCCC_INLINE_OR_STATIC constexpr detail_ranges_swap::swap_niebloid swap{};
 /// @}
 
 } // namespace niebloid
+using namespace niebloid;
 
 namespace detail_ranges_swap {
 

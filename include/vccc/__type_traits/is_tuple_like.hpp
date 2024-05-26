@@ -10,11 +10,17 @@
 
 namespace vccc {
 
+/// @addtogroup type_traits
+/// @{
+
+/// @brief Check if type is tuple-like(deprecated. Use \ref tuple_like instead)
 template<typename T, typename = void>
 struct is_tuple_like : std::false_type {};
 
 template<typename T>
 struct is_tuple_like<T, void_t<decltype(std::tuple_size<T>::value)>> : std::true_type {};
+
+/// @}
 
 } // namespace vccc
 

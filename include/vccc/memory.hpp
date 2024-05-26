@@ -12,4 +12,6 @@
 #include "vccc/__memory/pointer_traits.hpp"
 #include "vccc/__memory/to_address.hpp"
 
+/// @defgroup memory memory
+
 #endif // VCCC_MEMORY_HPP_

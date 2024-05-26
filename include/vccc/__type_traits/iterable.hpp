@@ -13,9 +13,10 @@ namespace vccc {
 @addtogroup type_traits
 @{
     @defgroup is_iterator is_iterator
-    @brief check if a type is a iterable type
+    @brief check if a type is a iterable type(deprecated)
 
     std::iterator or pointer type
+    This is deprecated. Use \ref input_iterator instead
 @}
 
 @addtogroup is_iterator

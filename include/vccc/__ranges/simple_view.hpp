@@ -17,6 +17,9 @@
 namespace vccc {
 namespace ranges {
 
+/// @addtogroup ranges
+/// @{
+
 template<typename R, bool = conjunction<view<R>, range<const R>>::value /* true */>
 struct simple_view
     : conjunction<
@@ -26,6 +29,8 @@ struct simple_view
 
 template<typename R>
 struct simple_view<R, false> : std::false_type {};
+
+/// @}
 
 } // namespace vccc
 } // namespace ranges

@@ -24,7 +24,6 @@ struct equal_to {
   constexpr bool operator()(T&& t, U&& u) const
       noexcept(noexcept(bool(std::forward<T>(t) == std::forward<U>(u))))
   {
-    using namespace vccc::rel_ops;
     return std::forward<T>(t) == std::forward<U>(u);
   }
 };

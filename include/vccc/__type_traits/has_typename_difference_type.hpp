@@ -11,11 +11,16 @@
 
 namespace vccc {
 
+/// @addtogroup type_traits
+/// @{
+
 template<typename T, typename = void>
 struct has_typename_difference_type : std::false_type {};
 
 template<typename T>
 struct has_typename_difference_type<T, void_t<typename T::difference_type>> : std::true_type {};
+
+/// @}
 
 } // namespace vccc
 

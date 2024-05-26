@@ -30,6 +30,9 @@ constexpr auto to_address_fancy(const T& p, std::false_type /* has_to_address */
 
 } // namespace detail
 
+/// @addtogroup iterator
+/// @{
+
 template<class T>
 constexpr T* to_address(T* p) noexcept {
   static_assert(!std::is_function<T>::value, "T must not be a pointer to function");
@@ -40,6 +43,8 @@ template<class T>
 constexpr auto to_address(const T& p) noexcept {
   return detail::to_address_fancy(p, detail::has_to_address<T>{});
 }
+
+/// @}
 
 namespace detail {
 

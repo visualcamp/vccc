@@ -56,6 +56,9 @@ class drop_view_cached_begin<V, false> {
 
 } // namespace detail
 
+/// @addtogroup ranges
+/// @{
+
 template<typename V>
 class drop_view
     : public ranges::view_interface<drop_view<V>>
@@ -142,6 +145,8 @@ drop_view(R&&, range_difference_t<R>) -> drop_view<views::all_t<R>>;
 
 template<typename T>
 struct enable_borrowed_range<drop_view<T>> : enable_borrowed_range<T> {};
+
+/// @}
 
 } // namespace ranges
 } // namespace vccc

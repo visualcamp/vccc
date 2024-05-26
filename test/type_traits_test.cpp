@@ -6,6 +6,7 @@
 #include <functional>
 #include <map>
 #include <string>
+#include <tuple>
 #include <type_traits>
 #include <utility>
 #include <vector>
@@ -138,6 +139,11 @@ int main() {
     static_assert(vccc::mandatory_template_arity<std::less>::value == 0, "");
     static_assert(vccc::default_template_arity<std::less>::value == 1, "");
     #endif
+  }
+
+  { // copy_template
+    static_assert(std::is_same<vccc::copy_template_t<std::pair<int, float>, std::tuple>, std::tuple<int, float>>::value, "");
+    static_assert(std::is_same<vccc::copy_template_t<std::pair<int, float>, std::tuple, std::vector>, std::tuple<std::vector<int>, std::vector<float>>>::value, "");
   }
 
   return TEST_RETURN_RESULT;
