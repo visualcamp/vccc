@@ -3,7 +3,7 @@
 
 \tableofcontents
 
-\section version_2024_05 v2014.05
+\section version_2024_05 v2024.05
 - \subpage log
     - Add `Log_t::operator()` for custom priority and tag
 
