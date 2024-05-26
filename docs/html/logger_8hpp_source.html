@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="VCCC Document" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="VCCC Document" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>VCCC: include/log/include/vccc/__log/logger.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript" src="../js/add-permalink.js"></script>
+<script type="text/javascript" src="../js/class-toc.js"></script>
+<script type="text/javascript" src="../js/group-toc.js"></script>
+<script type="text/javascript" src="../js/header-link.js"></script>
+<script type="text/javascript" src="../js/realign-group.js"></script>
+<script type="text/javascript" src="../js/toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeTabs.init()
+    RealignGroup.init()
+    HeaderLink.init()
+    ClassToc.init()
+    GroupToc.init()
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/visualcamp/vccc" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="vc_logo_50_50.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">VCCC
+   &#160;<span id="projectnumber">2024.05</span>
+   </div>
+   <div id="projectbrief">VisualCamp Common C++ library</div>
+  </td>
+  <!--STAGE WARNING HERE-->
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('logger_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">logger.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="logger_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># </span><span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">#  * Created by YongGyu Lee on 2020/12/08.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">#  */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor"># ifndef VCCC_LOG_LOG_HPP</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"># define VCCC_LOG_LOG_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="inline__or__static_8hpp.html">vccc/__core/inline_or_static.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="log__impl_8h.html">vccc/__log/detail/log_impl.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="tag_8h.html">vccc/__log/detail/tag.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="stream__wrapper_8hpp.html">vccc/__log/stream_wrapper.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a> {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html">   54</a></span>&#160;<span class="keyword">class </span><a class="code" href="classvccc_1_1_logger.html">Logger</a> {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15">   56</a></span>&#160;  <span class="keyword">enum</span> <a class="code" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15">Priority</a> {</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15a5f66aaa2354d753bfaad7a8887e39216">   57</a></span>&#160;    <a class="code" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15a5f66aaa2354d753bfaad7a8887e39216">kDebug</a>,</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15af5f198c05e424cf59cf410fb0de5591e">   58</a></span>&#160;    <a class="code" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15af5f198c05e424cf59cf410fb0de5591e">kInfo</a>,</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15adbb6c0e62e439d10089df5535a2aed1f">   59</a></span>&#160;    <a class="code" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15adbb6c0e62e439d10089df5535a2aed1f">kWarn</a>,</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15aacb2c04376333850bff6fb1065c0c171">   60</a></span>&#160;    <a class="code" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15aacb2c04376333850bff6fb1065c0c171">kError</a>,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  };</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#a8cbd7e568625c016d0d2555430d50c7d">   63</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="classvccc_1_1_basic_stream_wrapper.html">stream_type</a> = <a class="code" href="group__log.html#ga4458eeca5ccf0e05269514c697717be4">StreamWrapper</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#ab45e93b3295444111f81c9aad082568f">   64</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="classvccc_1_1_logger.html#ab45e93b3295444111f81c9aad082568f">string_type</a> = std::string;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#a09f70f29c0540c624d7f39c829e1f728">   66</a></span>&#160;  constexpr <a class="code" href="classvccc_1_1_logger.html#a09f70f29c0540c624d7f39c829e1f728">Logger</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#aac1edbc68184ca5f030c758b1f513549">   69</a></span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt; <span class="keywordtype">void</span> <a class="code" href="classvccc_1_1_logger.html#aac1edbc68184ca5f030c758b1f513549">d</a>(<span class="keyword">const</span> Args&amp;... args)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    d_(<a class="code" href="tag_8h.html#abdc458740976f02dda5d36c312978070">VCCC_LOG_TAG_DEBUG</a>, <a class="code" href="classvccc_1_1_logger.html#ab25dbbf0b256643ffe6c7726f7decd95">to_string</a>(args...));</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#a45e8b944ef27d23b6b5d11420ce3d851">   74</a></span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt; <span class="keywordtype">void</span> <a class="code" href="classvccc_1_1_logger.html#a45e8b944ef27d23b6b5d11420ce3d851">i</a>(<span class="keyword">const</span> Args&amp;... args)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    i_(<a class="code" href="tag_8h.html#aa3db0afb8a7757acc363486aa1ec2d28">VCCC_LOG_TAG_INFO</a>, <a class="code" href="classvccc_1_1_logger.html#ab25dbbf0b256643ffe6c7726f7decd95">to_string</a>(args...));</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#a0652bc5742bffd0e20d5b1de11564f77">   79</a></span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt; <span class="keywordtype">void</span> <a class="code" href="classvccc_1_1_logger.html#a0652bc5742bffd0e20d5b1de11564f77">w</a>(<span class="keyword">const</span> Args&amp;... args)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    w_(<a class="code" href="tag_8h.html#ad19f7b8f603c1539fdc28dd7e5d3350f">VCCC_LOG_TAG_WARN</a>, <a class="code" href="classvccc_1_1_logger.html#ab25dbbf0b256643ffe6c7726f7decd95">to_string</a>(args...));</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#a806fac8b0951e98ef8f3a6d106bff828">   84</a></span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt; <span class="keywordtype">void</span> <a class="code" href="classvccc_1_1_logger.html#a806fac8b0951e98ef8f3a6d106bff828">e</a>(<span class="keyword">const</span> Args&amp;... args)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    e_(<a class="code" href="tag_8h.html#ac3b0ca21517fbf06e036574880f01dec">VCCC_LOG_TAG_ERROR</a>, <a class="code" href="classvccc_1_1_logger.html#ab25dbbf0b256643ffe6c7726f7decd95">to_string</a>(args...));</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Args&gt;</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#a6c303da3cbf5b97f631cea9efb7ebe2b">   89</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classvccc_1_1_logger.html#a6c303da3cbf5b97f631cea9efb7ebe2b">operator()</a>(<a class="code" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15">Priority</a> priority, <span class="keyword">const</span> <span class="keywordtype">char</span>* tag, <span class="keyword">const</span> Args&amp;... args)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">switch</span> (priority) {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15a5f66aaa2354d753bfaad7a8887e39216">kDebug</a>:</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        this-&gt;d_(tag, <a class="code" href="classvccc_1_1_logger.html#ab25dbbf0b256643ffe6c7726f7decd95">to_string</a>(args...));</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15af5f198c05e424cf59cf410fb0de5591e">kInfo</a>:</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        this-&gt;i_(tag, <a class="code" href="classvccc_1_1_logger.html#ab25dbbf0b256643ffe6c7726f7decd95">to_string</a>(args...));</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15adbb6c0e62e439d10089df5535a2aed1f">kWarn</a>:</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        this-&gt;w_(tag, <a class="code" href="classvccc_1_1_logger.html#ab25dbbf0b256643ffe6c7726f7decd95">to_string</a>(args...));</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15aacb2c04376333850bff6fb1065c0c171">kError</a>:</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        this-&gt;e_(tag, <a class="code" href="classvccc_1_1_logger.html#ab25dbbf0b256643ffe6c7726f7decd95">to_string</a>(args...));</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#ab25dbbf0b256643ffe6c7726f7decd95">  115</a></span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt; <a class="code" href="classvccc_1_1_logger.html#ab45e93b3295444111f81c9aad082568f">string_type</a> <a class="code" href="classvccc_1_1_logger.html#ab25dbbf0b256643ffe6c7726f7decd95">to_string</a>(<span class="keyword">const</span> Args&amp;... args)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="classvccc_1_1_basic_stream_wrapper.html">stream_type</a> stream;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">int</span> dummy[] = { (stream &lt;&lt; args, 0)... };</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordflow">return</span> stream.<a class="code" href="classvccc_1_1_basic_stream_wrapper.html#a2d2e7952f7832bb80be33a1c1d6478d9">stream</a>().<a class="code" href="classvccc_1_1_basic_stream_wrapper.html#af44434f80c89aaeb92e09cef62c6f651">str</a>();</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="classvccc_1_1_logger.html#a2a06d510d57cd8fb6c94f558c27f4de5">  125</a></span>&#160;  <span class="keyword">static</span> <a class="code" href="classvccc_1_1_logger.html#ab45e93b3295444111f81c9aad082568f">string_type</a>&amp; <a class="code" href="classvccc_1_1_logger.html#a2a06d510d57cd8fb6c94f558c27f4de5">global_separator</a>() {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classvccc_1_1_stream_wrapper_base.html#a2a06d510d57cd8fb6c94f558c27f4de5">stream_type::global_separator</a>();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  }</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt; <span class="keywordtype">void</span> d_(<span class="keyword">const</span> <span class="keywordtype">char</span>* tag, <span class="keyword">const</span> std::string&amp; str)<span class="keyword"> const </span>{ <a class="code" href="log__impl_8h.html#a4c40e6378b3efaaa6eb4abb77180e0c2">LOGD_IMPL</a>(tag, <span class="stringliteral">&quot;%s&quot;</span>, str.c_str()); }</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt; <span class="keywordtype">void</span> i_(<span class="keyword">const</span> <span class="keywordtype">char</span>* tag, <span class="keyword">const</span> std::string&amp; str)<span class="keyword"> const </span>{ <a class="code" href="log__impl_8h.html#ac5f9fd18274d3c1475e995779a667553">LOGI_IMPL</a>(tag, <span class="stringliteral">&quot;%s&quot;</span>, str.c_str()); }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt; <span class="keywordtype">void</span> w_(<span class="keyword">const</span> <span class="keywordtype">char</span>* tag, <span class="keyword">const</span> std::string&amp; str)<span class="keyword"> const </span>{ <a class="code" href="log__impl_8h.html#a998be4dd5cab2df6fc6b1f844d2372dc">LOGW_IMPL</a>(tag, <span class="stringliteral">&quot;%s&quot;</span>, str.c_str()); }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...Args&gt; <span class="keywordtype">void</span> e_(<span class="keyword">const</span> <span class="keywordtype">char</span>* tag, <span class="keyword">const</span> std::string&amp; str)<span class="keyword"> const </span>{ <a class="code" href="log__impl_8h.html#aefeb1d7d883b69b79b778fb7c5334d5a">LOGE_IMPL</a>(tag, <span class="stringliteral">&quot;%s&quot;</span>, str.c_str()); }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;};</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="group__log.html#gacfcdcd2ae41ac3217995f1c902828a14">  139</a></span>&#160;constexpr <a class="code" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> <a class="code" href="classvccc_1_1_logger.html">Logger</a> <a class="code" href="group__log.html#gacfcdcd2ae41ac3217995f1c902828a14">Log</a>;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor"># ifdef NDEBUG</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor"># define LOGD(...)</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor"># define LOGID(...)</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor"># define LOGWD(...)</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor"># define LOGED(...)</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="group__log__log__macro____macro_____logging__macros.html#gaa839997a58e14061861cd634fdb7664d">  161</a></span>&#160;<span class="preprocessor"># define LOGD(...) ::vccc::Log.d(__VA_ARGS__)</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="group__log__log__macro____macro_____logging__macros.html#ga3f801da2efa0afcd9b354b71b8b6363c">  162</a></span>&#160;<span class="preprocessor"># define LOGID(...) ::vccc::Log.i(__VA_ARGS__)</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="group__log__log__macro____macro_____logging__macros.html#gac722fb185ef143232fc66009a0b1c600">  163</a></span>&#160;<span class="preprocessor"># define LOGWD(...) ::vccc::Log.w(__VA_ARGS__)</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="group__log__log__macro____macro_____logging__macros.html#ga9cd2823b5a42330b2c9a7c43b74f6434">  164</a></span>&#160;<span class="preprocessor"># define LOGED(...) ::vccc::Log.e(__VA_ARGS__)</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor"># endif</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="group__log__log__macro____macro_____logging__macros.html#ga5512e59d578a380a441a70256af997d0">  168</a></span>&#160;<span class="preprocessor"># define LOGI(...) ::vccc::Log.i(__VA_ARGS__)</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="group__log__log__macro____macro_____logging__macros.html#ga07f1b0d507acedeb7550353eba4f6e66">  170</a></span>&#160;<span class="preprocessor"># define LOGW(...) ::vccc::Log.w(__VA_ARGS__)</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="group__log__log__macro____macro_____logging__macros.html#gae02538a80ad5fc009caec73487d11a8d">  172</a></span>&#160;<span class="preprocessor"># define LOGE(...) ::vccc::Log.e(__VA_ARGS__)</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;} <span class="comment">// namespace log</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor"># endif </span><span class="comment">//VCCC_LOG_LOG_HPP</span></div>
+<div class="ttc" id="aclassvccc_1_1_basic_stream_wrapper_html"><div class="ttname"><a href="classvccc_1_1_basic_stream_wrapper.html">vccc::BasicStreamWrapper</a></div><div class="ttdoc">stream wrapper that supports extended operator overloading</div><div class="ttdef"><b>Definition:</b> stream_wrapper.hpp:186</div></div>
+<div class="ttc" id="aclassvccc_1_1_basic_stream_wrapper_html_a2d2e7952f7832bb80be33a1c1d6478d9"><div class="ttname"><a href="classvccc_1_1_basic_stream_wrapper.html#a2d2e7952f7832bb80be33a1c1d6478d9">vccc::BasicStreamWrapper::stream</a></div><div class="ttdeci">stream_type &amp; stream()</div><div class="ttdoc">Return internal stream.</div><div class="ttdef"><b>Definition:</b> stream_wrapper.hpp:237</div></div>
+<div class="ttc" id="aclassvccc_1_1_basic_stream_wrapper_html_af44434f80c89aaeb92e09cef62c6f651"><div class="ttname"><a href="classvccc_1_1_basic_stream_wrapper.html#af44434f80c89aaeb92e09cef62c6f651">vccc::BasicStreamWrapper::str</a></div><div class="ttdeci">string_type str() const</div><div class="ttdoc">Equals to stream().str()</div><div class="ttdef"><b>Definition:</b> stream_wrapper.hpp:244</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html"><div class="ttname"><a href="classvccc_1_1_logger.html">vccc::Logger</a></div><div class="ttdoc">Ease use of vccc::StreamWrapper.</div><div class="ttdef"><b>Definition:</b> logger.hpp:54</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_a0652bc5742bffd0e20d5b1de11564f77"><div class="ttname"><a href="classvccc_1_1_logger.html#a0652bc5742bffd0e20d5b1de11564f77">vccc::Logger::w</a></div><div class="ttdeci">void w(const Args &amp;... args) const</div><div class="ttdoc">Warning log.</div><div class="ttdef"><b>Definition:</b> logger.hpp:79</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_a09f70f29c0540c624d7f39c829e1f728"><div class="ttname"><a href="classvccc_1_1_logger.html#a09f70f29c0540c624d7f39c829e1f728">vccc::Logger::Logger</a></div><div class="ttdeci">constexpr Logger()=default</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_a2a06d510d57cd8fb6c94f558c27f4de5"><div class="ttname"><a href="classvccc_1_1_logger.html#a2a06d510d57cd8fb6c94f558c27f4de5">vccc::Logger::global_separator</a></div><div class="ttdeci">static string_type &amp; global_separator()</div><div class="ttdoc">Equals to stream_type::global_separator.</div><div class="ttdef"><b>Definition:</b> logger.hpp:125</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_a315655b1bb5848c063491adffde62b15"><div class="ttname"><a href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15">vccc::Logger::Priority</a></div><div class="ttdeci">Priority</div><div class="ttdef"><b>Definition:</b> logger.hpp:56</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_a315655b1bb5848c063491adffde62b15a5f66aaa2354d753bfaad7a8887e39216"><div class="ttname"><a href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15a5f66aaa2354d753bfaad7a8887e39216">vccc::Logger::kDebug</a></div><div class="ttdeci">@ kDebug</div><div class="ttdef"><b>Definition:</b> logger.hpp:57</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_a315655b1bb5848c063491adffde62b15aacb2c04376333850bff6fb1065c0c171"><div class="ttname"><a href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15aacb2c04376333850bff6fb1065c0c171">vccc::Logger::kError</a></div><div class="ttdeci">@ kError</div><div class="ttdef"><b>Definition:</b> logger.hpp:60</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_a315655b1bb5848c063491adffde62b15adbb6c0e62e439d10089df5535a2aed1f"><div class="ttname"><a href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15adbb6c0e62e439d10089df5535a2aed1f">vccc::Logger::kWarn</a></div><div class="ttdeci">@ kWarn</div><div class="ttdef"><b>Definition:</b> logger.hpp:59</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_a315655b1bb5848c063491adffde62b15af5f198c05e424cf59cf410fb0de5591e"><div class="ttname"><a href="classvccc_1_1_logger.html#a315655b1bb5848c063491adffde62b15af5f198c05e424cf59cf410fb0de5591e">vccc::Logger::kInfo</a></div><div class="ttdeci">@ kInfo</div><div class="ttdef"><b>Definition:</b> logger.hpp:58</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_a45e8b944ef27d23b6b5d11420ce3d851"><div class="ttname"><a href="classvccc_1_1_logger.html#a45e8b944ef27d23b6b5d11420ce3d851">vccc::Logger::i</a></div><div class="ttdeci">void i(const Args &amp;... args) const</div><div class="ttdoc">Informational log.</div><div class="ttdef"><b>Definition:</b> logger.hpp:74</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_a6c303da3cbf5b97f631cea9efb7ebe2b"><div class="ttname"><a href="classvccc_1_1_logger.html#a6c303da3cbf5b97f631cea9efb7ebe2b">vccc::Logger::operator()</a></div><div class="ttdeci">void operator()(Priority priority, const char *tag, const Args &amp;... args) const</div><div class="ttdef"><b>Definition:</b> logger.hpp:89</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_a806fac8b0951e98ef8f3a6d106bff828"><div class="ttname"><a href="classvccc_1_1_logger.html#a806fac8b0951e98ef8f3a6d106bff828">vccc::Logger::e</a></div><div class="ttdeci">void e(const Args &amp;... args) const</div><div class="ttdoc">Error log.</div><div class="ttdef"><b>Definition:</b> logger.hpp:84</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_aac1edbc68184ca5f030c758b1f513549"><div class="ttname"><a href="classvccc_1_1_logger.html#aac1edbc68184ca5f030c758b1f513549">vccc::Logger::d</a></div><div class="ttdeci">void d(const Args &amp;... args) const</div><div class="ttdoc">Log output as debug.</div><div class="ttdef"><b>Definition:</b> logger.hpp:69</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_ab25dbbf0b256643ffe6c7726f7decd95"><div class="ttname"><a href="classvccc_1_1_logger.html#ab25dbbf0b256643ffe6c7726f7decd95">vccc::Logger::to_string</a></div><div class="ttdeci">string_type to_string(const Args &amp;... args) const</div><div class="ttdoc">Return logged value as std::string.</div><div class="ttdef"><b>Definition:</b> logger.hpp:115</div></div>
+<div class="ttc" id="aclassvccc_1_1_logger_html_ab45e93b3295444111f81c9aad082568f"><div class="ttname"><a href="classvccc_1_1_logger.html#ab45e93b3295444111f81c9aad082568f">vccc::Logger::string_type</a></div><div class="ttdeci">std::string string_type</div><div class="ttdef"><b>Definition:</b> logger.hpp:64</div></div>
+<div class="ttc" id="aclassvccc_1_1_stream_wrapper_base_html_a2a06d510d57cd8fb6c94f558c27f4de5"><div class="ttname"><a href="classvccc_1_1_stream_wrapper_base.html#a2a06d510d57cd8fb6c94f558c27f4de5">vccc::StreamWrapperBase&lt; std::basic_string&lt; CharT &gt;, std::basic_stringstream&lt; CharT &gt; &gt;::global_separator</a></div><div class="ttdeci">static string_type &amp; global_separator()</div><div class="ttdoc">Get global separator.</div><div class="ttdef"><b>Definition:</b> stream_wrapper.hpp:108</div></div>
+<div class="ttc" id="agroup__log_html_ga4458eeca5ccf0e05269514c697717be4"><div class="ttname"><a href="group__log.html#ga4458eeca5ccf0e05269514c697717be4">vccc::StreamWrapper</a></div><div class="ttdeci">BasicStreamWrapper&lt; char &gt; StreamWrapper</div><div class="ttdef"><b>Definition:</b> stream_wrapper.hpp:657</div></div>
+<div class="ttc" id="agroup__log_html_gacfcdcd2ae41ac3217995f1c902828a14"><div class="ttname"><a href="group__log.html#gacfcdcd2ae41ac3217995f1c902828a14">vccc::Log</a></div><div class="ttdeci">constexpr VCCC_INLINE_OR_STATIC Logger Log</div><div class="ttdoc">Global vccc::Logger instance for syntax sugar.</div><div class="ttdef"><b>Definition:</b> logger.hpp:139</div></div>
+<div class="ttc" id="ainline__or__static_8hpp_html"><div class="ttname"><a href="inline__or__static_8hpp.html">inline_or_static.hpp</a></div></div>
+<div class="ttc" id="ainline__or__static_8hpp_html_a46c3e412535f6f1697c149465cedc3d4"><div class="ttname"><a href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a></div><div class="ttdeci">#define VCCC_INLINE_OR_STATIC</div><div class="ttdef"><b>Definition:</b> inline_or_static.hpp:9</div></div>
+<div class="ttc" id="alog__impl_8h_html"><div class="ttname"><a href="log__impl_8h.html">log_impl.h</a></div></div>
+<div class="ttc" id="alog__impl_8h_html_a4c40e6378b3efaaa6eb4abb77180e0c2"><div class="ttname"><a href="log__impl_8h.html#a4c40e6378b3efaaa6eb4abb77180e0c2">LOGD_IMPL</a></div><div class="ttdeci">#define LOGD_IMPL(tag, fmt,...)</div><div class="ttdef"><b>Definition:</b> log_impl.h:13</div></div>
+<div class="ttc" id="alog__impl_8h_html_a998be4dd5cab2df6fc6b1f844d2372dc"><div class="ttname"><a href="log__impl_8h.html#a998be4dd5cab2df6fc6b1f844d2372dc">LOGW_IMPL</a></div><div class="ttdeci">#define LOGW_IMPL(tag, fmt,...)</div><div class="ttdef"><b>Definition:</b> log_impl.h:17</div></div>
+<div class="ttc" id="alog__impl_8h_html_ac5f9fd18274d3c1475e995779a667553"><div class="ttname"><a href="log__impl_8h.html#ac5f9fd18274d3c1475e995779a667553">LOGI_IMPL</a></div><div class="ttdeci">#define LOGI_IMPL(tag, fmt,...)</div><div class="ttdef"><b>Definition:</b> log_impl.h:16</div></div>
+<div class="ttc" id="alog__impl_8h_html_aefeb1d7d883b69b79b778fb7c5334d5a"><div class="ttname"><a href="log__impl_8h.html#aefeb1d7d883b69b79b778fb7c5334d5a">LOGE_IMPL</a></div><div class="ttdeci">#define LOGE_IMPL(tag, fmt,...)</div><div class="ttdef"><b>Definition:</b> log_impl.h:18</div></div>
+<div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> directory.h:12</div></div>
+<div class="ttc" id="astream__wrapper_8hpp_html"><div class="ttname"><a href="stream__wrapper_8hpp.html">stream_wrapper.hpp</a></div></div>
+<div class="ttc" id="atag_8h_html"><div class="ttname"><a href="tag_8h.html">tag.h</a></div></div>
+<div class="ttc" id="atag_8h_html_aa3db0afb8a7757acc363486aa1ec2d28"><div class="ttname"><a href="tag_8h.html#aa3db0afb8a7757acc363486aa1ec2d28">VCCC_LOG_TAG_INFO</a></div><div class="ttdeci">#define VCCC_LOG_TAG_INFO</div><div class="ttdef"><b>Definition:</b> tag.h:9</div></div>
+<div class="ttc" id="atag_8h_html_abdc458740976f02dda5d36c312978070"><div class="ttname"><a href="tag_8h.html#abdc458740976f02dda5d36c312978070">VCCC_LOG_TAG_DEBUG</a></div><div class="ttdeci">#define VCCC_LOG_TAG_DEBUG</div><div class="ttdef"><b>Definition:</b> tag.h:8</div></div>
+<div class="ttc" id="atag_8h_html_ac3b0ca21517fbf06e036574880f01dec"><div class="ttname"><a href="tag_8h.html#ac3b0ca21517fbf06e036574880f01dec">VCCC_LOG_TAG_ERROR</a></div><div class="ttdeci">#define VCCC_LOG_TAG_ERROR</div><div class="ttdef"><b>Definition:</b> tag.h:11</div></div>
+<div class="ttc" id="atag_8h_html_ad19f7b8f603c1539fdc28dd7e5d3350f"><div class="ttname"><a href="tag_8h.html#ad19f7b8f603c1539fdc28dd7e5d3350f">VCCC_LOG_TAG_WARN</a></div><div class="ttdeci">#define VCCC_LOG_TAG_WARN</div><div class="ttdef"><b>Definition:</b> tag.h:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_b61dba939be25b71678f2ad4899d0e23.html">log</a></li><li class="navelem"><a class="el" href="dir_d9b1d0ff2686ee92461563313f3748d0.html">include</a></li><li class="navelem"><a class="el" href="dir_f06ca9d71aaffc2d795ada5491bac90e.html">vccc</a></li><li class="navelem"><a class="el" href="dir_f07b5b856941b75755ed41492dae2d42.html">__log</a></li><li class="navelem"><a class="el" href="logger_8hpp.html">logger.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

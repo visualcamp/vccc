@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="VCCC Document" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="VCCC Document" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>VCCC: include/vccc/__utility/compressed_pair.hpp File Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript" src="../js/add-permalink.js"></script>
+<script type="text/javascript" src="../js/class-toc.js"></script>
+<script type="text/javascript" src="../js/group-toc.js"></script>
+<script type="text/javascript" src="../js/header-link.js"></script>
+<script type="text/javascript" src="../js/realign-group.js"></script>
+<script type="text/javascript" src="../js/toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeTabs.init()
+    RealignGroup.init()
+    HeaderLink.init()
+    ClassToc.init()
+    GroupToc.init()
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/visualcamp/vccc" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="vc_logo_50_50.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">VCCC
+   &#160;<span id="projectnumber">2024.05</span>
+   </div>
+   <div id="projectbrief">VisualCamp Common C++ library</div>
+  </td>
+  <!--STAGE WARNING HERE-->
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('compressed__pair_8hpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">compressed_pair.hpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
+<code>#include &quot;<a class="el" href="inline__or__static_8hpp_source.html">vccc/__core/inline_or_static.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="conjunction_8hpp_source.html">vccc/__type_traits/conjunction.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="is__swappable_8hpp_source.html">vccc/__type_traits/is_swappable.hpp</a>&quot;</code><br />
+</div>
+<p><a href="compressed__pair_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1compressed__pair__empty__t.html">compressed_pair_empty_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1compressed__pair.html">compressed_pair&lt; T, U &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An size-optimized pair using empty base optimization.  <a href="classvccc_1_1compressed__pair.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1tuple__element_3_010_00_01vccc_1_1compressed__pair_3_01_t_00_01_u_01_4_01_4.html">tuple_element&lt; 0, vccc::compressed_pair&lt; T, U &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1tuple__element_3_011_00_01vccc_1_1compressed__pair_3_01_t_00_01_u_01_4_01_4.html">tuple_element&lt; 1, vccc::compressed_pair&lt; T, U &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1tuple__size_3_01vccc_1_1compressed__pair_3_01_t_00_01_u_01_4_01_4.html">tuple_size&lt; vccc::compressed_pair&lt; T, U &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacevccc"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevccc.html">vccc</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacestd"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestd.html">std</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga66603d71b2891c0eee7bc0063ad183c7"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:ga66603d71b2891c0eee7bc0063ad183c7"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; conjunction&lt; is_swappable&lt; T &gt;, is_swappable&lt; U &gt; &gt;::value &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga66603d71b2891c0eee7bc0063ad183c7">swap</a> (compressed_pair&lt; T, U &gt; &amp;lhs, compressed_pair&lt; T, U &gt; &amp;rhs) noexcept(conjunction&lt; is_nothrow_swappable&lt; T &gt;, is_nothrow_swappable&lt; U &gt;&gt;::value)</td></tr>
+<tr class="separator:ga66603d71b2891c0eee7bc0063ad183c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d89cd30965f7fd8b2861b89fe50df6f"><td class="memTemplParams" colspan="2">template&lt;std::size_t I, typename T , typename U &gt; </td></tr>
+<tr class="memitem:a8d89cd30965f7fd8b2861b89fe50df6f"><td class="memTemplItemLeft" align="right" valign="top">constexpr tuple_element_t&lt; I, <a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; T, U &gt; &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#a8d89cd30965f7fd8b2861b89fe50df6f">get</a> (<a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; T, U &gt; &amp;p) noexcept</td></tr>
+<tr class="separator:a8d89cd30965f7fd8b2861b89fe50df6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95d3c95a26f3b740de63c4d64cd09e81"><td class="memTemplParams" colspan="2">template&lt;std::size_t I, typename T , typename U &gt; </td></tr>
+<tr class="memitem:a95d3c95a26f3b740de63c4d64cd09e81"><td class="memTemplItemLeft" align="right" valign="top">constexpr const tuple_element_t&lt; I, <a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; T, U &gt; &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#a95d3c95a26f3b740de63c4d64cd09e81">get</a> (const <a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; T, U &gt; &amp;p) noexcept</td></tr>
+<tr class="separator:a95d3c95a26f3b740de63c4d64cd09e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabaa6756d60773908531626c10a40951"><td class="memTemplParams" colspan="2">template&lt;std::size_t I, typename T , typename U &gt; </td></tr>
+<tr class="memitem:aabaa6756d60773908531626c10a40951"><td class="memTemplItemLeft" align="right" valign="top">constexpr tuple_element_t&lt; I, <a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; T, U &gt; &gt; &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#aabaa6756d60773908531626c10a40951">get</a> (<a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; T, U &gt; &amp;&amp;p) noexcept</td></tr>
+<tr class="separator:aabaa6756d60773908531626c10a40951"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5567b08215c121c1302ade3a3ff35fb"><td class="memTemplParams" colspan="2">template&lt;std::size_t I, typename T , typename U &gt; </td></tr>
+<tr class="memitem:ab5567b08215c121c1302ade3a3ff35fb"><td class="memTemplItemLeft" align="right" valign="top">constexpr const tuple_element_t&lt; I, <a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; T, U &gt; &gt; &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#ab5567b08215c121c1302ade3a3ff35fb">get</a> (const <a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; T, U &gt; &amp;&amp;p) noexcept</td></tr>
+<tr class="separator:ab5567b08215c121c1302ade3a3ff35fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e3d2c2b500b369a4359bde0ad9cb02d"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:a4e3d2c2b500b369a4359bde0ad9cb02d"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#a4e3d2c2b500b369a4359bde0ad9cb02d">get</a> (<a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; T, U &gt; &amp;p) noexcept</td></tr>
+<tr class="separator:a4e3d2c2b500b369a4359bde0ad9cb02d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa017660841f0c03408b1f9e94c1e96ef"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:aa017660841f0c03408b1f9e94c1e96ef"><td class="memTemplItemLeft" align="right" valign="top">constexpr const T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#aa017660841f0c03408b1f9e94c1e96ef">get</a> (const <a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; T, U &gt; &amp;p) noexcept</td></tr>
+<tr class="separator:aa017660841f0c03408b1f9e94c1e96ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9aed7d0a0d5115f66793942c32aab85"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:ab9aed7d0a0d5115f66793942c32aab85"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#ab9aed7d0a0d5115f66793942c32aab85">get</a> (<a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; T, U &gt; &amp;&amp;p) noexcept</td></tr>
+<tr class="separator:ab9aed7d0a0d5115f66793942c32aab85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aeafd836868e13bbfa9d7eb43a476a1"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:a6aeafd836868e13bbfa9d7eb43a476a1"><td class="memTemplItemLeft" align="right" valign="top">constexpr const T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#a6aeafd836868e13bbfa9d7eb43a476a1">get</a> (const <a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; T, U &gt; &amp;&amp;p) noexcept</td></tr>
+<tr class="separator:a6aeafd836868e13bbfa9d7eb43a476a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46a648c42eb8b7af32f9a521d6b451ae"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:a46a648c42eb8b7af32f9a521d6b451ae"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#a46a648c42eb8b7af32f9a521d6b451ae">get</a> (<a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; U, T &gt; &amp;p) noexcept</td></tr>
+<tr class="separator:a46a648c42eb8b7af32f9a521d6b451ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a607f2e4feb51b4801a55e53cb994770a"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:a607f2e4feb51b4801a55e53cb994770a"><td class="memTemplItemLeft" align="right" valign="top">constexpr const T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#a607f2e4feb51b4801a55e53cb994770a">get</a> (const <a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; U, T &gt; &amp;p) noexcept</td></tr>
+<tr class="separator:a607f2e4feb51b4801a55e53cb994770a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45f44cb91911f44493af75d41bf6765b"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:a45f44cb91911f44493af75d41bf6765b"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#a45f44cb91911f44493af75d41bf6765b">get</a> (<a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; U, T &gt; &amp;&amp;p) noexcept</td></tr>
+<tr class="separator:a45f44cb91911f44493af75d41bf6765b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae480800461228bd412ce91601a0229b7"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:ae480800461228bd412ce91601a0229b7"><td class="memTemplItemLeft" align="right" valign="top">constexpr const T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd.html#ae480800461228bd412ce91601a0229b7">get</a> (const <a class="el" href="classvccc_1_1compressed__pair.html">vccc::compressed_pair</a>&lt; U, T &gt; &amp;&amp;p) noexcept</td></tr>
+<tr class="separator:ae480800461228bd412ce91601a0229b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:gaae265d0566c1f45a5cfec0e7cd3b1ed8"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> compressed_pair_empty_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__utility.html#gaae265d0566c1f45a5cfec0e7cd3b1ed8">compressed_pair_empty</a></td></tr>
+<tr class="separator:gaae265d0566c1f45a5cfec0e7cd3b1ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_99216d331fab9748718665df98894a12.html">vccc</a></li><li class="navelem"><a class="el" href="dir_088410cc502cc5b0ec653928398bccf8.html">__utility</a></li><li class="navelem"><a class="el" href="compressed__pair_8hpp.html">compressed_pair.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

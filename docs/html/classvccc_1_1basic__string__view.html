@@ -1,0 +1,2904 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="VCCC Document" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="VCCC Document" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>VCCC: basic_string_view&lt; CharT, Traits &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript" src="../js/add-permalink.js"></script>
+<script type="text/javascript" src="../js/class-toc.js"></script>
+<script type="text/javascript" src="../js/group-toc.js"></script>
+<script type="text/javascript" src="../js/header-link.js"></script>
+<script type="text/javascript" src="../js/realign-group.js"></script>
+<script type="text/javascript" src="../js/toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeTabs.init()
+    RealignGroup.init()
+    HeaderLink.init()
+    ClassToc.init()
+    GroupToc.init()
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/visualcamp/vccc" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="vc_logo_50_50.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">VCCC
+   &#160;<span id="projectnumber">2024.05</span>
+   </div>
+   <div id="projectbrief">VisualCamp Common C++ library</div>
+  </td>
+  <!--STAGE WARNING HERE-->
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classvccc_1_1basic__string__view.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="classvccc_1_1basic__string__view-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">basic_string_view&lt; CharT, Traits &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__string__view.html">string_view</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="string__view_8hpp_source.html">/home/jarvis/actions-runner/jarvis-vccc-2/_work/vccc/vccc/include/vccc/string_view.hpp</a>&gt;</code></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename CharT, typename Traits = std::char_traits&lt;CharT&gt;&gt;<br />
+class vccc::basic_string_view&lt; CharT, Traits &gt;</h3>
+
+<p>The class template <a class="el" href="classvccc_1_1basic__string__view.html" title="The templated class vccc::basic_string_view provides a lightweight object that offers read-only acces...">basic_string_view</a> describes an object that can refer to a constant contiguous sequence of <code>CharT</code> with the first element of the sequence at position zero. Every specialization of <code><a class="el" href="classvccc_1_1basic__string__view.html" title="The templated class vccc::basic_string_view provides a lightweight object that offers read-only acces...">vccc::basic_string_view</a></code> is a TriviallyCopyable type.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">CharT</td><td>character type </td></tr>
+    <tr><td class="paramname">Traits</td><td>CharTraits class specifying the operations on the character type. Like for <code>std::basic_string</code>, <code>Traits::char_type</code> must name the same type as <code>CharT</code> or the program is ill-formed. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a7762fa62b377a4fe9013a86afeb00b99"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a7762fa62b377a4fe9013a86afeb00b99">traits_type</a> = Traits</td></tr>
+<tr class="separator:a7762fa62b377a4fe9013a86afeb00b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb6ee73525ae7653110c289fc2572f4f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> = CharT</td></tr>
+<tr class="separator:afb6ee73525ae7653110c289fc2572f4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb8f863bb88a580888173a7e054fb350"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#afb8f863bb88a580888173a7e054fb350">pointer</a> = CharT *</td></tr>
+<tr class="separator:afb8f863bb88a580888173a7e054fb350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66ba71fcfab03bad15e8685c7e50e66e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a66ba71fcfab03bad15e8685c7e50e66e">const_pointer</a> = const CharT *</td></tr>
+<tr class="separator:a66ba71fcfab03bad15e8685c7e50e66e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2e4acb80182538a601ab75c09a432dd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#af2e4acb80182538a601ab75c09a432dd">reference</a> = CharT &amp;</td></tr>
+<tr class="separator:af2e4acb80182538a601ab75c09a432dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a591c033139236393831fd315eca407c7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a591c033139236393831fd315eca407c7">const_reference</a> = const CharT &amp;</td></tr>
+<tr class="separator:a591c033139236393831fd315eca407c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82c3c04df36124e34ccfad98ebec2e25"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a> = <a class="el" href="classvccc_1_1basic__string__view.html#a66ba71fcfab03bad15e8685c7e50e66e">const_pointer</a></td></tr>
+<tr class="separator:a82c3c04df36124e34ccfad98ebec2e25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3d10e70baaeac78e76b7abae7e2cf76"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ab3d10e70baaeac78e76b7abae7e2cf76">iterator</a> = <a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a></td></tr>
+<tr class="separator:ab3d10e70baaeac78e76b7abae7e2cf76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0af7cd2cb131805b96d2b01cae24bf1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#af0af7cd2cb131805b96d2b01cae24bf1">const_reverse_iterator</a> = std::reverse_iterator&lt; <a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a> &gt;</td></tr>
+<tr class="separator:af0af7cd2cb131805b96d2b01cae24bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c078a457e7971b027522ccb6ae0180"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a11c078a457e7971b027522ccb6ae0180">reverse_iterator</a> = <a class="el" href="classvccc_1_1basic__string__view.html#af0af7cd2cb131805b96d2b01cae24bf1">const_reverse_iterator</a></td></tr>
+<tr class="separator:a11c078a457e7971b027522ccb6ae0180"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af38ce1af42d538f410180c265518d4f0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> = std::size_t</td></tr>
+<tr class="separator:af38ce1af42d538f410180c265518d4f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace405568d0b2f3fad4990044252c7732"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ace405568d0b2f3fad4990044252c7732">difference_type</a> = std::ptrdiff_t</td></tr>
+<tr class="separator:ace405568d0b2f3fad4990044252c7732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">(constructor)</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>constructs a <code><a class="el" href="classvccc_1_1basic__string__view.html" title="The templated class vccc::basic_string_view provides a lightweight object that offers read-only acces...">basic_string_view</a></code> </p>
+</div></td></tr>
+<tr class="memitem:aa83abcba818978e65b8c3786f209df11"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#aa83abcba818978e65b8c3786f209df11">basic_string_view</a> () noexcept</td></tr>
+<tr class="separator:aa83abcba818978e65b8c3786f209df11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a322c4ff367ac5dd5795ca8e5e2775016"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a322c4ff367ac5dd5795ca8e5e2775016">basic_string_view</a> (const <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> &amp;other) noexcept=default</td></tr>
+<tr class="separator:a322c4ff367ac5dd5795ca8e5e2775016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93fc1b9e7de47504420536baacff3d1c"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a93fc1b9e7de47504420536baacff3d1c">basic_string_view</a> (const CharT *s, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count)</td></tr>
+<tr class="separator:a93fc1b9e7de47504420536baacff3d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64cd74629ad415bddb69b4bd065cde86"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a64cd74629ad415bddb69b4bd065cde86">basic_string_view</a> (const CharT *s)</td></tr>
+<tr class="separator:a64cd74629ad415bddb69b4bd065cde86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8445e531e396736d9fe214e236bb3ad1"><td class="memTemplParams" colspan="2">template&lt;typename It , typename End , std::enable_if_t&lt; detail::string_view_iter_ctor&lt; It, End, CharT, size_type &gt;::value, int &gt;  = 0&gt; </td></tr>
+<tr class="memitem:a8445e531e396736d9fe214e236bb3ad1"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a8445e531e396736d9fe214e236bb3ad1">basic_string_view</a> (It <a class="el" href="namespacevccc.html#a74213863221c0456f440d40ca470f8ba">first</a>, End last)</td></tr>
+<tr class="separator:a8445e531e396736d9fe214e236bb3ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a833975922957d879865b7b77a4fa1428"><td class="memTemplParams" colspan="2">template&lt;typename R , std::enable_if_t&lt; detail::string_view_range_ctor&lt; R, basic_string_view &gt;::value, int &gt;  = 0&gt; </td></tr>
+<tr class="memitem:a833975922957d879865b7b77a4fa1428"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a833975922957d879865b7b77a4fa1428">basic_string_view</a> (R &amp;&amp;r)</td></tr>
+<tr class="separator:a833975922957d879865b7b77a4fa1428"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeabffc0ed17ed029896c9c3ab0cdb3e1"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#aeabffc0ed17ed029896c9c3ab0cdb3e1">basic_string_view</a> (const std::basic_string&lt; CharT, Traits &gt; &amp;s)</td></tr>
+<tr class="separator:aeabffc0ed17ed029896c9c3ab0cdb3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a295bcff14a3c09c1a87f561da40190"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a6a295bcff14a3c09c1a87f561da40190">basic_string_view</a> (std::basic_string&lt; CharT, Traits &gt; &amp;&amp;s)</td></tr>
+<tr class="separator:a6a295bcff14a3c09c1a87f561da40190"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41c5018de76fb9a9aede1c9a3bf397fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a41c5018de76fb9a9aede1c9a3bf397fa">operator std::basic_string&lt; CharT, Traits &gt;</a> () const</td></tr>
+<tr class="separator:a41c5018de76fb9a9aede1c9a3bf397fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a772c99c0934198360587cd96dccf8117"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a772c99c0934198360587cd96dccf8117">basic_string_view</a> (std::nullptr_t)=delete</td></tr>
+<tr class="separator:a772c99c0934198360587cd96dccf8117"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">(operator=)</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>assigns a view </p>
+</div></td></tr>
+<tr class="memitem:aaffd3cfb0fa8c8a6bb7e0bb88339003d"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#aaffd3cfb0fa8c8a6bb7e0bb88339003d">operator=</a> (const <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> &amp;other) noexcept=default</td></tr>
+<tr class="separator:aaffd3cfb0fa8c8a6bb7e0bb88339003d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">begin/cbegin</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>returns an iterator to the beginning </p>
+</div></td></tr>
+<tr class="memitem:a0a794d38955cd03023ce91647c0b4d01"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a0a794d38955cd03023ce91647c0b4d01">begin</a> () const noexcept</td></tr>
+<tr class="separator:a0a794d38955cd03023ce91647c0b4d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a9444041ed6ad2aba591540a549845d"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a8a9444041ed6ad2aba591540a549845d">cbegin</a> () const noexcept</td></tr>
+<tr class="separator:a8a9444041ed6ad2aba591540a549845d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">end/cend</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>returns an iterator to the end </p>
+</div></td></tr>
+<tr class="memitem:a2e258f78385663a2be805d76b8907eba"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a2e258f78385663a2be805d76b8907eba">end</a> () const noexcept</td></tr>
+<tr class="separator:a2e258f78385663a2be805d76b8907eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d896bad4831e854fd222088e5fc221e"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a9d896bad4831e854fd222088e5fc221e">cend</a> () const noexcept</td></tr>
+<tr class="separator:a9d896bad4831e854fd222088e5fc221e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">rbegin/crbegin</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>returns a reverse iterator to the beginning </p>
+</div></td></tr>
+<tr class="memitem:a4841e34a368a6edcc1079f7c06814abf"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af0af7cd2cb131805b96d2b01cae24bf1">const_reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a4841e34a368a6edcc1079f7c06814abf">rbegin</a> () const noexcept</td></tr>
+<tr class="separator:a4841e34a368a6edcc1079f7c06814abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa61b1d77d4f4af1207425bb76559e186"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af0af7cd2cb131805b96d2b01cae24bf1">const_reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#aa61b1d77d4f4af1207425bb76559e186">crbegin</a> () const noexcept</td></tr>
+<tr class="separator:aa61b1d77d4f4af1207425bb76559e186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">rend</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>returns a reverse iterator to the end </p>
+</div></td></tr>
+<tr class="memitem:a9aabfb9158c07ed6d7a18492e0a7b3a7"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af0af7cd2cb131805b96d2b01cae24bf1">const_reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a9aabfb9158c07ed6d7a18492e0a7b3a7">rend</a> () const noexcept</td></tr>
+<tr class="separator:a9aabfb9158c07ed6d7a18492e0a7b3a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e6bc27ca2c2b5aeb61122100e93202d"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af0af7cd2cb131805b96d2b01cae24bf1">const_reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a4e6bc27ca2c2b5aeb61122100e93202d">crend</a> () const noexcept</td></tr>
+<tr class="separator:a4e6bc27ca2c2b5aeb61122100e93202d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">operator[]</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>accesses the specified character </p>
+</div></td></tr>
+<tr class="memitem:a9bfe9b7c0b70350bb2d43fa18c840a90"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a591c033139236393831fd315eca407c7">const_reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a9bfe9b7c0b70350bb2d43fa18c840a90">operator[]</a> (<a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos) const</td></tr>
+<tr class="separator:a9bfe9b7c0b70350bb2d43fa18c840a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">at</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>accesses the specified character with bounds checking </p>
+</div></td></tr>
+<tr class="memitem:afbbf0938aa8184bf1ab75a23c1687ed8"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a591c033139236393831fd315eca407c7">const_reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#afbbf0938aa8184bf1ab75a23c1687ed8">at</a> (<a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos) const</td></tr>
+<tr class="separator:afbbf0938aa8184bf1ab75a23c1687ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">front</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>accesses the first character </p>
+</div></td></tr>
+<tr class="memitem:a0d2f4af381faa34ace382c87aeed32e3"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a591c033139236393831fd315eca407c7">const_reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a0d2f4af381faa34ace382c87aeed32e3">front</a> () const</td></tr>
+<tr class="separator:a0d2f4af381faa34ace382c87aeed32e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">back</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>accesses the last character </p>
+</div></td></tr>
+<tr class="memitem:a20a48cfbeb064093c00708b233c17883"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a591c033139236393831fd315eca407c7">const_reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a20a48cfbeb064093c00708b233c17883">back</a> () const</td></tr>
+<tr class="separator:a20a48cfbeb064093c00708b233c17883"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">data</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>returns a pointer to the first character of a view </p>
+</div></td></tr>
+<tr class="memitem:aead72bdc28ba080457675a6026e9bb94"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a66ba71fcfab03bad15e8685c7e50e66e">const_pointer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#aead72bdc28ba080457675a6026e9bb94">data</a> () const noexcept</td></tr>
+<tr class="separator:aead72bdc28ba080457675a6026e9bb94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">size/length</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>returns the number of characters </p>
+</div></td></tr>
+<tr class="memitem:a47293c97b8f2735433efee82ae71171e"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a47293c97b8f2735433efee82ae71171e">size</a> () const noexcept</td></tr>
+<tr class="separator:a47293c97b8f2735433efee82ae71171e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac904ed63c2ae9bd281fc39661d087e1c"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ac904ed63c2ae9bd281fc39661d087e1c">length</a> () const noexcept</td></tr>
+<tr class="separator:ac904ed63c2ae9bd281fc39661d087e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">max_size</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>returns the maximum number of characters </p>
+</div></td></tr>
+<tr class="memitem:aabd5ba02c9c9e80dad3e34f1175957b0"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#aabd5ba02c9c9e80dad3e34f1175957b0">max_size</a> () const noexcept</td></tr>
+<tr class="separator:aabd5ba02c9c9e80dad3e34f1175957b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">empty</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>checks whether the view is empty </p>
+</div></td></tr>
+<tr class="memitem:af34f0f34e77bda4a88ebd9b127634992"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#af34f0f34e77bda4a88ebd9b127634992">empty</a> () const noexcept</td></tr>
+<tr class="separator:af34f0f34e77bda4a88ebd9b127634992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">remove_prefix</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>shrinks the view by moving its start forward </p>
+</div></td></tr>
+<tr class="memitem:a502c239b692bdde660afa54c2997ff38"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a502c239b692bdde660afa54c2997ff38">remove_prefix</a> (<a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> n)</td></tr>
+<tr class="separator:a502c239b692bdde660afa54c2997ff38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">remove_suffix</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>shrinks the view by moving its end backward </p>
+</div></td></tr>
+<tr class="memitem:ad41fc446bd2a3a0e4cd48aefe8e947f0"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ad41fc446bd2a3a0e4cd48aefe8e947f0">remove_suffix</a> (<a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> n)</td></tr>
+<tr class="separator:ad41fc446bd2a3a0e4cd48aefe8e947f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">swap</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>swaps the contents </p>
+</div></td></tr>
+<tr class="memitem:ad54dbafa45adbe8315603b50f4622eba"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ad54dbafa45adbe8315603b50f4622eba">swap</a> (<a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> &amp;other) noexcept</td></tr>
+<tr class="separator:ad54dbafa45adbe8315603b50f4622eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">copy</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>copies characters </p>
+</div></td></tr>
+<tr class="memitem:a7fbe722d9fc518c0ce8aa5438b9fdd54"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a7fbe722d9fc518c0ce8aa5438b9fdd54">copy</a> (<a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *dest, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=0) const</td></tr>
+<tr class="separator:a7fbe722d9fc518c0ce8aa5438b9fdd54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">substr</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>returns a substring </p>
+</div></td></tr>
+<tr class="memitem:a4c3be970e5dd3a337af21ca12a469547"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a4c3be970e5dd3a337af21ca12a469547">substr</a> (<a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=0, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count=<a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a>) const</td></tr>
+<tr class="separator:a4c3be970e5dd3a337af21ca12a469547"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">compare</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>compares two views </p>
+</div></td></tr>
+<tr class="memitem:aa759e4ceb380aba5fa37513528e20b0a"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#aa759e4ceb380aba5fa37513528e20b0a">compare</a> (<a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> other) const noexcept</td></tr>
+<tr class="separator:aa759e4ceb380aba5fa37513528e20b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5826e0c02e02258f2d54abc6a41a6e75"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a5826e0c02e02258f2d54abc6a41a6e75">compare</a> (<a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos1, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count1, <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> other) const</td></tr>
+<tr class="separator:a5826e0c02e02258f2d54abc6a41a6e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75cface9033d25ecb4ea6e001298cd22"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a75cface9033d25ecb4ea6e001298cd22">compare</a> (<a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos1, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count1, <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> other, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos2, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count2) const</td></tr>
+<tr class="separator:a75cface9033d25ecb4ea6e001298cd22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd16cdc0cb4733749ffe72cfe025f18"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a9dd16cdc0cb4733749ffe72cfe025f18">compare</a> (const CharT *s) const</td></tr>
+<tr class="separator:a9dd16cdc0cb4733749ffe72cfe025f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab16e20240ee7e9965e753f25e2a4b8ab"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ab16e20240ee7e9965e753f25e2a4b8ab">compare</a> (<a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos1, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count1, const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *s) const</td></tr>
+<tr class="separator:ab16e20240ee7e9965e753f25e2a4b8ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55af22f9260160ad06a25a3bb9beb0e8"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a55af22f9260160ad06a25a3bb9beb0e8">compare</a> (<a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos1, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count1, const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *s, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count2) const</td></tr>
+<tr class="separator:a55af22f9260160ad06a25a3bb9beb0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">starts_with</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>checks if the string view starts with the given prefix </p>
+</div></td></tr>
+<tr class="memitem:a40c128a544a41b43fdb7244d76cad70d"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a40c128a544a41b43fdb7244d76cad70d">starts_with</a> (<a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> prefix) const noexcept</td></tr>
+<tr class="separator:a40c128a544a41b43fdb7244d76cad70d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5aa6747f419bcc6743ae41977b50fcbf"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a5aa6747f419bcc6743ae41977b50fcbf">starts_with</a> (<a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> c) const noexcept</td></tr>
+<tr class="separator:a5aa6747f419bcc6743ae41977b50fcbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8d53dfe05407485cf0275e77df67aee"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ae8d53dfe05407485cf0275e77df67aee">starts_with</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *s) const</td></tr>
+<tr class="separator:ae8d53dfe05407485cf0275e77df67aee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">ends_with</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>checks if the string view ends with the given suffix </p>
+</div></td></tr>
+<tr class="memitem:a9a91c065ac726388d03753f886475b7f"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a9a91c065ac726388d03753f886475b7f">ends_with</a> (<a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> sv) const noexcept</td></tr>
+<tr class="separator:a9a91c065ac726388d03753f886475b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92ed6406bc77c16474cdd525ce1e013e"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a92ed6406bc77c16474cdd525ce1e013e">ends_with</a> (<a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> c) const noexcept</td></tr>
+<tr class="separator:a92ed6406bc77c16474cdd525ce1e013e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8be948dd3da50b7e83ae674761cb1a8"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ad8be948dd3da50b7e83ae674761cb1a8">ends_with</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *s) const</td></tr>
+<tr class="separator:ad8be948dd3da50b7e83ae674761cb1a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">contains</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>checks if the string view contains the given substring or character </p>
+</div></td></tr>
+<tr class="memitem:a0f42835e63a018cbe1fe580e6020c49a"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a0f42835e63a018cbe1fe580e6020c49a">contains</a> (<a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> sv) const noexcept</td></tr>
+<tr class="separator:a0f42835e63a018cbe1fe580e6020c49a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad057a05ebbdb2995f2f6481aabe290b"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#aad057a05ebbdb2995f2f6481aabe290b">contains</a> (<a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> c) const noexcept</td></tr>
+<tr class="separator:aad057a05ebbdb2995f2f6481aabe290b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c41414d3ae73b19dc884ac5ee9db11b"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a3c41414d3ae73b19dc884ac5ee9db11b">contains</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *str) const</td></tr>
+<tr class="separator:a3c41414d3ae73b19dc884ac5ee9db11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">find</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>find characters in the view </p>
+</div></td></tr>
+<tr class="memitem:ac09e4127665e37e9f8c6d660c1f611af"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ac09e4127665e37e9f8c6d660c1f611af">find</a> (<a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> sv, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=0) const noexcept</td></tr>
+<tr class="separator:ac09e4127665e37e9f8c6d660c1f611af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae20183cb36f71a91316f835ac5808326"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ae20183cb36f71a91316f835ac5808326">find</a> (<a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> c, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=0) const noexcept</td></tr>
+<tr class="separator:ae20183cb36f71a91316f835ac5808326"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4b9234745da83299030b7e691138961"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ab4b9234745da83299030b7e691138961">find</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *str, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count) const</td></tr>
+<tr class="separator:ab4b9234745da83299030b7e691138961"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a789b683af61a03f2ad2e296750b3fd13"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a789b683af61a03f2ad2e296750b3fd13">find</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *str, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=0) const</td></tr>
+<tr class="separator:a789b683af61a03f2ad2e296750b3fd13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">rfind</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>find the last occurrence of a substring </p>
+</div></td></tr>
+<tr class="memitem:a336f8dfbc9b710d1451c2cb518b90313"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a336f8dfbc9b710d1451c2cb518b90313">rfind</a> (<a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> sv, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=<a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a>) const noexcept</td></tr>
+<tr class="separator:a336f8dfbc9b710d1451c2cb518b90313"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac9d3155e72e874b045af2ffe1a46dc"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a7ac9d3155e72e874b045af2ffe1a46dc">rfind</a> (<a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> c, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=<a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a>) const noexcept</td></tr>
+<tr class="separator:a7ac9d3155e72e874b045af2ffe1a46dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefb13035dc0939c1d04862b585860a0a"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#aefb13035dc0939c1d04862b585860a0a">rfind</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *str, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count) const</td></tr>
+<tr class="separator:aefb13035dc0939c1d04862b585860a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4167fc0dca4f0bbb1f7e393b7be4b16f"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a4167fc0dca4f0bbb1f7e393b7be4b16f">rfind</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *str, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=<a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a>) const</td></tr>
+<tr class="separator:a4167fc0dca4f0bbb1f7e393b7be4b16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">find_first_of</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>find first occurrence of characters </p>
+</div></td></tr>
+<tr class="memitem:af214751c4c4c486e2abd0538b6767534"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#af214751c4c4c486e2abd0538b6767534">find_first_of</a> (<a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> sv, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=0) const noexcept</td></tr>
+<tr class="separator:af214751c4c4c486e2abd0538b6767534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9e43f9dd5ef3415d847766bb866e218"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ac9e43f9dd5ef3415d847766bb866e218">find_first_of</a> (<a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> c, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=0) const noexcept</td></tr>
+<tr class="separator:ac9e43f9dd5ef3415d847766bb866e218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7260d1388482e3465966f3a188e07e13"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a7260d1388482e3465966f3a188e07e13">find_first_of</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *s, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count) const</td></tr>
+<tr class="separator:a7260d1388482e3465966f3a188e07e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bf5a6878c3978de96283385fcef23e4"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a0bf5a6878c3978de96283385fcef23e4">find_first_of</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *s, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=0) const</td></tr>
+<tr class="separator:a0bf5a6878c3978de96283385fcef23e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">find_last_of</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>find last occurrence of characters </p>
+</div></td></tr>
+<tr class="memitem:a167f8f763eb6d7d880d2210171eb7542"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a167f8f763eb6d7d880d2210171eb7542">find_last_of</a> (<a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> sv, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=<a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a>) const noexcept</td></tr>
+<tr class="separator:a167f8f763eb6d7d880d2210171eb7542"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f1abdea502ce8390f762ac732715170"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a1f1abdea502ce8390f762ac732715170">find_last_of</a> (<a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> c, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=<a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a>) const noexcept</td></tr>
+<tr class="separator:a1f1abdea502ce8390f762ac732715170"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c74556d90d9d607026c3091fb1003e0"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a6c74556d90d9d607026c3091fb1003e0">find_last_of</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *s, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count) const</td></tr>
+<tr class="separator:a6c74556d90d9d607026c3091fb1003e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae62a0268c98350976464865f81c10815"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#ae62a0268c98350976464865f81c10815">find_last_of</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *s, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=<a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a>) const</td></tr>
+<tr class="separator:ae62a0268c98350976464865f81c10815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">find_first_not_of</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>find first absence of characters </p>
+</div></td></tr>
+<tr class="memitem:a131854271d8cd792dcae2632d3c62f56"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a131854271d8cd792dcae2632d3c62f56">find_first_not_of</a> (<a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> sv, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=0) const noexcept</td></tr>
+<tr class="separator:a131854271d8cd792dcae2632d3c62f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2536852c76abb461cfbe7ed251d4ea50"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a2536852c76abb461cfbe7ed251d4ea50">find_first_not_of</a> (<a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> c, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=0) const noexcept</td></tr>
+<tr class="separator:a2536852c76abb461cfbe7ed251d4ea50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a807121679143bb9891ffc8ef7b3580d9"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a807121679143bb9891ffc8ef7b3580d9">find_first_not_of</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *s, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count) const</td></tr>
+<tr class="separator:a807121679143bb9891ffc8ef7b3580d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22137b2e78b9490a853676f3da89b6fb"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a22137b2e78b9490a853676f3da89b6fb">find_first_not_of</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *s, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=0) const</td></tr>
+<tr class="separator:a22137b2e78b9490a853676f3da89b6fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">find_last_not_of</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>find last absence of characters </p>
+</div></td></tr>
+<tr class="memitem:a104d76a8bd22dbc5c7085e9256a9707d"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a104d76a8bd22dbc5c7085e9256a9707d">find_last_not_of</a> (<a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> sv, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=<a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a>) const noexcept</td></tr>
+<tr class="separator:a104d76a8bd22dbc5c7085e9256a9707d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c450b9eb8701de5423245dcb56395f8"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a5c450b9eb8701de5423245dcb56395f8">find_last_not_of</a> (<a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> c, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=<a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a>) const noexcept</td></tr>
+<tr class="separator:a5c450b9eb8701de5423245dcb56395f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5523762a4e12689bd2adabb58a97269b"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a5523762a4e12689bd2adabb58a97269b">find_last_not_of</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *s, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> count) const</td></tr>
+<tr class="separator:a5523762a4e12689bd2adabb58a97269b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acebe7f430e08b6defa12ffde8b3cea47"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#acebe7f430e08b6defa12ffde8b3cea47">find_last_not_of</a> (const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *s, <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> pos=<a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a>) const</td></tr>
+<tr class="separator:acebe7f430e08b6defa12ffde8b3cea47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a29abf0eaf62dbe10174db67475599a1b"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a> = <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>(-1)</td></tr>
+<tr class="separator:a29abf0eaf62dbe10174db67475599a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a82c3c04df36124e34ccfad98ebec2e25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82c3c04df36124e34ccfad98ebec2e25">&#9670;&nbsp;</a></span>const_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a> =  <a class="el" href="classvccc_1_1basic__string__view.html#a66ba71fcfab03bad15e8685c7e50e66e">const_pointer</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a66ba71fcfab03bad15e8685c7e50e66e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66ba71fcfab03bad15e8685c7e50e66e">&#9670;&nbsp;</a></span>const_pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1basic__string__view.html#a66ba71fcfab03bad15e8685c7e50e66e">const_pointer</a> =  const CharT*</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a591c033139236393831fd315eca407c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a591c033139236393831fd315eca407c7">&#9670;&nbsp;</a></span>const_reference</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1basic__string__view.html#a591c033139236393831fd315eca407c7">const_reference</a> =  const CharT&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af0af7cd2cb131805b96d2b01cae24bf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0af7cd2cb131805b96d2b01cae24bf1">&#9670;&nbsp;</a></span>const_reverse_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1basic__string__view.html#af0af7cd2cb131805b96d2b01cae24bf1">const_reverse_iterator</a> =  std::reverse_iterator&lt;<a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace405568d0b2f3fad4990044252c7732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace405568d0b2f3fad4990044252c7732">&#9670;&nbsp;</a></span>difference_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1basic__string__view.html#ace405568d0b2f3fad4990044252c7732">difference_type</a> =  std::ptrdiff_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab3d10e70baaeac78e76b7abae7e2cf76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3d10e70baaeac78e76b7abae7e2cf76">&#9670;&nbsp;</a></span>iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1basic__string__view.html#ab3d10e70baaeac78e76b7abae7e2cf76">iterator</a> =  <a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afb8f863bb88a580888173a7e054fb350"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb8f863bb88a580888173a7e054fb350">&#9670;&nbsp;</a></span>pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1basic__string__view.html#afb8f863bb88a580888173a7e054fb350">pointer</a> =  CharT*</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af2e4acb80182538a601ab75c09a432dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2e4acb80182538a601ab75c09a432dd">&#9670;&nbsp;</a></span>reference</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1basic__string__view.html#af2e4acb80182538a601ab75c09a432dd">reference</a> =  CharT&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a11c078a457e7971b027522ccb6ae0180"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11c078a457e7971b027522ccb6ae0180">&#9670;&nbsp;</a></span>reverse_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1basic__string__view.html#a11c078a457e7971b027522ccb6ae0180">reverse_iterator</a> =  <a class="el" href="classvccc_1_1basic__string__view.html#af0af7cd2cb131805b96d2b01cae24bf1">const_reverse_iterator</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af38ce1af42d538f410180c265518d4f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af38ce1af42d538f410180c265518d4f0">&#9670;&nbsp;</a></span>size_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> =  std::size_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7762fa62b377a4fe9013a86afeb00b99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7762fa62b377a4fe9013a86afeb00b99">&#9670;&nbsp;</a></span>traits_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1basic__string__view.html#a7762fa62b377a4fe9013a86afeb00b99">traits_type</a> =  Traits</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afb6ee73525ae7653110c289fc2572f4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb6ee73525ae7653110c289fc2572f4f">&#9670;&nbsp;</a></span>value_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> =  CharT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa83abcba818978e65b8c3786f209df11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa83abcba818978e65b8c3786f209df11">&#9670;&nbsp;</a></span>basic_string_view() <span class="overload">[1/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a322c4ff367ac5dd5795ca8e5e2775016"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a322c4ff367ac5dd5795ca8e5e2775016">&#9670;&nbsp;</a></span>basic_string_view() <span class="overload">[2/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a93fc1b9e7de47504420536baacff3d1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93fc1b9e7de47504420536baacff3d1c">&#9670;&nbsp;</a></span>basic_string_view() <span class="overload">[3/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> </td>
+          <td>(</td>
+          <td class="paramtype">const CharT *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a64cd74629ad415bddb69b4bd065cde86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64cd74629ad415bddb69b4bd065cde86">&#9670;&nbsp;</a></span>basic_string_view() <span class="overload">[4/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> </td>
+          <td>(</td>
+          <td class="paramtype">const CharT *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8445e531e396736d9fe214e236bb3ad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8445e531e396736d9fe214e236bb3ad1">&#9670;&nbsp;</a></span>basic_string_view() <span class="overload">[5/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> </td>
+          <td>(</td>
+          <td class="paramtype">It&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">End&#160;</td>
+          <td class="paramname"><em>last</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a833975922957d879865b7b77a4fa1428"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a833975922957d879865b7b77a4fa1428">&#9670;&nbsp;</a></span>basic_string_view() <span class="overload">[6/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> </td>
+          <td>(</td>
+          <td class="paramtype">R &amp;&amp;&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeabffc0ed17ed029896c9c3ab0cdb3e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeabffc0ed17ed029896c9c3ab0cdb3e1">&#9670;&nbsp;</a></span>basic_string_view() <span class="overload">[7/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> </td>
+          <td>(</td>
+          <td class="paramtype">const std::basic_string&lt; CharT, Traits &gt; &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6a295bcff14a3c09c1a87f561da40190"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a295bcff14a3c09c1a87f561da40190">&#9670;&nbsp;</a></span>basic_string_view() <span class="overload">[8/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> </td>
+          <td>(</td>
+          <td class="paramtype">std::basic_string&lt; CharT, Traits &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a772c99c0934198360587cd96dccf8117"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a772c99c0934198360587cd96dccf8117">&#9670;&nbsp;</a></span>basic_string_view() <span class="overload">[9/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> </td>
+          <td>(</td>
+          <td class="paramtype">std::nullptr_t&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="afbbf0938aa8184bf1ab75a23c1687ed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbbf0938aa8184bf1ab75a23c1687ed8">&#9670;&nbsp;</a></span>at()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a591c033139236393831fd315eca407c7">const_reference</a> at </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20a48cfbeb064093c00708b233c17883"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20a48cfbeb064093c00708b233c17883">&#9670;&nbsp;</a></span>back()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a591c033139236393831fd315eca407c7">const_reference</a> back </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a794d38955cd03023ce91647c0b4d01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a794d38955cd03023ce91647c0b4d01">&#9670;&nbsp;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a> begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a9444041ed6ad2aba591540a549845d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a9444041ed6ad2aba591540a549845d">&#9670;&nbsp;</a></span>cbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a> cbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9d896bad4831e854fd222088e5fc221e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d896bad4831e854fd222088e5fc221e">&#9670;&nbsp;</a></span>cend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a> cend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa759e4ceb380aba5fa37513528e20b0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa759e4ceb380aba5fa37513528e20b0a">&#9670;&nbsp;</a></span>compare() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int compare </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9dd16cdc0cb4733749ffe72cfe025f18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dd16cdc0cb4733749ffe72cfe025f18">&#9670;&nbsp;</a></span>compare() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int compare </td>
+          <td>(</td>
+          <td class="paramtype">const CharT *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5826e0c02e02258f2d54abc6a41a6e75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5826e0c02e02258f2d54abc6a41a6e75">&#9670;&nbsp;</a></span>compare() <span class="overload">[3/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int compare </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt;&#160;</td>
+          <td class="paramname"><em>other</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a75cface9033d25ecb4ea6e001298cd22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75cface9033d25ecb4ea6e001298cd22">&#9670;&nbsp;</a></span>compare() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int compare </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt;&#160;</td>
+          <td class="paramname"><em>other</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab16e20240ee7e9965e753f25e2a4b8ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab16e20240ee7e9965e753f25e2a4b8ab">&#9670;&nbsp;</a></span>compare() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int compare </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a55af22f9260160ad06a25a3bb9beb0e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55af22f9260160ad06a25a3bb9beb0e8">&#9670;&nbsp;</a></span>compare() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int compare </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0f42835e63a018cbe1fe580e6020c49a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f42835e63a018cbe1fe580e6020c49a">&#9670;&nbsp;</a></span>contains() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool contains </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt;&#160;</td>
+          <td class="paramname"><em>sv</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c41414d3ae73b19dc884ac5ee9db11b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c41414d3ae73b19dc884ac5ee9db11b">&#9670;&nbsp;</a></span>contains() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool contains </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aad057a05ebbdb2995f2f6481aabe290b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad057a05ebbdb2995f2f6481aabe290b">&#9670;&nbsp;</a></span>contains() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool contains </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a>&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7fbe722d9fc518c0ce8aa5438b9fdd54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fbe722d9fc518c0ce8aa5438b9fdd54">&#9670;&nbsp;</a></span>copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> copy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa61b1d77d4f4af1207425bb76559e186"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa61b1d77d4f4af1207425bb76559e186">&#9670;&nbsp;</a></span>crbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af0af7cd2cb131805b96d2b01cae24bf1">const_reverse_iterator</a> crbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e6bc27ca2c2b5aeb61122100e93202d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e6bc27ca2c2b5aeb61122100e93202d">&#9670;&nbsp;</a></span>crend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af0af7cd2cb131805b96d2b01cae24bf1">const_reverse_iterator</a> crend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aead72bdc28ba080457675a6026e9bb94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aead72bdc28ba080457675a6026e9bb94">&#9670;&nbsp;</a></span>data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a66ba71fcfab03bad15e8685c7e50e66e">const_pointer</a> data </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af34f0f34e77bda4a88ebd9b127634992"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af34f0f34e77bda4a88ebd9b127634992">&#9670;&nbsp;</a></span>empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool <a class="el" href="structvccc_1_1empty.html">empty</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2e258f78385663a2be805d76b8907eba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e258f78385663a2be805d76b8907eba">&#9670;&nbsp;</a></span>end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a82c3c04df36124e34ccfad98ebec2e25">const_iterator</a> end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9a91c065ac726388d03753f886475b7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a91c065ac726388d03753f886475b7f">&#9670;&nbsp;</a></span>ends_with() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool ends_with </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt;&#160;</td>
+          <td class="paramname"><em>sv</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad8be948dd3da50b7e83ae674761cb1a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8be948dd3da50b7e83ae674761cb1a8">&#9670;&nbsp;</a></span>ends_with() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool ends_with </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a92ed6406bc77c16474cdd525ce1e013e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92ed6406bc77c16474cdd525ce1e013e">&#9670;&nbsp;</a></span>ends_with() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool ends_with </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a>&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac09e4127665e37e9f8c6d660c1f611af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac09e4127665e37e9f8c6d660c1f611af">&#9670;&nbsp;</a></span>find() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt;&#160;</td>
+          <td class="paramname"><em>sv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4b9234745da83299030b7e691138961"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4b9234745da83299030b7e691138961">&#9670;&nbsp;</a></span>find() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a789b683af61a03f2ad2e296750b3fd13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a789b683af61a03f2ad2e296750b3fd13">&#9670;&nbsp;</a></span>find() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae20183cb36f71a91316f835ac5808326"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae20183cb36f71a91316f835ac5808326">&#9670;&nbsp;</a></span>find() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a>&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a131854271d8cd792dcae2632d3c62f56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a131854271d8cd792dcae2632d3c62f56">&#9670;&nbsp;</a></span>find_first_not_of() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_first_not_of </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt;&#160;</td>
+          <td class="paramname"><em>sv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a807121679143bb9891ffc8ef7b3580d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a807121679143bb9891ffc8ef7b3580d9">&#9670;&nbsp;</a></span>find_first_not_of() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_first_not_of </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22137b2e78b9490a853676f3da89b6fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22137b2e78b9490a853676f3da89b6fb">&#9670;&nbsp;</a></span>find_first_not_of() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_first_not_of </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2536852c76abb461cfbe7ed251d4ea50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2536852c76abb461cfbe7ed251d4ea50">&#9670;&nbsp;</a></span>find_first_not_of() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_first_not_of </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a>&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af214751c4c4c486e2abd0538b6767534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af214751c4c4c486e2abd0538b6767534">&#9670;&nbsp;</a></span>find_first_of() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_first_of </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt;&#160;</td>
+          <td class="paramname"><em>sv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7260d1388482e3465966f3a188e07e13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7260d1388482e3465966f3a188e07e13">&#9670;&nbsp;</a></span>find_first_of() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_first_of </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0bf5a6878c3978de96283385fcef23e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bf5a6878c3978de96283385fcef23e4">&#9670;&nbsp;</a></span>find_first_of() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_first_of </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac9e43f9dd5ef3415d847766bb866e218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9e43f9dd5ef3415d847766bb866e218">&#9670;&nbsp;</a></span>find_first_of() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_first_of </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a>&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a104d76a8bd22dbc5c7085e9256a9707d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a104d76a8bd22dbc5c7085e9256a9707d">&#9670;&nbsp;</a></span>find_last_not_of() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_last_not_of </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt;&#160;</td>
+          <td class="paramname"><em>sv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code><a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5523762a4e12689bd2adabb58a97269b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5523762a4e12689bd2adabb58a97269b">&#9670;&nbsp;</a></span>find_last_not_of() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_last_not_of </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acebe7f430e08b6defa12ffde8b3cea47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acebe7f430e08b6defa12ffde8b3cea47">&#9670;&nbsp;</a></span>find_last_not_of() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_last_not_of </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code><a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c450b9eb8701de5423245dcb56395f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c450b9eb8701de5423245dcb56395f8">&#9670;&nbsp;</a></span>find_last_not_of() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_last_not_of </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a>&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code><a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a167f8f763eb6d7d880d2210171eb7542"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a167f8f763eb6d7d880d2210171eb7542">&#9670;&nbsp;</a></span>find_last_of() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_last_of </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt;&#160;</td>
+          <td class="paramname"><em>sv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code><a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c74556d90d9d607026c3091fb1003e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c74556d90d9d607026c3091fb1003e0">&#9670;&nbsp;</a></span>find_last_of() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_last_of </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae62a0268c98350976464865f81c10815"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae62a0268c98350976464865f81c10815">&#9670;&nbsp;</a></span>find_last_of() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_last_of </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code><a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f1abdea502ce8390f762ac732715170"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f1abdea502ce8390f762ac732715170">&#9670;&nbsp;</a></span>find_last_of() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> find_last_of </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a>&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code><a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0d2f4af381faa34ace382c87aeed32e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d2f4af381faa34ace382c87aeed32e3">&#9670;&nbsp;</a></span>front()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a591c033139236393831fd315eca407c7">const_reference</a> front </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac904ed63c2ae9bd281fc39661d087e1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac904ed63c2ae9bd281fc39661d087e1c">&#9670;&nbsp;</a></span>length()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> length </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aabd5ba02c9c9e80dad3e34f1175957b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabd5ba02c9c9e80dad3e34f1175957b0">&#9670;&nbsp;</a></span>max_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> max_size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41c5018de76fb9a9aede1c9a3bf397fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41c5018de76fb9a9aede1c9a3bf397fa">&#9670;&nbsp;</a></span>operator std::basic_string&lt; CharT, Traits &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">operator std::basic_string&lt; CharT, Traits &gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaffd3cfb0fa8c8a6bb7e0bb88339003d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaffd3cfb0fa8c8a6bb7e0bb88339003d">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&amp; operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9bfe9b7c0b70350bb2d43fa18c840a90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bfe9b7c0b70350bb2d43fa18c840a90">&#9670;&nbsp;</a></span>operator[]()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#a591c033139236393831fd315eca407c7">const_reference</a> operator[] </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns a const reference to the character at specified location pos. No bounds checking is performed: the behavior is undefined if <code>pos &gt;= <a class="el" href="classvccc_1_1basic__string__view.html#a47293c97b8f2735433efee82ae71171e">size()</a></code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>position of the character to return </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Const reference to the requested character. </dd></dl>
+
+</div>
+</div>
+<a id="a4841e34a368a6edcc1079f7c06814abf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4841e34a368a6edcc1079f7c06814abf">&#9670;&nbsp;</a></span>rbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af0af7cd2cb131805b96d2b01cae24bf1">const_reverse_iterator</a> rbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a502c239b692bdde660afa54c2997ff38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a502c239b692bdde660afa54c2997ff38">&#9670;&nbsp;</a></span>remove_prefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr void remove_prefix </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad41fc446bd2a3a0e4cd48aefe8e947f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad41fc446bd2a3a0e4cd48aefe8e947f0">&#9670;&nbsp;</a></span>remove_suffix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr void remove_suffix </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9aabfb9158c07ed6d7a18492e0a7b3a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9aabfb9158c07ed6d7a18492e0a7b3a7">&#9670;&nbsp;</a></span>rend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af0af7cd2cb131805b96d2b01cae24bf1">const_reverse_iterator</a> rend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a336f8dfbc9b710d1451c2cb518b90313"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a336f8dfbc9b710d1451c2cb518b90313">&#9670;&nbsp;</a></span>rfind() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> rfind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt;&#160;</td>
+          <td class="paramname"><em>sv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code><a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aefb13035dc0939c1d04862b585860a0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefb13035dc0939c1d04862b585860a0a">&#9670;&nbsp;</a></span>rfind() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> rfind </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4167fc0dca4f0bbb1f7e393b7be4b16f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4167fc0dca4f0bbb1f7e393b7be4b16f">&#9670;&nbsp;</a></span>rfind() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> rfind </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code><a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ac9d3155e72e874b045af2ffe1a46dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ac9d3155e72e874b045af2ffe1a46dc">&#9670;&nbsp;</a></span>rfind() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> rfind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a>&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code><a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a47293c97b8f2735433efee82ae71171e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47293c97b8f2735433efee82ae71171e">&#9670;&nbsp;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40c128a544a41b43fdb7244d76cad70d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40c128a544a41b43fdb7244d76cad70d">&#9670;&nbsp;</a></span>starts_with() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool starts_with </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt;&#160;</td>
+          <td class="paramname"><em>prefix</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae8d53dfe05407485cf0275e77df67aee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8d53dfe05407485cf0275e77df67aee">&#9670;&nbsp;</a></span>starts_with() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool starts_with </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a> *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5aa6747f419bcc6743ae41977b50fcbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5aa6747f419bcc6743ae41977b50fcbf">&#9670;&nbsp;</a></span>starts_with() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool starts_with </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#afb6ee73525ae7653110c289fc2572f4f">value_type</a>&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c3be970e5dd3a337af21ca12a469547"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c3be970e5dd3a337af21ca12a469547">&#9670;&nbsp;</a></span>substr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a> substr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>&#160;</td>
+          <td class="paramname"><em>count</em> = <code><a class="el" href="classvccc_1_1basic__string__view.html#a29abf0eaf62dbe10174db67475599a1b">npos</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad54dbafa45adbe8315603b50f4622eba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad54dbafa45adbe8315603b50f4622eba">&#9670;&nbsp;</a></span>swap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr void swap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a>&lt; CharT, Traits &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a29abf0eaf62dbe10174db67475599a1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29abf0eaf62dbe10174db67475599a1b">&#9670;&nbsp;</a></span>npos</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a> npos = <a class="el" href="classvccc_1_1basic__string__view.html#af38ce1af42d538f410180c265518d4f0">size_type</a>(-1)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/vccc/<a class="el" href="string__view_8hpp_source.html">string_view.hpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacevccc.html">vccc</a></li><li class="navelem"><a class="el" href="classvccc_1_1basic__string__view.html">basic_string_view</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

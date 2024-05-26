@@ -1,0 +1,642 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="VCCC Document" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="VCCC Document" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>VCCC: include/vccc/__ranges/subrange.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript" src="../js/add-permalink.js"></script>
+<script type="text/javascript" src="../js/class-toc.js"></script>
+<script type="text/javascript" src="../js/group-toc.js"></script>
+<script type="text/javascript" src="../js/header-link.js"></script>
+<script type="text/javascript" src="../js/realign-group.js"></script>
+<script type="text/javascript" src="../js/toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeTabs.init()
+    RealignGroup.init()
+    HeaderLink.init()
+    ClassToc.init()
+    GroupToc.init()
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/visualcamp/vccc" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="vc_logo_50_50.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">VCCC
+   &#160;<span id="projectnumber">2024.05</span>
+   </div>
+   <div id="projectbrief">VisualCamp Common C++ library</div>
+  </td>
+  <!--STAGE WARNING HERE-->
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('subrange_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">subrange.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="subrange_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by yonggyulee on 2024/01/04.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef VCCC_RANGES_SUBRANGE_HPP</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define VCCC_RANGES_SUBRANGE_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;tuple&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nodiscard_8hpp.html">vccc/__core/nodiscard.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="convertible__to_8hpp.html">vccc/__concepts/convertible_to.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="copyable_8hpp.html">vccc/__concepts/copyable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="same__as_8hpp.html">vccc/__concepts/same_as.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="advance_8hpp.html">vccc/__iterator/advance.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="bidirectional__iterator_8hpp.html">vccc/__iterator/bidirectional_iterator.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="forward__iterator_8hpp.html">vccc/__iterator/forward_iterator.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="input__or__output__iterator_8hpp.html">vccc/__iterator/input_or_output_iterator.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="iter__difference__t_8hpp.html">vccc/__iterator/iter_difference_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sized__sentinel__for_8hpp.html">vccc/__iterator/sized_sentinel_for.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sentinel__for_8hpp.html">vccc/__iterator/sentinel_for.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="borrowed__range_8hpp.html">vccc/__ranges/borrowed_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="begin_8hpp.html">vccc/__ranges/begin.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="enable__borrowed__range_8hpp.html">vccc/__ranges/enable_borrowed_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="end_8hpp.html">vccc/__ranges/end.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="iterator__t_8hpp.html">vccc/__ranges/iterator_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="range_8hpp.html">vccc/__ranges/range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sentinel__t_8hpp.html">vccc/__ranges/sentinel_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="____ranges_2size_8hpp.html">vccc/__ranges/size.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sized__range_8hpp.html">vccc/__ranges/sized_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="subrange__kind_8hpp.html">vccc/__ranges/subrange_kind.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="view__interface_8hpp.html">vccc/__ranges/view_interface.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="tuple__like_8hpp.html">vccc/__tuple/tuple_like.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="bool__constant_8hpp.html">vccc/__type_traits/bool_constant.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="conjunction_8hpp.html">vccc/__type_traits/conjunction.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="disjunction_8hpp.html">vccc/__type_traits/disjunction.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="is__integer__like_8hpp.html">vccc/__type_traits/is_integer_like.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="negation_8hpp.html">vccc/__type_traits/negation.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="remove__cvref_8hpp.html">vccc/__type_traits/remove_cvref.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cxx20__rel__ops_8hpp.html">vccc/__utility/cxx20_rel_ops.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="in__place_8hpp.html">vccc/__utility/in_place.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a> {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">namespace </span>ranges {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">namespace </span>detail {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> From, <span class="keyword">typename</span> To&gt;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">struct </span>convertible_to_non_slicing</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    : conjunction&lt;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;          convertible_to&lt;From, To&gt;,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;          disjunction&lt;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;              disjunction&lt;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                  negation&lt; std::is_pointer&lt;From&gt; &gt;,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                  negation&lt; std::is_pointer&lt;To&gt;   &gt;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;              &gt;,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;              std::is_convertible&lt;std::remove_pointer_t&lt;From&gt;(*)[], std::remove_pointer_t&lt;To&gt;(*)[]&gt;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;          &gt;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      &gt; {};</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">struct </span>different_from : negation&lt;same_as&lt;std::decay_t&lt;T&gt;, std::decay_t&lt;U&gt;&gt;&gt; {};</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename T, bool = is_integer_like&lt;T&gt;::value</a> <span class="comment">/* false */</span>&gt;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">struct </span>make_unsigned_like {};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">struct </span>make_unsigned_like&lt;T, true&gt; {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keyword">using</span> type = std::make_unsigned_t&lt;T&gt;;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">using</span> make_unsigned_like_t = <span class="keyword">typename</span> make_unsigned_like&lt;T&gt;::type;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename T, typename U, typename V, bool = pair_like&lt;T&gt;::value</a> <span class="comment">/* true */</span>&gt;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">struct </span>pair_like_convertible_from</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    : conjunction&lt;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;          negation&lt; range&lt;T&gt; &gt;,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;          negation&lt; std::is_reference&lt;T&gt; &gt;,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;          constructible_from&lt;T, U, V&gt;,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;          convertible_to_non_slicing&lt;U, std::tuple_element_t&lt;0, T&gt;&gt;,</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;          convertible_to&lt;V, std::tuple_element_t&lt;1, T&gt;&gt;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      &gt; {};</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U, <span class="keyword">typename</span> V&gt;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">struct </span>pair_like_convertible_from&lt;T, U, V, false&gt; : std::false_type {};</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename R, bool = borrowed_range&lt;R&gt;::value</a> <span class="comment">/* true */</span>&gt;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">struct </span>borrowed_range_difference {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <span class="keyword">using</span> type = range_difference_t&lt;R&gt;;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> R&gt;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword">struct </span>borrowed_range_difference&lt;R, false&gt; {};</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> R&gt;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">using</span> borrowed_range_difference_t = <span class="keyword">typename</span> borrowed_range_difference&lt;R&gt;::type;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">template</span>&lt;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">typename</span> I,</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keyword">typename</span> S = I,</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="group__ranges.html#ga445c65563111112f8735f411968e121a">subrange_kind</a> K = <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">sized_sentinel_for&lt;S, I&gt;::value</a> ? <a class="code" href="group__ranges.html#gga445c65563111112f8735f411968e121aa2804e581d2f052b617b3989ee949b739">subrange_kind::sized</a> : <a class="code" href="group__ranges.html#gga445c65563111112f8735f411968e121aad125f48ecb29c1a12f1cf82e824cbbce">subrange_kind::unsized</a></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;&gt;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">struct </span>is_subrange_constructible</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    : conjunction&lt;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;          input_or_output_iterator&lt;I&gt;,</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;          sentinel_for&lt;S, I&gt;,</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;          disjunction&lt;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            bool_constant&lt;(K == subrange_kind::sized)&gt;,</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            negation&lt; sized_sentinel_for&lt;S, I&gt; &gt;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;          &gt;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;      &gt; {};</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, <span class="keywordtype">bool</span> Store <span class="comment">/* false */</span>&gt;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keyword">struct </span>subrange_size {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  constexpr subrange_size() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  constexpr subrange_size(in_place_t, U) noexcept {}</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;};</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S&gt;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keyword">struct </span>subrange_size&lt;I, S, true&gt; {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  constexpr subrange_size() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  constexpr subrange_size(in_place_t, U n) : size_(n) {}</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  std::make_unsigned_t&lt;iter_difference_t&lt;I&gt;&gt; size_ = 0;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;};</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename I, typename S, typename R, bool = borrowed_range&lt;R&gt;::value</a> <span class="comment">/* true */</span>&gt;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keyword">struct </span>subrange_ctor_range</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    : conjunction&lt;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;          convertible_to_non_slicing&lt;iterator_t&lt;R&gt;, I&gt;,</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;          convertible_to&lt;sentinel_t&lt;R&gt;, S&gt;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;      &gt; {};</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, <span class="keyword">typename</span> R&gt;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keyword">struct </span>subrange_ctor_range&lt;I, S, R, false&gt; : std::false_type {};</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="keyword">template</span>&lt;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keyword">typename</span> I,</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keyword">typename</span> S = I,</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <a class="code" href="group__ranges.html#ga445c65563111112f8735f411968e121a">subrange_kind</a> K = <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">sized_sentinel_for&lt;S, I&gt;::value</a> ? <a class="code" href="group__ranges.html#gga445c65563111112f8735f411968e121aa2804e581d2f052b617b3989ee949b739">subrange_kind::sized</a> : <a class="code" href="group__ranges.html#gga445c65563111112f8735f411968e121aad125f48ecb29c1a12f1cf82e824cbbce">subrange_kind::unsized</a></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;&gt;</div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html">  148</a></span>&#160;<span class="keyword">class </span><a class="code" href="classvccc_1_1ranges_1_1subrange.html">subrange</a></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    : <span class="keyword">public</span> <a class="code" href="classvccc_1_1ranges_1_1view__interface.html">view_interface</a>&lt;subrange&lt;I, S, K&gt;&gt;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    , detail::subrange_size&lt;I, S, (K == subrange_kind::sized &amp;&amp; sized_sentinel_for&lt;S, I&gt;::value == false)&gt;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;{</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;  <span class="keyword">using</span> store_size = <a class="code" href="group__type__traits__bool__constant____class____helper__classes.html#ga070bae7d9c7eacd18090742607b18fdb">bool_constant</a>&lt;(K == <a class="code" href="group__ranges.html#gga445c65563111112f8735f411968e121aa2804e581d2f052b617b3989ee949b739">subrange_kind::sized</a> &amp;&amp; <a class="code" href="structvccc_1_1sized__sentinel__for.html">sized_sentinel_for&lt;S, I&gt;::value</a> == <span class="keyword">false</span>)&gt;;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;  <span class="keyword">using</span> size_base = detail::subrange_size&lt;I, S, store_size::value&gt;;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  static_assert(<a class="code" href="structvccc_1_1input__or__output__iterator.html">input_or_output_iterator&lt;I&gt;::value</a>, <span class="stringliteral">&quot;Constraints not satisfied&quot;</span>);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;  static_assert(<a class="code" href="structvccc_1_1sentinel__for.html">sentinel_for&lt;S, I&gt;::value</a>, <span class="stringliteral">&quot;Constraints not satisfied&quot;</span>);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  static_assert(K == <a class="code" href="group__ranges.html#gga445c65563111112f8735f411968e121aa2804e581d2f052b617b3989ee949b739">subrange_kind::sized</a> || !<a class="code" href="structvccc_1_1sized__sentinel__for.html">sized_sentinel_for&lt;S, I&gt;::value</a>, <span class="stringliteral">&quot;Constraints not satisfied&quot;</span>);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#a8a9a0607974aee097e77e7b07c893587">  159</a></span>&#160;  <a class="code" href="classvccc_1_1ranges_1_1subrange.html#a8a9a0607974aee097e77e7b07c893587">subrange</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> I2, std::enable_if_t&lt;<a class="code" href="structvccc_1_1conjunction.html">conjunction</a>&lt;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;      detail::convertible_to_non_slicing&lt;I2, I&gt;,</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;      <a class="code" href="structvccc_1_1negation.html">negation&lt;store_size&gt;</a></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  &gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#afeca75e6ccd1f9bb8ce1b3347076588e">  165</a></span>&#160;  constexpr <a class="code" href="classvccc_1_1ranges_1_1subrange.html#afeca75e6ccd1f9bb8ce1b3347076588e">subrange</a>(I2 i, S s)</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;      : iterator_(<a class="code" href="namespacestd.html">std</a>::move(i)), sentinel_(<a class="code" href="namespacestd.html">std</a>::move(s)) {}</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> I2, std::enable_if_t&lt;<a class="code" href="structvccc_1_1conjunction.html">conjunction</a>&lt;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;      detail::convertible_to_non_slicing&lt;I2, I&gt;,</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;      <a class="code" href="group__type__traits__bool__constant____class____helper__classes.html#ga070bae7d9c7eacd18090742607b18fdb">bool_constant&lt; K == subrange_kind::sized &gt;</a></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;  &gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#aa00da53b53df1b7eacd27846ca1ceadd">  172</a></span>&#160;  constexpr <a class="code" href="classvccc_1_1ranges_1_1subrange.html#aa00da53b53df1b7eacd27846ca1ceadd">subrange</a>(I2 i, S s, detail::make_unsigned_like_t&lt;<a class="code" href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">iter_difference_t&lt;I&gt;</a>&gt; n)</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;      : size_base(<a class="code" href="group__utility.html#ga67787a33d43bf1a1ed5779ac817fb76b">in_place</a>, n), iterator_(<a class="code" href="namespacestd.html">std</a>::move(i)), sentinel_(<a class="code" href="namespacestd.html">std</a>::move(s)) {}</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> R, std::enable_if_t&lt;<a class="code" href="structvccc_1_1conjunction.html">conjunction</a>&lt;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;      detail::different_from&lt;subrange, R&gt;,</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;      detail::subrange_ctor_range&lt;I, S, R&gt;,</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;      <a class="code" href="structvccc_1_1disjunction.html">disjunction</a>&lt;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;          <a class="code" href="structvccc_1_1negation.html">negation&lt;store_size&gt;</a>,</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;          <a class="code" href="structvccc_1_1ranges_1_1sized__range.html">sized_range&lt;R&gt;</a></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;      &gt;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  &gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#a5c9b1694f751ce627934ca04ba418d88">  183</a></span>&#160;  constexpr <a class="code" href="classvccc_1_1ranges_1_1subrange.html#a5c9b1694f751ce627934ca04ba418d88">subrange</a>(R&amp;&amp; r)</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;      : <a class="code" href="classvccc_1_1ranges_1_1subrange.html">subrange</a>(r, static_cast&lt;detail::make_unsigned_like_t&lt;<a class="code" href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">iter_difference_t</a>&lt;I&gt;&gt;&gt;(ranges::<a class="code" href="classvccc_1_1ranges_1_1subrange.html#af5d0818ada476cf4f2dd8b99d31f741b">size</a>(r))) {}</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> R, std::enable_if_t&lt;<a class="code" href="structvccc_1_1conjunction.html">conjunction</a>&lt;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;      detail::subrange_ctor_range&lt;I, S, R&gt;,</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;      <a class="code" href="group__type__traits__bool__constant____class____helper__classes.html#ga070bae7d9c7eacd18090742607b18fdb">bool_constant&lt; K == subrange_kind::sized &gt;</a></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  &gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#a7bac71f542c46b5b28a775400059d199">  190</a></span>&#160;  constexpr <a class="code" href="classvccc_1_1ranges_1_1subrange.html#a7bac71f542c46b5b28a775400059d199">subrange</a>(R&amp;&amp; r, detail::make_unsigned_like_t&lt;<a class="code" href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">iter_difference_t&lt;I&gt;</a>&gt; n)</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;      : <a class="code" href="classvccc_1_1ranges_1_1subrange.html">subrange</a>(ranges::<a class="code" href="classvccc_1_1ranges_1_1subrange.html#adc78fecf670c67cec2c952cdb52cca7f">begin</a>(r), ranges::<a class="code" href="classvccc_1_1ranges_1_1subrange.html#a6cb920a17783f035d64ae99ae3235759">end</a>(r), n) {}</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> PairLike, std::enable_if_t&lt;<a class="code" href="structvccc_1_1conjunction.html">conjunction</a>&lt;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;      <a class="code" href="structvccc_1_1negation.html">negation&lt; same_as&lt;remove_cvref_t&lt;PairLike&gt;</a>, <a class="code" href="classvccc_1_1ranges_1_1subrange.html">subrange</a>&gt; &gt;,</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;      detail::pair_like_convertible_from&lt;PairLike, const I&amp;, const S&amp;&gt;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;  &gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#a48335b541ad0522d63d787b477da283e">  198</a></span>&#160;  constexpr <span class="keyword">operator</span> PairLike()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keywordflow">return</span> PairLike(iterator_, sentinel_);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;  }</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;  <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename I2 = I, std::enable_if_t&lt;copyable&lt;I2&gt;::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#adc78fecf670c67cec2c952cdb52cca7f">  204</a></span>&#160;  constexpr I <a class="code" href="classvccc_1_1ranges_1_1subrange.html#adc78fecf670c67cec2c952cdb52cca7f">begin</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordflow">return</span> iterator_;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;  }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;  <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename I2 = I, std::enable_if_t&lt;copyable&lt;I2&gt;::value</a> == <span class="keyword">false</span>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#aa4a48b36380c7dc3af91203374d4b4a3">  209</a></span>&#160;  <a class="code" href="nodiscard_8hpp.html#a4c232b204992026dff23b2678cc4603f">VCCC_NODISCARD</a> constexpr I <a class="code" href="classvccc_1_1ranges_1_1subrange.html#aa4a48b36380c7dc3af91203374d4b4a3">begin</a>() {</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keywordflow">return</span> std::move(iterator_);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;  }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#a6cb920a17783f035d64ae99ae3235759">  213</a></span>&#160;  constexpr S <a class="code" href="classvccc_1_1ranges_1_1subrange.html#a6cb920a17783f035d64ae99ae3235759">end</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordflow">return</span> sentinel_;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;  }</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#afaafdfc441c2433c70959e3dfe46fd97">  217</a></span>&#160;  constexpr <span class="keywordtype">bool</span> <a class="code" href="classvccc_1_1ranges_1_1subrange.html#afaafdfc441c2433c70959e3dfe46fd97">empty</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keyword">using namespace </span><a class="code" href="namespacevccc_1_1rel__ops.html">vccc::rel_ops</a>;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordflow">return</span> iterator_ == sentinel_;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;  }</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;  <span class="keyword">template</span>&lt;<a class="code" href="group__ranges.html#ga445c65563111112f8735f411968e121a">subrange_kind</a> K2 = K, std::enable_if_t&lt;<a class="code" href="structvccc_1_1conjunction.html">conjunction</a>&lt;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;      <a class="code" href="group__type__traits__bool__constant____class____helper__classes.html#ga070bae7d9c7eacd18090742607b18fdb">bool_constant&lt;K2 == subrange_kind::sized&gt;</a>,</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;      <a class="code" href="structvccc_1_1sized__sentinel__for.html">sized_sentinel_for&lt;S, I&gt;</a></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;  &gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#af5d0818ada476cf4f2dd8b99d31f741b">  226</a></span>&#160;  constexpr detail::make_unsigned_like_t&lt;iter_difference_t&lt;I&gt;&gt; <a class="code" href="classvccc_1_1ranges_1_1subrange.html#af5d0818ada476cf4f2dd8b99d31f741b">size</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>detail::make_unsigned_like_t&lt;iter_difference_t&lt;I&gt;<span class="keyword">&gt;</span>&gt;(sentinel_ - iterator_);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;  }</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;  <span class="keyword">template</span>&lt;<a class="code" href="group__ranges.html#ga445c65563111112f8735f411968e121a">subrange_kind</a> K2 = K, std::enable_if_t&lt;<a class="code" href="structvccc_1_1conjunction.html">conjunction</a>&lt;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;      <a class="code" href="group__type__traits__bool__constant____class____helper__classes.html#ga070bae7d9c7eacd18090742607b18fdb">bool_constant&lt;K2 == subrange_kind::sized&gt;</a>,</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;      <a class="code" href="structvccc_1_1negation.html">negation&lt; sized_sentinel_for&lt;S, I&gt;</a> &gt;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;  &gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00234"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#af5d0818ada476cf4f2dd8b99d31f741b">  234</a></span>&#160;  constexpr detail::make_unsigned_like_t&lt;iter_difference_t&lt;I&gt;&gt; <a class="code" href="classvccc_1_1ranges_1_1subrange.html#af5d0818ada476cf4f2dd8b99d31f741b">size</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordflow">return</span> size_base::size_;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;  }</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
+<div class="line"><a name="l00238"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#aeed0017d207ed0409c3e93127987ef91">  238</a></span>&#160;  constexpr <a class="code" href="classvccc_1_1ranges_1_1subrange.html">subrange</a>&amp; <a class="code" href="classvccc_1_1ranges_1_1subrange.html#aeed0017d207ed0409c3e93127987ef91">advance</a>(<a class="code" href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">iter_difference_t&lt;I&gt;</a> n) {</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <a class="code" href="group__iterator__ranges__advance____func____operations.html#gab2c5ba55ff756f9ce4ef8664fe8cbcfc">ranges::advance</a>(iterator_, n, sentinel_);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;  }</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;  <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename I2 = I, std::enable_if_t&lt;bidirectional_iterator&lt;I2&gt;::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00244"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#a729b4014e319ccb8371deb7787e1f013">  244</a></span>&#160;  <a class="code" href="nodiscard_8hpp.html#a4c232b204992026dff23b2678cc4603f">VCCC_NODISCARD</a> constexpr <a class="code" href="group__ranges.html#ga445c65563111112f8735f411968e121a">subrange_kind</a> <a class="code" href="classvccc_1_1ranges_1_1subrange.html#a729b4014e319ccb8371deb7787e1f013">prev</a>(<a class="code" href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">iter_difference_t&lt;I&gt;</a> n = 1)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keyword">auto</span> tmp = *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    tmp.advance(-n);</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordflow">return</span> tmp;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;  }</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;  <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename I2 = I, std::enable_if_t&lt;forward_iterator&lt;I2&gt;::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#a0d8e3a09daef58687ecfce4c0d0fabf1">  251</a></span>&#160;  <a class="code" href="nodiscard_8hpp.html#a4c232b204992026dff23b2678cc4603f">VCCC_NODISCARD</a> constexpr <a class="code" href="group__ranges.html#ga445c65563111112f8735f411968e121a">subrange_kind</a> <a class="code" href="classvccc_1_1ranges_1_1subrange.html#a0d8e3a09daef58687ecfce4c0d0fabf1">next</a>(<a class="code" href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">iter_difference_t&lt;I&gt;</a> n = 1) const&amp; {</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keyword">auto</span> tmp = *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    tmp.advance(n);</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="keywordflow">return</span> tmp;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;  }</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;  <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename I2 = I, std::enable_if_t&lt;forward_iterator&lt;I2&gt;::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00258"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1subrange.html#afd63502f1fb382bee82dd6801979d839">  258</a></span>&#160;  <a class="code" href="nodiscard_8hpp.html#a4c232b204992026dff23b2678cc4603f">VCCC_NODISCARD</a> constexpr <a class="code" href="group__ranges.html#ga445c65563111112f8735f411968e121a">subrange_kind</a> <a class="code" href="classvccc_1_1ranges_1_1subrange.html#afd63502f1fb382bee82dd6801979d839">next</a>(<a class="code" href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">iter_difference_t&lt;I&gt;</a> n = 1) &amp;&amp; {</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <a class="code" href="classvccc_1_1ranges_1_1subrange.html#aeed0017d207ed0409c3e93127987ef91">advance</a>(n);</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordflow">return</span> std::move(*<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;  }</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;  I iterator_;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;  S sentinel_;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;};</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment">// make-function for C++14</span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; </div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, std::enable_if_t&lt;<a class="code" href="structvccc_1_1conjunction.html">conjunction</a>&lt;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    <a class="code" href="structvccc_1_1input__or__output__iterator.html">input_or_output_iterator&lt;I&gt;</a>,</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <a class="code" href="structvccc_1_1sentinel__for.html">sentinel_for&lt;S, I&gt;</a></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;&gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;constexpr subrange&lt;I, S&gt;</div>
+<div class="line"><a name="l00275"></a><span class="lineno"><a class="line" href="group__ranges.html#gad31ab31fc15d67a43fbbc01ef6c08b55">  275</a></span>&#160;<a class="code" href="group__ranges.html#gad31ab31fc15d67a43fbbc01ef6c08b55">make_subrange</a>(I i, S s) {</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classvccc_1_1ranges_1_1subrange.html">subrange&lt;I, S&gt;</a>(std::move(i), std::move(s));</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;}</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, std::enable_if_t&lt;<a class="code" href="structvccc_1_1conjunction.html">conjunction</a>&lt;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <a class="code" href="structvccc_1_1input__or__output__iterator.html">input_or_output_iterator&lt;I&gt;</a>,</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <a class="code" href="structvccc_1_1sentinel__for.html">sentinel_for&lt;S, I&gt;</a></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;&gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;constexpr subrange&lt;I, S, subrange_kind::sized&gt;</div>
+<div class="line"><a name="l00284"></a><span class="lineno"><a class="line" href="group__ranges.html#ga7dc15595479e366aaf1d92aedb3fbf14">  284</a></span>&#160;<a class="code" href="group__ranges.html#gad31ab31fc15d67a43fbbc01ef6c08b55">make_subrange</a>(I i, S s, detail::make_unsigned_like_t&lt;<a class="code" href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">iter_difference_t&lt;I&gt;</a>&gt; n) {</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classvccc_1_1ranges_1_1subrange.html">subrange&lt;I, S, subrange_kind::sized&gt;</a>(std::move(i), std::move(s), n);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename R, std::enable_if_t&lt;borrowed_range&lt;R&gt;::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;constexpr subrange&lt;iterator_t&lt;R&gt;, sentinel_t&lt;R&gt;,</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;             (<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">sized_range&lt;R&gt;::value</a> ||</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;              <a class="code" href="structvccc_1_1sized__sentinel__for.html">sized_sentinel_for&lt;sentinel_t&lt;R&gt;</a>, iterator_t&lt;R&gt;&gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>) ?</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                <a class="code" href="group__ranges.html#gga445c65563111112f8735f411968e121aa2804e581d2f052b617b3989ee949b739">subrange_kind::sized</a> : <a class="code" href="group__ranges.html#gga445c65563111112f8735f411968e121aad125f48ecb29c1a12f1cf82e824cbbce">subrange_kind::unsized</a>&gt;</div>
+<div class="line"><a name="l00293"></a><span class="lineno"><a class="line" href="group__ranges.html#gaefc602150746dc60a460d345dfa4e0f9">  293</a></span>&#160;<a class="code" href="group__ranges.html#gad31ab31fc15d67a43fbbc01ef6c08b55">make_subrange</a>(R&amp;&amp; r) {</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;  <span class="keywordflow">return</span> {std::forward&lt;R&gt;(r)};</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;}</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename R, std::enable_if_t&lt;borrowed_range&lt;R&gt;::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;constexpr subrange&lt;iterator_t&lt;R&gt;, sentinel_t&lt;R&gt;, <a class="code" href="group__ranges.html#gga445c65563111112f8735f411968e121aa2804e581d2f052b617b3989ee949b739">subrange_kind::sized</a>&gt;</div>
+<div class="line"><a name="l00299"></a><span class="lineno"><a class="line" href="group__ranges.html#gad6bb64a6d9c75bd42f89abc9f61bcba0">  299</a></span>&#160;<a class="code" href="group__ranges.html#gad31ab31fc15d67a43fbbc01ef6c08b55">make_subrange</a>(R&amp;&amp; r, detail::make_unsigned_like_t&lt;<a class="code" href="group__ranges.html#gad7894ae2373bdce2dabdab46bdd246f9">range_difference_t&lt;R&gt;</a>&gt; n) {</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;  <span class="keywordflow">return</span> {std::forward&lt;R&gt;(r), n};</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;}</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="preprocessor">#if __cplusplus &gt;= 201703L</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="comment">// template&lt;typename R&gt;</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="comment">// subrange(R&amp;&amp;, detail::make_unsigned_like_t&lt;range_difference_t&lt;R&gt;&gt;) -&gt;</span></div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="comment">//     subrange&lt;ranges::iterator_t&lt;R&gt;, ranges::sentinel_t&lt;R&gt;, ranges::subrange_kind::sized&gt;;</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="comment">// template&lt;typename I, typename S&gt; subrange(I, S) -&gt; subrange&lt;I, S&gt;;</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="comment">// ^^^^^^^^^^ These two are ambiguous without constraints</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S&gt;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<a class="code" href="classvccc_1_1ranges_1_1subrange.html#a8a9a0607974aee097e77e7b07c893587">subrange</a>(I, S, detail::make_unsigned_like_t&lt;<a class="code" href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">iter_difference_t&lt;I&gt;</a>&gt;) -&gt;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    subrange&lt;I, S, ranges::subrange_kind::sized&gt;;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> R&gt;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<a class="code" href="classvccc_1_1ranges_1_1subrange.html#a8a9a0607974aee097e77e7b07c893587">subrange</a>(R&amp;&amp;) -&gt;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    subrange&lt;ranges::iterator_t&lt;R&gt;, <a class="code" href="group__ranges.html#ga4d4b85f3eab3bf887729668351cdd57e">ranges::sentinel_t&lt;R&gt;</a>,</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;             (<a class="code" href="structvccc_1_1ranges_1_1sized__range.html">ranges::sized_range&lt;R&gt;::value</a> ||</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;              <a class="code" href="structvccc_1_1sized__sentinel__for.html">sized_sentinel_for&lt;ranges::sentinel_t&lt;R&gt;</a>, <a class="code" href="group__ranges.html#ga5287d49e9b892276e222c1bcab45d7c1">ranges::iterator_t&lt;R&gt;</a>&gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>) ?</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                <a class="code" href="group__ranges.html#gga445c65563111112f8735f411968e121aa2804e581d2f052b617b3989ee949b739">ranges::subrange_kind::sized</a> : <a class="code" href="group__ranges.html#gga445c65563111112f8735f411968e121aad125f48ecb29c1a12f1cf82e824cbbce">ranges::subrange_kind::unsized</a>&gt;;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160; </div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160; </div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="keyword">namespace </span>detail {</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> R&gt;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="keyword">struct </span>is_size_storing_subrange;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160; </div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, subrange_kind K&gt;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="keyword">struct </span>is_size_storing_subrange&lt;<a class="code" href="classvccc_1_1ranges_1_1subrange.html#a8a9a0607974aee097e77e7b07c893587">subrange</a>&lt;I, S, K&gt;&gt;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    : <a class="code" href="group__type__traits__bool__constant____class____helper__classes.html#ga070bae7d9c7eacd18090742607b18fdb">bool_constant</a>&lt;(K == subrange_kind::sized &amp;&amp; sized_sentinel_for&lt;S, I&gt;::value == false)&gt; {};</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160; </div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> N&gt;</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="keyword">struct </span>get_subrange;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160; </div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span>get_subrange&lt;0&gt; {</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, subrange_kind K&gt;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;  <span class="keyword">static</span> constexpr <span class="keyword">auto</span> <a class="code" href="group__ranges.html#ga2513414c24bf213cba112d046946a74c">get</a>(<span class="keyword">const</span> subrange&lt;I, S, K&gt;&amp; r) {</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    <span class="keywordflow">return</span> r.begin();</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;  }</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, subrange_kind K&gt;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;  <span class="keyword">static</span> constexpr <span class="keyword">auto</span> <a class="code" href="group__ranges.html#ga2513414c24bf213cba112d046946a74c">get</a>(subrange&lt;I, S, K&gt;&amp;&amp; r) {</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    <span class="keywordflow">return</span> std::move(r.begin());</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;  }</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;};</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160; </div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span>get_subrange&lt;1&gt; {</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, subrange_kind K&gt;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;  <span class="keyword">auto</span> <a class="code" href="group__ranges.html#ga2513414c24bf213cba112d046946a74c">get</a>(<span class="keyword">const</span> subrange&lt;I, S, K&gt;&amp; r) {</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <span class="keywordflow">return</span> r.end();</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  }</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, subrange_kind K&gt;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;  <span class="keyword">auto</span> <a class="code" href="group__ranges.html#ga2513414c24bf213cba112d046946a74c">get</a>(subrange&lt;I, S, K&gt;&amp;&amp; r) {</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    <span class="keywordflow">return</span> std::move(r.end());</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;  }</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;};</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160; </div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="keyword">struct </span>is_subrange : std::false_type {};</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, subrange_kind K&gt;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="keyword">struct </span>is_subrange&lt;<a class="code" href="classvccc_1_1ranges_1_1subrange.html#a8a9a0607974aee097e77e7b07c893587">subrange</a>&lt;I, S, K&gt;&gt; : std::true_type {};</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160; </div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;} <span class="comment">// namespace detail</span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160; </div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="keyword">template</span>&lt;std::size_t N, <span class="keyword">typename</span> I, <span class="keyword">typename</span> S, <a class="code" href="group__ranges.html#ga445c65563111112f8735f411968e121a">subrange_kind</a> K,</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    std::enable_if_t&lt;((N == 0 &amp;&amp; <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">copyable&lt;I&gt;::value</a>) || N == 1), <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00371"></a><span class="lineno"><a class="line" href="group__ranges.html#ga2513414c24bf213cba112d046946a74c">  371</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="group__ranges.html#ga2513414c24bf213cba112d046946a74c">get</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1subrange.html">subrange&lt;I, S, K&gt;</a>&amp; r) {</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="group__ranges.html#ga21abafe5d47a9e2c90b7906a40647bba">detail::get_subrange&lt;N&gt;::get</a>(r);</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;}</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160; </div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="keyword">template</span>&lt;std::size_t N, <span class="keyword">typename</span> I, <span class="keyword">typename</span> S, <a class="code" href="group__ranges.html#ga445c65563111112f8735f411968e121a">subrange_kind</a> K,</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    std::enable_if_t&lt;(N &lt; 2), int&gt; = 0&gt;</div>
+<div class="line"><a name="l00377"></a><span class="lineno"><a class="line" href="group__ranges.html#ga21abafe5d47a9e2c90b7906a40647bba">  377</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="group__ranges.html#ga2513414c24bf213cba112d046946a74c">get</a>(<a class="code" href="classvccc_1_1ranges_1_1subrange.html">subrange&lt;I, S, K&gt;</a>&amp;&amp; r) {</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="group__ranges.html#ga21abafe5d47a9e2c90b7906a40647bba">detail::get_subrange&lt;N&gt;::get</a>(std::move(r));</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;}</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, subrange_kind K&gt;</div>
+<div class="line"><a name="l00382"></a><span class="lineno"><a class="line" href="structvccc_1_1ranges_1_1enable__borrowed__range_3_01subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html">  382</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1ranges_1_1enable__borrowed__range.html">enable_borrowed_range&lt;subrange&lt;I, S, K&gt;</a>&gt; : std::true_type {};</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160; </div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160; </div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;} <span class="comment">// namespace ranges</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160; </div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="keyword">namespace </span>internal {</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160; </div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, ranges::subrange_kind K&gt;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="keyword">struct </span>tuple_like_uncvref&lt;ranges::subrange&lt;I, S, K&gt;&gt; : std::true_type {};</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160; </div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;} <span class="comment">// namespace internal</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;} <span class="comment">// namespace vccc</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160; </div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, vccc::ranges::subrange_kind K&gt;</div>
+<div class="line"><a name="l00398"></a><span class="lineno"><a class="line" href="structstd_1_1tuple__size_3_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html">  398</a></span>&#160;<span class="keyword">struct </span>std::tuple_size&lt;<a class="code" href="namespacevccc.html">vccc</a>::ranges::subrange&lt;I, S, K&gt;&gt; : std::integral_constant&lt;std::size_t, 2&gt; {};</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160; </div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacestd.html">std</a> {</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160; </div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;<a class="code" href="group__ranges.html#ga21abafe5d47a9e2c90b7906a40647bba">using ::vccc::ranges::get</a>;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160; </div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, vccc::ranges::subrange_kind K&gt;</div>
+<div class="line"><a name="l00405"></a><span class="lineno"><a class="line" href="structstd_1_1tuple__element_3_010_00_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html#a97d896047f03d1699a117ed2c01bccd2">  405</a></span>&#160;<span class="keyword">struct </span>tuple_element&lt;0, <a class="code" href="namespacevccc.html">vccc</a>::ranges::subrange&lt;I, S, K&gt;&gt; { <span class="keyword">using</span> <a class="code" href="structstd_1_1tuple__element_3_010_00_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html#a97d896047f03d1699a117ed2c01bccd2">type</a> = I; };</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, vccc::ranges::subrange_kind K&gt;</div>
+<div class="line"><a name="l00407"></a><span class="lineno"><a class="line" href="structstd_1_1tuple__element_3_010_00_01const_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html#a97d896047f03d1699a117ed2c01bccd2">  407</a></span>&#160;<span class="keyword">struct </span>tuple_element&lt;0, const <a class="code" href="namespacevccc.html">vccc</a>::ranges::subrange&lt;I, S, K&gt;&gt; { <span class="keyword">using</span> <a class="code" href="structstd_1_1tuple__element_3_010_00_01const_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html#a97d896047f03d1699a117ed2c01bccd2">type</a> = I; };</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, vccc::ranges::subrange_kind K&gt;</div>
+<div class="line"><a name="l00409"></a><span class="lineno"><a class="line" href="structstd_1_1tuple__element_3_011_00_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html#a7553dc1984350785c6ed47a329c8ee39">  409</a></span>&#160;<span class="keyword">struct </span>tuple_element&lt;1, <a class="code" href="namespacevccc.html">vccc</a>::ranges::subrange&lt;I, S, K&gt;&gt; { <span class="keyword">using</span> <a class="code" href="structstd_1_1tuple__element_3_011_00_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html#a7553dc1984350785c6ed47a329c8ee39">type</a> = S; };</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> S, vccc::ranges::subrange_kind K&gt;</div>
+<div class="line"><a name="l00411"></a><span class="lineno"><a class="line" href="structstd_1_1tuple__element_3_011_00_01const_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html#a7553dc1984350785c6ed47a329c8ee39">  411</a></span>&#160;<span class="keyword">struct </span>tuple_element&lt;1, const <a class="code" href="namespacevccc.html">vccc</a>::ranges::subrange&lt;I, S, K&gt;&gt; { <span class="keyword">using</span> <a class="code" href="structstd_1_1tuple__element_3_011_00_01const_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html#a7553dc1984350785c6ed47a329c8ee39">type</a> = S; };</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160; </div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;} <span class="comment">// namespace std</span></div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160; </div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// VCCC_RANGES_SUBRANGE_HPP</span></div>
+<div class="ttc" id="a____ranges_2size_8hpp_html"><div class="ttname"><a href="____ranges_2size_8hpp.html">size.hpp</a></div></div>
+<div class="ttc" id="aadvance_8hpp_html"><div class="ttname"><a href="advance_8hpp.html">advance.hpp</a></div></div>
+<div class="ttc" id="abegin_8hpp_html"><div class="ttname"><a href="begin_8hpp.html">begin.hpp</a></div></div>
+<div class="ttc" id="abidirectional__iterator_8hpp_html"><div class="ttname"><a href="bidirectional__iterator_8hpp.html">bidirectional_iterator.hpp</a></div></div>
+<div class="ttc" id="abool__constant_8hpp_html"><div class="ttname"><a href="bool__constant_8hpp.html">bool_constant.hpp</a></div></div>
+<div class="ttc" id="aborrowed__range_8hpp_html"><div class="ttname"><a href="borrowed__range_8hpp.html">borrowed_range.hpp</a></div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html">vccc::ranges::subrange</a></div><div class="ttdef"><b>Definition:</b> subrange.hpp:151</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_a0d8e3a09daef58687ecfce4c0d0fabf1"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#a0d8e3a09daef58687ecfce4c0d0fabf1">vccc::ranges::subrange::next</a></div><div class="ttdeci">constexpr VCCC_NODISCARD subrange_kind next(iter_difference_t&lt; I &gt; n=1) const &amp;</div><div class="ttdef"><b>Definition:</b> subrange.hpp:251</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_a5c9b1694f751ce627934ca04ba418d88"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#a5c9b1694f751ce627934ca04ba418d88">vccc::ranges::subrange::subrange</a></div><div class="ttdeci">constexpr subrange(R &amp;&amp;r)</div><div class="ttdef"><b>Definition:</b> subrange.hpp:183</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_a6cb920a17783f035d64ae99ae3235759"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#a6cb920a17783f035d64ae99ae3235759">vccc::ranges::subrange::end</a></div><div class="ttdeci">constexpr S end() const</div><div class="ttdef"><b>Definition:</b> subrange.hpp:213</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_a729b4014e319ccb8371deb7787e1f013"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#a729b4014e319ccb8371deb7787e1f013">vccc::ranges::subrange::prev</a></div><div class="ttdeci">constexpr VCCC_NODISCARD subrange_kind prev(iter_difference_t&lt; I &gt; n=1) const</div><div class="ttdef"><b>Definition:</b> subrange.hpp:244</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_a7bac71f542c46b5b28a775400059d199"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#a7bac71f542c46b5b28a775400059d199">vccc::ranges::subrange::subrange</a></div><div class="ttdeci">constexpr subrange(R &amp;&amp;r, detail::make_unsigned_like_t&lt; iter_difference_t&lt; I &gt;&gt; n)</div><div class="ttdef"><b>Definition:</b> subrange.hpp:190</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_a8a9a0607974aee097e77e7b07c893587"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#a8a9a0607974aee097e77e7b07c893587">vccc::ranges::subrange::subrange</a></div><div class="ttdeci">subrange()=default</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_aa00da53b53df1b7eacd27846ca1ceadd"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#aa00da53b53df1b7eacd27846ca1ceadd">vccc::ranges::subrange::subrange</a></div><div class="ttdeci">constexpr subrange(I2 i, S s, detail::make_unsigned_like_t&lt; iter_difference_t&lt; I &gt;&gt; n)</div><div class="ttdef"><b>Definition:</b> subrange.hpp:172</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_aa4a48b36380c7dc3af91203374d4b4a3"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#aa4a48b36380c7dc3af91203374d4b4a3">vccc::ranges::subrange::begin</a></div><div class="ttdeci">constexpr VCCC_NODISCARD I begin()</div><div class="ttdef"><b>Definition:</b> subrange.hpp:209</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_adc78fecf670c67cec2c952cdb52cca7f"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#adc78fecf670c67cec2c952cdb52cca7f">vccc::ranges::subrange::begin</a></div><div class="ttdeci">constexpr I begin() const</div><div class="ttdef"><b>Definition:</b> subrange.hpp:204</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_aeed0017d207ed0409c3e93127987ef91"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#aeed0017d207ed0409c3e93127987ef91">vccc::ranges::subrange::advance</a></div><div class="ttdeci">constexpr subrange &amp; advance(iter_difference_t&lt; I &gt; n)</div><div class="ttdef"><b>Definition:</b> subrange.hpp:238</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_af5d0818ada476cf4f2dd8b99d31f741b"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#af5d0818ada476cf4f2dd8b99d31f741b">vccc::ranges::subrange::size</a></div><div class="ttdeci">constexpr detail::make_unsigned_like_t&lt; iter_difference_t&lt; I &gt; &gt; size() const</div><div class="ttdef"><b>Definition:</b> subrange.hpp:226</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_afaafdfc441c2433c70959e3dfe46fd97"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#afaafdfc441c2433c70959e3dfe46fd97">vccc::ranges::subrange::empty</a></div><div class="ttdeci">constexpr bool empty() const</div><div class="ttdef"><b>Definition:</b> subrange.hpp:217</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_afd63502f1fb382bee82dd6801979d839"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#afd63502f1fb382bee82dd6801979d839">vccc::ranges::subrange::next</a></div><div class="ttdeci">constexpr VCCC_NODISCARD subrange_kind next(iter_difference_t&lt; I &gt; n=1) &amp;&amp;</div><div class="ttdef"><b>Definition:</b> subrange.hpp:258</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1subrange_html_afeca75e6ccd1f9bb8ce1b3347076588e"><div class="ttname"><a href="classvccc_1_1ranges_1_1subrange.html#afeca75e6ccd1f9bb8ce1b3347076588e">vccc::ranges::subrange::subrange</a></div><div class="ttdeci">constexpr subrange(I2 i, S s)</div><div class="ttdef"><b>Definition:</b> subrange.hpp:165</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1view__interface_html"><div class="ttname"><a href="classvccc_1_1ranges_1_1view__interface.html">vccc::ranges::view_interface</a></div><div class="ttdoc">helper class template for defining a view, using the curiously recurring template pattern</div><div class="ttdef"><b>Definition:</b> view_interface.hpp:78</div></div>
+<div class="ttc" id="aconjunction_8hpp_html"><div class="ttname"><a href="conjunction_8hpp.html">conjunction.hpp</a></div></div>
+<div class="ttc" id="aconvertible__to_8hpp_html"><div class="ttname"><a href="convertible__to_8hpp.html">convertible_to.hpp</a></div></div>
+<div class="ttc" id="acopyable_8hpp_html"><div class="ttname"><a href="copyable_8hpp.html">copyable.hpp</a></div></div>
+<div class="ttc" id="acxx20__rel__ops_8hpp_html"><div class="ttname"><a href="cxx20__rel__ops_8hpp.html">cxx20_rel_ops.hpp</a></div></div>
+<div class="ttc" id="adisjunction_8hpp_html"><div class="ttname"><a href="disjunction_8hpp.html">disjunction.hpp</a></div></div>
+<div class="ttc" id="aenable__borrowed__range_8hpp_html"><div class="ttname"><a href="enable__borrowed__range_8hpp.html">enable_borrowed_range.hpp</a></div></div>
+<div class="ttc" id="aend_8hpp_html"><div class="ttname"><a href="end_8hpp.html">end.hpp</a></div></div>
+<div class="ttc" id="aforward__iterator_8hpp_html"><div class="ttname"><a href="forward__iterator_8hpp.html">forward_iterator.hpp</a></div></div>
+<div class="ttc" id="agroup__iterator__ranges__advance____func____operations_html_gab2c5ba55ff756f9ce4ef8664fe8cbcfc"><div class="ttname"><a href="group__iterator__ranges__advance____func____operations.html#gab2c5ba55ff756f9ce4ef8664fe8cbcfc">vccc::ranges::niebloid::advance</a></div><div class="ttdeci">constexpr VCCC_INLINE_OR_STATIC detail::advance_niebloid advance</div><div class="ttdef"><b>Definition:</b> advance.hpp:158</div></div>
+<div class="ttc" id="agroup__iterator_html_gaadfcfaace0b5cdc71d08f639da984784"><div class="ttname"><a href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">vccc::iter_difference_t</a></div><div class="ttdeci">typename iter_difference&lt; T &gt;::type iter_difference_t</div><div class="ttdoc">Computes the difference type of T</div><div class="ttdef"><b>Definition:</b> iter_difference_t.hpp:49</div></div>
+<div class="ttc" id="agroup__ranges_html_ga21abafe5d47a9e2c90b7906a40647bba"><div class="ttname"><a href="group__ranges.html#ga21abafe5d47a9e2c90b7906a40647bba">vccc::ranges::get</a></div><div class="ttdeci">constexpr auto get(subrange&lt; I, S, K &gt; &amp;&amp;r)</div><div class="ttdef"><b>Definition:</b> subrange.hpp:377</div></div>
+<div class="ttc" id="agroup__ranges_html_ga2513414c24bf213cba112d046946a74c"><div class="ttname"><a href="group__ranges.html#ga2513414c24bf213cba112d046946a74c">vccc::ranges::get</a></div><div class="ttdeci">constexpr auto get(const subrange&lt; I, S, K &gt; &amp;r)</div><div class="ttdef"><b>Definition:</b> subrange.hpp:371</div></div>
+<div class="ttc" id="agroup__ranges_html_ga445c65563111112f8735f411968e121a"><div class="ttname"><a href="group__ranges.html#ga445c65563111112f8735f411968e121a">vccc::ranges::subrange_kind</a></div><div class="ttdeci">subrange_kind</div><div class="ttdef"><b>Definition:</b> subrange_kind.hpp:18</div></div>
+<div class="ttc" id="agroup__ranges_html_ga4d4b85f3eab3bf887729668351cdd57e"><div class="ttname"><a href="group__ranges.html#ga4d4b85f3eab3bf887729668351cdd57e">vccc::ranges::sentinel_t</a></div><div class="ttdeci">typename sentinel&lt; R &gt;::type sentinel_t</div><div class="ttdef"><b>Definition:</b> sentinel_t.hpp:29</div></div>
+<div class="ttc" id="agroup__ranges_html_ga5287d49e9b892276e222c1bcab45d7c1"><div class="ttname"><a href="group__ranges.html#ga5287d49e9b892276e222c1bcab45d7c1">vccc::ranges::iterator_t</a></div><div class="ttdeci">typename ranges::iterator&lt; T &gt;::type iterator_t</div><div class="ttdef"><b>Definition:</b> iterator_t.hpp:32</div></div>
+<div class="ttc" id="agroup__ranges_html_gad31ab31fc15d67a43fbbc01ef6c08b55"><div class="ttname"><a href="group__ranges.html#gad31ab31fc15d67a43fbbc01ef6c08b55">vccc::ranges::make_subrange</a></div><div class="ttdeci">constexpr subrange&lt; I, S &gt; make_subrange(I i, S s)</div><div class="ttdef"><b>Definition:</b> subrange.hpp:275</div></div>
+<div class="ttc" id="agroup__ranges_html_gad7894ae2373bdce2dabdab46bdd246f9"><div class="ttname"><a href="group__ranges.html#gad7894ae2373bdce2dabdab46bdd246f9">vccc::ranges::range_difference_t</a></div><div class="ttdeci">typename range_difference&lt; R &gt;::type range_difference_t</div><div class="ttdoc">Used to obtain the difference type of the iterator type of range type R.</div><div class="ttdef"><b>Definition:</b> range_difference_t.hpp:41</div></div>
+<div class="ttc" id="agroup__ranges_html_gga445c65563111112f8735f411968e121aa2804e581d2f052b617b3989ee949b739"><div class="ttname"><a href="group__ranges.html#gga445c65563111112f8735f411968e121aa2804e581d2f052b617b3989ee949b739">vccc::ranges::subrange_kind::sized</a></div><div class="ttdeci">@ sized</div></div>
+<div class="ttc" id="agroup__ranges_html_gga445c65563111112f8735f411968e121aad125f48ecb29c1a12f1cf82e824cbbce"><div class="ttname"><a href="group__ranges.html#gga445c65563111112f8735f411968e121aad125f48ecb29c1a12f1cf82e824cbbce">vccc::ranges::subrange_kind::unsized</a></div><div class="ttdeci">@ unsized</div></div>
+<div class="ttc" id="agroup__type__traits__bool__constant____class____helper__classes_html_ga070bae7d9c7eacd18090742607b18fdb"><div class="ttname"><a href="group__type__traits__bool__constant____class____helper__classes.html#ga070bae7d9c7eacd18090742607b18fdb">vccc::bool_constant</a></div><div class="ttdeci">std::integral_constant&lt; bool, v &gt; bool_constant</div><div class="ttdef"><b>Definition:</b> bool_constant.hpp:19</div></div>
+<div class="ttc" id="agroup__utility_html_ga67787a33d43bf1a1ed5779ac817fb76b"><div class="ttname"><a href="group__utility.html#ga67787a33d43bf1a1ed5779ac817fb76b">vccc::in_place</a></div><div class="ttdeci">constexpr VCCC_INLINE_OR_STATIC in_place_t in_place</div><div class="ttdef"><b>Definition:</b> in_place.hpp:47</div></div>
+<div class="ttc" id="ain__place_8hpp_html"><div class="ttname"><a href="in__place_8hpp.html">in_place.hpp</a></div></div>
+<div class="ttc" id="ainput__or__output__iterator_8hpp_html"><div class="ttname"><a href="input__or__output__iterator_8hpp.html">input_or_output_iterator.hpp</a></div></div>
+<div class="ttc" id="ais__integer__like_8hpp_html"><div class="ttname"><a href="is__integer__like_8hpp.html">is_integer_like.hpp</a></div></div>
+<div class="ttc" id="aiter__difference__t_8hpp_html"><div class="ttname"><a href="iter__difference__t_8hpp.html">iter_difference_t.hpp</a></div></div>
+<div class="ttc" id="aiterator__t_8hpp_html"><div class="ttname"><a href="iterator__t_8hpp.html">iterator_t.hpp</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> matrix.hpp:495</div></div>
+<div class="ttc" id="anamespacevccc_1_1rel__ops_html"><div class="ttname"><a href="namespacevccc_1_1rel__ops.html">vccc::rel_ops</a></div><div class="ttdef"><b>Definition:</b> cxx20_rel_ops.hpp:17</div></div>
+<div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> directory.h:12</div></div>
+<div class="ttc" id="anamespacevccc_html_aa29fb64011505322fd37f286ffddf28b"><div class="ttname"><a href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">vccc::value</a></div><div class="ttdeci">constexpr VCCC_INLINE_OR_STATIC detail::element_niebloid&lt; 1 &gt; value</div><div class="ttdef"><b>Definition:</b> key_value.hpp:35</div></div>
+<div class="ttc" id="anegation_8hpp_html"><div class="ttname"><a href="negation_8hpp.html">negation.hpp</a></div></div>
+<div class="ttc" id="anodiscard_8hpp_html"><div class="ttname"><a href="nodiscard_8hpp.html">nodiscard.hpp</a></div></div>
+<div class="ttc" id="anodiscard_8hpp_html_a4c232b204992026dff23b2678cc4603f"><div class="ttname"><a href="nodiscard_8hpp.html#a4c232b204992026dff23b2678cc4603f">VCCC_NODISCARD</a></div><div class="ttdeci">#define VCCC_NODISCARD</div><div class="ttdef"><b>Definition:</b> nodiscard.hpp:14</div></div>
+<div class="ttc" id="arange_8hpp_html"><div class="ttname"><a href="range_8hpp.html">range.hpp</a></div></div>
+<div class="ttc" id="aremove__cvref_8hpp_html"><div class="ttname"><a href="remove__cvref_8hpp.html">remove_cvref.hpp</a></div></div>
+<div class="ttc" id="asame__as_8hpp_html"><div class="ttname"><a href="same__as_8hpp.html">same_as.hpp</a></div></div>
+<div class="ttc" id="asentinel__for_8hpp_html"><div class="ttname"><a href="sentinel__for_8hpp.html">sentinel_for.hpp</a></div></div>
+<div class="ttc" id="asentinel__t_8hpp_html"><div class="ttname"><a href="sentinel__t_8hpp.html">sentinel_t.hpp</a></div></div>
+<div class="ttc" id="asized__range_8hpp_html"><div class="ttname"><a href="sized__range_8hpp.html">sized_range.hpp</a></div></div>
+<div class="ttc" id="asized__sentinel__for_8hpp_html"><div class="ttname"><a href="sized__sentinel__for_8hpp.html">sized_sentinel_for.hpp</a></div></div>
+<div class="ttc" id="astructstd_1_1tuple__element_3_010_00_01const_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4_html_a97d896047f03d1699a117ed2c01bccd2"><div class="ttname"><a href="structstd_1_1tuple__element_3_010_00_01const_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html#a97d896047f03d1699a117ed2c01bccd2">std::tuple_element&lt; 0, const vccc::ranges::subrange&lt; I, S, K &gt; &gt;::type</a></div><div class="ttdeci">I type</div><div class="ttdef"><b>Definition:</b> subrange.hpp:407</div></div>
+<div class="ttc" id="astructstd_1_1tuple__element_3_010_00_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4_html_a97d896047f03d1699a117ed2c01bccd2"><div class="ttname"><a href="structstd_1_1tuple__element_3_010_00_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html#a97d896047f03d1699a117ed2c01bccd2">std::tuple_element&lt; 0, vccc::ranges::subrange&lt; I, S, K &gt; &gt;::type</a></div><div class="ttdeci">I type</div><div class="ttdef"><b>Definition:</b> subrange.hpp:405</div></div>
+<div class="ttc" id="astructstd_1_1tuple__element_3_011_00_01const_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4_html_a7553dc1984350785c6ed47a329c8ee39"><div class="ttname"><a href="structstd_1_1tuple__element_3_011_00_01const_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html#a7553dc1984350785c6ed47a329c8ee39">std::tuple_element&lt; 1, const vccc::ranges::subrange&lt; I, S, K &gt; &gt;::type</a></div><div class="ttdeci">S type</div><div class="ttdef"><b>Definition:</b> subrange.hpp:411</div></div>
+<div class="ttc" id="astructstd_1_1tuple__element_3_011_00_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4_html_a7553dc1984350785c6ed47a329c8ee39"><div class="ttname"><a href="structstd_1_1tuple__element_3_011_00_01vccc_1_1ranges_1_1subrange_3_01_i_00_01_s_00_01_k_01_4_01_4.html#a7553dc1984350785c6ed47a329c8ee39">std::tuple_element&lt; 1, vccc::ranges::subrange&lt; I, S, K &gt; &gt;::type</a></div><div class="ttdeci">S type</div><div class="ttdef"><b>Definition:</b> subrange.hpp:409</div></div>
+<div class="ttc" id="astructvccc_1_1conjunction_html"><div class="ttname"><a href="structvccc_1_1conjunction.html">vccc::conjunction</a></div><div class="ttdef"><b>Definition:</b> conjunction.hpp:22</div></div>
+<div class="ttc" id="astructvccc_1_1disjunction_html"><div class="ttname"><a href="structvccc_1_1disjunction.html">vccc::disjunction</a></div><div class="ttdef"><b>Definition:</b> disjunction.hpp:22</div></div>
+<div class="ttc" id="astructvccc_1_1input__or__output__iterator_html"><div class="ttname"><a href="structvccc_1_1input__or__output__iterator.html">vccc::input_or_output_iterator</a></div><div class="ttdoc">specifies that objects of a type can be incremented and dereferenced</div><div class="ttdef"><b>Definition:</b> input_or_output_iterator.hpp:43</div></div>
+<div class="ttc" id="astructvccc_1_1negation_html"><div class="ttname"><a href="structvccc_1_1negation.html">vccc::negation</a></div><div class="ttdef"><b>Definition:</b> negation.hpp:23</div></div>
+<div class="ttc" id="astructvccc_1_1ranges_1_1enable__borrowed__range_html"><div class="ttname"><a href="structvccc_1_1ranges_1_1enable__borrowed__range.html">vccc::ranges::enable_borrowed_range</a></div><div class="ttdef"><b>Definition:</b> enable_borrowed_range.hpp:17</div></div>
+<div class="ttc" id="astructvccc_1_1ranges_1_1sized__range_html"><div class="ttname"><a href="structvccc_1_1ranges_1_1sized__range.html">vccc::ranges::sized_range</a></div><div class="ttdoc">specifies that a range knows its size in constant time</div><div class="ttdef"><b>Definition:</b> sized_range.hpp:38</div></div>
+<div class="ttc" id="astructvccc_1_1sentinel__for_html"><div class="ttname"><a href="structvccc_1_1sentinel__for.html">vccc::sentinel_for</a></div><div class="ttdef"><b>Definition:</b> sentinel_for.hpp:24</div></div>
+<div class="ttc" id="astructvccc_1_1sized__sentinel__for_html"><div class="ttname"><a href="structvccc_1_1sized__sentinel__for.html">vccc::sized_sentinel_for</a></div><div class="ttdoc">specifies that the - operator can be applied to an iterator and a sentinel to calculate their differe...</div><div class="ttdef"><b>Definition:</b> sized_sentinel_for.hpp:75</div></div>
+<div class="ttc" id="asubrange__kind_8hpp_html"><div class="ttname"><a href="subrange__kind_8hpp.html">subrange_kind.hpp</a></div></div>
+<div class="ttc" id="atuple__like_8hpp_html"><div class="ttname"><a href="tuple__like_8hpp.html">tuple_like.hpp</a></div></div>
+<div class="ttc" id="aview__interface_8hpp_html"><div class="ttname"><a href="view__interface_8hpp.html">view_interface.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_99216d331fab9748718665df98894a12.html">vccc</a></li><li class="navelem"><a class="el" href="dir_382cf1c1192546bc8004d0944fdba111.html">__ranges</a></li><li class="navelem"><a class="el" href="subrange_8hpp.html">subrange.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

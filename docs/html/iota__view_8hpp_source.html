@@ -1,0 +1,723 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="VCCC Document" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="VCCC Document" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>VCCC: include/vccc/__ranges/views/iota_view.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript" src="../js/add-permalink.js"></script>
+<script type="text/javascript" src="../js/class-toc.js"></script>
+<script type="text/javascript" src="../js/group-toc.js"></script>
+<script type="text/javascript" src="../js/header-link.js"></script>
+<script type="text/javascript" src="../js/realign-group.js"></script>
+<script type="text/javascript" src="../js/toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeTabs.init()
+    RealignGroup.init()
+    HeaderLink.init()
+    ClassToc.init()
+    GroupToc.init()
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/visualcamp/vccc" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="vc_logo_50_50.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">VCCC
+   &#160;<span id="projectnumber">2024.05</span>
+   </div>
+   <div id="projectbrief">VisualCamp Common C++ library</div>
+  </td>
+  <!--STAGE WARNING HERE-->
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('iota__view_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">iota_view.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="iota__view_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by yonggyulee on 2023/12/26.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef VCCC_RANGES_VIEWS_IOTA_HPP_</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define VCCC_RANGES_VIEWS_IOTA_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="vccc_2core_8hpp.html">vccc/core.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="copyable_8hpp.html">vccc/__concepts/copyable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="convertible__to_8hpp.html">vccc/__concepts/convertible_to.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="default__initializable_8hpp.html">vccc/__concepts/default_initializable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="same__as_8hpp.html">vccc/__concepts/same_as.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="semiregular_8hpp.html">vccc/__concepts/semiregular.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="totally__ordered_8hpp.html">vccc/__concepts/totally_ordered.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="weakly__equality__comparable__with_8hpp.html">vccc/__concepts/weakly_equality_comparable_with.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="incrementable_8hpp.html">vccc/__iterator/incrementable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="iterator__tag_8hpp.html">vccc/__iterator/iterator_tag.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="iter__difference__t_8hpp.html">vccc/__iterator/iter_difference_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="random__access__iterator_8hpp.html">vccc/__iterator/random_access_iterator.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="unreachable__sentinel_8hpp.html">vccc/__iterator/unreachable_sentinel.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="weakly__incrementable_8hpp.html">vccc/__iterator/weakly_incrementable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="borrowed__range_8hpp.html">vccc/__ranges/borrowed_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="view__interface_8hpp.html">vccc/__ranges/view_interface.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="bool__constant_8hpp.html">vccc/__type_traits/bool_constant.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="conjunction_8hpp.html">vccc/__type_traits/conjunction.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="negation_8hpp.html">vccc/__type_traits/negation.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="remove__cvref_8hpp.html">vccc/__type_traits/remove_cvref.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="type__identity_8hpp.html">vccc/__type_traits/type_identity.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="void__t_8hpp.html">vccc/__type_traits/void_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cxx20__rel__ops_8hpp.html">vccc/__utility/cxx20_rel_ops.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a> {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">namespace </span>ranges {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">namespace </span>detail {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I&gt;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">struct </span>iota_diff</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    : std::conditional_t&lt;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        disjunction&lt;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;          negation&lt;std::is_integral&lt;I&gt;&gt;,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;          conjunction&lt;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            std::is_integral&lt;I&gt;,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            bool_constant&lt;( sizeof(iter_difference_t&lt;I&gt;) &gt; sizeof(I) )&gt;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;          &gt;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        &gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        type_identity&lt;iter_difference_t&lt;I&gt;&gt;,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        type_identity&lt;std::intmax_t&gt;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      &gt; {};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I&gt;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">using</span> iota_diff_t = <span class="keyword">typename</span> iota_diff&lt;I&gt;::type;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename I, bool = incrementable&lt;I&gt;::value</a>, <span class="keyword">typename</span> = void, <span class="keyword">typename</span> = <span class="keywordtype">void</span>&gt;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">struct </span>iv_decrementable : std::false_type {};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I&gt;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">struct </span>iv_decrementable&lt;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      I, true,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      <a class="code" href="group__type__traits__void__t____class_____miscellaneous__transformations.html#gab8ddf9531fc4ac7ce28574db20c8f20e">void_t</a>&lt;decltype( --<a class="code" href="namespacestd.html">std</a>::declval&lt;I&amp;&gt;() )&gt;,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <a class="code" href="group__type__traits__void__t____class_____miscellaneous__transformations.html#gab8ddf9531fc4ac7ce28574db20c8f20e">void_t</a>&lt;decltype( std::declval&lt;I&amp;&gt;()-- )&gt;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    &gt; : conjunction&lt;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;          same_as&lt;decltype( --std::declval&lt;I&amp;&gt;() ), I&amp;&gt;,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;          same_as&lt;decltype( std::declval&lt;I&amp;&gt;()-- ), I&gt;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        &gt; {};</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> D, <span class="keyword">typename</span> = <span class="keywordtype">void</span>, <span class="keyword">typename</span> = <span class="keywordtype">void</span>, <span class="keyword">typename</span> = <span class="keywordtype">void</span>, <span class="keyword">typename</span> = <span class="keywordtype">void</span>&gt;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">struct </span>iv_advanceable_explicit : std::false_type {};</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> D&gt;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">struct </span>iv_advanceable_explicit&lt;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      I, D,</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;      <a class="code" href="group__type__traits__void__t____class_____miscellaneous__transformations.html#gab8ddf9531fc4ac7ce28574db20c8f20e">void_t</a>&lt;decltype( <a class="code" href="namespacestd.html">std</a>::declval&lt;I&gt;() + std::declval&lt;D&gt;() )&gt;,</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      <a class="code" href="group__type__traits__void__t____class_____miscellaneous__transformations.html#gab8ddf9531fc4ac7ce28574db20c8f20e">void_t</a>&lt;decltype( std::declval&lt;D&gt;() + std::declval&lt;I&gt;() )&gt;,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      <a class="code" href="group__type__traits__void__t____class_____miscellaneous__transformations.html#gab8ddf9531fc4ac7ce28574db20c8f20e">void_t</a>&lt;decltype( std::declval&lt;I&gt;() - std::declval&lt;D&gt;() )&gt;,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      <a class="code" href="group__type__traits__void__t____class_____miscellaneous__transformations.html#gab8ddf9531fc4ac7ce28574db20c8f20e">void_t</a>&lt;decltype( std::declval&lt;I&gt;() - std::declval&lt;I&gt;() )&gt;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    &gt; : conjunction&lt;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;          std::is_constructible&lt;remove_cvref_t&lt;I&gt;, decltype( std::declval&lt;I&gt;() + std::declval&lt;D&gt;() )&gt;,</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;          std::is_constructible&lt;remove_cvref_t&lt;I&gt;, decltype( std::declval&lt;D&gt;() + std::declval&lt;I&gt;() )&gt;,</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;          std::is_constructible&lt;remove_cvref_t&lt;I&gt;, decltype( std::declval&lt;I&gt;() - std::declval&lt;D&gt;() )&gt;,</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;          convertible_to&lt;decltype( std::declval&lt;I&gt;() - std::declval&lt;I&gt;() ), remove_cvref_t&lt;D&gt;&gt;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        &gt;{};</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I, <span class="keywordtype">bool</span> = conjunction&lt;iv_decrementable&lt;I&gt;, totally_ordered&lt;I&gt;&gt;::value&gt;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">struct </span>iv_advanceable : std::false_type {};</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">// TODO: Implement</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I&gt;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">struct </span>iv_advanceable&lt;I, true&gt;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    : conjunction&lt;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        implicit_expression_check&lt;vccc::detail::detail_random_access_iterator::explicit_op_assign_check, I&amp;, const iota_diff_t&lt;I&gt;&amp;&gt;,</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        implicit_expression_check&lt;iv_advanceable_explicit, const I&amp;, const iota_diff_t&lt;I&gt;&amp;&gt;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;      &gt; {};</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename I, bool = incrementable&lt;I&gt;::value</a> <span class="comment">/* true */</span>&gt;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword">struct </span>iota_view_iterator_category {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keyword">using</span> iterator_category = <a class="code" href="group__iterator.html#gab0dbf4b923c53a675173f9b017e11103">input_iterator_tag</a>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;};</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I&gt;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keyword">struct </span>iota_view_iterator_category&lt;I, false&gt; {};</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I&gt;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">struct </span>iota_view_iterator_concept</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    : std::conditional_t&lt;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        iv_advanceable&lt;I&gt;::value, type_identity&lt;random_access_iterator_tag&gt;,</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      std::conditional_t&lt;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        iv_decrementable&lt;I&gt;::value, type_identity&lt;bidirectional_iterator_tag&gt;,</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;      std::conditional_t&lt;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        incrementable&lt;I&gt;::value, type_identity&lt;forward_iterator_tag&gt;,</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        type_identity&lt;input_iterator_tag&gt;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;      &gt;&gt;&gt; {};</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> W, <span class="keyword">typename</span> Bound, <span class="keyword">typename</span> IV&gt;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">struct </span>iv_ctor_iterator_last {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  <span class="keyword">using</span> type = <span class="keyword">typename</span> IV::sentinel;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;};</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> W, <span class="keyword">typename</span> IV&gt;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">struct </span>iv_ctor_iterator_last&lt;W, unreachable_sentinel_t, IV&gt; {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  <span class="keyword">using</span> type = unreachable_sentinel_t;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;};</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> W, <span class="keyword">typename</span> IV&gt;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keyword">struct </span>iv_ctor_iterator_last&lt;W, W, IV&gt; {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  <span class="keyword">using</span> type = <span class="keyword">typename</span> IV::iterator;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;};</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;} <span class="comment">// namespace detail</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> W,</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;         <span class="keyword">typename</span> Bound = unreachable_sentinel_t&gt;</div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view.html">  197</a></span>&#160;<span class="keyword">class </span><a class="code" href="classvccc_1_1ranges_1_1iota__view.html">iota_view</a> : <span class="keyword">public</span> <a class="code" href="classvccc_1_1ranges_1_1view__interface.html">view_interface</a>&lt;iota_view&lt;W, Bound&gt;&gt; {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;  static_assert(<a class="code" href="structvccc_1_1weakly__incrementable.html">weakly_incrementable&lt;W&gt;::value</a>, <span class="stringliteral">&quot;Constraint not satisfied&quot;</span>);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;  static_assert(<a class="code" href="structvccc_1_1semiregular.html">semiregular&lt;Bound&gt;::value</a>, <span class="stringliteral">&quot;Constraint not satisfied&quot;</span>);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;  static_assert(<a class="code" href="structvccc_1_1weakly__equality__comparable__with.html">weakly_equality_comparable_with&lt;W, Bound&gt;::value</a>, <span class="stringliteral">&quot;Constraint not satisfied&quot;</span>);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;  static_assert(<a class="code" href="structvccc_1_1copyable.html">copyable&lt;W&gt;::value</a>, <span class="stringliteral">&quot;Constraint not satisfied&quot;</span>);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;  <span class="keyword">class </span><a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;  <span class="keyword">class </span><a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html">sentinel</a>;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">  207</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> : <span class="keyword">public</span> detail::iota_view_iterator_category&lt;W&gt; {</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;   <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a6c8bdc6b9a8a57ea28d5c80eb3bb25e6">  209</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a6c8bdc6b9a8a57ea28d5c80eb3bb25e6">value_type</a> = W;</div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">  210</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a> = detail::iota_diff_t&lt;W&gt;;</div>
+<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#adb908c7517ca92828889198390369d1a">  211</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#adb908c7517ca92828889198390369d1a">iterator_concept</a> = <span class="keyword">typename</span> detail::iota_view_iterator_concept&lt;W&gt;::type;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;      default_initializable&lt;W&gt;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#aade2b3849d6d3c9a12d1e873dd067ed0">  216</a></span>&#160;    constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#aade2b3849d6d3c9a12d1e873dd067ed0">iterator</a>() : value_(W()) {}</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a321d238201126bc78f65a514f83b5d6e">  218</a></span>&#160;    constexpr <span class="keyword">explicit</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a321d238201126bc78f65a514f83b5d6e">iterator</a>(W <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>) : value_(<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>) {}</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a01dff81cc06232b92efc6182e59b6503">  220</a></span>&#160;    constexpr W <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a01dff81cc06232b92efc6182e59b6503">operator*</a>() const noexcept(<a class="code" href="namespacestd.html">std</a>::is_nothrow_copy_constructible&lt;W&gt;::<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>) {</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;      <span class="keywordflow">return</span> value_;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    }</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#adf8caf54520c068ad44cf34774c20bfa">  224</a></span>&#160;    constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#adf8caf54520c068ad44cf34774c20bfa">operator++</a>() {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;      ++value_;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    }</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;      negation&lt;incrementable&lt;W&gt;&gt;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a436605d549adc5c39377edd0b08d1755">  232</a></span>&#160;    constexpr <span class="keywordtype">void</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a436605d549adc5c39377edd0b08d1755">operator++</a>(<span class="keywordtype">int</span>) {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;      ++value_;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    }</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;      incrementable&lt;W&gt;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00238"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#abfc034a0c7cf6365502fa282d639a42e">  238</a></span>&#160;    constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#abfc034a0c7cf6365502fa282d639a42e">operator++</a>(<span class="keywordtype">int</span>) {</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;      <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> tmp = *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;      ++value_;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;      <span class="keywordflow">return</span> tmp;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    }</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;      detail::iv_decrementable&lt;W&gt;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00248"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a0133dae752d7774fd81dfa29a97c82d3">  248</a></span>&#160;    constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a0133dae752d7774fd81dfa29a97c82d3">operator--</a>() {</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;      --value_;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;      detail::iv_decrementable&lt;W&gt;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00255"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#aa34566d0a0b38ad7088ea7106d92327a">  255</a></span>&#160;    constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#aa34566d0a0b38ad7088ea7106d92327a">operator--</a>(<span class="keywordtype">int</span>) {</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;      <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> tmp = *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;      --value_;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;      <span class="keywordflow">return</span> tmp;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    }</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;      detail::iv_advanceable&lt;W&gt;,</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;      is_<span class="keywordtype">unsigned</span>_<span class="keywordtype">int</span>eger_like&lt;W&gt;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00265"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a9a88b29095d552e11749d0c2d31dbe1b">  265</a></span>&#160;    constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a9a88b29095d552e11749d0c2d31dbe1b">operator+=</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a> n) {</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;      n &lt; 0 ? (void)(value_ += static_cast&lt;W&gt;(n)) : (<span class="keywordtype">void</span>)(value_ -= <span class="keyword">static_cast&lt;</span>W<span class="keyword">&gt;</span>(-n));</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    }</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;      detail::iv_advanceable&lt;W&gt;,</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;      negation&lt;is_<span class="keywordtype">unsigned</span>_<span class="keywordtype">int</span>eger_like&lt;W&gt;&gt;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00273"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a9a88b29095d552e11749d0c2d31dbe1b">  273</a></span>&#160;    constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a9a88b29095d552e11749d0c2d31dbe1b">operator+=</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a> n) {</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;      value_ += <span class="keyword">static_cast&lt;</span>W<span class="keyword">&gt;</span>(n);</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    }</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160; </div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;      detail::iv_advanceable&lt;W&gt;,</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;      is_<span class="keywordtype">unsigned</span>_<span class="keywordtype">int</span>eger_like&lt;W&gt;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00282"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a8b0e3d3f05b5285d0aafa49186a9bddb">  282</a></span>&#160;    constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a8b0e3d3f05b5285d0aafa49186a9bddb">operator-=</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a> n) {</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;      n &lt; 0 ? (void)(value_ -= <span class="keyword">static_cast&lt;</span>W<span class="keyword">&gt;</span>(n)) : (<span class="keywordtype">void</span>)(value_ += <span class="keyword">static_cast&lt;</span>W<span class="keyword">&gt;</span>(-n));</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    }</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;      detail::iv_advanceable&lt;W&gt;,</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;      negation&lt;is_<span class="keywordtype">unsigned</span>_<span class="keywordtype">int</span>eger_like&lt;W&gt;&gt;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00290"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a8b0e3d3f05b5285d0aafa49186a9bddb">  290</a></span>&#160;    constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a8b0e3d3f05b5285d0aafa49186a9bddb">operator-=</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a> n) {</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;      value_ -= n;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    }</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; </div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;      detail::iv_advanceable&lt;W&gt;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00298"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a6e4848578382f9b7693765821e288ebf">  298</a></span>&#160;    constexpr W <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a6e4848578382f9b7693765821e288ebf">operator[]</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a> n)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;      <span class="keywordflow">return</span> W(value_ + n);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    }</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">std::enable_if_t&lt;equality_comparable&lt;W&gt;::value</a>, <span class="keywordtype">bool</span>&gt;</div>
+<div class="line"><a name="l00303"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a35ef597d5226c4962beff477b5216fee">  303</a></span>&#160;    <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a35ef597d5226c4962beff477b5216fee">operator==</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; x, <span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; y) {</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;      <span class="keywordflow">return</span> x.value_ == y.value_;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    }</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">std::enable_if_t&lt;equality_comparable&lt;W&gt;::value</a>, <span class="keywordtype">bool</span>&gt;</div>
+<div class="line"><a name="l00307"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#acbb8813cdd1d42715766dfb4c6517b75">  307</a></span>&#160;    <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#acbb8813cdd1d42715766dfb4c6517b75">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; x, <span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; y) {</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;      <span class="keywordflow">return</span> !(x == y);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    }</div>
+<div class="line"><a name="l00310"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a555f753bf309e3c323d5c2e63e92f392">  310</a></span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">std::enable_if_t&lt;totally_ordered&lt;W&gt;::value</a>, <span class="keywordtype">bool</span>&gt;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a555f753bf309e3c323d5c2e63e92f392">operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; x, <span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; y) {</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;      <span class="keywordflow">return</span> x.value_ &lt; y.value_;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    }</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">std::enable_if_t&lt;totally_ordered&lt;W&gt;::value</a>, <span class="keywordtype">bool</span>&gt;</div>
+<div class="line"><a name="l00315"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a78ac3492b1ab73c048a27ad3620ec3c1">  315</a></span>&#160;    <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a78ac3492b1ab73c048a27ad3620ec3c1">operator&gt;</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; x, <span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; y) {</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;      <span class="keywordflow">return</span> y &lt; x;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    }</div>
+<div class="line"><a name="l00318"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#aae8bf90ea7722c53fe87991f31852cf9">  318</a></span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">std::enable_if_t&lt;totally_ordered&lt;W&gt;::value</a>, <span class="keywordtype">bool</span>&gt;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#aae8bf90ea7722c53fe87991f31852cf9">operator&lt;=</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; x, <span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; y) {</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;      <span class="keywordflow">return</span> !(y &lt; x);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    }</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">std::enable_if_t&lt;totally_ordered&lt;W&gt;::value</a>, <span class="keywordtype">bool</span>&gt;</div>
+<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a091d6816687963b3f16e07cb16fb414a">  323</a></span>&#160;    <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a091d6816687963b3f16e07cb16fb414a">operator&gt;=</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; x, <span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; y) {</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;      <span class="keywordflow">return</span> !(x &lt; y);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    }</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">std::enable_if_t&lt;detail::iv_advanceable&lt;W&gt;::value</a>, <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&gt;</div>
+<div class="line"><a name="l00328"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a7e9ce56bb066e35d28ddcd6ef824fb63">  328</a></span>&#160;    <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a7e9ce56bb066e35d28ddcd6ef824fb63">operator+</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> i, <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a> n) {</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;      i += n;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;      <span class="keywordflow">return</span> i;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    }</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">std::enable_if_t&lt;detail::iv_advanceable&lt;W&gt;::value</a>, <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&gt;</div>
+<div class="line"><a name="l00333"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#abd4eac118b01d63fc11b36083d5de111">  333</a></span>&#160;    <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#abd4eac118b01d63fc11b36083d5de111">operator+</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a> n, <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> i) {</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;      i += n;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;      <span class="keywordflow">return</span> i;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    }</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160; </div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">std::enable_if_t&lt;detail::iv_advanceable&lt;W&gt;::value</a>, <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&gt;</div>
+<div class="line"><a name="l00339"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a9368a212b6a0d4f0222b7a8500699ac4">  339</a></span>&#160;    <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a9368a212b6a0d4f0222b7a8500699ac4">operator-</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> i, <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a> n) {</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;      i -= n;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;      <span class="keywordflow">return</span> i;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    }</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160; </div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160; </div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;      detail::iv_advanceable&lt;W&gt;,</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;      is_<span class="keywordtype">signed</span>_<span class="keywordtype">int</span>eger_like&lt;W&gt;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00349"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#af669a3360ffa850b1544e56eb41e9321">  349</a></span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#af669a3360ffa850b1544e56eb41e9321">operator-</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> x, <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> y) {</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;      <span class="keywordflow">return</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a>(x.value_) - <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a>(y.value_));</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    }</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;      detail::iv_advanceable&lt;W&gt;,</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;      negation&lt;is_<span class="keywordtype">signed</span>_<span class="keywordtype">int</span>eger_like&lt;W&gt;&gt;,</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;      is_<span class="keywordtype">unsigned</span>_<span class="keywordtype">int</span>eger_like&lt;W&gt;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00358"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#af669a3360ffa850b1544e56eb41e9321">  358</a></span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#af669a3360ffa850b1544e56eb41e9321">operator-</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> x, <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> y) {</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;      <span class="keyword">using</span> D = <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a>;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;      <span class="keywordflow">return</span> y.value_ &gt; x.value_ ? D(-D(y.value_ - x.value_)) : D(x.value_ - y.value_);</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    }</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160; </div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;      detail::iv_advanceable&lt;W&gt;,</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;      negation&lt;is_<span class="keywordtype">signed</span>_<span class="keywordtype">int</span>eger_like&lt;W&gt;&gt;,</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;      negation&lt;is_<span class="keywordtype">unsigned</span>_<span class="keywordtype">int</span>eger_like&lt;W&gt;&gt;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00368"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#af669a3360ffa850b1544e56eb41e9321">  368</a></span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">difference_type</a> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#af669a3360ffa850b1544e56eb41e9321">operator-</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> x, <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> y) {</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;      <span class="keywordflow">return</span> x.value_ - y.value_;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    }</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160; </div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;   <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00373"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a0038c5f9fb3bbc7f0962128661407a96">  373</a></span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classvccc_1_1ranges_1_1iota__view.html">iota_view</a>;</div>
+<div class="line"><a name="l00374"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a5df93f3e119a6c0f93786fdb398bcfae">  374</a></span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html">sentinel</a>;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160; </div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    W value_;</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;  };</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160; </div>
+<div class="line"><a name="l00379"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html">  379</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html">sentinel</a> {</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;   <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00381"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a38e594e8dec825975cbadac512636e80">  381</a></span>&#160;    constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a38e594e8dec825975cbadac512636e80">sentinel</a>() : bound_(Bound()) {}</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160; </div>
+<div class="line"><a name="l00383"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#aa83bc4a43d2b04795be123b4dbc0637f">  383</a></span>&#160;    constexpr <span class="keyword">explicit</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#aa83bc4a43d2b04795be123b4dbc0637f">sentinel</a>(Bound bound) : bound_(bound) {}</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160; </div>
+<div class="line"><a name="l00385"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a6099a465dbe5ef6cfaf14314ce8ef907">  385</a></span>&#160;    <span class="keyword">friend</span> constexpr <span class="keywordtype">bool</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a6099a465dbe5ef6cfaf14314ce8ef907">operator==</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; x, <span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html">sentinel</a>&amp; y) {</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;      <span class="keyword">using namespace </span><a class="code" href="namespacevccc_1_1rel__ops.html">vccc::rel_ops</a>;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;      <span class="keywordflow">return</span> *x == y.bound_;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    }</div>
+<div class="line"><a name="l00389"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a4e2702e6505929a5c5842a9c3c6b3792">  389</a></span>&#160;    <span class="keyword">friend</span> constexpr <span class="keywordtype">bool</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a4e2702e6505929a5c5842a9c3c6b3792">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; x, <span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html">sentinel</a>&amp; y) {</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;      <span class="keywordflow">return</span> !(x == y);</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    }</div>
+<div class="line"><a name="l00392"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a785d0918c7430fc453396271955d6596">  392</a></span>&#160;    <span class="keyword">friend</span> constexpr <span class="keywordtype">bool</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a785d0918c7430fc453396271955d6596">operator==</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html">sentinel</a>&amp; y, <span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; x) {</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;      <span class="keywordflow">return</span> x == y;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    }</div>
+<div class="line"><a name="l00395"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#afe5ba4e4190abaf40b90015d4ca153b0">  395</a></span>&#160;    <span class="keyword">friend</span> constexpr <span class="keywordtype">bool</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#afe5ba4e4190abaf40b90015d4ca153b0">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html">sentinel</a>&amp; y, <span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; x) {</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;      <span class="keywordflow">return</span> !(x == y);</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    }</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160; </div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;      sized_sentinel_for&lt;Bound, W&gt;</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00402"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a6f27cfafe0e30ff36ef5066f722661e1">  402</a></span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">iter_difference_t&lt;W&gt;</a> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a6f27cfafe0e30ff36ef5066f722661e1">operator-</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; x, <span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html">sentinel</a>&amp; y) {</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;      <span class="keywordflow">return</span> *x - y.bound_;</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    }</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160; </div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;      sized_sentinel_for&lt;Bound, W&gt;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00409"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#aa53cb547e7c42ee82d21e056af243380">  409</a></span>&#160;    <span class="keyword">friend</span> constexpr <a class="code" href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">iter_difference_t&lt;W&gt;</a> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#aa53cb547e7c42ee82d21e056af243380">operator-</a>(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html">sentinel</a>&amp; x, <span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>&amp; y) {</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;      <span class="keywordflow">return</span> -(*y - x.bound_);</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    }</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160; </div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;   <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00414"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a0038c5f9fb3bbc7f0962128661407a96">  414</a></span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classvccc_1_1ranges_1_1iota__view.html">iota_view</a>;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160; </div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    Bound bound_;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;  };</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160; </div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160; </div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    default_initializable&lt;W&gt;</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;  &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00423"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view.html#a8c8b688b92d8b8126aecdf731f4e25d6">  423</a></span>&#160;  constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view.html#a8c8b688b92d8b8126aecdf731f4e25d6">iota_view</a>() : value_(W()), bound_(Bound()) {}</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160; </div>
+<div class="line"><a name="l00425"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view.html#acb01d1fe2c9b4a5c6a76a64e65d36b13">  425</a></span>&#160;  constexpr <span class="keyword">explicit</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view.html#acb01d1fe2c9b4a5c6a76a64e65d36b13">iota_view</a>(W <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>) : value_(<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>), bound_(Bound()) {}</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160; </div>
+<div class="line"><a name="l00427"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view.html#a0d3f8d578d7ce4c22cc6481704261282">  427</a></span>&#160;  constexpr <span class="keyword">explicit</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view.html#a0d3f8d578d7ce4c22cc6481704261282">iota_view</a>(<a class="code" href="group__type__traits__type__identity____class_____miscellaneous__transformations.html#gaca42c1976d1b12998afcabf8f39e8c23">type_identity_t&lt;W&gt;</a> <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>,</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;                               <a class="code" href="group__type__traits__type__identity____class_____miscellaneous__transformations.html#gaca42c1976d1b12998afcabf8f39e8c23">type_identity_t&lt;Bound&gt;</a> bound) : value_(<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>), bound_(bound) {}</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160; </div>
+<div class="line"><a name="l00430"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view.html#a10eed7791b61efcc75ccca68696132ab">  430</a></span>&#160;  constexpr <span class="keyword">explicit</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view.html#a10eed7791b61efcc75ccca68696132ab">iota_view</a>(<a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> <a class="code" href="namespacevccc.html#a74213863221c0456f440d40ca470f8ba">first</a>, <span class="keyword">typename</span> detail::iv_ctor_iterator_last&lt;W, Bound, iota_view&gt;::type last)</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;      : value_(*<a class="code" href="namespacevccc.html#a74213863221c0456f440d40ca470f8ba">first</a>), bound_(get_value(last)) {}</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160; </div>
+<div class="line"><a name="l00433"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view.html#ad6b612835d1d31f5de4de170810bdce1">  433</a></span>&#160;  constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> <a class="code" href="classvccc_1_1ranges_1_1iota__view.html#ad6b612835d1d31f5de4de170810bdce1">begin</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>(value_);</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;  }</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160; </div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160; </div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    negation&lt;same_as&lt;W, Bound&gt;&gt;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;  &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00441"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view.html#af51ee28dadbd09f560125264bd17b280">  441</a></span>&#160;  constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html">sentinel</a> <a class="code" href="classvccc_1_1ranges_1_1iota__view.html#af51ee28dadbd09f560125264bd17b280">end</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a38e594e8dec825975cbadac512636e80">sentinel</a>(bound_);</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;  }</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    same_as&lt;W, Bound&gt;</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;  &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00447"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view.html#aaeab89615d7d8362eb742619f122c182">  447</a></span>&#160;  constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a> <a class="code" href="classvccc_1_1ranges_1_1iota__view.html#aaeab89615d7d8362eb742619f122c182">end</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">iterator</a>(bound_);</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;  }</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160; </div>
+<div class="line"><a name="l00451"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view.html#afaafdfc441c2433c70959e3dfe46fd97">  451</a></span>&#160;  constexpr <span class="keywordtype">bool</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view.html#afaafdfc441c2433c70959e3dfe46fd97">empty</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    <span class="keyword">using namespace </span><a class="code" href="namespacevccc_1_1rel__ops.html">vccc::rel_ops</a>;</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    <span class="keywordflow">return</span> value_ == bound_;</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;  }</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160; </div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dummy = <span class="keywordtype">void</span>, std::enable_if_t&lt;conjunction&lt;std::is_<span class="keywordtype">void</span>&lt;Dummy&gt;,</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    disjunction&lt;</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;      conjunction&lt;same_as&lt;W, Bound&gt;, detail::iv_advanceable&lt;W&gt;&gt;,</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;      conjunction&lt;is_<span class="keywordtype">int</span>eger_like&lt;W&gt;, is_<span class="keywordtype">int</span>eger_like&lt;Bound&gt;&gt;,</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;      sized_sentinel_for&lt;Bound, W&gt;</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    &gt;</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;  &gt;::value, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00463"></a><span class="lineno"><a class="line" href="classvccc_1_1ranges_1_1iota__view.html#a28b44f82b0e00210ee3b8ca9ee9d80f5">  463</a></span>&#160;  constexpr <span class="keyword">auto</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view.html#a28b44f82b0e00210ee3b8ca9ee9d80f5">size</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    <span class="keywordflow">return</span> size_impl(<a class="code" href="structvccc_1_1conjunction.html">conjunction</a>&lt;<a class="code" href="structvccc_1_1is__integer__like.html">is_integer_like&lt;W&gt;</a>, <a class="code" href="structvccc_1_1is__integer__like.html">is_integer_like&lt;Bound&gt;</a>&gt;{});</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;  }</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160; </div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;  <span class="keyword">static</span> constexpr <span class="keyword">auto</span> to_unsigned_like(T x) {</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    <span class="keyword">using</span> R = std::make_unsigned_t&lt;T&gt;;</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>R<span class="keyword">&gt;</span>(x);</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;  }</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160; </div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;  constexpr <span class="keyword">auto</span> size_impl(std::true_type)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    <span class="keywordflow">return</span> (value_ &lt; 0)</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;        ? ((bound_ &lt; 0)</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;            ? to_unsigned_like(-value_) - to_unsigned_like(-bound_)</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;            : to_unsigned_like(bound_) + to_unsigned_like(-value_)</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;          )</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;        : to_unsigned_like(bound_) - to_unsigned_like(value_);</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;  }</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;  constexpr <span class="keyword">auto</span> size_impl(std::false_type)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>std::size_t<span class="keyword">&gt;</span>(bound_ - value_);</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;  }</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160; </div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;  <span class="keyword">static</span> constexpr W get_value(<span class="keyword">const</span> iterator&amp; i) {</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    <span class="keywordflow">return</span> i.value_;</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;  }</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;  <span class="keyword">static</span> constexpr Bound get_value(<span class="keyword">const</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a38e594e8dec825975cbadac512636e80">sentinel</a>&amp; s) {</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    <span class="keywordflow">return</span> s.bound_;</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;  }</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;  <span class="keyword">static</span> constexpr unreachable_sentinel_t get_value(<span class="keyword">const</span> unreachable_sentinel_t&amp;) {</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;    <span class="keywordflow">return</span> unreachable_sentinel_t{};</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;  }</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160; </div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;  W value_ = W();</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;  Bound bound_ = Bound();</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;};</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160; </div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160; </div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="comment">// TODO: Implement constraints</span></div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> W, <span class="keyword">typename</span> Bound&gt;</div>
+<div class="line"><a name="l00503"></a><span class="lineno"><a class="line" href="structvccc_1_1ranges_1_1enable__borrowed__range_3_01iota__view_3_01_w_00_01_bound_01_4_01_4.html">  503</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1ranges_1_1enable__borrowed__range.html">enable_borrowed_range</a>&lt;<a class="code" href="classvccc_1_1ranges_1_1iota__view.html">iota_view</a>&lt;W, Bound&gt;&gt; : std::true_type {};</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160; </div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160; </div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;<span class="keyword">namespace </span>views {</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;<span class="keyword">namespace </span>detail {</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160; </div>
+<div class="line"><a name="l00510"></a><span class="lineno"><a class="line" href="structvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid.html">  510</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid.html">iota_niebloid</a> {</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> W&gt;</div>
+<div class="line"><a name="l00512"></a><span class="lineno"><a class="line" href="structvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid.html#a8f646f5406e6f58cdc3b8534bb6df629">  512</a></span>&#160;  constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view.html">iota_view&lt;std::remove_reference_t&lt;W&gt;</a>&gt; <a class="code" href="structvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid.html#a8f646f5406e6f58cdc3b8534bb6df629">operator()</a>(W&amp;&amp; <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view.html">ranges::iota_view&lt;std::remove_reference_t&lt;W&gt;</a>&gt;(std::forward&lt;W&gt;(<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>));</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;  }</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160; </div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> W, <span class="keyword">typename</span> Bound, std::enable_if_t&lt;<a class="code" href="structvccc_1_1conjunction.html">conjunction</a>&lt;</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    <a class="code" href="structvccc_1_1disjunction.html">disjunction</a>&lt;</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;      <a class="code" href="structvccc_1_1negation.html">negation&lt;is_integer_like&lt;std::remove_reference_t&lt;W&gt;</a>&gt;&gt;,</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;      <a class="code" href="structvccc_1_1negation.html">negation&lt;is_integer_like&lt;std::remove_reference_t&lt;Bound&gt;</a>&gt;&gt;,</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;      <a class="code" href="group__type__traits__bool__constant____class____helper__classes.html#ga070bae7d9c7eacd18090742607b18fdb">bool_constant&lt;is_signed_integer_like&lt;std::remove_reference_t&lt;W&gt;</a>&gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a> == <a class="code" href="structvccc_1_1is__signed__integer__like.html">is_signed_integer_like&lt;std::remove_reference_t&lt;Bound&gt;</a>&gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>&gt;</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    &gt;</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;  &gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;  constexpr <a class="code" href="classvccc_1_1ranges_1_1iota__view.html">ranges::iota_view&lt;std::remove_reference_t&lt;W&gt;</a>, std::remove_reference_t&lt;Bound&gt;&gt;</div>
+<div class="line"><a name="l00524"></a><span class="lineno"><a class="line" href="structvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid.html#aaaba805a6bf555ad33ede814d6618c9f">  524</a></span>&#160;  <a class="code" href="structvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid.html#aaaba805a6bf555ad33ede814d6618c9f">operator()</a>(W&amp;&amp; <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>, Bound&amp;&amp; bound)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classvccc_1_1ranges_1_1iota__view.html">ranges::iota_view&lt;std::remove_reference_t&lt;W&gt;</a>, std::remove_reference_t&lt;Bound&gt;&gt;(std::forward&lt;W&gt;(<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>), std::forward&lt;Bound&gt;(bound));</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;  }</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;};</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160; </div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;} <span class="comment">// namespace detail</span></div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160; </div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160; </div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160; </div>
+<div class="line"><a name="l00539"></a><span class="lineno"><a class="line" href="group__ranges__iota____class_____factories.html#ga6431b602e5535a288ac9cb4ea7dcefef">  539</a></span>&#160;<a class="code" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> constexpr <a class="code" href="structvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid.html">detail::iota_niebloid</a> <a class="code" href="group__ranges__iota____class_____factories.html#ga6431b602e5535a288ac9cb4ea7dcefef">iota</a>{};</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160; </div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160; </div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;} <span class="comment">// namespace views</span></div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160; </div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;} <span class="comment">// namespace ranges</span></div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;} <span class="comment">// namespace vccc</span></div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160; </div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// VCCC_RANGES_VIEWS_IOTA_HPP_</span></div>
+<div class="ttc" id="abool__constant_8hpp_html"><div class="ttname"><a href="bool__constant_8hpp.html">bool_constant.hpp</a></div></div>
+<div class="ttc" id="aborrowed__range_8hpp_html"><div class="ttname"><a href="borrowed__range_8hpp.html">borrowed_range.hpp</a></div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html">vccc::ranges::iota_view::iterator</a></div><div class="ttdef"><b>Definition:</b> iota_view.hpp:207</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a0133dae752d7774fd81dfa29a97c82d3"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a0133dae752d7774fd81dfa29a97c82d3">vccc::ranges::iota_view::iterator::operator--</a></div><div class="ttdeci">constexpr iterator &amp; operator--()</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:248</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a01dff81cc06232b92efc6182e59b6503"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a01dff81cc06232b92efc6182e59b6503">vccc::ranges::iota_view::iterator::operator*</a></div><div class="ttdeci">constexpr W operator*() const noexcept(std::is_nothrow_copy_constructible&lt; W &gt;::value)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:220</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a091d6816687963b3f16e07cb16fb414a"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a091d6816687963b3f16e07cb16fb414a">vccc::ranges::iota_view::iterator::operator&gt;=</a></div><div class="ttdeci">constexpr friend std::enable_if_t&lt; totally_ordered&lt; W &gt;::value, bool &gt; operator&gt;=(const iterator &amp;x, const iterator &amp;y)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:323</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a321d238201126bc78f65a514f83b5d6e"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a321d238201126bc78f65a514f83b5d6e">vccc::ranges::iota_view::iterator::iterator</a></div><div class="ttdeci">constexpr iterator(W value)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:218</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a35ef597d5226c4962beff477b5216fee"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a35ef597d5226c4962beff477b5216fee">vccc::ranges::iota_view::iterator::operator==</a></div><div class="ttdeci">constexpr friend std::enable_if_t&lt; equality_comparable&lt; W &gt;::value, bool &gt; operator==(const iterator &amp;x, const iterator &amp;y)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:303</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a436605d549adc5c39377edd0b08d1755"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a436605d549adc5c39377edd0b08d1755">vccc::ranges::iota_view::iterator::operator++</a></div><div class="ttdeci">constexpr void operator++(int)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:232</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a555f753bf309e3c323d5c2e63e92f392"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a555f753bf309e3c323d5c2e63e92f392">vccc::ranges::iota_view::iterator::operator&lt;</a></div><div class="ttdeci">constexpr friend std::enable_if_t&lt; totally_ordered&lt; W &gt;::value, bool &gt; operator&lt;(const iterator &amp;x, const iterator &amp;y)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:311</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a6c8bdc6b9a8a57ea28d5c80eb3bb25e6"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a6c8bdc6b9a8a57ea28d5c80eb3bb25e6">vccc::ranges::iota_view::iterator::value_type</a></div><div class="ttdeci">W value_type</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:209</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a6e4848578382f9b7693765821e288ebf"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a6e4848578382f9b7693765821e288ebf">vccc::ranges::iota_view::iterator::operator[]</a></div><div class="ttdeci">constexpr W operator[](difference_type n) const</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:298</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a78ac3492b1ab73c048a27ad3620ec3c1"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a78ac3492b1ab73c048a27ad3620ec3c1">vccc::ranges::iota_view::iterator::operator&gt;</a></div><div class="ttdeci">constexpr friend std::enable_if_t&lt; totally_ordered&lt; W &gt;::value, bool &gt; operator&gt;(const iterator &amp;x, const iterator &amp;y)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:315</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a7e9ce56bb066e35d28ddcd6ef824fb63"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a7e9ce56bb066e35d28ddcd6ef824fb63">vccc::ranges::iota_view::iterator::operator+</a></div><div class="ttdeci">constexpr friend std::enable_if_t&lt; detail::iv_advanceable&lt; W &gt;::value, iterator &gt; operator+(iterator i, difference_type n)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:328</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a8b0e3d3f05b5285d0aafa49186a9bddb"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a8b0e3d3f05b5285d0aafa49186a9bddb">vccc::ranges::iota_view::iterator::operator-=</a></div><div class="ttdeci">constexpr iterator &amp; operator-=(difference_type n)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:282</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a9368a212b6a0d4f0222b7a8500699ac4"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a9368a212b6a0d4f0222b7a8500699ac4">vccc::ranges::iota_view::iterator::operator-</a></div><div class="ttdeci">constexpr friend std::enable_if_t&lt; detail::iv_advanceable&lt; W &gt;::value, iterator &gt; operator-(iterator i, difference_type n)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:339</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_a9a88b29095d552e11749d0c2d31dbe1b"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#a9a88b29095d552e11749d0c2d31dbe1b">vccc::ranges::iota_view::iterator::operator+=</a></div><div class="ttdeci">constexpr iterator &amp; operator+=(difference_type n)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:265</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_aa34566d0a0b38ad7088ea7106d92327a"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#aa34566d0a0b38ad7088ea7106d92327a">vccc::ranges::iota_view::iterator::operator--</a></div><div class="ttdeci">constexpr iterator operator--(int)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:255</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_aade2b3849d6d3c9a12d1e873dd067ed0"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#aade2b3849d6d3c9a12d1e873dd067ed0">vccc::ranges::iota_view::iterator::iterator</a></div><div class="ttdeci">constexpr iterator()</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:216</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_aae8bf90ea7722c53fe87991f31852cf9"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#aae8bf90ea7722c53fe87991f31852cf9">vccc::ranges::iota_view::iterator::operator&lt;=</a></div><div class="ttdeci">constexpr friend std::enable_if_t&lt; totally_ordered&lt; W &gt;::value, bool &gt; operator&lt;=(const iterator &amp;x, const iterator &amp;y)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:319</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_abd4eac118b01d63fc11b36083d5de111"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#abd4eac118b01d63fc11b36083d5de111">vccc::ranges::iota_view::iterator::operator+</a></div><div class="ttdeci">constexpr friend std::enable_if_t&lt; detail::iv_advanceable&lt; W &gt;::value, iterator &gt; operator+(difference_type n, iterator i)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:333</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_abfc034a0c7cf6365502fa282d639a42e"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#abfc034a0c7cf6365502fa282d639a42e">vccc::ranges::iota_view::iterator::operator++</a></div><div class="ttdeci">constexpr iterator operator++(int)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:238</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_acbb8813cdd1d42715766dfb4c6517b75"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#acbb8813cdd1d42715766dfb4c6517b75">vccc::ranges::iota_view::iterator::operator!=</a></div><div class="ttdeci">constexpr friend std::enable_if_t&lt; equality_comparable&lt; W &gt;::value, bool &gt; operator!=(const iterator &amp;x, const iterator &amp;y)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:307</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_ad850fa41b1eb2ddae676ba0ce3ad4bf2"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#ad850fa41b1eb2ddae676ba0ce3ad4bf2">vccc::ranges::iota_view::iterator::difference_type</a></div><div class="ttdeci">detail::iota_diff_t&lt; W &gt; difference_type</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:210</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_adb908c7517ca92828889198390369d1a"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#adb908c7517ca92828889198390369d1a">vccc::ranges::iota_view::iterator::iterator_concept</a></div><div class="ttdeci">typename detail::iota_view_iterator_concept&lt; W &gt;::type iterator_concept</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:211</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_adf8caf54520c068ad44cf34774c20bfa"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#adf8caf54520c068ad44cf34774c20bfa">vccc::ranges::iota_view::iterator::operator++</a></div><div class="ttdeci">constexpr iterator &amp; operator++()</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:224</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1iterator_html_af669a3360ffa850b1544e56eb41e9321"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1iterator.html#af669a3360ffa850b1544e56eb41e9321">vccc::ranges::iota_view::iterator::operator-</a></div><div class="ttdeci">constexpr friend difference_type operator-(iterator x, iterator y)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:349</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1sentinel_html"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html">vccc::ranges::iota_view::sentinel</a></div><div class="ttdef"><b>Definition:</b> iota_view.hpp:379</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1sentinel_html_a38e594e8dec825975cbadac512636e80"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a38e594e8dec825975cbadac512636e80">vccc::ranges::iota_view::sentinel::sentinel</a></div><div class="ttdeci">constexpr sentinel()</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:381</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1sentinel_html_a4e2702e6505929a5c5842a9c3c6b3792"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a4e2702e6505929a5c5842a9c3c6b3792">vccc::ranges::iota_view::sentinel::operator!=</a></div><div class="ttdeci">constexpr friend bool operator!=(const iterator &amp;x, const sentinel &amp;y)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:389</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1sentinel_html_a6099a465dbe5ef6cfaf14314ce8ef907"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a6099a465dbe5ef6cfaf14314ce8ef907">vccc::ranges::iota_view::sentinel::operator==</a></div><div class="ttdeci">constexpr friend bool operator==(const iterator &amp;x, const sentinel &amp;y)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:385</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1sentinel_html_a6f27cfafe0e30ff36ef5066f722661e1"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a6f27cfafe0e30ff36ef5066f722661e1">vccc::ranges::iota_view::sentinel::operator-</a></div><div class="ttdeci">constexpr friend iter_difference_t&lt; W &gt; operator-(const iterator &amp;x, const sentinel &amp;y)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:402</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1sentinel_html_a785d0918c7430fc453396271955d6596"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#a785d0918c7430fc453396271955d6596">vccc::ranges::iota_view::sentinel::operator==</a></div><div class="ttdeci">constexpr friend bool operator==(const sentinel &amp;y, const iterator &amp;x)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:392</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1sentinel_html_aa53cb547e7c42ee82d21e056af243380"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#aa53cb547e7c42ee82d21e056af243380">vccc::ranges::iota_view::sentinel::operator-</a></div><div class="ttdeci">constexpr friend iter_difference_t&lt; W &gt; operator-(const sentinel &amp;x, const iterator &amp;y)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:409</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1sentinel_html_aa83bc4a43d2b04795be123b4dbc0637f"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#aa83bc4a43d2b04795be123b4dbc0637f">vccc::ranges::iota_view::sentinel::sentinel</a></div><div class="ttdeci">constexpr sentinel(Bound bound)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:383</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_1_1sentinel_html_afe5ba4e4190abaf40b90015d4ca153b0"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view_1_1sentinel.html#afe5ba4e4190abaf40b90015d4ca153b0">vccc::ranges::iota_view::sentinel::operator!=</a></div><div class="ttdeci">constexpr friend bool operator!=(const sentinel &amp;y, const iterator &amp;x)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:395</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_html"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view.html">vccc::ranges::iota_view</a></div><div class="ttdef"><b>Definition:</b> iota_view.hpp:197</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_html_a0d3f8d578d7ce4c22cc6481704261282"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view.html#a0d3f8d578d7ce4c22cc6481704261282">vccc::ranges::iota_view::iota_view</a></div><div class="ttdeci">constexpr iota_view(type_identity_t&lt; W &gt; value, type_identity_t&lt; Bound &gt; bound)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:427</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_html_a10eed7791b61efcc75ccca68696132ab"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view.html#a10eed7791b61efcc75ccca68696132ab">vccc::ranges::iota_view::iota_view</a></div><div class="ttdeci">constexpr iota_view(iterator first, typename detail::iv_ctor_iterator_last&lt; W, Bound, iota_view &gt;::type last)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:430</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_html_a28b44f82b0e00210ee3b8ca9ee9d80f5"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view.html#a28b44f82b0e00210ee3b8ca9ee9d80f5">vccc::ranges::iota_view::size</a></div><div class="ttdeci">constexpr auto size() const</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:463</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_html_a8c8b688b92d8b8126aecdf731f4e25d6"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view.html#a8c8b688b92d8b8126aecdf731f4e25d6">vccc::ranges::iota_view::iota_view</a></div><div class="ttdeci">constexpr iota_view()</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:423</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_html_aaeab89615d7d8362eb742619f122c182"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view.html#aaeab89615d7d8362eb742619f122c182">vccc::ranges::iota_view::end</a></div><div class="ttdeci">constexpr iterator end() const</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:447</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_html_acb01d1fe2c9b4a5c6a76a64e65d36b13"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view.html#acb01d1fe2c9b4a5c6a76a64e65d36b13">vccc::ranges::iota_view::iota_view</a></div><div class="ttdeci">constexpr iota_view(W value)</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:425</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_html_ad6b612835d1d31f5de4de170810bdce1"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view.html#ad6b612835d1d31f5de4de170810bdce1">vccc::ranges::iota_view::begin</a></div><div class="ttdeci">constexpr iterator begin() const</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:433</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_html_af51ee28dadbd09f560125264bd17b280"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view.html#af51ee28dadbd09f560125264bd17b280">vccc::ranges::iota_view::end</a></div><div class="ttdeci">constexpr sentinel end() const</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:441</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1iota__view_html_afaafdfc441c2433c70959e3dfe46fd97"><div class="ttname"><a href="classvccc_1_1ranges_1_1iota__view.html#afaafdfc441c2433c70959e3dfe46fd97">vccc::ranges::iota_view::empty</a></div><div class="ttdeci">constexpr bool empty() const</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:451</div></div>
+<div class="ttc" id="aclassvccc_1_1ranges_1_1view__interface_html"><div class="ttname"><a href="classvccc_1_1ranges_1_1view__interface.html">vccc::ranges::view_interface</a></div><div class="ttdoc">helper class template for defining a view, using the curiously recurring template pattern</div><div class="ttdef"><b>Definition:</b> view_interface.hpp:78</div></div>
+<div class="ttc" id="aconjunction_8hpp_html"><div class="ttname"><a href="conjunction_8hpp.html">conjunction.hpp</a></div></div>
+<div class="ttc" id="aconvertible__to_8hpp_html"><div class="ttname"><a href="convertible__to_8hpp.html">convertible_to.hpp</a></div></div>
+<div class="ttc" id="acopyable_8hpp_html"><div class="ttname"><a href="copyable_8hpp.html">copyable.hpp</a></div></div>
+<div class="ttc" id="acxx20__rel__ops_8hpp_html"><div class="ttname"><a href="cxx20__rel__ops_8hpp.html">cxx20_rel_ops.hpp</a></div></div>
+<div class="ttc" id="adefault__initializable_8hpp_html"><div class="ttname"><a href="default__initializable_8hpp.html">default_initializable.hpp</a></div></div>
+<div class="ttc" id="agroup__iterator_html_gaadfcfaace0b5cdc71d08f639da984784"><div class="ttname"><a href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">vccc::iter_difference_t</a></div><div class="ttdeci">typename iter_difference&lt; T &gt;::type iter_difference_t</div><div class="ttdoc">Computes the difference type of T</div><div class="ttdef"><b>Definition:</b> iter_difference_t.hpp:49</div></div>
+<div class="ttc" id="agroup__iterator_html_gab0dbf4b923c53a675173f9b017e11103"><div class="ttname"><a href="group__iterator.html#gab0dbf4b923c53a675173f9b017e11103">vccc::input_iterator_tag</a></div><div class="ttdeci">std::input_iterator_tag input_iterator_tag</div><div class="ttdef"><b>Definition:</b> iterator_tag.hpp:15</div></div>
+<div class="ttc" id="agroup__ranges__iota____class_____factories_html_ga6431b602e5535a288ac9cb4ea7dcefef"><div class="ttname"><a href="group__ranges__iota____class_____factories.html#ga6431b602e5535a288ac9cb4ea7dcefef">vccc::ranges::views::iota</a></div><div class="ttdeci">constexpr VCCC_INLINE_OR_STATIC detail::iota_niebloid iota</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:539</div></div>
+<div class="ttc" id="agroup__type__traits__bool__constant____class____helper__classes_html_ga070bae7d9c7eacd18090742607b18fdb"><div class="ttname"><a href="group__type__traits__bool__constant____class____helper__classes.html#ga070bae7d9c7eacd18090742607b18fdb">vccc::bool_constant</a></div><div class="ttdeci">std::integral_constant&lt; bool, v &gt; bool_constant</div><div class="ttdef"><b>Definition:</b> bool_constant.hpp:19</div></div>
+<div class="ttc" id="agroup__type__traits__type__identity____class_____miscellaneous__transformations_html_gaca42c1976d1b12998afcabf8f39e8c23"><div class="ttname"><a href="group__type__traits__type__identity____class_____miscellaneous__transformations.html#gaca42c1976d1b12998afcabf8f39e8c23">vccc::type_identity_t</a></div><div class="ttdeci">typename type_identity&lt; T &gt;::type type_identity_t</div><div class="ttdef"><b>Definition:</b> type_identity.hpp:22</div></div>
+<div class="ttc" id="agroup__type__traits__void__t____class_____miscellaneous__transformations_html_gab8ddf9531fc4ac7ce28574db20c8f20e"><div class="ttname"><a href="group__type__traits__void__t____class_____miscellaneous__transformations.html#gab8ddf9531fc4ac7ce28574db20c8f20e">vccc::void_t</a></div><div class="ttdeci">void void_t</div><div class="ttdef"><b>Definition:</b> void_t.hpp:19</div></div>
+<div class="ttc" id="aincrementable_8hpp_html"><div class="ttname"><a href="incrementable_8hpp.html">incrementable.hpp</a></div></div>
+<div class="ttc" id="ainline__or__static_8hpp_html_a46c3e412535f6f1697c149465cedc3d4"><div class="ttname"><a href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a></div><div class="ttdeci">#define VCCC_INLINE_OR_STATIC</div><div class="ttdef"><b>Definition:</b> inline_or_static.hpp:9</div></div>
+<div class="ttc" id="aiter__difference__t_8hpp_html"><div class="ttname"><a href="iter__difference__t_8hpp.html">iter_difference_t.hpp</a></div></div>
+<div class="ttc" id="aiterator__tag_8hpp_html"><div class="ttname"><a href="iterator__tag_8hpp.html">iterator_tag.hpp</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> matrix.hpp:495</div></div>
+<div class="ttc" id="anamespacevccc_1_1rel__ops_html"><div class="ttname"><a href="namespacevccc_1_1rel__ops.html">vccc::rel_ops</a></div><div class="ttdef"><b>Definition:</b> cxx20_rel_ops.hpp:17</div></div>
+<div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> directory.h:12</div></div>
+<div class="ttc" id="anamespacevccc_html_a74213863221c0456f440d40ca470f8ba"><div class="ttname"><a href="namespacevccc.html#a74213863221c0456f440d40ca470f8ba">vccc::first</a></div><div class="ttdeci">constexpr VCCC_INLINE_OR_STATIC detail::element_niebloid&lt; 0 &gt; first</div><div class="ttdef"><b>Definition:</b> key_value.hpp:34</div></div>
+<div class="ttc" id="anamespacevccc_html_aa29fb64011505322fd37f286ffddf28b"><div class="ttname"><a href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">vccc::value</a></div><div class="ttdeci">constexpr VCCC_INLINE_OR_STATIC detail::element_niebloid&lt; 1 &gt; value</div><div class="ttdef"><b>Definition:</b> key_value.hpp:35</div></div>
+<div class="ttc" id="anegation_8hpp_html"><div class="ttname"><a href="negation_8hpp.html">negation.hpp</a></div></div>
+<div class="ttc" id="arandom__access__iterator_8hpp_html"><div class="ttname"><a href="random__access__iterator_8hpp.html">random_access_iterator.hpp</a></div></div>
+<div class="ttc" id="aremove__cvref_8hpp_html"><div class="ttname"><a href="remove__cvref_8hpp.html">remove_cvref.hpp</a></div></div>
+<div class="ttc" id="asame__as_8hpp_html"><div class="ttname"><a href="same__as_8hpp.html">same_as.hpp</a></div></div>
+<div class="ttc" id="asemiregular_8hpp_html"><div class="ttname"><a href="semiregular_8hpp.html">semiregular.hpp</a></div></div>
+<div class="ttc" id="astructvccc_1_1conjunction_html"><div class="ttname"><a href="structvccc_1_1conjunction.html">vccc::conjunction</a></div><div class="ttdef"><b>Definition:</b> conjunction.hpp:22</div></div>
+<div class="ttc" id="astructvccc_1_1copyable_html"><div class="ttname"><a href="structvccc_1_1copyable.html">vccc::copyable</a></div><div class="ttdoc">specifies that an object of a type can be copied, moved, and swapped</div><div class="ttdef"><b>Definition:</b> copyable.hpp:59</div></div>
+<div class="ttc" id="astructvccc_1_1disjunction_html"><div class="ttname"><a href="structvccc_1_1disjunction.html">vccc::disjunction</a></div><div class="ttdef"><b>Definition:</b> disjunction.hpp:22</div></div>
+<div class="ttc" id="astructvccc_1_1is__integer__like_html"><div class="ttname"><a href="structvccc_1_1is__integer__like.html">vccc::is_integer_like</a></div><div class="ttdoc">Check if type models integer-like type (C++ 20 requirement)</div><div class="ttdef"><b>Definition:</b> is_integer_like.hpp:34</div></div>
+<div class="ttc" id="astructvccc_1_1is__signed__integer__like_html"><div class="ttname"><a href="structvccc_1_1is__signed__integer__like.html">vccc::is_signed_integer_like</a></div><div class="ttdef"><b>Definition:</b> is_integer_like.hpp:48</div></div>
+<div class="ttc" id="astructvccc_1_1negation_html"><div class="ttname"><a href="structvccc_1_1negation.html">vccc::negation</a></div><div class="ttdef"><b>Definition:</b> negation.hpp:23</div></div>
+<div class="ttc" id="astructvccc_1_1ranges_1_1enable__borrowed__range_html"><div class="ttname"><a href="structvccc_1_1ranges_1_1enable__borrowed__range.html">vccc::ranges::enable_borrowed_range</a></div><div class="ttdef"><b>Definition:</b> enable_borrowed_range.hpp:17</div></div>
+<div class="ttc" id="astructvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid_html"><div class="ttname"><a href="structvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid.html">vccc::ranges::views::detail::iota_niebloid</a></div><div class="ttdef"><b>Definition:</b> iota_view.hpp:510</div></div>
+<div class="ttc" id="astructvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid_html_a8f646f5406e6f58cdc3b8534bb6df629"><div class="ttname"><a href="structvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid.html#a8f646f5406e6f58cdc3b8534bb6df629">vccc::ranges::views::detail::iota_niebloid::operator()</a></div><div class="ttdeci">constexpr iota_view&lt; std::remove_reference_t&lt; W &gt; &gt; operator()(W &amp;&amp;value) const</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:512</div></div>
+<div class="ttc" id="astructvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid_html_aaaba805a6bf555ad33ede814d6618c9f"><div class="ttname"><a href="structvccc_1_1ranges_1_1views_1_1detail_1_1iota__niebloid.html#aaaba805a6bf555ad33ede814d6618c9f">vccc::ranges::views::detail::iota_niebloid::operator()</a></div><div class="ttdeci">constexpr ranges::iota_view&lt; std::remove_reference_t&lt; W &gt;, std::remove_reference_t&lt; Bound &gt; &gt; operator()(W &amp;&amp;value, Bound &amp;&amp;bound) const</div><div class="ttdef"><b>Definition:</b> iota_view.hpp:524</div></div>
+<div class="ttc" id="astructvccc_1_1semiregular_html"><div class="ttname"><a href="structvccc_1_1semiregular.html">vccc::semiregular</a></div><div class="ttdoc">specifies that an object of a type can be copied, moved, swapped, and default constructed</div><div class="ttdef"><b>Definition:</b> semiregular.hpp:31</div></div>
+<div class="ttc" id="astructvccc_1_1weakly__equality__comparable__with_html"><div class="ttname"><a href="structvccc_1_1weakly__equality__comparable__with.html">vccc::weakly_equality_comparable_with</a></div><div class="ttdoc">specifies that two different objects can be compared for equality with each other (in either order) u...</div><div class="ttdef"><b>Definition:</b> weakly_equality_comparable_with.hpp:51</div></div>
+<div class="ttc" id="astructvccc_1_1weakly__incrementable_html"><div class="ttname"><a href="structvccc_1_1weakly__incrementable.html">vccc::weakly_incrementable</a></div><div class="ttdef"><b>Definition:</b> weakly_incrementable.hpp:52</div></div>
+<div class="ttc" id="atotally__ordered_8hpp_html"><div class="ttname"><a href="totally__ordered_8hpp.html">totally_ordered.hpp</a></div></div>
+<div class="ttc" id="atype__identity_8hpp_html"><div class="ttname"><a href="type__identity_8hpp.html">type_identity.hpp</a></div></div>
+<div class="ttc" id="aunreachable__sentinel_8hpp_html"><div class="ttname"><a href="unreachable__sentinel_8hpp.html">unreachable_sentinel.hpp</a></div></div>
+<div class="ttc" id="avccc_2core_8hpp_html"><div class="ttname"><a href="vccc_2core_8hpp.html">core.hpp</a></div></div>
+<div class="ttc" id="aview__interface_8hpp_html"><div class="ttname"><a href="view__interface_8hpp.html">view_interface.hpp</a></div></div>
+<div class="ttc" id="avoid__t_8hpp_html"><div class="ttname"><a href="void__t_8hpp.html">void_t.hpp</a></div></div>
+<div class="ttc" id="aweakly__equality__comparable__with_8hpp_html"><div class="ttname"><a href="weakly__equality__comparable__with_8hpp.html">weakly_equality_comparable_with.hpp</a></div></div>
+<div class="ttc" id="aweakly__incrementable_8hpp_html"><div class="ttname"><a href="weakly__incrementable_8hpp.html">weakly_incrementable.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_99216d331fab9748718665df98894a12.html">vccc</a></li><li class="navelem"><a class="el" href="dir_382cf1c1192546bc8004d0944fdba111.html">__ranges</a></li><li class="navelem"><a class="el" href="dir_323ea8d53f5ef1b358866cf16dea8b48.html">views</a></li><li class="navelem"><a class="el" href="iota__view_8hpp.html">iota_view.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

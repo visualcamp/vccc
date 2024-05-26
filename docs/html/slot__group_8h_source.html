@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="VCCC Document" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="VCCC Document" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>VCCC: include/signal/include/vccc/__signal/slot_group.h Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript" src="../js/add-permalink.js"></script>
+<script type="text/javascript" src="../js/class-toc.js"></script>
+<script type="text/javascript" src="../js/group-toc.js"></script>
+<script type="text/javascript" src="../js/header-link.js"></script>
+<script type="text/javascript" src="../js/realign-group.js"></script>
+<script type="text/javascript" src="../js/toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeTabs.init()
+    RealignGroup.init()
+    HeaderLink.init()
+    ClassToc.init()
+    GroupToc.init()
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/visualcamp/vccc" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="vc_logo_50_50.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">VCCC
+   &#160;<span id="projectnumber">2024.05</span>
+   </div>
+   <div id="projectbrief">VisualCamp Common C++ library</div>
+  </td>
+  <!--STAGE WARNING HERE-->
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('slot__group_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">slot_group.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="slot__group_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># </span><span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">#  * Created by YongGyu Lee on 2021/06/03.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">#  */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor"># ifndef VCCC_SIGNAL_SLOT_GROUP_H_</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"># define VCCC_SIGNAL_SLOT_GROUP_H_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"># include &lt;algorithm&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"># include &lt;iterator&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"># include &lt;list&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"># include &lt;map&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"># include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"># include &lt;tuple&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"># include &lt;utility&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"># include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="group__key_8h.html">vccc/__signal/group_key.h</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6">   21</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6">slot_position</a> {</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6ac35ca04e61645335b39d68d9b4b9814c">   22</a></span>&#160;  <a class="code" href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6ac35ca04e61645335b39d68d9b4b9814c">at_back</a>, <a class="code" href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6a2edb8a909e49cdb9ce3da9c79c6a16c4">at_front</a>,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Group, <span class="keyword">typename</span> Slot&gt;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html">   26</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1grouped__slot__list.html">grouped_slot_list</a> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a92b727ed52de531a09d1b446a768a41b">   27</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a92b727ed52de531a09d1b446a768a41b">group_type</a> = Group;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a661176ec54b38f63fa32fcebf6d45616">   28</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1group__key.html">group_key_type</a> = <a class="code" href="structvccc_1_1group__key.html">group_key&lt;group_type&gt;</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a5b14a8247562eb6ca8358a65dc5c5a69">   29</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1group__key__compare.html">group_key_compare_type</a> = <a class="code" href="structvccc_1_1group__key__compare.html">group_key_compare&lt;group_type&gt;</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a416d08a12268b027991cb6abccf4369a">   31</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a416d08a12268b027991cb6abccf4369a">slot_type</a> = Slot;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a7b4f07ec99bf5aa830fce58dfb4027df">   32</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a7b4f07ec99bf5aa830fce58dfb4027df">slot_ptr_type</a> = std::shared_ptr&lt;slot_type&gt;;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a331d720409c2b6e3c42040bc41434f03">   33</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a331d720409c2b6e3c42040bc41434f03">list</a> = std::list&lt;slot_ptr_type&gt;;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">   34</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a> = <span class="keyword">typename</span> list::iterator;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#ab67f2932b5e784f2cb0d0b39186a7e28">   35</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#ab67f2932b5e784f2cb0d0b39186a7e28">map</a> = std::map&lt;group_key_type, list_iterator, group_key_compare_type&gt;;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a1e7c713281da5c63076915cdd679b1f7">   36</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a1e7c713281da5c63076915cdd679b1f7">map_iterator</a> = <span class="keyword">typename</span> map::iterator;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#af6ede96dfb73a4d2900f8d1b347e50da">   37</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#af6ede96dfb73a4d2900f8d1b347e50da">map_const_iterator</a> = <span class="keyword">typename</span> <a class="code" href="group__iterator.html#gab06b3b670b8c97d41768b022399ac42b">map::const_iterator</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a698c4fc56bd7a6034e3fe86ce6412444">   39</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a698c4fc56bd7a6034e3fe86ce6412444">weak_slot_ptr_type</a> = std::weak_ptr&lt;slot_type&gt;;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#aa9ba72848e2590fbc4f31d25c0544232">   41</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#aa9ba72848e2590fbc4f31d25c0544232">iterator</a> = <a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a2b0a462c7f886576f5e6723bb22b74f6">   42</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a2b0a462c7f886576f5e6723bb22b74f6">const_iterator</a> = <span class="keyword">typename</span> <a class="code" href="group__iterator.html#gab06b3b670b8c97d41768b022399ac42b">list::const_iterator</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a8699235f1b979c652ef72b8b0b2e7a86">   44</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a8699235f1b979c652ef72b8b0b2e7a86">insert_token</a> = std::pair&lt;map_iterator, list_iterator&gt;;</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#aa9d83c393017ba077929c632b2644cb5">   45</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#aa9d83c393017ba077929c632b2644cb5">weak_slot</a> = std::pair&lt;weak_slot_ptr_type, insert_token&gt;;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a845bc0c2a081bdfa30f0def35e05e00a">   46</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a845bc0c2a081bdfa30f0def35e05e00a">weak_slot_list</a> = std::vector&lt;weak_slot&gt;;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#af59e531636f6d09c73c0fcf170f3f030">   48</a></span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#af59e531636f6d09c73c0fcf170f3f030">grouped_slot_list</a>()</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    : list_(), map_(<a class="code" href="structvccc_1_1group__key__compare.html">group_key_compare_type</a> {}) {}</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="comment">// insert grouped slot</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#ac4166f7e77d42b32398202ae530c1852">   52</a></span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#aa9d83c393017ba077929c632b2644cb5">weak_slot</a> <a class="code" href="structvccc_1_1grouped__slot__list.html#ac4166f7e77d42b32398202ae530c1852">insert</a>(<a class="code" href="structvccc_1_1grouped__slot__list.html#a92b727ed52de531a09d1b446a768a41b">group_type</a> group, <a class="code" href="structvccc_1_1grouped__slot__list.html#a7b4f07ec99bf5aa830fce58dfb4027df">slot_ptr_type</a> <a class="code" href="classvccc_1_1slot.html">slot</a>, <a class="code" href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6">slot_position</a> pos = <a class="code" href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6ac35ca04e61645335b39d68d9b4b9814c">at_back</a>) {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="structvccc_1_1group__key.html">group_key_type</a> <a class="code" href="namespacevccc.html#a5726fd15626b941d6e319f24fc208798">key</a>(<a class="code" href="namespacevccc.html#a4a6edc5f9653cb723553718f27ab3e15a6ac030f1fee62b86df70df9fa1b0160f">grouped</a>, group);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">if</span> (pos == <a class="code" href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6ac35ca04e61645335b39d68d9b4b9814c">at_back</a>)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      <span class="keywordflow">return</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#adfbb31e3d9726e3c6d1a0b58af8936c9">insert_back</a>(<a class="code" href="namespacevccc.html#a5726fd15626b941d6e319f24fc208798">key</a>, std::move(<a class="code" href="classvccc_1_1slot.html">slot</a>));</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;      <span class="keywordflow">return</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a2b7571344a3ec18d728e8bce6c066226">insert_front</a>(<a class="code" href="namespacevccc.html#a5726fd15626b941d6e319f24fc208798">key</a>, std::move(<a class="code" href="classvccc_1_1slot.html">slot</a>));</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="comment">// insert ungrouped slot</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#ae363c8e78009acd5d7a3b7751072c8e4">   61</a></span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#aa9d83c393017ba077929c632b2644cb5">weak_slot</a> <a class="code" href="structvccc_1_1grouped__slot__list.html#ae363c8e78009acd5d7a3b7751072c8e4">insert</a>(<a class="code" href="structvccc_1_1grouped__slot__list.html#a7b4f07ec99bf5aa830fce58dfb4027df">slot_ptr_type</a> <a class="code" href="classvccc_1_1slot.html">slot</a>, <a class="code" href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6">slot_position</a> pos = <a class="code" href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6ac35ca04e61645335b39d68d9b4b9814c">at_back</a>) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="structvccc_1_1group__key.html">group_key_type</a> <a class="code" href="namespacevccc.html#a5726fd15626b941d6e319f24fc208798">key</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span> (pos == <a class="code" href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6ac35ca04e61645335b39d68d9b4b9814c">at_back</a>) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      <a class="code" href="namespacevccc.html#a5726fd15626b941d6e319f24fc208798">key</a>.group_token.first = <a class="code" href="namespacevccc.html#a4a6edc5f9653cb723553718f27ab3e15a6947a1f1506f44e892761420a92210b7">ungrouped_back</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      <a class="code" href="namespacevccc.html#a5726fd15626b941d6e319f24fc208798">key</a>.group_token.first = <a class="code" href="namespacevccc.html#a4a6edc5f9653cb723553718f27ab3e15ae41387144be81acacc9ea79e5a04692a">ungrouped_front</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#adfbb31e3d9726e3c6d1a0b58af8936c9">insert_back</a>(<a class="code" href="namespacevccc.html#a5726fd15626b941d6e319f24fc208798">key</a>, std::move(<a class="code" href="classvccc_1_1slot.html">slot</a>));</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#adfbb31e3d9726e3c6d1a0b58af8936c9">   71</a></span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#aa9d83c393017ba077929c632b2644cb5">weak_slot</a> <a class="code" href="structvccc_1_1grouped__slot__list.html#adfbb31e3d9726e3c6d1a0b58af8936c9">insert_back</a>(<a class="code" href="structvccc_1_1group__key.html">group_key_type</a> group, <a class="code" href="structvccc_1_1grouped__slot__list.html#a7b4f07ec99bf5aa830fce58dfb4027df">slot_ptr_type</a> <a class="code" href="classvccc_1_1slot.html">slot</a>) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">auto</span> group_it = map_.upper_bound(group); <span class="comment">// find a upper bound of a group_key</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a> list_it;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">if</span> (group_it == map_.end()) {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      list_it = list_.emplace(list_.end(), std::move(<a class="code" href="classvccc_1_1slot.html">slot</a>));</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      group_it = map_.emplace_hint(group_it, group, list_it);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      list_it = list_.emplace(group_it-&gt;second, std::move(<a class="code" href="classvccc_1_1slot.html">slot</a>));</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      <span class="keywordflow">if</span> (group_it-&gt;first != group) { <span class="comment">// if group does not exist</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        group_it = map_.emplace_hint(group_it, group, list_it);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a649bc9dc5f9ee8a1d66b936537f18386">getWeakSlot</a>(group_it, list_it);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a2b7571344a3ec18d728e8bce6c066226">   88</a></span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#aa9d83c393017ba077929c632b2644cb5">weak_slot</a> <a class="code" href="structvccc_1_1grouped__slot__list.html#a2b7571344a3ec18d728e8bce6c066226">insert_front</a>(<a class="code" href="structvccc_1_1group__key.html">group_key_type</a> group, <a class="code" href="structvccc_1_1grouped__slot__list.html#a7b4f07ec99bf5aa830fce58dfb4027df">slot_ptr_type</a> <a class="code" href="classvccc_1_1slot.html">slot</a>) {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="structvccc_1_1grouped__slot__list.html#a1e7c713281da5c63076915cdd679b1f7">map_iterator</a> group_it = map_.lower_bound(group); <span class="comment">// find a lower bound of a group_key</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a> list_it;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">if</span> (group_it == map_.end()) {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;      list_it = list_.emplace(list_.end(), std::move(<a class="code" href="classvccc_1_1slot.html">slot</a>));</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;      group_it = map_.emplace_hint(group_it, group, list_it);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;      <span class="keywordflow">if</span> (group_it-&gt;first == group) { <span class="comment">// if group exists</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        list_it = list_.emplace(group_it-&gt;second, std::move(<a class="code" href="classvccc_1_1slot.html">slot</a>));</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        group_it-&gt;second = list_it;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;      } <span class="keywordflow">else</span> { <span class="comment">// group not exists</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        list_it = list_.emplace(group_it-&gt;second, std::move(<a class="code" href="classvccc_1_1slot.html">slot</a>));</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        group_it = map_.emplace_hint(group_it, group, list_it);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;      }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a649bc9dc5f9ee8a1d66b936537f18386">getWeakSlot</a>(group_it, list_it);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#ad69bd11391be1a1dba5c8202259664f8">  108</a></span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#aa9ba72848e2590fbc4f31d25c0544232">iterator</a> <a class="code" href="structvccc_1_1grouped__slot__list.html#ad69bd11391be1a1dba5c8202259664f8">begin</a>() { <span class="keywordflow">return</span> list_.begin(); }</div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a29305669b60ca1680752e2fc3592ba99">  109</a></span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#a2b0a462c7f886576f5e6723bb22b74f6">const_iterator</a> <a class="code" href="structvccc_1_1grouped__slot__list.html#a29305669b60ca1680752e2fc3592ba99">begin</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> list_.begin(); }</div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#acad38d52497a975bfb6f2f6acd76631f">  110</a></span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#aa9ba72848e2590fbc4f31d25c0544232">iterator</a> <a class="code" href="structvccc_1_1grouped__slot__list.html#acad38d52497a975bfb6f2f6acd76631f">end</a>() { <span class="keywordflow">return</span> list_.end(); }</div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#accf9a4bd0c34d4a5f6a7dab66ea10cdc">  111</a></span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#a2b0a462c7f886576f5e6723bb22b74f6">const_iterator</a> <a class="code" href="structvccc_1_1grouped__slot__list.html#accf9a4bd0c34d4a5f6a7dab66ea10cdc">end</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> list_.end(); }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a10efdf47ffedbdc720f71c2f72b98d98">  113</a></span>&#160;  <span class="keyword">auto</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a10efdf47ffedbdc720f71c2f72b98d98">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> list_.size(); }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <span class="comment">// remove 1 list element</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a5a2a72a99a74ee5195ec03d2144e9795">  117</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a5a2a72a99a74ee5195ec03d2144e9795">remove</a>(<span class="keyword">const</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a8699235f1b979c652ef72b8b0b2e7a86">insert_token</a>&amp; conn) {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keyword">auto</span> m_pos = conn.first;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keyword">auto</span> l_pos = conn.second;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keyword">auto</span> g_pos = map_.find(m_pos-&gt;first);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">if</span> (g_pos == map_.end())</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;      <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keyword">auto</span> next_group_l_pos = getNextGroupListPosition(m_pos);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="group__ranges.html#ga760f580c2964a97691d3ef53564d1a69">std::distance</a>(g_pos-&gt;second, next_group_l_pos) &lt;= 1) {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;      map_.erase(m_pos);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;      eraseList(l_pos);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (m_pos-&gt;second == l_pos) {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;      m_pos-&gt;second = list_.erase(l_pos);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;      eraseList(l_pos);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a1a526ecf21df5caf826c9e8f085b0e92">  136</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a1a526ecf21df5caf826c9e8f085b0e92">remove_group</a>(<span class="keyword">const</span> <a class="code" href="structvccc_1_1group__key.html">group_key_type</a>&amp; <a class="code" href="structvccc_1_1group__key.html">group_key</a>) {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keyword">auto</span> g_pos = map_.find(<a class="code" href="structvccc_1_1group__key.html">group_key</a>);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordflow">if</span> (g_pos == map_.end())</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;      <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keyword">auto</span> next_group_l_pos = getNextGroupListPosition(g_pos);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    eraseList(g_pos-&gt;second, next_group_l_pos);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    map_.erase(g_pos);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  }</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a6e558aaf47b7d0bac2db08e11aa63a80">  146</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a6e558aaf47b7d0bac2db08e11aa63a80">remove_all</a>() {</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    list_.clear();</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    map_.clear();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  }</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#a649bc9dc5f9ee8a1d66b936537f18386">  151</a></span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#aa9d83c393017ba077929c632b2644cb5">weak_slot</a> <a class="code" href="structvccc_1_1grouped__slot__list.html#a649bc9dc5f9ee8a1d66b936537f18386">getWeakSlot</a>(<a class="code" href="structvccc_1_1grouped__slot__list.html#a1e7c713281da5c63076915cdd679b1f7">map_iterator</a> group, <a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a> index)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordflow">return</span> {*index, <a class="code" href="structvccc_1_1grouped__slot__list.html#a8699235f1b979c652ef72b8b0b2e7a86">insert_token</a>{group, index}};</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;  }</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="structvccc_1_1grouped__slot__list.html#ae6ff766bbfcce710dfa118a5335860f2">  155</a></span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#a845bc0c2a081bdfa30f0def35e05e00a">weak_slot_list</a> <a class="code" href="structvccc_1_1grouped__slot__list.html#ae6ff766bbfcce710dfa118a5335860f2">getWeakList</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="structvccc_1_1grouped__slot__list.html#a845bc0c2a081bdfa30f0def35e05e00a">weak_slot_list</a> weak_list;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    weak_list.reserve(<a class="code" href="structvccc_1_1grouped__slot__list.html#a10efdf47ffedbdc720f71c2f72b98d98">size</a>());</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> group_it = map_.begin(); group_it != map_.end(); ++group_it) {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;      <span class="keyword">auto</span> list_end = getNextGroupListPosition(group_it);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">auto</span> list_it = group_it-&gt;second; list_it != list_end; ++list_it) {</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        weak_list.emplace_back(<a class="code" href="structvccc_1_1grouped__slot__list.html#a649bc9dc5f9ee8a1d66b936537f18386">getWeakSlot</a>(group_it, list_it));</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;      }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keywordflow">return</span> weak_list;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  <span class="keywordtype">void</span> eraseList(<a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a> <a class="code" href="structvccc_1_1grouped__slot__list.html#ad69bd11391be1a1dba5c8202259664f8">begin</a>, <a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a> <a class="code" href="structvccc_1_1grouped__slot__list.html#acad38d52497a975bfb6f2f6acd76631f">end</a>) {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    list_.erase(<a class="code" href="structvccc_1_1grouped__slot__list.html#ad69bd11391be1a1dba5c8202259664f8">begin</a>, <a class="code" href="structvccc_1_1grouped__slot__list.html#acad38d52497a975bfb6f2f6acd76631f">end</a>);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  }</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  <span class="keywordtype">void</span> eraseList(<a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a> it) {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keywordflow">if</span> (it == list_.end())</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;      <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    list_.erase(it);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a> getNextGroupListPosition(<a class="code" href="structvccc_1_1grouped__slot__list.html#af6ede96dfb73a4d2900f8d1b347e50da">map_const_iterator</a> m_pos)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="keyword">auto</span> next_group_m_pos = <a class="code" href="group__iterator__ranges__next____func____operations.html#ga107d0e4b4923579c9394bdd0011e74fc">std::next</a>(m_pos);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keywordflow">if</span> (next_group_m_pos == map_.end())</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;      <span class="keywordflow">return</span> list_.end();</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keywordflow">return</span> next_group_m_pos-&gt;second;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  }</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a> getListIterator(<span class="keyword">const</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a1e7c713281da5c63076915cdd679b1f7">map_iterator</a>&amp; m_pos) {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keywordflow">if</span> (m_pos == map_.end())</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;      <span class="keywordflow">return</span> list_.end();</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordflow">return</span> m_pos-&gt;second;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;  }</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a> groupBegin(<a class="code" href="structvccc_1_1grouped__slot__list.html#a92b727ed52de531a09d1b446a768a41b">group_type</a> group) {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keyword">auto</span> pos = map_.find(group);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordflow">if</span> (pos == map_.end())</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      <span class="keywordflow">return</span> list_.end();</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keywordflow">return</span> pos-&gt;second;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;  }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a> groupBeginNoCheck(<a class="code" href="structvccc_1_1grouped__slot__list.html#a1e7c713281da5c63076915cdd679b1f7">map_iterator</a> it)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordflow">return</span> it-&gt;second;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;  }</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;  <a class="code" href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">list_iterator</a> groupEndNoCheck(<a class="code" href="structvccc_1_1grouped__slot__list.html#a1e7c713281da5c63076915cdd679b1f7">map_iterator</a> it)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keyword">auto</span> next_group_map_it = <a class="code" href="group__iterator__ranges__next____func____operations.html#ga107d0e4b4923579c9394bdd0011e74fc">std::next</a>(it);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">if</span> (next_group_map_it == map_.end())</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;      <span class="keywordflow">return</span> list_.end();</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordflow">return</span> next_group_map_it-&gt;second;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;  }</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;  <span class="keyword">mutable</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#a331d720409c2b6e3c42040bc41434f03">list</a> list_;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;  <span class="keyword">mutable</span> <a class="code" href="structvccc_1_1grouped__slot__list.html#ab67f2932b5e784f2cb0d0b39186a7e28">map</a> map_;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;};</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;} <span class="comment">// namespace vccc</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="preprocessor"># endif </span><span class="comment">// VCCC_SIGNAL_SLOT_GROUP_H_</span></div>
+<div class="ttc" id="aclassvccc_1_1slot_html"><div class="ttname"><a href="classvccc_1_1slot.html">vccc::slot</a></div><div class="ttdef"><b>Definition:</b> slot.h:16</div></div>
+<div class="ttc" id="agroup__iterator__ranges__next____func____operations_html_ga107d0e4b4923579c9394bdd0011e74fc"><div class="ttname"><a href="group__iterator__ranges__next____func____operations.html#ga107d0e4b4923579c9394bdd0011e74fc">vccc::ranges::niebloid::next</a></div><div class="ttdeci">constexpr VCCC_INLINE_OR_STATIC detail::next_niebloid next</div><div class="ttdef"><b>Definition:</b> next.hpp:65</div></div>
+<div class="ttc" id="agroup__iterator_html_gab06b3b670b8c97d41768b022399ac42b"><div class="ttname"><a href="group__iterator.html#gab06b3b670b8c97d41768b022399ac42b">vccc::const_iterator</a></div><div class="ttdeci">std::enable_if_t&lt; input_iterator&lt; I &gt;::value, std::conditional_t&lt; detail::constant_iterator&lt; I &gt;::value, I, basic_const_iterator&lt; I &gt; &gt; &gt; const_iterator</div><div class="ttdef"><b>Definition:</b> basic_const_iterator.hpp:377</div></div>
+<div class="ttc" id="agroup__key_8h_html"><div class="ttname"><a href="group__key_8h.html">group_key.h</a></div></div>
+<div class="ttc" id="agroup__ranges_html_ga760f580c2964a97691d3ef53564d1a69"><div class="ttname"><a href="group__ranges.html#ga760f580c2964a97691d3ef53564d1a69">vccc::ranges::niebloid::distance</a></div><div class="ttdeci">constexpr VCCC_INLINE_OR_STATIC detail::distance_niebloid distance</div><div class="ttdef"><b>Definition:</b> distance.hpp:72</div></div>
+<div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> directory.h:12</div></div>
+<div class="ttc" id="anamespacevccc_html_a4a6edc5f9653cb723553718f27ab3e15a6947a1f1506f44e892761420a92210b7"><div class="ttname"><a href="namespacevccc.html#a4a6edc5f9653cb723553718f27ab3e15a6947a1f1506f44e892761420a92210b7">vccc::ungrouped_back</a></div><div class="ttdeci">@ ungrouped_back</div><div class="ttdef"><b>Definition:</b> group_key.h:14</div></div>
+<div class="ttc" id="anamespacevccc_html_a4a6edc5f9653cb723553718f27ab3e15a6ac030f1fee62b86df70df9fa1b0160f"><div class="ttname"><a href="namespacevccc.html#a4a6edc5f9653cb723553718f27ab3e15a6ac030f1fee62b86df70df9fa1b0160f">vccc::grouped</a></div><div class="ttdeci">@ grouped</div><div class="ttdef"><b>Definition:</b> group_key.h:14</div></div>
+<div class="ttc" id="anamespacevccc_html_a4a6edc5f9653cb723553718f27ab3e15ae41387144be81acacc9ea79e5a04692a"><div class="ttname"><a href="namespacevccc.html#a4a6edc5f9653cb723553718f27ab3e15ae41387144be81acacc9ea79e5a04692a">vccc::ungrouped_front</a></div><div class="ttdeci">@ ungrouped_front</div><div class="ttdef"><b>Definition:</b> group_key.h:14</div></div>
+<div class="ttc" id="anamespacevccc_html_a5726fd15626b941d6e319f24fc208798"><div class="ttname"><a href="namespacevccc.html#a5726fd15626b941d6e319f24fc208798">vccc::key</a></div><div class="ttdeci">constexpr VCCC_INLINE_OR_STATIC detail::element_niebloid&lt; 0 &gt; key</div><div class="ttdef"><b>Definition:</b> key_value.hpp:33</div></div>
+<div class="ttc" id="anamespacevccc_html_ab985ff536dcd78caa324b9f156d26ef6"><div class="ttname"><a href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6">vccc::slot_position</a></div><div class="ttdeci">slot_position</div><div class="ttdef"><b>Definition:</b> slot_group.h:21</div></div>
+<div class="ttc" id="anamespacevccc_html_ab985ff536dcd78caa324b9f156d26ef6a2edb8a909e49cdb9ce3da9c79c6a16c4"><div class="ttname"><a href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6a2edb8a909e49cdb9ce3da9c79c6a16c4">vccc::at_front</a></div><div class="ttdeci">@ at_front</div><div class="ttdef"><b>Definition:</b> slot_group.h:22</div></div>
+<div class="ttc" id="anamespacevccc_html_ab985ff536dcd78caa324b9f156d26ef6ac35ca04e61645335b39d68d9b4b9814c"><div class="ttname"><a href="namespacevccc.html#ab985ff536dcd78caa324b9f156d26ef6ac35ca04e61645335b39d68d9b4b9814c">vccc::at_back</a></div><div class="ttdeci">@ at_back</div><div class="ttdef"><b>Definition:</b> slot_group.h:22</div></div>
+<div class="ttc" id="astructvccc_1_1group__key__compare_html"><div class="ttname"><a href="structvccc_1_1group__key__compare.html">vccc::group_key_compare</a></div><div class="ttdef"><b>Definition:</b> group_key.h:49</div></div>
+<div class="ttc" id="astructvccc_1_1group__key_html"><div class="ttname"><a href="structvccc_1_1group__key.html">vccc::group_key</a></div><div class="ttdef"><b>Definition:</b> group_key.h:17</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html">vccc::grouped_slot_list</a></div><div class="ttdef"><b>Definition:</b> slot_group.h:26</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a10efdf47ffedbdc720f71c2f72b98d98"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a10efdf47ffedbdc720f71c2f72b98d98">vccc::grouped_slot_list::size</a></div><div class="ttdeci">auto size() const</div><div class="ttdef"><b>Definition:</b> slot_group.h:113</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a1a526ecf21df5caf826c9e8f085b0e92"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a1a526ecf21df5caf826c9e8f085b0e92">vccc::grouped_slot_list::remove_group</a></div><div class="ttdeci">void remove_group(const group_key_type &amp;group_key)</div><div class="ttdef"><b>Definition:</b> slot_group.h:136</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a1e7c713281da5c63076915cdd679b1f7"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a1e7c713281da5c63076915cdd679b1f7">vccc::grouped_slot_list::map_iterator</a></div><div class="ttdeci">typename map::iterator map_iterator</div><div class="ttdef"><b>Definition:</b> slot_group.h:36</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a29305669b60ca1680752e2fc3592ba99"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a29305669b60ca1680752e2fc3592ba99">vccc::grouped_slot_list::begin</a></div><div class="ttdeci">const_iterator begin() const</div><div class="ttdef"><b>Definition:</b> slot_group.h:109</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a2b0a462c7f886576f5e6723bb22b74f6"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a2b0a462c7f886576f5e6723bb22b74f6">vccc::grouped_slot_list::const_iterator</a></div><div class="ttdeci">typename list::const_iterator const_iterator</div><div class="ttdef"><b>Definition:</b> slot_group.h:42</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a2b7571344a3ec18d728e8bce6c066226"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a2b7571344a3ec18d728e8bce6c066226">vccc::grouped_slot_list::insert_front</a></div><div class="ttdeci">weak_slot insert_front(group_key_type group, slot_ptr_type slot)</div><div class="ttdef"><b>Definition:</b> slot_group.h:88</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a331d720409c2b6e3c42040bc41434f03"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a331d720409c2b6e3c42040bc41434f03">vccc::grouped_slot_list::list</a></div><div class="ttdeci">std::list&lt; slot_ptr_type &gt; list</div><div class="ttdef"><b>Definition:</b> slot_group.h:33</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a416d08a12268b027991cb6abccf4369a"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a416d08a12268b027991cb6abccf4369a">vccc::grouped_slot_list::slot_type</a></div><div class="ttdeci">Slot slot_type</div><div class="ttdef"><b>Definition:</b> slot_group.h:31</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a5a2a72a99a74ee5195ec03d2144e9795"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a5a2a72a99a74ee5195ec03d2144e9795">vccc::grouped_slot_list::remove</a></div><div class="ttdeci">void remove(const insert_token &amp;conn)</div><div class="ttdef"><b>Definition:</b> slot_group.h:117</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a610a662ab6e5a970bdcb37beed70d047"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a610a662ab6e5a970bdcb37beed70d047">vccc::grouped_slot_list::list_iterator</a></div><div class="ttdeci">typename list::iterator list_iterator</div><div class="ttdef"><b>Definition:</b> slot_group.h:34</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a649bc9dc5f9ee8a1d66b936537f18386"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a649bc9dc5f9ee8a1d66b936537f18386">vccc::grouped_slot_list::getWeakSlot</a></div><div class="ttdeci">weak_slot getWeakSlot(map_iterator group, list_iterator index) const</div><div class="ttdef"><b>Definition:</b> slot_group.h:151</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a698c4fc56bd7a6034e3fe86ce6412444"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a698c4fc56bd7a6034e3fe86ce6412444">vccc::grouped_slot_list::weak_slot_ptr_type</a></div><div class="ttdeci">std::weak_ptr&lt; slot_type &gt; weak_slot_ptr_type</div><div class="ttdef"><b>Definition:</b> slot_group.h:39</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a6e558aaf47b7d0bac2db08e11aa63a80"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a6e558aaf47b7d0bac2db08e11aa63a80">vccc::grouped_slot_list::remove_all</a></div><div class="ttdeci">void remove_all()</div><div class="ttdef"><b>Definition:</b> slot_group.h:146</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a7b4f07ec99bf5aa830fce58dfb4027df"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a7b4f07ec99bf5aa830fce58dfb4027df">vccc::grouped_slot_list::slot_ptr_type</a></div><div class="ttdeci">std::shared_ptr&lt; slot_type &gt; slot_ptr_type</div><div class="ttdef"><b>Definition:</b> slot_group.h:32</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a845bc0c2a081bdfa30f0def35e05e00a"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a845bc0c2a081bdfa30f0def35e05e00a">vccc::grouped_slot_list::weak_slot_list</a></div><div class="ttdeci">std::vector&lt; weak_slot &gt; weak_slot_list</div><div class="ttdef"><b>Definition:</b> slot_group.h:46</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a8699235f1b979c652ef72b8b0b2e7a86"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a8699235f1b979c652ef72b8b0b2e7a86">vccc::grouped_slot_list::insert_token</a></div><div class="ttdeci">std::pair&lt; map_iterator, list_iterator &gt; insert_token</div><div class="ttdef"><b>Definition:</b> slot_group.h:44</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_a92b727ed52de531a09d1b446a768a41b"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#a92b727ed52de531a09d1b446a768a41b">vccc::grouped_slot_list::group_type</a></div><div class="ttdeci">Group group_type</div><div class="ttdef"><b>Definition:</b> slot_group.h:27</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_aa9ba72848e2590fbc4f31d25c0544232"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#aa9ba72848e2590fbc4f31d25c0544232">vccc::grouped_slot_list::iterator</a></div><div class="ttdeci">list_iterator iterator</div><div class="ttdef"><b>Definition:</b> slot_group.h:41</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_aa9d83c393017ba077929c632b2644cb5"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#aa9d83c393017ba077929c632b2644cb5">vccc::grouped_slot_list::weak_slot</a></div><div class="ttdeci">std::pair&lt; weak_slot_ptr_type, insert_token &gt; weak_slot</div><div class="ttdef"><b>Definition:</b> slot_group.h:45</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_ab67f2932b5e784f2cb0d0b39186a7e28"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#ab67f2932b5e784f2cb0d0b39186a7e28">vccc::grouped_slot_list::map</a></div><div class="ttdeci">std::map&lt; group_key_type, list_iterator, group_key_compare_type &gt; map</div><div class="ttdef"><b>Definition:</b> slot_group.h:35</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_ac4166f7e77d42b32398202ae530c1852"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#ac4166f7e77d42b32398202ae530c1852">vccc::grouped_slot_list::insert</a></div><div class="ttdeci">weak_slot insert(group_type group, slot_ptr_type slot, slot_position pos=at_back)</div><div class="ttdef"><b>Definition:</b> slot_group.h:52</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_acad38d52497a975bfb6f2f6acd76631f"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#acad38d52497a975bfb6f2f6acd76631f">vccc::grouped_slot_list::end</a></div><div class="ttdeci">iterator end()</div><div class="ttdef"><b>Definition:</b> slot_group.h:110</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_accf9a4bd0c34d4a5f6a7dab66ea10cdc"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#accf9a4bd0c34d4a5f6a7dab66ea10cdc">vccc::grouped_slot_list::end</a></div><div class="ttdeci">const_iterator end() const</div><div class="ttdef"><b>Definition:</b> slot_group.h:111</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_ad69bd11391be1a1dba5c8202259664f8"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#ad69bd11391be1a1dba5c8202259664f8">vccc::grouped_slot_list::begin</a></div><div class="ttdeci">iterator begin()</div><div class="ttdef"><b>Definition:</b> slot_group.h:108</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_adfbb31e3d9726e3c6d1a0b58af8936c9"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#adfbb31e3d9726e3c6d1a0b58af8936c9">vccc::grouped_slot_list::insert_back</a></div><div class="ttdeci">weak_slot insert_back(group_key_type group, slot_ptr_type slot)</div><div class="ttdef"><b>Definition:</b> slot_group.h:71</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_ae363c8e78009acd5d7a3b7751072c8e4"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#ae363c8e78009acd5d7a3b7751072c8e4">vccc::grouped_slot_list::insert</a></div><div class="ttdeci">weak_slot insert(slot_ptr_type slot, slot_position pos=at_back)</div><div class="ttdef"><b>Definition:</b> slot_group.h:61</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_ae6ff766bbfcce710dfa118a5335860f2"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#ae6ff766bbfcce710dfa118a5335860f2">vccc::grouped_slot_list::getWeakList</a></div><div class="ttdeci">weak_slot_list getWeakList() const</div><div class="ttdef"><b>Definition:</b> slot_group.h:155</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_af59e531636f6d09c73c0fcf170f3f030"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#af59e531636f6d09c73c0fcf170f3f030">vccc::grouped_slot_list::grouped_slot_list</a></div><div class="ttdeci">grouped_slot_list()</div><div class="ttdef"><b>Definition:</b> slot_group.h:48</div></div>
+<div class="ttc" id="astructvccc_1_1grouped__slot__list_html_af6ede96dfb73a4d2900f8d1b347e50da"><div class="ttname"><a href="structvccc_1_1grouped__slot__list.html#af6ede96dfb73a4d2900f8d1b347e50da">vccc::grouped_slot_list::map_const_iterator</a></div><div class="ttdeci">typename map::const_iterator map_const_iterator</div><div class="ttdef"><b>Definition:</b> slot_group.h:37</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_5248fb696a4f421bd7411464e201f301.html">signal</a></li><li class="navelem"><a class="el" href="dir_93829d4d47377e328d06a72f14f14b97.html">include</a></li><li class="navelem"><a class="el" href="dir_7c3c94acb60d457eb92f91cd28a36784.html">vccc</a></li><li class="navelem"><a class="el" href="dir_6e2632d00a7dc57e97101285766d242c.html">__signal</a></li><li class="navelem"><a class="el" href="slot__group_8h.html">slot_group.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

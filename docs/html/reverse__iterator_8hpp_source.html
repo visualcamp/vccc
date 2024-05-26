@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="VCCC Document" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="VCCC Document" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>VCCC: include/vccc/__iterator/reverse_iterator.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript" src="../js/add-permalink.js"></script>
+<script type="text/javascript" src="../js/class-toc.js"></script>
+<script type="text/javascript" src="../js/group-toc.js"></script>
+<script type="text/javascript" src="../js/header-link.js"></script>
+<script type="text/javascript" src="../js/realign-group.js"></script>
+<script type="text/javascript" src="../js/toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeTabs.init()
+    RealignGroup.init()
+    HeaderLink.init()
+    ClassToc.init()
+    GroupToc.init()
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/visualcamp/vccc" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="vc_logo_50_50.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">VCCC
+   &#160;<span id="projectnumber">2024.05</span>
+   </div>
+   <div id="projectbrief">VisualCamp Common C++ library</div>
+  </td>
+  <!--STAGE WARNING HERE-->
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('reverse__iterator_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">reverse_iterator.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="reverse__iterator_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by YongGyu Lee on 4/15/24.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef VCCC_ITERATOR_REVERSE_ITERATOR_HPP_</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define VCCC_ITERATOR_REVERSE_ITERATOR_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;iterator&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="derived__from_8hpp.html">vccc/__concepts/derived_from.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="indirectly__swappable_8hpp.html">vccc/__iterator/indirectly_swappable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="iter__difference__t_8hpp.html">vccc/__iterator/iter_difference_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="iter__move_8hpp.html">vccc/__iterator/iter_move.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="iter__reference__t_8hpp.html">vccc/__iterator/iter_reference_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="iter__rvalue__reference__t_8hpp.html">vccc/__iterator/iter_rvalue_reference_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="iter__swap_8hpp.html">vccc/__iterator/iter_swap.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="iter__value__t_8hpp.html">vccc/__iterator/iter_value_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="iterator__tag_8hpp.html">vccc/__iterator/iterator_tag.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cxx20__iterator__traits_8hpp.html">vccc/__iterator/iterator_traits/cxx20_iterator_traits.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="random__access__iterator_8hpp.html">vccc/__iterator/random_access_iterator.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sized__sentinel__for_8hpp.html">vccc/__iterator/sized_sentinel_for.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="negation_8hpp.html">vccc/__type_traits/negation.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> I1, <span class="keyword">typename</span> I2&gt;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structvccc_1_1disable__sized__sentinel__for_3_01std_1_1reverse__iterator_3_01_i1_01_4_00_01std_1821bbc733fb0a1abc13bca47e4f40771.html">   32</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1disable__sized__sentinel__for.html">disable_sized_sentinel_for</a>&lt;<a class="code" href="namespacestd.html">std</a>::reverse_iterator&lt;I1&gt;, std::reverse_iterator&lt;I2&gt;&gt;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    : <a class="code" href="structvccc_1_1negation.html">negation</a>&lt;sized_sentinel_for&lt;I1, I2&gt;&gt; {};</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">// iterator_traits</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#if __cplusplus &lt; 202002L</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Iter&gt;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html">   39</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1cxx20__iterator__traits.html">cxx20_iterator_traits</a>&lt;<a class="code" href="namespacestd.html">std</a>::reverse_iterator&lt;Iter&gt;&gt; {</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#a1786c3192f4523f0810b1b409fce11ea">   40</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#a1786c3192f4523f0810b1b409fce11ea">iterator_concept</a> = std::conditional_t&lt;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;      <a class="code" href="structvccc_1_1random__access__iterator.html">random_access_iterator&lt;Iter&gt;::value</a>,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;      <a class="code" href="group__iterator.html#ga3685ef9d7e94b32299dd0000d6064d7a">random_access_iterator_tag</a>,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;      <a class="code" href="group__iterator.html#gad8122f9e00a1b891ac746bf7a135e453">bidirectional_iterator_tag</a></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  &gt;;</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#aa4ffaf9dee41e981c6808ced827d4921">   45</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#aa4ffaf9dee41e981c6808ced827d4921">iterator_category</a> = std::conditional_t&lt;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;      <a class="code" href="structvccc_1_1derived__from.html">derived_from&lt;typename cxx20_iterator_traits&lt;Iter&gt;::iterator_category</a>, <a class="code" href="group__iterator.html#ga3685ef9d7e94b32299dd0000d6064d7a">random_access_iterator_tag</a>&gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a>,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      <a class="code" href="group__iterator.html#ga3685ef9d7e94b32299dd0000d6064d7a">random_access_iterator_tag</a>,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;      <span class="keyword">typename</span> <a class="code" href="structvccc_1_1cxx20__iterator__traits.html">cxx20_iterator_traits&lt;Iter&gt;::iterator_category</a></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  &gt;;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#a431f2cf764ee4d38b7d56313d2212fc1">   50</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#a431f2cf764ee4d38b7d56313d2212fc1">value_type</a> = <a class="code" href="group__iterator.html#ga9d671cb3cc1972a99e401563d1f56635">iter_value_t&lt;Iter&gt;</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#a5ec05aa284d05655b458ba5eef67b2f1">   51</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#a5ec05aa284d05655b458ba5eef67b2f1">difference_type</a> = <a class="code" href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">iter_difference_t&lt;Iter&gt;</a>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#a6794e2c165b0bb7b6368370a8824b701">   52</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#a6794e2c165b0bb7b6368370a8824b701">pointer</a> = <span class="keyword">typename</span> <a class="code" href="structvccc_1_1cxx20__iterator__traits.html">cxx20_iterator_traits&lt;Iter&gt;::pointer</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#ad0da9cd19b244bd008c13642d2c18a0d">   53</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#ad0da9cd19b244bd008c13642d2c18a0d">reference</a> = <a class="code" href="group__iterator.html#ga4eccd7d5ddda00051001ed8d44588920">iter_reference_t&lt;Iter&gt;</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">namespace </span>detail {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Iter&gt;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">struct </span>is_primary_iterator_traits&lt;<a class="code" href="structvccc_1_1cxx20__iterator__traits.html">cxx20_iterator_traits</a>&lt;<a class="code" href="namespacestd.html">std</a>::reverse_iterator&lt;Iter&gt;&gt;&gt; : std::true_type {};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;} <span class="comment">// namespace detail</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// __cplusplus &lt; 202002L</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;} <span class="comment">// namespace vccc</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">// iter_move, iter_swap</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#if __cplusplus &lt; 202002L</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacestd.html">std</a> {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Iter&gt;</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="namespacestd.html#a485e9934d58f78bbda5b7300fe511804">   75</a></span>&#160;constexpr <a class="code" href="group__iterator.html#ga6ca311d327bcf671484df05e33459e9d">vccc::iter_rvalue_reference_t&lt;Iter&gt;</a> <a class="code" href="namespacestd.html#aafce923920515107dc7dc8f3b60893bf">iter_move</a>(<span class="keyword">const</span> std::reverse_iterator&lt;Iter&gt;&amp; i)</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    noexcept(</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">std::is_nothrow_copy_constructible&lt;Iter&gt;::value</a> &amp;&amp;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        noexcept(<a class="code" href="namespacestd.html#a485e9934d58f78bbda5b7300fe511804">vccc::ranges::iter_move</a>(--std::declval&lt;Iter&amp;&gt;()))</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    )</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keyword">auto</span> tmp = i.base();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="namespacestd.html#a485e9934d58f78bbda5b7300fe511804">vccc::ranges::iter_move</a>(--tmp);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename Iter, typename Iter2, std::enable_if_t&lt;vccc::indirectly_swappable&lt;Iter2, Iter&gt;::value</a>, <span class="keywordtype">int</span>&gt; = 0&gt;</div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="namespacestd.html#ae58cbd7a8f2ce06e12a12508da37ec11">   86</a></span>&#160;constexpr <span class="keywordtype">void</span> <a class="code" href="namespacestd.html#af739c1315fdceefc94339d37c72aa979">iter_swap</a>(<span class="keyword">const</span> reverse_iterator&lt;Iter&gt;&amp; x, <span class="keyword">const</span> reverse_iterator&lt;Iter2&gt;&amp; y)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    noexcept(</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">std::is_nothrow_copy_constructible&lt;Iter&gt;::value</a> &amp;&amp;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">std::is_nothrow_copy_constructible&lt;Iter2&gt;::value</a> &amp;&amp;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        noexcept(<a class="code" href="namespacestd.html#ae58cbd7a8f2ce06e12a12508da37ec11">vccc::ranges::iter_swap</a>(--std::declval&lt;Iter&amp;&gt;(), --std::declval&lt;Iter2&amp;&gt;()))</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    )</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keyword">auto</span> tmp_x = x.base();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="keyword">auto</span> tmp_y = y.base();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <a class="code" href="namespacestd.html#ae58cbd7a8f2ce06e12a12508da37ec11">vccc::ranges::iter_swap</a>(--tmp_x, --tmp_y);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;} <span class="comment">// namespace std</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// __cplusplus &lt; 202002L</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// VCCC_ITERATOR_REVERSE_ITERATOR_HPP_</span></div>
+<div class="ttc" id="acxx20__iterator__traits_8hpp_html"><div class="ttname"><a href="cxx20__iterator__traits_8hpp.html">cxx20_iterator_traits.hpp</a></div></div>
+<div class="ttc" id="aderived__from_8hpp_html"><div class="ttname"><a href="derived__from_8hpp.html">derived_from.hpp</a></div></div>
+<div class="ttc" id="agroup__iterator_html_ga3685ef9d7e94b32299dd0000d6064d7a"><div class="ttname"><a href="group__iterator.html#ga3685ef9d7e94b32299dd0000d6064d7a">vccc::random_access_iterator_tag</a></div><div class="ttdeci">std::random_access_iterator_tag random_access_iterator_tag</div><div class="ttdef"><b>Definition:</b> iterator_tag.hpp:19</div></div>
+<div class="ttc" id="agroup__iterator_html_ga4eccd7d5ddda00051001ed8d44588920"><div class="ttname"><a href="group__iterator.html#ga4eccd7d5ddda00051001ed8d44588920">vccc::iter_reference_t</a></div><div class="ttdeci">typename iter_reference&lt; T &gt;::type iter_reference_t</div><div class="ttdef"><b>Definition:</b> iter_reference_t.hpp:30</div></div>
+<div class="ttc" id="agroup__iterator_html_ga6ca311d327bcf671484df05e33459e9d"><div class="ttname"><a href="group__iterator.html#ga6ca311d327bcf671484df05e33459e9d">vccc::iter_rvalue_reference_t</a></div><div class="ttdeci">typename iter_rvalue_reference&lt; T &gt;::type iter_rvalue_reference_t</div><div class="ttdef"><b>Definition:</b> iter_rvalue_reference_t.hpp:33</div></div>
+<div class="ttc" id="agroup__iterator_html_ga9d671cb3cc1972a99e401563d1f56635"><div class="ttname"><a href="group__iterator.html#ga9d671cb3cc1972a99e401563d1f56635">vccc::iter_value_t</a></div><div class="ttdeci">typename iter_value&lt; T &gt;::type iter_value_t</div><div class="ttdef"><b>Definition:</b> iter_value_t.hpp:42</div></div>
+<div class="ttc" id="agroup__iterator_html_gaadfcfaace0b5cdc71d08f639da984784"><div class="ttname"><a href="group__iterator.html#gaadfcfaace0b5cdc71d08f639da984784">vccc::iter_difference_t</a></div><div class="ttdeci">typename iter_difference&lt; T &gt;::type iter_difference_t</div><div class="ttdoc">Computes the difference type of T</div><div class="ttdef"><b>Definition:</b> iter_difference_t.hpp:49</div></div>
+<div class="ttc" id="agroup__iterator_html_gad8122f9e00a1b891ac746bf7a135e453"><div class="ttname"><a href="group__iterator.html#gad8122f9e00a1b891ac746bf7a135e453">vccc::bidirectional_iterator_tag</a></div><div class="ttdeci">std::bidirectional_iterator_tag bidirectional_iterator_tag</div><div class="ttdef"><b>Definition:</b> iterator_tag.hpp:18</div></div>
+<div class="ttc" id="aindirectly__swappable_8hpp_html"><div class="ttname"><a href="indirectly__swappable_8hpp.html">indirectly_swappable.hpp</a></div></div>
+<div class="ttc" id="aiter__difference__t_8hpp_html"><div class="ttname"><a href="iter__difference__t_8hpp.html">iter_difference_t.hpp</a></div></div>
+<div class="ttc" id="aiter__move_8hpp_html"><div class="ttname"><a href="iter__move_8hpp.html">iter_move.hpp</a></div></div>
+<div class="ttc" id="aiter__reference__t_8hpp_html"><div class="ttname"><a href="iter__reference__t_8hpp.html">iter_reference_t.hpp</a></div></div>
+<div class="ttc" id="aiter__rvalue__reference__t_8hpp_html"><div class="ttname"><a href="iter__rvalue__reference__t_8hpp.html">iter_rvalue_reference_t.hpp</a></div></div>
+<div class="ttc" id="aiter__swap_8hpp_html"><div class="ttname"><a href="iter__swap_8hpp.html">iter_swap.hpp</a></div></div>
+<div class="ttc" id="aiter__value__t_8hpp_html"><div class="ttname"><a href="iter__value__t_8hpp.html">iter_value_t.hpp</a></div></div>
+<div class="ttc" id="aiterator__tag_8hpp_html"><div class="ttname"><a href="iterator__tag_8hpp.html">iterator_tag.hpp</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> matrix.hpp:495</div></div>
+<div class="ttc" id="anamespacestd_html_a485e9934d58f78bbda5b7300fe511804"><div class="ttname"><a href="namespacestd.html#a485e9934d58f78bbda5b7300fe511804">std::iter_move</a></div><div class="ttdeci">constexpr vccc::iter_rvalue_reference_t&lt; Iter &gt; iter_move(const std::reverse_iterator&lt; Iter &gt; &amp;i) noexcept(std::is_nothrow_copy_constructible&lt; Iter &gt;::value &amp;&amp;noexcept(vccc::ranges::iter_move(--std::declval&lt; Iter &amp; &gt;())))</div><div class="ttdef"><b>Definition:</b> reverse_iterator.hpp:75</div></div>
+<div class="ttc" id="anamespacestd_html_aafce923920515107dc7dc8f3b60893bf"><div class="ttname"><a href="namespacestd.html#aafce923920515107dc7dc8f3b60893bf">std::iter_move</a></div><div class="ttdeci">constexpr vccc::iter_rvalue_reference_t&lt; Iter &gt; iter_move(const move_iterator&lt; Iter &gt; &amp;i) noexcept(noexcept(vccc::ranges::iter_move(i.base())))</div><div class="ttdef"><b>Definition:</b> move_iterator.hpp:92</div></div>
+<div class="ttc" id="anamespacestd_html_ae58cbd7a8f2ce06e12a12508da37ec11"><div class="ttname"><a href="namespacestd.html#ae58cbd7a8f2ce06e12a12508da37ec11">std::iter_swap</a></div><div class="ttdeci">constexpr void iter_swap(const reverse_iterator&lt; Iter &gt; &amp;x, const reverse_iterator&lt; Iter2 &gt; &amp;y) noexcept(std::is_nothrow_copy_constructible&lt; Iter &gt;::value &amp;&amp;std::is_nothrow_copy_constructible&lt; Iter2 &gt;::value &amp;&amp;noexcept(vccc::ranges::iter_swap(--std::declval&lt; Iter &amp; &gt;(), --std::declval&lt; Iter2 &amp; &gt;())))</div><div class="ttdef"><b>Definition:</b> reverse_iterator.hpp:86</div></div>
+<div class="ttc" id="anamespacestd_html_af739c1315fdceefc94339d37c72aa979"><div class="ttname"><a href="namespacestd.html#af739c1315fdceefc94339d37c72aa979">std::iter_swap</a></div><div class="ttdeci">constexpr void iter_swap(const move_iterator&lt; Iter &gt; &amp;x, const move_iterator&lt; Iter2 &gt; &amp;y) noexcept(noexcept(vccc::ranges::iter_swap(x.base(), y.base())))</div><div class="ttdef"><b>Definition:</b> move_iterator.hpp:99</div></div>
+<div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> directory.h:12</div></div>
+<div class="ttc" id="anamespacevccc_html_aa29fb64011505322fd37f286ffddf28b"><div class="ttname"><a href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">vccc::value</a></div><div class="ttdeci">constexpr VCCC_INLINE_OR_STATIC detail::element_niebloid&lt; 1 &gt; value</div><div class="ttdef"><b>Definition:</b> key_value.hpp:35</div></div>
+<div class="ttc" id="anegation_8hpp_html"><div class="ttname"><a href="negation_8hpp.html">negation.hpp</a></div></div>
+<div class="ttc" id="arandom__access__iterator_8hpp_html"><div class="ttname"><a href="random__access__iterator_8hpp.html">random_access_iterator.hpp</a></div></div>
+<div class="ttc" id="asized__sentinel__for_8hpp_html"><div class="ttname"><a href="sized__sentinel__for_8hpp.html">sized_sentinel_for.hpp</a></div></div>
+<div class="ttc" id="astructvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4_html_a1786c3192f4523f0810b1b409fce11ea"><div class="ttname"><a href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#a1786c3192f4523f0810b1b409fce11ea">vccc::cxx20_iterator_traits&lt; std::reverse_iterator&lt; Iter &gt; &gt;::iterator_concept</a></div><div class="ttdeci">std::conditional_t&lt; random_access_iterator&lt; Iter &gt;::value, random_access_iterator_tag, bidirectional_iterator_tag &gt; iterator_concept</div><div class="ttdef"><b>Definition:</b> reverse_iterator.hpp:44</div></div>
+<div class="ttc" id="astructvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4_html_a431f2cf764ee4d38b7d56313d2212fc1"><div class="ttname"><a href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#a431f2cf764ee4d38b7d56313d2212fc1">vccc::cxx20_iterator_traits&lt; std::reverse_iterator&lt; Iter &gt; &gt;::value_type</a></div><div class="ttdeci">iter_value_t&lt; Iter &gt; value_type</div><div class="ttdef"><b>Definition:</b> reverse_iterator.hpp:50</div></div>
+<div class="ttc" id="astructvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4_html_a5ec05aa284d05655b458ba5eef67b2f1"><div class="ttname"><a href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#a5ec05aa284d05655b458ba5eef67b2f1">vccc::cxx20_iterator_traits&lt; std::reverse_iterator&lt; Iter &gt; &gt;::difference_type</a></div><div class="ttdeci">iter_difference_t&lt; Iter &gt; difference_type</div><div class="ttdef"><b>Definition:</b> reverse_iterator.hpp:51</div></div>
+<div class="ttc" id="astructvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4_html_a6794e2c165b0bb7b6368370a8824b701"><div class="ttname"><a href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#a6794e2c165b0bb7b6368370a8824b701">vccc::cxx20_iterator_traits&lt; std::reverse_iterator&lt; Iter &gt; &gt;::pointer</a></div><div class="ttdeci">typename cxx20_iterator_traits&lt; Iter &gt;::pointer pointer</div><div class="ttdef"><b>Definition:</b> reverse_iterator.hpp:52</div></div>
+<div class="ttc" id="astructvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4_html_aa4ffaf9dee41e981c6808ced827d4921"><div class="ttname"><a href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#aa4ffaf9dee41e981c6808ced827d4921">vccc::cxx20_iterator_traits&lt; std::reverse_iterator&lt; Iter &gt; &gt;::iterator_category</a></div><div class="ttdeci">std::conditional_t&lt; derived_from&lt; typename cxx20_iterator_traits&lt; Iter &gt;::iterator_category, random_access_iterator_tag &gt;::value, random_access_iterator_tag, typename cxx20_iterator_traits&lt; Iter &gt;::iterator_category &gt; iterator_category</div><div class="ttdef"><b>Definition:</b> reverse_iterator.hpp:49</div></div>
+<div class="ttc" id="astructvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4_html_ad0da9cd19b244bd008c13642d2c18a0d"><div class="ttname"><a href="structvccc_1_1cxx20__iterator__traits_3_01std_1_1reverse__iterator_3_01_iter_01_4_01_4.html#ad0da9cd19b244bd008c13642d2c18a0d">vccc::cxx20_iterator_traits&lt; std::reverse_iterator&lt; Iter &gt; &gt;::reference</a></div><div class="ttdeci">iter_reference_t&lt; Iter &gt; reference</div><div class="ttdef"><b>Definition:</b> reverse_iterator.hpp:53</div></div>
+<div class="ttc" id="astructvccc_1_1cxx20__iterator__traits_html"><div class="ttname"><a href="structvccc_1_1cxx20__iterator__traits.html">vccc::cxx20_iterator_traits</a></div><div class="ttdef"><b>Definition:</b> cxx20_iterator_traits.hpp:188</div></div>
+<div class="ttc" id="astructvccc_1_1derived__from_html"><div class="ttname"><a href="structvccc_1_1derived__from.html">vccc::derived_from</a></div><div class="ttdoc">Models std::derived_from</div><div class="ttdef"><b>Definition:</b> derived_from.hpp:42</div></div>
+<div class="ttc" id="astructvccc_1_1disable__sized__sentinel__for_html"><div class="ttname"><a href="structvccc_1_1disable__sized__sentinel__for.html">vccc::disable_sized_sentinel_for</a></div><div class="ttdef"><b>Definition:</b> sized_sentinel_for.hpp:22</div></div>
+<div class="ttc" id="astructvccc_1_1negation_html"><div class="ttname"><a href="structvccc_1_1negation.html">vccc::negation</a></div><div class="ttdef"><b>Definition:</b> negation.hpp:23</div></div>
+<div class="ttc" id="astructvccc_1_1random__access__iterator_html"><div class="ttname"><a href="structvccc_1_1random__access__iterator.html">vccc::random_access_iterator</a></div><div class="ttdoc">specifies that a bidirectional_iterator is a random-access iterator, supporting advancement in consta...</div><div class="ttdef"><b>Definition:</b> random_access_iterator.hpp:120</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_99216d331fab9748718665df98894a12.html">vccc</a></li><li class="navelem"><a class="el" href="dir_0e0f50e1f6853d95d522a7182a8fd48e.html">__iterator</a></li><li class="navelem"><a class="el" href="reverse__iterator_8hpp.html">reverse_iterator.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

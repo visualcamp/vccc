@@ -1,0 +1,469 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="VCCC Document" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="VCCC Document" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>VCCC: include/vccc/__type_traits/common_reference.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript" src="../js/add-permalink.js"></script>
+<script type="text/javascript" src="../js/class-toc.js"></script>
+<script type="text/javascript" src="../js/group-toc.js"></script>
+<script type="text/javascript" src="../js/header-link.js"></script>
+<script type="text/javascript" src="../js/realign-group.js"></script>
+<script type="text/javascript" src="../js/toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeTabs.init()
+    RealignGroup.init()
+    HeaderLink.init()
+    ClassToc.init()
+    GroupToc.init()
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/visualcamp/vccc" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="vc_logo_50_50.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">VCCC
+   &#160;<span id="projectnumber">2024.05</span>
+   </div>
+   <div id="projectbrief">VisualCamp Common C++ library</div>
+  </td>
+  <!--STAGE WARNING HERE-->
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('common__reference_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">common_reference.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="common__reference_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by cosge on 2023-12-03.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef VCCC_TYPE_TRAITS_COMMON_REFERENCE_HPP_</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define VCCC_TYPE_TRAITS_COMMON_REFERENCE_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;tuple&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="convertible__to_8hpp.html">vccc/__concepts/convertible_to.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="tuple__like_8hpp.html">vccc/__tuple/tuple_like.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="bool__constant_8hpp.html">vccc/__type_traits/bool_constant.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="conjunction_8hpp.html">vccc/__type_traits/conjunction.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="copy__cvref_8hpp.html">vccc/__type_traits/copy_cvref.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="disjunction_8hpp.html">vccc/__type_traits/disjunction.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="____type__traits_2empty_8hpp.html">vccc/__type_traits/empty.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="has__typename__type_8hpp.html">vccc/__type_traits/has_typename_type.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="is__specialization_8hpp.html">vccc/__type_traits/is_specialization.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="negation_8hpp.html">vccc/__type_traits/negation.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="remove__cvref_8hpp.html">vccc/__type_traits/remove_cvref.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="simple__common__reference_8hpp.html">vccc/__type_traits/simple_common_reference.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="type__identity_8hpp.html">vccc/__type_traits/type_identity.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacevccc.html">vccc</a> {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">namespace </span>detail {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">struct </span>no_common_reference {};</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;         <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>TQual, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>UQual,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;         <span class="keywordtype">bool</span> = conjunction&lt;tuple_like&lt;T&gt;, tuple_like&lt;U&gt;&gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a> <span class="comment">/* false */</span>&gt;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">struct </span>basic_common_reference_tuple_like : no_common_reference {};</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span>...&gt;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="structvccc_1_1common__reference.html">   51</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1common__reference.html">common_reference</a>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span>... T&gt;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="group__type__traits__common__reference____class_____miscellaneous__transformations.html#gafe1164daef675b01dddc89c2b7c28d80">   54</a></span>&#160;<span class="keyword">using</span> <a class="code" href="group__type__traits__common__reference____class_____miscellaneous__transformations.html#gafe1164daef675b01dddc89c2b7c28d80">common_reference_t</a> = <span class="keyword">typename</span> <a class="code" href="structvccc_1_1common__reference.html">common_reference</a>&lt;T...&gt;::type;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>TQual, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>UQual&gt;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structvccc_1_1basic__common__reference.html">   57</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1basic__common__reference.html">basic_common_reference</a> : detail::basic_common_reference_tuple_like&lt;T, U, TQual, UQual&gt; {};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">namespace </span>impl {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1basic__common__reference__qual__gen.html">   65</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1basic__common__reference__qual__gen.html">basic_common_reference_qual_gen</a> {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1basic__common__reference__qual__gen.html#a197225714863ad26895bebe406099187">   67</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1impl_1_1basic__common__reference__qual__gen.html#a197225714863ad26895bebe406099187">qual</a> = <a class="code" href="group__type__traits.html#ga2cb818a0dd59fec97ba738ecf8a94c43">copy_cvref_t&lt;T, U&gt;</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__tag__1.html">   71</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__tag__1.html">common_reference_tag_1</a> : <a class="code" href="structvccc_1_1has__typename__type.html">has_typename_type</a>&lt;simple_common_reference&lt;T1, T2&gt;&gt; {};</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__tag__2.html">   74</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__tag__2.html">common_reference_tag_2</a></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    : <a class="code" href="structvccc_1_1has__typename__type.html">has_typename_type</a>&lt;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        basic_common_reference&lt;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;          remove_cvref_t&lt;T1&gt;,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;          remove_cvref_t&lt;T2&gt;,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;          basic_common_reference_qual_gen&lt;T1&gt;::template qual,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;          basic_common_reference_qual_gen&lt;T2&gt;::template qual</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        &gt;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      &gt; {};</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="namespacevccc_1_1impl.html#aeebfb92218c7ee899adcac41c4d51370">   84</a></span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; T <a class="code" href="namespacevccc_1_1impl.html#aeebfb92218c7ee899adcac41c4d51370">common_reference_val</a>();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> = <span class="keywordtype">void</span>&gt;</div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__tag__3.html">   87</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__tag__3.html">common_reference_tag_3</a> : std::false_type {};</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__tag__3_3_01_t1_00_01_t2_00_01void__t_3_01decltype_07fal44346adb480d0d660c5ced8f7bdbf6b4.html">   90</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__tag__3.html">common_reference_tag_3</a>&lt;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    T1,</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    T2,</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="group__type__traits__void__t____class_____miscellaneous__transformations.html#gab8ddf9531fc4ac7ce28574db20c8f20e">void_t</a>&lt;decltype( false ? <a class="code" href="namespacevccc_1_1impl.html#aeebfb92218c7ee899adcac41c4d51370">common_reference_val</a>&lt;T1&gt;() : <a class="code" href="namespacevccc_1_1impl.html#aeebfb92218c7ee899adcac41c4d51370">common_reference_val</a>&lt;T2&gt;() )&gt;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    &gt; : std::true_type {};</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> = <span class="keywordtype">void</span>&gt;</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__tag__4.html">   97</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__tag__4.html">common_reference_tag_4</a> : std::false_type {};</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__tag__4_3_01_t1_00_01_t2_00_01void__t_3_01std_1_1common_acf5f14988fc74c9a1fba25e68bb91c9.html">  100</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__tag__4.html">common_reference_tag_4</a>&lt;T1, T2, <a class="code" href="group__type__traits__void__t____class_____miscellaneous__transformations.html#gab8ddf9531fc4ac7ce28574db20c8f20e">void_t</a>&lt;<a class="code" href="namespacestd.html">std</a>::<a class="code" href="group__type__traits__common__type____class_____miscellaneous__transformations.html#gac0f7a81113943dc723a4e4751c342144">common_type_t</a>&lt;T1, T2&gt;&gt;&gt; : std::true_type {};</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__tag.html">  103</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__tag.html">common_reference_tag</a></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    : std::conditional_t&lt;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        common_reference_tag_1&lt;T1, T2&gt;::value, std::integral_constant&lt;int, 1&gt;,</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;      std::conditional_t&lt;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        common_reference_tag_2&lt;T1, T2&gt;::value, std::integral_constant&lt;int, 2&gt;,</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      std::conditional_t&lt;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        common_reference_tag_3&lt;T1, T2&gt;::value, std::integral_constant&lt;int, 3&gt;,</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;      std::conditional_t&lt;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        common_reference_tag_4&lt;T1, T2&gt;::value, std::integral_constant&lt;int, 4&gt;,</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        std::integral_constant&lt;int, 0&gt;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;      &gt;&gt;&gt;&gt; {};</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">template&lt;typename T1, typename T2, int = common_reference_tag&lt;T1, T2&gt;::value</a>&gt;</div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__two.html">  117</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__two.html">common_reference_two</a>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_010_01_4.html">  120</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__two.html">common_reference_two</a>&lt;T1, T2, 0&gt; {}; <span class="comment">// no common reference type</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_011_01_4.html">  123</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__two.html">common_reference_two</a>&lt;T1, T2, 1&gt; {</div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_011_01_4.html#ab924e0d4246b436988c9e7b187bd330f">  124</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_011_01_4.html#ab924e0d4246b436988c9e7b187bd330f">type</a> = <span class="keyword">typename</span> <a class="code" href="structvccc_1_1simple__common__reference.html">simple_common_reference&lt;T1, T2&gt;::type</a>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;};</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_012_01_4.html">  128</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__two.html">common_reference_two</a>&lt;T1, T2, 2&gt; {</div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_012_01_4.html#a848c019dc1bb6a16a0d4c03e0265359c">  129</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_012_01_4.html#a848c019dc1bb6a16a0d4c03e0265359c">type</a> = <span class="keyword">typename</span> <a class="code" href="structvccc_1_1basic__common__reference.html">basic_common_reference</a>&lt;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;      <a class="code" href="group__type__traits__remove__cvref____class_____miscellaneous__transformations.html#ga3c0600da43d6867a247432fcc43ce84f">remove_cvref_t&lt;T1&gt;</a>,</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;      <a class="code" href="group__type__traits__remove__cvref____class_____miscellaneous__transformations.html#ga3c0600da43d6867a247432fcc43ce84f">remove_cvref_t&lt;T2&gt;</a>,</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;      <a class="code" href="structvccc_1_1impl_1_1basic__common__reference__qual__gen.html">basic_common_reference_qual_gen&lt;T1&gt;::template</a> qual,</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      <a class="code" href="structvccc_1_1impl_1_1basic__common__reference__qual__gen.html">basic_common_reference_qual_gen&lt;T2&gt;::template</a> qual&gt;<a class="code" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_012_01_4.html#a848c019dc1bb6a16a0d4c03e0265359c">::type</a>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;};</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_013_01_4.html">  137</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__two.html">common_reference_two</a>&lt;T1, T2, 3&gt; {</div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_013_01_4.html#a71df6037575eec16ffa9bf51b9c80cdf">  138</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_013_01_4.html#a71df6037575eec16ffa9bf51b9c80cdf">type</a> = decltype( <span class="keyword">false</span> ? common_reference_val&lt;T1&gt;() : common_reference_val&lt;T2&gt;() );</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;};</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_014_01_4.html">  142</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__two.html">common_reference_two</a>&lt;T1, T2, 4&gt; {</div>
+<div class="line"><a name="l00143"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_014_01_4.html#a18a885f584bf83d41b27fea7bea21d60">  143</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_014_01_4.html#a18a885f584bf83d41b27fea7bea21d60">type</a> = std::common_type_t&lt;T1, T2&gt;;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;};</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keyword">template</span>&lt;<span class="keywordtype">bool</span> <span class="comment">/*true*/</span>, <span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span>... R&gt;</div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__three.html">  147</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__three.html">common_reference_three</a> : <a class="code" href="structvccc_1_1common__reference.html">common_reference</a>&lt;common_reference_t&lt;T1, T2&gt;, R...&gt; {};</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span>... R&gt;</div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="structvccc_1_1impl_1_1common__reference__three_3_01false_00_01_t1_00_01_t2_00_01_r_8_8_8_01_4.html">  150</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1impl_1_1common__reference__three.html">common_reference_three</a>&lt;false, T1, T2, R...&gt; {};</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;} <span class="comment">// namespace impl</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="structvccc_1_1common__reference_3_4.html">  155</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1common__reference.html">common_reference</a>&lt;&gt; {};</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="structvccc_1_1common__reference_3_01_t_01_4.html">  158</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1common__reference.html">common_reference</a>&lt;T&gt; {</div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="structvccc_1_1common__reference_3_01_t_01_4.html#a834c467da58ea1d81821952d3c473b64">  159</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structvccc_1_1common__reference_3_01_t_01_4.html#a834c467da58ea1d81821952d3c473b64">type</a> = T;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;};</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="structvccc_1_1common__reference_3_01_t1_00_01_t2_01_4.html">  163</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1common__reference.html">common_reference</a>&lt;T1, T2&gt; : <a class="code" href="structvccc_1_1impl_1_1common__reference__two.html">impl::common_reference_two</a>&lt;T1, T2&gt; {};</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span>... R&gt;</div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="structvccc_1_1common__reference_3_01_t1_00_01_t2_00_01_r_8_8_8_01_4.html">  166</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1common__reference.html">common_reference</a>&lt;T1, T2, R...&gt;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    : <a class="code" href="structvccc_1_1impl_1_1common__reference__three.html">impl::common_reference_three</a>&lt;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        has_typename_type&lt;common_reference&lt;T1, T2&gt;&gt;::value,</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        T1,</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        T2,</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        R...</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;      &gt; {};</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">// specializations of basic_common_reference</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="keyword">namespace </span>detail {</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> TTuple, <span class="keyword">typename</span> UTuple, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>TQual, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>UQual, <span class="keyword">typename</span> Index&gt;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="keyword">struct </span>basic_common_reference_tuple_like_impl_2;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="keyword">template</span>&lt;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="keyword">typename</span> TTuple, <span class="keyword">typename</span> UTuple,</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>TQual, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>UQual,</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    std::size_t... I</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;&gt;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="keyword">struct </span>basic_common_reference_tuple_like_impl_2&lt;TTuple, UTuple, TQual, UQual, <a class="code" href="namespacestd.html">std</a>::index_sequence&lt;I...&gt;&gt; {</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  <span class="keyword">using</span> type = std::tuple&lt;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;      <a class="code" href="group__type__traits__common__reference____class_____miscellaneous__transformations.html#gafe1164daef675b01dddc89c2b7c28d80">common_reference_t</a>&lt;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;          TQual&lt; std::tuple_element_t&lt;I, TTuple&gt; &gt;,</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;          UQual&lt; std::tuple_element_t&lt;I, UTuple&gt; &gt;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;      &gt;... &gt;;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;};</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="keyword">template</span>&lt;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keyword">typename</span> TTuple, <span class="keyword">typename</span> UTuple,</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>TQual, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>UQual,</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keyword">typename</span> Index</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;&gt;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="keyword">struct </span>basic_common_reference_tuple_like_impl_1;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="keyword">template</span>&lt;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keyword">typename</span> TTuple, <span class="keyword">typename</span> UTuple,</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>TQual, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>UQual,</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    std::size_t... I</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;&gt;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="keyword">struct </span>basic_common_reference_tuple_like_impl_1&lt;TTuple, UTuple, TQual, UQual, <a class="code" href="namespacestd.html">std</a>::index_sequence&lt;I...&gt;&gt;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    : std::conditional_t&lt;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;          conjunction&lt;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;              has_typename_type&lt; common_reference&lt;TQual&lt;std::tuple_element_t&lt;I, TTuple&gt;&gt;,</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                                                  UQual&lt;std::tuple_element_t&lt;I, UTuple&gt;&gt;&gt; &gt;...</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;          &gt;::value,</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;          basic_common_reference_tuple_like_impl_2&lt;TTuple, UTuple, TQual, UQual, std::index_sequence&lt;I...&gt;&gt;,</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;          no_common_reference</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;      &gt;{};</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> TTuple, <span class="keyword">typename</span> UTuple, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>TQual, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>UQual&gt;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="keyword">struct </span>basic_common_reference_tuple_like&lt;TTuple, UTuple, TQual, UQual, true&gt;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    : std::conditional_t&lt;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;          conjunction&lt;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;              disjunction&lt; is_specialization&lt;TTuple, std::tuple&gt;, is_specialization&lt;UTuple, std::tuple&gt; &gt;,</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;              std::is_same&lt;TTuple, std::decay_t&lt;TTuple&gt;&gt;,</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;              std::is_same&lt;UTuple, std::decay_t&lt;UTuple&gt;&gt;,</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;              bool_constant&lt;(std::tuple_size&lt;remove_cvref_t&lt;TTuple&gt;&gt;::value == std::tuple_size&lt;remove_cvref_t&lt;UTuple&gt;&gt;::value)&gt;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;          &gt;::value,</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;          basic_common_reference_tuple_like_impl_1&lt;TTuple, UTuple, TQual, UQual, std::make_index_sequence&lt;std::tuple_size&lt;remove_cvref_t&lt;TTuple&gt;&gt;::value&gt;&gt;,</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;          no_common_reference</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;      &gt;{};</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U,</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;         <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>TQual, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>UQual,</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;         <span class="keywordtype">bool</span> <span class="comment">/* false */</span>&gt;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="keyword">struct </span>basic_common_reference_pair {};</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160; </div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> U1, <span class="keyword">typename</span> U2,</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;         <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>TQual, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>UQual&gt;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="keyword">struct </span>basic_common_reference_pair&lt;<a class="code" href="namespacestd.html">std</a>::pair&lt;T1, T2&gt;, std::pair&lt;U1, U2&gt;, TQual, UQual, true&gt; {</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;  <span class="keyword">using</span> type = std::pair&lt; common_reference_t&lt;TQual&lt;T1&gt;, UQual&lt;U1&gt;&gt;,</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                          common_reference_t&lt;TQual&lt;T2&gt;, UQual&lt;U2&gt;&gt; &gt;;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;};</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="keyword">template</span>&lt;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">typename</span> RQ, <span class="keyword">typename</span> TQ,</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordtype">bool</span> =</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        conjunction&lt;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            negation&lt; is_specialization&lt;T, std::reference_wrapper&gt; &gt;,</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            has_typename_type&lt; common_reference&lt;R&amp;, TQ&gt; &gt;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        &gt;<a class="code" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">::value</a> <span class="comment">/* false */</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;&gt;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="keyword">struct </span>basic_common_reference_ref_wrap {};</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="keyword">template</span>&lt;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">typename</span> RQ, <span class="keyword">typename</span> TQ</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;&gt;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="keyword">struct </span>basic_common_reference_ref_wrap&lt;R, T, RQ, TQ, true&gt;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    : std::conditional_t&lt;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;          convertible_to&lt;RQ, common_reference_t&lt;R&amp;, TQ&gt;&gt;::value,</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;          type_identity&lt;common_reference_t&lt;R&amp;, TQ&gt;&gt;,</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;          empty</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;      &gt; {};</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;} <span class="comment">// namespace detail</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> U1, <span class="keyword">typename</span> U2,</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;         <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>TQual, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>UQual&gt;</div>
+<div class="line"><a name="l00267"></a><span class="lineno"><a class="line" href="structvccc_1_1basic__common__reference_3_01std_1_1pair_3_01_t1_00_01_t2_01_4_00_01std_1_1pair_3_229fad7975ba3f31db9fdbe4f039f184.html">  267</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1basic__common__reference.html">basic_common_reference</a>&lt;<a class="code" href="namespacestd.html">std</a>::pair&lt;T1, T2&gt;, std::pair&lt;U1, U2&gt;, TQual, UQual&gt;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    : detail::basic_common_reference_pair&lt;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;          std::pair&lt;T1, T2&gt;, std::pair&lt;U1, U2&gt;,</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;          TQual, UQual,</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;          conjunction&lt;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;              has_typename_type&lt; common_reference&lt; TQual&lt;T1&gt;, UQual&lt;U1&gt; &gt; &gt;,</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;              has_typename_type&lt; common_reference&lt; TQual&lt;T2&gt;, UQual&lt;U2&gt; &gt; &gt;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;          &gt;::value</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;      &gt; {};</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160; </div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>RQual, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>TQual&gt;</div>
+<div class="line"><a name="l00278"></a><span class="lineno"><a class="line" href="structvccc_1_1basic__common__reference_3_01std_1_1reference__wrapper_3_01_r_01_4_00_01_t_00_01_r_qual_00_01_t_qual_01_4.html">  278</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1basic__common__reference.html">basic_common_reference</a>&lt;<a class="code" href="namespacestd.html">std</a>::reference_wrapper&lt;R&gt;, T, RQual, TQual&gt;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    : detail::basic_common_reference_ref_wrap&lt;R, T, RQual&lt;R&gt;, TQual&lt;T&gt;&gt; {};</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160; </div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>RQual, <span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>TQual&gt;</div>
+<div class="line"><a name="l00282"></a><span class="lineno"><a class="line" href="structvccc_1_1basic__common__reference_3_01_t_00_01std_1_1reference__wrapper_3_01_r_01_4_00_01_t_qual_00_01_r_qual_01_4.html">  282</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvccc_1_1basic__common__reference.html">basic_common_reference</a>&lt;T, <a class="code" href="namespacestd.html">std</a>::reference_wrapper&lt;R&gt;, TQual, RQual&gt;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    : detail::basic_common_reference_ref_wrap&lt;R, T, RQual&lt;R&gt;, TQual&lt;T&gt;&gt; {};</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160; </div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;} <span class="comment">// namespace vccc</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// VCCC_TYPE_TRAITS_COMMON_REFERENCE_HPP_</span></div>
+<div class="ttc" id="a____type__traits_2empty_8hpp_html"><div class="ttname"><a href="____type__traits_2empty_8hpp.html">empty.hpp</a></div></div>
+<div class="ttc" id="abool__constant_8hpp_html"><div class="ttname"><a href="bool__constant_8hpp.html">bool_constant.hpp</a></div></div>
+<div class="ttc" id="aconjunction_8hpp_html"><div class="ttname"><a href="conjunction_8hpp.html">conjunction.hpp</a></div></div>
+<div class="ttc" id="aconvertible__to_8hpp_html"><div class="ttname"><a href="convertible__to_8hpp.html">convertible_to.hpp</a></div></div>
+<div class="ttc" id="acopy__cvref_8hpp_html"><div class="ttname"><a href="copy__cvref_8hpp.html">copy_cvref.hpp</a></div></div>
+<div class="ttc" id="adisjunction_8hpp_html"><div class="ttname"><a href="disjunction_8hpp.html">disjunction.hpp</a></div></div>
+<div class="ttc" id="agroup__type__traits__common__reference____class_____miscellaneous__transformations_html_gafe1164daef675b01dddc89c2b7c28d80"><div class="ttname"><a href="group__type__traits__common__reference____class_____miscellaneous__transformations.html#gafe1164daef675b01dddc89c2b7c28d80">vccc::common_reference_t</a></div><div class="ttdeci">typename common_reference&lt; T... &gt;::type common_reference_t</div><div class="ttdef"><b>Definition:</b> common_reference.hpp:54</div></div>
+<div class="ttc" id="agroup__type__traits__common__type____class_____miscellaneous__transformations_html_gac0f7a81113943dc723a4e4751c342144"><div class="ttname"><a href="group__type__traits__common__type____class_____miscellaneous__transformations.html#gac0f7a81113943dc723a4e4751c342144">vccc::common_type_t</a></div><div class="ttdeci">typename common_type&lt; T... &gt;::type common_type_t</div><div class="ttdef"><b>Definition:</b> common_type.hpp:229</div></div>
+<div class="ttc" id="agroup__type__traits__remove__cvref____class_____miscellaneous__transformations_html_ga3c0600da43d6867a247432fcc43ce84f"><div class="ttname"><a href="group__type__traits__remove__cvref____class_____miscellaneous__transformations.html#ga3c0600da43d6867a247432fcc43ce84f">vccc::remove_cvref_t</a></div><div class="ttdeci">typename remove_cvref&lt; T &gt;::type remove_cvref_t</div><div class="ttdef"><b>Definition:</b> remove_cvref.hpp:24</div></div>
+<div class="ttc" id="agroup__type__traits__void__t____class_____miscellaneous__transformations_html_gab8ddf9531fc4ac7ce28574db20c8f20e"><div class="ttname"><a href="group__type__traits__void__t____class_____miscellaneous__transformations.html#gab8ddf9531fc4ac7ce28574db20c8f20e">vccc::void_t</a></div><div class="ttdeci">void void_t</div><div class="ttdef"><b>Definition:</b> void_t.hpp:19</div></div>
+<div class="ttc" id="agroup__type__traits_html_ga2cb818a0dd59fec97ba738ecf8a94c43"><div class="ttname"><a href="group__type__traits.html#ga2cb818a0dd59fec97ba738ecf8a94c43">vccc::copy_cvref_t</a></div><div class="ttdeci">typename copy_cvref&lt; From, To &gt;::type copy_cvref_t</div><div class="ttdef"><b>Definition:</b> copy_cvref.hpp:99</div></div>
+<div class="ttc" id="ahas__typename__type_8hpp_html"><div class="ttname"><a href="has__typename__type_8hpp.html">has_typename_type.hpp</a></div></div>
+<div class="ttc" id="ais__specialization_8hpp_html"><div class="ttname"><a href="is__specialization_8hpp.html">is_specialization.hpp</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> matrix.hpp:495</div></div>
+<div class="ttc" id="anamespacevccc_1_1impl_html_aeebfb92218c7ee899adcac41c4d51370"><div class="ttname"><a href="namespacevccc_1_1impl.html#aeebfb92218c7ee899adcac41c4d51370">vccc::impl::common_reference_val</a></div><div class="ttdeci">T common_reference_val()</div></div>
+<div class="ttc" id="anamespacevccc_html"><div class="ttname"><a href="namespacevccc.html">vccc</a></div><div class="ttdef"><b>Definition:</b> directory.h:12</div></div>
+<div class="ttc" id="anamespacevccc_html_aa29fb64011505322fd37f286ffddf28b"><div class="ttname"><a href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">vccc::value</a></div><div class="ttdeci">constexpr VCCC_INLINE_OR_STATIC detail::element_niebloid&lt; 1 &gt; value</div><div class="ttdef"><b>Definition:</b> key_value.hpp:35</div></div>
+<div class="ttc" id="anegation_8hpp_html"><div class="ttname"><a href="negation_8hpp.html">negation.hpp</a></div></div>
+<div class="ttc" id="aremove__cvref_8hpp_html"><div class="ttname"><a href="remove__cvref_8hpp.html">remove_cvref.hpp</a></div></div>
+<div class="ttc" id="asimple__common__reference_8hpp_html"><div class="ttname"><a href="simple__common__reference_8hpp.html">simple_common_reference.hpp</a></div></div>
+<div class="ttc" id="astructvccc_1_1basic__common__reference_html"><div class="ttname"><a href="structvccc_1_1basic__common__reference.html">vccc::basic_common_reference</a></div><div class="ttdef"><b>Definition:</b> common_reference.hpp:57</div></div>
+<div class="ttc" id="astructvccc_1_1common__reference_3_01_t_01_4_html_a834c467da58ea1d81821952d3c473b64"><div class="ttname"><a href="structvccc_1_1common__reference_3_01_t_01_4.html#a834c467da58ea1d81821952d3c473b64">vccc::common_reference&lt; T &gt;::type</a></div><div class="ttdeci">T type</div><div class="ttdef"><b>Definition:</b> common_reference.hpp:159</div></div>
+<div class="ttc" id="astructvccc_1_1common__reference_html"><div class="ttname"><a href="structvccc_1_1common__reference.html">vccc::common_reference</a></div><div class="ttdef"><b>Definition:</b> common_reference.hpp:51</div></div>
+<div class="ttc" id="astructvccc_1_1has__typename__type_html"><div class="ttname"><a href="structvccc_1_1has__typename__type.html">vccc::has_typename_type</a></div><div class="ttdef"><b>Definition:</b> has_typename_type.hpp:18</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1basic__common__reference__qual__gen_html"><div class="ttname"><a href="structvccc_1_1impl_1_1basic__common__reference__qual__gen.html">vccc::impl::basic_common_reference_qual_gen</a></div><div class="ttdef"><b>Definition:</b> common_reference.hpp:65</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1basic__common__reference__qual__gen_html_a197225714863ad26895bebe406099187"><div class="ttname"><a href="structvccc_1_1impl_1_1basic__common__reference__qual__gen.html#a197225714863ad26895bebe406099187">vccc::impl::basic_common_reference_qual_gen::qual</a></div><div class="ttdeci">copy_cvref_t&lt; T, U &gt; qual</div><div class="ttdef"><b>Definition:</b> common_reference.hpp:67</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1common__reference__tag__1_html"><div class="ttname"><a href="structvccc_1_1impl_1_1common__reference__tag__1.html">vccc::impl::common_reference_tag_1</a></div><div class="ttdef"><b>Definition:</b> common_reference.hpp:71</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1common__reference__tag__2_html"><div class="ttname"><a href="structvccc_1_1impl_1_1common__reference__tag__2.html">vccc::impl::common_reference_tag_2</a></div><div class="ttdef"><b>Definition:</b> common_reference.hpp:82</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1common__reference__tag__3_html"><div class="ttname"><a href="structvccc_1_1impl_1_1common__reference__tag__3.html">vccc::impl::common_reference_tag_3</a></div><div class="ttdef"><b>Definition:</b> common_reference.hpp:87</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1common__reference__tag__4_html"><div class="ttname"><a href="structvccc_1_1impl_1_1common__reference__tag__4.html">vccc::impl::common_reference_tag_4</a></div><div class="ttdef"><b>Definition:</b> common_reference.hpp:97</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1common__reference__tag_html"><div class="ttname"><a href="structvccc_1_1impl_1_1common__reference__tag.html">vccc::impl::common_reference_tag</a></div><div class="ttdef"><b>Definition:</b> common_reference.hpp:113</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1common__reference__three_html"><div class="ttname"><a href="structvccc_1_1impl_1_1common__reference__three.html">vccc::impl::common_reference_three</a></div><div class="ttdef"><b>Definition:</b> common_reference.hpp:147</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_011_01_4_html_ab924e0d4246b436988c9e7b187bd330f"><div class="ttname"><a href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_011_01_4.html#ab924e0d4246b436988c9e7b187bd330f">vccc::impl::common_reference_two&lt; T1, T2, 1 &gt;::type</a></div><div class="ttdeci">typename simple_common_reference&lt; T1, T2 &gt;::type type</div><div class="ttdef"><b>Definition:</b> common_reference.hpp:124</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_012_01_4_html_a848c019dc1bb6a16a0d4c03e0265359c"><div class="ttname"><a href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_012_01_4.html#a848c019dc1bb6a16a0d4c03e0265359c">vccc::impl::common_reference_two&lt; T1, T2, 2 &gt;::type</a></div><div class="ttdeci">typename basic_common_reference&lt; remove_cvref_t&lt; T1 &gt;, remove_cvref_t&lt; T2 &gt;, basic_common_reference_qual_gen&lt; T1 &gt;::template qual, basic_common_reference_qual_gen&lt; T2 &gt;::template qual &gt;::type type</div><div class="ttdef"><b>Definition:</b> common_reference.hpp:133</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_013_01_4_html_a71df6037575eec16ffa9bf51b9c80cdf"><div class="ttname"><a href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_013_01_4.html#a71df6037575eec16ffa9bf51b9c80cdf">vccc::impl::common_reference_two&lt; T1, T2, 3 &gt;::type</a></div><div class="ttdeci">decltype(false ? common_reference_val&lt; T1 &gt;() :common_reference_val&lt; T2 &gt;()) type</div><div class="ttdef"><b>Definition:</b> common_reference.hpp:138</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_014_01_4_html_a18a885f584bf83d41b27fea7bea21d60"><div class="ttname"><a href="structvccc_1_1impl_1_1common__reference__two_3_01_t1_00_01_t2_00_014_01_4.html#a18a885f584bf83d41b27fea7bea21d60">vccc::impl::common_reference_two&lt; T1, T2, 4 &gt;::type</a></div><div class="ttdeci">std::common_type_t&lt; T1, T2 &gt; type</div><div class="ttdef"><b>Definition:</b> common_reference.hpp:143</div></div>
+<div class="ttc" id="astructvccc_1_1impl_1_1common__reference__two_html"><div class="ttname"><a href="structvccc_1_1impl_1_1common__reference__two.html">vccc::impl::common_reference_two</a></div><div class="ttdef"><b>Definition:</b> common_reference.hpp:117</div></div>
+<div class="ttc" id="astructvccc_1_1simple__common__reference_html"><div class="ttname"><a href="structvccc_1_1simple__common__reference.html">vccc::simple_common_reference</a></div><div class="ttdef"><b>Definition:</b> simple_common_reference.hpp:94</div></div>
+<div class="ttc" id="atuple__like_8hpp_html"><div class="ttname"><a href="tuple__like_8hpp.html">tuple_like.hpp</a></div></div>
+<div class="ttc" id="atype__identity_8hpp_html"><div class="ttname"><a href="type__identity_8hpp.html">type_identity.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_99216d331fab9748718665df98894a12.html">vccc</a></li><li class="navelem"><a class="el" href="dir_7f1a0fc1815d1c2ffce0f3e91d7b552c.html">__type_traits</a></li><li class="navelem"><a class="el" href="common__reference_8hpp.html">common_reference.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

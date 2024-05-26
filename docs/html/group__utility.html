@@ -1,0 +1,870 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="VCCC Document" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="VCCC Document" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>VCCC: utility</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript" src="../js/add-permalink.js"></script>
+<script type="text/javascript" src="../js/class-toc.js"></script>
+<script type="text/javascript" src="../js/group-toc.js"></script>
+<script type="text/javascript" src="../js/header-link.js"></script>
+<script type="text/javascript" src="../js/realign-group.js"></script>
+<script type="text/javascript" src="../js/toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeTabs.init()
+    RealignGroup.init()
+    HeaderLink.init()
+    ClassToc.init()
+    GroupToc.init()
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/visualcamp/vccc" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="vc_logo_50_50.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">VCCC
+   &#160;<span id="projectnumber">2024.05</span>
+   </div>
+   <div id="projectbrief">VisualCamp Common C++ library</div>
+  </td>
+  <!--STAGE WARNING HERE-->
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__utility.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#groups">Modules</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">utility</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Utility libraries.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
+Modules</h2></td></tr>
+<tr class="memitem:group__utility__assert"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__utility__assert.html">Runtime Assertion</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__utility__sequence"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__utility__sequence.html">Integer Sequence</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__utility__time"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__utility__time.html">Time Utility</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1compressed__pair__empty__t.html">compressed_pair_empty_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1compressed__pair.html">compressed_pair&lt; T, U &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An size-optimized pair using empty base optimization.  <a href="classvccc_1_1compressed__pair.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1in__place__t.html">in_place_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">in-place construction tag  <a href="structvccc_1_1in__place__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1in__place__type__t.html">in_place_type_t&lt; T &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1in__place__index__t.html">in_place_index_t&lt; I &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1nontype__t.html">nontype_t&lt; V &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">value construction tag  <a href="structvccc_1_1nontype__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1type__sequence.html">type_sequence&lt; Types &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1type__sequence__type__count.html">type_sequence_type_count&lt; T, TS &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">count the number of occurences of <code>T</code> in <code><a class="el" href="structvccc_1_1type__sequence.html">type_sequence</a></code>  <a href="structvccc_1_1type__sequence__type__count.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1type__sequence__type__index.html">type_sequence_type_index&lt; T, TS &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the index of <code>T</code> in <code><a class="el" href="structvccc_1_1type__sequence.html">type_sequence</a></code>.  <a href="structvccc_1_1type__sequence__type__index.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1type__sequence__element__type.html">type_sequence_element_type&lt; I, TS &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">get type of \(I\)-th element of <code><a class="el" href="structvccc_1_1type__sequence.html">type_sequence</a></code>  <a href="structvccc_1_1type__sequence__element__type.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1type__sequence__element__type_3_01_i_00_01type__sequence_3_4_01_4.html">type_sequence_element_type&lt; I, type_sequence&lt;&gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1type__sequence__element__type_3_010_00_01type__sequence_3_01_u_00_01_us_8_8_8_01_4_01_4.html">type_sequence_element_type&lt; 0, type_sequence&lt; U, Us... &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvccc_1_1type__sequence__element__type_3_01_i_00_01type__sequence_3_01_u_00_01_us_8_8_8_01_4_01_4.html">type_sequence_element_type&lt; I, type_sequence&lt; U, Us... &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga1a369cb0fc593e5205a7045a6eda29af"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t N&gt; </td></tr>
+<tr class="memitem:ga1a369cb0fc593e5205a7045a6eda29af"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga1a369cb0fc593e5205a7045a6eda29af">make_type_sequence</a> = typename detail::make_type_sequence_impl&lt; T, N &gt;::type</td></tr>
+<tr class="memdesc:ga1a369cb0fc593e5205a7045a6eda29af"><td class="mdescLeft">&#160;</td><td class="mdescRight">create a <code><a class="el" href="structvccc_1_1type__sequence.html">type_sequence</a></code> that holds <code>T</code> of <code>N</code> times  <a href="group__utility.html#ga1a369cb0fc593e5205a7045a6eda29af">More...</a><br /></td></tr>
+<tr class="separator:ga1a369cb0fc593e5205a7045a6eda29af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab3c1a4abbfe415e47a1c41267c0f1928"><td class="memTemplParams" colspan="2">template&lt;std::size_t I, typename TS &gt; </td></tr>
+<tr class="memitem:gab3c1a4abbfe415e47a1c41267c0f1928"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gab3c1a4abbfe415e47a1c41267c0f1928">type_sequence_element_type_t</a> = typename <a class="el" href="structvccc_1_1type__sequence__element__type.html">type_sequence_element_type</a>&lt; I, TS &gt;::type</td></tr>
+<tr class="separator:gab3c1a4abbfe415e47a1c41267c0f1928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga2f7dadd69146ba78d57e30484d80b278"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga2f7dadd69146ba78d57e30484d80b278"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::add_const_t&lt; T &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga2f7dadd69146ba78d57e30484d80b278">as_const</a> (T &amp;t) noexcept</td></tr>
+<tr class="memdesc:ga2f7dadd69146ba78d57e30484d80b278"><td class="mdescLeft">&#160;</td><td class="mdescRight">obtains a reference to <code>const</code> to its argument  <a href="group__utility.html#ga2f7dadd69146ba78d57e30484d80b278">More...</a><br /></td></tr>
+<tr class="separator:ga2f7dadd69146ba78d57e30484d80b278"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae02a10929e0262fde498d716b388e1f3"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:gae02a10929e0262fde498d716b388e1f3"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gae02a10929e0262fde498d716b388e1f3">as_const</a> (T &amp;&amp;)=delete</td></tr>
+<tr class="separator:gae02a10929e0262fde498d716b388e1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf701be79745bc81814672a66352f67e3"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:gaf701be79745bc81814672a66352f67e3"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gaf701be79745bc81814672a66352f67e3">cmp_equal</a> (T t, U u) noexcept</td></tr>
+<tr class="separator:gaf701be79745bc81814672a66352f67e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaad3b7e6a24e87557ab64883cd9df01cd"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:gaad3b7e6a24e87557ab64883cd9df01cd"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gaad3b7e6a24e87557ab64883cd9df01cd">cmp_not_equal</a> (T t, U u) noexcept</td></tr>
+<tr class="separator:gaad3b7e6a24e87557ab64883cd9df01cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac76208e87a3a61695e061ee70fce7587"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:gac76208e87a3a61695e061ee70fce7587"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gac76208e87a3a61695e061ee70fce7587">cmp_less</a> (T t, U u) noexcept</td></tr>
+<tr class="separator:gac76208e87a3a61695e061ee70fce7587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga34eb67da8e06726d6ff53bedff4dae8b"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:ga34eb67da8e06726d6ff53bedff4dae8b"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga34eb67da8e06726d6ff53bedff4dae8b">cmp_greater</a> (T t, U u) noexcept</td></tr>
+<tr class="separator:ga34eb67da8e06726d6ff53bedff4dae8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf6c8d23ed9e9354b7496086d93a9077c"><td class="memTemplParams" colspan="2">template&lt;class T , class U &gt; </td></tr>
+<tr class="memitem:gaf6c8d23ed9e9354b7496086d93a9077c"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gaf6c8d23ed9e9354b7496086d93a9077c">cmp_less_equal</a> (T t, U u) noexcept</td></tr>
+<tr class="separator:gaf6c8d23ed9e9354b7496086d93a9077c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga901b04f117dd3186c780e2372c4b77ae"><td class="memTemplParams" colspan="2">template&lt;class T , class U &gt; </td></tr>
+<tr class="memitem:ga901b04f117dd3186c780e2372c4b77ae"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga901b04f117dd3186c780e2372c4b77ae">cmp_greater_equal</a> (T t, U u) noexcept</td></tr>
+<tr class="separator:ga901b04f117dd3186c780e2372c4b77ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga66603d71b2891c0eee7bc0063ad183c7"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:ga66603d71b2891c0eee7bc0063ad183c7"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; <a class="el" href="structvccc_1_1conjunction.html">conjunction</a>&lt; <a class="el" href="structvccc_1_1is__swappable.html">is_swappable</a>&lt; T &gt;, <a class="el" href="structvccc_1_1is__swappable.html">is_swappable</a>&lt; U &gt; &gt;::<a class="el" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga66603d71b2891c0eee7bc0063ad183c7">swap</a> (<a class="el" href="classvccc_1_1compressed__pair.html">compressed_pair</a>&lt; T, U &gt; &amp;lhs, <a class="el" href="classvccc_1_1compressed__pair.html">compressed_pair</a>&lt; T, U &gt; &amp;rhs) noexcept(<a class="el" href="structvccc_1_1conjunction.html">conjunction</a>&lt; <a class="el" href="structvccc_1_1is__nothrow__swappable.html">is_nothrow_swappable</a>&lt; T &gt;, <a class="el" href="structvccc_1_1is__nothrow__swappable.html">is_nothrow_swappable</a>&lt; U &gt;&gt;::<a class="el" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>)</td></tr>
+<tr class="separator:ga66603d71b2891c0eee7bc0063ad183c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa3ebb55c1c38eee78f9cd85623f01e1e"><td class="memTemplParams" colspan="2">template&lt;typename R , typename T &gt; </td></tr>
+<tr class="memitem:gaa3ebb55c1c38eee78f9cd85623f01e1e"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gaa3ebb55c1c38eee78f9cd85623f01e1e">in_range</a> (T t) noexcept</td></tr>
+<tr class="separator:gaa3ebb55c1c38eee78f9cd85623f01e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga44182bb2bf921097c585b7976ba68e14"><td class="memTemplParams" colspan="2">template&lt;typename T , T... v, typename F &gt; </td></tr>
+<tr class="memitem:ga44182bb2bf921097c585b7976ba68e14"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; detail::sequence_for_each_invocable&lt; std::integer_sequence&lt; T, v... &gt;, F &gt;::<a class="el" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga44182bb2bf921097c585b7976ba68e14">sequence_for_each</a> (std::integer_sequence&lt; T, v... &gt;, F &amp;&amp;f)</td></tr>
+<tr class="memdesc:ga44182bb2bf921097c585b7976ba68e14"><td class="mdescLeft">&#160;</td><td class="mdescRight">performs f(std::integral_constant&lt;T, i&gt;{}) for i in v...  <a href="group__utility.html#ga44182bb2bf921097c585b7976ba68e14">More...</a><br /></td></tr>
+<tr class="separator:ga44182bb2bf921097c585b7976ba68e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3e67e095369555dcee0a0e973d713769"><td class="memTemplParams" colspan="2">template&lt;typename T , T N, typename F &gt; </td></tr>
+<tr class="memitem:ga3e67e095369555dcee0a0e973d713769"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; detail::sequence_for_each_invocable&lt; std::make_integer_sequence&lt; T, N &gt;, F &gt;::<a class="el" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga3e67e095369555dcee0a0e973d713769">sequence_for_each</a> (F &amp;&amp;f)</td></tr>
+<tr class="memdesc:ga3e67e095369555dcee0a0e973d713769"><td class="mdescLeft">&#160;</td><td class="mdescRight">performs f(std::integral_constant&lt;T, i&gt;{}) for i in [0, N)  <a href="group__utility.html#ga3e67e095369555dcee0a0e973d713769">More...</a><br /></td></tr>
+<tr class="separator:ga3e67e095369555dcee0a0e973d713769"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafda642a9cbe66689990cd70b56b3a09a"><td class="memTemplParams" colspan="2">template&lt;std::size_t N, typename F &gt; </td></tr>
+<tr class="memitem:gafda642a9cbe66689990cd70b56b3a09a"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; detail::sequence_for_each_invocable&lt; std::make_index_sequence&lt; N &gt;, F &gt;::<a class="el" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gafda642a9cbe66689990cd70b56b3a09a">sequence_for_each</a> (F &amp;&amp;f)</td></tr>
+<tr class="memdesc:gafda642a9cbe66689990cd70b56b3a09a"><td class="mdescLeft">&#160;</td><td class="mdescRight">performs f(std::integral_constant&lt;std::size_t, i&gt;{}) for i in [0, N)  <a href="group__utility.html#gafda642a9cbe66689990cd70b56b3a09a">More...</a><br /></td></tr>
+<tr class="separator:gafda642a9cbe66689990cd70b56b3a09a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2ed88de36ffe6354ed1ed01edd28cb12"><td class="memTemplParams" colspan="2">template&lt;typename Enum &gt; </td></tr>
+<tr class="memitem:ga2ed88de36ffe6354ed1ed01edd28cb12"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::underlying_type_t&lt; Enum &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga2ed88de36ffe6354ed1ed01edd28cb12">as_const</a> (Enum e) noexcept</td></tr>
+<tr class="memdesc:ga2ed88de36ffe6354ed1ed01edd28cb12"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts an enumeration to its underlying type  <a href="group__utility.html#ga2ed88de36ffe6354ed1ed01edd28cb12">More...</a><br /></td></tr>
+<tr class="separator:ga2ed88de36ffe6354ed1ed01edd28cb12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:gaae265d0566c1f45a5cfec0e7cd3b1ed8"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> <a class="el" href="structvccc_1_1compressed__pair__empty__t.html">compressed_pair_empty_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__utility.html#gaae265d0566c1f45a5cfec0e7cd3b1ed8">compressed_pair_empty</a></td></tr>
+<tr class="separator:gaae265d0566c1f45a5cfec0e7cd3b1ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga67787a33d43bf1a1ed5779ac817fb76b"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> <a class="el" href="structvccc_1_1in__place__t.html">in_place_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__utility.html#ga67787a33d43bf1a1ed5779ac817fb76b">in_place</a> {}</td></tr>
+<tr class="separator:ga67787a33d43bf1a1ed5779ac817fb76b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga58b4a26bac491c82f3861194b30de6f4"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga58b4a26bac491c82f3861194b30de6f4"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> <a class="el" href="structvccc_1_1in__place__type__t.html">in_place_type_t</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga58b4a26bac491c82f3861194b30de6f4">in_place_type</a> {}</td></tr>
+<tr class="separator:ga58b4a26bac491c82f3861194b30de6f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae6d4678b345bbd9122057c7aae2a6d31"><td class="memTemplParams" colspan="2">template&lt;std::size_t I&gt; </td></tr>
+<tr class="memitem:gae6d4678b345bbd9122057c7aae2a6d31"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> <a class="el" href="structvccc_1_1in__place__index__t.html">in_place_index_t</a>&lt; I &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gae6d4678b345bbd9122057c7aae2a6d31">in_place_index</a> {}</td></tr>
+<tr class="separator:gae6d4678b345bbd9122057c7aae2a6d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaefc043f438deda81d953696c9b1906ca"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:gaefc043f438deda81d953696c9b1906ca"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> <a class="el" href="structvccc_1_1nontype__t.html">nontype_t</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gaefc043f438deda81d953696c9b1906ca">nontype</a> {}</td></tr>
+<tr class="separator:gaefc043f438deda81d953696c9b1906ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ga1a369cb0fc593e5205a7045a6eda29af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1a369cb0fc593e5205a7045a6eda29af">&#9670;&nbsp;</a></span>make_type_sequence</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__utility.html#ga1a369cb0fc593e5205a7045a6eda29af">make_type_sequence</a> =  typename detail::make_type_sequence_impl&lt;T, N&gt;::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gab3c1a4abbfe415e47a1c41267c0f1928"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab3c1a4abbfe415e47a1c41267c0f1928">&#9670;&nbsp;</a></span>type_sequence_element_type_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__utility.html#gab3c1a4abbfe415e47a1c41267c0f1928">type_sequence_element_type_t</a> =  typename <a class="el" href="structvccc_1_1type__sequence__element__type.html">type_sequence_element_type</a>&lt;I, TS&gt;::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga2ed88de36ffe6354ed1ed01edd28cb12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2ed88de36ffe6354ed1ed01edd28cb12">&#9670;&nbsp;</a></span>as_const() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::underlying_type_t&lt;Enum&gt;&amp; vccc::as_const </td>
+          <td>(</td>
+          <td class="paramtype">Enum&#160;</td>
+          <td class="paramname"><em>e</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a href="https://en.cppreference.com/w/cpp/utility/to_underlying">std::to_underlying</a> </dd></dl>
+
+</div>
+</div>
+<a id="gae02a10929e0262fde498d716b388e1f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae02a10929e0262fde498d716b388e1f3">&#9670;&nbsp;</a></span>as_const() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vccc::as_const </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga2f7dadd69146ba78d57e30484d80b278"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2f7dadd69146ba78d57e30484d80b278">&#9670;&nbsp;</a></span>as_const() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::add_const_t&lt;T&gt;&amp; vccc::as_const </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a href="https://en.cppreference.com/w/cpp/utility/as_const">std::as_const</a> </dd></dl>
+
+</div>
+</div>
+<a id="gaf701be79745bc81814672a66352f67e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf701be79745bc81814672a66352f67e3">&#9670;&nbsp;</a></span>cmp_equal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool vccc::cmp_equal </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">U&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga34eb67da8e06726d6ff53bedff4dae8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga34eb67da8e06726d6ff53bedff4dae8b">&#9670;&nbsp;</a></span>cmp_greater()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool vccc::cmp_greater </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">U&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga901b04f117dd3186c780e2372c4b77ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga901b04f117dd3186c780e2372c4b77ae">&#9670;&nbsp;</a></span>cmp_greater_equal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool vccc::cmp_greater_equal </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">U&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gac76208e87a3a61695e061ee70fce7587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac76208e87a3a61695e061ee70fce7587">&#9670;&nbsp;</a></span>cmp_less()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool vccc::cmp_less </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">U&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaf6c8d23ed9e9354b7496086d93a9077c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf6c8d23ed9e9354b7496086d93a9077c">&#9670;&nbsp;</a></span>cmp_less_equal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool vccc::cmp_less_equal </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">U&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaad3b7e6a24e87557ab64883cd9df01cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaad3b7e6a24e87557ab64883cd9df01cd">&#9670;&nbsp;</a></span>cmp_not_equal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool vccc::cmp_not_equal </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">U&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaa3ebb55c1c38eee78f9cd85623f01e1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa3ebb55c1c38eee78f9cd85623f01e1e">&#9670;&nbsp;</a></span>in_range()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool vccc::in_range </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga3e67e095369555dcee0a0e973d713769"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3e67e095369555dcee0a0e973d713769">&#9670;&nbsp;</a></span>sequence_for_each() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if_t&lt;detail::sequence_for_each_invocable&lt;std::make_integer_sequence&lt;T, N&gt;, F&gt;::<a class="el" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>&gt; vccc::sequence_for_each </td>
+          <td>(</td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gafda642a9cbe66689990cd70b56b3a09a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafda642a9cbe66689990cd70b56b3a09a">&#9670;&nbsp;</a></span>sequence_for_each() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if_t&lt;detail::sequence_for_each_invocable&lt;std::make_index_sequence&lt;N&gt;, F&gt;::<a class="el" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>&gt; vccc::sequence_for_each </td>
+          <td>(</td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga44182bb2bf921097c585b7976ba68e14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga44182bb2bf921097c585b7976ba68e14">&#9670;&nbsp;</a></span>sequence_for_each() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if_t&lt;detail::sequence_for_each_invocable&lt;std::integer_sequence&lt;T, v...&gt;, F&gt;::<a class="el" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>&gt; vccc::sequence_for_each </td>
+          <td>(</td>
+          <td class="paramtype">std::integer_sequence&lt; T, v... &gt;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga66603d71b2891c0eee7bc0063ad183c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga66603d71b2891c0eee7bc0063ad183c7">&#9670;&nbsp;</a></span>swap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if_t&lt;<a class="el" href="structvccc_1_1conjunction.html">conjunction</a>&lt;<a class="el" href="structvccc_1_1is__swappable.html">is_swappable</a>&lt;T&gt;, <a class="el" href="structvccc_1_1is__swappable.html">is_swappable</a>&lt;U&gt; &gt;::<a class="el" href="namespacevccc.html#aa29fb64011505322fd37f286ffddf28b">value</a>&gt; vccc::swap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1compressed__pair.html">compressed_pair</a>&lt; T, U &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1compressed__pair.html">compressed_pair</a>&lt; T, U &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="gaae265d0566c1f45a5cfec0e7cd3b1ed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaae265d0566c1f45a5cfec0e7cd3b1ed8">&#9670;&nbsp;</a></span>compressed_pair_empty</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> <a class="el" href="structvccc_1_1compressed__pair__empty__t.html">compressed_pair_empty_t</a> compressed_pair_empty</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga67787a33d43bf1a1ed5779ac817fb76b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga67787a33d43bf1a1ed5779ac817fb76b">&#9670;&nbsp;</a></span>in_place</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> <a class="el" href="structvccc_1_1in__place__t.html">in_place_t</a> in_place {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gae6d4678b345bbd9122057c7aae2a6d31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae6d4678b345bbd9122057c7aae2a6d31">&#9670;&nbsp;</a></span>in_place_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> <a class="el" href="structvccc_1_1in__place__index__t.html">in_place_index_t</a>&lt;I&gt; in_place_index {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga58b4a26bac491c82f3861194b30de6f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga58b4a26bac491c82f3861194b30de6f4">&#9670;&nbsp;</a></span>in_place_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> <a class="el" href="structvccc_1_1in__place__type__t.html">in_place_type_t</a>&lt;T&gt; in_place_type {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaefc043f438deda81d953696c9b1906ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaefc043f438deda81d953696c9b1906ca">&#9670;&nbsp;</a></span>nontype</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="inline__or__static_8hpp.html#a46c3e412535f6f1697c149465cedc3d4">VCCC_INLINE_OR_STATIC</a> <a class="el" href="structvccc_1_1nontype__t.html">nontype_t</a>&lt;T&gt; nontype {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

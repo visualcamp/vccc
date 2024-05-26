@@ -1,0 +1,570 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="VCCC Document" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="VCCC Document" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>VCCC: directory Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript" src="../js/add-permalink.js"></script>
+<script type="text/javascript" src="../js/class-toc.js"></script>
+<script type="text/javascript" src="../js/group-toc.js"></script>
+<script type="text/javascript" src="../js/header-link.js"></script>
+<script type="text/javascript" src="../js/realign-group.js"></script>
+<script type="text/javascript" src="../js/toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeTabs.init()
+    RealignGroup.init()
+    HeaderLink.init()
+    ClassToc.init()
+    GroupToc.init()
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/visualcamp/vccc" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="vc_logo_50_50.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">VCCC
+   &#160;<span id="projectnumber">2024.05</span>
+   </div>
+   <div id="projectbrief">VisualCamp Common C++ library</div>
+  </td>
+  <!--STAGE WARNING HERE-->
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classvccc_1_1directory.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classvccc_1_1directory-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">directory Class Reference<div class="ingroups"><a class="el" href="group__directory.html">directory</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="directory_8h_source.html">vccc/__directory/directory.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a3a41cc8b2b5c9c1e1a67bf3bf1f0fd08"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#a3a41cc8b2b5c9c1e1a67bf3bf1f0fd08">iterator</a> = std::filesystem::directory_iterator</td></tr>
+<tr class="separator:a3a41cc8b2b5c9c1e1a67bf3bf1f0fd08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2337dfa4b68fc0ea3c098d14b94482b0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#a2337dfa4b68fc0ea3c098d14b94482b0">recursive_iterator</a> = std::filesystem::recursive_directory_iterator</td></tr>
+<tr class="separator:a2337dfa4b68fc0ea3c098d14b94482b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaa96056c493c28257fdb844d518ae5b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#adaa96056c493c28257fdb844d518ae5b">entry</a> = std::filesystem::directory_entry</td></tr>
+<tr class="separator:adaa96056c493c28257fdb844d518ae5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94b396165fa87a0e556c21ddf4543734"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#a94b396165fa87a0e556c21ddf4543734">path</a> = std::filesystem::path</td></tr>
+<tr class="separator:a94b396165fa87a0e556c21ddf4543734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0efaffd4172cdc27a7c5a82fd8a98938"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#a0efaffd4172cdc27a7c5a82fd8a98938">options</a> = std::filesystem::directory_options</td></tr>
+<tr class="separator:a0efaffd4172cdc27a7c5a82fd8a98938"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a1b3e879e3a79a057145943554b9eb7d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#a1b3e879e3a79a057145943554b9eb7d9">directory</a> ()</td></tr>
+<tr class="separator:a1b3e879e3a79a057145943554b9eb7d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a364a00e086e59d823a21ff0d4aed0f82"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#a364a00e086e59d823a21ff0d4aed0f82">directory</a> (const <a class="el" href="classvccc_1_1directory.html#a94b396165fa87a0e556c21ddf4543734">path</a> &amp;path_, bool recursive=false)</td></tr>
+<tr class="separator:a364a00e086e59d823a21ff0d4aed0f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dde4fe8572369e339eace97bf23ac94"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#a0dde4fe8572369e339eace97bf23ac94">directory</a> (const <a class="el" href="classvccc_1_1directory.html#a94b396165fa87a0e556c21ddf4543734">path</a> &amp;path_, <a class="el" href="classvccc_1_1directory.html#a0efaffd4172cdc27a7c5a82fd8a98938">options</a> options_, bool recursive=false)</td></tr>
+<tr class="separator:a0dde4fe8572369e339eace97bf23ac94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8016a44da7087e0828a0b5fa56c1b0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#ac8016a44da7087e0828a0b5fa56c1b0e">directory</a> (const <a class="el" href="classvccc_1_1directory.html#a94b396165fa87a0e556c21ddf4543734">path</a> &amp;path_, std::error_code &amp;ec, bool recursive=false)</td></tr>
+<tr class="separator:ac8016a44da7087e0828a0b5fa56c1b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ed2154b10c704ce07071232141bf41d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#a6ed2154b10c704ce07071232141bf41d">directory</a> (const <a class="el" href="classvccc_1_1directory.html#a94b396165fa87a0e556c21ddf4543734">path</a> &amp;path_, <a class="el" href="classvccc_1_1directory.html#a0efaffd4172cdc27a7c5a82fd8a98938">options</a> options_, std::error_code &amp;ec, bool recursive=false)</td></tr>
+<tr class="separator:a6ed2154b10c704ce07071232141bf41d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14459622386ac6e3f50f2f9289a07b0c"><td class="memTemplParams" colspan="2">template&lt;typename DirectoryIterator , std::enable_if_t&lt; std::is_same_v&lt; DirectoryIterator, iterator &gt;||std::is_same_v&lt; DirectoryIterator, recursive_iterator &gt;, int &gt;  = 0&gt; </td></tr>
+<tr class="memitem:a14459622386ac6e3f50f2f9289a07b0c"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#a14459622386ac6e3f50f2f9289a07b0c">directory</a> (DirectoryIterator it)</td></tr>
+<tr class="separator:a14459622386ac6e3f50f2f9289a07b0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace5ea451e6ef1f632703dbb72c14f2de"><td class="memTemplParams" colspan="2">template&lt;typename DirectoryIterator , std::enable_if_t&lt; std::is_same_v&lt; std::decay_t&lt; DirectoryIterator &gt;, iterator &gt;||std::is_same_v&lt; std::decay_t&lt; DirectoryIterator &gt;, recursive_iterator &gt;, int &gt;  = 0&gt; </td></tr>
+<tr class="memitem:ace5ea451e6ef1f632703dbb72c14f2de"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classvccc_1_1directory.html">directory</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#ace5ea451e6ef1f632703dbb72c14f2de">operator=</a> (DirectoryIterator it)</td></tr>
+<tr class="separator:ace5ea451e6ef1f632703dbb72c14f2de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d5360008abaebc35ce87ab9bc68da4d"><td class="memTemplParams" colspan="2">template&lt;typename F &gt; </td></tr>
+<tr class="memitem:a1d5360008abaebc35ce87ab9bc68da4d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#a1d5360008abaebc35ce87ab9bc68da4d">for_each</a> (F func) const</td></tr>
+<tr class="separator:a1d5360008abaebc35ce87ab9bc68da4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67070a6fe9b9a5dceb9f101d49b5c4dd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvccc_1_1directory.html#a67070a6fe9b9a5dceb9f101d49b5c4dd">is_recursive</a> () const</td></tr>
+<tr class="separator:a67070a6fe9b9a5dceb9f101d49b5c4dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="adaa96056c493c28257fdb844d518ae5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaa96056c493c28257fdb844d518ae5b">&#9670;&nbsp;</a></span>entry</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1directory.html#adaa96056c493c28257fdb844d518ae5b">entry</a> =  std::filesystem::directory_entry</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a41cc8b2b5c9c1e1a67bf3bf1f0fd08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a41cc8b2b5c9c1e1a67bf3bf1f0fd08">&#9670;&nbsp;</a></span>iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1directory.html#a3a41cc8b2b5c9c1e1a67bf3bf1f0fd08">iterator</a> =  std::filesystem::directory_iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0efaffd4172cdc27a7c5a82fd8a98938"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0efaffd4172cdc27a7c5a82fd8a98938">&#9670;&nbsp;</a></span>options</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1directory.html#a0efaffd4172cdc27a7c5a82fd8a98938">options</a> =  std::filesystem::directory_options</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a94b396165fa87a0e556c21ddf4543734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94b396165fa87a0e556c21ddf4543734">&#9670;&nbsp;</a></span>path</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1directory.html#a94b396165fa87a0e556c21ddf4543734">path</a> =  std::filesystem::path</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2337dfa4b68fc0ea3c098d14b94482b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2337dfa4b68fc0ea3c098d14b94482b0">&#9670;&nbsp;</a></span>recursive_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classvccc_1_1directory.html#a2337dfa4b68fc0ea3c098d14b94482b0">recursive_iterator</a> =  std::filesystem::recursive_directory_iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a1b3e879e3a79a057145943554b9eb7d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b3e879e3a79a057145943554b9eb7d9">&#9670;&nbsp;</a></span>directory() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classvccc_1_1directory.html">directory</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a364a00e086e59d823a21ff0d4aed0f82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a364a00e086e59d823a21ff0d4aed0f82">&#9670;&nbsp;</a></span>directory() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classvccc_1_1directory.html">directory</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1directory.html#a94b396165fa87a0e556c21ddf4543734">path</a> &amp;&#160;</td>
+          <td class="paramname"><em>path_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>recursive</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0dde4fe8572369e339eace97bf23ac94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dde4fe8572369e339eace97bf23ac94">&#9670;&nbsp;</a></span>directory() <span class="overload">[3/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classvccc_1_1directory.html">directory</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1directory.html#a94b396165fa87a0e556c21ddf4543734">path</a> &amp;&#160;</td>
+          <td class="paramname"><em>path_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1directory.html#a0efaffd4172cdc27a7c5a82fd8a98938">options</a>&#160;</td>
+          <td class="paramname"><em>options_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>recursive</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8016a44da7087e0828a0b5fa56c1b0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8016a44da7087e0828a0b5fa56c1b0e">&#9670;&nbsp;</a></span>directory() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classvccc_1_1directory.html">directory</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1directory.html#a94b396165fa87a0e556c21ddf4543734">path</a> &amp;&#160;</td>
+          <td class="paramname"><em>path_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::error_code &amp;&#160;</td>
+          <td class="paramname"><em>ec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>recursive</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ed2154b10c704ce07071232141bf41d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ed2154b10c704ce07071232141bf41d">&#9670;&nbsp;</a></span>directory() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classvccc_1_1directory.html">directory</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classvccc_1_1directory.html#a94b396165fa87a0e556c21ddf4543734">path</a> &amp;&#160;</td>
+          <td class="paramname"><em>path_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classvccc_1_1directory.html#a0efaffd4172cdc27a7c5a82fd8a98938">options</a>&#160;</td>
+          <td class="paramname"><em>options_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::error_code &amp;&#160;</td>
+          <td class="paramname"><em>ec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>recursive</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a14459622386ac6e3f50f2f9289a07b0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14459622386ac6e3f50f2f9289a07b0c">&#9670;&nbsp;</a></span>directory() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classvccc_1_1directory.html">directory</a> </td>
+          <td>(</td>
+          <td class="paramtype">DirectoryIterator&#160;</td>
+          <td class="paramname"><em>it</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1d5360008abaebc35ce87ab9bc68da4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d5360008abaebc35ce87ab9bc68da4d">&#9670;&nbsp;</a></span>for_each()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void for_each </td>
+          <td>(</td>
+          <td class="paramtype">F&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a67070a6fe9b9a5dceb9f101d49b5c4dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67070a6fe9b9a5dceb9f101d49b5c4dd">&#9670;&nbsp;</a></span>is_recursive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool is_recursive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace5ea451e6ef1f632703dbb72c14f2de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace5ea451e6ef1f632703dbb72c14f2de">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classvccc_1_1directory.html">directory</a>&amp; operator= </td>
+          <td>(</td>
+          <td class="paramtype">DirectoryIterator&#160;</td>
+          <td class="paramname"><em>it</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/directory/include/vccc/__directory/<a class="el" href="directory_8h_source.html">directory.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacevccc.html">vccc</a></li><li class="navelem"><a class="el" href="classvccc_1_1directory.html">directory</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

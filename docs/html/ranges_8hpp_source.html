@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="VCCC Document" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="VCCC Document" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>VCCC: include/vccc/ranges.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript" src="../js/add-permalink.js"></script>
+<script type="text/javascript" src="../js/class-toc.js"></script>
+<script type="text/javascript" src="../js/group-toc.js"></script>
+<script type="text/javascript" src="../js/header-link.js"></script>
+<script type="text/javascript" src="../js/realign-group.js"></script>
+<script type="text/javascript" src="../js/toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeTabs.init()
+    RealignGroup.init()
+    HeaderLink.init()
+    ClassToc.init()
+    GroupToc.init()
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/visualcamp/vccc" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="vc_logo_50_50.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">VCCC
+   &#160;<span id="projectnumber">2024.05</span>
+   </div>
+   <div id="projectbrief">VisualCamp Common C++ library</div>
+  </td>
+  <!--STAGE WARNING HERE-->
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ranges_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ranges.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ranges_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by yonggyulee on 2023/12/23.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef VCCC_RANGES_HPP_</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define VCCC_RANGES_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="begin_8hpp.html">vccc/__ranges/begin.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="bidirectional__range_8hpp.html">vccc/__ranges/bidirectional_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="borrowed__iterator__t_8hpp.html">vccc/__ranges/borrowed_iterator_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="borrowed__range_8hpp.html">vccc/__ranges/borrowed_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="borrowed__subrange__t_8hpp.html">vccc/__ranges/borrowed_subrange_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cbegin_8hpp.html">vccc/__ranges/cbegin.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cdata_8hpp.html">vccc/__ranges/cdata.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cend_8hpp.html">vccc/__ranges/cend.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common__range_8hpp.html">vccc/__ranges/common_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="const__iterator__t_8hpp.html">vccc/__ranges/const_iterator_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="const__sentinel__t_8hpp.html">vccc/__ranges/const_sentinel_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="constant__range_8hpp.html">vccc/__ranges/constant_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="contiguous__range_8hpp.html">vccc/__ranges/contiguous_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="crbegin_8hpp.html">vccc/__ranges/crbegin.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="crend_8hpp.html">vccc/__ranges/crend.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dangling_8hpp.html">vccc/__ranges/dangling.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="data_8hpp.html">vccc/__ranges/data.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="disabled__sized__range_8hpp.html">vccc/__ranges/disabled_sized_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="distance_8hpp.html">vccc/__ranges/distance.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="____ranges_2empty_8hpp.html">vccc/__ranges/empty.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="enable__borrowed__range_8hpp.html">vccc/__ranges/enable_borrowed_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="enable__view_8hpp.html">vccc/__ranges/enable_view.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="end_8hpp.html">vccc/__ranges/end.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="forward__range_8hpp.html">vccc/__ranges/forward_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="from__range_8hpp.html">vccc/__ranges/from_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="input__range_8hpp.html">vccc/__ranges/input_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="iterator__t_8hpp.html">vccc/__ranges/iterator_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="movable__box_8hpp.html">vccc/__ranges/movable_box.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="non__propagating__cache_8hpp.html">vccc/__ranges/non_propagating_cache.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="output__range_8hpp.html">vccc/__ranges/output_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="owning__view_8hpp.html">vccc/__ranges/owning_view.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="random__access__range_8hpp.html">vccc/__ranges/random_access_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="range_8hpp.html">vccc/__ranges/range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="range__adaptor__closure_8hpp.html">vccc/__ranges/range_adaptor_closure.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="range__const__reference__t_8hpp.html">vccc/__ranges/range_const_reference_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="range__difference__t_8hpp.html">vccc/__ranges/range_difference_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="range__key__t_8hpp.html">vccc/__ranges/range_key_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="range__mapped__t_8hpp.html">vccc/__ranges/range_mapped_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="range__reference__t_8hpp.html">vccc/__ranges/range_reference_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="range__rvalue__reference__t_8hpp.html">vccc/__ranges/range_rvalue_reference_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="range__size__t_8hpp.html">vccc/__ranges/range_size_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="range__value__t_8hpp.html">vccc/__ranges/range_value_t.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rbegin_8hpp.html">vccc/__ranges/rbegin.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ref__view_8hpp.html">vccc/__ranges/ref_view.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rend_8hpp.html">vccc/__ranges/rend.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="____ranges_2size_8hpp.html">vccc/__ranges/size.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sized__range_8hpp.html">vccc/__ranges/sized_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ssize_8hpp.html">vccc/__ranges/ssize.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="subrange_8hpp.html">vccc/__ranges/subrange.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="subrange__kind_8hpp.html">vccc/__ranges/subrange_kind.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="to_8hpp.html">vccc/__ranges/to.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="view_8hpp.html">vccc/__ranges/view.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="view__interface_8hpp.html">vccc/__ranges/view_interface.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="view__base_8hpp.html">vccc/__ranges/view_base.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="viewable__range_8hpp.html">vccc/__ranges/viewable_range.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="views_8hpp.html">vccc/__ranges/views/views.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// VCCC_RANGES_HPP_</span></div>
+<div class="ttc" id="a____ranges_2empty_8hpp_html"><div class="ttname"><a href="____ranges_2empty_8hpp.html">empty.hpp</a></div></div>
+<div class="ttc" id="a____ranges_2size_8hpp_html"><div class="ttname"><a href="____ranges_2size_8hpp.html">size.hpp</a></div></div>
+<div class="ttc" id="abegin_8hpp_html"><div class="ttname"><a href="begin_8hpp.html">begin.hpp</a></div></div>
+<div class="ttc" id="abidirectional__range_8hpp_html"><div class="ttname"><a href="bidirectional__range_8hpp.html">bidirectional_range.hpp</a></div></div>
+<div class="ttc" id="aborrowed__iterator__t_8hpp_html"><div class="ttname"><a href="borrowed__iterator__t_8hpp.html">borrowed_iterator_t.hpp</a></div></div>
+<div class="ttc" id="aborrowed__range_8hpp_html"><div class="ttname"><a href="borrowed__range_8hpp.html">borrowed_range.hpp</a></div></div>
+<div class="ttc" id="aborrowed__subrange__t_8hpp_html"><div class="ttname"><a href="borrowed__subrange__t_8hpp.html">borrowed_subrange_t.hpp</a></div></div>
+<div class="ttc" id="acbegin_8hpp_html"><div class="ttname"><a href="cbegin_8hpp.html">cbegin.hpp</a></div></div>
+<div class="ttc" id="acdata_8hpp_html"><div class="ttname"><a href="cdata_8hpp.html">cdata.hpp</a></div></div>
+<div class="ttc" id="acend_8hpp_html"><div class="ttname"><a href="cend_8hpp.html">cend.hpp</a></div></div>
+<div class="ttc" id="acommon__range_8hpp_html"><div class="ttname"><a href="common__range_8hpp.html">common_range.hpp</a></div></div>
+<div class="ttc" id="aconst__iterator__t_8hpp_html"><div class="ttname"><a href="const__iterator__t_8hpp.html">const_iterator_t.hpp</a></div></div>
+<div class="ttc" id="aconst__sentinel__t_8hpp_html"><div class="ttname"><a href="const__sentinel__t_8hpp.html">const_sentinel_t.hpp</a></div></div>
+<div class="ttc" id="aconstant__range_8hpp_html"><div class="ttname"><a href="constant__range_8hpp.html">constant_range.hpp</a></div></div>
+<div class="ttc" id="acontiguous__range_8hpp_html"><div class="ttname"><a href="contiguous__range_8hpp.html">contiguous_range.hpp</a></div></div>
+<div class="ttc" id="acrbegin_8hpp_html"><div class="ttname"><a href="crbegin_8hpp.html">crbegin.hpp</a></div></div>
+<div class="ttc" id="acrend_8hpp_html"><div class="ttname"><a href="crend_8hpp.html">crend.hpp</a></div></div>
+<div class="ttc" id="adangling_8hpp_html"><div class="ttname"><a href="dangling_8hpp.html">dangling.hpp</a></div></div>
+<div class="ttc" id="adata_8hpp_html"><div class="ttname"><a href="data_8hpp.html">data.hpp</a></div></div>
+<div class="ttc" id="adisabled__sized__range_8hpp_html"><div class="ttname"><a href="disabled__sized__range_8hpp.html">disabled_sized_range.hpp</a></div></div>
+<div class="ttc" id="adistance_8hpp_html"><div class="ttname"><a href="distance_8hpp.html">distance.hpp</a></div></div>
+<div class="ttc" id="aenable__borrowed__range_8hpp_html"><div class="ttname"><a href="enable__borrowed__range_8hpp.html">enable_borrowed_range.hpp</a></div></div>
+<div class="ttc" id="aenable__view_8hpp_html"><div class="ttname"><a href="enable__view_8hpp.html">enable_view.hpp</a></div></div>
+<div class="ttc" id="aend_8hpp_html"><div class="ttname"><a href="end_8hpp.html">end.hpp</a></div></div>
+<div class="ttc" id="aforward__range_8hpp_html"><div class="ttname"><a href="forward__range_8hpp.html">forward_range.hpp</a></div></div>
+<div class="ttc" id="afrom__range_8hpp_html"><div class="ttname"><a href="from__range_8hpp.html">from_range.hpp</a></div></div>
+<div class="ttc" id="ainput__range_8hpp_html"><div class="ttname"><a href="input__range_8hpp.html">input_range.hpp</a></div></div>
+<div class="ttc" id="aiterator__t_8hpp_html"><div class="ttname"><a href="iterator__t_8hpp.html">iterator_t.hpp</a></div></div>
+<div class="ttc" id="amovable__box_8hpp_html"><div class="ttname"><a href="movable__box_8hpp.html">movable_box.hpp</a></div></div>
+<div class="ttc" id="anon__propagating__cache_8hpp_html"><div class="ttname"><a href="non__propagating__cache_8hpp.html">non_propagating_cache.hpp</a></div></div>
+<div class="ttc" id="aoutput__range_8hpp_html"><div class="ttname"><a href="output__range_8hpp.html">output_range.hpp</a></div></div>
+<div class="ttc" id="aowning__view_8hpp_html"><div class="ttname"><a href="owning__view_8hpp.html">owning_view.hpp</a></div></div>
+<div class="ttc" id="arandom__access__range_8hpp_html"><div class="ttname"><a href="random__access__range_8hpp.html">random_access_range.hpp</a></div></div>
+<div class="ttc" id="arange_8hpp_html"><div class="ttname"><a href="range_8hpp.html">range.hpp</a></div></div>
+<div class="ttc" id="arange__adaptor__closure_8hpp_html"><div class="ttname"><a href="range__adaptor__closure_8hpp.html">range_adaptor_closure.hpp</a></div></div>
+<div class="ttc" id="arange__const__reference__t_8hpp_html"><div class="ttname"><a href="range__const__reference__t_8hpp.html">range_const_reference_t.hpp</a></div></div>
+<div class="ttc" id="arange__difference__t_8hpp_html"><div class="ttname"><a href="range__difference__t_8hpp.html">range_difference_t.hpp</a></div></div>
+<div class="ttc" id="arange__key__t_8hpp_html"><div class="ttname"><a href="range__key__t_8hpp.html">range_key_t.hpp</a></div></div>
+<div class="ttc" id="arange__mapped__t_8hpp_html"><div class="ttname"><a href="range__mapped__t_8hpp.html">range_mapped_t.hpp</a></div></div>
+<div class="ttc" id="arange__reference__t_8hpp_html"><div class="ttname"><a href="range__reference__t_8hpp.html">range_reference_t.hpp</a></div></div>
+<div class="ttc" id="arange__rvalue__reference__t_8hpp_html"><div class="ttname"><a href="range__rvalue__reference__t_8hpp.html">range_rvalue_reference_t.hpp</a></div></div>
+<div class="ttc" id="arange__size__t_8hpp_html"><div class="ttname"><a href="range__size__t_8hpp.html">range_size_t.hpp</a></div></div>
+<div class="ttc" id="arange__value__t_8hpp_html"><div class="ttname"><a href="range__value__t_8hpp.html">range_value_t.hpp</a></div></div>
+<div class="ttc" id="arbegin_8hpp_html"><div class="ttname"><a href="rbegin_8hpp.html">rbegin.hpp</a></div></div>
+<div class="ttc" id="aref__view_8hpp_html"><div class="ttname"><a href="ref__view_8hpp.html">ref_view.hpp</a></div></div>
+<div class="ttc" id="arend_8hpp_html"><div class="ttname"><a href="rend_8hpp.html">rend.hpp</a></div></div>
+<div class="ttc" id="asized__range_8hpp_html"><div class="ttname"><a href="sized__range_8hpp.html">sized_range.hpp</a></div></div>
+<div class="ttc" id="assize_8hpp_html"><div class="ttname"><a href="ssize_8hpp.html">ssize.hpp</a></div></div>
+<div class="ttc" id="asubrange_8hpp_html"><div class="ttname"><a href="subrange_8hpp.html">subrange.hpp</a></div></div>
+<div class="ttc" id="asubrange__kind_8hpp_html"><div class="ttname"><a href="subrange__kind_8hpp.html">subrange_kind.hpp</a></div></div>
+<div class="ttc" id="ato_8hpp_html"><div class="ttname"><a href="to_8hpp.html">to.hpp</a></div></div>
+<div class="ttc" id="aview_8hpp_html"><div class="ttname"><a href="view_8hpp.html">view.hpp</a></div></div>
+<div class="ttc" id="aview__base_8hpp_html"><div class="ttname"><a href="view__base_8hpp.html">view_base.hpp</a></div></div>
+<div class="ttc" id="aview__interface_8hpp_html"><div class="ttname"><a href="view__interface_8hpp.html">view_interface.hpp</a></div></div>
+<div class="ttc" id="aviewable__range_8hpp_html"><div class="ttname"><a href="viewable__range_8hpp.html">viewable_range.hpp</a></div></div>
+<div class="ttc" id="aviews_8hpp_html"><div class="ttname"><a href="views_8hpp.html">views.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_99216d331fab9748718665df98894a12.html">vccc</a></li><li class="navelem"><a class="el" href="ranges_8hpp.html">ranges.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>
