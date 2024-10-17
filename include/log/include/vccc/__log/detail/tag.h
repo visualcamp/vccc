@@ -5,9 +5,9 @@
 # ifndef VCCC_LOG_DETAIL_TAG_H_
 # define VCCC_LOG_DETAIL_TAG_H_
 #
-# define VCCC_LOG_TAG_DEBUG "SeeSo Debug | "
-# define VCCC_LOG_TAG_INFO  "SeeSo Info  | "
-# define VCCC_LOG_TAG_WARN  "SeeSo Warn  | "
-# define VCCC_LOG_TAG_ERROR "SeeSo Error | "
+# define VCCC_LOG_TAG_DEBUG "Eyedid Debug | "
+# define VCCC_LOG_TAG_INFO  "Eyedid Info  | "
+# define VCCC_LOG_TAG_WARN  "Eyedid Warn  | "
+# define VCCC_LOG_TAG_ERROR "Eyedid Error | "
 #
 # endif //VCCC_LOG_DETAIL_TAG_H_
